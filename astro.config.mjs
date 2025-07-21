@@ -5,11 +5,10 @@ import react from "@astrojs/react";
 import sitemap from "@astrojs/sitemap";
 import { tanstackRouter } from "@tanstack/router-vite-plugin";
 import { defineConfig } from "astro/config";
-import mkcert from 'vite-plugin-mkcert';
 
 // https://astro.build/config
 export default defineConfig({
-  site: "https://example.com",
+  site: "https://see-in-the-sea.lucio-dalessa.workers.dev",
   integrations: [mdx(), sitemap(), react()],
   vite: {
 		plugins: [tanstackRouter(
@@ -17,15 +16,17 @@ export default defineConfig({
             routesDirectory: "./src/react/routes",
             generatedRouteTree: "./src/react/generated.ts",
       }
-    ), mkcert() ]
+    )],
+    resolve: {
+      // Use react-dom/server.edge instead of react-dom/server.browser for React 19.
+      // Without this, MessageChannel from node:worker_threads needs to be polyfilled.
+      alias: import.meta.env.PROD && {
+        "react-dom/server": "react-dom/server.edge",
+      } || {},
+    },
 	},
   server: {
     open: true,
-
   },
-  adapter: cloudflare({
-    platformProxy: {
-      enabled: true,
-    },
-  }),
+  adapter: cloudflare(),
 });

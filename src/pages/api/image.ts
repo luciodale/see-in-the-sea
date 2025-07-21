@@ -74,8 +74,6 @@ export const POST: APIRoute = async ({ request, locals }) => {
     // 5. Perform the upload to R2 by streaming the file directly
     try {
         console.log('BUCKET', R2Bucket)
-        // imageFile.stream() provides a ReadableStream directly from the incoming request.
-        // R2Bucket.put() can accept a ReadableStream, allowing for efficient, low-memory uploads.
         await R2Bucket.put(r2Key, imageFile, {
             httpMetadata: {
                 contentType: imageFile.type, // Use the actual MIME type of the uploaded file

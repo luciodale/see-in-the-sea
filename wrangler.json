@@ -21,8 +21,8 @@
     "r2_buckets": [
         {
             "binding": "R2_IMAGES_BUCKET",
-            "bucket_name": "see-in-the-sea-images"
-        }
+            "bucket_name": "see-in-the-sea-images",
+        },
 	],
 	/**
 	 * Note: Use secrets to store sensitive data.

@@ -34,7 +34,6 @@
   "devDependencies": {
     "@tanstack/react-router-devtools": "^1.127.8",
     "@types/node": "^24.0.10",
-    "vite-plugin-mkcert": "^1.17.8",
     "wrangler": "^4.23.0"
   },
   "scripts": {
