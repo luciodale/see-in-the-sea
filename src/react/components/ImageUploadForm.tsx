@@ -49,7 +49,7 @@ export function ImageUploadForm() {
             // **No manual token injection here!**
             // The browser automatically sends relevant cookies (like Clerk's __session cookie)
             // with same-origin requests.
-            const response = await fetch('/api/image', { // Your Astro API endpoint
+            const response = await fetch('/api/upload-image', { // Your Astro API endpoint
                 method: 'POST',
                 // IMPORTANT: Do NOT manually set 'Content-Type': 'multipart/form-data'.
                 // When you provide a FormData object as the `body`, the browser automatically
