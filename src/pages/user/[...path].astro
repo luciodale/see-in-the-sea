@@ -4,15 +4,10 @@ import Footer from '../../components/Footer.astro';
 import Header from '../../components/Header.astro';
 import { SITE_DESCRIPTION, SITE_TITLE } from '../../consts';
 import { App } from '../../react/App';
-export async function getStaticPaths() {
-	return [{
-		params: {
-			path: 'manage'
-		}
-	}]
-}
 
-console.log('this should render 100%', Astro.params);
+// dynamic route to serve the react app
+export const prerender = false; 
+const {PUBLIC_CLERK_PUBLISHABLE_KEY} = Astro.locals.runtime.env
 ---
 
 <!doctype html>
@@ -22,8 +17,8 @@ console.log('this should render 100%', Astro.params);
 	</head>
 	<body>
 		<Header />
-		foo manage
-		    <App client:only="react" />
+		this is captured by astro it's user/*
+		    <App client:only="react" clerkPublicKey={PUBLIC_CLERK_PUBLISHABLE_KEY} />
 		</main>
 		<Footer />
 	</body>

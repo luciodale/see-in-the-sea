@@ -1,22 +1,29 @@
+import { ClerkProvider } from "@clerk/clerk-react";
 import { createRouter, RouterProvider } from "@tanstack/react-router";
 import { StrictMode } from "react";
-import { AuthProvider } from "./auth/AuthProvider";
 import { routeTree } from './generated.ts';
 
 const router = createRouter({ routeTree })
-
 declare module '@tanstack/react-router' {
   interface Register {
     router: typeof router
   }
 }
 
-export function App() {
+const redirectUrl = '/user/manage'
+
+export function App({clerkPublicKey}: {clerkPublicKey?: string}) {
+    if(!clerkPublicKey) {
+        throw new Error('Missing Publishable Key')
+    }
+    
     return (
         <StrictMode>
-            <AuthProvider>
+            <ClerkProvider publishableKey={clerkPublicKey} afterSignOutUrl='/' 
+            signInForceRedirectUrl={redirectUrl}
+            signUpForceRedirectUrl={redirectUrl}>
                 <RouterProvider router={router} />
-            </AuthProvider>
+            </ClerkProvider>
         </StrictMode>
     )
 }
