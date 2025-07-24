@@ -66,7 +66,21 @@ export const POST: APIRoute = async ({ request, locals }) => {
                     [UPLOAD_IMAGE_TOKEN_HEADER_NAME]: locals.runtime.env.UPLOAD_IMAGE_ENDPOINT_TOKEN || ''
                 },
                 body: JSON.stringify({ r2Key, uploadedBy: user.emailAddress, title, description: description || '' }),
-            }).catch(e => console.error("Error calling image processing endpoint:", e)))
+            }).then(async (response) => {
+                // THIS IS THE CRUCIAL LOG:
+                console.log(`[upload-image] Process-image response status: ${response.status}`);
+                if (!response.ok) {
+                    const errorText = await response.text();
+                    console.error(`[upload-image] Process-image call failed with status ${response.status}: ${errorText}`);
+                }
+                return response; // IMPORTANT: Ensure the promise chain continues
+            })
+            .catch(e => {
+                console.error("[upload-image] Error calling image processing endpoint via fetch:", e);
+                if (e instanceof TypeError) {
+                    console.error("[upload-image] Possible network or URL issue for process-image:", e.message);
+                }
+            }));
         
 
         return new Response(JSON.stringify({
