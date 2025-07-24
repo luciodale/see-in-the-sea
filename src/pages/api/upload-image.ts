@@ -52,6 +52,7 @@ export const POST: APIRoute = async ({ request, locals }) => {
         });
 
 
+        console.log('process image url', new URL('/api/process-image', request.url).toString())
         locals.runtime.ctx.waitUntil(
 
         fetch(new URL('/api/process-image', request.url).toString(), {
