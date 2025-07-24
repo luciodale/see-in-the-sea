@@ -9,6 +9,8 @@ export const GET: APIRoute = async () => {
 
 export const POST: APIRoute = async ({ request, locals }) => {
     // Security check
+
+    console.log("[process-image] Received POST request to process image.");
     const internalSecret = request.headers.get(UPLOAD_IMAGE_TOKEN_HEADER_NAME);
     if (!internalSecret || internalSecret !== locals.runtime.env.UPLOAD_IMAGE_ENDPOINT_TOKEN) {
         console.warn("Unauthorized access attempt to process-image endpoint.");
