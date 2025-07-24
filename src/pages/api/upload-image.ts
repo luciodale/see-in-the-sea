@@ -63,7 +63,7 @@ export const POST: APIRoute = async ({ request, locals }) => {
                 console.log(`[upload-image] Process-image response status: ${response.status}`);
                 if (!response.ok) {
                     const errorText = await response.text();
-                    console.error(`[upload-image] Process-image call failed with status ${response.status}: ${errorText}`);
+                    console.error(`[upload-image GET] Process-image call failed with status ${response.status}: ${errorText}`);
                 }
             }))
 
