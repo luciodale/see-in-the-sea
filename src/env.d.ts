@@ -1,5 +1,6 @@
 interface Env {
   R2_IMAGES_BUCKET?: R2Bucket;
+  IMAGES?: ImagesBinding;
   PUBLIC_CLERK_PUBLISHABLE_KEY?: string;
   CLERK_SECRET_KEY?: string;
   CLERK_JWT_KEY?: string;

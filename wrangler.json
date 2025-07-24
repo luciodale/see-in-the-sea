@@ -21,9 +21,12 @@
     "r2_buckets": [
         {
             "binding": "R2_IMAGES_BUCKET",
-            "bucket_name": "see-in-the-sea-images",
-        },
-	],
+            "bucket_name": "see-in-the-sea-images"
+        }
+    ],
+    "images": {
+        "binding": "IMAGES"
+    },
 	/**
 	 * Note: Use secrets to store sensitive data.
 	 * https://developers.cloudflare.com/workers/configuration/secrets/
