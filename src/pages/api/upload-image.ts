@@ -52,7 +52,8 @@ export const POST: APIRoute = async ({ request, locals }) => {
         });
 
 
-        
+        locals.runtime.ctx.waitUntil(
+
         fetch(new URL('/api/process-image', request.url).toString(), {
                 method: 'POST',
                 headers: {
@@ -60,7 +61,7 @@ export const POST: APIRoute = async ({ request, locals }) => {
                     [UPLOAD_IMAGE_TOKEN_HEADER_NAME]: locals.runtime.env.UPLOAD_IMAGE_ENDPOINT_TOKEN || ''
                 },
                 body: JSON.stringify({ r2Key, uploadedBy: user.emailAddress, title, description: description || '' }),
-            }).catch(e => console.error("Error calling image processing endpoint:", e))
+            }).catch(e => console.error("Error calling image processing endpoint:", e)))
         
 
         return new Response(JSON.stringify({
