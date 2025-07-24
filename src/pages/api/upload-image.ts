@@ -56,6 +56,17 @@ export const POST: APIRoute = async ({ request, locals }) => {
         });
 
 
+        locals.runtime.ctx.waitUntil(
+            fetch(new URL('/api/process-image', request.url).toString(), {
+                method: 'GET',
+            }).then(async (response) => {
+                console.log(`[upload-image] Process-image response status: ${response.status}`);
+                if (!response.ok) {
+                    const errorText = await response.text();
+                    console.error(`[upload-image] Process-image call failed with status ${response.status}: ${errorText}`);
+                }
+            }))
+
         console.log('process image url', new URL('/api/process-image', request.url).toString())
         locals.runtime.ctx.waitUntil(
 
