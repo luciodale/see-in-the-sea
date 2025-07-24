@@ -28,5 +28,5 @@ export default defineConfig({
   server: {
     open: true,
   },
-  adapter: cloudflare(),
+  adapter: cloudflare({imageService: 'cloudflare'}),
 });
