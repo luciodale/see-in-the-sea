@@ -3,6 +3,10 @@ import { UPLOAD_IMAGE_TOKEN_HEADER_NAME } from '../../constants';
 
 export const prerender = false; 
 
+export const GET: APIRoute = async () => {
+    return new Response('process-image ok', { status: 200 });
+}
+
 export const POST: APIRoute = async ({ request, locals }) => {
     // Security check
     const internalSecret = request.headers.get(UPLOAD_IMAGE_TOKEN_HEADER_NAME);

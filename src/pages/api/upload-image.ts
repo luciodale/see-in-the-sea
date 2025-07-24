@@ -7,6 +7,10 @@ import { handleImageUploadFormData } from '../../server/handleImageUploadFormDat
 
 export const prerender = false;
 
+export const GET: APIRoute = async () => {
+    return new Response('update-image ok', { status: 200 });
+}
+
 export const POST: APIRoute = async ({ request, locals }) => {
     // It's crucial to clone the request BEFORE attempting to read its body with .formData()
     // authenticateRequest should ideally only read headers, but cloning is safest if there's any
