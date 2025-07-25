@@ -58,7 +58,7 @@ export const GET: APIRoute = async ({ params, locals }) => {
             
                 
                 const transformedImage = await webOptimizedTransformer;
-                console.log('[serve-image] Transformed image size:', transformedImage.contentType);
+                console.log('[serve-image] Transformed image size:', transformedImage.contentType());
             const response = transformedImage.response();
 
             // Handle proxy response in local development
