@@ -170,7 +170,7 @@ export const POST: APIRoute = async ({ request, locals }) => {
             categoryId,
             userEmail,
             title,
-            description,
+            description: description || '',
             r2Key,
             imageUrl: imageUrlPath, // Store the path without domain
             originalFilename: image.name,

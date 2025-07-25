@@ -6,28 +6,28 @@ export const seedData = {
     {
       id: 'wide-angle',
       name: 'Wide Angle',
-      description: 'Expansive underwater scenes, coral reefs, and seascapes',
+      description: 'Expansive underwater scenes, coral reefs, and seascapes that showcase the vastness of the underwater world',
       displayOrder: 1
     },
     {
       id: 'macro', 
       name: 'Macro',
-      description: 'Close-up photography of small marine life and details',
+      description: 'Close-up photography of small marine life, textures, and intricate underwater details',
       displayOrder: 2
     },
     {
-      id: 'black-and-white',
-      name: 'Black and White', 
-      description: 'Monochrome underwater photography showcasing contrast and composition',
+      id: 'bw',
+      name: 'Black & White', 
+      description: 'Monochrome underwater photography emphasizing contrast, composition, and artistic expression',
       displayOrder: 3
     }
   ],
   
   contests: [
     {
-      id: '2025-uw-contest',
+      id: 'uw-2025',
       name: 'Underwater Photography Contest 2025',
-      description: 'Annual underwater photography competition',
+      description: 'Annual underwater photography competition celebrating the beauty and diversity of marine life',
       startDate: '2025-01-01',
       endDate: '2025-12-31'
     }

@@ -52,9 +52,15 @@
     "db:migrate:local": "bun scripts/apply-migrations.ts --local",
     "db:migrate:remote": "bun scripts/apply-migrations.ts --remote",
     "db:studio": "drizzle-kit studio",
-    "db:seed": "bun scripts/generate-seed.ts && wrangler d1 execute see-in-the-sea-db --remote --file=./drizzle/seed.sql",
+    "db:seed:local": "bun scripts/generate-seed.ts && wrangler d1 execute see-in-the-sea-db --local --file=./drizzle/seed.sql",
+    "db:seed:remote": "bun scripts/generate-seed.ts && wrangler d1 execute see-in-the-sea-db --remote --file=./drizzle/seed.sql",
     "db:migration": "drizzle-kit generate --name",
-    "db:init": "bun run db:migration initial_schema && bun run db:migrate:remote && bun run db:seed"
+    "db:init:local": "bun run db:migration initial_schema && bun run db:migrate:local && bun run db:seed:local",
+    "db:init:remote": "bun run db:migration initial_schema && bun run db:migrate:remote && bun run db:seed:remote",
+    "db:dump:local": "bunx wrangler d1 execute see-in-the-sea-db --local --command=\"DROP TABLE IF EXISTS submissions;\" && bunx wrangler d1 execute see-in-the-sea-db --local --command=\"DROP TABLE IF EXISTS categories;\" && bunx wrangler d1 execute see-in-the-sea-db --local --command=\"DROP TABLE IF EXISTS contests;\"",
+    "db:dump:remote": "bunx wrangler d1 execute see-in-the-sea-db --remote --command=\"DROP TABLE IF EXISTS submissions;\" && bunx wrangler d1 execute see-in-the-sea-db --remote --command=\"DROP TABLE IF EXISTS categories;\" && bunx wrangler d1 execute see-in-the-sea-db --remote --command=\"DROP TABLE IF EXISTS contests;\"",
+    "db:dump:all": "bun run db:dump:local && bun run db:dump:remote",
+    "db:reset": "bun run db:dump:all && bun run db:init:local && bun run db:init:remote"
   },
   "type": "module"
 }

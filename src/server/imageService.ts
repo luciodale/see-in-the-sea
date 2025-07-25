@@ -1,10 +1,11 @@
-import { and, eq } from 'drizzle-orm';
+import { eq } from 'drizzle-orm';
 import { nanoid } from 'nanoid';
-import { getDb, submissions } from '../db/index.js';
+import type { getDb } from '../db/index.js';
+import { submissions } from '../db/index.js';
 
 /**
- * Generates a unique R2 key for an image
- * Pure function - deterministic based on inputs
+ * Generates unique R2 key and submission ID for image storage
+ * Pure function - no side effects
  */
 export function generateR2Key(
   contestId: string,
@@ -13,13 +14,14 @@ export function generateR2Key(
   fileExtension: string
 ): { submissionId: string; r2Key: string } {
   const submissionId = nanoid();
-  const r2Key = `2025/${contestId}/${categoryId}/${userEmail}/${submissionId}.${fileExtension}`;
+  // Clean readable structure: contest/category/user-email/submission-id.ext
+  const r2Key = `${contestId}/${categoryId}/${userEmail}/${submissionId}.${fileExtension}`;
   
   return { submissionId, r2Key };
 }
 
 /**
- * Generates the served image URL (R2 key without extension)
+ * Generates the served image URL path (R2 key without extension)
  * Pure function - string transformation
  */
 export function generateImageUrl(r2Key: string): string {
@@ -34,34 +36,36 @@ export async function validateUserOwnsSubmission(
   db: ReturnType<typeof getDb>,
   submissionId: string,
   userEmail: string
-): Promise<{
-  isOwner: boolean;
-  submission: any | null;
-}> {
-  const submissionResult = await db
-    .select()
-    .from(submissions)
-    .where(and(
-      eq(submissions.id, submissionId),
-      eq(submissions.userEmail, userEmail),
-      eq(submissions.isActive, true)
-    ))
-    .limit(1);
+): Promise<{ isOwner: boolean; submission?: any }> {
+  try {
+    const result = await db
+      .select()
+      .from(submissions)
+      .where(eq(submissions.id, submissionId))
+      .limit(1);
 
-  return {
-    isOwner: submissionResult.length > 0,
-    submission: submissionResult[0] || null
-  };
+    if (result.length === 0) {
+      return { isOwner: false };
+    }
+
+    const submission = result[0];
+    const isOwner = submission.userEmail === userEmail;
+    
+    return { isOwner, submission: isOwner ? submission : undefined };
+  } catch (error) {
+    console.error('[validateUserOwnsSubmission] Database error:', error);
+    return { isOwner: false };
+  }
 }
 
 /**
- * Stores image in R2 bucket
- * Side effect function - but isolated
+ * Stores image file in R2 bucket with metadata
+ * Side effect function - uploads to R2
  */
 export async function storeImageInR2(
-  R2Bucket: R2Bucket,
+  bucket: R2Bucket,
   r2Key: string,
-  image: File,
+  imageFile: File,
   metadata: {
     submissionId: string;
     uploadedBy: string;
@@ -71,41 +75,61 @@ export async function storeImageInR2(
     categoryId: string;
   }
 ): Promise<void> {
-  await R2Bucket.put(r2Key, image, {
-    httpMetadata: {
-      contentType: image.type,
-    },
-    customMetadata: {
-      ...metadata,
-      uploadedAt: new Date().toISOString()
-    }
-  });
+  try {
+    await bucket.put(r2Key, imageFile.stream(), {
+      httpMetadata: {
+        contentType: imageFile.type,
+        contentDisposition: `inline; filename="${metadata.title.replace(/[^a-zA-Z0-9.-]/g, '_')}"`,
+      },
+      customMetadata: {
+        submissionId: metadata.submissionId,
+        uploadedBy: metadata.uploadedBy,
+        title: metadata.title,
+        description: metadata.description,
+        contestId: metadata.contestId,
+        categoryId: metadata.categoryId,
+        originalFilename: imageFile.name,
+        uploadedAt: new Date().toISOString(),
+      },
+    });
+
+    console.log(`[storeImageInR2] Successfully stored image: ${r2Key}`);
+  } catch (error) {
+    console.error(`[storeImageInR2] Failed to store image ${r2Key}:`, error);
+    throw new Error(`Failed to store image in R2: ${error instanceof Error ? error.message : String(error)}`);
+  }
 }
 
 /**
- * Deletes image from R2 bucket
- * Side effect function - but isolated
+ * Deletes image file from R2 bucket
+ * Side effect function - deletes from R2
  */
 export async function deleteImageFromR2(
-  R2Bucket: R2Bucket,
+  bucket: R2Bucket,
   r2Key: string
 ): Promise<void> {
-  await R2Bucket.delete(r2Key);
+  try {
+    await bucket.delete(r2Key);
+    console.log(`[deleteImageFromR2] Successfully deleted image: ${r2Key}`);
+  } catch (error) {
+    console.error(`[deleteImageFromR2] Failed to delete image ${r2Key}:`, error);
+    throw new Error(`Failed to delete image from R2: ${error instanceof Error ? error.message : String(error)}`);
+  }
 }
 
 /**
  * Stores submission metadata in database
- * Side effect function - but isolated
+ * Side effect function - writes to database
  */
 export async function storeSubmissionMetadata(
   db: ReturnType<typeof getDb>,
-  submissionData: {
+  data: {
     id: string;
     contestId: string;
     categoryId: string;
     userEmail: string;
     title: string;
-    description: string | null;
+    description: string;
     r2Key: string;
     imageUrl: string;
     originalFilename: string;
@@ -113,22 +137,42 @@ export async function storeSubmissionMetadata(
     contentType: string;
   }
 ): Promise<void> {
-  await db.insert(submissions).values({
-    ...submissionData,
-    uploadedAt: new Date().toISOString(),
-    isActive: true
-  });
+  try {
+    await db.insert(submissions).values({
+      id: data.id,
+      contestId: data.contestId,
+      categoryId: data.categoryId,
+      userEmail: data.userEmail,
+      title: data.title,
+      description: data.description,
+      r2Key: data.r2Key,
+      imageUrl: data.imageUrl,
+      originalFilename: data.originalFilename,
+      fileSize: data.fileSize,
+      contentType: data.contentType,
+      uploadedAt: new Date().toISOString(),
+    });
+
+    console.log(`[storeSubmissionMetadata] Successfully stored metadata for submission: ${data.id}`);
+  } catch (error) {
+    console.error(`[storeSubmissionMetadata] Failed to store metadata for ${data.id}:`, error);
+    throw new Error(`Failed to store submission metadata: ${error instanceof Error ? error.message : String(error)}`);
+  }
 }
 
 /**
- * Deletes a submission from the database (hard delete)
- * Side effect function - but isolated
+ * Hard deletes submission from database
+ * Side effect function - deletes from database
  */
 export async function deleteSubmission(
   db: ReturnType<typeof getDb>,
   submissionId: string
 ): Promise<void> {
-  await db
-    .delete(submissions)
-    .where(eq(submissions.id, submissionId));
+  try {
+    await db.delete(submissions).where(eq(submissions.id, submissionId));
+    console.log(`[deleteSubmission] Successfully deleted submission: ${submissionId}`);
+  } catch (error) {
+    console.error(`[deleteSubmission] Failed to delete submission ${submissionId}:`, error);
+    throw new Error(`Failed to delete submission: ${error instanceof Error ? error.message : String(error)}`);
+  }
 } 
