@@ -26,6 +26,7 @@ export const GET: APIRoute = async ({ params, locals }) => {
 
         // If no Images service available, serve original with caching
         if (!IMAGES) {
+            console.log('[serve-image] No Images service available, serving original image');
             return new Response(r2Object.body, {
                 headers: {
                     'Content-Type': r2Object.httpMetadata?.contentType || 'image/jpeg',
@@ -33,6 +34,9 @@ export const GET: APIRoute = async ({ params, locals }) => {
                 }
             });
         }
+
+        console.log('[serve-image] IMAGES service available, transforming image');
+
 
         // Apply opinionated defaults for web delivery:
         // - Max width 1200px (good for most web use cases)
@@ -51,8 +55,10 @@ export const GET: APIRoute = async ({ params, locals }) => {
                     format: 'image/webp',  // Best web format
                     quality: 85  // High quality with good compression
                 });
-
-            const transformedImage = await webOptimizedTransformer;
+            
+                
+                const transformedImage = await webOptimizedTransformer;
+                console.log('[serve-image] Transformed image size:', transformedImage.contentType);
             const response = transformedImage.response();
 
             // Handle proxy response in local development
