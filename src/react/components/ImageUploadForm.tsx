@@ -1,17 +1,42 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 // If you integrate with Clerk's frontend SDK later, you might still use useAuth for other things,
 // but not directly for injecting the token into headers for same-origin requests.
 // import { useAuth } from '@clerk/clerk-react';
 
 export function ImageUploadForm() {
     const [selectedFile, setSelectedFile] = useState(null);
+    const [selectedCategory, setSelectedCategory] = useState('');
+    const [title, setTitle] = useState('');
+    const [description, setDescription] = useState('');
     const [message, setMessage] = useState('');
     const [uploading, setUploading] = useState(false);
+    const [contest, setContest] = useState(null);
+    const [categories, setCategories] = useState([]);
+    const [loading, setLoading] = useState(true);
 
-    // Hardcoded values for simplicity
-    const HARDCODED_CONTEST_ID = 'my-first-contest';
-    const HARDCODED_TITLE = 'My Awesome Photo';
-    const HARDCODED_DESCRIPTION = 'This is a test upload from the React frontend.';
+    // Fetch active contest and categories on component mount
+    useEffect(() => {
+        const fetchContestData = async () => {
+            try {
+                                 const response = await fetch('/api/contests');
+                 const data = await response.json() as { success: boolean; data: { contest: any; categories: any[] } };
+                 
+                 if (data.success) {
+                     setContest(data.data.contest);
+                     setCategories(data.data.categories);
+                } else {
+                    setMessage('No active contest found');
+                }
+            } catch (error) {
+                setMessage('Failed to load contest information');
+                console.error('Failed to fetch contest data:', error);
+            } finally {
+                setLoading(false);
+            }
+        };
+
+        fetchContestData();
+    }, []);
 
     // MOCK TOKEN: Removed from direct use in fetch headers.
     // The server-side will look for the token in the cookie.
@@ -36,14 +61,25 @@ export function ImageUploadForm() {
             return;
         }
 
+        if (!selectedCategory) {
+            setMessage('Please select a category for your photo.');
+            return;
+        }
+
+        if (!title.trim()) {
+            setMessage('Please enter a title for your photo.');
+            return;
+        }
+
         setUploading(true); // Indicate that upload is in progress
 
         // Create a FormData object to send multipart/form-data
         const formData = new FormData();
         formData.append('image', selectedFile); // 'image' matches formData.get('image') in your API
-        formData.append('contestId', HARDCODED_CONTEST_ID);
-        formData.append('title', HARDCODED_TITLE);
-        formData.append('description', HARDCODED_DESCRIPTION);
+        formData.append('contestId', contest.id);
+        formData.append('categoryId', selectedCategory);
+        formData.append('title', title);
+        formData.append('description', description);
 
         try {
             // **No manual token injection here!**
@@ -144,12 +180,12 @@ export function ImageUploadForm() {
             )}
 
             <div style={{ marginTop: '20px', fontSize: '14px', color: '#777' }}>
-                <p><strong>Hardcoded Values:</strong></p>
+                <p><strong>Current Values:</strong></p>
                 <ul>
-                    <li>Contest ID: <code>{HARDCODED_CONTEST_ID}</code></li>
-                    <li>Title: <code>{HARDCODED_TITLE}</code></li>
-                    <li>Description: <code>{HARDCODED_DESCRIPTION}</code></li>
-                    {/* Removed "Mock Clerk Token used for auth." as it's handled by browser cookies */}
+                    <li>Contest: <code>{contest.name}</code></li>
+                    <li>Category: <code>{selectedCategory ? categories.find(c => c.id === selectedCategory)?.name : 'Not selected'}</code></li>
+                    <li>Title: <code>{title || 'Not entered'}</code></li>
+                    <li>Description: <code>{description || 'None'}</code></li>
                     <li>Authentication handled via browser cookies.</li>
                 </ul>
             </div>

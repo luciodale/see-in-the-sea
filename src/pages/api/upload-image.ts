@@ -1,85 +1,213 @@
-// src/pages/api/upload-image.ts
 import type { APIRoute } from 'astro';
-import { nanoid } from 'nanoid';
+import { getDb } from '../../db/index.js';
 import { authenticateRequest } from '../../server/authenticateRequest';
-import { handleImageUploadFormData } from '../../server/handleImageUploadFormData';
+import {
+    checkSubmissionLimits,
+    validateActiveCategory,
+    validateActiveContest
+} from '../../server/contestService';
+
+import {
+    deleteImageFromR2,
+    deleteSubmission,
+    generateImageUrl,
+    generateR2Key,
+    storeImageInR2,
+    storeSubmissionMetadata,
+    validateUserOwnsSubmission
+} from '../../server/imageService';
+
+import {
+    validateImageFile,
+    validateSubmissionAction,
+    validateUploadFormData
+} from '../../server/validationService';
 
 export const prerender = false;
 
+/**
+ * POST /api/upload-image
+ * Handles new image uploads and image replacements
+ * Supports optional 'replacedSubmissionId' for replacing existing images
+ */
 export const POST: APIRoute = async ({ request, locals }) => {
     console.log('[upload-image] Processing upload request');
     
-    // Authentication
-    const authRequestClone = request.clone() as typeof request;
-    const { isAuthenticated, user, unauthenticatedResponse } = await authenticateRequest(authRequestClone, locals);
-
-    if (!isAuthenticated) return unauthenticatedResponse();
-
-    // Parse form data
-    let formData: FormData;
-    try {
-        formData = await request.formData();
-    } catch (error) {
-        console.error('Error parsing form data:', error);
-        return new Response(JSON.stringify({ message: 'Invalid form data. Ensure Content-Type is multipart/form-data.' }), { status: 400 });
-    }
-
-    const { ok, message, data: imageUploadData } = handleImageUploadFormData(formData);
-
-    if (!ok) {
-        return new Response(JSON.stringify({ message }), { status: 400 });
-    }
-
-    const { image, contestId, title, description, fileExtension } = imageUploadData;
+    // Get dependencies
     const R2Bucket = locals.runtime.env.R2_IMAGES_BUCKET;
+    const D1Database = locals.runtime.env.DB;
 
-    if (!R2Bucket) {
-        console.error("R2_IMAGES_BUCKET binding is missing");
-        return new Response(JSON.stringify({ message: 'Server configuration error: R2 bucket not found.' }), { status: 500 });
+    if (!R2Bucket || !D1Database) {
+        return new Response(JSON.stringify({ 
+            success: false,
+            message: 'Server configuration error: Missing R2 bucket or database.' 
+        }), { status: 500 });
     }
 
-    const imageId = nanoid();
-    const r2Key = `2025/${contestId}/${user.emailAddress || 'unknown'}/${imageId}.${fileExtension}`;
+    const db = getDb(D1Database);
 
     try {
-        // Store original image in R2
-        console.log('[upload-image] Storing original image in R2');
-        await R2Bucket.put(r2Key, image, {
-            httpMetadata: {
-                contentType: image.type,
-            },
-            customMetadata: {
-                uploadedBy: user.emailAddress || 'unknown',
-                title: title,
-                description: description || '',
-                contestId: contestId,
-                uploadedAt: new Date().toISOString()
+        // Step 1: Authentication
+        const authRequestClone = request.clone() as typeof request;
+        const { isAuthenticated, user, unauthenticatedResponse } = await authenticateRequest(authRequestClone, locals);
+
+        if (!isAuthenticated) {
+            return unauthenticatedResponse();
+        }
+
+        const userEmail = user.emailAddress || 'unknown';
+
+        // Step 2: Parse and validate form data
+        const formData = await request.formData();
+        const formValidation = validateUploadFormData(formData);
+        
+        if (!formValidation.isValid) {
+            return new Response(JSON.stringify({ 
+                success: false,
+                message: formValidation.error 
+            }), { status: 400 });
+        }
+
+        const { 
+            imageFile, 
+            contestId, 
+            categoryId, 
+            title, 
+            description, 
+            replacedSubmissionId 
+        } = formValidation.data;
+
+        // Step 3: Validate image file
+        const imageValidation = validateImageFile(imageFile);
+        
+        if (!imageValidation.isValid) {
+            return new Response(JSON.stringify({ 
+                success: false,
+                message: imageValidation.error 
+            }), { status: 400 });
+        }
+
+        const { image, fileExtension } = imageValidation.data;
+
+        // Step 4: Validate contest and category exist
+        const [contestValidation, categoryValidation] = await Promise.all([
+            validateActiveContest(db, contestId),
+            validateActiveCategory(db, categoryId)
+        ]);
+
+        if (!contestValidation.isValid) {
+            return new Response(JSON.stringify({ 
+                success: false,
+                message: 'Contest not found or inactive.' 
+            }), { status: 400 });
+        }
+
+        if (!categoryValidation.isValid) {
+            return new Response(JSON.stringify({ 
+                success: false,
+                message: 'Invalid or inactive category.' 
+            }), { status: 400 });
+        }
+
+        // Step 5: Handle replacement logic
+        const isReplacement = !!replacedSubmissionId;
+        let replacedSubmission = null;
+
+        if (isReplacement) {
+            // Validate user owns the submission they want to replace
+            const ownershipValidation = await validateUserOwnsSubmission(db, replacedSubmissionId, userEmail);
+            
+            if (!ownershipValidation.isOwner) {
+                return new Response(JSON.stringify({ 
+                    success: false,
+                    message: 'You can only replace your own submissions.' 
+                }), { status: 403 });
             }
+
+            replacedSubmission = ownershipValidation.submission;
+        }
+
+        // Step 6: Check submission limits
+        const submissionLimits = await checkSubmissionLimits(db, contestId, categoryId, userEmail);
+        
+        const actionValidation = validateSubmissionAction(
+            submissionLimits.currentCount,
+            submissionLimits.maxAllowed,
+            isReplacement
+        );
+
+        if (!actionValidation.isValid) {
+            return new Response(JSON.stringify({ 
+                success: false,
+                message: actionValidation.error 
+            }), { status: 400 });
+        }
+
+                 // Step 7: Generate new image paths and URLs
+         const { submissionId, r2Key } = generateR2Key(contestId, categoryId, userEmail, fileExtension);
+         const imageUrlPath = generateImageUrl(r2Key); // R2 key without extension
+         const baseUrl = new URL(request.url).origin;
+         const imageUrl = `${baseUrl}/api/images/${imageUrlPath}`;
+
+        // Step 8: Execute the upload operation
+        console.log(`[upload-image] ${isReplacement ? 'Replacing' : 'Creating'} submission`);
+
+        // Store new image in R2
+        await storeImageInR2(R2Bucket, r2Key, image, {
+            submissionId,
+            uploadedBy: userEmail,
+            title,
+            description: description || '',
+            contestId,
+            categoryId
         });
 
-        // Return success with image URLs
-        const baseUrl = new URL(request.url).origin;
-        const originalImageUrl = `${baseUrl}/api/images/${r2Key}`;
+                 // Store submission metadata in database
+         await storeSubmissionMetadata(db, {
+             id: submissionId,
+             contestId,
+             categoryId,
+             userEmail,
+             title,
+             description,
+             r2Key,
+             imageUrl: imageUrlPath, // Store the path without domain
+             originalFilename: image.name,
+             fileSize: image.size,
+             contentType: image.type
+         });
+
+        // Step 9: Clean up replaced submission if this is a replacement
+        if (isReplacement && replacedSubmission) {
+            try {
+                // Delete old image from R2
+                await deleteImageFromR2(R2Bucket, replacedSubmission.r2Key);
+                
+                // Delete old submission from database
+                await deleteSubmission(db, replacedSubmissionId);
+                
+                console.log('[upload-image] Successfully cleaned up replaced submission');
+            } catch (cleanupError) {
+                console.error('[upload-image] Cleanup error (non-fatal):', cleanupError);
+                // Don't fail the request if cleanup fails - new image is already uploaded
+            }
+        }
 
         console.log('[upload-image] Upload completed successfully');
         
+        // Step 10: Return success response
         return new Response(JSON.stringify({
             success: true,
-            message: 'Image uploaded successfully',
+            message: isReplacement ? 'Image replaced successfully!' : 'Image uploaded successfully!',
             data: {
-                imageId: imageId,
-                r2Key: r2Key,
-                contestId: contestId,
-                uploadedBy: user.emailAddress || 'unknown',
-                title: title,
+                submissionId,
+                contestId,
+                categoryId,
+                uploadedBy: userEmail,
+                title,
                 description: description || '',
-                // Provide the optimized image URL
-                imageUrl: originalImageUrl,
-                // The serve-image endpoint will automatically optimize with:
-                // - Max 1200px width
-                // - WebP format
-                // - Quality 85
-                // - Scale-down fit
+                                 imageUrl,
+                action: actionValidation.data.action,
                 metadata: {
                     originalFileName: image.name,
                     originalSize: image.size,
@@ -95,6 +223,7 @@ export const POST: APIRoute = async ({ request, locals }) => {
     } catch (error) {
         console.error('[upload-image] Error during upload:', error);
         return new Response(JSON.stringify({
+            success: false,
             message: 'Failed to upload image',
             error: (error instanceof Error) ? error.message : String(error)
         }), {

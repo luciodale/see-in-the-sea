@@ -26,6 +26,7 @@
     "@types/react": "^19.1.8",
     "@types/react-dom": "^19.1.6",
     "astro": "5.10.1",
+    "drizzle-orm": "^0.44.3",
     "nanoid": "^5.1.5",
     "react": "18.0.0",
     "react-dom": "18.0.0",
@@ -34,6 +35,7 @@
   "devDependencies": {
     "@tanstack/react-router-devtools": "^1.127.8",
     "@types/node": "^24.0.10",
+    "drizzle-kit": "^0.31.4",
     "wrangler": "^4.23.0"
   },
   "scripts": {
@@ -43,7 +45,14 @@
     "check": "astro build && tsc && wrangler deploy --dry-run",
     "deploy": "wrangler deploy",
     "dev": "astro dev",
-    "preview": "astro build && wrangler dev"
+    "preview": "astro build && wrangler dev",
+    "db:generate": "drizzle-kit generate --name",
+    "db:migrate:local": "bun scripts/apply-migrations.ts --local",
+    "db:migrate:remote": "bun scripts/apply-migrations.ts --remote",
+    "db:studio": "drizzle-kit studio",
+    "db:seed": "bun scripts/generate-seed.ts && wrangler d1 execute see-in-the-sea-db --remote --file=./drizzle/seed.sql",
+    "db:migration": "drizzle-kit generate --name",
+    "db:init": "bun run db:migration initial_schema && bun run db:migrate:remote && bun run db:seed"
   },
   "type": "module"
 }

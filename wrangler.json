@@ -27,6 +27,13 @@
     "images": {
         "binding": "IMAGES"
     },
+    "d1_databases": [
+        {
+            "binding": "DB",
+            "database_name": "see-in-the-sea-db",
+			"database_id": "e385ed45-21fc-4f9b-90ad-93b6397789b1"
+        }
+    ],
 	/**
 	 * Note: Use secrets to store sensitive data.
 	 * https://developers.cloudflare.com/workers/configuration/secrets/

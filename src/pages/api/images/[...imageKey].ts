@@ -1,4 +1,6 @@
 import type { APIRoute } from 'astro';
+import { eq } from 'drizzle-orm';
+import { getDb, submissions } from '../../../db';
 
 export const prerender = false;
 
@@ -12,18 +14,44 @@ export const GET: APIRoute = async ({ params, locals }) => {
     try {
         const R2Bucket = locals.runtime.env.R2_IMAGES_BUCKET;
         const IMAGES = locals.runtime.env.IMAGES;
+        const D1Database = locals.runtime.env.DB;
         
-        if (!R2Bucket) {
-            return new Response('Storage unavailable', { status: 503 });
+        if (!R2Bucket || !D1Database) {
+            return new Response('Storage or database unavailable', { status: 503 });
         }
 
-        // Get the original image from R2
-        const r2Object = await R2Bucket.get(imageKey);
+        const db = getDb(D1Database);
+
+        // Step 1: Query D1 to find the submission by imageUrl and get the r2Key
+        console.log('[serve-image] Looking up submission for imageUrl:', imageKey);
         
-        if (!r2Object || !r2Object.body) {
+        const submissionResult = await db
+            .select({ 
+                r2Key: submissions.r2Key,
+                userEmail: submissions.userEmail,
+                title: submissions.title
+            })
+            .from(submissions)
+            .where(eq(submissions.imageUrl, imageKey))
+            .limit(1);
+
+        if (submissionResult.length === 0) {
+            console.log('[serve-image] No submission found for imageUrl:', imageKey);
             return new Response('Image not found', { status: 404 });
         }
 
+        const { r2Key } = submissionResult[0];
+        console.log('[serve-image] Found r2Key:', r2Key);
+
+        // Step 2: Get the original image from R2 using the r2Key
+        const r2Object = await R2Bucket.get(r2Key);
+        
+        if (!r2Object || !r2Object.body) {
+            console.log('[serve-image] Image not found in R2 for key:', r2Key);
+            return new Response('Image not found in storage', { status: 404 });
+        }
+
+        // Step 3: Transform and serve the image
         // If no Images service available, serve original with caching
         if (!IMAGES) {
             console.log('[serve-image] No Images service available, serving original image');
@@ -37,9 +65,8 @@ export const GET: APIRoute = async ({ params, locals }) => {
 
         console.log('[serve-image] IMAGES service available, transforming image');
 
-
         // Apply aggressive optimization for web delivery:
-        // - Max width 800px (sufficient for most web use, significant size reduction)
+        // - Max width 500px (aggressive size reduction for web)
         // - WebP format (best compression for web)
         // - Quality 75 (good balance of quality vs aggressive compression)
         // - Scale-down fit (never enlarge, preserve aspect ratio)
@@ -48,7 +75,7 @@ export const GET: APIRoute = async ({ params, locals }) => {
             
             const webOptimizedTransformer = imageTransformer
                 .transform({ 
-                    width: 500,  // More aggressive width reduction
+                    width: 500,  // Aggressive width reduction
                     fit: 'scale-down' // Never enlarge images
                 })
                 .output({ 
@@ -56,44 +83,27 @@ export const GET: APIRoute = async ({ params, locals }) => {
                     quality: 75  // More aggressive compression while maintaining good quality
                 });
             
-                
-                const transformedImage = await webOptimizedTransformer;
-                console.log('[serve-image] Transformed image size:', transformedImage.contentType());
+            const transformedImage = await webOptimizedTransformer;
+            console.log('[serve-image] Transformed image successfully');
             const response = transformedImage.response();
-
-            // Handle proxy response in local development
-            if (!(response instanceof Response)) {
-                const proxyResponse = response as any;
-                return new Response(proxyResponse.body, {
-                    status: proxyResponse.status || 200,
-                    headers: {
-                        'Content-Type': 'image/webp',
-                        'Cache-Control': 'public, max-age=31536000, immutable',
-                        'X-Optimized': 'web-defaults'
-                    }
-                });
-            }
             
             // Add caching headers to the transformed response
-            const finalResponse = new Response(response.body, {
+            return new Response(response.body, {
                 status: response.status,
                 statusText: response.statusText,
                 headers: {
                     ...Object.fromEntries(response.headers.entries()),
                     'Cache-Control': 'public, max-age=31536000, immutable',
-                    'X-Optimized': 'web-defaults'
+                    'X-Optimized': 'web-aggressive'
                 }
             });
-            
-            return finalResponse;
-            
+                        
         } catch (imageError) {
             console.log('[serve-image] Image transformation failed, serving original:', imageError);
             // Fallback to original image if transformation fails
             return new Response(r2Object.body, {
                 headers: {
                     'Content-Type': r2Object.httpMetadata?.contentType || 'image/jpeg',
-                    'Cache-Control': 'public, max-age=31536000, immutable'
                 }
             });
         }
