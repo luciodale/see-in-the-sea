@@ -3,7 +3,6 @@ import type { APIRoute } from 'astro';
 import { nanoid } from 'nanoid';
 import { authenticateRequest } from '../../server/authenticateRequest';
 import { handleImageUploadFormData } from '../../server/handleImageUploadFormData';
-import { processImageFromR2 } from '../../server/imageProcessing';
 
 export const prerender = false;
 
@@ -43,63 +42,60 @@ export const POST: APIRoute = async ({ request, locals }) => {
     const r2Key = `2025/${contestId}/${user.emailAddress || 'unknown'}/${imageId}.${fileExtension}`;
 
     try {
-        // Step 1: Upload original image to R2
-        console.log('[upload-image] Uploading original image to R2');
+        // Store original image in R2
+        console.log('[upload-image] Storing original image in R2');
         await R2Bucket.put(r2Key, image, {
             httpMetadata: {
                 contentType: image.type,
             },
+            customMetadata: {
+                uploadedBy: user.emailAddress || 'unknown',
+                title: title,
+                description: description || '',
+                contestId: contestId,
+                uploadedAt: new Date().toISOString()
+            }
         });
 
-        // Step 2: Process the image using modular function
-        console.log('[upload-image] Processing uploaded image');
-        const processingResult = await processImageFromR2(
-            r2Key,
-            {
-                R2_IMAGES_BUCKET: locals.runtime.env.R2_IMAGES_BUCKET,
-                IMAGES: locals.runtime.env.IMAGES
-            },
-            {
-                width: 800,
-                format: 'image/webp'
-            }
-        );
+        // Return success with image URLs
+        const baseUrl = new URL(request.url).origin;
+        const originalImageUrl = `${baseUrl}/api/images/${r2Key}`;
 
-        if (!processingResult.success) {
-            console.error('[upload-image] Image processing failed:', processingResult.message);
-            return new Response(JSON.stringify({
-                message: 'Image uploaded but processing failed',
-                error: processingResult.error,
-                imageId: imageId,
-                r2Key: r2Key
-            }), {
-                status: 500,
-                headers: { 'Content-Type': 'application/json' }
-            });
-        }
-
-        // Step 4: Return the processed image directly to client
-        console.log('[upload-image] Returning processed image to client');
+        console.log('[upload-image] Upload completed successfully');
         
-        return new Response(processingResult.processedImageData, {
-            status: 200,
-            headers: {
-                'Content-Type': processingResult.contentType || 'image/webp',
-                'Cache-Control': 'public, max-age=31536000',
-                // Custom headers with metadata
-                'X-Image-Id': imageId,
-                'X-Contest-Id': contestId,
-                'X-Uploaded-By': user.emailAddress || 'unknown',
-                'X-Original-R2-Key': r2Key,
-                'X-Image-Title': title,
-                'X-Image-Description': description || ''
+        return new Response(JSON.stringify({
+            success: true,
+            message: 'Image uploaded successfully',
+            data: {
+                imageId: imageId,
+                r2Key: r2Key,
+                contestId: contestId,
+                uploadedBy: user.emailAddress || 'unknown',
+                title: title,
+                description: description || '',
+                // Provide the optimized image URL
+                imageUrl: originalImageUrl,
+                // The serve-image endpoint will automatically optimize with:
+                // - Max 1200px width
+                // - WebP format
+                // - Quality 85
+                // - Scale-down fit
+                metadata: {
+                    originalFileName: image.name,
+                    originalSize: image.size,
+                    contentType: image.type,
+                    uploadedAt: new Date().toISOString()
+                }
             }
+        }), {
+            status: 200,
+            headers: { 'Content-Type': 'application/json' }
         });
 
     } catch (error) {
-        console.error('[upload-image] Error during upload/processing:', error);
+        console.error('[upload-image] Error during upload:', error);
         return new Response(JSON.stringify({
-            message: 'Failed to upload and process image',
+            message: 'Failed to upload image',
             error: (error instanceof Error) ? error.message : String(error)
         }), {
             status: 500,
