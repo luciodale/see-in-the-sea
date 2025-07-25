@@ -38,22 +38,22 @@ export const GET: APIRoute = async ({ params, locals }) => {
         console.log('[serve-image] IMAGES service available, transforming image');
 
 
-        // Apply opinionated defaults for web delivery:
-        // - Max width 1200px (good for most web use cases)
-        // - WebP format (best balance of quality/size for web)
-        // - Quality 85 (excellent quality with good compression)
+        // Apply aggressive optimization for web delivery:
+        // - Max width 800px (sufficient for most web use, significant size reduction)
+        // - WebP format (best compression for web)
+        // - Quality 75 (good balance of quality vs aggressive compression)
         // - Scale-down fit (never enlarge, preserve aspect ratio)
         try {
             const imageTransformer = IMAGES.input(r2Object.body);
             
             const webOptimizedTransformer = imageTransformer
                 .transform({ 
-                    width: 1200,  // Sensible max width for web
-                    fit: 'scale-down'  // Never enlarge images
+                    width: 800,  // More aggressive width reduction
+                    fit: 'scale-down' // Never enlarge images
                 })
                 .output({ 
                     format: 'image/webp',  // Best web format
-                    quality: 85  // High quality with good compression
+                    quality: 75  // More aggressive compression while maintaining good quality
                 });
             
                 
