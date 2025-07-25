@@ -1,194 +1,330 @@
-import { useEffect, useState } from 'react';
-// If you integrate with Clerk's frontend SDK later, you might still use useAuth for other things,
-// but not directly for injecting the token into headers for same-origin requests.
-// import { useAuth } from '@clerk/clerk-react';
+import { useEffect, useRef, useState } from 'react';
+import type { ContestsResponse, ContestWithCategories, UploadResponse } from '../../types/api.js';
 
-export function ImageUploadForm() {
-    const [selectedFile, setSelectedFile] = useState(null);
-    const [selectedCategory, setSelectedCategory] = useState('');
-    const [title, setTitle] = useState('');
-    const [description, setDescription] = useState('');
-    const [message, setMessage] = useState('');
-    const [uploading, setUploading] = useState(false);
-    const [contest, setContest] = useState(null);
-    const [categories, setCategories] = useState([]);
-    const [loading, setLoading] = useState(true);
+type ImageUploadFormProps = {
+  selectedCategoryId?: string;
+  replacedSubmissionId?: string;
+  onUploadSuccess?: (result: UploadResponse) => void;
+  onCancel?: () => void;
+};
 
-    // Fetch active contest and categories on component mount
-    useEffect(() => {
-        const fetchContestData = async () => {
-            try {
-                                 const response = await fetch('/api/contests');
-                 const data = await response.json() as { success: boolean; data: { contest: any; categories: any[] } };
-                 
-                 if (data.success) {
-                     setContest(data.data.contest);
-                     setCategories(data.data.categories);
-                } else {
-                    setMessage('No active contest found');
-                }
-            } catch (error) {
-                setMessage('Failed to load contest information');
-                console.error('Failed to fetch contest data:', error);
-            } finally {
-                setLoading(false);
-            }
-        };
+export default function ImageUploadForm({ 
+  selectedCategoryId, 
+  replacedSubmissionId, 
+  onUploadSuccess, 
+  onCancel 
+}: ImageUploadFormProps) {
+  const [contestData, setContestData] = useState<ContestWithCategories | null>(null);
+  const [selectedFile, setSelectedFile] = useState<File | null>(null);
+  const [previewUrl, setPreviewUrl] = useState<string | null>(null);
+  const [categoryId, setCategoryId] = useState(selectedCategoryId || '');
+  const [title, setTitle] = useState('');
+  const [description, setDescription] = useState('');
+  const [uploading, setUploading] = useState(false);
+  const [error, setError] = useState<string | null>(null);
+  
+  const fileInputRef = useRef<HTMLInputElement>(null);
 
-        fetchContestData();
-    }, []);
-
-    // MOCK TOKEN: Removed from direct use in fetch headers.
-    // The server-side will look for the token in the cookie.
-
-    const handleFileChange = (event) => {
-        const file = event.target.files[0];
-        if (file && file.type.startsWith('image/')) {
-            setSelectedFile(file);
-            setMessage(''); // Clear previous messages
+  // Fetch contest data on mount
+  useEffect(() => {
+    async function fetchContestData() {
+      try {
+        const response = await fetch('/api/contests');
+        const data = await response.json() as ContestsResponse;
+        if (data.success && data.data) {
+          setContestData(data.data);
         } else {
-            setSelectedFile(null);
-            setMessage('Please select a valid image file (e.g., JPG, PNG).');
+          setError('Failed to load contest information');
         }
+      } catch (err) {
+        console.error('Failed to fetch contest data:', err);
+        setError('Failed to load contest information');
+      }
+    }
+
+    fetchContestData();
+  }, []);
+
+  const handleFileSelect = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const file = event.target.files?.[0];
+    if (!file) return;
+
+    // Validate file type
+    if (!file.type.startsWith('image/')) {
+      setError('Please select an image file');
+      return;
+    }
+
+    // Validate file size (10MB limit)
+    if (file.size > 10 * 1024 * 1024) {
+      setError('File size must be less than 10MB');
+      return;
+    }
+
+    setSelectedFile(file);
+    setError(null);
+
+    // Create preview URL
+    const url = URL.createObjectURL(file);
+    setPreviewUrl(url);
+  };
+
+  const handleSubmit = async (event: React.FormEvent) => {
+    event.preventDefault();
+    
+    if (!selectedFile || !categoryId || !title.trim()) {
+      setError('Please fill in all required fields');
+      return;
+    }
+
+    if (!contestData) {
+      setError('Contest data not available');
+      return;
+    }
+
+    setUploading(true);
+    setError(null);
+
+    try {
+      const formData = new FormData();
+      formData.append('image', selectedFile);
+      formData.append('contestId', contestData.contest.id);
+      formData.append('categoryId', categoryId);
+      formData.append('title', title.trim());
+      formData.append('description', description.trim());
+      
+      if (replacedSubmissionId) {
+        formData.append('replacedSubmissionId', replacedSubmissionId);
+      }
+
+      const response = await fetch('/api/upload-image', {
+        method: 'POST',
+        body: formData,
+      });
+
+      const result = await response.json() as UploadResponse;
+
+      if (result.success) {
+        onUploadSuccess?.(result);
+        // Reset form
+        setSelectedFile(null);
+        setPreviewUrl(null);
+        setTitle('');
+        setDescription('');
+        if (fileInputRef.current) {
+          fileInputRef.current.value = '';
+        }
+      } else {
+        setError(result.message || 'Upload failed');
+      }
+    } catch (err) {
+      console.error('Upload error:', err);
+      setError('Upload failed. Please try again.');
+    } finally {
+      setUploading(false);
+    }
+  };
+
+  const resetForm = () => {
+    setSelectedFile(null);
+    setPreviewUrl(null);
+    setTitle('');
+    setDescription('');
+    setError(null);
+    if (fileInputRef.current) {
+      fileInputRef.current.value = '';
+    }
+  };
+
+  // Clean up preview URL when component unmounts
+  useEffect(() => {
+    return () => {
+      if (previewUrl) {
+        URL.revokeObjectURL(previewUrl);
+      }
     };
+  }, [previewUrl]);
 
-    const handleSubmit = async (event) => {
-        event.preventDefault(); // Prevent default form submission behavior
-        setMessage(''); // Clear previous messages
-
-        if (!selectedFile) {
-            setMessage('Please select an image to upload.');
-            return;
-        }
-
-        if (!selectedCategory) {
-            setMessage('Please select a category for your photo.');
-            return;
-        }
-
-        if (!title.trim()) {
-            setMessage('Please enter a title for your photo.');
-            return;
-        }
-
-        setUploading(true); // Indicate that upload is in progress
-
-        // Create a FormData object to send multipart/form-data
-        const formData = new FormData();
-        formData.append('image', selectedFile); // 'image' matches formData.get('image') in your API
-        formData.append('contestId', contest.id);
-        formData.append('categoryId', selectedCategory);
-        formData.append('title', title);
-        formData.append('description', description);
-
-        try {
-            // **No manual token injection here!**
-            // The browser automatically sends relevant cookies (like Clerk's __session cookie)
-            // with same-origin requests.
-            const response = await fetch('/api/upload-image', { // Your Astro API endpoint
-                method: 'POST',
-                // IMPORTANT: Do NOT manually set 'Content-Type': 'multipart/form-data'.
-                // When you provide a FormData object as the `body`, the browser automatically
-                // sets the correct 'Content-Type' header, including the necessary boundary string.
-                //
-                // No 'headers' object needed for Authorization if it's in a cookie.
-                // If your API is on a different domain, you might need 'credentials: "include"'
-                // but for same-origin Astro API routes, this is usually the default.
-                body: formData, // Send the FormData object directly
-            });
-
-            if (response.ok) {
-                const data = await response.json();
-                setMessage(`Upload successful! R2 Key: ${data.r2Key}`);
-                setSelectedFile(null); // Clear the selected file input
-            } else {
-                const errorData = await response.json();
-                setMessage(`Upload failed: ${errorData.message || 'Unknown error'}`);
-            }
-        } catch (error) {
-            console.error('Network or unexpected error during upload:', error);
-            setMessage(`An unexpected error occurred: ${error.message}`);
-        } finally {
-            setUploading(false); // End upload process
-        }
-    };
-
+  if (!contestData) {
     return (
-        <div style={{
-            fontFamily: 'Inter, sans-serif',
-            maxWidth: '500px',
-            margin: '40px auto',
-            padding: '20px',
-            border: '1px solid #e0e0e0',
-            borderRadius: '12px',
-            boxShadow: '0 4px 8px rgba(0,0,0,0.05)',
-            backgroundColor: '#fff'
-        }}>
-            <h2 style={{ color: '#333', textAlign: 'center', marginBottom: '20px' }}>Image Upload (Multipart/Form-Data)</h2>
-            <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', gap: '15px' }}>
-                <div>
-                    <label htmlFor="imageFile" style={{ display: 'block', marginBottom: '8px', fontWeight: 'bold', color: '#555' }}>
-                        Select Image File:
-                    </label>
-                    <input
-                        type="file"
-                        id="imageFile"
-                        name="image" // Crucial: This name 'image' must match formData.get('image') on the server
-                        accept="image/*" // Only allow image files
-                        onChange={handleFileChange}
-                        style={{
-                            width: '100%',
-                            padding: '10px',
-                            border: '1px solid #ddd',
-                            borderRadius: '8px',
-                            boxSizing: 'border-box'
-                        }}
-                    />
-                </div>
-
-                <button
-                    type="submit"
-                    disabled={uploading || !selectedFile}
-                    style={{
-                        padding: '12px 20px',
-                        backgroundColor: '#007bff',
-                        color: 'white',
-                        border: 'none',
-                        borderRadius: '8px',
-                        cursor: 'pointer',
-                        fontSize: '16px',
-                        fontWeight: 'bold',
-                        transition: 'background-color 0.3s ease',
-                        opacity: (uploading || !selectedFile) ? 0.7 : 1
-                    }}
-                >
-                    {uploading ? 'Uploading...' : 'Upload Image'}
-                </button>
-            </form>
-
-            {message && (
-                <p style={{
-                    marginTop: '20px',
-                    padding: '10px',
-                    borderRadius: '8px',
-                    backgroundColor: message.includes('successful') ? '#e6ffe6' : '#ffe6e6',
-                    color: message.includes('successful') ? '#006600' : '#cc0000',
-                    border: `1px solid ${message.includes('successful') ? '#00cc00' : '#ff0000'}`
-                }}>
-                    {message}
-                </p>
-            )}
-
-            <div style={{ marginTop: '20px', fontSize: '14px', color: '#777' }}>
-                <p><strong>Current Values:</strong></p>
-                <ul>
-                    <li>Contest: <code>{contest.name}</code></li>
-                    <li>Category: <code>{selectedCategory ? categories.find(c => c.id === selectedCategory)?.name : 'Not selected'}</code></li>
-                    <li>Title: <code>{title || 'Not entered'}</code></li>
-                    <li>Description: <code>{description || 'None'}</code></li>
-                    <li>Authentication handled via browser cookies.</li>
-                </ul>
-            </div>
-        </div>
+      <div className="flex items-center justify-center p-8">
+        <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-600"></div>
+        <span className="ml-3 text-gray-600">Loading contest...</span>
+      </div>
     );
+  }
+
+  const { contest, categories } = contestData;
+
+  return (
+    <div className="max-w-2xl mx-auto p-6">
+      <div className="bg-white rounded-xl shadow-sm border border-gray-200">
+        {/* Header */}
+        <div className="bg-gradient-to-r from-blue-50 to-indigo-50 px-6 py-4 rounded-t-xl">
+          <h2 className="text-xl font-semibold text-gray-900">
+            {replacedSubmissionId ? 'Replace Photo' : 'Upload Photo'}
+          </h2>
+          <p className="text-sm text-gray-600 mt-1">
+            {contest.name} - Submit your entry
+          </p>
+        </div>
+
+        {/* Form */}
+        <form onSubmit={handleSubmit} className="p-6 space-y-6">
+          {/* Error Message */}
+          {error && (
+            <div className="bg-red-50 border border-red-200 rounded-lg p-4">
+              <p className="text-sm text-red-700">{error}</p>
+            </div>
+          )}
+
+          {/* Category Selection */}
+          <div>
+            <label htmlFor="category" className="block text-sm font-medium text-gray-700 mb-2">
+              Category *
+            </label>
+            <select
+              id="category"
+              value={categoryId}
+              onChange={(e) => setCategoryId(e.target.value)}
+              className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+              disabled={!!selectedCategoryId || uploading}
+              required
+            >
+              <option value="">Select a category</option>
+              {categories.map((category) => (
+                <option key={category.id} value={category.id}>
+                  {category.name}
+                </option>
+              ))}
+            </select>
+          </div>
+
+          {/* File Input */}
+          <div>
+            <label htmlFor="image" className="block text-sm font-medium text-gray-700 mb-2">
+              Photo *
+            </label>
+            <div className="mt-1">
+              <input
+                ref={fileInputRef}
+                id="image"
+                type="file"
+                accept="image/*"
+                onChange={handleFileSelect}
+                className="block w-full text-sm text-gray-500
+                         file:mr-4 file:py-3 file:px-6
+                         file:rounded-lg file:border-0
+                         file:text-sm file:font-medium
+                         file:bg-blue-50 file:text-blue-700
+                         hover:file:bg-blue-100
+                         file:cursor-pointer cursor-pointer"
+                disabled={uploading}
+                required={!replacedSubmissionId}
+              />
+            </div>
+            <p className="mt-2 text-xs text-gray-500">
+              Accepted formats: JPG, PNG, WebP. Max size: 10MB
+            </p>
+          </div>
+
+          {/* Image Preview */}
+          {previewUrl && (
+            <div className="mt-4">
+              <label className="block text-sm font-medium text-gray-700 mb-2">
+                Preview
+              </label>
+              <div className="relative inline-block">
+                <img
+                  src={previewUrl}
+                  alt="Preview"
+                  className="max-w-full h-48 object-cover rounded-lg border border-gray-300"
+                />
+                <button
+                  type="button"
+                  onClick={resetForm}
+                  className="absolute -top-2 -right-2 bg-red-500 text-white rounded-full w-6 h-6 flex items-center justify-center text-xs hover:bg-red-600"
+                  disabled={uploading}
+                >
+                  ×
+                </button>
+              </div>
+            </div>
+          )}
+
+          {/* Title */}
+          <div>
+            <label htmlFor="title" className="block text-sm font-medium text-gray-700 mb-2">
+              Title *
+            </label>
+            <input
+              id="title"
+              type="text"
+              value={title}
+              onChange={(e) => setTitle(e.target.value)}
+              placeholder="Give your photo a title..."
+              className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+              disabled={uploading}
+              required
+              maxLength={100}
+            />
+          </div>
+
+          {/* Description */}
+          <div>
+            <label htmlFor="description" className="block text-sm font-medium text-gray-700 mb-2">
+              Description
+            </label>
+            <textarea
+              id="description"
+              value={description}
+              onChange={(e) => setDescription(e.target.value)}
+              placeholder="Tell us about your photo (optional)..."
+              rows={3}
+              className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+              disabled={uploading}
+              maxLength={500}
+            />
+            <p className="mt-1 text-xs text-gray-500">
+              {description.length}/500 characters
+            </p>
+          </div>
+
+          {/* Actions */}
+          <div className="flex space-x-4 pt-4">
+            <button
+              type="submit"
+              disabled={uploading || !selectedFile || !categoryId || !title.trim()}
+              className="flex-1 bg-blue-600 hover:bg-blue-700 disabled:bg-gray-300 text-white font-medium py-3 px-4 rounded-lg transition-colors duration-200 flex items-center justify-center space-x-2"
+            >
+              {uploading ? (
+                <>
+                  <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-white"></div>
+                  <span>{replacedSubmissionId ? 'Replacing...' : 'Uploading...'}</span>
+                </>
+              ) : (
+                <>
+                  <svg className="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12" />
+                  </svg>
+                  <span>{replacedSubmissionId ? 'Replace Photo' : 'Upload Photo'}</span>
+                </>
+              )}
+            </button>
+            
+            {onCancel && (
+              <button
+                type="button"
+                onClick={onCancel}
+                disabled={uploading}
+                className="px-6 py-3 border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50 transition-colors duration-200"
+              >
+                Cancel
+              </button>
+            )}
+          </div>
+        </form>
+      </div>
+    </div>
+  );
 }

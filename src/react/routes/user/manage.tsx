@@ -1,22 +1,6 @@
-import { SignedIn, UserButton } from '@clerk/clerk-react';
-import { createFileRoute } from '@tanstack/react-router';
-import { ImageUploadTest } from '../../components/ImageUploadTest';
+import { createFileRoute, Navigate } from '@tanstack/react-router';
 
 export const Route = createFileRoute('/user/manage')({
-  component: UserManage,
+  component: () => <Navigate to="/user" />,
 })
-
-function UserManage() {
-   
-    
-    return (
-        <div>
-          <SignedIn>
-            <UserButton />
-          </SignedIn>
-         <ImageUploadTest />
-        </div>
-      )
-    
-}
 

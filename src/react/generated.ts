@@ -10,12 +10,19 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as UserIndexRouteImport } from './routes/user/index'
+import { Route as UserUploadRouteImport } from './routes/user/upload'
 import { Route as UserManageRouteImport } from './routes/user/manage'
 import { Route as UserLoginRouteImport } from './routes/user/login'
+import { Route as UserGalleryRouteImport } from './routes/user/gallery'
 
 const UserIndexRoute = UserIndexRouteImport.update({
   id: '/user/',
   path: '/user/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const UserUploadRoute = UserUploadRouteImport.update({
+  id: '/user/upload',
+  path: '/user/upload',
   getParentRoute: () => rootRouteImport,
 } as any)
 const UserManageRoute = UserManageRouteImport.update({
@@ -28,34 +35,63 @@ const UserLoginRoute = UserLoginRouteImport.update({
   path: '/user/login',
   getParentRoute: () => rootRouteImport,
 } as any)
+const UserGalleryRoute = UserGalleryRouteImport.update({
+  id: '/user/gallery',
+  path: '/user/gallery',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
+  '/user/gallery': typeof UserGalleryRoute
   '/user/login': typeof UserLoginRoute
   '/user/manage': typeof UserManageRoute
+  '/user/upload': typeof UserUploadRoute
   '/user': typeof UserIndexRoute
 }
 export interface FileRoutesByTo {
+  '/user/gallery': typeof UserGalleryRoute
   '/user/login': typeof UserLoginRoute
   '/user/manage': typeof UserManageRoute
+  '/user/upload': typeof UserUploadRoute
   '/user': typeof UserIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
+  '/user/gallery': typeof UserGalleryRoute
   '/user/login': typeof UserLoginRoute
   '/user/manage': typeof UserManageRoute
+  '/user/upload': typeof UserUploadRoute
   '/user/': typeof UserIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/user/login' | '/user/manage' | '/user'
+  fullPaths:
+    | '/user/gallery'
+    | '/user/login'
+    | '/user/manage'
+    | '/user/upload'
+    | '/user'
   fileRoutesByTo: FileRoutesByTo
-  to: '/user/login' | '/user/manage' | '/user'
-  id: '__root__' | '/user/login' | '/user/manage' | '/user/'
+  to:
+    | '/user/gallery'
+    | '/user/login'
+    | '/user/manage'
+    | '/user/upload'
+    | '/user'
+  id:
+    | '__root__'
+    | '/user/gallery'
+    | '/user/login'
+    | '/user/manage'
+    | '/user/upload'
+    | '/user/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
+  UserGalleryRoute: typeof UserGalleryRoute
   UserLoginRoute: typeof UserLoginRoute
   UserManageRoute: typeof UserManageRoute
+  UserUploadRoute: typeof UserUploadRoute
   UserIndexRoute: typeof UserIndexRoute
 }
 
@@ -66,6 +102,13 @@ declare module '@tanstack/react-router' {
       path: '/user'
       fullPath: '/user'
       preLoaderRoute: typeof UserIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/user/upload': {
+      id: '/user/upload'
+      path: '/user/upload'
+      fullPath: '/user/upload'
+      preLoaderRoute: typeof UserUploadRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/user/manage': {
@@ -82,12 +125,21 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof UserLoginRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/user/gallery': {
+      id: '/user/gallery'
+      path: '/user/gallery'
+      fullPath: '/user/gallery'
+      preLoaderRoute: typeof UserGalleryRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
+  UserGalleryRoute: UserGalleryRoute,
   UserLoginRoute: UserLoginRoute,
   UserManageRoute: UserManageRoute,
+  UserUploadRoute: UserUploadRoute,
   UserIndexRoute: UserIndexRoute,
 }
 export const routeTree = rootRouteImport
