@@ -1,6 +1,7 @@
 import type { APIRoute } from 'astro';
 import { eq } from 'drizzle-orm';
 import { categories, contests, getDb } from '../../db/index.js';
+import type { ContestsResponse } from '../../types/api.js';
 
 export const prerender = false;
 
@@ -16,26 +17,19 @@ export const GET: APIRoute = async ({ locals }) => {
     try {
         // Get the active contest (only one at a time) - Type-safe Drizzle query!
         const contestResult = await db
-            .select({
-                id: contests.id,
-                name: contests.name,
-                description: contests.description,
-                startDate: contests.startDate,
-                endDate: contests.endDate,
-                isActive: contests.isActive,
-                maxSubmissionsPerCategory: contests.maxSubmissionsPerCategory,
-                createdAt: contests.createdAt
-            })
+            .select()
             .from(contests)
             .where(eq(contests.isActive, true))
             .orderBy(contests.createdAt)
             .limit(1);
 
         if (contestResult.length === 0) {
-            return new Response(JSON.stringify({
+            const response: ContestsResponse = {
                 success: false,
                 message: 'No active contest found'
-            }), {
+            };
+
+            return new Response(JSON.stringify(response), {
                 status: 404,
                 headers: { 'Content-Type': 'application/json' }
             });
@@ -43,24 +37,20 @@ export const GET: APIRoute = async ({ locals }) => {
 
         // Get all active categories - Type-safe Drizzle query!
         const categoriesResult = await db
-            .select({
-                id: categories.id,
-                name: categories.name,
-                description: categories.description,
-                displayOrder: categories.displayOrder,
-                isActive: categories.isActive
-            })
+            .select()
             .from(categories)
             .where(eq(categories.isActive, true))
             .orderBy(categories.displayOrder, categories.name);
 
-        return new Response(JSON.stringify({
+        const response: ContestsResponse = {
             success: true,
             data: {
                 contest: contestResult[0],
                 categories: categoriesResult
             }
-        }), {
+        };
+
+        return new Response(JSON.stringify(response), {
             status: 200,
             headers: { 'Content-Type': 'application/json' }
         });

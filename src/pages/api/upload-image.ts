@@ -6,6 +6,7 @@ import {
     validateActiveCategory,
     validateActiveContest
 } from '../../server/contestService';
+import type { UploadResponse } from '../../types/api.js';
 
 import {
     deleteImageFromR2,
@@ -143,11 +144,11 @@ export const POST: APIRoute = async ({ request, locals }) => {
             }), { status: 400 });
         }
 
-                 // Step 7: Generate new image paths and URLs
-         const { submissionId, r2Key } = generateR2Key(contestId, categoryId, userEmail, fileExtension);
-         const imageUrlPath = generateImageUrl(r2Key); // R2 key without extension
-         const baseUrl = new URL(request.url).origin;
-         const imageUrl = `${baseUrl}/api/images/${imageUrlPath}`;
+        // Step 7: Generate new image paths and URLs
+        const { submissionId, r2Key } = generateR2Key(contestId, categoryId, userEmail, fileExtension);
+        const imageUrlPath = generateImageUrl(r2Key); // R2 key without extension
+        const baseUrl = new URL(request.url).origin;
+        const imageUrl = `${baseUrl}/api/images/${imageUrlPath}`;
 
         // Step 8: Execute the upload operation
         console.log(`[upload-image] ${isReplacement ? 'Replacing' : 'Creating'} submission`);
@@ -162,20 +163,20 @@ export const POST: APIRoute = async ({ request, locals }) => {
             categoryId
         });
 
-                 // Store submission metadata in database
-         await storeSubmissionMetadata(db, {
-             id: submissionId,
-             contestId,
-             categoryId,
-             userEmail,
-             title,
-             description,
-             r2Key,
-             imageUrl: imageUrlPath, // Store the path without domain
-             originalFilename: image.name,
-             fileSize: image.size,
-             contentType: image.type
-         });
+        // Store submission metadata in database
+        await storeSubmissionMetadata(db, {
+            id: submissionId,
+            contestId,
+            categoryId,
+            userEmail,
+            title,
+            description,
+            r2Key,
+            imageUrl: imageUrlPath, // Store the path without domain
+            originalFilename: image.name,
+            fileSize: image.size,
+            contentType: image.type
+        });
 
         // Step 9: Clean up replaced submission if this is a replacement
         if (isReplacement && replacedSubmission) {
@@ -196,7 +197,7 @@ export const POST: APIRoute = async ({ request, locals }) => {
         console.log('[upload-image] Upload completed successfully');
         
         // Step 10: Return success response
-        return new Response(JSON.stringify({
+        const response: UploadResponse = {
             success: true,
             message: isReplacement ? 'Image replaced successfully!' : 'Image uploaded successfully!',
             data: {
@@ -206,7 +207,7 @@ export const POST: APIRoute = async ({ request, locals }) => {
                 uploadedBy: userEmail,
                 title,
                 description: description || '',
-                                 imageUrl,
+                imageUrl,
                 action: actionValidation.data.action,
                 metadata: {
                     originalFileName: image.name,
@@ -215,7 +216,9 @@ export const POST: APIRoute = async ({ request, locals }) => {
                     uploadedAt: new Date().toISOString()
                 }
             }
-        }), {
+        };
+
+        return new Response(JSON.stringify(response), {
             status: 200,
             headers: { 'Content-Type': 'application/json' }
         });

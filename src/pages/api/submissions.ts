@@ -2,6 +2,7 @@ import type { APIRoute } from 'astro';
 import { getDb } from '../../db/index.js';
 import { authenticateRequest } from '../../server/authenticateRequest';
 import { getUserContestSubmissions } from '../../server/contestService';
+import type { SubmissionsResponse } from '../../types/api.js';
 
 export const prerender = false;
 
@@ -10,7 +11,7 @@ export const prerender = false;
  * Returns the active contest with categories and user's submissions nested
  * No query params needed - automatically gets active contest for authenticated user
  */
-export const GET: APIRoute = async ({ locals, request }) => {
+export const GET: APIRoute = async ({ request, locals }) => {
     const D1Database = locals.runtime.env.DB;
     
     if (!D1Database) {
@@ -25,7 +26,7 @@ export const GET: APIRoute = async ({ locals, request }) => {
     try {
         // Authentication required - we need to know which user's submissions to return
         const { isAuthenticated, user, unauthenticatedResponse } = await authenticateRequest(
-            request,
+            request, // Use the actual request with auth headers/cookies
             locals
         );
 
@@ -39,19 +40,23 @@ export const GET: APIRoute = async ({ locals, request }) => {
         const contestData = await getUserContestSubmissions(db, userEmail);
 
         if (!contestData.contest) {
-            return new Response(JSON.stringify({
+            const response: SubmissionsResponse = {
                 success: false,
                 message: 'No active contest found'
-            }), {
+            };
+
+            return new Response(JSON.stringify(response), {
                 status: 404,
                 headers: { 'Content-Type': 'application/json' }
             });
         }
 
-        return new Response(JSON.stringify({
+        const response: SubmissionsResponse = {
             success: true,
             data: contestData
-        }), {
+        };
+
+        return new Response(JSON.stringify(response), {
             status: 200,
             headers: { 'Content-Type': 'application/json' }
         });
