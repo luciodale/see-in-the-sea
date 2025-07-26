@@ -29,7 +29,7 @@ export async function getActiveContest(db: ReturnType<typeof getDb>): Promise<{
 
   return {
     contest,
-    categories: categoriesResult
+    categories: categoriesResult,
   };
 }
 
@@ -38,21 +38,18 @@ export async function getActiveContest(db: ReturnType<typeof getDb>): Promise<{
  * Pure function - returns validation result
  */
 export async function validateActiveContest(
-  db: ReturnType<typeof getDb>, 
+  db: ReturnType<typeof getDb>,
   contestId: string
 ): Promise<{ isValid: boolean; contest: Contest | null }> {
   const contestResult = await db
     .select()
     .from(contests)
-    .where(and(
-      eq(contests.id, contestId),
-      eq(contests.isActive, true)
-    ))
+    .where(and(eq(contests.id, contestId), eq(contests.isActive, true)))
     .limit(1);
 
   return {
     isValid: contestResult.length > 0,
-    contest: contestResult[0] || null
+    contest: contestResult[0] || null,
   };
 }
 
@@ -67,14 +64,11 @@ export async function validateActiveCategory(
   const categoryResult = await db
     .select({ id: categories.id })
     .from(categories)
-    .where(and(
-      eq(categories.id, categoryId),
-      eq(categories.isActive, true)
-    ))
+    .where(and(eq(categories.id, categoryId), eq(categories.isActive, true)))
     .limit(1);
 
   return {
-    isValid: categoryResult.length > 0
+    isValid: categoryResult.length > 0,
   };
 }
 
@@ -96,12 +90,14 @@ export async function checkSubmissionLimits(
   const countResult = await db
     .select({ count: count() })
     .from(submissions)
-    .where(and(
-      eq(submissions.contestId, contestId),
-      eq(submissions.categoryId, categoryId),
-      eq(submissions.userEmail, userEmail),
-      eq(submissions.isActive, true)
-    ));
+    .where(
+      and(
+        eq(submissions.contestId, contestId),
+        eq(submissions.categoryId, categoryId),
+        eq(submissions.userEmail, userEmail),
+        eq(submissions.isActive, true)
+      )
+    );
 
   const currentCount = countResult[0]?.count || 0;
 
@@ -117,7 +113,7 @@ export async function checkSubmissionLimits(
   return {
     currentCount,
     maxAllowed,
-    canSubmit: currentCount < maxAllowed
+    canSubmit: currentCount < maxAllowed,
   };
 }
 
@@ -130,11 +126,13 @@ export async function getUserContestSubmissions(
   userEmail: string
 ): Promise<{
   contest: Contest | null;
-  categories: Array<Category & { 
-    submissions: Submission[];
-    submissionCount: number;
-    maxSubmissions: number;
-  }>;
+  categories: Array<
+    Category & {
+      submissions: Submission[];
+      submissionCount: number;
+      maxSubmissions: number;
+    }
+  >;
 }> {
   const { contest, categories: activeCategories } = await getActiveContest(db);
 
@@ -146,11 +144,13 @@ export async function getUserContestSubmissions(
   const userSubmissions = await db
     .select()
     .from(submissions)
-    .where(and(
-      eq(submissions.contestId, contest.id),
-      eq(submissions.userEmail, userEmail),
-      eq(submissions.isActive, true)
-    ))
+    .where(
+      and(
+        eq(submissions.contestId, contest.id),
+        eq(submissions.userEmail, userEmail),
+        eq(submissions.isActive, true)
+      )
+    )
     .orderBy(submissions.uploadedAt);
 
   // Organize submissions by category
@@ -163,12 +163,12 @@ export async function getUserContestSubmissions(
       ...category,
       submissions: categorySubmissions,
       submissionCount: categorySubmissions.length,
-      maxSubmissions: contest.maxSubmissionsPerCategory || 2
+      maxSubmissions: contest.maxSubmissionsPerCategory || 2,
     };
   });
 
   return {
     contest,
-    categories: categoriesWithSubmissions
+    categories: categoriesWithSubmissions,
   };
-} 
+}

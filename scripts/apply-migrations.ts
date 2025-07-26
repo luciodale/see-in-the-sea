@@ -9,7 +9,9 @@ const targetName = isLocal ? 'local' : 'remote';
 const migrationsDir = './drizzle/migrations';
 
 if (!existsSync(migrationsDir)) {
-  console.log('❌ No migrations directory found. Run "bun run db:generate" first.');
+  console.log(
+    '❌ No migrations directory found. Run "bun run db:generate" first.'
+  );
   process.exit(1);
 }
 
@@ -23,20 +25,25 @@ if (migrationFiles.length === 0) {
   process.exit(1);
 }
 
-console.log(`🚀 Applying ${migrationFiles.length} migration(s) to ${targetName} database:`);
+console.log(
+  `🚀 Applying ${migrationFiles.length} migration(s) to ${targetName} database:`
+);
 
 for (const file of migrationFiles) {
   const filePath = `${migrationsDir}/${file}`;
   console.log(`  📄 ${file}`);
-  
+
   try {
-    execSync(`wrangler d1 execute see-in-the-sea-db ${target} --file=${filePath}`, {
-      stdio: 'inherit'
-    });
+    execSync(
+      `wrangler d1 execute see-in-the-sea-db ${target} --file=${filePath}`,
+      {
+        stdio: 'inherit',
+      }
+    );
   } catch (error) {
     console.error(`❌ Failed to apply migration: ${file}`);
     process.exit(1);
   }
 }
 
-console.log(`✅ All migrations applied to ${targetName} database!`); 
+console.log(`✅ All migrations applied to ${targetName} database!`);

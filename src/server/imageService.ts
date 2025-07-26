@@ -16,7 +16,7 @@ export function generateR2Key(
   const submissionId = nanoid();
   // Clean readable structure: contest/category/user-email/submission-id.ext
   const r2Key = `${contestId}/${categoryId}/${userEmail}/${submissionId}.${fileExtension}`;
-  
+
   return { submissionId, r2Key };
 }
 
@@ -50,7 +50,7 @@ export async function validateUserOwnsSubmission(
 
     const submission = result[0];
     const isOwner = submission.userEmail === userEmail;
-    
+
     return { isOwner, submission: isOwner ? submission : undefined };
   } catch (error) {
     console.error('[validateUserOwnsSubmission] Database error:', error);
@@ -78,7 +78,7 @@ export async function storeImageInR2(
   try {
     // Convert File to ArrayBuffer - R2 needs known content length
     const imageBuffer = await imageFile.arrayBuffer();
-    
+
     await bucket.put(r2Key, imageBuffer, {
       httpMetadata: {
         contentType: imageFile.type,
@@ -99,7 +99,9 @@ export async function storeImageInR2(
     console.log(`[storeImageInR2] Successfully stored image: ${r2Key}`);
   } catch (error) {
     console.error(`[storeImageInR2] Failed to store image ${r2Key}:`, error);
-    throw new Error(`Failed to store image in R2: ${error instanceof Error ? error.message : String(error)}`);
+    throw new Error(
+      `Failed to store image in R2: ${error instanceof Error ? error.message : String(error)}`
+    );
   }
 }
 
@@ -115,8 +117,13 @@ export async function deleteImageFromR2(
     await bucket.delete(r2Key);
     console.log(`[deleteImageFromR2] Successfully deleted image: ${r2Key}`);
   } catch (error) {
-    console.error(`[deleteImageFromR2] Failed to delete image ${r2Key}:`, error);
-    throw new Error(`Failed to delete image from R2: ${error instanceof Error ? error.message : String(error)}`);
+    console.error(
+      `[deleteImageFromR2] Failed to delete image ${r2Key}:`,
+      error
+    );
+    throw new Error(
+      `Failed to delete image from R2: ${error instanceof Error ? error.message : String(error)}`
+    );
   }
 }
 
@@ -156,10 +163,17 @@ export async function storeSubmissionMetadata(
       uploadedAt: new Date().toISOString(),
     });
 
-    console.log(`[storeSubmissionMetadata] Successfully stored metadata for submission: ${data.id}`);
+    console.log(
+      `[storeSubmissionMetadata] Successfully stored metadata for submission: ${data.id}`
+    );
   } catch (error) {
-    console.error(`[storeSubmissionMetadata] Failed to store metadata for ${data.id}:`, error);
-    throw new Error(`Failed to store submission metadata: ${error instanceof Error ? error.message : String(error)}`);
+    console.error(
+      `[storeSubmissionMetadata] Failed to store metadata for ${data.id}:`,
+      error
+    );
+    throw new Error(
+      `Failed to store submission metadata: ${error instanceof Error ? error.message : String(error)}`
+    );
   }
 }
 
@@ -173,9 +187,16 @@ export async function deleteSubmission(
 ): Promise<void> {
   try {
     await db.delete(submissions).where(eq(submissions.id, submissionId));
-    console.log(`[deleteSubmission] Successfully deleted submission: ${submissionId}`);
+    console.log(
+      `[deleteSubmission] Successfully deleted submission: ${submissionId}`
+    );
   } catch (error) {
-    console.error(`[deleteSubmission] Failed to delete submission ${submissionId}:`, error);
-    throw new Error(`Failed to delete submission: ${error instanceof Error ? error.message : String(error)}`);
+    console.error(
+      `[deleteSubmission] Failed to delete submission ${submissionId}:`,
+      error
+    );
+    throw new Error(
+      `Failed to delete submission: ${error instanceof Error ? error.message : String(error)}`
+    );
   }
-} 
+}

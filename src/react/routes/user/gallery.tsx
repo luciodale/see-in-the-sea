@@ -5,21 +5,24 @@ import SubmissionGallery from '../../components/SubmissionGallery';
 
 export const Route = createFileRoute('/user/gallery')({
   component: GalleryPage,
-})
+});
 
 function GalleryPage() {
   const router = useRouter();
   const [refreshTrigger, setRefreshTrigger] = useState(0);
-  const [lightboxImage, setLightboxImage] = useState<{url: string, title: string} | null>(null);
+  const [lightboxImage, setLightboxImage] = useState<{
+    url: string;
+    title: string;
+  } | null>(null);
 
   const handleReplaceImage = (submissionId: string, categoryId: string) => {
     // Navigate to upload page with replacement info
-    router.navigate({ 
-      to: '/user/upload', 
-      search: { 
+    router.navigate({
+      to: '/user/upload',
+      search: {
         categoryId,
-        replacedSubmissionId: submissionId 
-      } 
+        replacedSubmissionId: submissionId,
+      },
     });
   };
 
@@ -49,7 +52,7 @@ function GalleryPage() {
 
           {/* Simple Lightbox Modal */}
           {lightboxImage && (
-            <div 
+            <div
               className="fixed inset-0 bg-black bg-opacity-90 flex items-center justify-center z-50 p-4"
               onClick={closeLightbox}
             >
@@ -64,20 +67,22 @@ function GalleryPage() {
                   src={lightboxImage.url}
                   alt={lightboxImage.title}
                   className="max-w-full max-h-full object-contain rounded-lg"
-                  onClick={(e) => e.stopPropagation()}
+                  onClick={e => e.stopPropagation()}
                 />
                 <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black to-transparent p-4">
-                  <h3 className="text-white text-lg font-medium">{lightboxImage.title}</h3>
+                  <h3 className="text-white text-lg font-medium">
+                    {lightboxImage.title}
+                  </h3>
                 </div>
               </div>
             </div>
           )}
         </div>
       </SignedIn>
-      
+
       <SignedOut>
         <RedirectToSignIn />
       </SignedOut>
     </>
   );
-} 
+}

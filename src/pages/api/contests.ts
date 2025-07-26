@@ -6,63 +6,67 @@ import type { ContestsResponse } from '../../types/api.js';
 export const prerender = false;
 
 export const GET: APIRoute = async ({ locals }) => {
-    const D1Database = locals.runtime.env.DB;
-    
-    if (!D1Database) {
-        return new Response(JSON.stringify({ message: 'Database not available' }), { status: 500 });
+  const D1Database = locals.runtime.env.DB;
+
+  if (!D1Database) {
+    return new Response(JSON.stringify({ message: 'Database not available' }), {
+      status: 500,
+    });
+  }
+
+  const db = getDb(D1Database);
+
+  try {
+    // Get the active contest (only one at a time) - Type-safe Drizzle query!
+    const contestResult = await db
+      .select()
+      .from(contests)
+      .where(eq(contests.isActive, true))
+      .orderBy(contests.createdAt)
+      .limit(1);
+
+    if (contestResult.length === 0) {
+      const response: ContestsResponse = {
+        success: false,
+        message: 'No active contest found',
+      };
+
+      return new Response(JSON.stringify(response), {
+        status: 404,
+        headers: { 'Content-Type': 'application/json' },
+      });
     }
 
-    const db = getDb(D1Database);
+    // Get all active categories - Type-safe Drizzle query!
+    const categoriesResult = await db
+      .select()
+      .from(categories)
+      .where(eq(categories.isActive, true))
+      .orderBy(categories.displayOrder, categories.name);
 
-    try {
-        // Get the active contest (only one at a time) - Type-safe Drizzle query!
-        const contestResult = await db
-            .select()
-            .from(contests)
-            .where(eq(contests.isActive, true))
-            .orderBy(contests.createdAt)
-            .limit(1);
+    const response: ContestsResponse = {
+      success: true,
+      data: {
+        contest: contestResult[0],
+        categories: categoriesResult,
+      },
+    };
 
-        if (contestResult.length === 0) {
-            const response: ContestsResponse = {
-                success: false,
-                message: 'No active contest found'
-            };
-
-            return new Response(JSON.stringify(response), {
-                status: 404,
-                headers: { 'Content-Type': 'application/json' }
-            });
-        }
-
-        // Get all active categories - Type-safe Drizzle query!
-        const categoriesResult = await db
-            .select()
-            .from(categories)
-            .where(eq(categories.isActive, true))
-            .orderBy(categories.displayOrder, categories.name);
-
-        const response: ContestsResponse = {
-            success: true,
-            data: {
-                contest: contestResult[0],
-                categories: categoriesResult
-            }
-        };
-
-        return new Response(JSON.stringify(response), {
-            status: 200,
-            headers: { 'Content-Type': 'application/json' }
-        });
-
-    } catch (error) {
-        console.error('[contests] Query error:', error);
-        return new Response(JSON.stringify({
-            message: 'Failed to fetch contest and categories',
-            error: (error instanceof Error) ? error.message : String(error)
-        }), {
-            status: 500,
-            headers: { 'Content-Type': 'application/json' }
-        });
-    }
-}; 
+    return new Response(JSON.stringify(response), {
+      status: 200,
+      headers: { 'Content-Type': 'application/json' },
+    });
+  } catch (error) {
+    console.error('[contests] Query error:', error);
+    return new Response(
+      JSON.stringify({
+        message: 'Failed to fetch contest and categories',
+        error: error instanceof Error ? error.message : String(error),
+      }),
+      {
+        status: 500,
+        headers: { 'Content-Type': 'application/json' },
+      }
+    );
+  }
+};

@@ -1,5 +1,99 @@
 {
-	"files.associations": {
-		"wrangler.json": "jsonc"
-	}
+  // Enable ESLint
+  "eslint.enable": true,
+  "eslint.validate": [
+    "javascript",
+    "typescript",
+    "astro",
+    "typescriptreact",
+    "javascriptreact"
+  ],
+  
+  // Prettier configuration
+  "prettier.enable": true,
+  "prettier.requireConfig": true,
+  
+  // Auto-format on save
+  "editor.formatOnSave": true,
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": "explicit",
+    "source.organizeImports": "explicit"
+  },
+  
+  // Default formatter for different file types
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "[astro]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[typescript]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[typescriptreact]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[javascript]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[javascriptreact]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[json]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[jsonc]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[css]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[markdown]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  
+  // Astro-specific settings
+  "astro.enable": true,
+  "astro.format.enable": true,
+  
+  // TypeScript settings
+  "typescript.preferences.importModuleSpecifier": "relative",
+  "typescript.suggest.autoImports": true,
+  
+  // File associations
+  "files.associations": {
+    "*.astro": "astro",
+    "wrangler.json": "jsonc"
+  },
+  
+  // Auto-save
+  "files.autoSave": "onFocusChange",
+  
+  // Tailwind CSS IntelliSense
+  "tailwindCSS.includeLanguages": {
+    "astro": "html",
+    "typescript": "javascript",
+    "typescriptreact": "javascript"
+  },
+  "tailwindCSS.experimental.classRegex": [
+    ["class:\\s*?[\"'`]([^\"'`]*).*?,[\"'`]", "[\"'`]([^\"'`]*)[\"'`]"],
+    ["className:\\s*?[\"'`]([^\"'`]*).*?,[\"'`]", "[\"'`]([^\"'`]*)[\"'`]"]
+  ],
+  
+  // Exclude certain files from file explorer
+  "files.exclude": {
+    "**/node_modules": true,
+    "**/.astro": true,
+    "**/dist": true,
+    "**/.wrangler": true,
+    "**/bun.lockb": true
+  },
+  
+  // Search exclude
+  "search.exclude": {
+    "**/node_modules": true,
+    "**/.astro": true,
+    "**/dist": true,
+    "**/.wrangler": true,
+    "**/bun.lockb": true,
+    "**/drizzle/migrations": true
+  }
 }

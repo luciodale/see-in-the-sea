@@ -7,7 +7,7 @@ import ImageUploadForm from '../../components/ImageUploadForm';
 type UploadSearch = {
   categoryId?: string;
   replacedSubmissionId?: string;
-}
+};
 
 export const Route = createFileRoute('/user/upload')({
   component: UploadPage,
@@ -15,17 +15,21 @@ export const Route = createFileRoute('/user/upload')({
     return {
       categoryId: search.categoryId as string,
       replacedSubmissionId: search.replacedSubmissionId as string,
-    }
+    };
   },
-})
+});
 
 function UploadPage() {
   const router = useRouter();
-  const { categoryId, replacedSubmissionId } = useSearch({ from: '/user/upload' });
+  const { categoryId, replacedSubmissionId } = useSearch({
+    from: '/user/upload',
+  });
 
   const handleUploadSuccess = (result: UploadResponse) => {
     // Show success and navigate to gallery
-    alert(`${result.data?.action === 'replace' ? 'Image replaced' : 'Upload'} successful!`);
+    alert(
+      `${result.data?.action === 'replace' ? 'Image replaced' : 'Upload'} successful!`
+    );
     router.navigate({ to: '/user/gallery' });
   };
 
@@ -46,10 +50,10 @@ function UploadPage() {
           />
         </div>
       </SignedIn>
-      
+
       <SignedOut>
         <RedirectToSignIn />
       </SignedOut>
     </>
   );
-} 
+}

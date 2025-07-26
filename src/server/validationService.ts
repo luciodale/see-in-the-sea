@@ -1,13 +1,15 @@
 import { MAX_IMAGE_SIZE } from '../constants';
 import { getFileExtensionFromMime } from './utils';
 
-export type ValidationResult<T> = {
-  isValid: true;
-  data: T;
-} | {
-  isValid: false;
-  error: string;
-};
+export type ValidationResult<T> =
+  | {
+      isValid: true;
+      data: T;
+    }
+  | {
+      isValid: false;
+      error: string;
+    };
 
 /**
  * Validates image file from form data
@@ -20,14 +22,14 @@ export function validateImageFile(imageFile: File): ValidationResult<{
   if (!imageFile || !(imageFile instanceof File)) {
     return {
       isValid: false,
-      error: 'Invalid image file provided. Must be an image file.'
+      error: 'Invalid image file provided. Must be an image file.',
     };
   }
 
   if (!imageFile.type.startsWith('image/')) {
     return {
       isValid: false,
-      error: 'Invalid image file provided. Must be an image file.'
+      error: 'Invalid image file provided. Must be an image file.',
     };
   }
 
@@ -35,14 +37,14 @@ export function validateImageFile(imageFile: File): ValidationResult<{
   if (!fileExtension) {
     return {
       isValid: false,
-      error: `Unsupported image type: ${imageFile.type}.`
+      error: `Unsupported image type: ${imageFile.type}.`,
     };
   }
 
   if (imageFile.size > MAX_IMAGE_SIZE) {
     return {
       isValid: false,
-      error: 'Image file is too large. Maximum size is 10MB.'
+      error: 'Image file is too large. Maximum size is 10MB.',
     };
   }
 
@@ -50,8 +52,8 @@ export function validateImageFile(imageFile: File): ValidationResult<{
     isValid: true,
     data: {
       image: imageFile,
-      fileExtension
-    }
+      fileExtension,
+    },
   };
 }
 
@@ -72,12 +74,14 @@ export function validateUploadFormData(formData: FormData): ValidationResult<{
   const categoryId = formData.get('categoryId') as string;
   const title = formData.get('title') as string;
   const description = formData.get('description') as string | null;
-  const replacedSubmissionId = formData.get('replacedSubmissionId') as string | undefined;
+  const replacedSubmissionId = formData.get('replacedSubmissionId') as
+    | string
+    | undefined;
 
   if (!imageFile || !contestId || !categoryId || !title) {
     return {
       isValid: false,
-      error: 'Missing required fields: image, contestId, categoryId, or title.'
+      error: 'Missing required fields: image, contestId, categoryId, or title.',
     };
   }
 
@@ -89,8 +93,8 @@ export function validateUploadFormData(formData: FormData): ValidationResult<{
       categoryId,
       title,
       description: description || null,
-      replacedSubmissionId: replacedSubmissionId || undefined
-    }
+      replacedSubmissionId: replacedSubmissionId || undefined,
+    },
   };
 }
 
@@ -107,7 +111,7 @@ export function validateSubmissionAction(
     // Replacement is always allowed if user owns the original
     return {
       isValid: true,
-      data: { action: 'replace' }
+      data: { action: 'replace' },
     };
   }
 
@@ -115,12 +119,12 @@ export function validateSubmissionAction(
   if (currentCount >= maxAllowed) {
     return {
       isValid: false,
-      error: `You have reached the maximum number of submissions (${maxAllowed}) for this category.`
+      error: `You have reached the maximum number of submissions (${maxAllowed}) for this category.`,
     };
   }
 
   return {
     isValid: true,
-    data: { action: 'create' }
+    data: { action: 'create' },
   };
-} 
+}

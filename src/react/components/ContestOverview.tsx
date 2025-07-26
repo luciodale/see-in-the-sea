@@ -5,7 +5,9 @@ type ContestOverviewProps = {
   onUploadClick?: (categoryId: string) => void;
 };
 
-export default function ContestOverview({ onUploadClick }: ContestOverviewProps) {
+export default function ContestOverview({
+  onUploadClick,
+}: ContestOverviewProps) {
   const [data, setData] = useState<ContestWithCategories | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
@@ -14,8 +16,8 @@ export default function ContestOverview({ onUploadClick }: ContestOverviewProps)
     async function fetchContest() {
       try {
         const response = await fetch('/api/contests');
-        const contestData:ContestsResponse = await response.json() ;
-        
+        const contestData: ContestsResponse = await response.json();
+
         if (contestData.success && contestData.data) {
           setData(contestData.data);
         } else {
@@ -46,12 +48,22 @@ export default function ContestOverview({ onUploadClick }: ContestOverviewProps)
       <div className="bg-red-50 border border-red-200 rounded-lg p-6">
         <div className="flex items-center">
           <div className="flex-shrink-0">
-            <svg className="h-5 w-5 text-red-400" viewBox="0 0 20 20" fill="currentColor">
-              <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clipRule="evenodd" />
+            <svg
+              className="h-5 w-5 text-red-400"
+              viewBox="0 0 20 20"
+              fill="currentColor"
+            >
+              <path
+                fillRule="evenodd"
+                d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z"
+                clipRule="evenodd"
+              />
             </svg>
           </div>
           <div className="ml-3">
-            <h3 className="text-sm font-medium text-red-800">Error Loading Contest</h3>
+            <h3 className="text-sm font-medium text-red-800">
+              Error Loading Contest
+            </h3>
             <p className="mt-1 text-sm text-red-700">{error}</p>
           </div>
         </div>
@@ -71,14 +83,16 @@ export default function ContestOverview({ onUploadClick }: ContestOverviewProps)
             {contest.description}
           </p>
         )}
-        
+
         {/* Contest Dates */}
         <div className="flex justify-center space-x-8 text-sm text-gray-500">
           <div>
-            <span className="font-medium">Starts:</span> {new Date(contest.startDate).toLocaleDateString()}
+            <span className="font-medium">Starts:</span>{' '}
+            {new Date(contest.startDate).toLocaleDateString()}
           </div>
           <div>
-            <span className="font-medium">Ends:</span> {new Date(contest.endDate).toLocaleDateString()}
+            <span className="font-medium">Ends:</span>{' '}
+            {new Date(contest.endDate).toLocaleDateString()}
           </div>
         </div>
       </div>
@@ -88,10 +102,10 @@ export default function ContestOverview({ onUploadClick }: ContestOverviewProps)
         <h2 className="text-2xl font-semibold text-gray-900 text-center">
           Categories
         </h2>
-        
+
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {categories.map((category) => (
-            <div 
+          {categories.map(category => (
+            <div
               key={category.id}
               className="bg-white rounded-xl shadow-sm border border-gray-200 overflow-hidden hover:shadow-md transition-shadow duration-200"
             >
@@ -111,7 +125,8 @@ export default function ContestOverview({ onUploadClick }: ContestOverviewProps)
               <div className="p-6 space-y-4">
                 {/* Submission Limit Info */}
                 <div className="text-sm text-gray-500">
-                  <span className="font-medium">Max submissions:</span> {contest.maxSubmissionsPerCategory || 2}
+                  <span className="font-medium">Max submissions:</span>{' '}
+                  {contest.maxSubmissionsPerCategory || 2}
                 </div>
 
                 {/* Upload Button */}
@@ -119,8 +134,18 @@ export default function ContestOverview({ onUploadClick }: ContestOverviewProps)
                   onClick={() => onUploadClick?.(category.id)}
                   className="w-full bg-blue-600 hover:bg-blue-700 text-white font-medium py-3 px-4 rounded-lg transition-colors duration-200 flex items-center justify-center space-x-2"
                 >
-                  <svg className="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12" />
+                  <svg
+                    className="h-5 w-5"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12"
+                    />
                   </svg>
                   <span>Upload Photo</span>
                 </button>
@@ -132,11 +157,16 @@ export default function ContestOverview({ onUploadClick }: ContestOverviewProps)
 
       {/* Contest Rules */}
       <div className="bg-gray-50 rounded-xl p-6">
-        <h3 className="text-lg font-semibold text-gray-900 mb-3">Contest Rules</h3>
+        <h3 className="text-lg font-semibold text-gray-900 mb-3">
+          Contest Rules
+        </h3>
         <ul className="space-y-2 text-sm text-gray-600">
           <li className="flex items-start space-x-2">
             <span className="text-blue-600 mt-1">•</span>
-            <span>Upload up to {contest.maxSubmissionsPerCategory || 2} photos per category</span>
+            <span>
+              Upload up to {contest.maxSubmissionsPerCategory || 2} photos per
+              category
+            </span>
           </li>
           <li className="flex items-start space-x-2">
             <span className="text-blue-600 mt-1">•</span>
@@ -154,4 +184,4 @@ export default function ContestOverview({ onUploadClick }: ContestOverviewProps)
       </div>
     </div>
   );
-} 
+}

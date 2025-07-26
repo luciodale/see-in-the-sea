@@ -4,16 +4,16 @@ import ContestOverview from '../../components/ContestOverview';
 
 export const Route = createFileRoute('/user/')({
   component: UserDashboard,
-})
+});
 
 function UserDashboard() {
   const router = useRouter();
 
   const handleUploadClick = (categoryId: string) => {
     // Navigate to upload page with category pre-selected
-    router.navigate({ 
-      to: '/user/upload', 
-      search: { categoryId } 
+    router.navigate({
+      to: '/user/upload',
+      search: { categoryId },
     });
   };
 
@@ -24,7 +24,7 @@ function UserDashboard() {
           <ContestOverview onUploadClick={handleUploadClick} />
         </div>
       </SignedIn>
-      
+
       <SignedOut>
         <RedirectToSignIn />
       </SignedOut>

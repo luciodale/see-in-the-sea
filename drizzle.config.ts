@@ -11,4 +11,4 @@ export default {
     databaseId: 'e385ed45-21fc-4f9b-90ad-93b6397789b1',
     token: 'placeholder',
   },
-} satisfies Config; 
+} satisfies Config;

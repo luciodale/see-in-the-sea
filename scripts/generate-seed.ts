@@ -10,4 +10,4 @@ const seedSQL = generateSeedSQL();
 writeFileSync('./drizzle/seed.sql', seedSQL);
 
 console.log('✅ Generated seed.sql from TypeScript definitions');
-console.log('📁 Location: ./drizzle/seed.sql'); 
+console.log('📁 Location: ./drizzle/seed.sql');

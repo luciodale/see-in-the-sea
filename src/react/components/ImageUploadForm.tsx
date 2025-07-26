@@ -1,5 +1,9 @@
 import { useEffect, useRef, useState } from 'react';
-import type { ContestsResponse, ContestWithCategories, UploadResponse } from '../../types/api.js';
+import type {
+  ContestsResponse,
+  ContestWithCategories,
+  UploadResponse,
+} from '../../types/api.js';
 
 type ImageUploadFormProps = {
   selectedCategoryId?: string;
@@ -8,13 +12,15 @@ type ImageUploadFormProps = {
   onCancel?: () => void;
 };
 
-export default function ImageUploadForm({ 
-  selectedCategoryId, 
-  replacedSubmissionId, 
-  onUploadSuccess, 
-  onCancel 
+export default function ImageUploadForm({
+  selectedCategoryId,
+  replacedSubmissionId,
+  onUploadSuccess,
+  onCancel,
 }: ImageUploadFormProps) {
-  const [contestData, setContestData] = useState<ContestWithCategories | null>(null);
+  const [contestData, setContestData] = useState<ContestWithCategories | null>(
+    null
+  );
   const [selectedFile, setSelectedFile] = useState<File | null>(null);
   const [previewUrl, setPreviewUrl] = useState<string | null>(null);
   const [categoryId, setCategoryId] = useState(selectedCategoryId || '');
@@ -22,7 +28,7 @@ export default function ImageUploadForm({
   const [description, setDescription] = useState('');
   const [uploading, setUploading] = useState(false);
   const [error, setError] = useState<string | null>(null);
-  
+
   const fileInputRef = useRef<HTMLInputElement>(null);
 
   // Fetch contest data on mount
@@ -30,7 +36,7 @@ export default function ImageUploadForm({
     async function fetchContestData() {
       try {
         const response = await fetch('/api/contests');
-        const data = await response.json() as ContestsResponse;
+        const data = (await response.json()) as ContestsResponse;
         if (data.success && data.data) {
           setContestData(data.data);
         } else {
@@ -71,7 +77,7 @@ export default function ImageUploadForm({
 
   const handleSubmit = async (event: React.FormEvent) => {
     event.preventDefault();
-    
+
     if (!selectedFile || !categoryId || !title.trim()) {
       setError('Please fill in all required fields');
       return;
@@ -92,7 +98,7 @@ export default function ImageUploadForm({
       formData.append('categoryId', categoryId);
       formData.append('title', title.trim());
       formData.append('description', description.trim());
-      
+
       if (replacedSubmissionId) {
         formData.append('replacedSubmissionId', replacedSubmissionId);
       }
@@ -102,7 +108,7 @@ export default function ImageUploadForm({
         body: formData,
       });
 
-      const result = await response.json() as UploadResponse;
+      const result = (await response.json()) as UploadResponse;
 
       if (result.success) {
         onUploadSuccess?.(result);
@@ -180,19 +186,22 @@ export default function ImageUploadForm({
 
           {/* Category Selection */}
           <div>
-            <label htmlFor="category" className="block text-sm font-medium text-gray-700 mb-2">
+            <label
+              htmlFor="category"
+              className="block text-sm font-medium text-gray-700 mb-2"
+            >
               Category *
             </label>
             <select
               id="category"
               value={categoryId}
-              onChange={(e) => setCategoryId(e.target.value)}
+              onChange={e => setCategoryId(e.target.value)}
               className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
               disabled={!!selectedCategoryId || uploading}
               required
             >
               <option value="">Select a category</option>
-              {categories.map((category) => (
+              {categories.map(category => (
                 <option key={category.id} value={category.id}>
                   {category.name}
                 </option>
@@ -202,7 +211,10 @@ export default function ImageUploadForm({
 
           {/* File Input */}
           <div>
-            <label htmlFor="image" className="block text-sm font-medium text-gray-700 mb-2">
+            <label
+              htmlFor="image"
+              className="block text-sm font-medium text-gray-700 mb-2"
+            >
               Photo *
             </label>
             <div className="mt-1">
@@ -254,14 +266,17 @@ export default function ImageUploadForm({
 
           {/* Title */}
           <div>
-            <label htmlFor="title" className="block text-sm font-medium text-gray-700 mb-2">
+            <label
+              htmlFor="title"
+              className="block text-sm font-medium text-gray-700 mb-2"
+            >
               Title *
             </label>
             <input
               id="title"
               type="text"
               value={title}
-              onChange={(e) => setTitle(e.target.value)}
+              onChange={e => setTitle(e.target.value)}
               placeholder="Give your photo a title..."
               className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
               disabled={uploading}
@@ -272,13 +287,16 @@ export default function ImageUploadForm({
 
           {/* Description */}
           <div>
-            <label htmlFor="description" className="block text-sm font-medium text-gray-700 mb-2">
+            <label
+              htmlFor="description"
+              className="block text-sm font-medium text-gray-700 mb-2"
+            >
               Description
             </label>
             <textarea
               id="description"
               value={description}
-              onChange={(e) => setDescription(e.target.value)}
+              onChange={e => setDescription(e.target.value)}
               placeholder="Tell us about your photo (optional)..."
               rows={3}
               className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
@@ -294,24 +312,40 @@ export default function ImageUploadForm({
           <div className="flex space-x-4 pt-4">
             <button
               type="submit"
-              disabled={uploading || !selectedFile || !categoryId || !title.trim()}
+              disabled={
+                uploading || !selectedFile || !categoryId || !title.trim()
+              }
               className="flex-1 bg-blue-600 hover:bg-blue-700 disabled:bg-gray-300 text-white font-medium py-3 px-4 rounded-lg transition-colors duration-200 flex items-center justify-center space-x-2"
             >
               {uploading ? (
                 <>
                   <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-white"></div>
-                  <span>{replacedSubmissionId ? 'Replacing...' : 'Uploading...'}</span>
+                  <span>
+                    {replacedSubmissionId ? 'Replacing...' : 'Uploading...'}
+                  </span>
                 </>
               ) : (
                 <>
-                  <svg className="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12" />
+                  <svg
+                    className="h-4 w-4"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12"
+                    />
                   </svg>
-                  <span>{replacedSubmissionId ? 'Replace Photo' : 'Upload Photo'}</span>
+                  <span>
+                    {replacedSubmissionId ? 'Replace Photo' : 'Upload Photo'}
+                  </span>
                 </>
               )}
             </button>
-            
+
             {onCancel && (
               <button
                 type="button"

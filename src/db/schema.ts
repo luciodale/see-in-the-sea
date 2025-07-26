@@ -41,10 +41,18 @@ export const submissions = sqliteTable('submissions', {
 });
 
 // Indexes - defined separately to avoid deprecation warning
-export const submissionsContestUserIdx = index('idx_submissions_contest_user').on(submissions.contestId, submissions.userEmail);
-export const submissionsCategoryIdx = index('idx_submissions_category').on(submissions.categoryId);
-export const submissionsUserIdx = index('idx_submissions_user').on(submissions.userEmail);
-export const submissionsUploadedAtIdx = index('idx_submissions_uploaded_at').on(submissions.uploadedAt);
+export const submissionsContestUserIdx = index(
+  'idx_submissions_contest_user'
+).on(submissions.contestId, submissions.userEmail);
+export const submissionsCategoryIdx = index('idx_submissions_category').on(
+  submissions.categoryId
+);
+export const submissionsUserIdx = index('idx_submissions_user').on(
+  submissions.userEmail
+);
+export const submissionsUploadedAtIdx = index('idx_submissions_uploaded_at').on(
+  submissions.uploadedAt
+);
 
 // Type exports for TypeScript usage
 export type Contest = typeof contests.$inferSelect;
@@ -52,4 +60,4 @@ export type NewContest = typeof contests.$inferInsert;
 export type Category = typeof categories.$inferSelect;
 export type NewCategory = typeof categories.$inferInsert;
 export type Submission = typeof submissions.$inferSelect;
-export type NewSubmission = typeof submissions.$inferInsert; 
+export type NewSubmission = typeof submissions.$inferInsert;
