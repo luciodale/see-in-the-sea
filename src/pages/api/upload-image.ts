@@ -11,7 +11,7 @@ import type { UploadResponse } from '../../types/api.js';
 import {
   deleteImageFromR2,
   deleteSubmission,
-  generateImageUrl,
+  generateImageUrlWithUserId,
   generateR2Key,
   storeImageInR2,
   storeSubmissionMetadata,
@@ -61,6 +61,7 @@ export const POST: APIRoute = async ({ request, locals }) => {
     }
 
     const userEmail = user.emailAddress || 'unknown';
+    const userId = user.id;
 
     // Step 2: Parse and validate form data
     const formData = await request.formData();
@@ -182,7 +183,12 @@ export const POST: APIRoute = async ({ request, locals }) => {
       userEmail,
       fileExtension
     );
-    const imageUrlPath = generateImageUrl(r2Key); // R2 key without extension
+    const imageUrlPath = generateImageUrlWithUserId(
+      contestId,
+      categoryId,
+      userId,
+      submissionId
+    ); // Use userId in URL path
     const baseUrl = new URL(request.url).origin;
     const imageUrl = `${baseUrl}/api/images/${imageUrlPath}`;
 

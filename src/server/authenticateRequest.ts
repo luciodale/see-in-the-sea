@@ -5,6 +5,7 @@ type TUser = {
   firstName: string | null;
   lastName: string | null;
   emailAddress: string | null;
+  id: string;
 };
 
 type TAuthenticateRequest =
@@ -44,11 +45,12 @@ export async function authenticateRequest(
       firstName,
       lastName,
       emailAddresses: [{ emailAddress }],
+      id,
     } = user;
 
     return {
       isAuthenticated: true,
-      user: { firstName, lastName, emailAddress },
+      user: { firstName, lastName, emailAddress, id },
     };
   }
 

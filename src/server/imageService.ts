@@ -29,6 +29,20 @@ export function generateImageUrl(r2Key: string): string {
 }
 
 /**
+ * Generates the served image URL path using userId instead of userEmail
+ * Pure function - replaces userEmail in path with userId
+ */
+export function generateImageUrlWithUserId(
+  contestId: string,
+  categoryId: string,
+  userId: string,
+  submissionId: string
+): string {
+  // Clean readable structure: contest/category/user-id/submission-id (no extension)
+  return `${contestId}/${categoryId}/${userId}/${submissionId}`;
+}
+
+/**
  * Validates if a user owns a specific submission
  * Pure function - returns ownership validation
  */

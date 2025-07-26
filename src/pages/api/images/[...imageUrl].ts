@@ -23,9 +23,25 @@ export const GET: APIRoute = async ({ params, locals }) => {
 
     const db = getDb(D1Database);
 
-    // Step 1: Query D1 to find the submission by imageUrl and get the r2Key
+    // Step 1: Parse userId-based imageUrl and find submission
     console.log('[serve-image] Looking up submission for imageUrl:', imageUrl);
 
+    // Parse the imageUrl structure: contest-id/category-id/user-id/submission-id
+    const urlParts = imageUrl.split('/');
+    if (urlParts.length !== 4) {
+      console.log('[serve-image] Invalid imageUrl format:', imageUrl);
+      return new Response('Invalid image URL format', { status: 400 });
+    }
+
+    const [contestId, categoryId, userId, submissionId] = urlParts;
+    console.log('[serve-image] Parsed URL parts:', {
+      contestId,
+      categoryId,
+      userId,
+      submissionId,
+    });
+
+    // Find the submission by submissionId (this is unique)
     const submissionResult = await db
       .select({
         r2Key: submissions.r2Key,
@@ -33,11 +49,14 @@ export const GET: APIRoute = async ({ params, locals }) => {
         title: submissions.title,
       })
       .from(submissions)
-      .where(eq(submissions.imageUrl, imageUrl))
+      .where(eq(submissions.id, submissionId))
       .limit(1);
 
     if (submissionResult.length === 0) {
-      console.log('[serve-image] No submission found for imageUrl:', imageUrl);
+      console.log(
+        '[serve-image] No submission found for submissionId:',
+        submissionId
+      );
       return new Response('Image not found', { status: 404 });
     }
 
