@@ -160,7 +160,7 @@ export default function SubmissionGallery({
                 {/* Image */}
                 <div className="aspect-w-16 aspect-h-12 bg-gray-100">
                   <img
-                    src={submission.imageUrl}
+                    src={`/api/images/${submission.imageUrl}`}
                     alt={submission.title}
                     className="w-full h-48 object-cover cursor-pointer hover:opacity-95 transition-opacity"
                     onClick={() => onImageClick?.(submission.imageUrl, submission.title)}

@@ -76,7 +76,10 @@ export async function storeImageInR2(
   }
 ): Promise<void> {
   try {
-    await bucket.put(r2Key, imageFile.stream(), {
+    // Convert File to ArrayBuffer - R2 needs known content length
+    const imageBuffer = await imageFile.arrayBuffer();
+    
+    await bucket.put(r2Key, imageBuffer, {
       httpMetadata: {
         contentType: imageFile.type,
         contentDisposition: `inline; filename="${metadata.title.replace(/[^a-zA-Z0-9.-]/g, '_')}"`,

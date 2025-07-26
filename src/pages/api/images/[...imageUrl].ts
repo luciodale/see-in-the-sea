@@ -5,13 +5,15 @@ import { getDb, submissions } from '../../../db';
 export const prerender = false;
 
 export const GET: APIRoute = async ({ params, locals }) => {
-    const { imageKey } = params;
+    const { imageUrl } = params;
     
-    if (!imageKey || typeof imageKey !== 'string') {
+    if (!imageUrl || typeof imageUrl !== 'string') {
         return new Response('Image key required', { status: 400 });
     }
 
     try {
+
+        // split the extension from the imageUrl
         const R2Bucket = locals.runtime.env.R2_IMAGES_BUCKET;
         const IMAGES = locals.runtime.env.IMAGES;
         const D1Database = locals.runtime.env.DB;
@@ -23,7 +25,7 @@ export const GET: APIRoute = async ({ params, locals }) => {
         const db = getDb(D1Database);
 
         // Step 1: Query D1 to find the submission by imageUrl and get the r2Key
-        console.log('[serve-image] Looking up submission for imageUrl:', imageKey);
+        console.log('[serve-image] Looking up submission for imageUrl:', imageUrl);
         
         const submissionResult = await db
             .select({ 
@@ -32,11 +34,11 @@ export const GET: APIRoute = async ({ params, locals }) => {
                 title: submissions.title
             })
             .from(submissions)
-            .where(eq(submissions.imageUrl, imageKey))
+            .where(eq(submissions.imageUrl, imageUrl))
             .limit(1);
 
         if (submissionResult.length === 0) {
-            console.log('[serve-image] No submission found for imageUrl:', imageKey);
+            console.log('[serve-image] No submission found for imageUrl:', imageUrl);
             return new Response('Image not found', { status: 404 });
         }
 
@@ -109,7 +111,7 @@ export const GET: APIRoute = async ({ params, locals }) => {
         }
 
     } catch (error) {
-        console.error(`[serve-image] Error serving image ${imageKey}:`, error);
+        console.error(`[serve-image] Error serving image ${imageUrl}:`, error);
         return new Response('Internal server error', { status: 500 });
     }
 };

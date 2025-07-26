@@ -60,6 +60,8 @@
     "db:dump:local": "bunx wrangler d1 execute see-in-the-sea-db --local --command=\"DROP TABLE IF EXISTS submissions;\" && bunx wrangler d1 execute see-in-the-sea-db --local --command=\"DROP TABLE IF EXISTS categories;\" && bunx wrangler d1 execute see-in-the-sea-db --local --command=\"DROP TABLE IF EXISTS contests;\"",
     "db:dump:remote": "bunx wrangler d1 execute see-in-the-sea-db --remote --command=\"DROP TABLE IF EXISTS submissions;\" && bunx wrangler d1 execute see-in-the-sea-db --remote --command=\"DROP TABLE IF EXISTS categories;\" && bunx wrangler d1 execute see-in-the-sea-db --remote --command=\"DROP TABLE IF EXISTS contests;\"",
     "db:dump:all": "bun run db:dump:local && bun run db:dump:remote",
+    "db:reset:local": "bun run db:dump:local && bun run db:init:local",
+    "db:reset:remote": "bun run db:dump:remote && bun run db:init:remote",
     "db:reset": "bun run db:dump:all && bun run db:init:local && bun run db:init:remote"
   },
   "type": "module"
