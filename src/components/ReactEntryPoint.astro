@@ -14,10 +14,9 @@ const { PUBLIC_CLERK_PUBLISHABLE_KEY } = Astro.locals.runtime.env;
   <head>
     <BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
   </head>
-  <body>
+  <body class="min-h-screen bg-base-100 text-base-content">
     <Header />
     <App client:only="react" clerkPublicKey={PUBLIC_CLERK_PUBLISHABLE_KEY} />
-
     <Footer />
   </body>
 </html>

@@ -8,18 +8,18 @@
     "typescriptreact",
     "javascriptreact"
   ],
-  
+
   // Prettier configuration
   "prettier.enable": true,
   "prettier.requireConfig": true,
-  
+
   // Auto-format on save
   "editor.formatOnSave": true,
   "editor.codeActionsOnSave": {
     "source.fixAll.eslint": "explicit",
     "source.organizeImports": "explicit"
   },
-  
+
   // Default formatter for different file types
   "editor.defaultFormatter": "esbenp.prettier-vscode",
   "[astro]": {
@@ -49,24 +49,25 @@
   "[markdown]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
-  
+
   // Astro-specific settings
   "astro.enable": true,
   "astro.format.enable": true,
-  
+
   // TypeScript settings
   "typescript.preferences.importModuleSpecifier": "relative",
   "typescript.suggest.autoImports": true,
-  
+
   // File associations
   "files.associations": {
     "*.astro": "astro",
-    "wrangler.json": "jsonc"
+    "wrangler.json": "jsonc",
+    "*.css": "tailwindcss"
   },
-  
+
   // Auto-save
   "files.autoSave": "onFocusChange",
-  
+
   // Tailwind CSS IntelliSense
   "tailwindCSS.includeLanguages": {
     "astro": "html",
@@ -77,7 +78,7 @@
     ["class:\\s*?[\"'`]([^\"'`]*).*?,[\"'`]", "[\"'`]([^\"'`]*)[\"'`]"],
     ["className:\\s*?[\"'`]([^\"'`]*).*?,[\"'`]", "[\"'`]([^\"'`]*)[\"'`]"]
   ],
-  
+
   // Exclude certain files from file explorer
   "files.exclude": {
     "**/node_modules": true,
@@ -86,7 +87,7 @@
     "**/.wrangler": true,
     "**/bun.lockb": true
   },
-  
+
   // Search exclude
   "search.exclude": {
     "**/node_modules": true,
