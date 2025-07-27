@@ -51,20 +51,56 @@ export const POST: APIRoute = async ({ request, locals }) => {
   const db = getDb(D1Database);
 
   try {
-    // Step 1: Authentication
+    // Step 2: Authentication
     const authRequestClone = request.clone() as typeof request;
-    const { isAuthenticated, user, unauthenticatedResponse } =
+    const { isAuthenticated, user, isAdminRole, unauthenticatedResponse } =
       await authenticateRequest(authRequestClone, locals);
 
     if (!isAuthenticated) {
       return unauthenticatedResponse();
     }
 
-    const userEmail = user.emailAddress || 'unknown';
-    const userId = user.id;
+    let userEmail = user.emailAddress || 'unknown';
+    const userId = user.id; // Added userId
 
     // Step 2: Parse and validate form data
     const formData = await request.formData();
+
+    // Check if this is an admin upload on behalf of another user
+    const isAdminUpload = formData.get('adminUpload') === 'true';
+    const adminUserEmail = formData.get('userEmail')?.toString();
+
+    if (isAdminUpload) {
+      // Verify admin role
+      if (!isAdminRole()) {
+        return new Response(
+          JSON.stringify({
+            success: false,
+            message: 'Access denied. Admin role required for admin uploads.',
+            error: 'INSUFFICIENT_PERMISSIONS',
+          }),
+          { status: 403 }
+        );
+      }
+
+      // Validate admin upload parameters
+      if (!adminUserEmail) {
+        return new Response(
+          JSON.stringify({
+            success: false,
+            message: 'User email is required for admin uploads.',
+          }),
+          { status: 400 }
+        );
+      }
+
+      // Use the specified user email for the upload
+      userEmail = adminUserEmail;
+      console.log(
+        `[upload-image] Admin ${user.id} uploading on behalf of ${userEmail}`
+      );
+    }
+
     const formValidation = validateUploadFormData(formData);
 
     if (!formValidation.isValid) {
