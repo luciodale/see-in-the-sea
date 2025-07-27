@@ -71,6 +71,93 @@ export type ErrorResponse = {
   error?: string;
 };
 
+// Contest Management Types
+export type CreateContestFormData = {
+  id: string;
+  name: string;
+  description?: string;
+  startDate: string;
+  endDate: string;
+  maxSubmissionsPerCategory?: number;
+  isActive?: boolean;
+};
+
+export type CreateContestResponse = {
+  success: boolean;
+  message: string;
+  data?: {
+    contestId: string;
+    name: string;
+    startDate: string;
+    endDate: string;
+  };
+};
+
+export type ContestListResponse = {
+  success: boolean;
+  data: Array<{
+    id: string;
+    name: string;
+    description: string | null;
+    startDate: string;
+    endDate: string;
+    maxSubmissionsPerCategory: number;
+    isActive: boolean;
+    createdAt: string;
+    updatedAt: string;
+  }>;
+};
+
+// Submission Management Types
+export type ManageSubmissionFormData = {
+  id?: string; // For updates
+  contestId: string;
+  categoryId: string;
+  userEmail: string;
+  title: string;
+  description?: string;
+  replaceImage?: boolean; // For image replacement
+};
+
+export type ManageSubmissionResponse = {
+  success: boolean;
+  message: string;
+  data?: {
+    submissionId: string;
+    title: string;
+    contestId: string;
+    categoryId: string;
+    userEmail: string;
+  };
+};
+
+export type SubmissionListResponse = {
+  success: boolean;
+  data: AdminSubmission[];
+  totalCount: number;
+};
+
+// Admin Submission Browser Types
+export type AdminSubmission = {
+  id: string;
+  title: string;
+  description: string | null;
+  imageUrl: string;
+  r2Key: string;
+  userEmail: string;
+  uploadedAt: string;
+  contestId: string;
+  contestName: string;
+  categoryId: string;
+  categoryName: string;
+};
+
+export type AdminSubmissionsResponse = {
+  success: boolean;
+  data: AdminSubmission[];
+  totalCount: number;
+};
+
 // Type guards for runtime type checking
 export function isApiSuccess<T>(
   response: ApiResponse<T>

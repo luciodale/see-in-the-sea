@@ -1,14 +1,16 @@
 import { useEffect, useState } from 'react';
+import type { Submission } from '../../db/index.js';
 import type {
   CategoryWithSubmissions,
   SubmissionsResponse,
   UserContestData,
 } from '../../types/api.js';
+import EditSubmissionModal from './EditSubmissionModal';
 
 type SubmissionGalleryProps = {
   onReplaceImage?: (submissionId: string, categoryId: string) => void;
   onImageClick?: (imageUrl: string, title: string) => void;
-  refreshTrigger?: number; // Can be incremented to force refresh
+  refreshTrigger?: number;
 };
 
 export default function SubmissionGallery({
@@ -20,6 +22,18 @@ export default function SubmissionGallery({
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const [deletingId, setDeletingId] = useState<string | null>(null);
+
+  // Edit modal state
+  const [editModalOpen, setEditModalOpen] = useState(false);
+  const [editingSubmission, setEditingSubmission] = useState<{
+    id: string;
+    title: string;
+    description: string;
+    imageUrl: string;
+    contestId: string;
+    categoryId: string;
+    userEmail: string;
+  } | null>(null);
 
   const fetchSubmissions = async () => {
     try {
@@ -81,6 +95,24 @@ export default function SubmissionGallery({
     }
   };
 
+  const handleEditSubmission = (submission: {
+    id: string;
+    title: string;
+    description: string;
+    imageUrl: string;
+    contestId: string;
+    categoryId: string;
+    userEmail: string;
+  }) => {
+    setEditingSubmission(submission);
+    setEditModalOpen(true);
+  };
+
+  const handleEditSuccess = () => {
+    // Refresh submissions after successful edit
+    fetchSubmissions();
+  };
+
   if (loading) {
     return (
       <div className="flex items-center justify-center p-8">
@@ -125,189 +157,60 @@ export default function SubmissionGallery({
     (category: CategoryWithSubmissions) => category.submissions.length > 0
   );
 
-  if (!contest) {
-    return (
-      <div className="text-center p-8">
-        <div className="text-gray-500">
-          <svg
-            className="mx-auto h-12 w-12 text-gray-400 mb-4"
-            fill="none"
-            stroke="currentColor"
-            viewBox="0 0 24 24"
-          >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth={2}
-              d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"
-            />
-          </svg>
-          <p className="text-lg font-medium text-gray-900">No Active Contest</p>
-          <p className="text-gray-600">
-            Check back later for upcoming contests.
-          </p>
-        </div>
-      </div>
-    );
-  }
-
   return (
-    <div className="max-w-6xl mx-auto p-6 space-y-8">
-      {/* Header */}
-      <div className="text-center">
-        <h1 className="text-3xl font-bold text-gray-900">My Submissions</h1>
-        <p className="text-gray-600 mt-2">{contest.name}</p>
-      </div>
-
-      {/* Overall Status */}
-      {!hasAnySubmissions && (
-        <div className="text-center p-12 bg-gray-50 rounded-xl">
-          <div className="text-gray-500">
-            <svg
-              className="mx-auto h-16 w-16 text-gray-400 mb-4"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={2}
-                d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"
-              />
-            </svg>
-            <h3 className="text-xl font-medium text-gray-900 mb-2">
-              No Submissions Yet
-            </h3>
-            <p className="text-gray-600">
-              Upload your first photo to get started!
-            </p>
-          </div>
+    <>
+      <div className="max-w-6xl mx-auto p-6 space-y-8">
+        {/* Header */}
+        <div className="text-center">
+          <h1 className="text-3xl font-bold text-gray-900">My Submissions</h1>
+          <p className="text-gray-600 mt-2">{contest?.name}</p>
         </div>
-      )}
 
-      {/* Categories with Submissions */}
-      {categories.map((category: CategoryWithSubmissions) => (
-        <div key={category.id} className="space-y-4">
-          {/* Category Header */}
-          <div className="flex items-center justify-between">
-            <div>
+        {/* Overall Status */}
+        {!hasAnySubmissions && (
+          <div className="text-center p-12 bg-gray-50 rounded-xl">
+            <div className="text-gray-500">
+              <svg
+                className="mx-auto h-16 w-16 text-gray-400 mb-4"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 002 2v12a2 2 0 002 2z"
+                />
+              </svg>
+              <h3 className="text-xl font-medium text-gray-900 mb-2">
+                No Submissions Yet
+              </h3>
+              <p className="text-gray-600">
+                Upload your first photo to get started!
+              </p>
+            </div>
+          </div>
+        )}
+
+        {/* Categories with Submissions */}
+        {categories.map((category: CategoryWithSubmissions) => (
+          <div key={category.id} className="space-y-4">
+            <div className="border-b border-gray-200 pb-2">
               <h2 className="text-xl font-semibold text-gray-900">
                 {category.name}
               </h2>
-              {category.description && (
-                <p className="text-sm text-gray-600">{category.description}</p>
-              )}
+              <p className="text-sm text-gray-600">
+                {category.submissions.length} /{' '}
+                {contest?.maxSubmissionsPerCategory} submissions
+              </p>
             </div>
-            <div className="text-sm text-gray-500">
-              <span className="font-medium">
-                {category.submissionCount}/{category.maxSubmissions}
-              </span>{' '}
-              submissions
-            </div>
-          </div>
 
-          {/* Submissions Grid */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {category.submissions.map(submission => (
-              <div
-                key={submission.id}
-                className="bg-white rounded-xl shadow-sm border border-gray-200 overflow-hidden hover:shadow-md transition-shadow duration-200"
-              >
-                {/* Image */}
-                <div className="aspect-w-16 aspect-h-12 bg-gray-100">
-                  <img
-                    src={`/api/images/${submission.imageUrl}`}
-                    alt={submission.title}
-                    className="w-full h-48 object-cover cursor-pointer hover:opacity-95 transition-opacity"
-                    onClick={() =>
-                      onImageClick?.(submission.imageUrl, submission.title)
-                    }
-                  />
-                </div>
-
-                {/* Content */}
-                <div className="p-4 space-y-3">
-                  <div>
-                    <h3 className="font-medium text-gray-900 truncate">
-                      {submission.title}
-                    </h3>
-                    {submission.description && (
-                      <p className="text-sm text-gray-600 mt-1 line-clamp-2">
-                        {submission.description}
-                      </p>
-                    )}
-                  </div>
-
-                  <div className="text-xs text-gray-500">
-                    Uploaded{' '}
-                    {new Date(submission.uploadedAt || '').toLocaleDateString()}
-                  </div>
-
-                  {/* Actions */}
-                  <div className="flex space-x-2 pt-2">
-                    <button
-                      onClick={() =>
-                        onReplaceImage?.(submission.id, category.id)
-                      }
-                      className="flex-1 bg-blue-50 hover:bg-blue-100 text-blue-700 text-sm font-medium py-2 px-3 rounded-lg transition-colors duration-200 flex items-center justify-center space-x-1"
-                    >
-                      <svg
-                        className="h-4 w-4"
-                        fill="none"
-                        stroke="currentColor"
-                        viewBox="0 0 24 24"
-                      >
-                        <path
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                          strokeWidth={2}
-                          d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"
-                        />
-                      </svg>
-                      <span>Replace</span>
-                    </button>
-
-                    <button
-                      onClick={() => handleDeleteSubmission(submission.id)}
-                      disabled={deletingId === submission.id}
-                      className="flex-1 bg-red-50 hover:bg-red-100 text-red-700 text-sm font-medium py-2 px-3 rounded-lg transition-colors duration-200 flex items-center justify-center space-x-1 disabled:opacity-50"
-                    >
-                      {deletingId === submission.id ? (
-                        <>
-                          <div className="animate-spin rounded-full h-3 w-3 border-b-2 border-red-700"></div>
-                          <span>Deleting...</span>
-                        </>
-                      ) : (
-                        <>
-                          <svg
-                            className="h-4 w-4"
-                            fill="none"
-                            stroke="currentColor"
-                            viewBox="0 0 24 24"
-                          >
-                            <path
-                              strokeLinecap="round"
-                              strokeLinejoin="round"
-                              strokeWidth={2}
-                              d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"
-                            />
-                          </svg>
-                          <span>Delete</span>
-                        </>
-                      )}
-                    </button>
-                  </div>
-                </div>
-              </div>
-            ))}
-
-            {/* Empty slots (if user can upload more) */}
-            {category.submissionCount < category.maxSubmissions && (
-              <div className="bg-gray-50 border-2 border-dashed border-gray-300 rounded-xl p-8 text-center hover:border-gray-400 transition-colors duration-200">
-                <div className="text-gray-400">
+            {category.submissions.length === 0 ? (
+              <div className="text-center p-8 bg-gray-50 rounded-lg">
+                <div className="text-gray-500">
                   <svg
-                    className="mx-auto h-12 w-12 mb-4"
+                    className="mx-auto h-12 w-12 text-gray-400 mb-3"
                     fill="none"
                     stroke="currentColor"
                     viewBox="0 0 24 24"
@@ -319,29 +222,164 @@ export default function SubmissionGallery({
                       d="M12 6v6m0 0v6m0-6h6m-6 0H6"
                     />
                   </svg>
-                  <p className="text-sm font-medium text-gray-600">
-                    Upload Another Photo
+                  <p className="text-sm font-medium text-gray-900">
+                    No submissions in this category yet
                   </p>
-                  <p className="text-xs text-gray-500 mt-1">
-                    {category.maxSubmissions - category.submissionCount} more
-                    allowed
+                  <p className="text-xs text-gray-600 mt-1">
+                    Upload a photo to get started
                   </p>
                 </div>
               </div>
+            ) : (
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                {category.submissions.map(submission => (
+                  <div
+                    key={submission.id}
+                    className="bg-white rounded-xl shadow-sm border border-gray-200 overflow-hidden hover:shadow-md transition-shadow duration-200"
+                  >
+                    {/* Image */}
+                    <button
+                      type="button"
+                      className="aspect-w-16 aspect-h-12 bg-gray-100 w-full"
+                      onClick={() =>
+                        onImageClick?.(submission.imageUrl, submission.title)
+                      }
+                    >
+                      <img
+                        src={`/api/images/${submission.imageUrl}`}
+                        alt={submission.title}
+                        className="w-full h-48 object-cover hover:opacity-95 transition-opacity"
+                      />
+                    </button>
+
+                    {/* Content */}
+                    <div className="p-4 space-y-3">
+                      <div>
+                        <h3 className="font-medium text-gray-900 truncate">
+                          {submission.title}
+                        </h3>
+                        {submission.description && (
+                          <p className="text-sm text-gray-600 mt-1 line-clamp-2">
+                            {submission.description}
+                          </p>
+                        )}
+                      </div>
+
+                      <div className="text-xs text-gray-500">
+                        Uploaded{' '}
+                        {new Date(
+                          submission.uploadedAt || ''
+                        ).toLocaleDateString()}
+                      </div>
+
+                      {/* Actions */}
+                      <div className="flex space-x-2 pt-2">
+                        {/* Edit Button */}
+                        <button
+                          onClick={() =>
+                            handleEditSubmission({
+                              id: submission.id,
+                              title: submission.title,
+                              description: submission.description || '',
+                              imageUrl: submission.imageUrl,
+                              contestId: (submission as Submission).contestId,
+                              categoryId: (submission as Submission).categoryId,
+                              userEmail: (submission as Submission).userEmail,
+                            })
+                          }
+                          className="flex-1 bg-green-50 hover:bg-green-100 text-green-700 text-sm font-medium py-2 px-3 rounded-lg transition-colors duration-200 flex items-center justify-center space-x-1"
+                        >
+                          <svg
+                            className="h-4 w-4"
+                            fill="none"
+                            stroke="currentColor"
+                            viewBox="0 0 24 24"
+                          >
+                            <path
+                              strokeLinecap="round"
+                              strokeLinejoin="round"
+                              strokeWidth={2}
+                              d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"
+                            />
+                          </svg>
+                          <span>Edit</span>
+                        </button>
+
+                        {/* Replace Button */}
+                        <button
+                          onClick={() =>
+                            onReplaceImage?.(submission.id, category.id)
+                          }
+                          className="flex-1 bg-blue-50 hover:bg-blue-100 text-blue-700 text-sm font-medium py-2 px-3 rounded-lg transition-colors duration-200 flex items-center justify-center space-x-1"
+                        >
+                          <svg
+                            className="h-4 w-4"
+                            fill="none"
+                            stroke="currentColor"
+                            viewBox="0 0 24 24"
+                          >
+                            <path
+                              strokeLinecap="round"
+                              strokeLinejoin="round"
+                              strokeWidth={2}
+                              d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"
+                            />
+                          </svg>
+                          <span>Replace</span>
+                        </button>
+
+                        {/* Delete Button */}
+                        <button
+                          onClick={() => handleDeleteSubmission(submission.id)}
+                          disabled={deletingId === submission.id}
+                          className="flex-1 bg-red-50 hover:bg-red-100 text-red-700 text-sm font-medium py-2 px-3 rounded-lg transition-colors duration-200 flex items-center justify-center space-x-1 disabled:opacity-50"
+                        >
+                          {deletingId === submission.id ? (
+                            <>
+                              <div className="animate-spin rounded-full h-3 w-3 border-b-2 border-red-700"></div>
+                              <span>Deleting...</span>
+                            </>
+                          ) : (
+                            <>
+                              <svg
+                                className="h-4 w-4"
+                                fill="none"
+                                stroke="currentColor"
+                                viewBox="0 0 24 24"
+                              >
+                                <path
+                                  strokeLinecap="round"
+                                  strokeLinejoin="round"
+                                  strokeWidth={2}
+                                  d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"
+                                />
+                              </svg>
+                              <span>Delete</span>
+                            </>
+                          )}
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                ))}
+              </div>
             )}
           </div>
+        ))}
+      </div>
 
-          {/* Category limit reached message */}
-          {category.submissionCount >= category.maxSubmissions && (
-            <div className="text-center p-4 bg-blue-50 rounded-lg">
-              <p className="text-sm text-blue-700">
-                <span className="font-medium">Category limit reached!</span> You
-                can still replace existing photos.
-              </p>
-            </div>
-          )}
-        </div>
-      ))}
-    </div>
+      {/* Edit Modal */}
+      {editingSubmission && (
+        <EditSubmissionModal
+          isOpen={editModalOpen}
+          onClose={() => {
+            setEditModalOpen(false);
+            setEditingSubmission(null);
+          }}
+          submission={editingSubmission}
+          onSuccess={handleEditSuccess}
+        />
+      )}
+    </>
   );
 }

@@ -1,0 +1,365 @@
+import { useAuth } from '@clerk/clerk-react';
+import { useState } from 'react';
+import type {
+  CreateContestFormData,
+  CreateContestResponse,
+} from '../../types/api';
+
+type CreateContestFormProps = {
+  onSuccess?: (contestId: string) => void;
+  onCancel?: () => void;
+};
+
+export default function CreateContestForm({
+  onSuccess,
+  onCancel,
+}: CreateContestFormProps) {
+  const { getToken } = useAuth();
+  const [formData, setFormData] = useState<CreateContestFormData>({
+    id: '',
+    name: '',
+    description: '',
+    startDate: '',
+    endDate: '',
+    maxSubmissionsPerCategory: 2,
+    isActive: true,
+  });
+
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [error, setError] = useState<string | null>(null);
+  const [success, setSuccess] = useState<string | null>(null);
+
+  const handleInputChange = (
+    e: React.ChangeEvent<
+      HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement
+    >
+  ) => {
+    const { name, value, type } = e.target;
+
+    setFormData(prev => ({
+      ...prev,
+      [name]:
+        type === 'checkbox'
+          ? (e.target as HTMLInputElement).checked
+          : type === 'number'
+            ? parseInt(value) || 0
+            : value,
+    }));
+  };
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setIsSubmitting(true);
+    setError(null);
+    setSuccess(null);
+
+    try {
+      // Get JWT token for authentication
+      const token = await getToken();
+      if (!token) {
+        throw new Error('Authentication token not available');
+      }
+
+      // Validate form data
+      if (!formData.id.trim()) {
+        throw new Error('Contest ID is required');
+      }
+      if (!formData.name.trim()) {
+        throw new Error('Contest name is required');
+      }
+      if (!formData.startDate || !formData.endDate) {
+        throw new Error('Start and end dates are required');
+      }
+      if (new Date(formData.endDate) <= new Date(formData.startDate)) {
+        throw new Error('End date must be after start date');
+      }
+
+      // Submit to API
+      const response = await fetch('/api/admin/manage-contest', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${token}`,
+        },
+        body: JSON.stringify(formData),
+      });
+
+      const result = (await response.json()) as CreateContestResponse;
+
+      if (!response.ok) {
+        throw new Error(result.message || 'Failed to create contest');
+      }
+
+      setSuccess('Contest created successfully! 🎉');
+
+      // Reset form
+      setFormData({
+        id: '',
+        name: '',
+        description: '',
+        startDate: '',
+        endDate: '',
+        maxSubmissionsPerCategory: 2,
+        isActive: true,
+      });
+
+      // Call success callback
+      if (onSuccess && result.data?.contestId) {
+        onSuccess(result.data.contestId);
+      }
+    } catch (error) {
+      console.error('Error creating contest:', error);
+      setError(
+        error instanceof Error ? error.message : 'An unexpected error occurred'
+      );
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
+
+  // Generate default minimum date (today)
+  const today = new Date().toISOString().split('T')[0];
+
+  return (
+    <div className="bg-white rounded-lg shadow-lg p-6">
+      <div className="mb-6">
+        <h2 className="text-2xl font-bold text-gray-900 mb-2">
+          🏆 Create New Contest
+        </h2>
+        <p className="text-gray-600">
+          Set up a new underwater photography contest with all the details.
+        </p>
+      </div>
+
+      {error && (
+        <div className="mb-4 p-4 bg-red-50 border border-red-200 rounded-md">
+          <p className="text-red-800 text-sm">❌ {error}</p>
+        </div>
+      )}
+
+      {success && (
+        <div className="mb-4 p-4 bg-green-50 border border-green-200 rounded-md">
+          <p className="text-green-800 text-sm">{success}</p>
+        </div>
+      )}
+
+      <form onSubmit={handleSubmit} className="space-y-6">
+        {/* Contest ID */}
+        <div>
+          <label
+            htmlFor="id"
+            className="block text-sm font-medium text-gray-700 mb-2"
+          >
+            Contest ID *
+          </label>
+          <input
+            id="id"
+            name="id"
+            type="text"
+            required
+            value={formData.id}
+            onChange={handleInputChange}
+            placeholder="e.g., uw-2025, contest-spring-2025"
+            className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+          />
+          <p className="text-xs text-gray-500 mt-1">
+            Unique identifier for the contest (used in URLs and database)
+          </p>
+        </div>
+
+        {/* Contest Name */}
+        <div>
+          <label
+            htmlFor="name"
+            className="block text-sm font-medium text-gray-700 mb-2"
+          >
+            Contest Name *
+          </label>
+          <input
+            id="name"
+            name="name"
+            type="text"
+            required
+            value={formData.name}
+            onChange={handleInputChange}
+            placeholder="e.g., Underwater Photography Contest 2025"
+            className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+          />
+        </div>
+
+        {/* Description */}
+        <div>
+          <label
+            htmlFor="description"
+            className="block text-sm font-medium text-gray-700 mb-2"
+          >
+            Description
+          </label>
+          <textarea
+            id="description"
+            name="description"
+            rows={4}
+            value={formData.description}
+            onChange={handleInputChange}
+            placeholder="Describe the contest theme, rules, or special instructions..."
+            className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+          />
+        </div>
+
+        {/* Date Range */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div>
+            <label
+              htmlFor="startDate"
+              className="block text-sm font-medium text-gray-700 mb-2"
+            >
+              Start Date *
+            </label>
+            <input
+              id="startDate"
+              name="startDate"
+              type="date"
+              required
+              value={formData.startDate}
+              onChange={handleInputChange}
+              min={today}
+              className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+            />
+          </div>
+
+          <div>
+            <label
+              htmlFor="endDate"
+              className="block text-sm font-medium text-gray-700 mb-2"
+            >
+              End Date *
+            </label>
+            <input
+              id="endDate"
+              name="endDate"
+              type="date"
+              required
+              value={formData.endDate}
+              onChange={handleInputChange}
+              min={formData.startDate || today}
+              className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+            />
+          </div>
+        </div>
+
+        {/* Settings */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div>
+            <label
+              htmlFor="maxSubmissionsPerCategory"
+              className="block text-sm font-medium text-gray-700 mb-2"
+            >
+              Max Submissions per Category
+            </label>
+            <select
+              id="maxSubmissionsPerCategory"
+              name="maxSubmissionsPerCategory"
+              value={formData.maxSubmissionsPerCategory}
+              onChange={handleInputChange}
+              className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+            >
+              <option value={1}>1 submission</option>
+              <option value={2}>2 submissions</option>
+              <option value={3}>3 submissions</option>
+              <option value={5}>5 submissions</option>
+              <option value={10}>10 submissions</option>
+            </select>
+          </div>
+
+          <div>
+            <label
+              htmlFor="isActive"
+              className="block text-sm font-medium text-gray-700 mb-2"
+            >
+              Contest Status
+            </label>
+            <div className="flex items-center p-3 border border-gray-300 rounded-md bg-gray-50">
+              <input
+                id="isActive"
+                name="isActive"
+                type="checkbox"
+                checked={formData.isActive}
+                onChange={handleInputChange}
+                className="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded"
+              />
+              <div className="ml-3">
+                <label
+                  htmlFor="isActive"
+                  className="text-sm font-medium text-gray-900 cursor-pointer"
+                >
+                  Active Contest
+                </label>
+                <p className="text-xs text-gray-500">
+                  {formData.isActive
+                    ? 'Contest will be visible to users immediately'
+                    : 'Contest will be created as inactive (draft mode)'}
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* Form Actions */}
+        <div className="flex space-x-4 pt-4">
+          <button
+            type="submit"
+            disabled={isSubmitting}
+            className="flex-1 bg-blue-600 text-white py-2 px-4 rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 disabled:opacity-50"
+          >
+            {isSubmitting ? (
+              <span className="flex items-center justify-center">
+                <svg
+                  className="animate-spin -ml-1 mr-3 h-5 w-5 text-white"
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                >
+                  <circle
+                    className="opacity-25"
+                    cx="12"
+                    cy="12"
+                    r="10"
+                    stroke="currentColor"
+                    strokeWidth="4"
+                  ></circle>
+                  <path
+                    className="opacity-75"
+                    fill="currentColor"
+                    d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
+                  ></path>
+                </svg>
+                Creating Contest...
+              </span>
+            ) : (
+              '🏆 Create Contest'
+            )}
+          </button>
+
+          {onCancel && (
+            <button
+              type="button"
+              onClick={onCancel}
+              className="px-6 py-2 border border-gray-300 text-gray-700 rounded-md hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-blue-500"
+            >
+              Cancel
+            </button>
+          )}
+        </div>
+      </form>
+
+      {/* Helper Text */}
+      <div className="mt-6 p-4 bg-blue-50 border border-blue-200 rounded-md">
+        <p className="text-blue-800 text-sm">
+          <strong>💡 Tip:</strong> Once created, the contest will appear in the
+          user interface. Make sure your dates and submission limits are correct
+          before creating.
+        </p>
+      </div>
+    </div>
+  );
+}
