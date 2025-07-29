@@ -1,6 +1,12 @@
 ---
-import ReactEntryPoint from '../../components/ReactEntryPoint.astro';
+import AppWrapper from '@/components/AppWrapper.astro';
+import { SITE_DESCRIPTION, SITE_TITLE } from '@/consts';
+import { App } from '@/react/App';
 export const prerender = false;
+
+const { PUBLIC_CLERK_PUBLISHABLE_KEY } = Astro.locals.runtime.env;
 ---
 
-<ReactEntryPoint />
+<AppWrapper title={SITE_TITLE} description={SITE_DESCRIPTION}>
+  <App client:only="react" clerkPublicKey={PUBLIC_CLERK_PUBLISHABLE_KEY} />
+</AppWrapper>

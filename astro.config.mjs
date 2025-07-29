@@ -6,6 +6,10 @@ import sitemap from '@astrojs/sitemap';
 import tailwindcss from '@tailwindcss/vite';
 import { tanstackRouter } from '@tanstack/router-vite-plugin';
 import { defineConfig } from 'astro/config';
+import path from 'path';
+import { fileURLToPath } from 'url';
+
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
 // https://astro.build/config
 export default defineConfig({
@@ -22,6 +26,10 @@ export default defineConfig({
       tailwindcss(),
     ],
     resolve: {
+      alias: {
+        '@': path.resolve(__dirname, './src'),
+      },
+
       // Use react-dom/server.edge instead of react-dom/server.browser for React 19.
       // Without this, MessageChannel from node:worker_threads needs to be polyfilled.
       // alias: import.meta.env.PROD && {

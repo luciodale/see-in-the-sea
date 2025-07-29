@@ -1,7 +1,6 @@
+import { Layout } from '@/react/admin-components/Layout';
 import { RedirectToSignIn, SignedIn, SignedOut } from '@clerk/clerk-react';
-import { createFileRoute, useRouter } from '@tanstack/react-router';
-import AdminPanel from '../../components/AdminPanel';
-import ContestOverview from '../../components/ContestOverview';
+import { createFileRoute, Outlet, useRouter } from '@tanstack/react-router';
 
 export const Route = createFileRoute('/user/')({
   component: UserDashboard,
@@ -21,12 +20,9 @@ function UserDashboard() {
   return (
     <>
       <SignedIn>
-        <div className="py-8 space-y-6">
-          {/* Admin-only panel */}
-          <AdminPanel />
-
-          <ContestOverview onUploadClick={handleUploadClick} />
-        </div>
+        <Layout>
+          <Outlet />
+        </Layout>
       </SignedIn>
 
       <SignedOut>
