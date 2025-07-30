@@ -55,7 +55,3 @@ CREATE INDEX idx_submissions_contest_user ON submissions(contest_id, user_email)
 CREATE INDEX idx_submissions_category ON submissions(category_id);
 CREATE INDEX idx_submissions_user ON submissions(user_email);
 CREATE INDEX idx_submissions_uploaded_at ON submissions(uploaded_at);
-
--- Insert a default contest
-INSERT INTO contests (id, name, description, start_date, end_date) VALUES 
-    ('2025 contest', 'Underwater Photography Contest 2025', 'Annual underwater photography competition', '2025-01-01', '2025-12-31'); 

@@ -1,10 +1,13 @@
 ---
 import AppWrapper from '@/components/AppWrapper.astro';
+import CategoryWinners from '@/components/Gallery/CategoryWinners.astro';
 import { Navbar } from '@/components/Navbar/Navbar';
 import { SITE_DESCRIPTION, SITE_TITLE } from '@/consts';
 ---
 
 <AppWrapper title={SITE_TITLE} description={SITE_DESCRIPTION}>
   <Navbar client:load />
-  <div class="h-screen w-full bg-red-500">content test</div>
+  <div class="min-h-screen w-full bg-slate-900 relative overflow-hidden">
+    <CategoryWinners />
+  </div>
 </AppWrapper>

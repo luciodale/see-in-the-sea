@@ -19,9 +19,13 @@ export function NavbarContent() {
         </div>
       )}
       <div className="text-center">
-        <h1 className="text-5xl font-semibold tracking-tight text-balance text-white sm:text-7xl">
-          See in the sea
-        </h1>
+        <div className="flex justify-center items-center">
+          <img src="/logo.png" alt="Logo" className="h-40" />
+          <h1 className="text-5xl text-left font-semibold tracking-tight text-balance text-white sm:text-7xl">
+            See in <br /> the sea
+          </h1>
+        </div>
+
         <p className="mt-8 text-lg font-light text-pretty text-gray-300 sm:text-xl/8">
           Il concorso che celebra la fotografia subacquea, invitando fotografi
           da ogni angolo del mondo a rivelare le meraviglie nascoste degli
