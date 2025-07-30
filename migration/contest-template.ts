@@ -13,6 +13,7 @@ export const submissions = [
     title: 'Photo Title', // The title of the photo
     description: 'Photo description (optional)', // Description of the photo
     fileName: 'image-file.jpg', // Must match exactly with a file in the pictures/ folder
+    result: 'first', // Optional: 'first', 'second', 'third', 'runner-up'
   },
   // Add more submissions here...
   // {
@@ -23,6 +24,7 @@ export const submissions = [
   //   title: 'Another Photo',
   //   description: 'Another description',
   //   fileName: 'another-image.jpg',
+  //   result: 'second', // Optional contest result
   // },
 ];
 
@@ -30,6 +32,12 @@ export const submissions = [
 // - 'wide-angle': Expansive underwater scenes, coral reefs, and seascapes
 // - 'macro': Close-up photography of small marine life and details
 // - 'bw': Black & White underwater photography
+
+// Contest results (optional):
+// - 'first': First place winner
+// - 'second': Second place winner
+// - 'third': Third place winner
+// - 'runner-up': Runner up
 
 // File naming conventions:
 // - Use descriptive names: 'sea-dragon.jpg', 'coral-reef-wide.jpg'

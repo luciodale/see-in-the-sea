@@ -11,6 +11,7 @@ interface MigrationSubmission {
   title: string;
   description: string;
   fileName: string;
+  result?: string; // 'first', 'second', 'third', 'runner-up'
 }
 
 interface ProcessedSubmission {
@@ -25,6 +26,7 @@ interface ProcessedSubmission {
   originalFilename: string;
   fileSize: number;
   contentType: string;
+  result?: string; // 'first', 'second', 'third', 'runner-up'
 }
 
 interface MigrationResult {
@@ -160,6 +162,7 @@ async function processContestSubmissions(
         originalFilename: submission.fileName,
         fileSize: imageBuffer.length,
         contentType: `image/${fileExtension === 'jpg' ? 'jpeg' : fileExtension}`,
+        result: submission.result,
       };
 
       processedSubmissions.push(processedSubmission);
@@ -247,6 +250,7 @@ async function insertIntoDatabase(
     );
 
     try {
+      // Insert submission
       const sql = `INSERT INTO submissions (
         id, contest_id, category_id, user_email, title, description, 
         r2_key, image_url, original_filename, file_size, content_type
@@ -260,6 +264,41 @@ async function insertIntoDatabase(
       const command = `bunx wrangler d1 execute see-in-the-sea-db --remote --command="${sql.replace(/"/g, '\\"')}"`;
 
       execSync(command, { stdio: 'pipe' });
+
+      // Insert result if it exists
+      if (submission.result) {
+        const resultId = nanoid();
+        const resultSql = `INSERT INTO results (
+          id, submission_id, result
+        ) VALUES (
+          '${resultId}', '${submission.id}', '${submission.result}'
+        );`;
+
+        const resultCommand = `bunx wrangler d1 execute see-in-the-sea-db --remote --command="${resultSql.replace(/"/g, '\\"')}"`;
+
+        try {
+          execSync(resultCommand, { stdio: 'pipe' });
+          console.log(`   ✅ Inserted result: ${submission.result}`);
+        } catch (resultError) {
+          const resultErrorMessage =
+            resultError instanceof Error
+              ? resultError.message
+              : String(resultError);
+          if (
+            resultErrorMessage.includes('UNIQUE constraint failed') ||
+            resultErrorMessage.includes('duplicate key')
+          ) {
+            console.log(
+              `   ⚠️  Skipped result (duplicate): ${submission.result}`
+            );
+          } else {
+            console.log(
+              `   ⚠️  Failed to insert result: ${resultErrorMessage}`
+            );
+          }
+        }
+      }
+
       result.inserted++;
       console.log(`   ✅ Inserted: ${submission.title}`);
     } catch (error) {

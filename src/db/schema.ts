@@ -40,6 +40,14 @@ export const submissions = sqliteTable('submissions', {
   isActive: integer('is_active', { mode: 'boolean' }).default(true),
 });
 
+// Results table for contest winners
+export const results = sqliteTable('results', {
+  id: text('id').primaryKey(),
+  submissionId: text('submission_id').notNull(),
+  result: text('result').notNull(), // 'first', 'second', 'third', 'runner-up'
+  createdAt: text('created_at').default('CURRENT_TIMESTAMP'),
+});
+
 // Indexes - defined separately to avoid deprecation warning
 export const submissionsContestUserIdx = index(
   'idx_submissions_contest_user'
@@ -54,6 +62,11 @@ export const submissionsUploadedAtIdx = index('idx_submissions_uploaded_at').on(
   submissions.uploadedAt
 );
 
+// Results indexes
+export const resultsSubmissionIdx = index('idx_results_submission').on(
+  results.submissionId
+);
+
 // Type exports for TypeScript usage
 export type Contest = typeof contests.$inferSelect;
 export type NewContest = typeof contests.$inferInsert;
@@ -61,3 +74,5 @@ export type Category = typeof categories.$inferSelect;
 export type NewCategory = typeof categories.$inferInsert;
 export type Submission = typeof submissions.$inferSelect;
 export type NewSubmission = typeof submissions.$inferInsert;
+export type Result = typeof results.$inferSelect;
+export type NewResult = typeof results.$inferInsert;
