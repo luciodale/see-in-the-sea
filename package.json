@@ -80,6 +80,7 @@
     "db:reset:local": "bun run db:dump:local && bun run db:init:local",
     "db:reset:remote": "bun run db:dump:remote && bun run db:init:remote",
     "db:reset": "bun run db:dump:all && bun run db:init:local && bun run db:init:remote",
+    "migrate:complete": "bun scripts/migrate-complete.ts",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
     "format": "prettier --write .",

@@ -225,8 +225,6 @@ export const POST: APIRoute = async ({ request, locals }) => {
       userId,
       submissionId
     ); // Use userId in URL path
-    const baseUrl = new URL(request.url).origin;
-    const imageUrl = `${baseUrl}/api/images/${imageUrlPath}`;
 
     // Step 8: Execute the upload operation
     console.log(
@@ -294,7 +292,7 @@ export const POST: APIRoute = async ({ request, locals }) => {
         uploadedBy: userEmail,
         title,
         description: description || '',
-        imageUrl,
+        imageUrl: imageUrlPath,
         action: actionValidation.data.action,
         metadata: {
           originalFileName: image.name,
