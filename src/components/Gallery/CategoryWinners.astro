@@ -1,5 +1,61 @@
 ---
+// this is generated at build time so fetch the results from the d1 object binding
+import { desc, eq } from 'drizzle-orm';
+import { getDb } from '../../db/index.js';
+import { categories, results, submissions } from '../../db/schema.js';
 
+// Get the D1 database binding
+const db = getDb(Astro.locals.runtime.env.DB!);
+
+// Fetch all results with submission details
+const winners = await db
+  .select({
+    result: results.result,
+    firstName: results.firstName,
+    lastName: results.lastName,
+    submissionId: results.submissionId,
+    title: submissions.title,
+    categoryId: submissions.categoryId,
+    r2Key: submissions.r2Key,
+    originalFilename: submissions.originalFilename,
+  })
+  .from(results)
+  .innerJoin(submissions, eq(results.submissionId, submissions.id))
+  .orderBy(desc(results.result));
+
+// Get category names
+const categoryIds = [...new Set(winners.map(w => w.categoryId))];
+const categoryMap = new Map();
+if (categoryIds.length > 0) {
+  const categoryData = await db
+    .select({ id: categories.id, name: categories.name })
+    .from(categories)
+    .where(
+      categoryIds
+        .map(id => eq(categories.id, id))
+        .reduce((acc, condition) => acc || condition)
+    );
+
+  categoryData.forEach(cat => categoryMap.set(cat.id, cat.name));
+}
+
+// Process images - using direct R2 URLs for now
+const processedImages = winners.map(winner => {
+  const categoryName = categoryMap.get(winner.categoryId) || winner.categoryId;
+
+  // Use our public images API route with optimization for web delivery
+  const imageUrl = `/api/publicImages/${winner.r2Key}?w=800&h=600&f=image/webp&q=80`;
+
+  return {
+    ...winner,
+    imageUrl,
+    categoryName,
+    displayName:
+      winner.firstName && winner.lastName
+        ? `${winner.firstName} ${winner.lastName}`
+        : 'Anonymous',
+  };
+});
 ---
 
 <div class="max-w-7xl mx-auto py-10">
@@ -19,6 +75,137 @@
       </ul>
     </div>
 
+    <!-- Winners Section -->
+    <div class="mt-24 space-y-16">
+      <!-- First Place -->
+      {
+        processedImages.filter(w => w.result === 'first').length > 0 && (
+          <div class="space-y-8">
+            <h2 class="text-3xl font-medium text-gray-100 text-center">
+              🥇 First Place
+            </h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+              {processedImages
+                .filter(w => w.result === 'first')
+                .map(winner => (
+                  <div class="bg-gray-800 rounded-lg overflow-hidden shadow-lg">
+                    <img
+                      class="w-full h-64 object-cover"
+                      src={winner.imageUrl}
+                      alt={winner.title}
+                      loading="lazy"
+                    />
+                    <div class="p-6">
+                      <h3 class="text-xl font-semibold text-gray-100 mb-2">
+                        {winner.title}
+                      </h3>
+                      <p class="text-gray-400 mb-2">{winner.displayName}</p>
+                      <p class="text-sm text-gray-500">{winner.categoryName}</p>
+                    </div>
+                  </div>
+                ))}
+            </div>
+          </div>
+        )
+      }
+
+      <!-- Second Place -->
+      {
+        processedImages.filter(w => w.result === 'second').length > 0 && (
+          <div class="space-y-8">
+            <h2 class="text-3xl font-medium text-gray-100 text-center">
+              🥈 Second Place
+            </h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+              {processedImages
+                .filter(w => w.result === 'second')
+                .map(winner => (
+                  <div class="bg-gray-800 rounded-lg overflow-hidden shadow-lg">
+                    <img
+                      class="w-full h-64 object-cover"
+                      src={winner.imageUrl}
+                      alt={winner.title}
+                      loading="lazy"
+                    />
+                    <div class="p-6">
+                      <h3 class="text-xl font-semibold text-gray-100 mb-2">
+                        {winner.title}
+                      </h3>
+                      <p class="text-gray-400 mb-2">{winner.displayName}</p>
+                      <p class="text-sm text-gray-500">{winner.categoryName}</p>
+                    </div>
+                  </div>
+                ))}
+            </div>
+          </div>
+        )
+      }
+
+      <!-- Third Place -->
+      {
+        processedImages.filter(w => w.result === 'third').length > 0 && (
+          <div class="space-y-8">
+            <h2 class="text-3xl font-medium text-gray-100 text-center">
+              🥉 Third Place
+            </h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+              {processedImages
+                .filter(w => w.result === 'third')
+                .map(winner => (
+                  <div class="bg-gray-800 rounded-lg overflow-hidden shadow-lg">
+                    <img
+                      class="w-full h-64 object-cover"
+                      src={winner.imageUrl}
+                      alt={winner.title}
+                      loading="lazy"
+                    />
+                    <div class="p-6">
+                      <h3 class="text-xl font-semibold text-gray-100 mb-2">
+                        {winner.title}
+                      </h3>
+                      <p class="text-gray-400 mb-2">{winner.displayName}</p>
+                      <p class="text-sm text-gray-500">{winner.categoryName}</p>
+                    </div>
+                  </div>
+                ))}
+            </div>
+          </div>
+        )
+      }
+
+      <!-- Runner Ups -->
+      {
+        processedImages.filter(w => w.result === 'runner-up').length > 0 && (
+          <div class="space-y-8">
+            <h2 class="text-3xl font-medium text-gray-100 text-center">
+              🏅 Runner Ups
+            </h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+              {processedImages
+                .filter(w => w.result === 'runner-up')
+                .map(winner => (
+                  <div class="bg-gray-800 rounded-lg overflow-hidden shadow-lg">
+                    <img
+                      class="w-full h-64 object-cover"
+                      src={winner.imageUrl}
+                      alt={winner.title}
+                      loading="lazy"
+                    />
+                    <div class="p-6">
+                      <h3 class="text-xl font-semibold text-gray-100 mb-2">
+                        {winner.title}
+                      </h3>
+                      <p class="text-gray-400 mb-2">{winner.displayName}</p>
+                      <p class="text-sm text-gray-500">{winner.categoryName}</p>
+                    </div>
+                  </div>
+                ))}
+            </div>
+          </div>
+        )
+      }
+    </div>
+
     <div class="mt-24 space-y-8">
       <h2 class="text-2xl font-medium text-gray-800 text-center">
         Featured Categories
@@ -33,50 +220,6 @@
           View Pictures
         </button>
       </div>
-    </div>
-  </div>
-  <div class="columns-1 md:columns-2 xl:columns-3 gap-7">
-    <div class="break-inside-avoid mb-8">
-      <img
-        class="h-auto max-w-full"
-        src="https://pagedone.io/asset/uploads/1688031162.jpg"
-        alt="Gallery"
-      />
-    </div>
-    <div class="break-inside-avoid mb-8">
-      <img
-        class="h-auto max-w-full"
-        src="https://pagedone.io/asset/uploads/1688031232.jpg"
-        alt="Gallery"
-      />
-    </div>
-    <div class="break-inside-avoid mb-8">
-      <img
-        class="h-auto max-w-full"
-        src="https://pagedone.io/asset/uploads/1688031357.jpg"
-        alt="Gallery"
-      />
-    </div>
-    <div class="break-inside-avoid mb-8">
-      <img
-        class="h-auto max-w-full"
-        src="https://pagedone.io/asset/uploads/1688031375.jpg"
-        alt="Gallery"
-      />
-    </div>
-    <div class="break-inside-avoid mb-8">
-      <img
-        class="h-auto max-w-full"
-        src="https://pagedone.io/asset/uploads/1688031396.jpg"
-        alt="Gallery"
-      />
-    </div>
-    <div class="break-inside-avoid mb-8">
-      <img
-        class="h-auto max-w-full"
-        src="https://pagedone.io/asset/uploads/1688031414.png"
-        alt="Gallery"
-      />
     </div>
   </div>
 </div>

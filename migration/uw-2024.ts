@@ -42,7 +42,7 @@ export const submissions = [
     userEmail: 'luc.rooman@telenet.be',
     title: 'Parende Kikkers',
     description: '',
-    result: 'third',
+    result: 'runner-up',
     firstName: 'Luc',
     lastName: 'Rooman',
     fileName: 'parende-kikkers.jpg',

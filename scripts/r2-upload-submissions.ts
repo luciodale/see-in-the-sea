@@ -6,6 +6,10 @@ import { join } from 'path';
 import { generateR2Key } from '../src/server/imageService.js';
 import { discoverContestFiles, type MigrationSubmission } from './utils.js';
 
+// Easy toggle: use --remote flag for remote mode, otherwise local
+const isRemote = process.argv.includes('--remote');
+const mode = isRemote ? 'remote' : 'local';
+
 // Simple interface for R2 upload only
 interface R2Submission {
   id: string;
@@ -85,7 +89,7 @@ async function uploadToR2(submissions: R2Submission[]): Promise<UploadResult> {
     const imagePath = join(picturesDir, submission.originalFilename);
 
     try {
-      const command = `bunx wrangler r2 object put see-in-the-sea-images/${submission.r2Key} --file "${imagePath}" --remote`;
+      const command = `bunx wrangler r2 object put see-in-the-sea-images/${submission.r2Key} --file "${imagePath}" --${mode}`;
       execSync(command, { stdio: 'pipe' });
       result.uploaded++;
       console.log(`✅ Uploaded: ${submission.title}`);
@@ -105,7 +109,7 @@ async function uploadToR2(submissions: R2Submission[]): Promise<UploadResult> {
 }
 
 async function main() {
-  console.log('🚀 Starting R2 upload...\n');
+  console.log(`🚀 Starting R2 upload (${mode} mode)...\n`);
 
   // Discover contest files
   const contestFiles = discoverContestFiles();

@@ -4,7 +4,13 @@ import { execSync } from 'child_process';
 import { existsSync, readdirSync } from 'fs';
 import { join } from 'path';
 
-console.log('🚀 Setting up D1 database using Drizzle migrations...\n');
+// Easy toggle: use --remote flag for remote mode, otherwise local
+const isRemote = process.argv.includes('--remote');
+const mode = isRemote ? 'remote' : 'local';
+
+console.log(
+  `🚀 Setting up D1 database using Drizzle migrations (${mode} mode)...\n`
+);
 
 // Step 0: Check and generate migrations if needed
 console.log('📋 STEP 0: Checking for existing migrations...');
@@ -48,7 +54,7 @@ try {
     console.log(`   Applying: ${migrationFile}`);
     const migrationPath = join(migrationsDir, migrationFile);
 
-    const command = `bunx wrangler d1 execute see-in-the-sea-db --remote --file="${migrationPath}"`;
+    const command = `bunx wrangler d1 execute see-in-the-sea-db --${mode} --file="${migrationPath}"`;
     execSync(command, { stdio: 'pipe' });
     console.log(`   ✅ Applied: ${migrationFile}`);
   }
@@ -69,7 +75,7 @@ try {
   console.log('   Generating seed.sql from TypeScript definitions...');
 
   // Import and run the seed generation
-  const { generateSeedSQL } = await import('./seeds');
+  const { generateSeedSQL } = await import('./seeds.js');
   const { mkdirSync, writeFileSync } = await import('fs');
 
   // Ensure drizzle directory exists
@@ -97,7 +103,7 @@ try {
   const seedDataPath = join(process.cwd(), 'drizzle', 'seed.sql');
 
   console.log('   Seeding categories and contests...');
-  const command = `bunx wrangler d1 execute see-in-the-sea-db --remote --file="${seedDataPath}"`;
+  const command = `bunx wrangler d1 execute see-in-the-sea-db --${mode} --file="${seedDataPath}"`;
   execSync(command, { stdio: 'pipe' });
   console.log('   ✅ Initial data seeded successfully');
 } catch (error) {
@@ -113,19 +119,19 @@ console.log('\n🔍 STEP 4: Verifying database setup...');
 
 try {
   // Check tables
-  const tablesCommand = `bunx wrangler d1 execute see-in-the-sea-db --remote --command="SELECT name FROM sqlite_master WHERE type='table' ORDER BY name;"`;
+  const tablesCommand = `bunx wrangler d1 execute see-in-the-sea-db --${mode} --command="SELECT name FROM sqlite_master WHERE type='table' ORDER BY name;"`;
   const tablesOutput = execSync(tablesCommand, { encoding: 'utf8' });
   console.log('   📋 Created tables:');
   console.log(tablesOutput);
 
   // Check categories
-  const categoriesCommand = `bunx wrangler d1 execute see-in-the-sea-db --remote --command="SELECT id, name FROM categories;"`;
+  const categoriesCommand = `bunx wrangler d1 execute see-in-the-sea-db --${mode} --command="SELECT id, name FROM categories;"`;
   const categoriesOutput = execSync(categoriesCommand, { encoding: 'utf8' });
   console.log('   📋 Seeded categories:');
   console.log(categoriesOutput);
 
   // Check contests
-  const contestsCommand = `bunx wrangler d1 execute see-in-the-sea-db --remote --command="SELECT id, name FROM contests;"`;
+  const contestsCommand = `bunx wrangler d1 execute see-in-the-sea-db --${mode} --command="SELECT id, name FROM contests;"`;
   const contestsOutput = execSync(contestsCommand, { encoding: 'utf8' });
   console.log('   📋 Seeded contests:');
   console.log(contestsOutput);

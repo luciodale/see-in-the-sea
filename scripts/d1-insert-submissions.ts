@@ -11,6 +11,10 @@ import {
   type ProcessedSubmission,
 } from './utils.js';
 
+// Easy toggle: use --remote flag for remote mode, otherwise local
+const isRemote = process.argv.includes('--remote');
+const mode = isRemote ? 'remote' : 'local';
+
 interface DatabaseResult {
   total: number;
   inserted: number;
@@ -48,7 +52,7 @@ async function insertIntoDatabase(
 
       try {
         execSync(
-          `bunx wrangler d1 execute see-in-the-sea-db --remote --command="${sql.replace(
+          `bunx wrangler d1 execute see-in-the-sea-db --${mode} --command="${sql.replace(
             /"/g,
             '\\"'
           )}"`,
@@ -79,7 +83,7 @@ async function insertIntoDatabase(
 
         try {
           execSync(
-            `bunx wrangler d1 execute see-in-the-sea-db --remote --command="${resultSql.replace(
+            `bunx wrangler d1 execute see-in-the-sea-db --${mode} --command="${resultSql.replace(
               /"/g,
               '\\"'
             )}"`,
@@ -121,14 +125,14 @@ async function insertIntoDatabase(
       }
     }
 
-    await new Promise(resolve => setTimeout(resolve, 0));
+    await new Promise(resolve => setTimeout(resolve, 200));
   }
 
   return result;
 }
 
 async function main() {
-  console.log('🚀 Starting D1 database insertion...\n');
+  console.log(`🚀 Starting D1 database insertion (${mode} mode)...\n`);
 
   // Discover and load contest files
   const contestFiles = discoverContestFiles();
