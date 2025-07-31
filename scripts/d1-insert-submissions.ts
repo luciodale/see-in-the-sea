@@ -38,16 +38,28 @@ async function insertIntoDatabase(
       // Insert submission
       const sql = `INSERT INTO submissions (
         id, contest_id, category_id, user_email, title, description, 
-        r2_key, image_url, original_filename, file_size, content_type
+        r2_key, original_filename, file_size, content_type
       ) VALUES (
         '${submission.id}', '${submission.contestId}', '${submission.categoryId}', '${submission.userEmail}', 
         '${submission.title.replace(/'/g, "''")}', '', 
-        '${submission.r2Key}', '${submission.imageUrl}', '${submission.originalFilename}', 
+        '${submission.r2Key}', '${submission.originalFilename}', 
         ${submission.fileSize}, '${submission.contentType}'
       );`;
 
-      const command = `bunx wrangler d1 execute see-in-the-sea-db --remote --command="${sql.replace(/"/g, '\\"')}"`;
-      execSync(command, { stdio: 'pipe' });
+      try {
+        execSync(
+          `bunx wrangler d1 execute see-in-the-sea-db --remote --command="${sql.replace(
+            /"/g,
+            '\\"'
+          )}"`,
+          { stdio: 'pipe' }
+        );
+      } catch (execError) {
+        const errorMessage =
+          execError instanceof Error ? execError.message : String(execError);
+        console.log(`   ❌ SQL Error: ${errorMessage}`);
+        throw execError;
+      }
 
       // Insert result if it exists
       if (submission.result) {
@@ -65,27 +77,27 @@ async function insertIntoDatabase(
           '${resultId}', '${submission.id}', '${submission.result}', ${firstName}, ${lastName}
         );`;
 
-        const resultCommand = `bunx wrangler d1 execute see-in-the-sea-db --remote --command="${resultSql.replace(/"/g, '\\"')}"`;
-
         try {
-          execSync(resultCommand, { stdio: 'pipe' });
-          console.log(`   ✅ Inserted result: ${submission.result}`);
+          execSync(
+            `bunx wrangler d1 execute see-in-the-sea-db --remote --command="${resultSql.replace(
+              /"/g,
+              '\\"'
+            )}"`,
+            { stdio: 'pipe' }
+          );
+          console.log(`   ✅ Result: ${submission.result}`);
         } catch (resultError) {
-          const resultErrorMessage =
+          const errorMessage =
             resultError instanceof Error
               ? resultError.message
               : String(resultError);
           if (
-            resultErrorMessage.includes('UNIQUE constraint failed') ||
-            resultErrorMessage.includes('duplicate key')
+            errorMessage.includes('UNIQUE constraint failed') ||
+            errorMessage.includes('duplicate key')
           ) {
-            console.log(
-              `   ⚠️  Skipped result (duplicate): ${submission.result}`
-            );
+            console.log(`   ⚠️  Result duplicate: ${submission.result}`);
           } else {
-            console.log(
-              `   ⚠️  Failed to insert result: ${resultErrorMessage}`
-            );
+            console.log(`   ⚠️  Result failed: ${errorMessage}`);
           }
         }
       }
@@ -96,12 +108,11 @@ async function insertIntoDatabase(
       const errorMessage =
         error instanceof Error ? error.message : String(error);
 
-      // Check if it's a duplicate key error (which is expected for re-runs)
       if (
         errorMessage.includes('UNIQUE constraint failed') ||
         errorMessage.includes('duplicate key')
       ) {
-        result.inserted++; // Count as success since it already exists
+        result.inserted++;
         console.log(`   ⚠️  Skipped (duplicate): ${submission.title}`);
       } else {
         result.errors.push(`${submission.title}: ${errorMessage}`);
@@ -110,7 +121,6 @@ async function insertIntoDatabase(
       }
     }
 
-    // Small delay between inserts
     await new Promise(resolve => setTimeout(resolve, 200));
   }
 
@@ -120,12 +130,10 @@ async function insertIntoDatabase(
 async function main() {
   console.log('🚀 Starting D1 database insertion...\n');
 
-  // Discover contest files
+  // Discover and load contest files
   const contestFiles = discoverContestFiles();
-  console.log(`📁 Found contests: ${contestFiles.join(', ')}`);
-
-  // Process all submissions
   const allSubmissions: MigrationSubmission[] = [];
+
   for (const contestId of contestFiles) {
     try {
       const contestModule = await import(`../migration/${contestId}.ts`);
@@ -162,9 +170,7 @@ async function main() {
   }
 
   // Insert into database
-  console.log(
-    `\n🗄️  Inserting ${processedSubmissions.length} submissions into database...`
-  );
+  console.log(`\n🗄️  Inserting ${processedSubmissions.length} submissions...`);
   const dbResult = await insertIntoDatabase(processedSubmissions);
 
   // Summary

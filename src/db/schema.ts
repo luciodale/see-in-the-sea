@@ -31,7 +31,7 @@ export const submissions = sqliteTable('submissions', {
   title: text('title').notNull(),
   description: text('description'),
   r2Key: text('r2_key').notNull().unique(),
-  imageUrl: text('image_url').notNull().unique(),
+  imageUrl: text('image_url').unique(),
   originalFilename: text('original_filename'),
   fileSize: integer('file_size'),
   contentType: text('content_type'),

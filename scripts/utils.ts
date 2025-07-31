@@ -74,7 +74,6 @@ export function processSubmissionsForDatabase(
       title: submission.title,
       description: submission.description,
       r2Key,
-      imageUrl: '',
       originalFilename: submission.fileName,
       fileSize: 0, // Will be set by the calling script
       contentType: `image/${fileExtension === 'jpg' ? 'jpeg' : fileExtension}`,

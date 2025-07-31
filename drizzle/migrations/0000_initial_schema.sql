@@ -43,7 +43,7 @@ CREATE TABLE `submissions` (
 	`title` text NOT NULL,
 	`description` text,
 	`r2_key` text NOT NULL,
-	`image_url` text NOT NULL,
+	`image_url` text,
 	`original_filename` text,
 	`file_size` integer,
 	`content_type` text,

@@ -1,7 +1,7 @@
 {
   "version": "6",
   "dialect": "sqlite",
-  "id": "4325619e-8a4b-4fb1-9512-91d99c819b5c",
+  "id": "d50ab6be-6215-4cf4-9221-0d3e4a6c52e3",
   "prevId": "00000000-0000-0000-0000-000000000000",
   "tables": {
     "categories": {
@@ -284,7 +284,7 @@
           "name": "image_url",
           "type": "text",
           "primaryKey": false,
-          "notNull": true,
+          "notNull": false,
           "autoincrement": false
         },
         "original_filename": {
