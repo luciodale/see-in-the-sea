@@ -24,8 +24,7 @@ export async function getActiveContest(db: ReturnType<typeof getDb>): Promise<{
   const categoriesResult = await db
     .select()
     .from(categories)
-    .where(eq(categories.isActive, true))
-    .orderBy(categories.displayOrder, categories.name);
+    .where(eq(categories.isActive, true));
 
   return {
     contest,

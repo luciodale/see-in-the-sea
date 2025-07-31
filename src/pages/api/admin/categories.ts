@@ -33,10 +33,7 @@ export const GET: APIRoute = async ({ request, locals }) => {
     }
 
     // Fetch all categories (admin can see inactive ones too)
-    const allCategories = await db
-      .select()
-      .from(categories)
-      .orderBy(categories.displayOrder, categories.name);
+    const allCategories = await db.select().from(categories);
 
     console.log(`[admin-categories] Found ${allCategories.length} categories`);
 

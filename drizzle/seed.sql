@@ -1,8 +1,24 @@
 -- Seed data for underwater photography contest
 
-INSERT INTO categories (id, name, description, display_order) VALUES ('wide-angle', 'Wide Angle', 'Expansive underwater scenes, coral reefs, and seascapes that showcase the vastness of the underwater world', 1);
-INSERT INTO categories (id, name, description, display_order) VALUES ('macro', 'Macro', 'Close-up photography of small marine life, textures, and intricate underwater details', 2);
-INSERT INTO categories (id, name, description, display_order) VALUES ('bw', 'Black & White', 'Monochrome underwater photography emphasizing contrast, composition, and artistic expression', 3);
+INSERT OR IGNORE INTO categories (id, name, description) VALUES ('wide-angle', 'Wide Angle', 'Expansive underwater scenes, coral reefs, and seascapes that showcase the vastness of the underwater world');
+INSERT OR IGNORE INTO categories (id, name, description) VALUES ('macro', 'Macro', 'Close-up photography of small marine life, textures, and intricate underwater details');
+INSERT OR IGNORE INTO categories (id, name, description) VALUES ('bw', 'Black & White', 'Monochrome underwater photography emphasizing contrast, composition, and artistic expression');
+INSERT OR IGNORE INTO categories (id, name, description) VALUES ('mediterranean', 'Mediterranean Portfolio', 'Portfolio of underwater photography from the Mediterranean Sea');
+INSERT OR IGNORE INTO categories (id, name, description) VALUES ('storyboard', 'Storyboard', 'Storyboard');
+INSERT OR IGNORE INTO categories (id, name, description) VALUES ('compact', 'Compact', 'Compact');
+INSERT OR IGNORE INTO categories (id, name, description) VALUES ('molluscs', 'Molluscs', 'Molluscs');
+INSERT OR IGNORE INTO categories (id, name, description) VALUES ('the-sea', 'The Sea', 'The Sea');
+INSERT OR IGNORE INTO categories (id, name, description) VALUES ('dan-europe-photography-security', 'Dan Europe Photography Security', 'Dan Europe Photography Security');
+INSERT OR IGNORE INTO categories (id, name, description) VALUES ('giovanni-smorti-award', 'Giovanni Smorti Award', 'Giovanni Smorti Award');
+INSERT OR IGNORE INTO categories (id, name, description) VALUES ('seahorse', 'Seahorse', 'Seahorse');
+INSERT OR IGNORE INTO categories (id, name, description) VALUES ('waves', 'Waves', 'Waves');
+INSERT OR IGNORE INTO categories (id, name, description) VALUES ('newcomers', 'Newcomers', 'Newcomers');
+INSERT OR IGNORE INTO categories (id, name, description) VALUES ('the-professions-of-the-sea', 'The Professions of the Sea', 'The Professions of the Sea');
+INSERT OR IGNORE INTO categories (id, name, description) VALUES ('art-in-the-water', 'Art in the Water', 'Art in the Water');
+INSERT OR IGNORE INTO categories (id, name, description) VALUES ('trabocchi-coast', 'Trabocchi Coast', 'Trabocchi Coast');
+INSERT OR IGNORE INTO categories (id, name, description) VALUES ('environment', 'Environment', 'Environment');
+INSERT OR IGNORE INTO categories (id, name, description) VALUES ('open', 'Open', 'Open');
+INSERT OR IGNORE INTO categories (id, name, description) VALUES ('the-sea-in-motion', 'The Sea in Motion', 'The Sea in Motion');
 
-INSERT INTO contests (id, name, description, start_date, end_date) VALUES ('uw-2025', 'Underwater Photography Contest 2025', 'Annual underwater photography competition celebrating the beauty and diversity of marine life', '2025-01-01', '2025-12-31');
-INSERT INTO contests (id, name, description, start_date, end_date) VALUES ('uw-2024', 'Underwater Photography Contest 2024', 'Annual underwater photography competition celebrating the beauty and diversity of marine life', '2024-01-01', '2024-12-31');
+INSERT OR IGNORE INTO contests (id, name, description, start_date, end_date) VALUES ('uw-2025', 'Underwater Photography Contest 2025', 'Annual underwater photography competition celebrating the beauty and diversity of marine life', '2025-01-01', '2025-12-31');
+INSERT OR IGNORE INTO contests (id, name, description, start_date, end_date) VALUES ('uw-2024', 'Underwater Photography Contest 2024', 'Annual underwater photography competition celebrating the beauty and diversity of marine life', '2024-01-01', '2024-12-31');

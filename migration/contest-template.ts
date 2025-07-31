@@ -14,6 +14,8 @@ export const submissions = [
     description: 'Photo description (optional)', // Description of the photo
     fileName: 'image-file.jpg', // Must match exactly with a file in the pictures/ folder
     result: 'first', // Optional: 'first', 'second', 'third', 'runner-up'
+    firstName: 'John', // Optional: Winner's first name
+    lastName: 'Doe', // Optional: Winner's last name
   },
   // Add more submissions here...
   // {
@@ -25,6 +27,8 @@ export const submissions = [
   //   description: 'Another description',
   //   fileName: 'another-image.jpg',
   //   result: 'second', // Optional contest result
+  //   firstName: 'Jane', // Optional: Winner's first name
+  //   lastName: 'Smith', // Optional: Winner's last name
   // },
 ];
 
@@ -38,6 +42,8 @@ export const submissions = [
 // - 'second': Second place winner
 // - 'third': Third place winner
 // - 'runner-up': Runner up
+// - firstName: Winner's first name (optional)
+// - lastName: Winner's last name (optional)
 
 // File naming conventions:
 // - Use descriptive names: 'sea-dragon.jpg', 'coral-reef-wide.jpg'

@@ -12,6 +12,8 @@ interface MigrationSubmission {
   description: string;
   fileName: string;
   result?: string; // 'first', 'second', 'third', 'runner-up'
+  firstName?: string;
+  lastName?: string;
 }
 
 interface ProcessedSubmission {
@@ -27,6 +29,8 @@ interface ProcessedSubmission {
   fileSize: number;
   contentType: string;
   result?: string; // 'first', 'second', 'third', 'runner-up'
+  firstName?: string;
+  lastName?: string;
 }
 
 interface MigrationResult {
@@ -163,6 +167,8 @@ async function processContestSubmissions(
         fileSize: imageBuffer.length,
         contentType: `image/${fileExtension === 'jpg' ? 'jpeg' : fileExtension}`,
         result: submission.result,
+        firstName: submission.firstName,
+        lastName: submission.lastName,
       };
 
       processedSubmissions.push(processedSubmission);
@@ -268,10 +274,17 @@ async function insertIntoDatabase(
       // Insert result if it exists
       if (submission.result) {
         const resultId = nanoid();
+        const firstName = submission.firstName
+          ? `'${submission.firstName.replace(/'/g, "''")}'`
+          : 'NULL';
+        const lastName = submission.lastName
+          ? `'${submission.lastName.replace(/'/g, "''")}'`
+          : 'NULL';
+
         const resultSql = `INSERT INTO results (
-          id, submission_id, result
+          id, submission_id, result, first_name, last_name
         ) VALUES (
-          '${resultId}', '${submission.id}', '${submission.result}'
+          '${resultId}', '${submission.id}', '${submission.result}', ${firstName}, ${lastName}
         );`;
 
         const resultCommand = `bunx wrangler d1 execute see-in-the-sea-db --remote --command="${resultSql.replace(/"/g, '\\"')}"`;
@@ -292,9 +305,7 @@ async function insertIntoDatabase(
               `   ⚠️  Skipped result (duplicate): ${submission.result}`
             );
           } else {
-            console.log(
-              `   ⚠️  Failed to insert result: ${resultErrorMessage}`
-            );
+            console.log(`   ⚠️  Failed to insert result: ${resultError}`);
           }
         }
       }

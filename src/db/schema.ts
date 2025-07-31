@@ -1,6 +1,6 @@
 import { index, integer, sqliteTable, text } from 'drizzle-orm/sqlite-core';
 
-// Contests table - matches schema.sql exactly
+// Contests table
 export const contests = sqliteTable('contests', {
   id: text('id').primaryKey(),
   name: text('name').notNull(),
@@ -13,17 +13,16 @@ export const contests = sqliteTable('contests', {
   updatedAt: text('updated_at').default('CURRENT_TIMESTAMP'),
 });
 
-// Categories table - matches schema.sql exactly
+// Categories table
 export const categories = sqliteTable('categories', {
   id: text('id').primaryKey(),
   name: text('name').notNull().unique(),
   description: text('description'),
-  displayOrder: integer('display_order').default(0),
   isActive: integer('is_active', { mode: 'boolean' }).default(true),
   createdAt: text('created_at').default('CURRENT_TIMESTAMP'),
 });
 
-// Submissions table - matches schema.sql exactly (including served_image_url)
+// Submissions table
 export const submissions = sqliteTable('submissions', {
   id: text('id').primaryKey(),
   contestId: text('contest_id').notNull(),
@@ -45,6 +44,16 @@ export const results = sqliteTable('results', {
   id: text('id').primaryKey(),
   submissionId: text('submission_id').notNull(),
   result: text('result').notNull(), // 'first', 'second', 'third', 'runner-up'
+  firstName: text('first_name'),
+  lastName: text('last_name'),
+  createdAt: text('created_at').default('CURRENT_TIMESTAMP'),
+});
+
+// Judges table
+export const judges = sqliteTable('judges', {
+  id: text('id').primaryKey(),
+  contestId: text('contest_id').notNull(),
+  fullName: text('full_name').notNull(),
   createdAt: text('created_at').default('CURRENT_TIMESTAMP'),
 });
 
@@ -67,6 +76,11 @@ export const resultsSubmissionIdx = index('idx_results_submission').on(
   results.submissionId
 );
 
+// Judges indexes
+export const judgesContestIdx = index('idx_judges_contest').on(
+  judges.contestId
+);
+
 // Type exports for TypeScript usage
 export type Contest = typeof contests.$inferSelect;
 export type NewContest = typeof contests.$inferInsert;
@@ -76,3 +90,5 @@ export type Submission = typeof submissions.$inferSelect;
 export type NewSubmission = typeof submissions.$inferInsert;
 export type Result = typeof results.$inferSelect;
 export type NewResult = typeof results.$inferInsert;
+export type Judge = typeof judges.$inferSelect;
+export type NewJudge = typeof judges.$inferInsert;

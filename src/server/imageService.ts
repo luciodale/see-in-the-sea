@@ -11,9 +11,10 @@ export function generateR2Key(
   contestId: string,
   categoryId: string,
   userEmail: string,
-  fileExtension: string
+  fileExtension: string,
+  existingSubmissionId?: string
 ): { submissionId: string; r2Key: string } {
-  const submissionId = nanoid();
+  const submissionId = existingSubmissionId || nanoid();
   // Clean readable structure: contest/category/user-email/submission-id.ext
   const r2Key = `${contestId}/${categoryId}/${userEmail}/${submissionId}.${fileExtension}`;
 

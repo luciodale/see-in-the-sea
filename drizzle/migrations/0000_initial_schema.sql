@@ -2,7 +2,6 @@ CREATE TABLE `categories` (
 	`id` text PRIMARY KEY NOT NULL,
 	`name` text NOT NULL,
 	`description` text,
-	`display_order` integer DEFAULT 0,
 	`is_active` integer DEFAULT true,
 	`created_at` text DEFAULT 'CURRENT_TIMESTAMP'
 );
@@ -18,6 +17,22 @@ CREATE TABLE `contests` (
 	`max_submissions_per_category` integer DEFAULT 2,
 	`created_at` text DEFAULT 'CURRENT_TIMESTAMP',
 	`updated_at` text DEFAULT 'CURRENT_TIMESTAMP'
+);
+--> statement-breakpoint
+CREATE TABLE `judges` (
+	`id` text PRIMARY KEY NOT NULL,
+	`contest_id` text NOT NULL,
+	`full_name` text NOT NULL,
+	`created_at` text DEFAULT 'CURRENT_TIMESTAMP'
+);
+--> statement-breakpoint
+CREATE TABLE `results` (
+	`id` text PRIMARY KEY NOT NULL,
+	`submission_id` text NOT NULL,
+	`result` text NOT NULL,
+	`first_name` text,
+	`last_name` text,
+	`created_at` text DEFAULT 'CURRENT_TIMESTAMP'
 );
 --> statement-breakpoint
 CREATE TABLE `submissions` (
