@@ -2,17 +2,18 @@
 import AppWrapper from '@/components/AppWrapper.astro';
 import { Navbar } from '@/components/Navbar/Navbar';
 import { SITE_DESCRIPTION, SITE_TITLE } from '@/consts';
-import ContestWinners from '../components/Gallery/ContestWinners.astro';
+import ContestWinners from '../../components/Gallery/ContestWinners.astro';
+
+const { contestId } = Astro.params;
+
+if (!contestId) {
+  return Astro.redirect('/404');
+}
 ---
 
 <AppWrapper title={SITE_TITLE} description={SITE_DESCRIPTION}>
   <Navbar client:load />
   <div class="min-h-screen w-full bg-slate-900 relative overflow-hidden">
-    <ContestWinners contestId="uw-2024" />
-    <!-- <ResultsPerCategory
-      contestId="uw-2024"
-      categoryId="wide-angle"
-      contestTitle="2024 fooo"
-    /> -->
+    <ContestWinners contestId={contestId} />
   </div>
 </AppWrapper>

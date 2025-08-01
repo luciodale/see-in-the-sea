@@ -1,10 +1,21 @@
 ---
 // this is generated at build time so fetch the results from the d1 object binding
 import { eq } from 'drizzle-orm';
-import { nanoid } from 'nanoid';
 import { getDb } from '../../db/index.js';
-import { categories, judges, results, submissions } from '../../db/schema.js';
+import {
+  categories,
+  contests,
+  judges,
+  results,
+  submissions,
+} from '../../db/schema.js';
 import TopWinnerImage from './TopWinnerImage.astro';
+
+type Props = {
+  contestId: string;
+};
+
+const { contestId } = Astro.props;
 
 if (!Astro.locals.runtime.env.DB) {
   throw new Error('DB is not available');
@@ -12,7 +23,16 @@ if (!Astro.locals.runtime.env.DB) {
 
 const db = getDb(Astro.locals.runtime.env.DB);
 
-// Fetch only first place winners for uw-2024 contest across all categories
+// Fetch contest details to get the actual title
+const contestDetails = await db
+  .select({ name: contests.name })
+  .from(contests)
+  .where(eq(contests.id, contestId))
+  .limit(1);
+
+const contestTitle = contestDetails[0]?.name || contestId;
+
+// Fetch only first place winners for the specified contest across all categories
 const firstPlaceWinners = await db
   .select({
     result: results.result,
@@ -26,7 +46,7 @@ const firstPlaceWinners = await db
   })
   .from(results)
   .innerJoin(submissions, eq(results.submissionId, submissions.id))
-  .where(eq(submissions.contestId, 'uw-2024') && eq(results.result, 'first'));
+  .where(eq(submissions.contestId, contestId) && eq(results.result, 'first'));
 
 // Get category names
 const categoryIds = [...new Set(firstPlaceWinners.map(w => w.categoryId))];
@@ -44,11 +64,11 @@ if (categoryIds.length > 0) {
   categoryData.forEach(cat => categoryMap.set(cat.id, cat.name));
 }
 
-// Get judges for the uw-2024 contest
+// Get judges for the specified contest
 const contestJudges = await db
   .select({ fullName: judges.fullName })
   .from(judges)
-  .where(eq(judges.contestId, 'uw-2024'))
+  .where(eq(judges.contestId, contestId))
   .orderBy(judges.fullName);
 
 // Process images - using direct R2 URLs for now
@@ -68,15 +88,12 @@ const processedImages = firstPlaceWinners.map(result => {
         : 'Anonymous',
   };
 });
-console.log('NANOID', nanoid());
-
-// All processed images are first place winners from different categories
 ---
 
 <div class="max-w-7xl mx-auto py-16 px-6">
   <div class="text-center">
     <h1 class="text-5xl font-light text-gray-50 tracking-tight">
-      2024 Winners
+      {contestTitle} Winners
     </h1>
   </div>
 
