@@ -14,6 +14,7 @@ const __dirname = path.dirname(fileURLToPath(import.meta.url));
 // https://astro.build/config
 export default defineConfig({
   site: 'https://see-in-the-sea.lucio-dalessa.workers.dev',
+  output: 'server',
   integrations: [mdx(), sitemap(), react()],
   vite: {
     plugins: [

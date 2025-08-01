@@ -5,7 +5,11 @@ import { getDb } from '../../db/index.js';
 import { categories, results, submissions } from '../../db/schema.js';
 
 // Get the D1 database binding
-const db = getDb(Astro.locals.runtime.env.DB!);
+
+if (!Astro.locals.runtime.env.DB) {
+  throw new Error('DB is not available');
+}
+const db = getDb(Astro.locals.runtime.env.DB);
 
 // Fetch all results with submission details
 const winners = await db
