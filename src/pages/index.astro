@@ -1,13 +1,18 @@
 ---
 import AppWrapper from '@/components/AppWrapper.astro';
-import LatestContestWinners from '@/components/Gallery/LatestContestWinners.astro';
 import { Navbar } from '@/components/Navbar/Navbar';
 import { SITE_DESCRIPTION, SITE_TITLE } from '@/consts';
+import LatestContestWinners from '../components/Gallery/LatestContestWinners.astro';
 ---
 
 <AppWrapper title={SITE_TITLE} description={SITE_DESCRIPTION}>
   <Navbar client:load />
   <div class="min-h-screen w-full bg-slate-900 relative overflow-hidden">
     <LatestContestWinners />
+    <!-- <ResultsPerCategory
+      contestId="uw-2024"
+      categoryId="wide-angle"
+      contestTitle="2024 fooo"
+    /> -->
   </div>
 </AppWrapper>

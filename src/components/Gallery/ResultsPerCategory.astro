@@ -1,0 +1,165 @@
+---
+// this is generated at build time so fetch the results from the d1 object binding
+import { eq } from 'drizzle-orm';
+import { getDb } from '../../db/index.js';
+import { categories, judges, results, submissions } from '../../db/schema.js';
+import RunnerUpImages from './RunnerUpImages.astro';
+import TopWinnerImage from './TopWinnerImage.astro';
+
+type Props = {
+  contestId: string;
+  categoryId: string;
+  contestTitle: string;
+};
+
+const { contestId, categoryId, contestTitle }: Props = Astro.props;
+
+if (!Astro.locals.runtime.env.DB) {
+  throw new Error('DB is not available');
+}
+
+const db = getDb(Astro.locals.runtime.env.DB);
+
+// Fetch results for specific contest and category
+const contestResults = await db
+  .select({
+    result: results.result,
+    firstName: results.firstName,
+    lastName: results.lastName,
+    submissionId: results.submissionId,
+    title: submissions.title,
+    categoryId: submissions.categoryId,
+    r2Key: submissions.r2Key,
+    originalFilename: submissions.originalFilename,
+  })
+  .from(results)
+  .innerJoin(submissions, eq(results.submissionId, submissions.id))
+  .where(
+    eq(submissions.contestId, contestId) &&
+      eq(submissions.categoryId, categoryId)
+  );
+
+// Sort results in proper contest order: first, second, third, runner-up
+const sortedResults = contestResults.sort((a, b) => {
+  const order = { first: 1, second: 2, third: 3, 'runner-up': 4 };
+  return (
+    order[a.result as keyof typeof order] -
+    order[b.result as keyof typeof order]
+  );
+});
+
+// Get category names
+const categoryIds = [...new Set(sortedResults.map(w => w.categoryId))];
+const categoryMap = new Map();
+if (categoryIds.length > 0) {
+  const categoryData = await db
+    .select({ id: categories.id, name: categories.name })
+    .from(categories)
+    .where(
+      categoryIds
+        .map(id => eq(categories.id, id))
+        .reduce((acc, condition) => acc || condition)
+    );
+
+  categoryData.forEach(cat => categoryMap.set(cat.id, cat.name));
+}
+
+// Get judges for the specific contest
+const contestJudges = await db
+  .select({ fullName: judges.fullName })
+  .from(judges)
+  .where(eq(judges.contestId, contestId))
+  .orderBy(judges.fullName);
+
+// Process images - using direct R2 URLs for now
+const processedImages = sortedResults.map(result => {
+  const categoryName = categoryMap.get(result.categoryId) || result.categoryId;
+
+  // Use our public images API route with optimization for web delivery
+  const imageUrl = `/api/publicImages/${result.r2Key}`;
+
+  return {
+    ...result,
+    imageUrl,
+    categoryName,
+    displayName:
+      result.firstName && result.lastName
+        ? `${result.firstName} ${result.lastName}`
+        : 'Anonymous',
+  };
+});
+
+const firstPlace = processedImages?.[0];
+const secondPlace = processedImages?.[1];
+const thirdPlace = processedImages?.[2];
+const runnerUps = processedImages?.slice(3) || [];
+---
+
+<div class="max-w-7xl mx-auto py-16 px-6">
+  <div class="text-center">
+    <h1 class="text-5xl font-light text-gray-50 tracking-tight">
+      {contestTitle} Winners
+    </h1>
+  </div>
+
+  <div class="mt-12 space-y-6">
+    <h2 class="text-3xl font-light text-gray-100 text-center">JURY</h2>
+    <ul class="text-xl flex flex-col items-center space-y-3 text-gray-300">
+      {contestJudges.map(judge => <li class="font-black">{judge.fullName}</li>)}
+    </ul>
+  </div>
+
+  <!-- Winners Section -->
+  <div class="mt-24 space-y-16">
+    <!-- First Place -->
+    {
+      firstPlace && (
+        <div class="space-y-8">
+          <TopWinnerImage
+            flipTitle={false}
+            result="First Place"
+            imageUrl={firstPlace.imageUrl}
+            title={firstPlace.title}
+            displayName={firstPlace.displayName}
+            categoryName={firstPlace.categoryName}
+          />
+        </div>
+      )
+    }
+
+    <!-- Second Place -->
+    {
+      secondPlace && (
+        <div class="space-y-8">
+          <TopWinnerImage
+            flipTitle={true}
+            result="Second Place"
+            imageUrl={secondPlace.imageUrl}
+            title={secondPlace.title}
+            displayName={secondPlace.displayName}
+            categoryName={secondPlace.categoryName}
+          />
+        </div>
+      )
+    }
+
+    <!-- Third Place -->
+    {
+      thirdPlace && (
+        <div class="space-y-8">
+          <TopWinnerImage
+            flipTitle={false}
+            result="Third Place"
+            imageUrl={thirdPlace.imageUrl}
+            title={thirdPlace.title}
+            displayName={thirdPlace.displayName}
+            categoryName={thirdPlace.categoryName}
+          />
+        </div>
+      )
+    }
+
+    <!-- Runner Ups -->
+    <RunnerUpImages runnerUps={runnerUps} />
+  </div>
+</div>

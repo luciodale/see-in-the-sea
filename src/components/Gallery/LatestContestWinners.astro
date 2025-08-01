@@ -1,9 +1,10 @@
 ---
 // this is generated at build time so fetch the results from the d1 object binding
-import { desc, eq } from 'drizzle-orm';
+import { eq } from 'drizzle-orm';
+import { nanoid } from 'nanoid';
 import { getDb } from '../../db/index.js';
 import { categories, judges, results, submissions } from '../../db/schema.js';
-import TopWinnersImage from './TopWinnersImage.astro';
+import TopWinnerImage from './TopWinnerImage.astro';
 
 if (!Astro.locals.runtime.env.DB) {
   throw new Error('DB is not available');
@@ -11,8 +12,8 @@ if (!Astro.locals.runtime.env.DB) {
 
 const db = getDb(Astro.locals.runtime.env.DB);
 
-// Fetch results for uw-2024 contest only
-const contestResults = await db
+// Fetch only first place winners for uw-2024 contest across all categories
+const firstPlaceWinners = await db
   .select({
     result: results.result,
     firstName: results.firstName,
@@ -25,11 +26,10 @@ const contestResults = await db
   })
   .from(results)
   .innerJoin(submissions, eq(results.submissionId, submissions.id))
-  .where(eq(submissions.contestId, 'uw-2024'))
-  .orderBy(desc(results.result));
+  .where(eq(submissions.contestId, 'uw-2024') && eq(results.result, 'first'));
 
 // Get category names
-const categoryIds = [...new Set(contestResults.map(w => w.categoryId))];
+const categoryIds = [...new Set(firstPlaceWinners.map(w => w.categoryId))];
 const categoryMap = new Map();
 if (categoryIds.length > 0) {
   const categoryData = await db
@@ -52,7 +52,7 @@ const contestJudges = await db
   .orderBy(judges.fullName);
 
 // Process images - using direct R2 URLs for now
-const processedImages = contestResults.map(result => {
+const processedImages = firstPlaceWinners.map(result => {
   const categoryName = categoryMap.get(result.categoryId) || result.categoryId;
 
   // Use our public images API route with optimization for web delivery
@@ -68,124 +68,40 @@ const processedImages = contestResults.map(result => {
         : 'Anonymous',
   };
 });
+console.log('NANOID', nanoid());
+
+// All processed images are first place winners from different categories
 ---
 
-<div class="max-w-7xl mx-auto py-10">
-  <div class="max-w-4xl mx-auto px-6 py-16">
-    <div class="text-center">
-      <h1 class="text-5xl font-light text-gray-50 tracking-tight">
-        2024 Winners
-      </h1>
-    </div>
+<div class="max-w-7xl mx-auto py-16 px-6">
+  <div class="text-center">
+    <h1 class="text-5xl font-light text-gray-50 tracking-tight">
+      2024 Winners
+    </h1>
+  </div>
 
-    <div class="mt-12 space-y-6">
-      <h2 class="text-3xl font-light text-gray-100 text-center">JURY</h2>
-      <ul class="text-xl flex flex-col items-center space-y-3 text-gray-300">
-        {
-          contestJudges.map(judge => (
-            <li class="font-black">{judge.fullName}</li>
-          ))
-        }
-      </ul>
-    </div>
+  <div class="mt-12 space-y-6">
+    <h2 class="text-3xl font-light text-gray-100 text-center">JURY</h2>
+    <ul class="text-xl flex flex-col items-center space-y-3 text-gray-300">
+      {contestJudges.map(judge => <li class="font-black">{judge.fullName}</li>)}
+    </ul>
+  </div>
 
-    <!-- Winners Section -->
-    <div class="mt-24 space-y-16">
-      <!-- First Place -->
-      {
-        processedImages.filter(w => w.result === 'first').length > 0 && (
-          <div class="space-y-8">
-            <TopWinnersImage
-              flipTitle={false}
-              result="First Place"
-              imageUrl={processedImages[0].imageUrl}
-              title={processedImages[0].title}
-              displayName={processedImages[0].displayName}
-              categoryName={processedImages[0].categoryName}
-            />
-          </div>
-        )
-      }
-
-      <!-- Second Place -->
-      {
-        processedImages.filter(w => w.result === 'second').length > 0 && (
-          <div class="space-y-8">
-            <TopWinnersImage
-              flipTitle={true}
-              result="Second Place"
-              imageUrl={processedImages[1].imageUrl}
-              title={processedImages[1].title}
-              displayName={processedImages[1].displayName}
-              categoryName={processedImages[1].categoryName}
-            />
-          </div>
-        )
-      }
-
-      <!-- Third Place -->
-      {
-        processedImages.filter(w => w.result === 'third').length > 0 && (
-          <div class="space-y-8">
-            <TopWinnersImage
-              flipTitle={false}
-              result="Third Place"
-              imageUrl={processedImages[2].imageUrl}
-              title={processedImages[2].title}
-              displayName={processedImages[2].displayName}
-              categoryName={processedImages[2].categoryName}
-            />
-          </div>
-        )
-      }
-
-      <!-- Runner Ups -->
-      {
-        processedImages.filter(w => w.result === 'runner-up').length > 0 && (
-          <div class="space-y-8">
-            <h2 class="text-3xl font-medium text-gray-100 text-center">
-              🏅 Runner Ups
-            </h2>
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-              {processedImages
-                .filter(w => w.result === 'runner-up')
-                .map(winner => (
-                  <div class="bg-gray-800 rounded-lg overflow-hidden shadow-lg">
-                    <img
-                      class="w-full h-64 object-cover"
-                      src={winner.imageUrl}
-                      alt={winner.title}
-                      loading="lazy"
-                    />
-                    <div class="p-6">
-                      <h3 class="text-xl font-semibold text-gray-100 mb-2">
-                        {winner.title}
-                      </h3>
-                      <p class="text-gray-400 mb-2">{winner.displayName}</p>
-                      <p class="text-sm text-gray-500">{winner.categoryName}</p>
-                    </div>
-                  </div>
-                ))}
-            </div>
-          </div>
-        )
-      }
-    </div>
-
-    <div class="mt-24 space-y-8">
-      <h2 class="text-2xl font-medium text-gray-800 text-center">
-        Featured Categories
-      </h2>
-      <p class="text-center text-gray-500 font-light">
-        Explore the stunning entries from various categories.
-      </p>
-      <div class="flex justify-center">
-        <button
-          class="px-8 py-3 rounded-full bg-gray-900 text-white text-sm font-medium hover:bg-gray-800 transition-colors duration-200"
-        >
-          View Pictures
-        </button>
-      </div>
-    </div>
+  <!-- First Place Winners by Category -->
+  <div class="mt-24 space-y-16">
+    {
+      processedImages.map((winner, index) => (
+        <div class="space-y-4">
+          <TopWinnerImage
+            flipTitle={index % 2 === 1}
+            result={`${winner.categoryName} Winner`}
+            imageUrl={winner.imageUrl}
+            title={winner.title}
+            displayName={winner.displayName}
+            categoryName={winner.categoryName}
+          />
+        </div>
+      ))
+    }
   </div>
 </div>
