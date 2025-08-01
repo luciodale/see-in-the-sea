@@ -1,7 +1,7 @@
 import { readdirSync } from 'fs';
+import { nanoid } from 'nanoid';
 import { join } from 'path';
 import type { NewSubmission } from '../src/db/schema.js';
-import { generateR2Key } from '../src/server/imageService.js';
 
 // Migration data interface (for the raw data from migration files)
 export interface MigrationSubmission {
@@ -27,6 +27,23 @@ export interface ProcessedSubmission extends NewSubmission {
 }
 
 // Common utility functions
+/**
+ * Generates unique R2 key and submission ID for image storage without user email
+ * Pure function - no side effects
+ */
+export function generateR2KeyWithoutEmail(
+  contestId: string,
+  categoryId: string,
+  fileExtension: string,
+  existingSubmissionId?: string
+): { submissionId: string; r2Key: string } {
+  const submissionId = existingSubmissionId || nanoid();
+  // Clean readable structure: contest/category/submission-id.ext
+  const r2Key = `${contestId}/${categoryId}/${submissionId}.${fileExtension}`;
+
+  return { submissionId, r2Key };
+}
+
 export function discoverContestFiles(): string[] {
   const migrationDir = join(process.cwd(), 'migration');
   const files = readdirSync(migrationDir, { withFileTypes: true });
@@ -58,10 +75,9 @@ export function processSubmissionsForDatabase(
 
     // Process file
     const fileExtension = submission.fileName.split('.').pop() || 'jpg';
-    const { submissionId, r2Key } = generateR2Key(
+    const { submissionId, r2Key } = generateR2KeyWithoutEmail(
       submission.contestId,
       submission.categoryId,
-      submission.userEmail,
       fileExtension,
       submission.id
     );

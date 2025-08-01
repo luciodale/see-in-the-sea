@@ -3,8 +3,11 @@
 import { execSync } from 'child_process';
 import { existsSync } from 'fs';
 import { join } from 'path';
-import { generateR2Key } from '../src/server/imageService.js';
-import { discoverContestFiles, type MigrationSubmission } from './utils.js';
+import {
+  discoverContestFiles,
+  generateR2KeyWithoutEmail,
+  type MigrationSubmission,
+} from './utils.js';
 
 // Easy toggle: use --remote flag for remote mode, otherwise local
 const isRemote = process.argv.includes('--remote');
@@ -49,10 +52,9 @@ function processSubmissionsForR2(
 
     // Generate R2 key
     const fileExtension = submission.fileName.split('.').pop() || 'jpg';
-    const { submissionId, r2Key } = generateR2Key(
+    const { submissionId, r2Key } = generateR2KeyWithoutEmail(
       submission.contestId,
       submission.categoryId,
-      submission.userEmail,
       fileExtension,
       submission.id
     );

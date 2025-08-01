@@ -3,19 +3,13 @@
 import { desc, eq } from 'drizzle-orm';
 import { getDb } from '../../db/index.js';
 import { categories, judges, results, submissions } from '../../db/schema.js';
+import TopWinnersImage from './TopWinnersImage.astro';
 
 if (!Astro.locals.runtime.env.DB) {
   throw new Error('DB is not available');
 }
 
 const db = getDb(Astro.locals.runtime.env.DB);
-
-const foo = await db
-  .select({ contestId: submissions.contestId })
-  .from(submissions);
-
-console.log(foo.length);
-console.log(foo);
 
 // Fetch results for uw-2024 contest only
 const contestResults = await db
@@ -80,7 +74,7 @@ const processedImages = contestResults.map(result => {
   <div class="max-w-4xl mx-auto px-6 py-16">
     <div class="text-center">
       <h1 class="text-5xl font-light text-gray-50 tracking-tight">
-        2025 Contest Results
+        2024 Winners
       </h1>
     </div>
 
@@ -101,30 +95,14 @@ const processedImages = contestResults.map(result => {
       {
         processedImages.filter(w => w.result === 'first').length > 0 && (
           <div class="space-y-8">
-            <h2 class="text-3xl font-medium text-gray-100 text-center">
-              🥇 First Place
-            </h2>
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-              {processedImages
-                .filter(w => w.result === 'first')
-                .map(winner => (
-                  <div class="bg-gray-800 rounded-lg overflow-hidden shadow-lg">
-                    <img
-                      class="w-full h-64 object-cover"
-                      src={winner.imageUrl}
-                      alt={winner.title}
-                      loading="lazy"
-                    />
-                    <div class="p-6">
-                      <h3 class="text-xl font-semibold text-gray-100 mb-2">
-                        {winner.title}
-                      </h3>
-                      <p class="text-gray-400 mb-2">{winner.displayName}</p>
-                      <p class="text-sm text-gray-500">{winner.categoryName}</p>
-                    </div>
-                  </div>
-                ))}
-            </div>
+            <TopWinnersImage
+              flipTitle={false}
+              result="First Place"
+              imageUrl={processedImages[0].imageUrl}
+              title={processedImages[0].title}
+              displayName={processedImages[0].displayName}
+              categoryName={processedImages[0].categoryName}
+            />
           </div>
         )
       }
@@ -133,30 +111,14 @@ const processedImages = contestResults.map(result => {
       {
         processedImages.filter(w => w.result === 'second').length > 0 && (
           <div class="space-y-8">
-            <h2 class="text-3xl font-medium text-gray-100 text-center">
-              🥈 Second Place
-            </h2>
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-              {processedImages
-                .filter(w => w.result === 'second')
-                .map(winner => (
-                  <div class="bg-gray-800 rounded-lg overflow-hidden shadow-lg">
-                    <img
-                      class="w-full h-64 object-cover"
-                      src={winner.imageUrl}
-                      alt={winner.title}
-                      loading="lazy"
-                    />
-                    <div class="p-6">
-                      <h3 class="text-xl font-semibold text-gray-100 mb-2">
-                        {winner.title}
-                      </h3>
-                      <p class="text-gray-400 mb-2">{winner.displayName}</p>
-                      <p class="text-sm text-gray-500">{winner.categoryName}</p>
-                    </div>
-                  </div>
-                ))}
-            </div>
+            <TopWinnersImage
+              flipTitle={true}
+              result="Second Place"
+              imageUrl={processedImages[1].imageUrl}
+              title={processedImages[1].title}
+              displayName={processedImages[1].displayName}
+              categoryName={processedImages[1].categoryName}
+            />
           </div>
         )
       }
@@ -165,30 +127,14 @@ const processedImages = contestResults.map(result => {
       {
         processedImages.filter(w => w.result === 'third').length > 0 && (
           <div class="space-y-8">
-            <h2 class="text-3xl font-medium text-gray-100 text-center">
-              🥉 Third Place
-            </h2>
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-              {processedImages
-                .filter(w => w.result === 'third')
-                .map(winner => (
-                  <div class="bg-gray-800 rounded-lg overflow-hidden shadow-lg">
-                    <img
-                      class="w-full h-64 object-cover"
-                      src={winner.imageUrl}
-                      alt={winner.title}
-                      loading="lazy"
-                    />
-                    <div class="p-6">
-                      <h3 class="text-xl font-semibold text-gray-100 mb-2">
-                        {winner.title}
-                      </h3>
-                      <p class="text-gray-400 mb-2">{winner.displayName}</p>
-                      <p class="text-sm text-gray-500">{winner.categoryName}</p>
-                    </div>
-                  </div>
-                ))}
-            </div>
+            <TopWinnersImage
+              flipTitle={false}
+              result="Third Place"
+              imageUrl={processedImages[2].imageUrl}
+              title={processedImages[2].title}
+              displayName={processedImages[2].displayName}
+              categoryName={processedImages[2].categoryName}
+            />
           </div>
         )
       }

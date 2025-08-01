@@ -1,0 +1,29 @@
+---
+import SingleImageGallery from './SingleImageGallery.astro';
+
+type Props = {
+  flipTitle: boolean;
+  result: string;
+  imageUrl: string;
+  title: string;
+  displayName: string;
+  categoryName: string;
+};
+
+const { flipTitle, imageUrl, title, displayName, result }: Props = Astro.props;
+---
+
+<div class="space-y-8">
+  <h2
+    class={`text-3xl font-light text-gray-100 uppercase ${flipTitle ? 'text-right' : 'text-left'}`}
+  >
+    {result}
+  </h2>
+  <div class="gap-8">
+    <SingleImageGallery
+      imageUrl={imageUrl}
+      title={title}
+      displayName={displayName}
+    />
+  </div>
+</div>
