@@ -22,3 +22,7 @@ INSERT OR IGNORE INTO categories (id, name, description) VALUES ('the-sea-in-mot
 
 INSERT OR IGNORE INTO contests (id, name, description, start_date, end_date) VALUES ('uw-2025', 'Underwater Photography Contest 2025', 'Annual underwater photography competition celebrating the beauty and diversity of marine life', '2025-01-01', '2025-12-31');
 INSERT OR IGNORE INTO contests (id, name, description, start_date, end_date) VALUES ('uw-2024', 'Underwater Photography Contest 2024', 'Annual underwater photography competition celebrating the beauty and diversity of marine life', '2024-01-01', '2024-12-31');
+
+INSERT OR IGNORE INTO judges (contest_id, full_name) VALUES ('uw-2024', 'Pietro Formis');
+INSERT OR IGNORE INTO judges (contest_id, full_name) VALUES ('uw-2024', 'Domenico Roscigno');
+INSERT OR IGNORE INTO judges (contest_id, full_name) VALUES ('uw-2024', 'Pasquale Vassallo');

@@ -111,6 +111,7 @@ export const seeds = {
         'Annual underwater photography competition celebrating the beauty and diversity of marine life',
       startDate: '2025-01-01',
       endDate: '2025-12-31',
+      judges: [],
     },
     {
       id: 'uw-2024',
@@ -119,6 +120,17 @@ export const seeds = {
         'Annual underwater photography competition celebrating the beauty and diversity of marine life',
       startDate: '2024-01-01',
       endDate: '2024-12-31',
+      judges: [
+        {
+          fullName: 'Pietro Formis',
+        },
+        {
+          fullName: 'Domenico Roscigno',
+        },
+        {
+          fullName: 'Pasquale Vassallo',
+        },
+      ],
     },
   ],
 };
@@ -139,5 +151,14 @@ export function generateSeedSQL(): string {
     )
     .join('\n');
 
-  return `-- Seed data for underwater photography contest\n\n${categoryInserts}\n\n${contestInserts}`;
+  const judgeInserts = seeds.contests
+    .flatMap(contest =>
+      contest.judges.map(
+        judge =>
+          `INSERT OR IGNORE INTO judges (contest_id, full_name) VALUES ('${contest.id}', '${judge.fullName}');`
+      )
+    )
+    .join('\n');
+
+  return `-- Seed data for underwater photography contest\n\n${categoryInserts}\n\n${contestInserts}\n\n${judgeInserts}`;
 }

@@ -2,17 +2,16 @@
 // this is generated at build time so fetch the results from the d1 object binding
 import { desc, eq } from 'drizzle-orm';
 import { getDb } from '../../db/index.js';
-import { categories, results, submissions } from '../../db/schema.js';
-
-// Get the D1 database binding
+import { categories, judges, results, submissions } from '../../db/schema.js';
 
 if (!Astro.locals.runtime.env.DB) {
   throw new Error('DB is not available');
 }
+
 const db = getDb(Astro.locals.runtime.env.DB);
 
-// Fetch all results with submission details
-const winners = await db
+// Fetch results for uw-2024 contest only
+const contestResults = await db
   .select({
     result: results.result,
     firstName: results.firstName,
@@ -25,10 +24,11 @@ const winners = await db
   })
   .from(results)
   .innerJoin(submissions, eq(results.submissionId, submissions.id))
+  .where(eq(submissions.contestId, 'uw-2024'))
   .orderBy(desc(results.result));
 
 // Get category names
-const categoryIds = [...new Set(winners.map(w => w.categoryId))];
+const categoryIds = [...new Set(contestResults.map(w => w.categoryId))];
 const categoryMap = new Map();
 if (categoryIds.length > 0) {
   const categoryData = await db
@@ -43,20 +43,27 @@ if (categoryIds.length > 0) {
   categoryData.forEach(cat => categoryMap.set(cat.id, cat.name));
 }
 
+// Get judges for the uw-2024 contest
+const contestJudges = await db
+  .select({ fullName: judges.fullName })
+  .from(judges)
+  .where(eq(judges.contestId, 'uw-2024'))
+  .orderBy(judges.fullName);
+
 // Process images - using direct R2 URLs for now
-const processedImages = winners.map(winner => {
-  const categoryName = categoryMap.get(winner.categoryId) || winner.categoryId;
+const processedImages = contestResults.map(result => {
+  const categoryName = categoryMap.get(result.categoryId) || result.categoryId;
 
   // Use our public images API route with optimization for web delivery
-  const imageUrl = `/api/publicImages/${winner.r2Key}?w=800&h=600&f=image/webp&q=80`;
+  const imageUrl = `/api/publicImages/${result.r2Key}`;
 
   return {
-    ...winner,
+    ...result,
     imageUrl,
     categoryName,
     displayName:
-      winner.firstName && winner.lastName
-        ? `${winner.firstName} ${winner.lastName}`
+      result.firstName && result.lastName
+        ? `${result.firstName} ${result.lastName}`
         : 'Anonymous',
   };
 });
@@ -73,9 +80,11 @@ const processedImages = winners.map(winner => {
     <div class="mt-12 space-y-6">
       <h2 class="text-3xl font-light text-gray-100 text-center">JURY</h2>
       <ul class="text-xl flex flex-col items-center space-y-3 text-gray-300">
-        <li class="font-black">Pietro Formis</li>
-        <li class="font-black">Domenico Roscigno</li>
-        <li class="font-black">Pasquale Vassallo</li>
+        {
+          contestJudges.map(judge => (
+            <li class="font-black">{judge.fullName}</li>
+          ))
+        }
       </ul>
     </div>
 
