@@ -1,5 +1,7 @@
 // Script to seed the database with default data
 
+import { nanoid } from 'nanoid';
+
 export const seeds = {
   categories: [
     {
@@ -155,10 +157,12 @@ export function generateSeedSQL(): string {
     .flatMap(contest =>
       contest.judges.map(
         judge =>
-          `INSERT OR IGNORE INTO judges (contest_id, full_name) VALUES ('${contest.id}', '${judge.fullName}');`
+          `INSERT OR IGNORE INTO judges (id, contest_id, full_name) VALUES ('${nanoid()}', '${contest.id}', '${judge.fullName}');`
       )
     )
     .join('\n');
 
-  return `-- Seed data for underwater photography contest\n\n${categoryInserts}\n\n${contestInserts}\n\n${judgeInserts}`;
+  const result = `-- Seed data for underwater photography contest\n\n${categoryInserts}\n\n${contestInserts}\n\n${judgeInserts}`;
+  console.log(result);
+  return result;
 }

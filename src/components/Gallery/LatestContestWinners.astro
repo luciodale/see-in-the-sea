@@ -10,6 +10,13 @@ if (!Astro.locals.runtime.env.DB) {
 
 const db = getDb(Astro.locals.runtime.env.DB);
 
+const foo = await db
+  .select({ contestId: submissions.contestId })
+  .from(submissions);
+
+console.log(foo.length);
+console.log(foo);
+
 // Fetch results for uw-2024 contest only
 const contestResults = await db
   .select({
