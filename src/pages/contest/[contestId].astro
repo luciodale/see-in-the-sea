@@ -1,31 +1,21 @@
 ---
 import AppWrapper from '@/components/AppWrapper.astro';
-import { Navbar } from '@/components/Navbar/Navbar';
 import { SITE_DESCRIPTION, SITE_TITLE } from '@/consts';
 import ContestWinners from '../../components/Gallery/ContestWinners.astro';
 import Layout from '../../components/Gallery/Layout.astro';
-import { getContestTitleByContestId } from '../../components/Gallery/queries.js';
+import NavbarHeaderStandalone from '../../components/Navbar/NavbarHeaderStandalone.astro';
 
 const { contestId } = Astro.params;
 
 if (!contestId) {
   return Astro.redirect('/404');
 }
-
-if (!Astro.locals.runtime.env.DB) {
-  throw new Error('DB is not available');
-}
-
-// Fetch contest details to get the actual title
-const contestTitle = await getContestTitleByContestId(
-  Astro.locals.runtime.env.DB,
-  contestId
-);
 ---
 
 <AppWrapper title={SITE_TITLE} description={SITE_DESCRIPTION}>
-  <Navbar client:load />
+  <NavbarHeaderStandalone />
+
   <Layout>
-    <ContestWinners contestId={contestId} contestTitle={contestTitle} />
+    <ContestWinners contestId={contestId} />
   </Layout>
 </AppWrapper>

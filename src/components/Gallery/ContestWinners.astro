@@ -1,17 +1,17 @@
 ---
-import Jury from './Jury.astro';
+import GalleryInfo from './GalleryInfo.astro';
 import {
   getCategoryNamesByIds,
+  getContestTitleByContestId,
   getFirstPlaceWinnersByContestId,
 } from './queries.js';
 import TopWinnerImage from './TopWinnerImage.astro';
 
 type Props = {
   contestId: string;
-  contestTitle: string;
 };
 
-const { contestId, contestTitle } = Astro.props;
+const { contestId } = Astro.props;
 
 if (!Astro.locals.runtime.env.DB) {
   throw new Error('DB is not available');
@@ -19,6 +19,11 @@ if (!Astro.locals.runtime.env.DB) {
 
 // Fetch only first place winners for the specified contest across all categories
 const firstPlaceWinners = await getFirstPlaceWinnersByContestId(
+  Astro.locals.runtime.env.DB,
+  contestId
+);
+
+const contestTitleFormatted = await getContestTitleByContestId(
   Astro.locals.runtime.env.DB,
   contestId
 );
@@ -51,13 +56,7 @@ const processedImages = firstPlaceWinners.map(result => {
 });
 ---
 
-<div class="text-center">
-  <h1 class="text-5xl font-thin text-gray-50 uppercase">
-    {contestTitle}
-  </h1>
-</div>
-
-<Jury contestId={contestId} />
+<GalleryInfo contestTitle={contestTitleFormatted} contestId={contestId} />
 
 <div class="mt-24 space-y-16">
   {

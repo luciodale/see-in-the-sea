@@ -108,7 +108,7 @@ export const seeds = {
   contests: [
     {
       id: 'uw-2025',
-      name: 'Underwater Photography Contest 2025',
+      name: 'UW Contest 2025',
       description:
         'Annual underwater photography competition celebrating the beauty and diversity of marine life',
       startDate: '2025-01-01',
@@ -117,7 +117,7 @@ export const seeds = {
     },
     {
       id: 'uw-2024',
-      name: 'Underwater Photography Contest 2024',
+      name: 'UW Contest 2024',
       description:
         'Annual underwater photography competition celebrating the beauty and diversity of marine life',
       startDate: '2024-01-01',

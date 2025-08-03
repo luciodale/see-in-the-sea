@@ -1,9 +1,10 @@
 ---
-import Jury from './Jury.astro';
+import GalleryInfo from './GalleryInfo.astro';
 import Layout from './Layout.astro';
 import {
   getAllWinnersByContestAndCategory,
   getCategoryNamesByIds,
+  getContestTitleByContestId,
 } from './queries.js';
 import RunnerUpImages from './RunnerUpImages.astro';
 import TopWinnerImage from './TopWinnerImage.astro';
@@ -11,14 +12,18 @@ import TopWinnerImage from './TopWinnerImage.astro';
 type Props = {
   contestId: string;
   categoryId: string;
-  contestTitle: string;
 };
 
-const { contestId, categoryId, contestTitle }: Props = Astro.props;
+const { contestId, categoryId }: Props = Astro.props;
 
 if (!Astro.locals.runtime.env.DB) {
   throw new Error('DB is not available');
 }
+
+const contestTitle = await getContestTitleByContestId(
+  Astro.locals.runtime.env.DB,
+  contestId
+);
 
 // Fetch results for specific contest and category
 const contestResults = await getAllWinnersByContestAndCategory(
@@ -70,13 +75,11 @@ const runnerUps = processedImages?.slice(3) || [];
 ---
 
 <Layout>
-  <div class="text-center">
-    <h1 class="text-5xl font-light text-gray-50 tracking-tight">
-      {contestTitle} Winners
-    </h1>
-  </div>
-
-  <Jury contestId={contestId} />
+  <GalleryInfo
+    contestTitle={contestTitle}
+    contestId={contestId}
+    activeCategoryId={categoryId}
+  />
 
   <!-- Winners Section -->
   <div class="mt-24 space-y-16">

@@ -118,3 +118,17 @@
     @apply bg-background text-foreground;
   }
 }
+
+@layer components {
+  .category-button {
+    @apply cursor-pointer px-6 py-3 border rounded-lg backdrop-blur-sm transition-all duration-300;
+  }
+
+  .category-button--active {
+    @apply bg-blue-600/60 border-blue-500/70 text-blue-100;
+  }
+
+  .category-button--inactive {
+    @apply bg-slate-800/40 border-slate-700/50 text-gray-300 hover:bg-slate-700/60;
+  }
+}
