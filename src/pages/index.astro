@@ -1,14 +1,47 @@
 ---
 import AppWrapper from '@/components/AppWrapper.astro';
+import HeroSegment from '@/components/HeroSegment.astro';
 import { Navbar } from '@/components/Navbar/Navbar';
 import { SITE_DESCRIPTION, SITE_TITLE } from '@/consts';
-import ContestWinners from '../components/Gallery/ContestWinners.astro';
 import Layout from '../components/Gallery/Layout.astro';
+import pastContestsImage from '../images/home/past-contests.jpg';
+import sponsorsImage from '../images/home/sponsors.jpg';
 ---
 
 <AppWrapper title={SITE_TITLE} description={SITE_DESCRIPTION}>
   <Navbar client:load />
+
   <Layout>
-    <ContestWinners contestId="uw-2024" />
+    <div class="flex flex-col gap-32">
+      <!-- Who We Are -->
+      <HeroSegment
+        title="Who We Are"
+        description="Discover the passionate community of underwater photographers who capture the hidden beauty beneath the waves. Our platform celebrates the art of marine photography, bringing together enthusiasts from around the world to share their unique perspectives of the underwater realm."
+        image={{ link: '/ortona-sub-logo-white.svg' }}
+        buttonCTA={{
+          text: 'Learn More',
+          link: '/about',
+        }}
+      />
+
+      <!-- Past Contests -->
+      <HeroSegment
+        title="Past Contests"
+        isRight={true}
+        description="Explore the extraordinary winning entries from previous years, showcasing the incredible talent and creativity of our community. Each image tells a story of patience, skill, and the magical moments captured beneath the surface."
+        image={{ imageMetadata: pastContestsImage, objectFit: true }}
+        buttonCTA={{
+          text: 'View Past Winners',
+          link: '/contest/uw-2024',
+        }}
+      />
+
+      <!-- Sponsors -->
+      <HeroSegment
+        title="Our Sponsors"
+        description="We're grateful to our incredible sponsors who make this competition possible. Their support enables us to celebrate underwater photography and provide amazing opportunities for photographers worldwide."
+        image={{ imageMetadata: sponsorsImage, objectFit: true }}
+      />
+    </div>
   </Layout>
 </AppWrapper>
