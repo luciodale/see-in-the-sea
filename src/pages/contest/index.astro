@@ -1,0 +1,60 @@
+---
+import AppWrapper from '@/components/AppWrapper.astro';
+import { Navbar } from '@/components/Navbar/Navbar';
+import { SITE_DESCRIPTION, SITE_TITLE } from '@/consts';
+import ContestCard from '../../components/Gallery/ContestCard.astro';
+import Layout from '../../components/Gallery/Layout.astro';
+import { getAllContests } from '../../components/Gallery/queries.js';
+
+if (!Astro.locals.runtime.env.DB) {
+  throw new Error('DB is not available');
+}
+
+// Fetch all contests
+const allContests = await getAllContests(Astro.locals.runtime.env.DB);
+---
+
+<AppWrapper title={SITE_TITLE} description={SITE_DESCRIPTION}>
+  <Navbar client:load />
+
+  <Layout>
+    <div class="space-y-12">
+      <!-- Header -->
+      <div class="text-center space-y-6">
+        <h1
+          class="text-6xl font-extralight text-gray-50 uppercase tracking-wider leading-tight"
+        >
+          Contest Years
+        </h1>
+        <p
+          class="text-xl font-light text-gray-300 leading-relaxed max-w-3xl mx-auto"
+        >
+          Explore our annual underwater photography competitions. Each year
+          brings together passionate photographers from around the world to
+          showcase the incredible beauty beneath the waves.
+        </p>
+      </div>
+
+      <!-- Contest Grid -->
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        {
+          allContests.length > 0 ? (
+            allContests.map(contest => <ContestCard contest={contest} />)
+          ) : (
+            <div class="col-span-full text-center py-16">
+              <div class="space-y-4">
+                <div class="text-6xl">🏆</div>
+                <h3 class="text-2xl font-light text-gray-400">
+                  No Contests Available
+                </h3>
+                <p class="text-gray-500">
+                  Check back soon for upcoming competitions!
+                </p>
+              </div>
+            </div>
+          )
+        }
+      </div>
+    </div>
+  </Layout>
+</AppWrapper>

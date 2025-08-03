@@ -4,8 +4,6 @@ import HeroSegment from '@/components/HeroSegment.astro';
 import { Navbar } from '@/components/Navbar/Navbar';
 import { SITE_DESCRIPTION, SITE_TITLE } from '@/consts';
 import Layout from '../components/Gallery/Layout.astro';
-import pastContestsImage from '../images/home/past-contests.jpg';
-import sponsorsImage from '../images/home/sponsors.jpg';
 ---
 
 <AppWrapper title={SITE_TITLE} description={SITE_DESCRIPTION}>
@@ -29,7 +27,7 @@ import sponsorsImage from '../images/home/sponsors.jpg';
         title="Past Contests"
         isRight={true}
         description="Explore the extraordinary winning entries from previous years, showcasing the incredible talent and creativity of our community. Each image tells a story of patience, skill, and the magical moments captured beneath the surface."
-        image={{ imageMetadata: pastContestsImage, objectFit: true }}
+        image={{ link: '/images/home/past-contests.jpg', objectFit: true }}
         buttonCTA={{
           text: 'View Past Winners',
           link: '/contest/uw-2024',
@@ -40,7 +38,7 @@ import sponsorsImage from '../images/home/sponsors.jpg';
       <HeroSegment
         title="Our Sponsors"
         description="We're grateful to our incredible sponsors who make this competition possible. Their support enables us to celebrate underwater photography and provide amazing opportunities for photographers worldwide."
-        image={{ imageMetadata: sponsorsImage, objectFit: true }}
+        image={{ link: '/images/home/sponsors.jpg', objectFit: true }}
       />
     </div>
   </Layout>

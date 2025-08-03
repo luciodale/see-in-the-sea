@@ -156,6 +156,34 @@ export async function getAllWinnersByContestAndCategory(
 }
 
 /**
+ * Fetches all contests
+ * @param d1Database - D1Database instance
+ * @returns Array of all contests with basic info
+ */
+export async function getAllContests(d1Database: D1Database): Promise<
+  Array<{
+    id: string;
+    name: string;
+    description: string;
+    startDate: string;
+    endDate: string;
+  }>
+> {
+  const db = getDb(d1Database);
+
+  return await db
+    .select({
+      id: contests.id,
+      name: contests.name,
+      description: contests.description,
+      startDate: contests.startDate,
+      endDate: contests.endDate,
+    })
+    .from(contests)
+    .orderBy(contests.startDate);
+}
+
+/**
  * Fetches all categories used in a specific contest
  * @param d1Database - D1Database instance
  * @param contestId - The contest identifier

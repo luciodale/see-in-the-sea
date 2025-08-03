@@ -1,0 +1,80 @@
+---
+type Props = {
+  contest: {
+    id: string;
+    name: string;
+    description: string;
+    startDate: string;
+    endDate: string;
+  };
+};
+
+const { contest } = Astro.props;
+
+// Extract year from the contest name or start date
+const year =
+  contest.name.match(/\d{4}/)?.[0] ||
+  new Date(contest.startDate).getFullYear().toString();
+---
+
+<a
+  href={`/contest/${contest.id}`}
+  class="group block p-8 bg-slate-800/40 border border-slate-700/50 rounded-2xl backdrop-blur-sm transition-all duration-300 hover:bg-slate-700/60 hover:border-slate-600/70 hover:scale-105"
+>
+  <div class="space-y-6">
+    <!-- Year Badge -->
+    <div class="flex justify-between items-start">
+      <div
+        class="px-4 py-2 bg-blue-600/60 border border-blue-500/70 rounded-lg"
+      >
+        <span class="text-2xl font-bold text-blue-100">{year}</span>
+      </div>
+      <div class="text-gray-400 group-hover:text-gray-300 transition-colors">
+        <svg
+          class="w-6 h-6"
+          fill="none"
+          stroke="currentColor"
+          viewBox="0 0 24 24"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
+        </svg>
+      </div>
+    </div>
+
+    <!-- Contest Info -->
+    <div class="space-y-4">
+      <h3 class="text-3xl font-light text-gray-50 tracking-wide">
+        {contest.name}
+      </h3>
+      <p class="text-gray-300 leading-relaxed line-clamp-3">
+        {contest.description}
+      </p>
+    </div>
+
+    <!-- Date Range -->
+    <div class="pt-4 border-t border-slate-700/50">
+      <div class="flex items-center space-x-2 text-gray-400">
+        <svg
+          class="w-5 h-5"
+          fill="none"
+          stroke="currentColor"
+          viewBox="0 0 24 24"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"
+          ></path>
+        </svg>
+        <span class="text-sm font-light">
+          {new Date(contest.startDate).getFullYear()}
+        </span>
+      </div>
+    </div>
+  </div>
+</a>
