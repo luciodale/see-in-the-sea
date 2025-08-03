@@ -1,0 +1,39 @@
+---
+import { Picture } from 'astro:assets';
+
+type Props = {
+  title: string;
+  image: string;
+  isRight?: boolean;
+};
+
+const { title, image, isRight = false } = Astro.props;
+---
+
+<div class="flex items-center justify-center">
+  <div
+    class="mx-auto grid max-w-2xl lg:max-w-full lg:grid-cols-2 gap-12 items-center"
+  >
+    <!-- Text Content -->
+    <div class={`space-y-8 ${isRight ? 'lg:order-2' : 'lg:order-1'}`}>
+      <div
+        class="text-xl font-extralight text-gray-300 leading-relaxed max-w-2xl"
+      >
+        <slot />
+      </div>
+    </div>
+
+    <!-- Image -->
+    <div class={`${isRight ? 'lg:order-1' : 'lg:order-2'}`}>
+      <div class="aspect-square overflow-hidden bg-slate-800/60">
+        <Picture
+          width={1000}
+          height={1000}
+          src={image}
+          alt={title}
+          class="w-full h-full object-cover"
+        />
+      </div>
+    </div>
+  </div>
+</div>

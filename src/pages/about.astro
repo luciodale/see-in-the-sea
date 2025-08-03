@@ -1,0 +1,110 @@
+---
+import AboutSegment from '../components/AboutSegment.astro';
+import AppWrapper from '../components/AppWrapper.astro';
+import Layout from '../components/Gallery/Layout.astro';
+import NavbarHeaderStandalone from '../components/Navbar/NavbarHeaderStandalone.astro';
+import { SITE_DESCRIPTION, SITE_TITLE } from '../consts';
+---
+
+<AppWrapper title={SITE_TITLE} description={SITE_DESCRIPTION}>
+  <NavbarHeaderStandalone />
+
+  <Layout>
+    <!-- Page Title -->
+    <div class="text-center mb-20">
+      <h1
+        class="text-5xl sm:text-6xl font-extralight text-gray-50 uppercase tracking-wider leading-tight"
+      >
+        Chi Siamo
+      </h1>
+    </div>
+
+    <div class="flex flex-col gap-24">
+      <!-- Section 1: The Beginning - Image Left, Text Right -->
+      <AboutSegment
+        title="La Magia degli Incontri Sottomarini"
+        image="/images/about/about-diver.jpg"
+        isRight={false}
+      >
+        <div class="flex flex-col gap-8">
+          <p>
+            Me lo sono chiesto... me lo sono chiesto tante volte fissando in
+            silenzio questo foglio bianco...
+          </p>
+          <p>
+            Frammenti di blu si accavallano a volti sfumati, l'eco sopito di
+            bolle leggere, onde lontane, sensazioni sospese profumano di sole,
+            di sale, di acqua di Mare... colori e forme mutevoli dove nulla è
+            come sembra...
+          </p>
+          <p>
+            In un passato ormai lontano ho provato a raccontare il nostro
+            viaggio, incontro di sguardi, passioni fuse per creare una storia da
+            raccontare, il brivido di una visione irrazionale, la magia di
+            cercare oltre l'orizzonte...
+          </p>
+        </div>
+      </AboutSegment>
+
+      <!-- Section 2: The Contest - Image Right, Text Left -->
+      <AboutSegment
+        title="See in the Sea UW International Photocontest"
+        image="/images/about/about-group.jpg"
+        isRight={true}
+      >
+        <p>
+          <strong>Oggi scriviamo un nuovo capitolo.</strong>
+        </p>
+        <p>
+          See in the Sea UW International Photocontest è una sfida vinta, un
+          progetto che torna a prendere vento, è voler continuare a scoprire le
+          vostre emozioni fermate in un istante di meraviglia, il fascino della
+          scoperta di mari sconosciuti attraverso altri occhi.
+        </p>
+        <p>
+          See in the Sea vive di competenze importanti, del rispetto verso chi
+          sceglie di mettersi in gioco con un sorriso, passioni viscerali
+          declinate attraverso istanti irripetibili...
+        </p>
+      </AboutSegment>
+
+      <!-- Section 3: The Legacy - Image Left, Text Right -->
+      <AboutSegment
+        title="15ma Edizione"
+        image="/images/about/about-sea.jpg"
+        isRight={false}
+      >
+        <p>
+          Vogliamo continuare ad ascoltare le vostre storie, emozionarci per le
+          immagini che vorrete selezionare, le ammireremo in silenzio,
+          incantati, resteranno nei nostri occhi per sempre, racconteranno il
+          Mare...
+          <em>un Mare di tutti...</em>
+        </p>
+        <p>
+          Da qui riparte la <strong>15ma edizione</strong> di See in the Sea UW International
+          Photocontest, dalle centinaia di amici che ci hanno scelto, dalle migliaia
+          di foto che ci avete regalato, dalle emozioni che abbiamo creato e avete
+          voluto condividere...
+        </p>
+      </AboutSegment>
+
+      <!-- Closing Quote Section -->
+      <div class="max-w-4xl mx-auto text-center space-y-8 pt-10">
+        <blockquote
+          class="text-2xl max-w-2xl sm:text-3xl font-light text-gray-200 italic leading-relaxed"
+        >
+          "Regalateci ancora la meraviglia di questo irripetibile viaggio nei
+          colori del blu."
+        </blockquote>
+
+        <div class="pt-8 border-t border-slate-700/50">
+          <p class="text-xl font-semibold text-gray-100 tracking-wide">
+            Paolo De Iure
+          </p>
+          <p class="text-lg text-gray-400 font-light">Presidente Ortonasub</p>
+        </div>
+      </div>
+    </div>
+  </Layout>
+</AppWrapper>
