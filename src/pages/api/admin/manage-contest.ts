@@ -164,7 +164,7 @@ export const POST: APIRoute = async ({ request, locals }) => {
       startDate: body.startDate,
       endDate: body.endDate,
       maxSubmissionsPerCategory: body.maxSubmissionsPerCategory || 2,
-      isActive: body.isActive ?? true,
+      isActive: body.isActive,
       createdAt: now,
       updatedAt: now,
     });

@@ -4,7 +4,7 @@ import { useState } from 'react';
 
 const navigation = [
   { name: 'Chi Siamo', href: '#' },
-  { name: "Albo d'oro", href: '#' },
+  { name: "Albo d'oro", href: '/contest' },
   { name: 'Sponsor', href: '#' },
   { name: 'Partecipa ora', href: '#' },
 ];

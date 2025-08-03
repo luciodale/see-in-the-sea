@@ -7,7 +7,7 @@ export const contests = sqliteTable('contests', {
   description: text('description'),
   startDate: text('start_date').notNull(),
   endDate: text('end_date').notNull(),
-  isActive: integer('is_active', { mode: 'boolean' }).default(true),
+  isActive: integer('is_active', { mode: 'boolean' }).default(false),
   maxSubmissionsPerCategory: integer('max_submissions_per_category').default(2),
   createdAt: text('created_at').default('CURRENT_TIMESTAMP'),
   updatedAt: text('updated_at').default('CURRENT_TIMESTAMP'),
@@ -18,7 +18,6 @@ export const categories = sqliteTable('categories', {
   id: text('id').primaryKey(),
   name: text('name').notNull().unique(),
   description: text('description'),
-  isActive: integer('is_active', { mode: 'boolean' }).default(true),
   createdAt: text('created_at').default('CURRENT_TIMESTAMP'),
 });
 
@@ -36,7 +35,6 @@ export const submissions = sqliteTable('submissions', {
   fileSize: integer('file_size'),
   contentType: text('content_type'),
   uploadedAt: text('uploaded_at').default('CURRENT_TIMESTAMP'),
-  isActive: integer('is_active', { mode: 'boolean' }).default(true),
 });
 
 // Results table for contest winners

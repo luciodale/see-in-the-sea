@@ -357,7 +357,6 @@ export const POST: APIRoute = async ({ request, locals }) => {
             r2Key: newR2Key,
             imageUrl: newImageUrl,
             title: body.title.trim(),
-            isActive: true,
             originalFilename: newImageFile.name,
             fileSize: newImageFile.size,
             contentType: newImageFile.type,

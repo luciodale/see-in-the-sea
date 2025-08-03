@@ -20,9 +20,9 @@ INSERT OR IGNORE INTO categories (id, name, description) VALUES ('environment', 
 INSERT OR IGNORE INTO categories (id, name, description) VALUES ('open', 'Open', 'Open');
 INSERT OR IGNORE INTO categories (id, name, description) VALUES ('the-sea-in-motion', 'The Sea in Motion', 'The Sea in Motion');
 
-INSERT OR IGNORE INTO contests (id, name, description, start_date, end_date) VALUES ('uw-2025', 'UW Contest 2025', 'Annual underwater photography competition celebrating the beauty and diversity of marine life', '2025-01-01', '2025-12-31');
-INSERT OR IGNORE INTO contests (id, name, description, start_date, end_date) VALUES ('uw-2024', 'UW Contest 2024', 'Annual underwater photography competition celebrating the beauty and diversity of marine life', '2024-01-01', '2024-12-31');
+INSERT OR IGNORE INTO contests (id, name, description, start_date, end_date, is_active) VALUES ('uw-2025', 'UW Contest 2025', 'Annual underwater photography competition celebrating the beauty and diversity of marine life', '2025-01-01', '2025-12-31', true);
+INSERT OR IGNORE INTO contests (id, name, description, start_date, end_date, is_active) VALUES ('uw-2024', 'UW Contest 2024', 'Annual underwater photography competition celebrating the beauty and diversity of marine life', '2024-01-01', '2024-12-31', false);
 
-INSERT OR IGNORE INTO judges (id, contest_id, full_name) VALUES ('-MGodMr0aarx_K9eaDo6p', 'uw-2024', 'Pietro Formis');
-INSERT OR IGNORE INTO judges (id, contest_id, full_name) VALUES ('em3GL_6O6BAhNsMwF2NoM', 'uw-2024', 'Domenico Roscigno');
-INSERT OR IGNORE INTO judges (id, contest_id, full_name) VALUES ('ilO42aNc0T7ysbPqYKRKw', 'uw-2024', 'Pasquale Vassallo');
+INSERT OR IGNORE INTO judges (id, contest_id, full_name) VALUES ('9wAJMSapcoNdt5tpU2Ezg', 'uw-2024', 'Pietro Formis');
+INSERT OR IGNORE INTO judges (id, contest_id, full_name) VALUES ('CvzWz9VbBCSIyCLcY4l4j', 'uw-2024', 'Domenico Roscigno');
+INSERT OR IGNORE INTO judges (id, contest_id, full_name) VALUES ('hYCyVrp0PBKrKRPowetCC', 'uw-2024', 'Pasquale Vassallo');

@@ -121,7 +121,7 @@
 
 @layer components {
   .category-button {
-    @apply cursor-pointer px-6 py-3 border rounded-lg backdrop-blur-sm transition-all duration-300;
+    @apply cursor-pointer px-6 py-3 border rounded backdrop-blur-sm transition-all duration-300;
   }
 
   .category-button--active {

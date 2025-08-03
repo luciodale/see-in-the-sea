@@ -1,28 +1,28 @@
 ---
 import AppWrapper from '@/components/AppWrapper.astro';
-import { Navbar } from '@/components/Navbar/Navbar';
 import { SITE_DESCRIPTION, SITE_TITLE } from '@/consts';
 import ContestCard from '../../components/Gallery/ContestCard.astro';
 import Layout from '../../components/Gallery/Layout.astro';
-import { getAllContests } from '../../components/Gallery/queries.js';
+import { getAllPastContests } from '../../components/Gallery/queries.js';
+import NavbarHeaderStandalone from '../../components/Navbar/NavbarHeaderStandalone.astro';
 
 if (!Astro.locals.runtime.env.DB) {
   throw new Error('DB is not available');
 }
 
 // Fetch all contests
-const allContests = await getAllContests(Astro.locals.runtime.env.DB);
+const allContests = await getAllPastContests(Astro.locals.runtime.env.DB);
 ---
 
 <AppWrapper title={SITE_TITLE} description={SITE_DESCRIPTION}>
-  <Navbar client:load />
+  <NavbarHeaderStandalone />
 
   <Layout>
     <div class="space-y-12">
       <!-- Header -->
       <div class="text-center space-y-6">
         <h1
-          class="text-6xl font-extralight text-gray-50 uppercase tracking-wider leading-tight"
+          class="text-5xl font-extralight text-gray-50 uppercase tracking-wider leading-tight"
         >
           Contest Years
         </h1>
@@ -36,7 +36,7 @@ const allContests = await getAllContests(Astro.locals.runtime.env.DB);
       </div>
 
       <!-- Contest Grid -->
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+      <div class="flex flex-wrap justify-center gap-8">
         {
           allContests.length > 0 ? (
             allContests.map(contest => <ContestCard contest={contest} />)

@@ -156,22 +156,24 @@ export async function getAllWinnersByContestAndCategory(
 }
 
 /**
- * Fetches all contests
+ * Fetches all contests with random winning pictures
  * @param d1Database - D1Database instance
- * @returns Array of all contests with basic info
+ * @returns Array of all contests with basic info and random winning picture
  */
 export async function getAllContests(d1Database: D1Database): Promise<
   Array<{
     id: string;
     name: string;
-    description: string;
+    description: string | null;
     startDate: string;
     endDate: string;
+    winningImage?: string;
   }>
 > {
   const db = getDb(d1Database);
 
-  return await db
+  // Get all contests first
+  const allContests = await db
     .select({
       id: contests.id,
       name: contests.name,
@@ -181,6 +183,107 @@ export async function getAllContests(d1Database: D1Database): Promise<
     })
     .from(contests)
     .orderBy(contests.startDate);
+
+  // For each contest, get a random winning image
+  const contestsWithImages = await Promise.all(
+    allContests.map(async contest => {
+      const winningImages = await db
+        .select({
+          r2Key: submissions.r2Key,
+        })
+        .from(results)
+        .innerJoin(submissions, eq(results.submissionId, submissions.id))
+        .where(
+          and(
+            eq(submissions.contestId, contest.id),
+            eq(results.result, 'first')
+          )
+        )
+        .limit(1); // Get the first place winner
+
+      // Select the first winning image
+      const firstWinningImage =
+        winningImages.length > 0 ? winningImages[0] : null;
+
+      return {
+        ...contest,
+        winningImage: firstWinningImage
+          ? `/api/publicImages/${firstWinningImage.r2Key}`
+          : undefined,
+      };
+    })
+  );
+
+  // Sort by start date descending (newest first)
+  return contestsWithImages.sort(
+    (a, b) => new Date(b.startDate).getTime() - new Date(a.startDate).getTime()
+  );
+}
+
+/**
+ * Fetches all inactive contests with random winning pictures
+ * @param d1Database - D1Database instance
+ * @returns Array of inactive contests with basic info and winning picture
+ */
+export async function getAllPastContests(d1Database: D1Database): Promise<
+  Array<{
+    id: string;
+    name: string;
+    description: string | null;
+    startDate: string;
+    endDate: string;
+    winningImage?: string;
+  }>
+> {
+  const db = getDb(d1Database);
+
+  // Get all inactive contests first
+  const inactiveContests = await db
+    .select({
+      id: contests.id,
+      name: contests.name,
+      description: contests.description,
+      startDate: contests.startDate,
+      endDate: contests.endDate,
+    })
+    .from(contests)
+    .where(eq(contests.isActive, false))
+    .orderBy(contests.startDate);
+
+  // For each contest, get a winning image
+  const contestsWithImages = await Promise.all(
+    inactiveContests.map(async contest => {
+      const winningImages = await db
+        .select({
+          r2Key: submissions.r2Key,
+        })
+        .from(results)
+        .innerJoin(submissions, eq(results.submissionId, submissions.id))
+        .where(
+          and(
+            eq(submissions.contestId, contest.id),
+            eq(results.result, 'first')
+          )
+        )
+        .limit(1); // Get the first place winner
+
+      // Select the first winning image
+      const firstWinningImage =
+        winningImages.length > 0 ? winningImages[0] : null;
+
+      return {
+        ...contest,
+        winningImage: firstWinningImage
+          ? `/api/publicImages/${firstWinningImage.r2Key}`
+          : undefined,
+      };
+    })
+  );
+
+  // Sort by start date descending (newest first)
+  return contestsWithImages.sort(
+    (a, b) => new Date(b.startDate).getTime() - new Date(a.startDate).getTime()
+  );
 }
 
 /**

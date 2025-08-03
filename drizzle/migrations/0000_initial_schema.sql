@@ -2,7 +2,6 @@ CREATE TABLE `categories` (
 	`id` text PRIMARY KEY NOT NULL,
 	`name` text NOT NULL,
 	`description` text,
-	`is_active` integer DEFAULT true,
 	`created_at` text DEFAULT 'CURRENT_TIMESTAMP'
 );
 --> statement-breakpoint
@@ -13,7 +12,7 @@ CREATE TABLE `contests` (
 	`description` text,
 	`start_date` text NOT NULL,
 	`end_date` text NOT NULL,
-	`is_active` integer DEFAULT true,
+	`is_active` integer DEFAULT false,
 	`max_submissions_per_category` integer DEFAULT 2,
 	`created_at` text DEFAULT 'CURRENT_TIMESTAMP',
 	`updated_at` text DEFAULT 'CURRENT_TIMESTAMP'
@@ -47,8 +46,7 @@ CREATE TABLE `submissions` (
 	`original_filename` text,
 	`file_size` integer,
 	`content_type` text,
-	`uploaded_at` text DEFAULT 'CURRENT_TIMESTAMP',
-	`is_active` integer DEFAULT true
+	`uploaded_at` text DEFAULT 'CURRENT_TIMESTAMP'
 );
 --> statement-breakpoint
 CREATE UNIQUE INDEX `submissions_r2_key_unique` ON `submissions` (`r2_key`);--> statement-breakpoint

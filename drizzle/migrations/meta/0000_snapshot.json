@@ -1,7 +1,7 @@
 {
   "version": "6",
   "dialect": "sqlite",
-  "id": "4bf4ce79-f3b3-4208-9942-4d5b8a01c8e2",
+  "id": "2c05780b-7d04-4e1f-b360-366586a408e9",
   "prevId": "00000000-0000-0000-0000-000000000000",
   "tables": {
     "categories": {
@@ -27,14 +27,6 @@
           "primaryKey": false,
           "notNull": false,
           "autoincrement": false
-        },
-        "is_active": {
-          "name": "is_active",
-          "type": "integer",
-          "primaryKey": false,
-          "notNull": false,
-          "autoincrement": false,
-          "default": true
         },
         "created_at": {
           "name": "created_at",
@@ -103,7 +95,7 @@
           "primaryKey": false,
           "notNull": false,
           "autoincrement": false,
-          "default": true
+          "default": false
         },
         "max_submissions_per_category": {
           "name": "max_submissions_per_category",
@@ -315,14 +307,6 @@
           "notNull": false,
           "autoincrement": false,
           "default": "'CURRENT_TIMESTAMP'"
-        },
-        "is_active": {
-          "name": "is_active",
-          "type": "integer",
-          "primaryKey": false,
-          "notNull": false,
-          "autoincrement": false,
-          "default": true
         }
       },
       "indexes": {

@@ -38,10 +38,7 @@ export const GET: APIRoute = async ({ locals }) => {
     }
 
     // Get all active categories - Type-safe Drizzle query!
-    const categoriesResult = await db
-      .select()
-      .from(categories)
-      .where(eq(categories.isActive, true));
+    const categoriesResult = await db.select().from(categories);
 
     const response: ContestsResponse = {
       success: true,

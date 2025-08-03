@@ -113,6 +113,7 @@ export const seeds = {
         'Annual underwater photography competition celebrating the beauty and diversity of marine life',
       startDate: '2025-01-01',
       endDate: '2025-12-31',
+      isActive: true,
       judges: [],
     },
     {
@@ -122,6 +123,7 @@ export const seeds = {
         'Annual underwater photography competition celebrating the beauty and diversity of marine life',
       startDate: '2024-01-01',
       endDate: '2024-12-31',
+      isActive: false,
       judges: [
         {
           fullName: 'Pietro Formis',
@@ -137,19 +139,24 @@ export const seeds = {
   ],
 };
 
+// Helper function to escape single quotes in SQL strings
+function escapeSqlString(str: string): string {
+  return str.replace(/'/g, "''");
+}
+
 // Generate SQL for seeding
 export function generateSeedSQL(): string {
   const categoryInserts = seeds.categories
     .map(
       cat =>
-        `INSERT OR IGNORE INTO categories (id, name, description) VALUES ('${cat.id}', '${cat.name}', '${cat.description}');`
+        `INSERT OR IGNORE INTO categories (id, name, description) VALUES ('${escapeSqlString(cat.id)}', '${escapeSqlString(cat.name)}', '${escapeSqlString(cat.description)}');`
     )
     .join('\n');
 
   const contestInserts = seeds.contests
     .map(
       contest =>
-        `INSERT OR IGNORE INTO contests (id, name, description, start_date, end_date) VALUES ('${contest.id}', '${contest.name}', '${contest.description}', '${contest.startDate}', '${contest.endDate}');`
+        `INSERT OR IGNORE INTO contests (id, name, description, start_date, end_date, is_active) VALUES ('${escapeSqlString(contest.id)}', '${escapeSqlString(contest.name)}', '${escapeSqlString(contest.description)}', '${contest.startDate}', '${contest.endDate}', ${contest.isActive});`
     )
     .join('\n');
 
@@ -157,7 +164,7 @@ export function generateSeedSQL(): string {
     .flatMap(contest =>
       contest.judges.map(
         judge =>
-          `INSERT OR IGNORE INTO judges (id, contest_id, full_name) VALUES ('${nanoid()}', '${contest.id}', '${judge.fullName}');`
+          `INSERT OR IGNORE INTO judges (id, contest_id, full_name) VALUES ('${nanoid()}', '${escapeSqlString(contest.id)}', '${escapeSqlString(judge.fullName)}');`
       )
     )
     .join('\n');
