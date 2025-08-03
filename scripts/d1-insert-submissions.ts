@@ -1,7 +1,7 @@
 #!/usr/bin/env bun
 
 import { execSync } from 'child_process';
-import { existsSync, readFileSync } from 'fs';
+import { existsSync, readFileSync, writeFileSync } from 'fs';
 import { nanoid } from 'nanoid';
 import { join } from 'path';
 import {
@@ -22,6 +22,11 @@ interface DatabaseResult {
   errors: string[];
 }
 
+// Helper function to escape SQL strings properly
+function escapeSqlString(str: string): string {
+  return str.replace(/'/g, "''");
+}
+
 async function insertIntoDatabase(
   submissions: ProcessedSubmission[]
 ): Promise<DatabaseResult> {
@@ -32,100 +37,75 @@ async function insertIntoDatabase(
     errors: [],
   };
 
-  for (let i = 0; i < submissions.length; i++) {
-    const submission = submissions[i];
-    console.log(
-      `🗄️  [${i + 1}/${submissions.length}] Inserting: ${submission.title}`
+  console.log('🗄️  Generating batched SQL statements...');
+
+  // Generate all submission INSERT statements
+  const submissionInserts = submissions.map(submission => {
+    return `INSERT OR IGNORE INTO submissions (
+      id, contest_id, category_id, user_email, title, description, 
+      r2_key, original_filename, file_size, content_type
+    ) VALUES (
+      '${escapeSqlString(submission.id)}', 
+      '${escapeSqlString(submission.contestId)}', 
+      '${escapeSqlString(submission.categoryId)}', 
+      '${escapeSqlString(submission.userEmail)}', 
+      '${escapeSqlString(submission.title)}', 
+      '', 
+      '${escapeSqlString(submission.r2Key)}', 
+      '${escapeSqlString(submission.originalFilename)}', 
+      ${submission.fileSize || 0}, 
+      '${escapeSqlString(submission.contentType)}'
+    );`;
+  });
+
+  // Generate all result INSERT statements
+  const resultInserts = submissions
+    .filter(submission => submission.result)
+    .map(submission => {
+      const resultId = nanoid();
+      const firstName = submission.firstName
+        ? `'${escapeSqlString(submission.firstName)}'`
+        : 'NULL';
+      const lastName = submission.lastName
+        ? `'${escapeSqlString(submission.lastName)}'`
+        : 'NULL';
+
+      return `INSERT OR IGNORE INTO results (
+        id, submission_id, result, first_name, last_name
+      ) VALUES (
+        '${resultId}', 
+        '${escapeSqlString(submission.id)}', 
+        '${escapeSqlString(submission.result!)}', 
+        ${firstName}, 
+        ${lastName}
+      );`;
+    });
+
+  // Combine all SQL statements
+  const allStatements = [...submissionInserts, ...resultInserts];
+  const batchedSql = allStatements.join('\n');
+
+  // Write to temporary file for easier debugging
+  const tempSqlFile = join(process.cwd(), 'temp-batch-insert.sql');
+  writeFileSync(tempSqlFile, batchedSql);
+  console.log(`📝 SQL written to ${tempSqlFile} for review`);
+
+  try {
+    console.log('🚀 Executing batched SQL command...');
+
+    // Execute single batched command
+    execSync(
+      `bunx wrangler d1 execute see-in-the-sea-db --${mode} --file="${tempSqlFile}"`,
+      { stdio: 'inherit' }
     );
 
-    try {
-      // Insert submission
-      const sql = `INSERT INTO submissions (
-        id, contest_id, category_id, user_email, title, description, 
-        r2_key, original_filename, file_size, content_type
-      ) VALUES (
-        '${submission.id}', '${submission.contestId}', '${submission.categoryId}', '${submission.userEmail}', 
-        '${submission.title.replace(/'/g, "''")}', '', 
-        '${submission.r2Key}', '${submission.originalFilename}', 
-        ${submission.fileSize}, '${submission.contentType}'
-      );`;
-
-      try {
-        execSync(
-          `bunx wrangler d1 execute see-in-the-sea-db --${mode} --command="${sql.replace(
-            /"/g,
-            '\\"'
-          )}"`,
-          { stdio: 'pipe' }
-        );
-      } catch (execError) {
-        const errorMessage =
-          execError instanceof Error ? execError.message : String(execError);
-        console.log(`   ❌ SQL Error: ${errorMessage}`);
-        throw execError;
-      }
-
-      // Insert result if it exists
-      if (submission.result) {
-        const resultId = nanoid();
-        const firstName = submission.firstName
-          ? `'${submission.firstName.replace(/'/g, "''")}'`
-          : 'NULL';
-        const lastName = submission.lastName
-          ? `'${submission.lastName.replace(/'/g, "''")}'`
-          : 'NULL';
-
-        const resultSql = `INSERT INTO results (
-          id, submission_id, result, first_name, last_name
-        ) VALUES (
-          '${resultId}', '${submission.id}', '${submission.result}', ${firstName}, ${lastName}
-        );`;
-
-        try {
-          execSync(
-            `bunx wrangler d1 execute see-in-the-sea-db --${mode} --command="${resultSql.replace(
-              /"/g,
-              '\\"'
-            )}"`,
-            { stdio: 'pipe' }
-          );
-          console.log(`   ✅ Result: ${submission.result}`);
-        } catch (resultError) {
-          const errorMessage =
-            resultError instanceof Error
-              ? resultError.message
-              : String(resultError);
-          if (
-            errorMessage.includes('UNIQUE constraint failed') ||
-            errorMessage.includes('duplicate key')
-          ) {
-            console.log(`   ⚠️  Result duplicate: ${submission.result}`);
-          } else {
-            console.log(`   ⚠️  Result failed: ${errorMessage}`);
-          }
-        }
-      }
-
-      result.inserted++;
-      console.log(`   ✅ Inserted: ${submission.title}`);
-    } catch (error) {
-      const errorMessage =
-        error instanceof Error ? error.message : String(error);
-
-      if (
-        errorMessage.includes('UNIQUE constraint failed') ||
-        errorMessage.includes('duplicate key')
-      ) {
-        result.inserted++;
-        console.log(`   ⚠️  Skipped (duplicate): ${submission.title}`);
-      } else {
-        result.errors.push(`${submission.title}: ${errorMessage}`);
-        result.failed++;
-        console.log(`   ❌ Failed: ${submission.title}`);
-      }
-    }
-
-    await new Promise(resolve => setTimeout(resolve, 200));
+    console.log('✅ Batched SQL executed successfully!');
+    result.inserted = submissions.length;
+  } catch (error) {
+    const errorMessage = error instanceof Error ? error.message : String(error);
+    console.log(`❌ Batch execution failed: ${errorMessage}`);
+    result.failed = submissions.length;
+    result.errors.push(`Batch execution: ${errorMessage}`);
   }
 
   return result;

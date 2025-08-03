@@ -23,6 +23,6 @@ INSERT OR IGNORE INTO categories (id, name, description) VALUES ('the-sea-in-mot
 INSERT OR IGNORE INTO contests (id, name, description, start_date, end_date, is_active) VALUES ('uw-2025', 'UW Contest 2025', 'Annual underwater photography competition celebrating the beauty and diversity of marine life', '2025-01-01', '2025-12-31', true);
 INSERT OR IGNORE INTO contests (id, name, description, start_date, end_date, is_active) VALUES ('uw-2024', 'UW Contest 2024', 'Annual underwater photography competition celebrating the beauty and diversity of marine life', '2024-01-01', '2024-12-31', false);
 
-INSERT OR IGNORE INTO judges (id, contest_id, full_name) VALUES ('9wAJMSapcoNdt5tpU2Ezg', 'uw-2024', 'Pietro Formis');
-INSERT OR IGNORE INTO judges (id, contest_id, full_name) VALUES ('CvzWz9VbBCSIyCLcY4l4j', 'uw-2024', 'Domenico Roscigno');
-INSERT OR IGNORE INTO judges (id, contest_id, full_name) VALUES ('hYCyVrp0PBKrKRPowetCC', 'uw-2024', 'Pasquale Vassallo');
+INSERT OR IGNORE INTO judges (id, contest_id, full_name) VALUES ('y6tuYT6QbNfAyxZap6-FU', 'uw-2024', 'Pietro Formis');
+INSERT OR IGNORE INTO judges (id, contest_id, full_name) VALUES ('BAJxD5Sj_sbxh5U0ZjO7A', 'uw-2024', 'Domenico Roscigno');
+INSERT OR IGNORE INTO judges (id, contest_id, full_name) VALUES ('Fr1P7Mc5MmgDAxB0MFIiu', 'uw-2024', 'Pasquale Vassallo');
