@@ -2,24 +2,32 @@
 import BaseImage from './BaseImage.astro';
 
 type Props = {
-  flipTitle: boolean;
   result: string;
   imageUrl: string;
   title: string;
-  displayName: string;
-  categoryName: string;
+  author: string;
 };
 
-const { flipTitle, imageUrl, title, displayName, result }: Props = Astro.props;
+const { imageUrl, title, author, result }: Props = Astro.props;
 ---
 
 <div class="space-y-8">
   <h2
-    class={`text-3xl font-light text-gray-100 uppercase ${flipTitle ? 'text-right' : 'text-left'}`}
+    class={`flex justify-between items-baseline gap-10 text-4xl font-thin text-gray-100 uppercase`}
   >
-    {result}
+    <p>{result}</p>
+    <p class="text-3xl">
+      {title}
+      <span class="text-gray-400 font-light text-2xl mx-1"> by </span>
+      {author}
+    </p>
   </h2>
   <div class="gap-8">
-    <BaseImage imageUrl={imageUrl} title={title} displayName={displayName} />
+    <BaseImage
+      imageUrl={imageUrl}
+      title={title}
+      author={author}
+      showInfo={false}
+    />
   </div>
 </div>

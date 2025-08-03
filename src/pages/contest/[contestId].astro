@@ -2,18 +2,37 @@
 import AppWrapper from '@/components/AppWrapper.astro';
 import { Navbar } from '@/components/Navbar/Navbar';
 import { SITE_DESCRIPTION, SITE_TITLE } from '@/consts';
+import { eq } from 'drizzle-orm';
 import ContestWinners from '../../components/Gallery/ContestWinners.astro';
+import Layout from '../../components/Gallery/Layout.astro';
+import { getDb } from '../../db/index.js';
+import { contests } from '../../db/schema.js';
 
 const { contestId } = Astro.params;
 
 if (!contestId) {
   return Astro.redirect('/404');
 }
+
+if (!Astro.locals.runtime.env.DB) {
+  throw new Error('DB is not available');
+}
+
+const db = getDb(Astro.locals.runtime.env.DB);
+
+// Fetch contest details to get the actual title
+const contestDetails = await db
+  .select({ name: contests.name })
+  .from(contests)
+  .where(eq(contests.id, contestId))
+  .limit(1);
+
+const contestTitle = contestDetails[0]?.name ?? contestId;
 ---
 
 <AppWrapper title={SITE_TITLE} description={SITE_DESCRIPTION}>
   <Navbar client:load />
-  <div class="min-h-screen w-full bg-slate-900 relative overflow-hidden">
-    <ContestWinners contestId={contestId} />
-  </div>
+  <Layout>
+    <ContestWinners contestId={contestId} contestTitle={contestTitle} />
+  </Layout>
 </AppWrapper>

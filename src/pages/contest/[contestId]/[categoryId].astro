@@ -1,0 +1,50 @@
+---
+import AppWrapper from '@/components/AppWrapper.astro';
+import { Navbar } from '@/components/Navbar/Navbar';
+import { SITE_DESCRIPTION, SITE_TITLE } from '@/consts';
+import { eq } from 'drizzle-orm';
+import Layout from '../../../components/Gallery/Layout.astro';
+import ResultsPerCategory from '../../../components/Gallery/ResultsPerCategory.astro';
+import { getDb } from '../../../db/index.js';
+import { categories, contests } from '../../../db/schema.js';
+
+const { contestId, categoryId } = Astro.params;
+
+if (!contestId || !categoryId) {
+  return Astro.redirect('/404');
+}
+
+if (!Astro.locals.runtime.env.DB) {
+  throw new Error('DB is not available');
+}
+
+const db = getDb(Astro.locals.runtime.env.DB);
+
+// Fetch contest and category details
+const [contestDetails, categoryDetails] = await Promise.all([
+  db
+    .select({ name: contests.name })
+    .from(contests)
+    .where(eq(contests.id, contestId))
+    .limit(1),
+  db
+    .select({ name: categories.name })
+    .from(categories)
+    .where(eq(categories.id, categoryId))
+    .limit(1),
+]);
+
+const contestTitle = contestDetails[0]?.name || contestId;
+const categoryName = categoryDetails[0]?.name || categoryId;
+---
+
+<AppWrapper title={SITE_TITLE} description={SITE_DESCRIPTION}>
+  <Navbar client:load />
+  <Layout>
+    <ResultsPerCategory
+      contestId={contestId}
+      categoryId={categoryId}
+      contestTitle={`${contestTitle} - ${categoryName}`}
+    />
+  </Layout>
+</AppWrapper>

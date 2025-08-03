@@ -6,7 +6,7 @@ type Props = {
     result: string;
     imageUrl: string;
     title: string;
-    displayName: string;
+    author: string;
     categoryName: string;
   }[];
 };
@@ -25,7 +25,7 @@ const { runnerUps }: Props = Astro.props;
           <BaseImage
             imageUrl={runnerUp.imageUrl}
             title={runnerUp.title}
-            displayName={runnerUp.displayName}
+            author={runnerUp.author}
           />
         </div>
       ))
