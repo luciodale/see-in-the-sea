@@ -58,18 +58,16 @@ const processedImages = firstPlaceWinners.map(result => {
 
 <GalleryInfo contestTitle={contestTitleFormatted} contestId={contestId} />
 
-<div class="mt-24 space-y-16">
+<div class="mt-24 space-y-24">
   {
     processedImages.length > 0 ? (
       processedImages.map(winner => (
-        <div class="space-y-4">
-          <TopWinnerImage
-            result={`${winner.categoryName} Winner`}
-            imageUrl={winner.imageUrl}
-            title={winner.title}
-            author={winner.author}
-          />
-        </div>
+        <TopWinnerImage
+          result={`${winner.categoryName} Winner`}
+          imageUrl={winner.imageUrl}
+          title={winner.title}
+          author={winner.author}
+        />
       ))
     ) : (
       <div class="text-center py-16">

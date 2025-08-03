@@ -9,7 +9,7 @@ const navigation = [
   { name: 'Partecipa ora', href: '#' },
 ];
 
-const logoPath = '/logo.png';
+const logoPath = '/ortona-sub-logo.svg';
 const loginPath = '/user';
 
 export function NavbarHeader({ standalone = false }: { standalone?: boolean }) {

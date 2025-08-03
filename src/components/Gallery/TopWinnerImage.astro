@@ -11,9 +11,9 @@ type Props = {
 const { imageUrl, title, author, result }: Props = Astro.props;
 ---
 
-<div class="space-y-8">
+<div class="space-y-6 md:space-y-8">
   <h2
-    class={`flex justify-between items-baseline gap-10 text-4xl font-thin text-gray-100 uppercase`}
+    class={`flex flex-col md:flex-row md:gap-10 gap-2 text-pretty justify-between items-baseline  text-4xl font-thin text-gray-100 uppercase`}
   >
     <p>{result}</p>
     <p class="text-3xl">
