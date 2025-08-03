@@ -2,11 +2,9 @@
 import AppWrapper from '@/components/AppWrapper.astro';
 import { Navbar } from '@/components/Navbar/Navbar';
 import { SITE_DESCRIPTION, SITE_TITLE } from '@/consts';
-import { eq } from 'drizzle-orm';
 import ContestWinners from '../../components/Gallery/ContestWinners.astro';
 import Layout from '../../components/Gallery/Layout.astro';
-import { getDb } from '../../db/index.js';
-import { contests } from '../../db/schema.js';
+import { getContestTitleByContestId } from '../../components/Gallery/queries.js';
 
 const { contestId } = Astro.params;
 
@@ -18,16 +16,11 @@ if (!Astro.locals.runtime.env.DB) {
   throw new Error('DB is not available');
 }
 
-const db = getDb(Astro.locals.runtime.env.DB);
-
 // Fetch contest details to get the actual title
-const contestDetails = await db
-  .select({ name: contests.name })
-  .from(contests)
-  .where(eq(contests.id, contestId))
-  .limit(1);
-
-const contestTitle = contestDetails[0]?.name ?? contestId;
+const contestTitle = await getContestTitleByContestId(
+  Astro.locals.runtime.env.DB,
+  contestId
+);
 ---
 
 <AppWrapper title={SITE_TITLE} description={SITE_DESCRIPTION}>

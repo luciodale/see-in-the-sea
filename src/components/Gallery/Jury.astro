@@ -1,4 +1,6 @@
 ---
+import { getJudgesByContestId } from './queries.js';
+
 type Props = {
   contestId: string;
 };
@@ -9,18 +11,11 @@ if (!Astro.locals.runtime.env.DB) {
   throw new Error('DB is not available');
 }
 
-import { eq } from 'drizzle-orm';
-import { getDb } from '../../db/index.js';
-import { judges } from '../../db/schema.js';
-
-const db = getDb(Astro.locals.runtime.env.DB);
-
 // Get judges for the specified contest
-const contestJudges = await db
-  .select({ fullName: judges.fullName })
-  .from(judges)
-  .where(eq(judges.contestId, contestId))
-  .orderBy(judges.fullName);
+const contestJudges = await getJudgesByContestId(
+  Astro.locals.runtime.env.DB,
+  contestId
+);
 ---
 
 <div class="mt-12 space-y-4 bg-slate-800/60 py-6">
@@ -35,4 +30,3 @@ const contestJudges = await db
     }
   </ul>
 </div>
-

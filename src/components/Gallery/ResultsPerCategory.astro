@@ -1,10 +1,10 @@
 ---
-// this is generated at build time so fetch the results from the d1 object binding
-import { and, eq } from 'drizzle-orm';
-import { getDb } from '../../db/index.js';
-import { categories, results, submissions } from '../../db/schema.js';
 import Jury from './Jury.astro';
 import Layout from './Layout.astro';
+import {
+  getAllWinnersByContestAndCategory,
+  getCategoryNamesByIds,
+} from './queries.js';
 import RunnerUpImages from './RunnerUpImages.astro';
 import TopWinnerImage from './TopWinnerImage.astro';
 
@@ -20,28 +20,12 @@ if (!Astro.locals.runtime.env.DB) {
   throw new Error('DB is not available');
 }
 
-const db = getDb(Astro.locals.runtime.env.DB);
-
 // Fetch results for specific contest and category
-const contestResults = await db
-  .select({
-    result: results.result,
-    firstName: results.firstName,
-    lastName: results.lastName,
-    submissionId: results.submissionId,
-    title: submissions.title,
-    categoryId: submissions.categoryId,
-    r2Key: submissions.r2Key,
-    originalFilename: submissions.originalFilename,
-  })
-  .from(results)
-  .innerJoin(submissions, eq(results.submissionId, submissions.id))
-  .where(
-    and(
-      eq(submissions.contestId, contestId),
-      eq(submissions.categoryId, categoryId)
-    )
-  );
+const contestResults = await getAllWinnersByContestAndCategory(
+  Astro.locals.runtime.env.DB,
+  contestId,
+  categoryId
+);
 
 // Sort results in proper contest order: first, second, third, runner-up
 const sortedResults = contestResults.sort((a, b) => {
@@ -54,19 +38,10 @@ const sortedResults = contestResults.sort((a, b) => {
 
 // Get category names
 const categoryIds = [...new Set(sortedResults.map(w => w.categoryId))];
-const categoryMap = new Map();
-if (categoryIds.length > 0) {
-  const categoryData = await db
-    .select({ id: categories.id, name: categories.name })
-    .from(categories)
-    .where(
-      categoryIds
-        .map(id => eq(categories.id, id))
-        .reduce((acc, condition) => acc || condition)
-    );
-
-  categoryData.forEach(cat => categoryMap.set(cat.id, cat.name));
-}
+const categoryMap = await getCategoryNamesByIds(
+  Astro.locals.runtime.env.DB,
+  categoryIds
+);
 
 // Judges are now handled by the Jury component
 

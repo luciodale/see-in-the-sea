@@ -1,9 +1,9 @@
 ---
-// this is generated at build time so fetch the results from the d1 object binding
-import { and, eq } from 'drizzle-orm';
-import { getDb } from '../../db/index.js';
-import { categories, results, submissions } from '../../db/schema.js';
 import Jury from './Jury.astro';
+import {
+  getCategoryNamesByIds,
+  getFirstPlaceWinnersByContestId,
+} from './queries.js';
 import TopWinnerImage from './TopWinnerImage.astro';
 
 type Props = {
@@ -17,43 +17,18 @@ if (!Astro.locals.runtime.env.DB) {
   throw new Error('DB is not available');
 }
 
-const db = getDb(Astro.locals.runtime.env.DB);
-
 // Fetch only first place winners for the specified contest across all categories
-// This is the corrected query.
-// It uses 'and()' to combine the two conditions for the SQL WHERE clause.
-const firstPlaceWinners = await db
-  .select({
-    result: results.result,
-    firstName: results.firstName,
-    lastName: results.lastName,
-    submissionId: results.submissionId,
-    title: submissions.title,
-    categoryId: submissions.categoryId,
-    r2Key: submissions.r2Key,
-    originalFilename: submissions.originalFilename,
-  })
-  .from(results)
-  .innerJoin(submissions, eq(results.submissionId, submissions.id))
-  .where(
-    and(eq(submissions.contestId, contestId), eq(results.result, 'first'))
-  );
+const firstPlaceWinners = await getFirstPlaceWinnersByContestId(
+  Astro.locals.runtime.env.DB,
+  contestId
+);
 
 // Get category names
 const categoryIds = [...new Set(firstPlaceWinners.map(w => w.categoryId))];
-const categoryMap = new Map<string, string>();
-if (categoryIds.length > 0) {
-  const categoryData = await db
-    .select({ id: categories.id, name: categories.name })
-    .from(categories)
-    .where(
-      categoryIds
-        .map(id => eq(categories.id, id))
-        .reduce((acc, condition) => acc || condition)
-    );
-
-  categoryData.forEach(cat => categoryMap.set(cat.id, cat.name));
-}
+const categoryMap = await getCategoryNamesByIds(
+  Astro.locals.runtime.env.DB,
+  categoryIds
+);
 
 // Judges are now handled by the Jury component
 
