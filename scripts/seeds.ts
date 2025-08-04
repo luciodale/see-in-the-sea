@@ -136,6 +136,26 @@ export const seeds = {
         },
       ],
     },
+    {
+      id: 'uw-2019',
+      name: 'UW Contest 2019',
+      description:
+        'Annual underwater photography competition celebrating the beauty and diversity of marine life',
+      startDate: '2019-01-01',
+      endDate: '2019-12-31',
+      isActive: false,
+      judges: [
+        {
+          fullName: 'Isabella Maffei',
+        },
+        {
+          fullName: 'David Salvatori',
+        },
+        {
+          fullName: 'Massimo Zannini',
+        },
+      ],
+    },
   ],
 };
 

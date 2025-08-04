@@ -3,12 +3,13 @@ import AppWrapper from '@/components/AppWrapper.astro';
 import HeroSegment from '@/components/HeroSegment.astro';
 import { Navbar } from '@/components/Navbar/Navbar';
 import { SITE_DESCRIPTION, SITE_TITLE } from '@/consts';
+import { submissions } from '../../migration/uw-2019';
 import Layout from '../components/Gallery/Layout.astro';
+console.log(submissions);
 ---
 
 <AppWrapper title={SITE_TITLE} description={SITE_DESCRIPTION}>
   <Navbar client:load />
-
   <Layout>
     <div class="flex flex-col gap-32">
       <!-- Who We Are -->
