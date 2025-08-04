@@ -9,6 +9,8 @@ import {
   type MigrationSubmission,
 } from './utils.js';
 
+const BATCH_SIZE = 10;
+
 // Easy toggle: use --remote flag for remote mode, otherwise local
 const isRemote = process.argv.includes('--remote');
 const mode = isRemote ? 'remote' : 'local';
@@ -72,6 +74,38 @@ function processSubmissionsForR2(
   return processed;
 }
 
+// Helper function to split array into chunks
+function chunkArray<T>(array: T[], chunkSize: number): T[][] {
+  const chunks: T[][] = [];
+  for (let i = 0; i < array.length; i += chunkSize) {
+    chunks.push(array.slice(i, i + chunkSize));
+  }
+  return chunks;
+}
+
+// Upload a single submission
+async function uploadSingleSubmission(
+  submission: R2Submission,
+  picturesDir: string,
+  index: number,
+  total: number
+): Promise<{ success: boolean; error?: string }> {
+  console.log(`📤 [${index + 1}/${total}] Uploading: ${submission.title}`);
+
+  const imagePath = join(picturesDir, submission.originalFilename);
+
+  try {
+    const command = `bunx wrangler r2 object put see-in-the-sea-images/${submission.r2Key} --file "${imagePath}" --${mode}`;
+    execSync(command, { stdio: 'pipe' });
+    console.log(`✅ Uploaded: ${submission.title}`);
+    return { success: true };
+  } catch (error) {
+    const errorMessage = error instanceof Error ? error.message : String(error);
+    console.log(`❌ Failed: ${submission.title}`);
+    return { success: false, error: `${submission.title}: ${errorMessage}` };
+  }
+}
+
 async function uploadToR2(submissions: R2Submission[]): Promise<UploadResult> {
   const result: UploadResult = {
     total: submissions.length,
@@ -82,29 +116,43 @@ async function uploadToR2(submissions: R2Submission[]): Promise<UploadResult> {
 
   const picturesDir = join(process.cwd(), 'migration', 'pictures');
 
-  for (let i = 0; i < submissions.length; i++) {
-    const submission = submissions[i];
-    console.log(
-      `📤 [${i + 1}/${submissions.length}] Uploading: ${submission.title}`
+  // Split submissions into batches
+  const batches = chunkArray(submissions, BATCH_SIZE);
+
+  console.log(
+    `📦 Processing ${batches.length} batches of ${BATCH_SIZE} uploads each...`
+  );
+
+  for (let batchIndex = 0; batchIndex < batches.length; batchIndex++) {
+    const batch = batches[batchIndex];
+    const batchStart = batchIndex * BATCH_SIZE;
+
+    console.log(`\n🔄 Processing batch ${batchIndex + 1}/${batches.length}...`);
+
+    // Upload all files in the current batch in parallel
+    const uploadPromises = batch.map((submission, localIndex) =>
+      uploadSingleSubmission(
+        submission,
+        picturesDir,
+        batchStart + localIndex,
+        submissions.length
+      )
     );
 
-    const imagePath = join(picturesDir, submission.originalFilename);
+    // Wait for all uploads in this batch to complete
+    const batchResults = await Promise.all(uploadPromises);
 
-    try {
-      const command = `bunx wrangler r2 object put see-in-the-sea-images/${submission.r2Key} --file "${imagePath}" --${mode}`;
-      execSync(command, { stdio: 'pipe' });
-      result.uploaded++;
-      console.log(`✅ Uploaded: ${submission.title}`);
-    } catch (error) {
-      const errorMessage =
-        error instanceof Error ? error.message : String(error);
-      result.errors.push(`${submission.title}: ${errorMessage}`);
-      result.failed++;
-      console.log(`❌ Failed: ${submission.title}`);
+    // Process results
+    for (const uploadResult of batchResults) {
+      if (uploadResult.success) {
+        result.uploaded++;
+      } else {
+        result.failed++;
+        if (uploadResult.error) {
+          result.errors.push(uploadResult.error);
+        }
+      }
     }
-
-    // Small delay between uploads
-    await new Promise(resolve => setTimeout(resolve, 100));
   }
 
   return result;

@@ -1,4 +1,3 @@
-// @ts-check
 import cloudflare from '@astrojs/cloudflare';
 import mdx from '@astrojs/mdx';
 import react from '@astrojs/react';
@@ -16,6 +15,13 @@ export default defineConfig({
   site: 'https://see-in-the-sea.lucio-dalessa.workers.dev',
   output: 'server',
   integrations: [mdx(), sitemap(), react()],
+  i18n: {
+    defaultLocale: 'en',
+    locales: ['en', 'it'],
+    routing: {
+      prefixDefaultLocale: false,
+    },
+  },
   vite: {
     plugins: [
       tanstackRouter({

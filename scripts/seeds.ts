@@ -17,7 +17,7 @@ export const seeds = {
         'Close-up photography of small marine life, textures, and intricate underwater details',
     },
     {
-      id: 'bw',
+      id: 'black-and-white',
       name: 'Black & White',
       description:
         'Monochrome underwater photography emphasizing contrast, composition, and artistic expression',

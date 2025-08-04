@@ -1,4 +1,6 @@
 ---
+import { Picture } from 'astro:assets';
+
 type Props = {
   imageUrl: string;
   showInfo?: boolean;
@@ -10,7 +12,14 @@ const { imageUrl, title, author, showInfo = true }: Props = Astro.props;
 ---
 
 <div class="bg-gray-950 overflow-hidden shadow-lg">
-  <img class="w-full object-cover" src={imageUrl} alt={title} loading="lazy" />
+  <Picture
+    width={1000}
+    height={1000}
+    class="w-full object-cover"
+    src={imageUrl}
+    alt={title}
+    loading="lazy"
+  />
   {
     showInfo && (
       <div class="px-6 py-2 items-center justify-center">
