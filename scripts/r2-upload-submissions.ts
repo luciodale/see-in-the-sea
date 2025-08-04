@@ -1,13 +1,16 @@
 #!/usr/bin/env bun
 
-import { execSync } from 'child_process';
+import { exec } from 'child_process';
 import { existsSync } from 'fs';
 import { join } from 'path';
+import { promisify } from 'util';
 import {
   discoverContestFiles,
   generateR2KeyWithoutEmail,
   type MigrationSubmission,
 } from './utils.js';
+
+const execAsync = promisify(exec);
 
 const BATCH_SIZE = 10;
 
@@ -96,7 +99,7 @@ async function uploadSingleSubmission(
 
   try {
     const command = `bunx wrangler r2 object put see-in-the-sea-images/${submission.r2Key} --file "${imagePath}" --${mode}`;
-    execSync(command, { stdio: 'pipe' });
+    await execAsync(command);
     console.log(`✅ Uploaded: ${submission.title}`);
     return { success: true };
   } catch (error) {
