@@ -24,9 +24,9 @@ INSERT OR IGNORE INTO contests (id, name, description, start_date, end_date, is_
 INSERT OR IGNORE INTO contests (id, name, description, start_date, end_date, is_active) VALUES ('uw-2024', 'UW Contest 2024', 'Annual underwater photography competition celebrating the beauty and diversity of marine life', '2024-01-01', '2024-12-31', false);
 INSERT OR IGNORE INTO contests (id, name, description, start_date, end_date, is_active) VALUES ('uw-2019', 'UW Contest 2019', 'Annual underwater photography competition celebrating the beauty and diversity of marine life', '2019-01-01', '2019-12-31', false);
 
-INSERT OR IGNORE INTO judges (id, contest_id, full_name) VALUES ('S0wuCz7c8SwJbCpluksQn', 'uw-2024', 'Pietro Formis');
-INSERT OR IGNORE INTO judges (id, contest_id, full_name) VALUES ('vjuJgxm48uip_lUkPFKYW', 'uw-2024', 'Domenico Roscigno');
-INSERT OR IGNORE INTO judges (id, contest_id, full_name) VALUES ('6svDfWvWCgjw1F1XPKBIL', 'uw-2024', 'Pasquale Vassallo');
-INSERT OR IGNORE INTO judges (id, contest_id, full_name) VALUES ('DLd7qHkfM2E0OgLY71Ptd', 'uw-2019', 'Isabella Maffei');
-INSERT OR IGNORE INTO judges (id, contest_id, full_name) VALUES ('txfZvG9mER5UAazOp9jzK', 'uw-2019', 'David Salvatori');
-INSERT OR IGNORE INTO judges (id, contest_id, full_name) VALUES ('mOYhgEHDrP5ie-lNCzV0K', 'uw-2019', 'Massimo Zannini');
+INSERT OR IGNORE INTO judges (id, contest_id, full_name) VALUES ('YoOtAMjLHNOVKyIXqlKis', 'uw-2024', 'Pietro Formis');
+INSERT OR IGNORE INTO judges (id, contest_id, full_name) VALUES ('_ecP6c4fVvxHjSdqVJQQO', 'uw-2024', 'Domenico Roscigno');
+INSERT OR IGNORE INTO judges (id, contest_id, full_name) VALUES ('nTM20TEPEVzNadjGxAobx', 'uw-2024', 'Pasquale Vassallo');
+INSERT OR IGNORE INTO judges (id, contest_id, full_name) VALUES ('aMlfYRkZOtWWDNC-g69zU', 'uw-2019', 'Isabella Maffei');
+INSERT OR IGNORE INTO judges (id, contest_id, full_name) VALUES ('1WzM3JyLyRb6ylh5sdPIK', 'uw-2019', 'David Salvatori');
+INSERT OR IGNORE INTO judges (id, contest_id, full_name) VALUES ('K5Q4Sy0B7Xc3QzVgtLn_E', 'uw-2019', 'Massimo Zannini');

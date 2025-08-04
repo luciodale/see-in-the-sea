@@ -1,5 +1,5 @@
 import type { D1Database } from '@cloudflare/workers-types';
-import { and, eq } from 'drizzle-orm';
+import { and, eq, inArray } from 'drizzle-orm';
 import { getDb } from '../../db/index.js';
 import {
   categories,
@@ -326,11 +326,7 @@ export async function getCategoryNamesByIds(
   const categoryData = await db
     .select({ id: categories.id, name: categories.name })
     .from(categories)
-    .where(
-      categoryIds
-        .map(id => eq(categories.id, id))
-        .reduce((acc, condition) => acc || condition)
-    );
+    .where(inArray(categories.id, categoryIds));
 
   const categoryMap = new Map<string, string>();
   categoryData.forEach(cat => categoryMap.set(cat.id, cat.name));
