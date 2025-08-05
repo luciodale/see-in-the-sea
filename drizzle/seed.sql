@@ -22,19 +22,23 @@ INSERT OR IGNORE INTO categories (id, name, description) VALUES ('the-sea-in-mot
 
 INSERT OR IGNORE INTO contests (id, name, description, start_date, end_date, is_active) VALUES ('uw-2025', 'UW Contest 2025', 'Annual underwater photography competition celebrating the beauty and diversity of marine life', '2025-01-01', '2025-12-31', true);
 INSERT OR IGNORE INTO contests (id, name, description, start_date, end_date, is_active) VALUES ('uw-2024', 'UW Contest 2024', 'Annual underwater photography competition celebrating the beauty and diversity of marine life', '2024-01-01', '2024-12-31', false);
+INSERT OR IGNORE INTO contests (id, name, description, start_date, end_date, is_active) VALUES ('uw-2016', 'UW Contest 2016', 'Annual underwater photography competition celebrating the beauty and diversity of marine life', '2016-01-01', '2016-12-31', false);
 INSERT OR IGNORE INTO contests (id, name, description, start_date, end_date, is_active) VALUES ('uw-2017', 'UW Contest 2017', 'Annual underwater photography competition celebrating the beauty and diversity of marine life', '2017-01-01', '2017-12-31', false);
 INSERT OR IGNORE INTO contests (id, name, description, start_date, end_date, is_active) VALUES ('uw-2018', 'UW Contest 2018', 'Annual underwater photography competition celebrating the beauty and diversity of marine life', '2018-01-01', '2018-12-31', false);
 INSERT OR IGNORE INTO contests (id, name, description, start_date, end_date, is_active) VALUES ('uw-2019', 'UW Contest 2019', 'Annual underwater photography competition celebrating the beauty and diversity of marine life', '2019-01-01', '2019-12-31', false);
 
-INSERT OR IGNORE INTO judges (id, contest_id, full_name) VALUES ('ESKdcLho3UQoGP0G_yoS4', 'uw-2024', 'Pietro Formis');
-INSERT OR IGNORE INTO judges (id, contest_id, full_name) VALUES ('1hIy823Sc6xxu7uDpnbwi', 'uw-2024', 'Domenico Roscigno');
-INSERT OR IGNORE INTO judges (id, contest_id, full_name) VALUES ('aTX8I13gvBgUP0_VLywsO', 'uw-2024', 'Pasquale Vassallo');
-INSERT OR IGNORE INTO judges (id, contest_id, full_name) VALUES ('jAKA8PW_HrKEfmRZCNpqq', 'uw-2017', 'Marco Colombo');
-INSERT OR IGNORE INTO judges (id, contest_id, full_name) VALUES ('EWZq8c0zMfWPuAhRHbZOp', 'uw-2017', 'Marcello Di Francesco');
-INSERT OR IGNORE INTO judges (id, contest_id, full_name) VALUES ('DlflpEAsqUNDTVfpCL7IP', 'uw-2017', 'Davide Vezzaro');
-INSERT OR IGNORE INTO judges (id, contest_id, full_name) VALUES ('a7em8YQ932CnbsU6ts44Q', 'uw-2018', 'Domenico Roscigno');
-INSERT OR IGNORE INTO judges (id, contest_id, full_name) VALUES ('R9r8ItH7Z-9LWUD5XTPhc', 'uw-2018', 'Davide Vezzaro');
-INSERT OR IGNORE INTO judges (id, contest_id, full_name) VALUES ('IRnluo697DvqRGq9CVzpP', 'uw-2018', 'Massimo Zannini');
-INSERT OR IGNORE INTO judges (id, contest_id, full_name) VALUES ('mXCllkLQtjPS_kjQVprcp', 'uw-2019', 'Isabella Maffei');
-INSERT OR IGNORE INTO judges (id, contest_id, full_name) VALUES ('yqiw0H1Jl9Rg5Yhks2Xni', 'uw-2019', 'David Salvatori');
-INSERT OR IGNORE INTO judges (id, contest_id, full_name) VALUES ('ppdhZ7lDYFAlYZqhg_4UM', 'uw-2019', 'Massimo Zannini');
+INSERT OR IGNORE INTO judges (id, contest_id, full_name) VALUES ('PGExmk0pSL4SZxVgK_r9U', 'uw-2024', 'Pietro Formis');
+INSERT OR IGNORE INTO judges (id, contest_id, full_name) VALUES ('52pzZPdiZznQDCtgUs8Hn', 'uw-2024', 'Domenico Roscigno');
+INSERT OR IGNORE INTO judges (id, contest_id, full_name) VALUES ('DDz5HFl707__pkOQN8kAQ', 'uw-2024', 'Pasquale Vassallo');
+INSERT OR IGNORE INTO judges (id, contest_id, full_name) VALUES ('oTK2Snw_vclKlmCkErTRk', 'uw-2016', 'Marco Colombo');
+INSERT OR IGNORE INTO judges (id, contest_id, full_name) VALUES ('Nq3uxT43f2kP2bjq0iSiv', 'uw-2016', 'Paolo Fossati');
+INSERT OR IGNORE INTO judges (id, contest_id, full_name) VALUES ('bu_xvg3GxnCijGCbJL0tk', 'uw-2016', 'Davide Vezzaro');
+INSERT OR IGNORE INTO judges (id, contest_id, full_name) VALUES ('tYROH66uJ4Pr4H-AkDvPJ', 'uw-2017', 'Marco Colombo');
+INSERT OR IGNORE INTO judges (id, contest_id, full_name) VALUES ('ONIb5gEwNhmWZJ379gwjU', 'uw-2017', 'Marcello Di Francesco');
+INSERT OR IGNORE INTO judges (id, contest_id, full_name) VALUES ('G4T2SFlGGSykst-Xv3p0x', 'uw-2017', 'Davide Vezzaro');
+INSERT OR IGNORE INTO judges (id, contest_id, full_name) VALUES ('ZuaVi8G5aNBjHAPtBdI0U', 'uw-2018', 'Domenico Roscigno');
+INSERT OR IGNORE INTO judges (id, contest_id, full_name) VALUES ('NYpaH05XKRZ-HkhEfcRNA', 'uw-2018', 'Davide Vezzaro');
+INSERT OR IGNORE INTO judges (id, contest_id, full_name) VALUES ('8l6HiKiCK7SMDfOLpThZj', 'uw-2018', 'Massimo Zannini');
+INSERT OR IGNORE INTO judges (id, contest_id, full_name) VALUES ('IiaUul_K6MTNXkjWIXCME', 'uw-2019', 'Isabella Maffei');
+INSERT OR IGNORE INTO judges (id, contest_id, full_name) VALUES ('5F5h3iG-wp8AF98x3duyR', 'uw-2019', 'David Salvatori');
+INSERT OR IGNORE INTO judges (id, contest_id, full_name) VALUES ('1JHBz_EgK2GgaCv4l-gmN', 'uw-2019', 'Massimo Zannini');
