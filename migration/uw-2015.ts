@@ -113,7 +113,7 @@ export const submissions: MigrationSubmission[] = [
     contestId: 'uw-2015',
     categoryId: 'wide-angle',
     userEmail: '',
-    title: 'Danza dell\'amore',
+    title: "Danza dell'amore",
     description: '',
     result: 'third',
     firstName: 'DOMENICO',
@@ -413,7 +413,7 @@ export const submissions: MigrationSubmission[] = [
     contestId: 'uw-2015',
     categoryId: 'mediterranean',
     userEmail: '',
-    title: 'L\'ospite',
+    title: "L'ospite",
     description: '',
     result: 'runner-up',
     firstName: 'PASQUALE',
@@ -599,5 +599,5 @@ export const submissions: MigrationSubmission[] = [
     firstName: 'LORENZO',
     lastName: 'TERRANEO',
     fileName: 'segnalazione.jpg',
-  }
+  },
 ];

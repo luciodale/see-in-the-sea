@@ -116,6 +116,18 @@ export const seeds = {
       description:
         'DAN Europe photography security and safety underwater photography',
     },
+    {
+      id: 'photo-journalism',
+      name: 'Photo Journalism',
+      description:
+        'Documentary underwater photography telling stories about marine conservation, human impact, and underwater events',
+    },
+    {
+      id: 'pool',
+      name: 'Pool',
+      description:
+        'Underwater photography taken in swimming pools, featuring artistic underwater portraits and creative compositions',
+    },
   ],
   contests: [
     {
@@ -145,6 +157,26 @@ export const seeds = {
         },
         {
           fullName: 'Pasquale Vassallo',
+        },
+      ],
+    },
+    {
+      id: 'uw-2014',
+      name: 'UW Contest 2014',
+      description:
+        'Annual underwater photography competition celebrating the beauty and diversity of marine life',
+      startDate: '2014-01-01',
+      endDate: '2014-12-31',
+      isActive: false,
+      judges: [
+        {
+          fullName: 'Alberto Balbi',
+        },
+        {
+          fullName: 'Franco Banfi',
+        },
+        {
+          fullName: 'Paolo Fossati',
         },
       ],
     },
