@@ -137,6 +137,46 @@ export const seeds = {
       ],
     },
     {
+      id: 'uw-2017',
+      name: 'UW Contest 2017',
+      description:
+        'Annual underwater photography competition celebrating the beauty and diversity of marine life',
+      startDate: '2017-01-01',
+      endDate: '2017-12-31',
+      isActive: false,
+      judges: [
+        {
+          fullName: 'Marco Colombo',
+        },
+        {
+          fullName: 'Marcello Di Francesco',
+        },
+        {
+          fullName: 'Davide Vezzaro',
+        },
+      ],
+    },
+    {
+      id: 'uw-2018',
+      name: 'UW Contest 2018',
+      description:
+        'Annual underwater photography competition celebrating the beauty and diversity of marine life',
+      startDate: '2018-01-01',
+      endDate: '2018-12-31',
+      isActive: false,
+      judges: [
+        {
+          fullName: 'Domenico Roscigno',
+        },
+        {
+          fullName: 'Davide Vezzaro',
+        },
+        {
+          fullName: 'Massimo Zannini',
+        },
+      ],
+    },
+    {
       id: 'uw-2019',
       name: 'UW Contest 2019',
       description:
