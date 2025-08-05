@@ -9,7 +9,7 @@ export const submissions = [
     result: 'first',
     firstName: 'Hoarau',
     lastName: 'Galice',
-    fileName: 'sharks.jpg',
+    fileName: '2019-sharks.jpg',
   },
   {
     id: 'oJgaX65FmJo39kMLm6dDq',
@@ -21,7 +21,7 @@ export const submissions = [
     result: 'second',
     firstName: 'Luc',
     lastName: 'Rooman',
-    fileName: 'turtle.jpg',
+    fileName: '2019-turtle.jpg',
   },
   {
     id: 'HQrP1Kgpybm1OZuhTVmJf',
@@ -33,7 +33,7 @@ export const submissions = [
     result: 'third',
     firstName: 'Francesco',
     lastName: 'Visintin',
-    fileName: 'carousel.jpg',
+    fileName: '2019-carousel.jpg',
   },
   {
     id: '4zsBxE5hpxDq8l39Axhwr',
@@ -45,7 +45,7 @@ export const submissions = [
     result: 'runner-up',
     firstName: 'Raffaele',
     lastName: 'Livornese',
-    fileName: 'danza-della-natura.jpg',
+    fileName: '2019-danza-della-natura.jpg',
   },
   {
     id: 'HZMyS5zQIdJRhHRZJQoY0',
@@ -57,7 +57,7 @@ export const submissions = [
     result: 'runner-up',
     firstName: 'Stefano',
     lastName: 'Cerbai',
-    fileName: 'gray-seal.jpg',
+    fileName: '2019-gray-seal.jpg',
   },
   {
     id: 'xgEwnMalPRWU5KedSyJ7W',
@@ -69,7 +69,7 @@ export const submissions = [
     result: 'runner-up',
     firstName: 'Lena',
     lastName: 'Remy',
-    fileName: 'grey-nurse-cruising-along.jpg',
+    fileName: '2019-grey-nurse-cruising-along.jpg',
   },
   {
     id: 'VJDHLAK6pJHXOkp3R-32Q',
@@ -81,7 +81,7 @@ export const submissions = [
     result: 'runner-up',
     firstName: 'Gino',
     lastName: 'Symus',
-    fileName: 'mating-toads-in-the-sun.jpg',
+    fileName: '2019-mating-toads-in-the-sun.jpg',
   },
   {
     id: 'JyIHjiGZVHV2bvw5-Deok',
@@ -93,7 +93,7 @@ export const submissions = [
     result: 'runner-up',
     firstName: 'Gino',
     lastName: 'Symus',
-    fileName: 'pike-between-waterlines.jpg',
+    fileName: '2019-pike-between-waterlines.jpg',
   },
   {
     id: '1ocmMiY9WmMAAnORYbgsD',
@@ -105,7 +105,7 @@ export const submissions = [
     result: 'runner-up',
     firstName: 'Alessandro',
     lastName: 'Pagano',
-    fileName: 'shark.jpg',
+    fileName: '2019-shark.jpg',
   },
   {
     id: 'VIijqw9C_NHG3_SpNL3wc',
@@ -117,7 +117,7 @@ export const submissions = [
     result: 'runner-up',
     firstName: 'Alessandro',
     lastName: 'Grasso',
-    fileName: 'delfini.jpg',
+    fileName: '2019-delfini.jpg',
   },
   {
     id: 'L9kW2mX8vYpQ3nR7sT1uC',
@@ -129,7 +129,7 @@ export const submissions = [
     result: 'first',
     firstName: 'Paolo',
     lastName: 'Bausani',
-    fileName: 'fluido-mortale.jpg',
+    fileName: '2019-fluido-mortale.jpg',
   },
   {
     id: 'M3pK9qR5tU8wV2nX7sA1B',
@@ -141,7 +141,7 @@ export const submissions = [
     result: 'second',
     firstName: 'Hoarau',
     lastName: 'Galice',
-    fileName: 'jack-and-kelly.jpg',
+    fileName: '2019-jack-and-kelly.jpg',
   },
   {
     id: 'N7dF2hY9pL6mK3rT8uQ5W',
@@ -153,7 +153,7 @@ export const submissions = [
     result: 'third',
     firstName: 'Marco',
     lastName: 'Steiner',
-    fileName: 'blue-angler.jpg',
+    fileName: '2019-blue-angler.jpg',
   },
   {
     id: 'P8kQ3rT5uV9wX2nY7sB1C',
@@ -165,7 +165,7 @@ export const submissions = [
     result: 'runner-up',
     firstName: 'Stefano',
     lastName: 'Cerbai',
-    fileName: 'illuminato.jpg',
+    fileName: '2019-illuminato.jpg',
   },
   {
     id: 'Q9mS4tU6vW0xY3nZ8sC2D',
@@ -177,7 +177,7 @@ export const submissions = [
     result: 'runner-up',
     firstName: 'Marco',
     lastName: 'Gargiulo',
-    fileName: 'zeus2.jpg',
+    fileName: '2019-zeus2.jpg',
   },
   {
     id: 'R1nT5uW7xZ0yA4oB9sD3E',
@@ -189,7 +189,7 @@ export const submissions = [
     result: 'runner-up',
     firstName: 'Enrico',
     lastName: 'Simogyi',
-    fileName: 'neighbours.jpg',
+    fileName: '2019-neighbours.jpg',
   },
   {
     id: 'S2oU6vY8zA1yB5pC0sE4F',
@@ -201,7 +201,7 @@ export const submissions = [
     result: 'runner-up',
     firstName: 'Francesco',
     lastName: 'Visintin',
-    fileName: 'punk-boy.jpg',
+    fileName: '2019-punk-boy.jpg',
   },
   {
     id: 'T3pV7wZ9aB2yC6qD1sF5G',
@@ -213,7 +213,7 @@ export const submissions = [
     result: 'runner-up',
     firstName: 'Fabio',
     lastName: 'Strazzi',
-    fileName: 'seahorse.jpg',
+    fileName: '2019-seahorse.jpg',
   },
   {
     id: 'U4qW8xA0bC3yD7rE2sG6H',
@@ -225,7 +225,7 @@ export const submissions = [
     result: 'runner-up',
     firstName: 'Stefano',
     lastName: 'Proakis',
-    fileName: 'ospite-inatteso.jpg',
+    fileName: '2019-ospite-inatteso.jpg',
   },
   {
     id: 'V5rX9yB1cD4zE8sF3tH7I',
@@ -237,7 +237,7 @@ export const submissions = [
     result: 'runner-up',
     firstName: 'Giacomo',
     lastName: 'Giovannini',
-    fileName: 'sanpietrino-affamato.jpg',
+    fileName: '2019-sanpietrino-affamato.jpg',
   },
   {
     id: 'Z1cV3wS5lP0oE8sF3tH7I',
@@ -249,7 +249,7 @@ export const submissions = [
     result: 'first',
     firstName: 'Salvatore',
     lastName: 'Ianniello',
-    fileName: 'solar-reflection.jpg',
+    fileName: '2019-solar-reflection.jpg',
   },
   {
     id: 'W6sY0zC2dE5aF9tG4uI8J',
@@ -261,7 +261,7 @@ export const submissions = [
     result: 'first',
     firstName: 'Salvatore',
     lastName: 'Ianniello',
-    fileName: 'for-protection.jpg',
+    fileName: '2019-for-protection.jpg',
   },
   {
     id: 'X7tZ1aD3eF6bG0uH5vJ9K',
@@ -273,7 +273,7 @@ export const submissions = [
     result: 'first',
     firstName: 'Salvatore',
     lastName: 'Ianniello',
-    fileName: 'yellow-capture.jpg',
+    fileName: '2019-yellow-capture.jpg',
   },
   {
     id: 'Y8uA2bE4fG7cH1vI6wK0L',
@@ -285,7 +285,7 @@ export const submissions = [
     result: 'second',
     firstName: 'Francesco',
     lastName: 'Visintin',
-    fileName: 'portfolio-1-3.jpg',
+    fileName: '2019-portfolio-1-3.jpg',
   },
   {
     id: 'Z9vB3cF5gH8dI2wJ7xL1M',
@@ -297,7 +297,7 @@ export const submissions = [
     result: 'second',
     firstName: 'Francesco',
     lastName: 'Visintin',
-    fileName: 'portfolio-2-3.jpg',
+    fileName: '2019-portfolio-2-3.jpg',
   },
   {
     id: 'A0wC4dG6hI9eJ3xK8yM2N',
@@ -309,7 +309,7 @@ export const submissions = [
     result: 'second',
     firstName: 'Francesco',
     lastName: 'Visintin',
-    fileName: 'portfolio-3-3.jpg',
+    fileName: '2019-portfolio-3-3.jpg',
   },
   {
     id: 'B1xD5eH7iJ0fK4yL9zN3O',
@@ -321,7 +321,7 @@ export const submissions = [
     result: 'third',
     firstName: 'Alessandro',
     lastName: 'Grasso',
-    fileName: 'cromatismi-mediterranei-1.jpg',
+    fileName: '2019-cromatismi-mediterranei-1.jpg',
   },
   {
     id: 'C2yE6fI8jK1gL5zM0aN4P',
@@ -333,7 +333,7 @@ export const submissions = [
     result: 'third',
     firstName: 'Alessandro',
     lastName: 'Grasso',
-    fileName: 'cromatismi-mediterranei-2.jpg',
+    fileName: '2019-cromatismi-mediterranei-2.jpg',
   },
   {
     id: 'D3zF7gJ9kL2hM6aN1bO5Q',
@@ -345,7 +345,7 @@ export const submissions = [
     result: 'third',
     firstName: 'Alessandro',
     lastName: 'Grasso',
-    fileName: 'cromatismi-mediterranei-3.jpg',
+    fileName: '2019-cromatismi-mediterranei-3.jpg',
   },
   {
     id: 'E4aG8hK0lM3iN7bO2cP6R',
@@ -357,7 +357,7 @@ export const submissions = [
     result: 'runner-up',
     firstName: 'Pasquale',
     lastName: 'Vassallo',
-    fileName: 'the-hunter.jpg',
+    fileName: '2019-the-hunter.jpg',
   },
   {
     id: 'F5bH9iL1mN4jO8cP3dQ7S',
@@ -369,7 +369,7 @@ export const submissions = [
     result: 'runner-up',
     firstName: 'Pasquale',
     lastName: 'Vassallo',
-    fileName: 'the-queen.jpg',
+    fileName: '2019-the-queen.jpg',
   },
   {
     id: 'G6cI0jM2nO5kP9dQ4eR8T',
@@ -381,7 +381,7 @@ export const submissions = [
     result: 'runner-up',
     firstName: 'Pasquale',
     lastName: 'Vassallo',
-    fileName: 'the-hunter-2.jpg',
+    fileName: '2019-the-hunter-2.jpg',
   },
   {
     id: 'H7dJ1kN3oP6lQ0eR5fS9U',
@@ -393,7 +393,7 @@ export const submissions = [
     result: 'runner-up',
     firstName: 'Nicholas',
     lastName: 'Samaras',
-    fileName: 'hippocampus-hippocampus.jpg',
+    fileName: '2019-hippocampus-hippocampus.jpg',
   },
   {
     id: 'ay7adZWHfCETUSNhI8b78',
@@ -405,7 +405,7 @@ export const submissions = [
     result: 'first',
     firstName: 'Alessandro',
     lastName: 'Grasso',
-    fileName: 'assalto-alla-acciughe.jpg',
+    fileName: '2019-assalto-alla-acciughe.jpg',
   },
   {
     id: 'WkyXOBiiYiqZNWSbQlFUu',
@@ -417,7 +417,7 @@ export const submissions = [
     result: 'second',
     firstName: 'Hoarau',
     lastName: 'Galice',
-    fileName: '1-iceberg.jpg',
+    fileName: '2019-1-iceberg.jpg',
   },
   {
     id: 'DJUOgux7nB_wk_WrWt_jt',
@@ -429,7 +429,7 @@ export const submissions = [
     result: 'second',
     firstName: 'Hoarau',
     lastName: 'Galice',
-    fileName: '2-ice-kelly.jpg',
+    fileName: '2019-2-ice-kelly.jpg',
   },
   {
     id: '8VpeiNQkbkKGCsyCiQ3Dr',
@@ -441,7 +441,7 @@ export const submissions = [
     result: 'second',
     firstName: 'Hoarau',
     lastName: 'Galice',
-    fileName: '3-idiver-in-the-iceberg.jpg',
+    fileName: '2019-3-idiver-in-the-iceberg.jpg',
   },
   {
     id: 'Zch6ynbwBo7-jdzR1F5BL',
@@ -453,7 +453,7 @@ export const submissions = [
     result: 'second',
     firstName: 'Hoarau',
     lastName: 'Galice',
-    fileName: '4-living-in-the-ice.jpg',
+    fileName: '2019-4-living-in-the-ice.jpg',
   },
   {
     id: 'MEl79lKsykGxbUKjTO-Ug',
@@ -465,7 +465,7 @@ export const submissions = [
     result: 'second',
     firstName: 'Hoarau',
     lastName: 'Galice',
-    fileName: '4-iceberg.jpg',
+    fileName: '2019-4-iceberg.jpg',
   },
   {
     id: 'OSQEi-1CMxcM-IzDObaIt',
@@ -477,7 +477,7 @@ export const submissions = [
     result: 'third',
     firstName: 'Marcello',
     lastName: 'Di Francesco',
-    fileName: '1-danni-collaterali.jpg',
+    fileName: '2019-1-danni-collaterali.jpg',
   },
   {
     id: 'PfzURhzOUG2CiN32-x5Em',
@@ -489,7 +489,7 @@ export const submissions = [
     result: 'third',
     firstName: 'Marcello',
     lastName: 'Di Francesco',
-    fileName: '2-danni-collaterali.jpg',
+    fileName: '2019-2-danni-collaterali.jpg',
   },
   {
     id: 'cTdbgJryjHwT4XumyMPuB',
@@ -501,7 +501,7 @@ export const submissions = [
     result: 'third',
     firstName: 'Marcello',
     lastName: 'Di Francesco',
-    fileName: '3-danni-collaterali.jpg',
+    fileName: '2019-3-danni-collaterali.jpg',
   },
   {
     id: 'uZW3-SrqxGzfgddYFTe2u',
@@ -513,7 +513,7 @@ export const submissions = [
     result: 'third',
     firstName: 'Marcello',
     lastName: 'Di Francesco',
-    fileName: '4-danni-collaterali.jpg',
+    fileName: '2019-4-danni-collaterali.jpg',
   },
   {
     id: 'DkjPjg_ZBavDqmLk0c7No',
@@ -525,7 +525,7 @@ export const submissions = [
     result: 'third',
     firstName: 'Marcello',
     lastName: 'Di Francesco',
-    fileName: '5-danni-collaterali.jpg',
+    fileName: '2019-5-danni-collaterali.jpg',
   },
   {
     id: 'wacdYP7sYUW9NJUxUnIo7',
@@ -537,7 +537,7 @@ export const submissions = [
     result: 'runner-up',
     firstName: 'Francesco',
     lastName: 'Visintin',
-    fileName: 'gorgonian-life-1.jpg',
+    fileName: '2019-gorgonian-life-1.jpg',
   },
   {
     id: 'n14Q6neTGyPxkuD16R3xE',
@@ -549,7 +549,7 @@ export const submissions = [
     result: 'runner-up',
     firstName: 'Francesco',
     lastName: 'Visintin',
-    fileName: 'gorgonian-life-2.jpg',
+    fileName: '2019-gorgonian-life-2.jpg',
   },
   {
     id: 'XDKn7Ng9o7IEXGTphrfiX',
@@ -561,7 +561,7 @@ export const submissions = [
     result: 'runner-up',
     firstName: 'Francesco',
     lastName: 'Visintin',
-    fileName: 'gorgonian-life-3.jpg',
+    fileName: '2019-gorgonian-life-3.jpg',
   },
   {
     id: 'aRQNOd_HuPlNgcKUIaUWw',
@@ -573,7 +573,7 @@ export const submissions = [
     result: 'runner-up',
     firstName: 'Francesco',
     lastName: 'Visintin',
-    fileName: 'gorgonian-life-4.jpg',
+    fileName: '2019-gorgonian-life-4.jpg',
   },
   {
     id: 'lEiedJFqXaghxLKeUK_5X',
@@ -585,7 +585,7 @@ export const submissions = [
     result: 'runner-up',
     firstName: 'Francesco',
     lastName: 'Visintin',
-    fileName: 'gorgonian-life-5.jpg',
+    fileName: '2019-gorgonian-life-5.jpg',
   },
   {
     id: '0_F72aLv7Jm_Zv3YAAaS3',
@@ -597,7 +597,7 @@ export const submissions = [
     result: 'runner-up',
     firstName: 'Giovanni',
     lastName: 'Pitone',
-    fileName: 'larmata-degli-hermodice.jpg',
+    fileName: '2019-larmata-degli-hermodice.jpg',
   },
   {
     id: 'Xg-idX7A_tDzJlPeMmNir',
@@ -609,7 +609,7 @@ export const submissions = [
     result: 'first',
     firstName: 'Marco',
     lastName: 'Steiner',
-    fileName: 'diamond.jpg',
+    fileName: '2019-diamond.jpg',
   },
   {
     id: 'W219oeiy_ZyRW7wQUp3Y5',
@@ -621,6 +621,6 @@ export const submissions = [
     result: 'second',
     firstName: 'Paolo',
     lastName: 'Bausani',
-    fileName: 'night-rainbow.jpg',
+    fileName: '2019-night-rainbow.jpg',
   },
 ];

@@ -22,7 +22,7 @@ export const submissions: MigrationSubmission[] = [
     result: 'first',
     firstName: 'Alessio',
     lastName: 'Tinti',
-    fileName: 'corteggiamento.jpg',
+    fileName: '2018-corteggiamento.jpg',
   },
   {
     id: 'R-KUk22-R8KFJJgd-Lz7d',
@@ -34,7 +34,7 @@ export const submissions: MigrationSubmission[] = [
     result: 'second',
     firstName: 'Stefano',
     lastName: 'Cerbai',
-    fileName: 'lultimo-bicchiere.jpg',
+    fileName: '2018-lultimo-bicchiere.jpg',
   },
   {
     id: '4ZWtBkr9nJnO9EKOHLY3-',
@@ -46,7 +46,7 @@ export const submissions: MigrationSubmission[] = [
     result: 'third',
     firstName: 'Davide',
     lastName: 'Clementelli',
-    fileName: 'platax-in-formazione.jpg',
+    fileName: '2018-platax-in-formazione.jpg',
   },
   {
     id: 'uL5B-pECq4aYJeGnNxZXL',
@@ -58,7 +58,7 @@ export const submissions: MigrationSubmission[] = [
     result: 'runner-up',
     firstName: 'Chuang',
     lastName: 'Melody',
-    fileName: 'squid-mother-and-her-egg.jpg',
+    fileName: '2018-squid-mother-and-her-egg.jpg',
   },
   {
     id: 'gv6g_Sc_iubByA64Kk4_X',
@@ -70,7 +70,7 @@ export const submissions: MigrationSubmission[] = [
     result: 'runner-up',
     firstName: 'Chen',
     lastName: 'Stan',
-    fileName: 'octopus-protect-her-eggs.jpg',
+    fileName: '2018-octopus-protect-her-eggs.jpg',
   },
   {
     id: 'GZcFeSDuz40xkxabwpa_j',
@@ -82,7 +82,7 @@ export const submissions: MigrationSubmission[] = [
     result: 'runner-up',
     firstName: 'Gianluca',
     lastName: 'Cucco',
-    fileName: 'learn-to-fly.jpg',
+    fileName: '2018-learn-to-fly.jpg',
   },
   {
     id: 'GZinETc4Jc0i31pl5YGpT',
@@ -94,7 +94,7 @@ export const submissions: MigrationSubmission[] = [
     result: 'first',
     firstName: 'Luc',
     lastName: 'Rooman',
-    fileName: 'mating-frogs.jpg',
+    fileName: '2018-mating-frogs.jpg',
   },
   {
     id: 'Ys_wg0seX6B1yrxSpP8MY',
@@ -106,7 +106,7 @@ export const submissions: MigrationSubmission[] = [
     result: 'second',
     firstName: 'Francesco',
     lastName: 'Visintin',
-    fileName: 'dos-amigos.jpg',
+    fileName: '2018-dos-amigos.jpg',
   },
   {
     id: 'xhOOVcGuLybDPRI3FrcgF',
@@ -118,7 +118,7 @@ export const submissions: MigrationSubmission[] = [
     result: 'third',
     firstName: 'Claudio',
     lastName: 'Zori',
-    fileName: 'canada.jpg',
+    fileName: '2018-canada.jpg',
   },
   {
     id: 'kP8MLP43qodrS4JhKVS0L',
@@ -130,7 +130,7 @@ export const submissions: MigrationSubmission[] = [
     result: 'runner-up',
     firstName: 'Francesco',
     lastName: 'Visintin',
-    fileName: 'crab-and-seafan.jpg',
+    fileName: '2018-crab-and-seafan.jpg',
   },
   {
     id: 'AwF3Rndl1BpetVXtdRmNh',
@@ -142,7 +142,7 @@ export const submissions: MigrationSubmission[] = [
     result: 'runner-up',
     firstName: 'Gabriella',
     lastName: 'Luongo',
-    fileName: 'nascondino.jpg',
+    fileName: '2018-nascondino.jpg',
   },
   {
     id: '32qTCwrXcBCNiUvQVdHRe',
@@ -154,7 +154,7 @@ export const submissions: MigrationSubmission[] = [
     result: 'runner-up',
     firstName: 'Claudio',
     lastName: 'Zori',
-    fileName: 'rospi.jpg',
+    fileName: '2018-rospi.jpg',
   },
   {
     id: 'q3q5sN2OWhUtGTTemr6w5',
@@ -166,7 +166,7 @@ export const submissions: MigrationSubmission[] = [
     result: 'first',
     firstName: 'Songda',
     lastName: 'Cai',
-    fileName: 'dancing.jpg',
+    fileName: '2018-dancing.jpg',
   },
   {
     id: 'r6kh5qs27jM-clUWwUsRk',
@@ -178,7 +178,7 @@ export const submissions: MigrationSubmission[] = [
     result: 'second',
     firstName: 'Paolo',
     lastName: 'Bausani',
-    fileName: 'in-fondo-la-luce.jpg',
+    fileName: '2018-in-fondo-la-luce.jpg',
   },
   {
     id: 'gExzeqBxJceeCSrVNkrLq',
@@ -190,7 +190,7 @@ export const submissions: MigrationSubmission[] = [
     result: 'third',
     firstName: 'Claudio',
     lastName: 'Zori',
-    fileName: 'giovane-lupo.jpg',
+    fileName: '2018-giovane-lupo.jpg',
   },
   {
     id: 'wlJ_1k0CgykQgt3nf2XI3',
@@ -202,7 +202,7 @@ export const submissions: MigrationSubmission[] = [
     result: 'first',
     firstName: 'Virginia',
     lastName: 'Salzedo',
-    fileName: 'in-trappola.jpg',
+    fileName: '2018-in-trappola.jpg',
   },
   {
     id: 'LlO7F1akO90VSFhkBXzS-',
@@ -214,7 +214,7 @@ export const submissions: MigrationSubmission[] = [
     result: 'first',
     firstName: 'Virginia',
     lastName: 'Salzedo',
-    fileName: 'cucciolo-dagli-abissi.jpg',
+    fileName: '2018-cucciolo-dagli-abissi.jpg',
   },
   {
     id: 'xVi7jS1z60fQcGQezQzL4',
@@ -226,7 +226,7 @@ export const submissions: MigrationSubmission[] = [
     result: 'first',
     firstName: 'Virginia',
     lastName: 'Salzedo',
-    fileName: 'odi-et-amo.jpg',
+    fileName: '2018-odi-et-amo.jpg',
   },
   {
     id: '61B2PUdv9_yNDDeWnO_Rl',
@@ -238,7 +238,7 @@ export const submissions: MigrationSubmission[] = [
     result: 'second',
     firstName: 'Nicholas',
     lastName: 'Samaras',
-    fileName: 'smiling-in-the-sunlight.jpg',
+    fileName: '2018-smiling-in-the-sunlight.jpg',
   },
   {
     id: 'yWckJo7ThrlUZfhEZTnJ8',
@@ -250,7 +250,7 @@ export const submissions: MigrationSubmission[] = [
     result: 'second',
     firstName: 'Nicholas',
     lastName: 'Samaras',
-    fileName: 'graceful-in-the-dark.jpg',
+    fileName: '2018-graceful-in-the-dark.jpg',
   },
   {
     id: 'bij4eHg1KdoEOKiOVsWIa',
@@ -262,7 +262,7 @@ export const submissions: MigrationSubmission[] = [
     result: 'second',
     firstName: 'Nicholas',
     lastName: 'Samaras',
-    fileName: 'magic-sphere.jpg',
+    fileName: '2018-magic-sphere.jpg',
   },
   {
     id: 'EdPNpr0Q23oeUMZoOewPS',
@@ -274,7 +274,7 @@ export const submissions: MigrationSubmission[] = [
     result: 'third',
     firstName: 'Salvatore',
     lastName: 'Ianniello',
-    fileName: 'rainbow-face.jpg',
+    fileName: '2018-rainbow-face.jpg',
   },
   {
     id: 'SPztK1iBmYfm03oSr8_sX',
@@ -286,7 +286,7 @@ export const submissions: MigrationSubmission[] = [
     result: 'third',
     firstName: 'Salvatore',
     lastName: 'Ianniello',
-    fileName: 'mirror.jpg',
+    fileName: '2018-mirror.jpg',
   },
   {
     id: 'eEAJ1txhvVVcX0BCoi8xp',
@@ -298,7 +298,7 @@ export const submissions: MigrationSubmission[] = [
     result: 'third',
     firstName: 'Salvatore',
     lastName: 'Ianniello',
-    fileName: 'kiss-me.jpg',
+    fileName: '2018-kiss-me.jpg',
   },
   {
     id: 'zSQgxVLRMH27nzenfi7Fj',
@@ -310,7 +310,7 @@ export const submissions: MigrationSubmission[] = [
     result: 'runner-up',
     firstName: 'Guido',
     lastName: 'Villani',
-    fileName: 'colazione-da-tiffany.jpg',
+    fileName: '2018-colazione-da-tiffany.jpg',
   },
   {
     id: 'K3eSDktmAhVnGqJdJb7q5',
@@ -322,7 +322,7 @@ export const submissions: MigrationSubmission[] = [
     result: 'runner-up',
     firstName: 'Guido',
     lastName: 'Villani',
-    fileName: 'gobius-bucchichi-embryos.jpg',
+    fileName: '2018-gobius-bucchichi-embryos.jpg',
   },
   {
     id: 's6Gxm990CQt9fLqtuulm4',
@@ -334,7 +334,7 @@ export const submissions: MigrationSubmission[] = [
     result: 'runner-up',
     firstName: 'Guido',
     lastName: 'Villani',
-    fileName: 'la-coppia.jpg',
+    fileName: '2018-la-coppia.jpg',
   },
   {
     id: 'IOwYGAGVImTzvAYRSZVMe',
@@ -346,7 +346,7 @@ export const submissions: MigrationSubmission[] = [
     result: 'runner-up',
     firstName: 'Paolo',
     lastName: 'Fontanella',
-    fileName: 'thoughts-in-the-head.jpg',
+    fileName: '2018-thoughts-in-the-head.jpg',
   },
   {
     id: '8HVjvtgVduuXxjyTPT7Gn',
@@ -358,7 +358,7 @@ export const submissions: MigrationSubmission[] = [
     result: 'runner-up',
     firstName: 'Paolo',
     lastName: 'Fontanella',
-    fileName: 'swans-fossils.jpg',
+    fileName: '2018-swans-fossils.jpg',
   },
   {
     id: 'PzCkfi-0moOGS4yVsTBOk',
@@ -370,7 +370,7 @@ export const submissions: MigrationSubmission[] = [
     result: 'runner-up',
     firstName: 'Paolo',
     lastName: 'Fontanella',
-    fileName: 'you-do-not-escape-me.jpg',
+    fileName: '2018-you-do-not-escape-me.jpg',
   },
   {
     id: 'sG6DfMuwtE_xSRUg0gzMP',
@@ -382,7 +382,7 @@ export const submissions: MigrationSubmission[] = [
     result: 'runner-up',
     firstName: 'Fabio',
     lastName: 'Strazzi',
-    fileName: 'backlighted.jpg',
+    fileName: '2018-backlighted.jpg',
   },
   {
     id: 'i_0O4CPsEbJBuSo6TcWFz',
@@ -394,7 +394,7 @@ export const submissions: MigrationSubmission[] = [
     result: 'runner-up',
     firstName: 'Fabio',
     lastName: 'Strazzi',
-    fileName: 'flying.jpg',
+    fileName: '2018-flying.jpg',
   },
   {
     id: 'foyMhDcubcuV99y5P-Qj2',
@@ -406,7 +406,7 @@ export const submissions: MigrationSubmission[] = [
     result: 'runner-up',
     firstName: 'Fabio',
     lastName: 'Strazzi',
-    fileName: 'zeus-faber.jpg',
+    fileName: '2018-zeus-faber.jpg',
   },
   {
     id: 'IGNlzQEZRDTb8vhmY4PLo',
@@ -418,7 +418,7 @@ export const submissions: MigrationSubmission[] = [
     result: 'first',
     firstName: 'Virginia',
     lastName: 'Salzedo',
-    fileName: 'il-pane-quotidiano.jpg',
+    fileName: '2018-il-pane-quotidiano.jpg',
   },
   {
     id: 'JVT3twI8JkPpvwuBX5CQI',
@@ -430,7 +430,7 @@ export const submissions: MigrationSubmission[] = [
     result: 'second',
     firstName: 'Gabriella',
     lastName: 'Luongo',
-    fileName: 'storyboard.jpg',
+    fileName: '2018-storyboard.jpg',
   },
   {
     id: 'L0sVwlcNsvCumgfFsftqA',
@@ -442,6 +442,6 @@ export const submissions: MigrationSubmission[] = [
     result: 'third',
     firstName: 'Emanuele',
     lastName: 'Vitale',
-    fileName: 'yin-e-yang.jpg',
+    fileName: '2018-yin-e-yang.jpg',
   },
 ];

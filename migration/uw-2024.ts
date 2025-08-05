@@ -9,7 +9,7 @@ export const submissions = [
     result: 'first',
     firstName: 'Stefano',
     lastName: 'Cerbai',
-    fileName: 'sea-dragon.jpg',
+    fileName: '2024-sea-dragon.jpg',
   },
   {
     id: 'QfiZp-BDxeWF1VAdtSN3l',
@@ -21,7 +21,7 @@ export const submissions = [
     result: 'second',
     firstName: 'Luc',
     lastName: 'Rooman',
-    fileName: 'snoek.jpg',
+    fileName: '2024-snoek.jpg',
   },
   {
     id: 'i-JTs6jORIXHpy35YqS4r',
@@ -33,7 +33,7 @@ export const submissions = [
     result: 'third',
     firstName: 'Enrico',
     lastName: 'Pati',
-    fileName: 'il-treno.jpg',
+    fileName: '2024-il-treno.jpg',
   },
   {
     id: 'BRwkzj7TtYNiqz54i1COP',
@@ -45,7 +45,7 @@ export const submissions = [
     result: 'runner-up',
     firstName: 'Luc',
     lastName: 'Rooman',
-    fileName: 'parende-kikkers.jpg',
+    fileName: '2024-parende-kikkers.jpg',
   },
   {
     id: 'tlQvfH5DIaxu7YblNuPp6',
@@ -57,7 +57,7 @@ export const submissions = [
     result: 'runner-up',
     firstName: 'Rosario',
     lastName: 'Scariati',
-    fileName: 'face-to-face.jpg',
+    fileName: '2024-face-to-face.jpg',
   },
   {
     id: '5I9m9Il7HH2hK2TeBsjE7',
@@ -69,7 +69,7 @@ export const submissions = [
     firstName: 'Francesco',
     lastName: 'Visintin',
     result: 'runner-up',
-    fileName: 'il-granchio-ed-il-ponte.jpg',
+    fileName: '2024-il-granchio-ed-il-ponte.jpg',
   },
   {
     id: 'cRe2lWpv4A264SYz7101N',
@@ -81,7 +81,7 @@ export const submissions = [
     result: 'runner-up',
     firstName: 'Stefano',
     lastName: 'Cerbai',
-    fileName: 'gambero-di-fiume.jpg',
+    fileName: '2024-gambero-di-fiume.jpg',
   },
   {
     id: '-ks58wviNjf3uP-mgbQgJ',
@@ -93,7 +93,7 @@ export const submissions = [
     result: 'runner-up',
     firstName: 'Alessandro',
     lastName: 'Buzzichelli',
-    fileName: 'cave.jpg',
+    fileName: '2024-cave.jpg',
   },
   {
     id: '4dMRuuCbAuReo8aDVU3MS',
@@ -105,7 +105,7 @@ export const submissions = [
     result: 'runner-up',
     firstName: 'Davide',
     lastName: 'Lombroso',
-    fileName: 'wide-2.jpg',
+    fileName: '2024-wide-2.jpg',
   },
   {
     id: 'QCO7exLR013iOAmeXGtXF',
@@ -117,7 +117,7 @@ export const submissions = [
     result: 'runner-up',
     firstName: 'Gabriella',
     lastName: 'Luongo',
-    fileName: 'night-walk.jpg',
+    fileName: '2024-night-walk.jpg',
   },
   {
     id: 'M-cI2y_SAsKR_uziqEMVc',
@@ -129,7 +129,7 @@ export const submissions = [
     result: 'first',
     firstName: 'Massimo',
     lastName: 'Giorgetta',
-    fileName: 'macro-first.jpg',
+    fileName: '2024-macro-first.jpg',
   },
   {
     id: 'f0bGy0H79T84CUvQuwypw',
@@ -141,7 +141,7 @@ export const submissions = [
     result: 'second',
     firstName: 'Luc',
     lastName: 'Rooman',
-    fileName: 'japanse-kruiskwal.jpg',
+    fileName: '2024-japanse-kruiskwal.jpg',
   },
   {
     id: 'OI7r822HH1G4LzVMRoVoj',
@@ -153,7 +153,7 @@ export const submissions = [
     result: 'third',
     firstName: 'Giancarlo',
     lastName: 'Mazarese',
-    fileName: 'macro-third.jpg',
+    fileName: '2024-macro-third.jpg',
   },
   {
     id: 'K3PlZelgc-nwF_FaqE1vY',
@@ -189,7 +189,7 @@ export const submissions = [
     result: 'runner-up',
     firstName: 'Luc',
     lastName: 'Rooman',
-    fileName: 'salamander.jpg',
+    fileName: '2024-salamander.jpg',
   },
   {
     id: 'EL3-Lk33z75J6RZ6ffGsl',
@@ -201,7 +201,7 @@ export const submissions = [
     result: 'runner-up',
     firstName: 'Raffaele',
     lastName: 'Livornese',
-    fileName: 'the-good-father.jpg',
+    fileName: '2024-the-good-father.jpg',
   },
   {
     id: 'lqK1ITrXtD4wuTvxBPs-v',
@@ -213,7 +213,7 @@ export const submissions = [
     result: 'first',
     firstName: 'Luc',
     lastName: 'Rooman',
-    fileName: 'gehoornde.jpg',
+    fileName: '2024-gehoornde.jpg',
   },
   {
     id: 'NbebkX_2kI2sjxdMJJfOa',
@@ -225,7 +225,7 @@ export const submissions = [
     result: 'second',
     firstName: 'Raffaele',
     lastName: 'Livornese',
-    fileName: 'strike.jpg',
+    fileName: '2024-strike.jpg',
   },
   {
     id: 'dgXmmuv7xK8rB0Ki78agm',
@@ -237,7 +237,7 @@ export const submissions = [
     result: 'third',
     firstName: 'Stefano',
     lastName: 'Cerbai',
-    fileName: 'velo.jpg',
+    fileName: '2024-velo.jpg',
   },
   {
     id: 'c_blXjthUaYoPMz6nzUxg',
@@ -249,7 +249,7 @@ export const submissions = [
     result: 'runner-up',
     firstName: 'Gabriella',
     lastName: 'Luongo',
-    fileName: 'bw-turtle.jpg',
+    fileName: '2024-bw-turtle.jpg',
   },
   {
     id: 'QsGzUh5X8UsrCY0roaaze',
@@ -261,7 +261,7 @@ export const submissions = [
     result: 'runner-up',
     firstName: 'Lorenzo',
     lastName: 'Vantaggiato',
-    fileName: 'caporais.jpg',
+    fileName: '2024-caporais.jpg',
   },
   {
     id: 'TnnMP1jA7m92eyB53ZpcX',
@@ -273,7 +273,7 @@ export const submissions = [
     result: 'runner-up',
     firstName: 'Massimo',
     lastName: 'Giorgetta',
-    fileName: 'bw-lion.jpg',
+    fileName: '2024-bw-lion.jpg',
   },
   {
     id: 'tn2F3xs5TSkeANytiPzFP',
@@ -285,7 +285,7 @@ export const submissions = [
     result: 'runner-up',
     firstName: 'Davide',
     lastName: 'Lombroso',
-    fileName: 'bw-ship.jpg',
+    fileName: '2024-bw-ship.jpg',
   },
   {
     id: 'U9p4Q4CfBPWVwgeJbcnOP',
@@ -297,6 +297,6 @@ export const submissions = [
     result: 'runner-up',
     firstName: 'Marco',
     lastName: 'Gargiulo',
-    fileName: 'zeus.jpg',
+    fileName: '2024-zeus.jpg',
   },
 ];
