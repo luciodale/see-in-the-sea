@@ -308,6 +308,16 @@ export const seeds = {
         },
       ],
     },
+    {
+      id: 'uw-2009',
+      name: 'UW Contest 2009',
+      description:
+        'Annual underwater photography competition celebrating the beauty and diversity of marine life',
+      startDate: '2009-01-01',
+      endDate: '2009-12-31',
+      isActive: false,
+      judges: [],
+    },
   ],
 };
 

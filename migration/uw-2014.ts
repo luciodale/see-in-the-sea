@@ -617,7 +617,7 @@ export const submissions: MigrationSubmission[] = [
     contestId: 'uw-2014',
     categoryId: 'mediterranean',
     userEmail: '',
-    title: 'Sotto l'ombrello',
+    title: "Sotto l'ombrello",
     description: '',
     result: 'runner-up',
     firstName: 'FILIPPO',
@@ -881,7 +881,7 @@ export const submissions: MigrationSubmission[] = [
     contestId: 'uw-2014',
     categoryId: 'the-professions-of-the-sea',
     userEmail: '',
-    title: 'L'alba dei pescatori',
+    title: "L'alba dei pescatori",
     description: '',
     result: 'runner-up',
     firstName: 'ALDO',
@@ -929,7 +929,7 @@ export const submissions: MigrationSubmission[] = [
     contestId: 'uw-2014',
     categoryId: 'the-professions-of-the-sea',
     userEmail: '',
-    title: 'Pescatori tongani all'alba',
+    title: "Pescatori tongani all'alba",
     description: '',
     result: 'runner-up',
     firstName: 'ANDREA',
@@ -959,5 +959,5 @@ export const submissions: MigrationSubmission[] = [
     firstName: 'GIANNI',
     lastName: 'CICALESE',
     fileName: 'lavori-quotidiani.jpg',
-  }
+  },
 ];
