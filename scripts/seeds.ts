@@ -104,6 +104,18 @@ export const seeds = {
       name: 'The Sea in Motion',
       description: 'The Sea in Motion',
     },
+    {
+      id: 'fresh-waters',
+      name: 'Fresh Waters',
+      description:
+        'Fresh water underwater photography featuring lakes, rivers, and freshwater life',
+    },
+    {
+      id: 'dan-europe',
+      name: 'Dan Europe',
+      description:
+        'DAN Europe photography security and safety underwater photography',
+    },
   ],
   contests: [
     {
@@ -133,6 +145,26 @@ export const seeds = {
         },
         {
           fullName: 'Pasquale Vassallo',
+        },
+      ],
+    },
+    {
+      id: 'uw-2015',
+      name: 'UW Contest 2015',
+      description:
+        'Annual underwater photography competition celebrating the beauty and diversity of marine life',
+      startDate: '2015-01-01',
+      endDate: '2015-12-31',
+      isActive: false,
+      judges: [
+        {
+          fullName: 'Alberto Balbi',
+        },
+        {
+          fullName: 'Franco Banfi',
+        },
+        {
+          fullName: 'Paolo Fossati',
         },
       ],
     },
