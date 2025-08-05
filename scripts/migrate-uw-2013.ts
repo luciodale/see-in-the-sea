@@ -164,6 +164,12 @@ function mapCategory(categoryName: string): string {
     newcomers: 'newcomers',
     'The professions of the sea': 'the-professions-of-the-sea',
     'the professions of the sea': 'the-professions-of-the-sea',
+    'Art in the water': 'art-in-the-water',
+    'art in the water': 'art-in-the-water',
+    'Special Mention': 'special-mention',
+    'special mention': 'special-mention',
+    'Trabocchi Coast': 'trabocchi-coast',
+    'trabocchi coast': 'trabocchi-coast',
   };
 
   return (
@@ -181,6 +187,11 @@ function mapResult(resultText: string): string {
     '3rd Classified': 'third',
     'Runner Up': 'runner-up',
   };
+
+  // For uw-2013, check if it contains the classification patterns
+  if (resultText.includes('1° Classified')) return 'first';
+  if (resultText.includes('2° Classified')) return 'second';
+  if (resultText.includes('3° Classified')) return 'third';
 
   return resultMap[resultText] || 'runner-up';
 }

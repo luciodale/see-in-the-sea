@@ -128,6 +128,11 @@ export const seeds = {
       description:
         'Underwater photography taken in swimming pools, featuring artistic underwater portraits and creative compositions',
     },
+    {
+      id: 'special-mention',
+      name: 'Special Mention',
+      description: 'Special mentions and honorable recognitions in the contest',
+    },
   ],
   contests: [
     {
@@ -277,6 +282,29 @@ export const seeds = {
         },
         {
           fullName: 'Massimo Zannini',
+        },
+      ],
+    },
+    {
+      id: 'uw-2013',
+      name: 'UW Contest 2013',
+      description:
+        'Annual underwater photography competition celebrating the beauty and diversity of marine life',
+      startDate: '2013-01-01',
+      endDate: '2013-12-31',
+      isActive: false,
+      judges: [
+        {
+          fullName: 'Silvia Boccato',
+        },
+        {
+          fullName: 'Paolo Fossati',
+        },
+        {
+          fullName: 'Claudio Giulianini',
+        },
+        {
+          fullName: 'Giuseppe Pignataro',
         },
       ],
     },
