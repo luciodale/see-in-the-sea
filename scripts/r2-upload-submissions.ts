@@ -12,7 +12,7 @@ import {
 
 const execAsync = promisify(exec);
 
-const BATCH_SIZE = 10;
+const BATCH_SIZE = 60;
 
 // Easy toggle: use --remote flag for remote mode, otherwise local
 const isRemote = process.argv.includes('--remote');
