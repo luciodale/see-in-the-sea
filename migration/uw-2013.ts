@@ -721,18 +721,6 @@ export const submissions: MigrationSubmission[] = [
     fileName: '2013-serpula-vermicularis.jpg',
   },
   {
-    id: 'EYH0YSb_PniSTDG3vWMlg',
-    contestId: 'uw-2013',
-    categoryId: 'mediterranean',
-    userEmail: 'pignatarog65@gmail.com',
-    title: 'Angelic',
-    description: '',
-    result: 'runner-up',
-    firstName: 'Giuseppe',
-    lastName: 'Piccoli Resta',
-    fileName: '2013-angelic-1.jpg',
-  },
-  {
     id: 'TQRxEholyEEcr-sqwr5bi',
     contestId: 'uw-2013',
     categoryId: 'mediterranean',

@@ -778,7 +778,7 @@ export const submissions: MigrationSubmission[] = [
     result: 'runner-up',
     firstName: 'Marco',
     lastName: 'Faimali- Coral Abstract',
-    fileName: '2014-image-64.jpg',
+    fileName: '2014-coral-abstract.jpg',
   },
   {
     id: '8FJG04q40pnkNaUYRWTu_',

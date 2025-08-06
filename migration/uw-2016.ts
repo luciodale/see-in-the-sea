@@ -466,7 +466,7 @@ export const submissions: MigrationSubmission[] = [
     result: 'third',
     firstName: 'Massimo',
     lastName: 'Zannini',
-    fileName: '2016-med-jewerly.jpg',
+    fileName: '2016-med-jewerly-1.jpg',
   },
   {
     id: 'WKtYwtEHbb6z_9qbI4900',
@@ -478,7 +478,7 @@ export const submissions: MigrationSubmission[] = [
     result: 'third',
     firstName: 'Massimo',
     lastName: 'Zannini',
-    fileName: '2016-med-jewerly.jpg',
+    fileName: '2016-med-jewerly-2.jpg',
   },
   {
     id: 'QjtGasqDhYJrlVHqgQOWL',
@@ -490,7 +490,7 @@ export const submissions: MigrationSubmission[] = [
     result: 'third',
     firstName: 'Massimo',
     lastName: 'Zannini',
-    fileName: '2016-med-jewerly.jpg',
+    fileName: '2016-med-jewerly-3.jpg',
   },
   {
     id: 'TQNAjba3qoXjYs1zgvjkP',
