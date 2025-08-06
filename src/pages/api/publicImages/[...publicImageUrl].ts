@@ -36,11 +36,11 @@ export const GET: APIRoute = async ({ params, locals }) => {
 
         const webOptimizedTransformer = imageTransformer
           .transform({
-            width: 700,
+            width: 750,
           })
           .output({
             format: 'image/webp',
-            quality: 40,
+            quality: 50,
           });
 
         const transformedImage = await webOptimizedTransformer;
