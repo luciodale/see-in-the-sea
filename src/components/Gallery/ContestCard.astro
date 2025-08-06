@@ -21,13 +21,17 @@ const { contest } = Astro.props;
 >
   <!-- Contest Image -->
   <div class="aspect-video overflow-hidden bg-slate-800/60">
-    <Picture
-      width={700}
-      height={700}
-      src={contest.winningImage || '/wallpaper.jpg'}
-      alt={contest.name}
-      class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
-    />
+    {
+      contest.winningImage && (
+        <Picture
+          width={400}
+          height={400}
+          src={contest.winningImage}
+          alt={contest.name}
+          class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+        />
+      )
+    }
   </div>
 
   <!-- Card Content -->
