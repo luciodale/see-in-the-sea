@@ -1,7 +1,7 @@
 #!/usr/bin/env bun
 
 import { exec } from 'child_process';
-import { existsSync } from 'fs';
+import { existsSync, writeFileSync } from 'fs';
 import { join } from 'path';
 import { promisify } from 'util';
 import {
@@ -31,6 +31,7 @@ interface UploadResult {
   uploaded: number;
   failed: number;
   errors: string[];
+  failedFilenames: string[];
 }
 
 function processSubmissionsForR2(
@@ -92,20 +93,26 @@ async function uploadSingleSubmission(
   picturesDir: string,
   index: number,
   total: number
-): Promise<{ success: boolean; error?: string }> {
-  console.log(`📤 [${index + 1}/${total}] Uploading: ${submission.title}`);
+): Promise<{ success: boolean; error?: string; filename?: string }> {
+  console.log(
+    `📤 [${index + 1}/${total}] Uploading: ${submission.originalFilename} (${submission.title || 'No title'})`
+  );
 
   const imagePath = join(picturesDir, submission.originalFilename);
 
   try {
     const command = `bunx wrangler r2 object put see-in-the-sea-images/${submission.r2Key} --file "${imagePath}" --${mode}`;
     await execAsync(command);
-    console.log(`✅ Uploaded: ${submission.title}`);
+    console.log(`✅ Uploaded: ${submission.originalFilename}`);
     return { success: true };
   } catch (error) {
     const errorMessage = error instanceof Error ? error.message : String(error);
-    console.log(`❌ Failed: ${submission.title}`);
-    return { success: false, error: `${submission.title}: ${errorMessage}` };
+    console.log(`❌ Failed: ${submission.originalFilename}`);
+    return {
+      success: false,
+      error: `${submission.originalFilename}: ${errorMessage}`,
+      filename: submission.originalFilename,
+    };
   }
 }
 
@@ -115,6 +122,7 @@ async function uploadToR2(submissions: R2Submission[]): Promise<UploadResult> {
     uploaded: 0,
     failed: 0,
     errors: [],
+    failedFilenames: [],
   };
 
   const picturesDir = join(process.cwd(), 'migration', 'pictures');
@@ -153,6 +161,9 @@ async function uploadToR2(submissions: R2Submission[]): Promise<UploadResult> {
         result.failed++;
         if (uploadResult.error) {
           result.errors.push(uploadResult.error);
+        }
+        if (uploadResult.filename) {
+          result.failedFilenames.push(uploadResult.filename);
         }
       }
     }
@@ -207,6 +218,20 @@ async function main() {
   if (uploadResult.errors.length > 0) {
     console.log('\n❌ Errors:');
     uploadResult.errors.forEach(error => console.log(`   - ${error}`));
+  }
+
+  // Write failed uploads to file for retry
+  if (uploadResult.failedFilenames.length > 0) {
+    const failedUploadsFile = 'failed-uploads.txt';
+    writeFileSync(
+      failedUploadsFile,
+      uploadResult.failedFilenames.join('\n') + '\n',
+      'utf-8'
+    );
+    console.log(`\n📝 Failed uploads saved to ${failedUploadsFile}`);
+    console.log(
+      `   You can retry these uploads with: bun scripts/retry-failed-uploads.ts`
+    );
   }
 
   console.log('\n🎉 R2 upload completed!');

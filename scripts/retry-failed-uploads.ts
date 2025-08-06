@@ -6,9 +6,10 @@ import { join } from 'path';
 import { discoverContestFiles } from './utils';
 
 interface FailedUpload {
-  title: string;
+  filename: string;
   filePath: string;
   r2Key: string;
+  title: string;
 }
 
 async function main() {
@@ -20,16 +21,25 @@ async function main() {
   // Read the failed uploads file
   const failedUploadsFile = './failed-uploads.txt';
   if (!existsSync(failedUploadsFile)) {
-    console.error('❌ failed-uploads.txt not found. Please create it first.');
-    process.exit(1);
+    console.log('✅ No failed-uploads.txt file found.');
+    console.log('   This means either:');
+    console.log('   • All uploads were successful! 🎉');
+    console.log('   • No uploads have been attempted yet');
+    console.log(
+      '   • The R2 upload script needs to be updated to create this file'
+    );
+    console.log(
+      '\n💡 Run the R2 upload script first: bun scripts/r2-upload-submissions.ts'
+    );
+    process.exit(0);
   }
 
-  const failedTitles = readFileSync(failedUploadsFile, 'utf-8')
+  const failedFilenames = readFileSync(failedUploadsFile, 'utf-8')
     .split('\n')
     .map(line => line.trim())
     .filter(line => line.length > 0);
 
-  console.log(`📋 Found ${failedTitles.length} failed uploads to retry`);
+  console.log(`📋 Found ${failedFilenames.length} failed uploads to retry`);
 
   // Discover all contest files to find the failed images
   const contestFiles = discoverContestFiles();
@@ -39,8 +49,9 @@ async function main() {
     const { submissions } = await import(`../migration/${contestFile}`);
 
     for (const submission of submissions) {
-      if (failedTitles.includes(submission.title)) {
-        const fileName = submission.fileName || 'unknown.jpg';
+      const fileName = submission.fileName || 'unknown.jpg';
+
+      if (failedFilenames.includes(fileName)) {
         const filePath = join('./migration/pictures', fileName);
 
         if (existsSync(filePath)) {
@@ -48,13 +59,14 @@ async function main() {
           const r2Key = `${submission.userEmail}/${submission.contestId}/${submission.categoryId}/${submission.id}.jpg`;
 
           failedUploads.push({
-            title: submission.title,
+            filename: fileName,
+            title: submission.title || 'No title',
             filePath,
             r2Key,
           });
         } else {
           console.log(
-            `⚠️  File not found for: ${submission.title} (${fileName})`
+            `⚠️  File not found for: ${fileName} (${submission.title || 'No title'})`
           );
         }
       }
@@ -66,14 +78,16 @@ async function main() {
   // Retry uploads
   let successCount = 0;
   let failCount = 0;
-  const successfulTitles: string[] = [];
-  const remainingFailedTitles = [...failedTitles];
+  const successfulFilenames: string[] = [];
+  const remainingFailedFilenames = [...failedFilenames];
 
   for (let i = 0; i < failedUploads.length; i++) {
     const upload = failedUploads[i];
     const progress = `[${i + 1}/${failedUploads.length}]`;
 
-    console.log(`📤 ${progress} Retrying: ${upload.title}`);
+    console.log(
+      `📤 ${progress} Retrying: ${upload.filename} (${upload.title})`
+    );
 
     try {
       const command = isRemote
@@ -81,17 +95,17 @@ async function main() {
         : `bunx wrangler r2 object put see-in-the-sea-images/${upload.r2Key} --file "${upload.filePath}" --local`;
 
       execSync(command, { stdio: 'pipe' });
-      console.log(`✅ ${progress} Success: ${upload.title}`);
+      console.log(`✅ ${progress} Success: ${upload.filename}`);
       successCount++;
-      successfulTitles.push(upload.title);
+      successfulFilenames.push(upload.filename);
 
-      // Remove from remaining failed titles
-      const index = remainingFailedTitles.indexOf(upload.title);
+      // Remove from remaining failed filenames
+      const index = remainingFailedFilenames.indexOf(upload.filename);
       if (index > -1) {
-        remainingFailedTitles.splice(index, 1);
+        remainingFailedFilenames.splice(index, 1);
       }
     } catch (error) {
-      console.log(`❌ ${progress} Failed: ${upload.title}`);
+      console.log(`❌ ${progress} Failed: ${upload.filename}`);
       failCount++;
     }
   }
@@ -103,7 +117,7 @@ async function main() {
 
   // Update the failed-uploads.txt file
   if (successCount > 0) {
-    if (remainingFailedTitles.length === 0) {
+    if (remainingFailedFilenames.length === 0) {
       // All uploads successful, delete the file
       unlinkSync(failedUploadsFile);
       console.log(`\n🗑️  All uploads successful! Deleted ${failedUploadsFile}`);
@@ -111,14 +125,14 @@ async function main() {
       // Some uploads successful, update the file with remaining failures
       writeFileSync(
         failedUploadsFile,
-        remainingFailedTitles.join('\n') + '\n',
+        remainingFailedFilenames.join('\n') + '\n',
         'utf-8'
       );
       console.log(
         `\n📝 Updated ${failedUploadsFile} - removed ${successCount} successful uploads`
       );
       console.log(
-        `   Remaining failed uploads: ${remainingFailedTitles.length}`
+        `   Remaining failed uploads: ${remainingFailedFilenames.length}`
       );
     }
   }
