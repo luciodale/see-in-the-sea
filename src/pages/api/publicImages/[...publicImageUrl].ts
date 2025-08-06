@@ -32,20 +32,15 @@ export const GET: APIRoute = async ({ params, locals }) => {
           '[serve-public-image] IMAGES service available, transforming image'
         );
 
-        // Apply aggressive optimization for web delivery:
-        // - Max width 500px (aggressive size reduction for web)
-        // - WebP format (best compression for web)
-        // - Quality 75 (good balance of quality vs aggressive compression)
-        // - Scale-down fit (never enlarge, preserve aspect ratio)
         const imageTransformer = IMAGES.input(r2Object.body);
 
         const webOptimizedTransformer = imageTransformer
           .transform({
-            width: 1000, // Aggressive width reduction
+            width: 700, // Aggressive width reduction
           })
           .output({
             format: 'image/webp', // Best web format
-            quality: 75, // More aggressive compression while maintaining good quality
+            quality: 65, // More aggressive compression while maintaining good quality
           });
 
         const transformedImage = await webOptimizedTransformer;
