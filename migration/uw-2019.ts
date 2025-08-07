@@ -630,7 +630,7 @@ export const submissions = [
     userEmail: '',
     title: 'Black Background',
     description: '',
-    result: 'runner-up',
+    result: 'third',
     firstName: 'Anonymous',
     lastName: '',
     fileName: '2019-black-background.jpg',
