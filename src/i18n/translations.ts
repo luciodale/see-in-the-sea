@@ -43,6 +43,7 @@ export const translations = {
     'category.wide-angle': 'Wide Angle',
     'category.macro': 'Macro',
     'category.black-and-white': 'Black & White',
+    'category.black-background': 'Black Background',
     'category.mediterranean': 'Mediterranean Portfolio',
     'category.storyboard': 'Storyboard',
     'category.compact': 'Compact',
@@ -65,6 +66,9 @@ export const translations = {
     'result.third-place': 'Third Place',
     'result.runner-up': 'Runner Up',
     'result.runner-ups': 'Runner Ups',
+
+    // Anonymous author
+    'author.anonymous': 'Anonymous',
 
     // Contests page
     'contests.title': 'Contest Years',
@@ -135,6 +139,7 @@ export const translations = {
     'category.wide-angle': 'Grandangolo',
     'category.macro': 'Macro',
     'category.black-and-white': 'Bianco e Nero',
+    'category.black-background': 'Sfondo Nero',
     'category.mediterranean': 'Portfolio Mediterraneo',
     'category.storyboard': 'Storyboard',
     'category.compact': 'Compatta',
@@ -157,6 +162,9 @@ export const translations = {
     'result.third-place': 'Terzo Posto',
     'result.runner-up': 'Menzione',
     'result.runner-ups': 'Menzioni',
+
+    // Anonymous author
+    'author.anonymous': 'Anonimo',
 
     // Contests page
     'contests.title': "Albo d'oro",

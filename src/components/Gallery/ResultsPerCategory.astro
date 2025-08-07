@@ -1,5 +1,5 @@
 ---
-import { getLangFromUrl, getResultName } from '@/i18n';
+import { getLangFromUrl, getResultName, useTranslations } from '@/i18n';
 import GalleryInfo from './GalleryInfo.astro';
 import Layout from './Layout.astro';
 import {
@@ -17,6 +17,7 @@ type Props = {
 
 const { contestId, categoryId }: Props = Astro.props;
 const currentLang = getLangFromUrl(Astro.url);
+const t = useTranslations(currentLang);
 
 if (!Astro.locals.runtime.env.DB) {
   throw new Error('DB is not available');
@@ -66,7 +67,7 @@ const processedImages = sortedResults.map(result => {
     author:
       result.firstName && result.lastName
         ? `${result.firstName} ${result.lastName}`
-        : 'Anonymous',
+        : t('author.anonymous'),
   };
 });
 

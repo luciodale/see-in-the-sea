@@ -23,6 +23,12 @@ export const seeds = {
         'Monochrome underwater photography emphasizing contrast, composition, and artistic expression',
     },
     {
+      id: 'black-background',
+      name: 'Black Background',
+      description:
+        'Underwater photography with black backgrounds emphasizing the subject against darkness',
+    },
+    {
       id: 'mediterranean',
       name: 'Mediterranean Portfolio',
       description:
