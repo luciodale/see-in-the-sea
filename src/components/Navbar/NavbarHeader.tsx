@@ -1,12 +1,27 @@
+import type { TranslationKey } from '@/i18n';
+import { useI18n } from '@/i18n/react';
 import { Dialog, DialogPanel } from '@headlessui/react';
 import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline';
 import { useState } from 'react';
+import { LanguageSwitcherReact } from '../LanguageSwitcherReact';
 
-const navigation = [
-  { name: 'Chi Siamo', href: '/about' },
-  { name: "Albo d'oro", href: '/contest' },
+const useNavigation = (
+  t: (key: TranslationKey) => string,
+  currentLang: string
+) => [
+  {
+    name: t('nav.about'),
+    href: currentLang === 'it' ? '/it/about' : '/about',
+  },
+  {
+    name: t('nav.contests'),
+    href: currentLang === 'it' ? '/it/contest' : '/contest',
+  },
   { name: 'Sponsor', href: '#' },
-  { name: 'Partecipa ora', href: '#' },
+  {
+    name: t('nav.submit'),
+    href: currentLang === 'it' ? '/it/submit' : '/submit',
+  },
 ];
 
 const logoPath = '/ortona-sub-logo.svg';
@@ -14,6 +29,8 @@ const loginPath = '/user';
 
 export function NavbarHeader({ standalone = false }: { standalone?: boolean }) {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const { t, lang } = useI18n();
+  const navigation = useNavigation(t, lang);
 
   return (
     <header className={`${!standalone ? 'absolute' : ''} inset-x-0 top-0 z-50`}>
@@ -49,9 +66,10 @@ export function NavbarHeader({ standalone = false }: { standalone?: boolean }) {
             </a>
           ))}
         </div>
-        <div className="hidden lg:flex lg:flex-1 lg:justify-end">
+        <div className="hidden lg:flex lg:flex-1 lg:justify-end lg:items-center lg:gap-4">
+          <LanguageSwitcherReact />
           <a href={loginPath} className="text-sm/6 font-semibold text-white">
-            Log in <span aria-hidden="true">&rarr;</span>
+            {t('nav.login')} <span aria-hidden="true">&rarr;</span>
           </a>
         </div>
       </nav>
@@ -89,12 +107,15 @@ export function NavbarHeader({ standalone = false }: { standalone?: boolean }) {
                   </a>
                 ))}
               </div>
-              <div className="py-6">
+              <div className="py-6 space-y-4">
+                <div className="px-3">
+                  <LanguageSwitcherReact />
+                </div>
                 <a
                   href={loginPath}
                   className="-mx-3 block rounded-lg px-3 py-2.5 text-base/7 font-semibold text-white hover:bg-white/5"
                 >
-                  Log in
+                  {t('nav.login')}
                 </a>
               </div>
             </div>

@@ -1,5 +1,6 @@
 ---
 import { Picture } from 'astro:assets';
+import { getLangFromUrl, getLocalizedPath, useTranslations } from '../../i18n';
 
 type Props = {
   contest: {
@@ -13,10 +14,12 @@ type Props = {
 };
 
 const { contest } = Astro.props;
+const currentLang = getLangFromUrl(Astro.url);
+const t = useTranslations(currentLang);
 ---
 
 <a
-  href={`/contest/${contest.id}`}
+  href={getLocalizedPath(`/contest/${contest.id}`, currentLang)}
   class="w-lg group block overflow-hidden bg-slate-800/40 border border-slate-700/50 rounded-lg backdrop-blur-sm transition-all duration-300 hover:bg-slate-700/60 hover:border-slate-600/70 hover:scale-105"
 >
   <!-- Contest Image -->

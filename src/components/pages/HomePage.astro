@@ -1,0 +1,57 @@
+---
+import AppWrapper from '@/components/AppWrapper.astro';
+import HeroSegment from '@/components/HeroSegment.astro';
+import { Navbar } from '@/components/Navbar/Navbar';
+import { getLocalizedPath, useTranslations, type Language } from '@/i18n';
+import { submissions } from '../../../migration/uw-2019';
+import Layout from '../Gallery/Layout.astro';
+
+interface Props {
+  lang: Language;
+}
+
+const { lang } = Astro.props;
+const t = useTranslations(lang);
+console.log(submissions);
+---
+
+<AppWrapper
+  title={t('site.title')}
+  description={t('site.description')}
+  lang={lang}
+>
+  <Navbar client:load lang={lang} />
+  <Layout>
+    <div class="flex flex-col gap-32">
+      <!-- Who We Are -->
+      <HeroSegment
+        title={t('home.who-we-are.title')}
+        description={t('home.who-we-are.description')}
+        image={{ link: '/ortona-sub-logo-white.svg' }}
+        buttonCTA={{
+          text: t('action.learn-more'),
+          link: getLocalizedPath('about', lang),
+        }}
+      />
+
+      <!-- Past Contests -->
+      <HeroSegment
+        title={t('home.past-contests.title')}
+        isRight={true}
+        description={t('home.past-contests.description')}
+        image={{ link: '/images/home/past-contests.jpg', objectFit: true }}
+        buttonCTA={{
+          text: t('home.past-contests.button'),
+          link: getLocalizedPath('contest/uw-2024', lang),
+        }}
+      />
+
+      <!-- Sponsors -->
+      <HeroSegment
+        title={t('home.sponsors.title')}
+        description={t('home.sponsors.description')}
+        image={{ link: '/images/home/sponsors.jpg', objectFit: true }}
+      />
+    </div>
+  </Layout>
+</AppWrapper>

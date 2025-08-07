@@ -105,7 +105,7 @@ async function main() {
         remainingFailedFilenames.splice(index, 1);
       }
     } catch (error) {
-      console.log(`❌ ${progress} Failed: ${upload.filename}`);
+      console.log(`❌ ${progress} Failed: ${upload.filename}`, error);
       failCount++;
     }
   }

@@ -1,3 +1,5 @@
+/// <reference types="astro/client" />
+
 interface Env {
   R2_IMAGES_BUCKET?: R2Bucket;
   IMAGES?: ImagesBinding;
@@ -10,6 +12,9 @@ interface Env {
 }
 
 type Runtime = import('@astrojs/cloudflare').Runtime<Env>;
+
 declare namespace App {
-  interface Locals extends Runtime {}
+  interface Locals extends Runtime {
+    lang?: import('./i18n').Language;
+  }
 }

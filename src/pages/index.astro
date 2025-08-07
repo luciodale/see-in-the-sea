@@ -1,46 +1,8 @@
 ---
-import AppWrapper from '@/components/AppWrapper.astro';
-import HeroSegment from '@/components/HeroSegment.astro';
-import { Navbar } from '@/components/Navbar/Navbar';
-import { SITE_DESCRIPTION, SITE_TITLE } from '@/consts';
-import { submissions } from '../../migration/uw-2019';
-import Layout from '../components/Gallery/Layout.astro';
-console.log(submissions);
+import HomePage from '@/components/pages/HomePage.astro';
+import { getLangFromUrl } from '@/i18n';
+
+const currentLang = getLangFromUrl(Astro.url);
 ---
 
-<AppWrapper title={SITE_TITLE} description={SITE_DESCRIPTION}>
-  <Navbar client:load />
-  <Layout>
-    <div class="flex flex-col gap-32">
-      <!-- Who We Are -->
-      <HeroSegment
-        title="Who We Are"
-        description="Discover the passionate community of underwater photographers who capture the hidden beauty beneath the waves. Our platform celebrates the art of marine photography, bringing together enthusiasts from around the world to share their unique perspectives of the underwater realm."
-        image={{ link: '/ortona-sub-logo-white.svg' }}
-        buttonCTA={{
-          text: 'Learn More →',
-          link: '/about',
-        }}
-      />
-
-      <!-- Past Contests -->
-      <HeroSegment
-        title="Past Contests"
-        isRight={true}
-        description="Explore the extraordinary winning entries from previous years, showcasing the incredible talent and creativity of our community. Each image tells a story of patience, skill, and the magical moments captured beneath the surface."
-        image={{ link: '/images/home/past-contests.jpg', objectFit: true }}
-        buttonCTA={{
-          text: 'View Past Winners →',
-          link: '/contest/uw-2024',
-        }}
-      />
-
-      <!-- Sponsors -->
-      <HeroSegment
-        title="Our Sponsors"
-        description="We're grateful to our incredible sponsors who make this competition possible. Their support enables us to celebrate underwater photography and provide amazing opportunities for photographers worldwide."
-        image={{ link: '/images/home/sponsors.jpg', objectFit: true }}
-      />
-    </div>
-  </Layout>
-</AppWrapper>
+<HomePage lang={currentLang} />

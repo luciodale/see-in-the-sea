@@ -1,6 +1,7 @@
 ---
 // src/layouts/AppWrapper.astro
 import AppHead from '../components/AppHead.astro';
+import { getLangFromUrl } from '../i18n';
 
 interface Props {
   // SEO Props
@@ -10,6 +11,7 @@ interface Props {
   ogType?: string; // e.g., 'website', 'article'
   twitterCard?: 'summary' | 'summary_large_image' | 'app' | 'player'; // Twitter card type
   bodyClass?: string;
+  lang?: string; // Language code
 }
 
 const {
@@ -19,14 +21,16 @@ const {
   ogType = 'website',
   twitterCard = 'summary_large_image',
   bodyClass = 'min-h-screen bg-base-100 text-base-content', // Default body styling
+  lang,
 } = Astro.props;
 
 // For Open Graph URL, use the current page's URL
 const currentUrl = Astro.url.href;
+const currentLang = lang || getLangFromUrl(Astro.url);
 ---
 
 <!doctype html>
-<html lang="en" class="dark">
+<html lang={currentLang} class="dark">
   <head>
     <AppHead
       title={title}
