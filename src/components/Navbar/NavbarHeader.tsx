@@ -17,7 +17,10 @@ const useNavigation = (
     name: t('nav.contests'),
     href: currentLang === 'it' ? '/it/contest' : '/contest',
   },
-  { name: 'Sponsor', href: '#' },
+  {
+    name: t('nav.sponsors'),
+    href: currentLang === 'it' ? '/it/sponsors' : '/sponsors',
+  },
   {
     name: t('nav.submit'),
     href: currentLang === 'it' ? '/it/submit' : '/submit',

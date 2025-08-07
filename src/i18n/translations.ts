@@ -11,8 +11,9 @@ export const translations = {
     // Navigation
     'nav.about': 'About',
     'nav.contests': 'Contests',
+    'nav.sponsors': 'Sponsors',
     'nav.login': 'Login',
-    'nav.submit': 'Submit Photo',
+    'nav.submit': 'Join the Contest',
 
     // Home page sections
     'home.who-we-are.title': 'Who We Are',
@@ -103,13 +104,25 @@ export const translations = {
       'Give us again the wonder of this unrepeatable journey in the colors of blue.',
     'about.author': 'Paolo De Iure',
     'about.position': 'President Ortonasub',
+
+    // Sponsors page
+    'sponsors.title': 'Our Sponsors',
+    'sponsors.subtitle': 'Supporting Underwater Photography Excellence',
+    'sponsors.coming-soon.title': 'Sponsors Coming Soon',
+    'sponsors.coming-soon.description':
+      'We are currently working with amazing partners to support the UW 2025 contest. Stay tuned for exciting announcements!',
+    'sponsors.coming-soon.contest': 'UW 2025 Contest',
+    'sponsors.coming-soon.cta': 'Become a Sponsor',
+    'sponsors.coming-soon.contact':
+      'Contact us to learn more about sponsorship opportunities',
   },
   it: {
     // Navigation
     'nav.about': 'Chi Siamo',
     'nav.contests': 'Concorsi',
+    'nav.sponsors': 'Sponsor',
     'nav.login': 'Login',
-    'nav.submit': 'Invia Foto',
+    'nav.submit': 'Partecipa al Concorso',
 
     // Home page sections
     'home.who-we-are.title': 'Chi Siamo',
@@ -200,6 +213,17 @@ export const translations = {
       'Regalateci ancora la meraviglia di questo irripetibile viaggio nei colori del blu.',
     'about.author': 'Paolo De Iure',
     'about.position': 'Presidente Ortonasub',
+
+    // Sponsors page
+    'sponsors.title': 'I Nostri Sponsor',
+    'sponsors.subtitle': "Supporto all'Eccellenza della Fotografia Subacquea",
+    'sponsors.coming-soon.title': 'Sponsor in Arrivo',
+    'sponsors.coming-soon.description':
+      'Stiamo attualmente lavorando con partner straordinari per supportare il concorso UW 2025. Restate sintonizzati per annunci emozionanti!',
+    'sponsors.coming-soon.contest': 'Concorso UW 2025',
+    'sponsors.coming-soon.cta': 'Diventa Sponsor',
+    'sponsors.coming-soon.contact':
+      'Contattaci per saperne di più sulle opportunità di sponsorizzazione',
   },
 } as const;
 

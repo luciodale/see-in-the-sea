@@ -1,0 +1,8 @@
+---
+import SponsorsPage from '@/components/pages/SponsorsPage.astro';
+import { getLangFromUrl } from '@/i18n';
+
+const currentLang = getLangFromUrl(Astro.url);
+---
+
+<SponsorsPage lang={currentLang} />

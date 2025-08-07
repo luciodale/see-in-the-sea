@@ -1,0 +1,104 @@
+---
+import AppWrapper from '@/components/AppWrapper.astro';
+import Layout from '@/components/Gallery/Layout.astro';
+import NavbarHeaderStandalone from '@/components/Navbar/NavbarHeaderStandalone.astro';
+import { useTranslations, type Language } from '@/i18n';
+
+interface Props {
+  lang: Language;
+}
+
+const { lang } = Astro.props;
+const t = useTranslations(lang);
+---
+
+<AppWrapper
+  title={t('sponsors.title')}
+  description={t('sponsors.subtitle')}
+  lang={lang}
+>
+  <NavbarHeaderStandalone lang={lang} />
+
+  <Layout>
+    <div class="text-center mb-20">
+      <h1
+        class="text-5xl sm:text-6xl font-extralight text-gray-50 uppercase tracking-wider leading-tight"
+      >
+        {t('sponsors.title')}
+      </h1>
+
+      <p
+        class="text-xl font-light text-gray-300 leading-relaxed max-w-3xl mx-auto"
+      >
+        {t('sponsors.subtitle')}
+      </p>
+    </div>
+
+    <!-- Coming Soon Section -->
+    <div class="max-w-4xl mx-auto">
+      <div
+        class="bg-gradient-to-br from-blue-900/20 to-indigo-900/20 border border-blue-500/30 rounded-2xl p-12 backdrop-blur-sm"
+      >
+        <div class="text-center space-y-8">
+          <!-- Icon -->
+          <div class="flex justify-center">
+            <div
+              class="w-24 h-24 bg-gradient-to-br from-blue-500/20 to-indigo-500/20 rounded-full flex items-center justify-center border border-blue-400/30"
+            >
+              <svg
+                class="w-12 h-12 text-blue-300"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="1.5"
+                  d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"
+                ></path>
+              </svg>
+            </div>
+          </div>
+
+          <!-- Title -->
+          <h2 class="text-3xl font-light text-gray-100 uppercase tracking-wide">
+            {t('sponsors.coming-soon.title')}
+          </h2>
+
+          <!-- Description -->
+          <p
+            class="text-lg font-light text-gray-300 leading-relaxed max-w-2xl mx-auto"
+          >
+            {t('sponsors.coming-soon.description')}
+          </p>
+
+          <!-- Contest Badge -->
+          <div
+            class="inline-flex items-center px-6 py-3 bg-blue-600/30 border border-blue-500/50 rounded-full"
+          >
+            <span class="text-blue-200 font-medium tracking-wide">
+              {t('sponsors.coming-soon.contest')}
+            </span>
+          </div>
+
+          <!-- CTA Button -->
+          <div class="pt-4">
+            <a
+              href="mailto:info@seeintheseauw.com"
+              class="inline-flex items-center px-8 py-4 bg-gradient-to-r from-blue-600/60 to-indigo-600/60 border border-blue-500/70 text-blue-100 rounded-lg transition-all duration-300 text-lg font-medium tracking-wide uppercase hover:from-blue-500/70 hover:to-indigo-500/70 hover:border-blue-400/80 hover:scale-105"
+            >
+              {t('sponsors.coming-soon.cta')}
+            </a>
+          </div>
+
+          <!-- Contact Info -->
+          <p class="text-sm text-gray-400 font-light">
+            {t('sponsors.coming-soon.contact')}
+          </p>
+        </div>
+      </div>
+    </div>
+  </Layout>
+</AppWrapper>
