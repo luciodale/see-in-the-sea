@@ -1,4 +1,5 @@
 ---
+import { getLangFromUrl, useTranslations } from '@/i18n';
 import BaseImage from './BaseImage.astro';
 
 type Props = {
@@ -9,6 +10,8 @@ type Props = {
 };
 
 const { imageUrl, title, author, result }: Props = Astro.props;
+const currentLang = getLangFromUrl(Astro.url);
+const t = useTranslations(currentLang);
 ---
 
 <div class="space-y-6 md:space-y-8">
@@ -18,7 +21,9 @@ const { imageUrl, title, author, result }: Props = Astro.props;
     <p>{result}</p>
     <p class="text-3xl text-right">
       {title}
-      <span class="text-gray-400 font-light text-2xl mx-1"> by </span>
+      <span class="text-gray-400 font-light text-2xl mx-1">
+        {t('author.by')}
+      </span>
       {author}
     </p>
   </h2>

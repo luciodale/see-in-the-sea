@@ -119,6 +119,19 @@ export function getCategoryName(
  * Get translated result type
  */
 export function getResultName(result: string, lang: Language): string {
+  // Handle the case where result contains a category name followed by "Winner"
+  if (result.endsWith('Winner')) {
+    const categoryPart = result.slice(0, -7).trim(); // Remove " Winner" and trim
+    const translatedCategory = getCategoryName(
+      categoryPart.toLowerCase(),
+      categoryPart,
+      lang
+    );
+    const translatedWinner = translations[lang]['category.winner'];
+    return `${translatedCategory} ${translatedWinner}`;
+  }
+
+  // Handle other result types (First Place, Second Place, etc.)
   const translationKey = `result.${result
     .toLowerCase()
     .replace(/\s+/g, '-')}` as TranslationKey;

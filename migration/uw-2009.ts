@@ -123,7 +123,7 @@ export const submissions: MigrationSubmission[] = [
   {
     id: 'duXmVDutzkYbSDMZKzN_s',
     contestId: 'uw-2009',
-    categoryId: 'macro',
+    categoryId: 'open',
     userEmail: 'sadilauro@live.it',
     title: '',
     description: '',
@@ -137,7 +137,7 @@ export const submissions: MigrationSubmission[] = [
     contestId: 'uw-2009',
     categoryId: 'macro',
     userEmail: '',
-    title: '',
+    title: 'The challenge',
     description: '',
     result: 'third',
     firstName: 'Annibale',

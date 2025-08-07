@@ -69,6 +69,7 @@ export const translations = {
 
     // Anonymous author
     'author.anonymous': 'Anonymous',
+    'author.by': 'by',
 
     // Contests page
     'contests.title': 'Contest Years',
@@ -165,6 +166,7 @@ export const translations = {
 
     // Anonymous author
     'author.anonymous': 'Anonimo',
+    'author.by': 'di',
 
     // Contests page
     'contests.title': "Albo d'oro",
