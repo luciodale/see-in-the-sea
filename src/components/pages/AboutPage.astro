@@ -1,0 +1,102 @@
+---
+import AboutSegment from '@/components/AboutSegment.astro';
+import AppWrapper from '@/components/AppWrapper.astro';
+import Layout from '@/components/Gallery/Layout.astro';
+import NavbarHeaderStandalone from '@/components/Navbar/NavbarHeaderStandalone.astro';
+import { useTranslations, type Language } from '@/i18n';
+
+interface Props {
+  lang: Language;
+}
+
+const { lang } = Astro.props;
+const t = useTranslations(lang);
+---
+
+<AppWrapper
+  title={t('site.title')}
+  description={t('site.description')}
+  lang={lang}
+>
+  <NavbarHeaderStandalone lang={lang} />
+
+  <Layout>
+    <!-- Page Title -->
+    <div class="text-center mb-20">
+      <h1
+        class="text-5xl sm:text-6xl font-extralight text-gray-50 uppercase tracking-wider leading-tight"
+      >
+        {t('about.title')}
+      </h1>
+    </div>
+
+    <div class="flex flex-col gap-24">
+      <!-- Section 1: The Beginning - Image Left, Text Right -->
+      <AboutSegment
+        title={t('about.section1.title')}
+        image="/images/about/about-diver.jpg"
+        isRight={false}
+      >
+        <div class="flex flex-col gap-8">
+          <p>
+            {t('about.section1.paragraph1')}
+          </p>
+          <p>
+            {t('about.section1.paragraph2')}
+          </p>
+          <p>
+            {t('about.section1.paragraph3')}
+          </p>
+        </div>
+      </AboutSegment>
+
+      <!-- Section 2: The Contest - Image Right, Text Left -->
+      <AboutSegment
+        title={t('about.section2.title')}
+        image="/images/about/about-group.jpg"
+        isRight={true}
+      >
+        <p>
+          <strong>{t('about.section2.paragraph1')}</strong>
+        </p>
+        <p>
+          {t('about.section2.paragraph2')}
+        </p>
+        <p>
+          {t('about.section2.paragraph3')}
+        </p>
+      </AboutSegment>
+
+      <!-- Section 3: The Legacy - Image Left, Text Right -->
+      <AboutSegment
+        title={t('about.section3.title')}
+        image="/images/about/about-sea.jpg"
+        isRight={false}
+      >
+        <p>
+          {t('about.section3.paragraph1')}
+          <em>{t('about.section3.emphasis')}</em>
+        </p>
+        <p>
+          {t('about.section3.paragraph2')}
+        </p>
+      </AboutSegment>
+
+      <!-- Closing Quote Section -->
+      <div class="max-w-4xl mx-auto text-center space-y-8 pt-10">
+        <blockquote
+          class="text-2xl max-w-2xl sm:text-3xl font-light text-gray-200 italic leading-relaxed"
+        >
+          "{t('about.quote')}"
+        </blockquote>
+
+        <div class="pt-8 border-t border-slate-700/50">
+          <p class="text-xl font-semibold text-gray-100 tracking-wide">
+            {t('about.author')}
+          </p>
+          <p class="text-lg text-gray-400 font-light">{t('about.position')}</p>
+        </div>
+      </div>
+    </div>
+  </Layout>
+</AppWrapper>

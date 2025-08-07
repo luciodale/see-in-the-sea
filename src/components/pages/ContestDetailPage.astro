@@ -1,0 +1,31 @@
+---
+import AppWrapper from '@/components/AppWrapper.astro';
+import ContestWinners from '@/components/Gallery/ContestWinners.astro';
+import Layout from '@/components/Gallery/Layout.astro';
+import NavbarHeaderStandalone from '@/components/Navbar/NavbarHeaderStandalone.astro';
+import { useTranslations, type Language } from '@/i18n';
+
+interface Props {
+  lang: Language;
+  contestId: string;
+}
+
+const { lang, contestId } = Astro.props;
+const t = useTranslations(lang);
+
+if (!contestId) {
+  return Astro.redirect('/404');
+}
+---
+
+<AppWrapper
+  title={t('site.title')}
+  description={t('site.description')}
+  lang={lang}
+>
+  <NavbarHeaderStandalone lang={lang} />
+
+  <Layout>
+    <ContestWinners contestId={contestId} />
+  </Layout>
+</AppWrapper>

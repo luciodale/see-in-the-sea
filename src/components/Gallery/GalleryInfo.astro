@@ -1,4 +1,10 @@
 ---
+import {
+  getCategoryName,
+  getLangFromUrl,
+  getLocalizedPath,
+  useTranslations,
+} from '@/i18n';
 import { getCategoriesByContestId, getJudgesByContestId } from './queries';
 
 type Props = {
@@ -8,6 +14,8 @@ type Props = {
 };
 
 const { contestTitle, contestId, activeCategoryId } = Astro.props;
+const currentLang = getLangFromUrl(Astro.url);
+const t = useTranslations(currentLang);
 
 if (!Astro.locals.runtime.env.DB) {
   throw new Error('DB is not available');
@@ -43,7 +51,7 @@ const contestCategories = await getCategoriesByContestId(
   <div class="flex flex-wrap justify-center gap-4">
     <div class="group relative py-2">
       <a
-        href={`/contest/${contestId}`}
+        href={getLocalizedPath(`contest/${contestId}`, currentLang)}
         class={`category-button ${
           !activeCategoryId
             ? 'category-button--active'
@@ -51,7 +59,7 @@ const contestCategories = await getCategoriesByContestId(
         }`}
       >
         <span class="text-lg font-light tracking-wide uppercase">
-          Winners Only
+          {t('category.winners-only')}
         </span>
       </a>
     </div>
@@ -62,7 +70,10 @@ const contestCategories = await getCategoriesByContestId(
         return (
           <div class="group relative py-2">
             <a
-              href={`/contest/${contestId}/${category.id}`}
+              href={getLocalizedPath(
+                `contest/${contestId}/${category.id}`,
+                currentLang
+              )}
               class={`category-button ${
                 isActive
                   ? 'category-button--active'
@@ -70,7 +81,7 @@ const contestCategories = await getCategoriesByContestId(
               }`}
             >
               <span class="text-lg font-light tracking-wide uppercase">
-                {category.name}
+                {getCategoryName(category.id, category.name, currentLang)}
               </span>
             </a>
           </div>

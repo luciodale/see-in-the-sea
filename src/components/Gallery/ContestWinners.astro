@@ -1,4 +1,5 @@
 ---
+import { getCategoryName, getLangFromUrl, getResultName } from '@/i18n';
 import GalleryInfo from './GalleryInfo.astro';
 import {
   getCategoryNamesByIds,
@@ -12,6 +13,7 @@ type Props = {
 };
 
 const { contestId } = Astro.props;
+const currentLang = getLangFromUrl(Astro.url);
 
 if (!Astro.locals.runtime.env.DB) {
   throw new Error('DB is not available');
@@ -40,6 +42,11 @@ const categoryMap = await getCategoryNamesByIds(
 // Process images - using direct R2 URLs for now
 const processedImages = firstPlaceWinners.map(result => {
   const categoryName = categoryMap.get(result.categoryId) || result.categoryId;
+  const translatedCategoryName = getCategoryName(
+    result.categoryId,
+    categoryName,
+    currentLang
+  );
 
   // Use our public images API route with optimization for web delivery
   const imageUrl = `/api/publicImages/${result.r2Key}`;
@@ -47,7 +54,7 @@ const processedImages = firstPlaceWinners.map(result => {
   return {
     ...result,
     imageUrl,
-    categoryName,
+    categoryName: translatedCategoryName,
     author:
       result.firstName && result.lastName
         ? `${result.firstName} ${result.lastName}`
@@ -63,7 +70,7 @@ const processedImages = firstPlaceWinners.map(result => {
     processedImages.length > 0 ? (
       processedImages.map(winner => (
         <TopWinnerImage
-          result={`${winner.categoryName} Winner`}
+          result={`${winner.categoryName} ${getResultName('Winner', currentLang)}`}
           imageUrl={winner.imageUrl}
           title={winner.title}
           author={winner.author}

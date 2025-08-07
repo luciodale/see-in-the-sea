@@ -1,4 +1,5 @@
 ---
+import { getLangFromUrl, getResultName } from '@/i18n';
 import BaseImage from './BaseImage.astro';
 
 type Props = {
@@ -12,23 +13,26 @@ type Props = {
 };
 
 const { runnerUps }: Props = Astro.props;
+const currentLang = getLangFromUrl(Astro.url);
 ---
 
-<div class="space-y-8">
-  <h2 class="text-3xl font-light text-gray-100 uppercase text-center">
-    Runner Ups
-  </h2>
-  <div class="columns-1 md:columns-2 gap-8 space-y-8">
-    {
-      runnerUps.map(runnerUp => (
-        <div class="break-inside-avoid mb-8">
-          <BaseImage
-            imageUrl={runnerUp.imageUrl}
-            title={runnerUp.title}
-            author={runnerUp.author}
-          />
-        </div>
-      ))
-    }
-  </div>
-</div>
+{
+  runnerUps.length > 0 && (
+    <div class="space-y-8">
+      <h2 class="text-3xl font-light text-gray-100 uppercase text-center">
+        {getResultName('Runner Ups', currentLang)}
+      </h2>
+      <div class="columns-1 md:columns-2 gap-8 space-y-8">
+        {runnerUps.map(runnerUp => (
+          <div class="break-inside-avoid mb-8">
+            <BaseImage
+              imageUrl={runnerUp.imageUrl}
+              title={runnerUp.title}
+              author={runnerUp.author}
+            />
+          </div>
+        ))}
+      </div>
+    </div>
+  )
+}

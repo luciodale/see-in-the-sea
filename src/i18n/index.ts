@@ -8,11 +8,13 @@ export {
 } from './translations';
 export {
   getAlternateLanguage,
+  getCategoryName,
   getCurrentLocale,
   getLangFromUrl,
   getLanguages,
   getLocalizedPath,
   getLocalizedPathForLanguage,
+  getResultName,
   isValidLanguage,
   useTranslations,
 } from './utils';

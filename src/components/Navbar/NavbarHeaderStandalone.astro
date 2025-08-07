@@ -1,7 +1,15 @@
 ---
-import { NavbarHeader } from './NavbarHeader';
+import type { Language } from '@/i18n';
+import { NavbarHeaderWithI18n } from './NavbarHeaderWithI18n';
+
+interface Props {
+  lang?: Language;
+  standalone?: boolean;
+}
+
+const { lang = 'en', standalone = true } = Astro.props;
 ---
 
 <div class="bg-slate-900 border border-b-slate-700 sticky top-0 z-50">
-  <NavbarHeader client:load standalone />
+  <NavbarHeaderWithI18n client:load lang={lang} standalone={standalone} />
 </div>

@@ -1,0 +1,67 @@
+---
+import AppWrapper from '@/components/AppWrapper.astro';
+import ContestCard from '@/components/Gallery/ContestCard.astro';
+import Layout from '@/components/Gallery/Layout.astro';
+import { getAllPastContests } from '@/components/Gallery/queries.js';
+import NavbarHeaderStandalone from '@/components/Navbar/NavbarHeaderStandalone.astro';
+import { useTranslations, type Language } from '@/i18n';
+
+interface Props {
+  lang: Language;
+}
+
+const { lang } = Astro.props;
+const t = useTranslations(lang);
+
+if (!Astro.locals.runtime.env.DB) {
+  throw new Error('DB is not available');
+}
+
+// Fetch all contests
+const allContests = await getAllPastContests(Astro.locals.runtime.env.DB);
+---
+
+<AppWrapper
+  title={t('site.title')}
+  description={t('site.description')}
+  lang={lang}
+>
+  <NavbarHeaderStandalone lang={lang} />
+
+  <Layout>
+    <div class="space-y-12">
+      <!-- Header -->
+      <div class="text-center space-y-6">
+        <h1
+          class="text-5xl font-extralight text-gray-50 uppercase tracking-wider leading-tight"
+        >
+          {t('contests.title')}
+        </h1>
+        <p
+          class="text-xl font-light text-gray-300 leading-relaxed max-w-3xl mx-auto"
+        >
+          {t('contests.description')}
+        </p>
+      </div>
+
+      <!-- Contest Grid -->
+      <div class="flex flex-wrap justify-center gap-8">
+        {
+          allContests.length > 0 ? (
+            allContests.map(contest => <ContestCard contest={contest} />)
+          ) : (
+            <div class="col-span-full text-center py-16">
+              <div class="space-y-4">
+                <div class="text-6xl">🏆</div>
+                <h3 class="text-2xl font-light text-gray-400">
+                  {t('contests.no-contests')}
+                </h3>
+                <p class="text-gray-500">{t('contests.check-back')}</p>
+              </div>
+            </div>
+          )
+        }
+      </div>
+    </div>
+  </Layout>
+</AppWrapper>

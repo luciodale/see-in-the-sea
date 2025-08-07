@@ -99,3 +99,31 @@ export function getLocalizedPathForLanguage(
 
   return pathname;
 }
+
+/**
+ * Get translated category name
+ */
+export function getCategoryName(
+  categoryId: string,
+  categoryName: string,
+  lang: Language
+): string {
+  const translationKey = `category.${categoryId}` as TranslationKey;
+
+  // Check if translation exists, otherwise fallback to original name
+  const translated = translations[lang][translationKey];
+  return translated || categoryName;
+}
+
+/**
+ * Get translated result type
+ */
+export function getResultName(result: string, lang: Language): string {
+  const translationKey = `result.${result
+    .toLowerCase()
+    .replace(/\s+/g, '-')}` as TranslationKey;
+
+  // Check if translation exists, otherwise fallback to original
+  const translated = translations[lang][translationKey];
+  return translated || result;
+}
