@@ -24,16 +24,6 @@ export function useTranslations(lang: Language) {
 }
 
 /**
- * Get current language from Astro request
- */
-export function getCurrentLocale(request?: Request): Language {
-  if (!request) return defaultLang;
-
-  const url = new URL(request.url);
-  return getLangFromUrl(url);
-}
-
-/**
  * Generate URL with language prefix
  */
 export function getLocalizedPath(
@@ -53,51 +43,10 @@ export function getLocalizedPath(
 }
 
 /**
- * Get all available languages with their labels
- */
-export function getLanguages() {
-  return Object.entries(translations).map(([code, _]) => ({
-    code: code as Language,
-    label: code === 'en' ? 'English' : 'Italiano',
-    isDefault: code === defaultLang,
-  }));
-}
-
-/**
  * Check if a language is supported
  */
 export function isValidLanguage(lang: string): lang is Language {
   return lang in translations;
-}
-
-/**
- * Get the alternate language (for language switcher)
- */
-export function getAlternateLanguage(currentLang: Language): Language {
-  return currentLang === 'en' ? 'it' : 'en';
-}
-
-/**
- * Get localized path for current page in different language
- */
-export function getLocalizedPathForLanguage(
-  currentUrl: URL,
-  targetLang: Language
-): string {
-  const currentLang = getLangFromUrl(currentUrl);
-  let pathname = currentUrl.pathname;
-
-  // Remove current language prefix if it exists
-  if (currentLang !== defaultLang) {
-    pathname = pathname.replace(`/${currentLang}`, '') || '/';
-  }
-
-  // Add target language prefix if it's not the default
-  if (targetLang !== defaultLang) {
-    pathname = `/${targetLang}${pathname}`;
-  }
-
-  return pathname;
 }
 
 /**

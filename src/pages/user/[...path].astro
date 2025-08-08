@@ -7,6 +7,6 @@ export const prerender = false;
 const { PUBLIC_CLERK_PUBLISHABLE_KEY } = Astro.locals.runtime.env;
 ---
 
-<AppWrapper title={SITE_TITLE} description={SITE_DESCRIPTION}>
+<AppWrapper lang="en" title={SITE_TITLE} description={SITE_DESCRIPTION}>
   <App client:only="react" clerkPublicKey={PUBLIC_CLERK_PUBLISHABLE_KEY} />
 </AppWrapper>

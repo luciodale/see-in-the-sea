@@ -3,11 +3,11 @@ import { createFileRoute, useRouter } from '@tanstack/react-router';
 import { useState } from 'react';
 import SubmissionGallery from '../../components/SubmissionGallery';
 
-export const Route = createFileRoute('/user/gallery')({
-  component: GalleryPage,
+export const Route = createFileRoute('/user/submissions')({
+  component: UserSubmissions,
 });
 
-function GalleryPage() {
+function UserSubmissions() {
   const router = useRouter();
   const [refreshTrigger, setRefreshTrigger] = useState(0);
   const [lightboxImage, setLightboxImage] = useState<{

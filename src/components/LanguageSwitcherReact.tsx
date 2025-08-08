@@ -5,6 +5,7 @@ import { useState } from 'react';
 export function LanguageSwitcherReact() {
   const { lang } = useI18n();
   const [isOpen, setIsOpen] = useState(false);
+  console.log('lang', lang);
 
   const languages = [
     { code: 'en', label: 'English', flag: '🇺🇸' },

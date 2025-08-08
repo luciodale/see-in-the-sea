@@ -1,5 +1,6 @@
 import type { TranslationKey } from '@/i18n';
 import { useI18n } from '@/i18n/react';
+import { SignedIn, SignedOut } from '@clerk/clerk-react';
 import { Dialog, DialogPanel } from '@headlessui/react';
 import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline';
 import { useState } from 'react';
@@ -28,7 +29,7 @@ const useNavigation = (
 ];
 
 const logoPath = '/ortona-sub-logo.svg';
-const loginPath = '/user';
+const loginPath = '/user/login';
 
 export function NavbarHeader({ standalone = false }: { standalone?: boolean }) {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -70,10 +71,23 @@ export function NavbarHeader({ standalone = false }: { standalone?: boolean }) {
           ))}
         </div>
         <div className="hidden lg:flex lg:flex-1 lg:justify-end lg:items-center lg:gap-4">
+          <SignedIn>
+            <a
+              href={loginPath}
+              className="-mx-3 block rounded-lg px-3 py-2.5 text-sm/6 font-semibold text-white hover:bg-white/5"
+            >
+              {t('nav.submissions')} <span aria-hidden="true">&rarr;</span>
+            </a>
+          </SignedIn>
+          <SignedOut>
+            <a
+              href={loginPath}
+              className="-mx-3 block rounded-lg px-3 py-2.5 text-sm/6 font-semibold text-white hover:bg-white/5"
+            >
+              {t('nav.login')} <span aria-hidden="true">&rarr;</span>
+            </a>
+          </SignedOut>
           <LanguageSwitcherReact />
-          <a href={loginPath} className="text-sm/6 font-semibold text-white">
-            {t('nav.login')} <span aria-hidden="true">&rarr;</span>
-          </a>
         </div>
       </nav>
       <Dialog
@@ -111,15 +125,25 @@ export function NavbarHeader({ standalone = false }: { standalone?: boolean }) {
                 ))}
               </div>
               <div className="py-6 space-y-4">
-                <div className="px-3">
-                  <LanguageSwitcherReact />
-                </div>
-                <a
-                  href={loginPath}
-                  className="-mx-3 block rounded-lg px-3 py-2.5 text-base/7 font-semibold text-white hover:bg-white/5"
-                >
-                  {t('nav.login')}
-                </a>
+                <div className="px-3"></div>
+                <SignedIn>
+                  <a
+                    href={loginPath}
+                    className="-mx-3 block rounded-lg px-3 py-2.5 text-base/7 font-semibold text-white hover:bg-white/5"
+                  >
+                    {t('nav.submissions')}{' '}
+                    <span aria-hidden="true">&rarr;</span>
+                  </a>
+                </SignedIn>
+                <SignedOut>
+                  <a
+                    href={loginPath}
+                    className="-mx-3 block rounded-lg px-3 py-2.5 text-base/7 font-semibold text-white hover:bg-white/5"
+                  >
+                    {t('nav.login')} <span aria-hidden="true">&rarr;</span>
+                  </a>
+                </SignedOut>
+                <LanguageSwitcherReact />
               </div>
             </div>
           </div>

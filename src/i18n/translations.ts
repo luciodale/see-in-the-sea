@@ -13,6 +13,7 @@ export const translations = {
     'nav.contests': 'Contests',
     'nav.sponsors': 'Sponsors',
     'nav.login': 'Login',
+    'nav.submissions': 'My Submissions',
     'nav.submit': 'Join the Contest',
 
     // Home page sections
@@ -122,6 +123,7 @@ export const translations = {
     'nav.contests': 'Concorsi',
     'nav.sponsors': 'Sponsor',
     'nav.login': 'Login',
+    'nav.submissions': 'Le mie candidature',
     'nav.submit': 'Partecipa al Concorso',
 
     // Home page sections

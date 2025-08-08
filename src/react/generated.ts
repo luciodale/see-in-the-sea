@@ -12,9 +12,8 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as UserIndexRouteImport } from './routes/user/index'
 import { Route as AdminIndexRouteImport } from './routes/admin/index'
 import { Route as UserUploadRouteImport } from './routes/user/upload'
-import { Route as UserManageRouteImport } from './routes/user/manage'
+import { Route as UserSubmissionsRouteImport } from './routes/user/submissions'
 import { Route as UserLoginRouteImport } from './routes/user/login'
-import { Route as UserGalleryRouteImport } from './routes/user/gallery'
 import { Route as AdminContestsRouteImport } from './routes/admin/contests'
 import { Route as AdminContestIdSubmissionsRouteImport } from './routes/admin/$contestId.submissions'
 
@@ -33,19 +32,14 @@ const UserUploadRoute = UserUploadRouteImport.update({
   path: '/user/upload',
   getParentRoute: () => rootRouteImport,
 } as any)
-const UserManageRoute = UserManageRouteImport.update({
-  id: '/user/manage',
-  path: '/user/manage',
+const UserSubmissionsRoute = UserSubmissionsRouteImport.update({
+  id: '/user/submissions',
+  path: '/user/submissions',
   getParentRoute: () => rootRouteImport,
 } as any)
 const UserLoginRoute = UserLoginRouteImport.update({
   id: '/user/login',
   path: '/user/login',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const UserGalleryRoute = UserGalleryRouteImport.update({
-  id: '/user/gallery',
-  path: '/user/gallery',
   getParentRoute: () => rootRouteImport,
 } as any)
 const AdminContestsRoute = AdminContestsRouteImport.update({
@@ -62,9 +56,8 @@ const AdminContestIdSubmissionsRoute =
 
 export interface FileRoutesByFullPath {
   '/admin/contests': typeof AdminContestsRoute
-  '/user/gallery': typeof UserGalleryRoute
   '/user/login': typeof UserLoginRoute
-  '/user/manage': typeof UserManageRoute
+  '/user/submissions': typeof UserSubmissionsRoute
   '/user/upload': typeof UserUploadRoute
   '/admin': typeof AdminIndexRoute
   '/user': typeof UserIndexRoute
@@ -72,9 +65,8 @@ export interface FileRoutesByFullPath {
 }
 export interface FileRoutesByTo {
   '/admin/contests': typeof AdminContestsRoute
-  '/user/gallery': typeof UserGalleryRoute
   '/user/login': typeof UserLoginRoute
-  '/user/manage': typeof UserManageRoute
+  '/user/submissions': typeof UserSubmissionsRoute
   '/user/upload': typeof UserUploadRoute
   '/admin': typeof AdminIndexRoute
   '/user': typeof UserIndexRoute
@@ -83,9 +75,8 @@ export interface FileRoutesByTo {
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/admin/contests': typeof AdminContestsRoute
-  '/user/gallery': typeof UserGalleryRoute
   '/user/login': typeof UserLoginRoute
-  '/user/manage': typeof UserManageRoute
+  '/user/submissions': typeof UserSubmissionsRoute
   '/user/upload': typeof UserUploadRoute
   '/admin/': typeof AdminIndexRoute
   '/user/': typeof UserIndexRoute
@@ -95,9 +86,8 @@ export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/admin/contests'
-    | '/user/gallery'
     | '/user/login'
-    | '/user/manage'
+    | '/user/submissions'
     | '/user/upload'
     | '/admin'
     | '/user'
@@ -105,9 +95,8 @@ export interface FileRouteTypes {
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/admin/contests'
-    | '/user/gallery'
     | '/user/login'
-    | '/user/manage'
+    | '/user/submissions'
     | '/user/upload'
     | '/admin'
     | '/user'
@@ -115,9 +104,8 @@ export interface FileRouteTypes {
   id:
     | '__root__'
     | '/admin/contests'
-    | '/user/gallery'
     | '/user/login'
-    | '/user/manage'
+    | '/user/submissions'
     | '/user/upload'
     | '/admin/'
     | '/user/'
@@ -126,9 +114,8 @@ export interface FileRouteTypes {
 }
 export interface RootRouteChildren {
   AdminContestsRoute: typeof AdminContestsRoute
-  UserGalleryRoute: typeof UserGalleryRoute
   UserLoginRoute: typeof UserLoginRoute
-  UserManageRoute: typeof UserManageRoute
+  UserSubmissionsRoute: typeof UserSubmissionsRoute
   UserUploadRoute: typeof UserUploadRoute
   AdminIndexRoute: typeof AdminIndexRoute
   UserIndexRoute: typeof UserIndexRoute
@@ -158,11 +145,11 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof UserUploadRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/user/manage': {
-      id: '/user/manage'
-      path: '/user/manage'
-      fullPath: '/user/manage'
-      preLoaderRoute: typeof UserManageRouteImport
+    '/user/submissions': {
+      id: '/user/submissions'
+      path: '/user/submissions'
+      fullPath: '/user/submissions'
+      preLoaderRoute: typeof UserSubmissionsRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/user/login': {
@@ -170,13 +157,6 @@ declare module '@tanstack/react-router' {
       path: '/user/login'
       fullPath: '/user/login'
       preLoaderRoute: typeof UserLoginRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/user/gallery': {
-      id: '/user/gallery'
-      path: '/user/gallery'
-      fullPath: '/user/gallery'
-      preLoaderRoute: typeof UserGalleryRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/admin/contests': {
@@ -198,9 +178,8 @@ declare module '@tanstack/react-router' {
 
 const rootRouteChildren: RootRouteChildren = {
   AdminContestsRoute: AdminContestsRoute,
-  UserGalleryRoute: UserGalleryRoute,
   UserLoginRoute: UserLoginRoute,
-  UserManageRoute: UserManageRoute,
+  UserSubmissionsRoute: UserSubmissionsRoute,
   UserUploadRoute: UserUploadRoute,
   AdminIndexRoute: AdminIndexRoute,
   UserIndexRoute: UserIndexRoute,

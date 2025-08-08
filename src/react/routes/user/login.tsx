@@ -9,7 +9,7 @@ function Login() {
   return (
     <div>
       <SignedIn>
-        <Navigate to="/user/manage" />
+        <Navigate to="/user/submissions" />
       </SignedIn>
       <SignedOut>
         <RedirectToSignIn />
