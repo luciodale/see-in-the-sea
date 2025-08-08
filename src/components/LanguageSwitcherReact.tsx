@@ -56,7 +56,7 @@ export function LanguageSwitcherReact() {
       {isOpen && (
         <>
           {/* Backdrop */}
-          <div
+          <button
             className="fixed inset-0 z-10"
             onClick={() => setIsOpen(false)}
           />
