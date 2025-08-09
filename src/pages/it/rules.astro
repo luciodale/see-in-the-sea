@@ -1,0 +1,23 @@
+---
+import RulesContent from '@/articles/rules.it.md';
+import AppWrapper from '@/components/AppWrapper.astro';
+import Layout from '@/components/Gallery/Layout.astro';
+import NavbarHeaderStandalone from '@/components/Navbar/NavbarHeaderStandalone.astro';
+import { useTranslations } from '@/i18n';
+
+const currentLang = 'it';
+const t = useTranslations(currentLang);
+---
+
+<AppWrapper
+  title={t('site.title')}
+  description={t('site.description')}
+  lang={currentLang}
+>
+  <NavbarHeaderStandalone lang={currentLang} />
+  <Layout>
+    <div class="prose prose-invert max-w-none">
+      <RulesContent />
+    </div>
+  </Layout>
+</AppWrapper>

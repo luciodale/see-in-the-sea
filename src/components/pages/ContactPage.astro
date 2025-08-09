@@ -1,0 +1,50 @@
+---
+import AppWrapper from '@/components/AppWrapper.astro';
+import Layout from '@/components/Gallery/Layout.astro';
+import NavbarHeaderStandalone from '@/components/Navbar/NavbarHeaderStandalone.astro';
+import { useTranslations, type Language } from '@/i18n';
+
+interface Props {
+  lang: Language;
+}
+
+const { lang } = Astro.props;
+const t = useTranslations(lang);
+const heading = lang === 'it' ? 'Contatti' : 'Contact Us';
+---
+
+<AppWrapper
+  title={t('site.title')}
+  description={t('site.description')}
+  lang={lang}
+>
+  <NavbarHeaderStandalone lang={lang} />
+  <Layout>
+    <div class="max-w-3xl mx-auto text-slate-200 space-y-8">
+      <h1 class="text-4xl font-light">{heading}</h1>
+
+      <div class="space-y-2">
+        <p class="text-lg font-medium">ASD Ortona Sub APS</p>
+        <p>
+          C/o Palazzetto dello sport – Via Giovanni XXII – 66026 – Ortona (CH)
+        </p>
+        <p>Tel. 339/6577950 – 380/3919121</p>
+        <p>
+          <a
+            href="mailto:info@ortonasub.com"
+            class="text-emerald-400 hover:underline">info@ortonasub.com</a
+          >
+        </p>
+      </div>
+
+      <div class="rounded-lg overflow-hidden border border-slate-700">
+        <iframe
+          title="Google Map"
+          frameborder="0"
+          style="width:100%;min-height:400px"
+          src="https://www.google.com/maps?q=ortona%20sub&output=embed&hl=it-IT&z=12"
+        ></iframe>
+      </div>
+    </div>
+  </Layout>
+</AppWrapper>

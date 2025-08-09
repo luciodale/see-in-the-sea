@@ -17,28 +17,20 @@ export function LanguageSwitcherReact() {
   const handleLanguageChange = (newLang: 'en' | 'it') => {
     if (newLang !== lang) {
       const currentPath = window.location.pathname;
-      let newPath = currentPath;
-
-      // Remove current language prefix if exists
-      if (lang !== 'en' && currentPath.startsWith(`/${lang}/`)) {
-        newPath = currentPath.replace(`/${lang}`, '') || '/';
-      }
-
-      // Add new language prefix if not default
-      if (newLang !== 'en') {
-        newPath = `/${newLang}${newPath}`;
-      }
-
-      // Navigate to new URL
-      if (newPath !== currentPath) {
-        window.location.href = newPath;
+      // Strip existing locale prefix (en or it) at the start
+      const stripped = currentPath.replace(/^\/(en|it)(?=\/|$)/, '');
+      const normalized = stripped.length === 0 ? '/' : stripped;
+      const nextPath =
+        newLang === 'en' ? normalized : `/${newLang}${normalized}`;
+      if (nextPath !== currentPath) {
+        window.location.assign(nextPath);
       }
     }
     setIsOpen(false);
   };
 
   return (
-    <div className="relative">
+    <div className="relative inline-block">
       <button
         type="button"
         className="flex items-center gap-2 px-3 py-2 text-sm font-medium text-white bg-white/10 border border-white/20 rounded-md hover:bg-white/20 focus:outline-none focus:ring-2 focus:ring-white/50"
@@ -63,11 +55,12 @@ export function LanguageSwitcherReact() {
           />
 
           {/* Dropdown */}
-          <div className="absolute right-0 mt-1 w-48 bg-gray-800 border border-gray-600 rounded-md shadow-lg z-20">
+          <div className="absolute left-0 top-full mt-1 w-full bg-gray-800 border border-gray-600 rounded-md shadow-lg z-50">
             <div className="py-1">
               {languages.map(language => (
                 <button
                   key={language.code}
+                  type="button"
                   onClick={() => handleLanguageChange(language.code)}
                   className={`w-full text-left block px-4 py-2 text-sm transition-colors duration-150 ${
                     language.code === lang

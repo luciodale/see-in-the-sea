@@ -23,6 +23,14 @@ const useNavigation = (
     href: currentLang === 'it' ? '/it/sponsors' : '/sponsors',
   },
   {
+    name: t('nav.contact'),
+    href: currentLang === 'it' ? '/it/contact' : '/contact',
+  },
+  {
+    name: t('nav.rules'),
+    href: currentLang === 'it' ? '/it/rules' : '/rules',
+  },
+  {
     name: t('nav.submit'),
     href: currentLang === 'it' ? '/it/submit' : '/submit',
   },
@@ -43,11 +51,14 @@ export function NavbarHeader({ standalone = false }: { standalone?: boolean }) {
         aria-label="Global"
         className="flex items-center gap-4 justify-between p-4 lg:px-8"
       >
-        <div className="flex lg:flex-1">
-          <a href={lang === 'it' ? '/it' : '/'} className="-m-1.5 p-1.5">
+        <div className="flex">
+          <a
+            href={lang === 'it' ? '/it' : '/'}
+            className="-m-1.5 p-1.5 lg:shrink-0"
+          >
             <span className="sr-only">See in the sea</span>
 
-            <img alt="" src={logoPath} className="h-12 w-auto" />
+            <img alt="" src={logoPath} className="h-12" />
           </a>
         </div>
         <div className="flex lg:hidden">
@@ -60,7 +71,7 @@ export function NavbarHeader({ standalone = false }: { standalone?: boolean }) {
             <Bars3Icon aria-hidden="true" className="size-6" />
           </button>
         </div>
-        <div className="hidden lg:flex lg:gap-x-12">
+        <div className="hidden lg:flex lg:gap-x-8 lg:flex-wrap">
           {navigation.map(item => (
             <a
               key={item.name}
@@ -70,24 +81,18 @@ export function NavbarHeader({ standalone = false }: { standalone?: boolean }) {
               {item.name}
             </a>
           ))}
-        </div>
-        <div className="shrink-0 hidden lg:flex lg:flex-1 lg:justify-end lg:items-center lg:gap-4">
           <SignedIn>
-            <a
-              href={loginPath}
-              className="-mx-3 block rounded-lg px-3 py-2.5 text-sm/6 font-semibold text-white hover:bg-white/5"
-            >
+            <a href={loginPath} className="text-sm/6 font-semibold text-white">
               {t('nav.submissions')} <span aria-hidden="true">&rarr;</span>
             </a>
           </SignedIn>
           <SignedOut>
-            <a
-              href={loginPath}
-              className="-mx-3 block rounded-lg px-3 py-2.5 text-sm/6 font-semibold text-white hover:bg-white/5"
-            >
+            <a href={loginPath} className="text-sm/6 font-semibold text-white">
               {t('nav.login')} <span aria-hidden="true">&rarr;</span>
             </a>
           </SignedOut>
+        </div>
+        <div className="hidden lg:flex lg:gap-x-8 lg:flex-wrap">
           <LanguageSwitcherReact />
         </div>
       </nav>
@@ -126,11 +131,10 @@ export function NavbarHeader({ standalone = false }: { standalone?: boolean }) {
                 ))}
               </div>
               <div className="py-6 space-y-4">
-                <div className="px-3"></div>
                 <SignedIn>
                   <a
                     href={loginPath}
-                    className="-mx-3 block rounded-lg px-3 py-2.5 text-base/7 font-semibold text-white hover:bg-white/5"
+                    className="block rounded-lg px-3 py-2 text-base/7 font-semibold text-white hover:bg-white/5"
                   >
                     {t('nav.submissions')}{' '}
                     <span aria-hidden="true">&rarr;</span>
@@ -139,7 +143,7 @@ export function NavbarHeader({ standalone = false }: { standalone?: boolean }) {
                 <SignedOut>
                   <a
                     href={loginPath}
-                    className="-mx-3 block rounded-lg px-3 py-2.5 text-base/7 font-semibold text-white hover:bg-white/5"
+                    className="block rounded-lg px-3 py-2 text-base/7 font-semibold text-white hover:bg-white/5"
                   >
                     {t('nav.login')} <span aria-hidden="true">&rarr;</span>
                   </a>

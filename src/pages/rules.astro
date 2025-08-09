@@ -1,0 +1,27 @@
+---
+import RulesContent from '@/articles/rules.md';
+import AppWrapper from '@/components/AppWrapper.astro';
+import Layout from '@/components/Gallery/Layout.astro';
+import NavbarHeaderStandalone from '@/components/Navbar/NavbarHeaderStandalone.astro';
+import { useTranslations, type Language } from '@/i18n';
+
+interface Props {
+  lang: Language;
+}
+
+const currentLang = Astro.locals.lang || 'en';
+const t = useTranslations(currentLang as Language);
+---
+
+<AppWrapper
+  title={t('site.title')}
+  description={t('site.description')}
+  lang={currentLang as Language}
+>
+  <NavbarHeaderStandalone lang={currentLang as Language} />
+  <Layout>
+    <div class="prose prose-invert max-w-none">
+      <RulesContent />
+    </div>
+  </Layout>
+</AppWrapper>
