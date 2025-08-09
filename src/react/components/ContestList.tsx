@@ -2,6 +2,7 @@ import { useNavigate } from '@tanstack/react-router';
 import { useEffect, useState } from 'react';
 import type { Contest } from '../../db/index.js';
 import type { ContestListResponse } from '../../types/api';
+import EditContestModal from './EditContestModal';
 
 type ContestListProps = {
   refreshTrigger?: number; // To trigger refresh when new contest is created
@@ -17,6 +18,8 @@ export default function ContestList({
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const navigate = useNavigate();
+  const [editOpen, setEditOpen] = useState(false);
+  const [editing, setEditing] = useState<Contest | null>(null);
 
   const fetchContests = async () => {
     try {
@@ -137,6 +140,9 @@ export default function ContestList({
               <th className="px-6 py-3 text-left text-xs font-medium text-slate-300 uppercase tracking-wider">
                 Created
               </th>
+              <th className="px-6 py-3 text-right text-xs font-medium text-slate-300 uppercase tracking-wider">
+                Actions
+              </th>
             </tr>
           </thead>
           <tbody className="bg-slate-900 divide-y divide-slate-700">
@@ -193,6 +199,18 @@ export default function ContestList({
                   <td className="px-6 py-4 whitespace-nowrap text-sm text-slate-300">
                     {formatDate(contest.createdAt)}
                   </td>
+                  <td className="px-6 py-4 whitespace-nowrap text-right text-sm">
+                    <button
+                      className="inline-flex items-center px-3 py-1 border border-slate-700 text-sm font-medium rounded-md text-slate-200 bg-slate-800 hover:bg-slate-700 focus:outline-none focus:ring-2 focus:ring-emerald-500"
+                      onClick={async e => {
+                        e.stopPropagation();
+                        setEditing(contest);
+                        setEditOpen(true);
+                      }}
+                    >
+                      Edit
+                    </button>
+                  </td>
                 </tr>
               );
             })}
@@ -206,6 +224,23 @@ export default function ContestList({
           💡 More actions will be added here
         </p>
       </div>
+      {editing && (
+        <EditContestModal
+          isOpen={editOpen}
+          onClose={() => setEditOpen(false)}
+          contest={{
+            id: editing.id,
+            name: editing.name,
+            description: editing.description ?? null,
+            year: editing.year,
+            status: editing.status,
+            maxSubmissionsPerCategory: editing.maxSubmissionsPerCategory || 2,
+          }}
+          onSuccess={fetchContests}
+        />
+      )}
     </div>
   );
 }
+
+//

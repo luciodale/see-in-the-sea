@@ -91,6 +91,17 @@ export type CreateContestResponse = {
   };
 };
 
+export type UpdateContestRequest = {
+  id: string;
+  name?: string;
+  description?: string | null;
+  year?: number;
+  status?: 'active' | 'inactive' | 'assessment';
+  maxSubmissionsPerCategory?: number;
+};
+
+export type UpdateContestResponse = ApiResponse<{ id: string }>;
+
 export type ContestListResponse = {
   success: boolean;
   data: Array<{

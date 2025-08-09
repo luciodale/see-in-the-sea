@@ -5,6 +5,8 @@ import { authenticateAdmin } from '../../../server/authenticateRequest';
 import type {
   CreateContestFormData,
   CreateContestResponse,
+  UpdateContestRequest,
+  UpdateContestResponse,
 } from '../../../types/api.js';
 
 export const prerender = false;
@@ -176,6 +178,80 @@ export const POST: APIRoute = async ({ request, locals }) => {
         status: 500,
         headers: { 'Content-Type': 'application/json' },
       }
+    );
+  }
+};
+
+// PATCH: Update existing contest
+export const PATCH: APIRoute = async ({ request, locals }) => {
+  console.log('[manage-contest] Processing contest update request');
+
+  const D1Database = locals.runtime.env.DB;
+  if (!D1Database) {
+    return new Response(
+      JSON.stringify({ success: false, message: 'Database not available' }),
+      { status: 500 }
+    );
+  }
+
+  const db = getDb(D1Database);
+
+  try {
+    const authRequestClone = request.clone() as typeof request;
+    const { isAuthenticated, isAdmin, unauthenticatedResponse } =
+      await authenticateAdmin(authRequestClone, locals);
+    if (!isAuthenticated || !isAdmin) {
+      return unauthenticatedResponse();
+    }
+
+    const body: UpdateContestRequest = await request.json();
+    const { id, ...updates } = body;
+    if (!id) {
+      return new Response(
+        JSON.stringify({ success: false, message: 'Missing contest id' }),
+        { status: 400 }
+      );
+    }
+
+    // Build update payload only with provided fields
+    const payload: Record<string, unknown> = {};
+    if (updates.name !== undefined) payload.name = updates.name?.trim();
+    if (updates.description !== undefined)
+      payload.description = updates.description?.trim() || null;
+    if (updates.year !== undefined) payload.year = updates.year;
+    if (updates.status !== undefined) payload.status = updates.status;
+    if (updates.maxSubmissionsPerCategory !== undefined)
+      payload.maxSubmissionsPerCategory = updates.maxSubmissionsPerCategory;
+    payload.updatedAt = new Date().toISOString();
+
+    if (Object.keys(payload).length === 1) {
+      // only updatedAt present
+      return new Response(
+        JSON.stringify({ success: false, message: 'No fields to update' }),
+        { status: 400 }
+      );
+    }
+
+    await db.update(contests).set(payload).where(eq(contests.id, id));
+
+    const response: UpdateContestResponse = {
+      success: true,
+      message: 'Contest updated successfully',
+      data: { id },
+    };
+    return new Response(JSON.stringify(response), {
+      status: 200,
+      headers: { 'Content-Type': 'application/json' },
+    });
+  } catch (error) {
+    console.error('[manage-contest] Error updating contest:', error);
+    return new Response(
+      JSON.stringify({
+        success: false,
+        message: 'Failed to update contest',
+        error: error instanceof Error ? error.message : String(error),
+      }),
+      { status: 500, headers: { 'Content-Type': 'application/json' } }
     );
   }
 };
