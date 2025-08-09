@@ -22,7 +22,7 @@ export default function CreateContestForm({
     year: new Date().getFullYear(),
     maxSubmissionsPerCategory: 2,
     // default to inactive, admin can toggle after creation (status field below)
-    isActive: true,
+    status: 'inactive',
   });
 
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -96,7 +96,7 @@ export default function CreateContestForm({
         description: '',
         year: new Date().getFullYear(),
         maxSubmissionsPerCategory: 2,
-        isActive: true,
+        status: 'inactive',
       });
 
       // Call success callback
@@ -256,7 +256,7 @@ export default function CreateContestForm({
             <select
               id="status"
               name="status"
-              value={(formData as any).status || 'inactive'}
+              value={formData.status || 'inactive'}
               onChange={handleInputChange}
               className="w-full px-3 py-2 border border-slate-700 bg-slate-800 text-white rounded-md focus:outline-none focus:ring-2 focus:ring-emerald-500 capitalize"
             >

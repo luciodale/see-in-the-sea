@@ -1,21 +1,18 @@
 ---
 import { Picture } from 'astro:assets';
-import { getLangFromUrl, getLocalizedPath, useTranslations } from '../../i18n';
+import { getLangFromUrl, getLocalizedPath } from '../../i18n';
 
 type Props = {
   contest: {
     id: string;
     name: string;
     description: string | null;
-    startDate: string;
-    endDate: string;
     winningImage?: string;
   };
 };
 
 const { contest } = Astro.props;
 const currentLang = getLangFromUrl(Astro.url);
-const t = useTranslations(currentLang);
 ---
 
 <a

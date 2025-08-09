@@ -78,7 +78,7 @@ export type CreateContestFormData = {
   description?: string;
   year: number;
   maxSubmissionsPerCategory?: number;
-  isActive?: boolean;
+  status?: 'active' | 'inactive' | 'assessment';
 };
 
 export type CreateContestResponse = {

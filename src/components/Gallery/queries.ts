@@ -241,7 +241,7 @@ export async function getAllPastContests(d1Database: D1Database): Promise<
       year: contests.year,
     })
     .from(contests)
-    .where(eq(contests.isActive, false))
+    .where(eq(contests.status, 'inactive'))
     .orderBy(contests.year);
 
   // For each contest, get a winning image
