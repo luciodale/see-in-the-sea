@@ -45,7 +45,7 @@ const { PUBLIC_CLERK_PUBLISHABLE_KEY } = Astro.locals.runtime.env;
         title={t('home.past-contests.title')}
         isRight={true}
         description={t('home.past-contests.description')}
-        image={{ link: '/images/home/past-contests.jpg', objectFit: true }}
+        image={{ link: '/images/home/past-contests.webp', objectFit: true }}
         buttonCTA={{
           text: t('home.past-contests.button'),
           link: getLocalizedPath('contest/uw-2024', lang),
@@ -56,7 +56,7 @@ const { PUBLIC_CLERK_PUBLISHABLE_KEY } = Astro.locals.runtime.env;
       <HeroSegment
         title={t('home.sponsors.title')}
         description={t('home.sponsors.description')}
-        image={{ link: '/images/home/sponsors.jpg', objectFit: true }}
+        image={{ link: '/images/home/sponsors.webp', objectFit: true }}
         buttonCTA={{
           text: t('home.sponsors.button'),
           link: getLocalizedPath('sponsors', lang),
