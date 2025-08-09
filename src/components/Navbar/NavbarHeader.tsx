@@ -77,19 +77,29 @@ export function NavbarHeader({ standalone = false }: { standalone?: boolean }) {
               {item.name}
             </a>
           ))}
-          <SignedIn>
-            <a href={loginPath} className="text-sm/6 font-semibold text-white">
-              {t('nav.submissions')} <span aria-hidden="true">&rarr;</span>
-            </a>
-          </SignedIn>
-          <SignedOut>
-            <a href={loginPath} className="text-sm/6 font-semibold text-white">
-              {t('nav.login')} <span aria-hidden="true">&rarr;</span>
-            </a>
-          </SignedOut>
         </div>
-        <div className="hidden lg:flex lg:gap-x-8 lg:flex-wrap">
-          <LanguageSwitcherReact />
+        <div className="hidden lg:flex items-center gap-4">
+          <div className="w-[150px]">
+            <SignedIn>
+              <a
+                href={loginPath}
+                className="text-sm/6 font-semibold text-white"
+              >
+                {t('nav.submissions')} <span aria-hidden="true">&rarr;</span>
+              </a>
+            </SignedIn>
+            <SignedOut>
+              <a
+                href={loginPath}
+                className="text-sm/6 font-semibold text-white"
+              >
+                {t('nav.login')} <span aria-hidden="true">&rarr;</span>
+              </a>
+            </SignedOut>
+          </div>
+          <div className=" lg:gap-x-8 lg:flex-wrap">
+            <LanguageSwitcherReact />
+          </div>
         </div>
       </nav>
       <Dialog
