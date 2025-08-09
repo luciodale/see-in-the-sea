@@ -24,6 +24,33 @@ const {
 } = Astro.props;
 
 import '../styles/global.css';
+
+const websiteLd = {
+  '@context': 'https://schema.org',
+  '@type': 'WebSite',
+  name: siteName,
+  url: canonicalUrl,
+  inLanguage: (locale && locale.split('_')[0]) || 'en',
+};
+
+const organizationLd = {
+  '@context': 'https://schema.org',
+  '@type': 'Organization',
+  name: siteName,
+  url: new URL('/', canonicalUrl).toString(),
+  logo: new URL('/logo.png', canonicalUrl).toString(),
+  contactPoint: [
+    {
+      '@type': 'ContactPoint',
+      email: 'info@ortonasub.com',
+      contactType: 'customer service',
+      availableLanguage: ['en', 'it'],
+    },
+  ],
+};
+
+const websiteLdJson = JSON.stringify(websiteLd);
+const organizationLdJson = JSON.stringify(organizationLd);
 ---
 
 <meta charset="UTF-8" />
@@ -49,31 +76,11 @@ import '../styles/global.css';
 <meta name="twitter:description" content={description} />
 {ogImage && <meta name="twitter:image" content={ogImage} />}
 
-{alternates.map((alt) => (
-  <link rel="alternate" hreflang={alt.hrefLang} href={alt.href} />
-))}
+{
+  alternates.map(alt => (
+    <link rel="alternate" hreflang={alt.hrefLang} href={alt.href} />
+  ))
+}
 
-<script type="application/ld+json">{JSON.stringify({
-  '@context': 'https://schema.org',
-  '@type': 'WebSite',
-  name: siteName,
-  url: canonicalUrl,
-  inLanguage: locale?.split('_')[0] || 'en',
-})}</script>
-<script type="application/ld+json">{JSON.stringify({
-  '@context': 'https://schema.org',
-  '@type': 'Organization',
-  name: siteName,
-  url: new URL('/', canonicalUrl).toString(),
-  logo: new URL('/logo.png', canonicalUrl).toString(),
-  contactPoint: [{
-    '@type': 'ContactPoint',
-    email: 'info@ortonasub.com',
-    contactType: 'customer service',
-    availableLanguage: ['en','it']
-  }]
-})}</script>
-<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
-<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
-<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
-<link rel="manifest" href="/site.webmanifest" />
+<script type="application/ld+json" set:html={websiteLdJson} />
+<script type="application/ld+json" set:html={organizationLdJson} />
