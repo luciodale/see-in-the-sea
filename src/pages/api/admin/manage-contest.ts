@@ -39,7 +39,7 @@ export const GET: APIRoute = async ({ locals, request }) => {
     const allContests = await db
       .select()
       .from(contests)
-      .orderBy(desc(contests.createdAt));
+      .orderBy(desc(contests.year));
 
     console.log(`[manage-contest] Found ${allContests.length} contests`);
 
@@ -102,35 +102,11 @@ export const POST: APIRoute = async ({ request, locals }) => {
     // Step 2: Parse and validate request body
     const body: CreateContestFormData = await request.json();
 
-    if (!body.id || !body.name || !body.startDate || !body.endDate) {
+    if (!body.id || !body.name || !body.year) {
       return new Response(
         JSON.stringify({
           success: false,
-          message: 'Missing required fields: id, name, startDate, endDate',
-        }),
-        { status: 400 }
-      );
-    }
-
-    // Validate date format and logic
-    const startDate = new Date(body.startDate);
-    const endDate = new Date(body.endDate);
-
-    if (isNaN(startDate.getTime()) || isNaN(endDate.getTime())) {
-      return new Response(
-        JSON.stringify({
-          success: false,
-          message: 'Invalid date format. Use ISO format (YYYY-MM-DD)',
-        }),
-        { status: 400 }
-      );
-    }
-
-    if (endDate <= startDate) {
-      return new Response(
-        JSON.stringify({
-          success: false,
-          message: 'End date must be after start date',
+          message: 'Missing required fields: id, name, year',
         }),
         { status: 400 }
       );
@@ -161,8 +137,7 @@ export const POST: APIRoute = async ({ request, locals }) => {
       id: contestId,
       name: body.name.trim(),
       description: body.description?.trim() || null,
-      startDate: body.startDate,
-      endDate: body.endDate,
+      year: body.year,
       maxSubmissionsPerCategory: body.maxSubmissionsPerCategory || 2,
       isActive: body.isActive,
       createdAt: now,
@@ -178,8 +153,7 @@ export const POST: APIRoute = async ({ request, locals }) => {
       data: {
         contestId,
         name: body.name,
-        startDate: body.startDate,
-        endDate: body.endDate,
+        year: body.year,
       },
     };
 

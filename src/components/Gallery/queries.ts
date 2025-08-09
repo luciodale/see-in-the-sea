@@ -165,8 +165,7 @@ export async function getAllContests(d1Database: D1Database): Promise<
     id: string;
     name: string;
     description: string | null;
-    startDate: string;
-    endDate: string;
+    year: number;
     winningImage?: string;
   }>
 > {
@@ -178,11 +177,10 @@ export async function getAllContests(d1Database: D1Database): Promise<
       id: contests.id,
       name: contests.name,
       description: contests.description,
-      startDate: contests.startDate,
-      endDate: contests.endDate,
+      year: contests.year,
     })
     .from(contests)
-    .orderBy(contests.startDate);
+    .orderBy(contests.year);
 
   // For each contest, get a random winning image
   const contestsWithImages = await Promise.all(
@@ -215,9 +213,7 @@ export async function getAllContests(d1Database: D1Database): Promise<
   );
 
   // Sort by start date descending (newest first)
-  return contestsWithImages.sort(
-    (a, b) => new Date(b.startDate).getTime() - new Date(a.startDate).getTime()
-  );
+  return contestsWithImages.sort((a, b) => b.year - a.year);
 }
 
 /**
@@ -230,8 +226,7 @@ export async function getAllPastContests(d1Database: D1Database): Promise<
     id: string;
     name: string;
     description: string | null;
-    startDate: string;
-    endDate: string;
+    year: number;
     winningImage?: string;
   }>
 > {
@@ -243,12 +238,11 @@ export async function getAllPastContests(d1Database: D1Database): Promise<
       id: contests.id,
       name: contests.name,
       description: contests.description,
-      startDate: contests.startDate,
-      endDate: contests.endDate,
+      year: contests.year,
     })
     .from(contests)
     .where(eq(contests.isActive, false))
-    .orderBy(contests.startDate);
+    .orderBy(contests.year);
 
   // For each contest, get a winning image
   const contestsWithImages = await Promise.all(
@@ -281,9 +275,7 @@ export async function getAllPastContests(d1Database: D1Database): Promise<
   );
 
   // Sort by start date descending (newest first)
-  return contestsWithImages.sort(
-    (a, b) => new Date(b.startDate).getTime() - new Date(a.startDate).getTime()
-  );
+  return contestsWithImages.sort((a, b) => b.year - a.year);
 }
 
 /**

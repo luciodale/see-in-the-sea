@@ -32,6 +32,7 @@ export default function UnifiedSubmissions() {
     t(`category.${id}` as unknown as TranslationKey);
   const [contestId, setContestId] = useState<string | null>(null);
   const [judges, setJudges] = useState<string[]>([]);
+  const [contestIsActive, setContestIsActive] = useState<boolean>(true);
   const [categories, setCategories] = useState<CategoryState[]>(
     HARDCODED_CATEGORIES.map(c => ({ ...c, submissions: [] }))
   );
@@ -70,6 +71,7 @@ export default function UnifiedSubmissions() {
       }
 
       const activeContestId = submissionsData.data.contest.id;
+      setContestIsActive(!!submissionsData.data.contest.isActive);
       setContestId(activeContestId);
 
       // Map existing submissions into the hardcoded categories by matching names or ids
@@ -316,8 +318,8 @@ export default function UnifiedSubmissions() {
                   </div>
                 )}
 
-                {/* Uploader for new submissions only */}
-                {canAdd && (
+                {/* Uploader for new submissions only (and only if contest is active) */}
+                {canAdd && contestIsActive && (
                   <div className="bg-slate-900 border border-slate-700 rounded-lg p-4">
                     <div className="space-y-3">
                       <input
@@ -396,6 +398,13 @@ export default function UnifiedSubmissions() {
                       <span>{`${cat.submissions.length} / ${MAX_SUBMISSIONS_PER_CATEGORY} ${t('submissions.count-label')}`}</span>
                       <span>{`${t('submissions.max-size')}: ${MAX_MB}MB`}</span>
                     </div>
+                  </div>
+                )}
+
+                {/* Inactive notice */}
+                {canAdd && !contestIsActive && (
+                  <div className="bg-amber-900/30 border border-amber-700 text-amber-200 rounded-lg p-4">
+                    {t('submissions.closed')}
                   </div>
                 )}
               </div>

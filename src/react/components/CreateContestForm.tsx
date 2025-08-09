@@ -19,8 +19,7 @@ export default function CreateContestForm({
     id: '',
     name: '',
     description: '',
-    startDate: '',
-    endDate: '',
+    year: new Date().getFullYear(),
     maxSubmissionsPerCategory: 2,
     isActive: true,
   });
@@ -67,11 +66,8 @@ export default function CreateContestForm({
       if (!formData.name.trim()) {
         throw new Error('Contest name is required');
       }
-      if (!formData.startDate || !formData.endDate) {
-        throw new Error('Start and end dates are required');
-      }
-      if (new Date(formData.endDate) <= new Date(formData.startDate)) {
-        throw new Error('End date must be after start date');
+      if (!formData.year || Number.isNaN(Number(formData.year))) {
+        throw new Error('Year is required');
       }
 
       // Submit to API
@@ -97,8 +93,7 @@ export default function CreateContestForm({
         id: '',
         name: '',
         description: '',
-        startDate: '',
-        endDate: '',
+        year: new Date().getFullYear(),
         maxSubmissionsPerCategory: 2,
         isActive: true,
       });
@@ -117,8 +112,7 @@ export default function CreateContestForm({
     }
   };
 
-  // Generate default minimum date (today)
-  const today = new Date().toISOString().split('T')[0];
+  // No dates; use year only
 
   return (
     <div className="bg-slate-900 border border-slate-700 rounded-lg p-6">
@@ -206,45 +200,25 @@ export default function CreateContestForm({
           />
         </div>
 
-        {/* Date Range */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-          <div>
-            <label
-              htmlFor="startDate"
-              className="block text-sm font-medium text-slate-200 mb-2"
-            >
-              Start Date *
-            </label>
-            <input
-              id="startDate"
-              name="startDate"
-              type="date"
-              required
-              value={formData.startDate}
-              onChange={handleInputChange}
-              min={today}
-              className="w-full px-3 py-2 border border-slate-700 bg-slate-800 text-white rounded-md focus:outline-none focus:ring-2 focus:ring-emerald-500"
-            />
-          </div>
-
-          <div>
-            <label
-              htmlFor="endDate"
-              className="block text-sm font-medium text-slate-200 mb-2"
-            >
-              End Date *
-            </label>
-            <input
-              id="endDate"
-              name="endDate"
-              type="date"
-              required
-              value={formData.endDate}
-              onChange={handleInputChange}
-              min={formData.startDate || today}
-              className="w-full px-3 py-2 border border-slate-700 bg-slate-800 text-white rounded-md focus:outline-none focus:ring-2 focus:ring-emerald-500"
-            />
-          </div>
+        {/* Year */}
+        <div>
+          <label
+            htmlFor="year"
+            className="block text-sm font-medium text-slate-2 00 mb-2"
+          >
+            Year *
+          </label>
+          <input
+            id="year"
+            name="year"
+            type="number"
+            required
+            value={formData.year}
+            onChange={handleInputChange}
+            min={1900}
+            max={2100}
+            className="w-full px-3 py-2 border border-slate-700 bg-slate-800 text-white rounded-md focus:outline-none focus:ring-2 focus:ring-emerald-500"
+          />
         </div>
 
         {/* Settings */}
@@ -356,7 +330,7 @@ export default function CreateContestForm({
       <div className="mt-6 p-4 bg-slate-800 border border-slate-700 rounded-md">
         <p className="text-slate-300 text-sm">
           <strong>💡 Tip:</strong> Once created, the contest will appear in the
-          user interface. Make sure your dates and submission limits are correct
+          user interface. Make sure year and submission limits are correct
           before creating.
         </p>
       </div>

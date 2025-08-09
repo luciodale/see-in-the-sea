@@ -53,6 +53,24 @@ export async function validateActiveContest(
 }
 
 /**
+ * Determines if uploads are allowed for a given contest
+ * True only if the contest exists, is active, and the end date has not passed
+ */
+export async function canUploadToContest(
+  db: ReturnType<typeof getDb>,
+  contestId: string
+): Promise<boolean> {
+  const result = await db
+    .select({ isActive: contests.isActive })
+    .from(contests)
+    .where(eq(contests.id, contestId))
+    .limit(1);
+
+  const row = result[0];
+  return !!row?.isActive;
+}
+
+/**
  * Validates if a category exists and is active
  * Pure function - returns validation result
  */

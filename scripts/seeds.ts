@@ -146,8 +146,7 @@ export const seeds = {
       name: 'UW Contest 2025',
       description:
         'Annual underwater photography competition celebrating the beauty and diversity of marine life',
-      startDate: '2025-01-01',
-      endDate: '2025-12-31',
+      year: 2025,
       isActive: true,
       judges: [],
     },
@@ -156,8 +155,7 @@ export const seeds = {
       name: 'UW Contest 2024',
       description:
         'Annual underwater photography competition celebrating the beauty and diversity of marine life',
-      startDate: '2024-01-01',
-      endDate: '2024-12-31',
+      year: 2024,
       isActive: false,
       judges: [
         {
@@ -176,8 +174,7 @@ export const seeds = {
       name: 'UW Contest 2014',
       description:
         'Annual underwater photography competition celebrating the beauty and diversity of marine life',
-      startDate: '2014-01-01',
-      endDate: '2014-12-31',
+      year: 2014,
       isActive: false,
       judges: [
         {
@@ -196,8 +193,7 @@ export const seeds = {
       name: 'UW Contest 2015',
       description:
         'Annual underwater photography competition celebrating the beauty and diversity of marine life',
-      startDate: '2015-01-01',
-      endDate: '2015-12-31',
+      year: 2015,
       isActive: false,
       judges: [
         {
@@ -216,8 +212,7 @@ export const seeds = {
       name: 'UW Contest 2016',
       description:
         'Annual underwater photography competition celebrating the beauty and diversity of marine life',
-      startDate: '2016-01-01',
-      endDate: '2016-12-31',
+      year: 2016,
       isActive: false,
       judges: [
         {
@@ -236,8 +231,7 @@ export const seeds = {
       name: 'UW Contest 2017',
       description:
         'Annual underwater photography competition celebrating the beauty and diversity of marine life',
-      startDate: '2017-01-01',
-      endDate: '2017-12-31',
+      year: 2017,
       isActive: false,
       judges: [
         {
@@ -256,8 +250,7 @@ export const seeds = {
       name: 'UW Contest 2018',
       description:
         'Annual underwater photography competition celebrating the beauty and diversity of marine life',
-      startDate: '2018-01-01',
-      endDate: '2018-12-31',
+      year: 2018,
       isActive: false,
       judges: [
         {
@@ -276,8 +269,7 @@ export const seeds = {
       name: 'UW Contest 2019',
       description:
         'Annual underwater photography competition celebrating the beauty and diversity of marine life',
-      startDate: '2019-01-01',
-      endDate: '2019-12-31',
+      year: 2019,
       isActive: false,
       judges: [
         {
@@ -296,8 +288,7 @@ export const seeds = {
       name: 'UW Contest 2013',
       description:
         'Annual underwater photography competition celebrating the beauty and diversity of marine life',
-      startDate: '2013-01-01',
-      endDate: '2013-12-31',
+      year: 2013,
       isActive: false,
       judges: [
         {
@@ -319,8 +310,7 @@ export const seeds = {
       name: 'UW Contest 2009',
       description:
         'Annual underwater photography competition celebrating the beauty and diversity of marine life',
-      startDate: '2009-01-01',
-      endDate: '2009-12-31',
+      year: 2009,
       isActive: false,
       judges: [],
     },
@@ -344,7 +334,7 @@ export function generateSeedSQL(): string {
   const contestInserts = seeds.contests
     .map(
       contest =>
-        `INSERT OR IGNORE INTO contests (id, name, description, start_date, end_date, is_active) VALUES ('${escapeSqlString(contest.id)}', '${escapeSqlString(contest.name)}', '${escapeSqlString(contest.description)}', '${contest.startDate}', '${contest.endDate}', ${contest.isActive});`
+        `INSERT OR IGNORE INTO contests (id, name, description, year, is_active) VALUES ('${escapeSqlString(contest.id)}', '${escapeSqlString(contest.name)}', '${escapeSqlString(contest.description)}', ${contest.year}, ${contest.isActive});`
     )
     .join('\n');
 

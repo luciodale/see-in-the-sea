@@ -76,8 +76,7 @@ export type CreateContestFormData = {
   id: string;
   name: string;
   description?: string;
-  startDate: string;
-  endDate: string;
+  year: number;
   maxSubmissionsPerCategory?: number;
   isActive?: boolean;
 };
@@ -88,8 +87,7 @@ export type CreateContestResponse = {
   data?: {
     contestId: string;
     name: string;
-    startDate: string;
-    endDate: string;
+    year: number;
   };
 };
 
@@ -99,8 +97,7 @@ export type ContestListResponse = {
     id: string;
     name: string;
     description: string | null;
-    startDate: string;
-    endDate: string;
+    year: number;
     maxSubmissionsPerCategory: number;
     isActive: boolean;
     createdAt: string;

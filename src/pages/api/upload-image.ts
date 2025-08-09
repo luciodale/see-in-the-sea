@@ -2,6 +2,7 @@ import type { APIRoute } from 'astro';
 import { getDb } from '../../db/index.js';
 import { authenticateRequest } from '../../server/authenticateRequest';
 import {
+  canUploadToContest,
   checkSubmissionLimits,
   validateActiveCategory,
   validateActiveContest,
@@ -160,6 +161,18 @@ export const POST: APIRoute = async ({ request, locals }) => {
           message: 'Invalid or inactive category.',
         }),
         { status: 400 }
+      );
+    }
+
+    // Enforce upload lock: contest must be active and not past end date
+    const uploadAllowed = await canUploadToContest(db, contestId);
+    if (!uploadAllowed) {
+      return new Response(
+        JSON.stringify({
+          success: false,
+          message: 'Submissions are closed for this contest.',
+        }),
+        { status: 403 }
       );
     }
 

@@ -60,6 +60,7 @@ export const translations = {
     // Submissions UI
     'submissions.jury': 'Jury',
     'submissions.loading': 'Loading your submissions...',
+    'submissions.closed': 'Submissions are closed for the current contest.',
     'submissions.max-size': 'Max size',
     'submissions.count-label': 'submissions',
     'form.title': 'Title',
@@ -196,6 +197,8 @@ export const translations = {
     // Submissions UI
     'submissions.jury': 'Giuria',
     'submissions.loading': 'Caricamento delle tue candidature...',
+    'submissions.closed':
+      'Le candidature sono chiuse per il concorso corrente.',
     'submissions.max-size': 'Dimensione max',
     'submissions.count-label': 'invii',
     'form.title': 'Titolo',

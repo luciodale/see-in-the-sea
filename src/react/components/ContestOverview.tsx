@@ -73,12 +73,7 @@ export default function ContestOverview({
 
   const { contest, categories } = data;
 
-  const safeDate = (d?: string) => {
-    if (!d) return '—';
-    const parsed = Date.parse(d);
-    if (Number.isNaN(parsed)) return '—';
-    return new Date(parsed).toLocaleDateString();
-  };
+  // Removed dates; using year only in schema now
 
   return (
     <div className="max-w-4xl mx-auto p-6 space-y-8">
@@ -91,13 +86,10 @@ export default function ContestOverview({
           </p>
         )}
 
-        {/* Contest Dates */}
-        <div className="flex justify-center space-x-8 text-sm text-gray-500">
+        <div className="flex justify-center text-sm text-gray-500">
           <div>
-            <span className="font-medium">Starts:</span> {safeDate(contest.startDate)}
-          </div>
-          <div>
-            <span className="font-medium">Ends:</span> {safeDate(contest.endDate)}
+            <span className="font-medium">Year:</span>{' '}
+            {String((contest as any).year ?? '')}
           </div>
         </div>
       </div>

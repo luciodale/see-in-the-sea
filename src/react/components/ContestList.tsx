@@ -128,7 +128,7 @@ export default function ContestList({
                 Status
               </th>
               <th className="px-6 py-3 text-left text-xs font-medium text-slate-300 uppercase tracking-wider">
-                Dates
+                Year
               </th>
               <th className="px-6 py-3 text-left text-xs font-medium text-slate-300 uppercase tracking-wider">
                 Max Submissions
@@ -184,8 +184,7 @@ export default function ContestList({
                     </span>
                   </td>
                   <td className="px-6 py-4 whitespace-nowrap text-sm text-slate-300">
-                    {formatDate(contest.startDate)} -{' '}
-                    {formatDate(contest.endDate)}
+                    {contest.year}
                   </td>
                   <td className="px-6 py-4 whitespace-nowrap text-sm text-slate-300">
                     {contest.maxSubmissionsPerCategory}
