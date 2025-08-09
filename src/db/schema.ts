@@ -1,3 +1,4 @@
+import { sql } from 'drizzle-orm';
 import { index, integer, sqliteTable, text } from 'drizzle-orm/sqlite-core';
 
 // Contests table
@@ -9,8 +10,8 @@ export const contests = sqliteTable('contests', {
   endDate: text('end_date').notNull(),
   isActive: integer('is_active', { mode: 'boolean' }).default(false),
   maxSubmissionsPerCategory: integer('max_submissions_per_category').default(2),
-  createdAt: text('created_at').default('CURRENT_TIMESTAMP'),
-  updatedAt: text('updated_at').default('CURRENT_TIMESTAMP'),
+  createdAt: text('created_at').default(sql`CURRENT_TIMESTAMP`),
+  updatedAt: text('updated_at').default(sql`CURRENT_TIMESTAMP`),
 });
 
 // Categories table
@@ -18,7 +19,7 @@ export const categories = sqliteTable('categories', {
   id: text('id').primaryKey(),
   name: text('name').notNull().unique(),
   description: text('description'),
-  createdAt: text('created_at').default('CURRENT_TIMESTAMP'),
+  createdAt: text('created_at').default(sql`CURRENT_TIMESTAMP`),
 });
 
 // Submissions table
@@ -34,7 +35,7 @@ export const submissions = sqliteTable('submissions', {
   originalFilename: text('original_filename'),
   fileSize: integer('file_size'),
   contentType: text('content_type'),
-  uploadedAt: text('uploaded_at').default('CURRENT_TIMESTAMP'),
+  uploadedAt: text('uploaded_at').default(sql`CURRENT_TIMESTAMP`),
 });
 
 // Results table for contest winners
@@ -44,7 +45,7 @@ export const results = sqliteTable('results', {
   result: text('result').notNull(), // 'first', 'second', 'third', 'runner-up'
   firstName: text('first_name'),
   lastName: text('last_name'),
-  createdAt: text('created_at').default('CURRENT_TIMESTAMP'),
+  createdAt: text('created_at').default(sql`CURRENT_TIMESTAMP`),
 });
 
 // Judges table
@@ -52,7 +53,7 @@ export const judges = sqliteTable('judges', {
   id: text('id').primaryKey(),
   contestId: text('contest_id').notNull(),
   fullName: text('full_name').notNull(),
-  createdAt: text('created_at').default('CURRENT_TIMESTAMP'),
+  createdAt: text('created_at').default(sql`CURRENT_TIMESTAMP`),
 });
 
 // Indexes - defined separately to avoid deprecation warning

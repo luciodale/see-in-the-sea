@@ -121,25 +121,25 @@ export default function CreateContestForm({
   const today = new Date().toISOString().split('T')[0];
 
   return (
-    <div className="bg-white rounded-lg shadow-lg p-6">
+    <div className="bg-slate-900 border border-slate-700 rounded-lg p-6">
       <div className="mb-6">
-        <h2 className="text-2xl font-bold text-gray-900 mb-2">
+        <h2 className="text-2xl font-bold text-white mb-2">
           🏆 Create New Contest
         </h2>
-        <p className="text-gray-600">
+        <p className="text-slate-300">
           Set up a new underwater photography contest with all the details.
         </p>
       </div>
 
       {error && (
-        <div className="mb-4 p-4 bg-red-50 border border-red-200 rounded-md">
-          <p className="text-red-800 text-sm">❌ {error}</p>
+        <div className="mb-4 p-4 bg-red-900/30 border border-red-700 rounded-md">
+          <p className="text-red-200 text-sm">❌ {error}</p>
         </div>
       )}
 
       {success && (
-        <div className="mb-4 p-4 bg-green-50 border border-green-200 rounded-md">
-          <p className="text-green-800 text-sm">{success}</p>
+        <div className="mb-4 p-4 bg-emerald-900/30 border border-emerald-700 rounded-md">
+          <p className="text-emerald-200 text-sm">{success}</p>
         </div>
       )}
 
@@ -148,7 +148,7 @@ export default function CreateContestForm({
         <div>
           <label
             htmlFor="id"
-            className="block text-sm font-medium text-gray-700 mb-2"
+            className="block text-sm font-medium text-slate-200 mb-2"
           >
             Contest ID *
           </label>
@@ -160,9 +160,9 @@ export default function CreateContestForm({
             value={formData.id}
             onChange={handleInputChange}
             placeholder="e.g., uw-2025, contest-spring-2025"
-            className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+            className="w-full px-3 py-2 border border-slate-700 bg-slate-800 text-white rounded-md focus:outline-none focus:ring-2 focus:ring-emerald-500"
           />
-          <p className="text-xs text-gray-500 mt-1">
+          <p className="text-xs text-slate-400 mt-1">
             Unique identifier for the contest (used in URLs and database)
           </p>
         </div>
@@ -171,7 +171,7 @@ export default function CreateContestForm({
         <div>
           <label
             htmlFor="name"
-            className="block text-sm font-medium text-gray-700 mb-2"
+            className="block text-sm font-medium text-slate-200 mb-2"
           >
             Contest Name *
           </label>
@@ -183,7 +183,7 @@ export default function CreateContestForm({
             value={formData.name}
             onChange={handleInputChange}
             placeholder="e.g., Underwater Photography Contest 2025"
-            className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+            className="w-full px-3 py-2 border border-slate-700 bg-slate-800 text-white rounded-md focus:outline-none focus:ring-2 focus:ring-emerald-500"
           />
         </div>
 
@@ -191,7 +191,7 @@ export default function CreateContestForm({
         <div>
           <label
             htmlFor="description"
-            className="block text-sm font-medium text-gray-700 mb-2"
+            className="block text-sm font-medium text-slate-200 mb-2"
           >
             Description
           </label>
@@ -202,7 +202,7 @@ export default function CreateContestForm({
             value={formData.description}
             onChange={handleInputChange}
             placeholder="Describe the contest theme, rules, or special instructions..."
-            className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+            className="w-full px-3 py-2 border border-slate-700 bg-slate-800 text-white rounded-md focus:outline-none focus:ring-2 focus:ring-emerald-500"
           />
         </div>
 
@@ -211,7 +211,7 @@ export default function CreateContestForm({
           <div>
             <label
               htmlFor="startDate"
-              className="block text-sm font-medium text-gray-700 mb-2"
+              className="block text-sm font-medium text-slate-200 mb-2"
             >
               Start Date *
             </label>
@@ -223,14 +223,14 @@ export default function CreateContestForm({
               value={formData.startDate}
               onChange={handleInputChange}
               min={today}
-              className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+              className="w-full px-3 py-2 border border-slate-700 bg-slate-800 text-white rounded-md focus:outline-none focus:ring-2 focus:ring-emerald-500"
             />
           </div>
 
           <div>
             <label
               htmlFor="endDate"
-              className="block text-sm font-medium text-gray-700 mb-2"
+              className="block text-sm font-medium text-slate-200 mb-2"
             >
               End Date *
             </label>
@@ -242,7 +242,7 @@ export default function CreateContestForm({
               value={formData.endDate}
               onChange={handleInputChange}
               min={formData.startDate || today}
-              className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+              className="w-full px-3 py-2 border border-slate-700 bg-slate-800 text-white rounded-md focus:outline-none focus:ring-2 focus:ring-emerald-500"
             />
           </div>
         </div>
@@ -252,7 +252,7 @@ export default function CreateContestForm({
           <div>
             <label
               htmlFor="maxSubmissionsPerCategory"
-              className="block text-sm font-medium text-gray-700 mb-2"
+              className="block text-sm font-medium text-slate-200 mb-2"
             >
               Max Submissions per Category
             </label>
@@ -261,7 +261,7 @@ export default function CreateContestForm({
               name="maxSubmissionsPerCategory"
               value={formData.maxSubmissionsPerCategory}
               onChange={handleInputChange}
-              className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+              className="w-full px-3 py-2 border border-slate-700 bg-slate-800 text-white rounded-md focus:outline-none focus:ring-2 focus:ring-emerald-500"
             >
               <option value={1}>1 submission</option>
               <option value={2}>2 submissions</option>
@@ -274,27 +274,27 @@ export default function CreateContestForm({
           <div>
             <label
               htmlFor="isActive"
-              className="block text-sm font-medium text-gray-700 mb-2"
+              className="block text-sm font-medium text-slate-200 mb-2"
             >
               Contest Status
             </label>
-            <div className="flex items-center p-3 border border-gray-300 rounded-md bg-gray-50">
+            <div className="flex items-center p-3 border border-slate-700 rounded-md bg-slate-800">
               <input
                 id="isActive"
                 name="isActive"
                 type="checkbox"
                 checked={formData.isActive}
                 onChange={handleInputChange}
-                className="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded"
+                className="h-4 w-4 text-emerald-500 focus:ring-emerald-500 border-slate-700 rounded bg-slate-900"
               />
               <div className="ml-3">
                 <label
                   htmlFor="isActive"
-                  className="text-sm font-medium text-gray-900 cursor-pointer"
+                  className="text-sm font-medium text-slate-200 cursor-pointer"
                 >
                   Active Contest
                 </label>
-                <p className="text-xs text-gray-500">
+                <p className="text-xs text-slate-400">
                   {formData.isActive
                     ? 'Contest will be visible to users immediately'
                     : 'Contest will be created as inactive (draft mode)'}
@@ -309,7 +309,7 @@ export default function CreateContestForm({
           <button
             type="submit"
             disabled={isSubmitting}
-            className="flex-1 bg-blue-600 text-white py-2 px-4 rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 disabled:opacity-50"
+            className="flex-1 bg-emerald-600 text-white py-2 px-4 rounded-md hover:bg-emerald-500 focus:outline-none focus:ring-2 focus:ring-emerald-500 disabled:opacity-50"
           >
             {isSubmitting ? (
               <span className="flex items-center justify-center">
@@ -344,7 +344,7 @@ export default function CreateContestForm({
             <button
               type="button"
               onClick={onCancel}
-              className="px-6 py-2 border border-gray-300 text-gray-700 rounded-md hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-blue-500"
+              className="px-6 py-2 border border-slate-700 text-slate-200 rounded-md hover:bg-slate-800 focus:outline-none focus:ring-2 focus:ring-emerald-500"
             >
               Cancel
             </button>
@@ -353,8 +353,8 @@ export default function CreateContestForm({
       </form>
 
       {/* Helper Text */}
-      <div className="mt-6 p-4 bg-blue-50 border border-blue-200 rounded-md">
-        <p className="text-blue-800 text-sm">
+      <div className="mt-6 p-4 bg-slate-800 border border-slate-700 rounded-md">
+        <p className="text-slate-300 text-sm">
           <strong>💡 Tip:</strong> Once created, the contest will appear in the
           user interface. Make sure your dates and submission limits are correct
           before creating.

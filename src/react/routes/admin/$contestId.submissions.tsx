@@ -1,6 +1,7 @@
 import { RedirectToSignIn, SignedIn, SignedOut } from '@clerk/clerk-react';
 import { createFileRoute, Link } from '@tanstack/react-router';
 import AdminSubmissionsBrowser from '../../components/AdminSubmissionsBrowser';
+import AdminTabs from '../../components/AdminTabs';
 import { useUserRole } from '../../hooks/useUserRole';
 
 export const Route = createFileRoute('/admin/$contestId/submissions')({
@@ -13,10 +14,10 @@ function AdminContestSubmissions() {
 
   if (!isLoaded) {
     return (
-      <div className="min-h-screen bg-gray-50 flex items-center justify-center">
+      <div className="min-h-screen bg-slate-900 flex items-center justify-center text-slate-200">
         <div className="text-center">
-          <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-600 mx-auto"></div>
-          <p className="mt-2 text-gray-600">Loading...</p>
+          <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-emerald-500 mx-auto"></div>
+          <p className="mt-2">Loading...</p>
         </div>
       </div>
     );
@@ -26,71 +27,31 @@ function AdminContestSubmissions() {
     <>
       <SignedIn>
         {isAdmin ? (
-          <div className="min-h-screen bg-gray-50">
-            {/* Admin Header with navigation */}
-            <header className="bg-white shadow-sm border-b">
-              <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <div className="flex justify-between items-center h-16">
-                  <div className="flex items-center space-x-8">
-                    <h1 className="text-xl font-semibold text-gray-900">
-                      🛠️ Admin Panel
-                    </h1>
-                    <nav className="flex space-x-6">
-                      <Link
-                        to="/admin"
-                        className="text-gray-600 hover:text-gray-900 px-3 py-2 text-sm font-medium"
-                      >
-                        Dashboard
-                      </Link>
-                      <Link
-                        to="/admin/contests"
-                        className="text-gray-600 hover:text-gray-900 px-3 py-2 text-sm font-medium"
-                      >
-                        Contests
-                      </Link>
-                      <span className="text-blue-600 border-b-2 border-blue-600 px-3 py-2 text-sm font-medium">
-                        Submissions
-                      </span>
-                    </nav>
-                  </div>
-                  <div className="flex items-center space-x-4">
-                    <span className="text-sm text-gray-500">Role: {role}</span>
-                    <a
-                      href="/user"
-                      className="text-sm text-blue-600 hover:text-blue-800"
-                    >
-                      ← Back to User Panel
-                    </a>
-                  </div>
-                </div>
-              </div>
-            </header>
-
-            {/* Admin Content */}
-            <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-              <div className="space-y-8">
-                {/* Page Header */}
+          <div className="min-h-screen bg-slate-900 text-slate-100">
+            <AdminTabs />
+            <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
+              <div className="space-y-6">
                 <div>
-                  <div className="flex items-center space-x-2 text-sm text-gray-500 mb-2">
-                    <Link to="/admin/contests" className="hover:text-gray-700">
-                      Contest Management
+                  <div className="flex items-center gap-2 text-sm text-slate-400 mb-2">
+                    <Link to="/admin/contests" className="hover:text-slate-200">
+                      Contests
                     </Link>
                     <span>→</span>
-                    <span className="text-gray-900 font-medium">
+                    <span className="text-slate-200 font-medium">
                       Contest "{contestId}" Submissions
                     </span>
                   </div>
-                  <h2 className="text-3xl font-bold text-gray-900">
+                  <h2 className="text-2xl font-bold text-white">
                     Submissions for Contest: {contestId}
                   </h2>
-                  <p className="mt-2 text-gray-600">
-                    Browse, search, and edit all submissions for this specific
-                    contest.
+                  <p className="mt-1 text-slate-300">
+                    Browse and manage all submissions for this contest.
                   </p>
                 </div>
 
-                {/* Submissions Browser */}
-                <AdminSubmissionsBrowser contestId={contestId} />
+                <div className="max-w-[1400px] mx-auto">
+                  <AdminSubmissionsBrowser contestId={contestId} />
+                </div>
               </div>
             </main>
           </div>

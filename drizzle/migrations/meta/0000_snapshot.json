@@ -1,7 +1,7 @@
 {
   "version": "6",
   "dialect": "sqlite",
-  "id": "b4c50b86-7477-48e2-b580-6ae52b617680",
+  "id": "1d58f083-50b8-4790-b57b-5da9964e6703",
   "prevId": "00000000-0000-0000-0000-000000000000",
   "tables": {
     "categories": {
@@ -34,7 +34,7 @@
           "primaryKey": false,
           "notNull": false,
           "autoincrement": false,
-          "default": "'CURRENT_TIMESTAMP'"
+          "default": "CURRENT_TIMESTAMP"
         }
       },
       "indexes": {
@@ -111,7 +111,7 @@
           "primaryKey": false,
           "notNull": false,
           "autoincrement": false,
-          "default": "'CURRENT_TIMESTAMP'"
+          "default": "CURRENT_TIMESTAMP"
         },
         "updated_at": {
           "name": "updated_at",
@@ -119,7 +119,7 @@
           "primaryKey": false,
           "notNull": false,
           "autoincrement": false,
-          "default": "'CURRENT_TIMESTAMP'"
+          "default": "CURRENT_TIMESTAMP"
         }
       },
       "indexes": {},
@@ -158,7 +158,7 @@
           "primaryKey": false,
           "notNull": false,
           "autoincrement": false,
-          "default": "'CURRENT_TIMESTAMP'"
+          "default": "CURRENT_TIMESTAMP"
         }
       },
       "indexes": {},
@@ -211,7 +211,7 @@
           "primaryKey": false,
           "notNull": false,
           "autoincrement": false,
-          "default": "'CURRENT_TIMESTAMP'"
+          "default": "CURRENT_TIMESTAMP"
         }
       },
       "indexes": {},
@@ -306,7 +306,7 @@
           "primaryKey": false,
           "notNull": false,
           "autoincrement": false,
-          "default": "'CURRENT_TIMESTAMP'"
+          "default": "CURRENT_TIMESTAMP"
         }
       },
       "indexes": {

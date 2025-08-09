@@ -73,6 +73,13 @@ export default function ContestOverview({
 
   const { contest, categories } = data;
 
+  const safeDate = (d?: string) => {
+    if (!d) return '—';
+    const parsed = Date.parse(d);
+    if (Number.isNaN(parsed)) return '—';
+    return new Date(parsed).toLocaleDateString();
+  };
+
   return (
     <div className="max-w-4xl mx-auto p-6 space-y-8">
       {/* Contest Header */}
@@ -87,12 +94,10 @@ export default function ContestOverview({
         {/* Contest Dates */}
         <div className="flex justify-center space-x-8 text-sm text-gray-500">
           <div>
-            <span className="font-medium">Starts:</span>{' '}
-            {new Date(contest.startDate).toLocaleDateString()}
+            <span className="font-medium">Starts:</span> {safeDate(contest.startDate)}
           </div>
           <div>
-            <span className="font-medium">Ends:</span>{' '}
-            {new Date(contest.endDate).toLocaleDateString()}
+            <span className="font-medium">Ends:</span> {safeDate(contest.endDate)}
           </div>
         </div>
       </div>

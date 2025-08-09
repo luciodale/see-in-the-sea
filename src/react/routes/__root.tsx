@@ -13,7 +13,7 @@ export const Route = createRootRoute({
       <SubNav />
       {/* Main Content */}
       <div className="min-h-screen w-full bg-slate-900 relative">
-        <main className="max-w-5xl mx-auto px-6">
+        <main className="max-w-7xl mx-auto px-6">
           <Outlet />
         </main>
       </div>

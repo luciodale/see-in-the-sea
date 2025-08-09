@@ -1,5 +1,5 @@
 import { RedirectToSignIn, SignedIn, SignedOut } from '@clerk/clerk-react';
-import { createFileRoute, Link } from '@tanstack/react-router';
+import { createFileRoute, Link, useRouter } from '@tanstack/react-router';
 import { useUserRole } from '../../hooks/useUserRole';
 
 export const Route = createFileRoute('/admin/')({
@@ -8,6 +8,7 @@ export const Route = createFileRoute('/admin/')({
 
 function AdminDashboard() {
   const { isAdmin, isLoaded, role } = useUserRole();
+  const router = useRouter();
 
   if (!isLoaded) {
     return (
@@ -20,128 +21,19 @@ function AdminDashboard() {
     );
   }
 
+  // Redirect admins immediately to contests (main entry)
+  if (isAdmin) {
+    router.navigate({ to: '/admin/contests' });
+    return null;
+  }
+
   return (
     <>
       <SignedIn>
         {isAdmin ? (
-          <div className="min-h-screen bg-gray-50">
-            {/* Admin Header */}
-            <header className="bg-white shadow-sm border-b">
-              <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <div className="flex justify-between items-center h-16">
-                  <div className="flex items-center space-x-8">
-                    <h1 className="text-xl font-semibold text-gray-900">
-                      🛠️ Admin Panel
-                    </h1>
-
-                    <nav className="flex space-x-6">
-                      <span className="text-blue-600 border-b-2 border-blue-600 px-3 py-2 text-sm font-medium">
-                        Dashboard
-                      </span>
-                      <a
-                        href="/admin/contests"
-                        className="text-gray-600 hover:text-gray-900 px-3 py-2 text-sm font-medium"
-                      >
-                        Contests
-                      </a>
-                    </nav>
-                  </div>
-
-                  <div className="flex items-center space-x-4">
-                    <span className="text-sm text-gray-500">
-                      Role:{' '}
-                      <span className="font-semibold text-red-600">Admin</span>
-                    </span>
-                    <Link
-                      to="/user"
-                      className="text-blue-600 hover:text-blue-800 text-sm font-medium"
-                    >
-                      ← Back to User Panel
-                    </Link>
-                  </div>
-                </div>
-              </div>
-            </header>
-
-            {/* Admin Content */}
-            <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-              <div className="space-y-8">
-                {/* Welcome Section */}
-                <div className="bg-white rounded-lg shadow p-6">
-                  <h2 className="text-2xl font-bold text-gray-900 mb-4">
-                    👋 Welcome to Admin Dashboard
-                  </h2>
-                  <p className="text-gray-600 mb-4">
-                    Manage contests, categories, and oversee the underwater
-                    photography competition.
-                  </p>
-                </div>
-
-                {/* Quick Actions */}
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                  <Link
-                    to="/admin/contests"
-                    className="bg-white rounded-lg shadow p-6 hover:shadow-md transition-shadow"
-                  >
-                    <div className="flex items-center mb-4">
-                      <div className="bg-blue-100 rounded-lg p-3">
-                        <span className="text-2xl">🏆</span>
-                      </div>
-                      <div className="ml-4">
-                        <h3 className="text-lg font-semibold text-gray-900">
-                          Manage Contests
-                        </h3>
-                        <p className="text-gray-600 text-sm">
-                          Create and edit contests
-                        </p>
-                      </div>
-                    </div>
-                    <p className="text-gray-500 text-sm">
-                      Set up new photography contests with dates, rules, and
-                      categories.
-                    </p>
-                  </Link>
-
-                  <div className="bg-white rounded-lg shadow p-6">
-                    <div className="flex items-center mb-4">
-                      <div className="bg-green-100 rounded-lg p-3">
-                        <span className="text-2xl">📊</span>
-                      </div>
-                      <div className="ml-4">
-                        <h3 className="text-lg font-semibold text-gray-900">
-                          View Statistics
-                        </h3>
-                        <p className="text-gray-600 text-sm">
-                          Contest analytics
-                        </p>
-                      </div>
-                    </div>
-                    <p className="text-gray-500 text-sm">
-                      Monitor submissions, participation rates, and engagement
-                      metrics.
-                    </p>
-                  </div>
-
-                  <div className="bg-white rounded-lg shadow p-6">
-                    <div className="flex items-center mb-4">
-                      <div className="bg-purple-100 rounded-lg p-3">
-                        <span className="text-2xl">👥</span>
-                      </div>
-                      <div className="ml-4">
-                        <h3 className="text-lg font-semibold text-gray-900">
-                          User Management
-                        </h3>
-                        <p className="text-gray-600 text-sm">
-                          Manage roles & permissions
-                        </p>
-                      </div>
-                    </div>
-                    <p className="text-gray-500 text-sm">
-                      Control user access levels and moderation capabilities.
-                    </p>
-                  </div>
-                </div>
-              </div>
+          <div className="min-h-screen bg-slate-900 text-slate-100">
+            <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
+              <div className="text-center">Redirecting…</div>
             </main>
           </div>
         ) : (

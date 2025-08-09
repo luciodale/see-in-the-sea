@@ -128,7 +128,10 @@ export default function AdminSubmissionsBrowser({
   const totalPages = Math.ceil(totalCount / itemsPerPage);
 
   const formatDate = (dateString: string) => {
-    return new Date(dateString).toLocaleDateString('en-US', {
+    if (!dateString) return '—';
+    const parsed = Date.parse(dateString);
+    if (Number.isNaN(parsed)) return '—';
+    return new Date(parsed).toLocaleDateString('en-US', {
       year: 'numeric',
       month: 'short',
       day: 'numeric',
@@ -137,28 +140,17 @@ export default function AdminSubmissionsBrowser({
     });
   };
 
-  if (isLoading && submissions.length === 0) {
-    return (
-      <div className="bg-white rounded-lg shadow-lg p-6">
-        <div className="flex items-center justify-center py-8">
-          <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-600"></div>
-          <span className="ml-2 text-gray-600">Loading submissions...</span>
-        </div>
-      </div>
-    );
-  }
+  // Keep the view mounted; show loading inside the table area
 
   return (
     <>
-      <div className="bg-white rounded-lg shadow-lg">
+      <div className="bg-slate-900 border border-slate-700 rounded-lg">
         {/* Header */}
-        <div className="px-6 py-4 border-b border-gray-200">
+        <div className="px-6 py-4 border-b border-slate-700">
           <div className="flex items-center justify-between">
             <div>
-              <h2 className="text-xl font-bold text-gray-900">
-                All Submissions
-              </h2>
-              <p className="text-gray-600 text-sm">
+              <h2 className="text-xl font-bold text-white">All Submissions</h2>
+              <p className="text-slate-300 text-sm">
                 {totalCount} total submissions{' '}
                 {totalCount !== submissions.length &&
                   `(showing ${submissions.length})`}
@@ -166,7 +158,7 @@ export default function AdminSubmissionsBrowser({
             </div>
             <button
               onClick={clearFilters}
-              className="px-4 py-2 text-sm text-gray-600 hover:text-gray-800 border border-gray-300 rounded-md hover:bg-gray-50"
+              className="px-4 py-2 text-sm text-slate-300 hover:text-white border border-slate-700 rounded-md hover:bg-slate-800"
             >
               Clear Filters
             </button>
@@ -174,13 +166,13 @@ export default function AdminSubmissionsBrowser({
         </div>
 
         {/* Filters */}
-        <div className="px-6 py-4 bg-gray-50 border-b border-gray-200">
+        <div className="px-6 py-4 bg-slate-900 border-b border-slate-700">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
             {/* Search */}
             <div>
               <label
                 htmlFor="search-filter"
-                className="block text-xs font-medium text-gray-700 mb-1"
+                className="block text-xs font-medium text-slate-200 mb-1"
               >
                 Search Title
               </label>
@@ -190,7 +182,7 @@ export default function AdminSubmissionsBrowser({
                 value={filters.search}
                 onChange={e => handleFilterChange('search', e.target.value)}
                 placeholder="Search by title..."
-                className="w-full px-3 py-2 text-sm border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                className="w-full px-3 py-2 text-sm border border-slate-700 bg-slate-800 text-white rounded-md focus:outline-none focus:ring-2 focus:ring-emerald-500"
               />
             </div>
 
@@ -198,7 +190,7 @@ export default function AdminSubmissionsBrowser({
             <div>
               <label
                 htmlFor="category-filter"
-                className="block text-xs font-medium text-gray-700 mb-1"
+                className="block text-xs font-medium text-slate-200 mb-1"
               >
                 Category ID
               </label>
@@ -208,7 +200,7 @@ export default function AdminSubmissionsBrowser({
                 value={filters.categoryId}
                 onChange={e => handleFilterChange('categoryId', e.target.value)}
                 placeholder="Filter by category..."
-                className="w-full px-3 py-2 text-sm border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                className="w-full px-3 py-2 text-sm border border-slate-700 bg-slate-800 text-white rounded-md focus:outline-none focus:ring-2 focus:ring-emerald-500"
               />
             </div>
 
@@ -216,7 +208,7 @@ export default function AdminSubmissionsBrowser({
             <div>
               <label
                 htmlFor="email-filter"
-                className="block text-xs font-medium text-gray-700 mb-1"
+                className="block text-xs font-medium text-slate-200 mb-1"
               >
                 User Email
               </label>
@@ -226,7 +218,7 @@ export default function AdminSubmissionsBrowser({
                 value={filters.userEmail}
                 onChange={e => handleFilterChange('userEmail', e.target.value)}
                 placeholder="Filter by email..."
-                className="w-full px-3 py-2 text-sm border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                className="w-full px-3 py-2 text-sm border border-slate-700 bg-slate-800 text-white rounded-md focus:outline-none focus:ring-2 focus:ring-emerald-500"
               />
             </div>
           </div>
@@ -234,18 +226,25 @@ export default function AdminSubmissionsBrowser({
 
         {/* Error State */}
         {error && (
-          <div className="px-6 py-4 bg-red-50 border-b border-red-200">
-            <p className="text-red-800 text-sm">❌ {error}</p>
+          <div className="px-6 py-4 bg-red-900/30 border-b border-red-800">
+            <p className="text-red-200 text-sm">❌ {error}</p>
           </div>
         )}
 
         {/* Submissions Table */}
-        <div className="overflow-x-auto">
-          {submissions.length === 0 ? (
+        <div className="overflow-x-auto rounded-b-lg">
+          {isLoading ? (
             <div className="px-6 py-12 text-center">
-              <div className="text-gray-500">
+              <div className="text-slate-300">
+                <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-emerald-500 mx-auto mb-4"></div>
+                <p>Loading submissions...</p>
+              </div>
+            </div>
+          ) : submissions.length === 0 ? (
+            <div className="px-6 py-12 text-center">
+              <div className="text-slate-400">
                 <svg
-                  className="mx-auto h-12 w-12 text-gray-400 mb-4"
+                  className="mx-auto h-12 w-12 text-slate-500 mb-4"
                   fill="none"
                   stroke="currentColor"
                   viewBox="0 0 24 24"
@@ -257,10 +256,10 @@ export default function AdminSubmissionsBrowser({
                     d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"
                   />
                 </svg>
-                <h3 className="text-lg font-medium text-gray-900 mb-2">
+                <h3 className="text-lg font-medium text-white mb-2">
                   No Submissions Found
                 </h3>
-                <p className="text-gray-600">
+                <p className="text-slate-300">
                   {Object.values(filters).some(v => v)
                     ? 'Try adjusting your filters to see more results.'
                     : 'No submissions have been uploaded yet.'}
@@ -268,47 +267,47 @@ export default function AdminSubmissionsBrowser({
               </div>
             </div>
           ) : (
-            <table className="min-w-full divide-y divide-gray-200">
-              <thead className="bg-gray-50">
+            <table className="min-w-full divide-y divide-slate-700">
+              <thead className="bg-slate-800/40">
                 <tr>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                  <th className="px-6 py-3 text-left text-xs font-medium text-slate-300 uppercase tracking-wider">
                     Submission
                   </th>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                  <th className="px-6 py-3 text-left text-xs font-medium text-slate-300 uppercase tracking-wider">
                     Contest & Category
                   </th>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                  <th className="px-6 py-3 text-left text-xs font-medium text-slate-300 uppercase tracking-wider">
                     User
                   </th>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                  <th className="px-6 py-3 text-left text-xs font-medium text-slate-300 uppercase tracking-wider">
                     Upload Date
                   </th>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                  <th className="px-6 py-3 text-left text-xs font-medium text-slate-300 uppercase tracking-wider">
                     Actions
                   </th>
                 </tr>
               </thead>
-              <tbody className="bg-white divide-y divide-gray-200">
+              <tbody className="bg-slate-900 divide-y divide-slate-700">
                 {submissions.map(submission => (
-                  <tr key={submission.id} className="hover:bg-gray-50">
+                  <tr key={submission.id} className="hover:bg-slate-800/50">
                     {/* Submission Info */}
                     <td className="px-6 py-4 whitespace-nowrap">
                       <div className="flex items-center space-x-3">
                         <img
                           src={`/api/images/${submission.imageUrl}`}
                           alt={submission.title}
-                          className="w-16 h-16 object-cover rounded-lg border border-gray-300"
+                          className="w-16 h-16 object-cover rounded-lg border border-slate-700"
                         />
                         <div className="min-w-0 flex-1">
-                          <p className="text-sm font-medium text-gray-900 truncate">
+                          <p className="text-sm font-medium text-white truncate">
                             {submission.title}
                           </p>
                           {submission.description && (
-                            <p className="text-xs text-gray-500 truncate max-w-xs">
+                            <p className="text-xs text-slate-400 truncate max-w-xs">
                               {submission.description}
                             </p>
                           )}
-                          <p className="text-xs text-gray-400">
+                          <p className="text-xs text-slate-400 break-all truncate">
                             ID: {submission.id}
                           </p>
                         </div>
@@ -318,13 +317,13 @@ export default function AdminSubmissionsBrowser({
                     {/* Contest & Category */}
                     <td className="px-6 py-4 whitespace-nowrap">
                       <div>
-                        <p className="text-sm font-medium text-gray-900">
+                        <p className="text-sm font-medium text-white">
                           {submission.contestName}
                         </p>
-                        <p className="text-xs text-gray-500">
+                        <p className="text-xs text-slate-400">
                           {submission.categoryName}
                         </p>
-                        <p className="text-xs text-gray-400">
+                        <p className="text-xs text-slate-400">
                           {submission.contestId} / {submission.categoryId}
                         </p>
                       </div>
@@ -332,13 +331,13 @@ export default function AdminSubmissionsBrowser({
 
                     {/* User */}
                     <td className="px-6 py-4 whitespace-nowrap">
-                      <p className="text-sm text-gray-900">
+                      <p className="text-sm text-white">
                         {submission.userEmail}
                       </p>
                     </td>
 
                     {/* Upload Date */}
-                    <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                    <td className="px-6 py-4 whitespace-nowrap text-sm text-slate-300">
                       {formatDate(submission.uploadedAt)}
                     </td>
 
@@ -346,7 +345,7 @@ export default function AdminSubmissionsBrowser({
                     <td className="px-6 py-4 whitespace-nowrap text-right text-sm font-medium space-x-2">
                       <button
                         onClick={() => handleEditSubmission(submission)}
-                        className="inline-flex items-center px-3 py-1 border border-transparent text-sm font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
+                        className="inline-flex items-center px-3 py-1 border border-transparent text-sm font-medium rounded-md text-white bg-emerald-600 hover:bg-emerald-500 focus:outline-none focus:ring-2 focus:ring-emerald-500"
                       >
                         <svg
                           className="w-4 h-4 mr-1"
@@ -371,7 +370,7 @@ export default function AdminSubmissionsBrowser({
                             '_blank'
                           )
                         }
-                        className="inline-flex items-center px-3 py-1 border border-gray-300 text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
+                        className="inline-flex items-center px-3 py-1 border border-slate-700 text-sm font-medium rounded-md text-slate-200 bg-slate-800 hover:bg-slate-700 focus:outline-none focus:ring-2 focus:ring-emerald-500"
                       >
                         <svg
                           className="w-4 h-4 mr-1"
@@ -404,19 +403,19 @@ export default function AdminSubmissionsBrowser({
 
         {/* Pagination */}
         {totalPages > 1 && (
-          <div className="px-6 py-4 border-t border-gray-200 flex items-center justify-between">
-            <div className="text-sm text-gray-700">
+          <div className="px-6 py-4 border-t border-slate-700 flex items-center justify-between text-slate-300">
+            <div className="text-sm">
               Showing page {currentPage} of {totalPages} ({totalCount} total)
             </div>
             <div className="flex space-x-2">
               <button
                 onClick={() => setCurrentPage(Math.max(1, currentPage - 1))}
                 disabled={currentPage === 1}
-                className="px-3 py-2 text-sm border border-gray-300 rounded-md disabled:opacity-50 disabled:cursor-not-allowed hover:bg-gray-50"
+                className="px-3 py-2 text-sm border border-slate-700 rounded-md disabled:opacity-50 disabled:cursor-not-allowed hover:bg-slate-800"
               >
                 Previous
               </button>
-              <span className="px-3 py-2 text-sm text-gray-700">
+              <span className="px-3 py-2 text-sm">
                 {currentPage} / {totalPages}
               </span>
               <button
@@ -424,7 +423,7 @@ export default function AdminSubmissionsBrowser({
                   setCurrentPage(Math.min(totalPages, currentPage + 1))
                 }
                 disabled={currentPage === totalPages}
-                className="px-3 py-2 text-sm border border-gray-300 rounded-md disabled:opacity-50 disabled:cursor-not-allowed hover:bg-gray-50"
+                className="px-3 py-2 text-sm border border-slate-700 rounded-md disabled:opacity-50 disabled:cursor-not-allowed hover:bg-slate-800"
               >
                 Next
               </button>

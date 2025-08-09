@@ -45,8 +45,10 @@ export default function ContestList({
   }, [refreshTrigger]);
 
   const formatDate = (dateString: string | null): string => {
-    if (!dateString) return 'Unknown';
-    return new Date(dateString).toLocaleDateString('en-US', {
+    if (!dateString) return '—';
+    const parsed = Date.parse(dateString);
+    if (Number.isNaN(parsed)) return '—';
+    return new Date(parsed).toLocaleDateString('en-US', {
       year: 'numeric',
       month: 'short',
       day: 'numeric',
@@ -55,13 +57,13 @@ export default function ContestList({
 
   if (isLoading) {
     return (
-      <div className="bg-white rounded-lg shadow p-6">
-        <h3 className="text-lg font-semibold text-gray-900 mb-4">
+      <div className="bg-slate-900 border border-slate-700 rounded-lg p-6">
+        <h3 className="text-lg font-semibold text-white mb-4">
           📋 Existing Contests
         </h3>
         <div className="flex items-center justify-center py-8">
-          <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-600"></div>
-          <span className="ml-2 text-gray-600">Loading contests...</span>
+          <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-emerald-500"></div>
+          <span className="ml-2 text-slate-300">Loading contests...</span>
         </div>
       </div>
     );
@@ -69,16 +71,16 @@ export default function ContestList({
 
   if (error) {
     return (
-      <div className="bg-white rounded-lg shadow p-6">
-        <h3 className="text-lg font-semibold text-gray-900 mb-4">
+      <div className="bg-slate-900 border border-slate-700 rounded-lg p-6">
+        <h3 className="text-lg font-semibold text-white mb-4">
           📋 Existing Contests
         </h3>
         <div className="text-center py-8">
-          <div className="text-red-500 text-4xl mb-2">❌</div>
-          <p className="text-red-600">{error}</p>
+          <div className="text-red-400 text-4xl mb-2">❌</div>
+          <p className="text-red-300">{error}</p>
           <button
             onClick={fetchContests}
-            className="mt-3 px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 transition-colors"
+            className="mt-3 px-4 py-2 bg-emerald-600 text-white rounded-md hover:bg-emerald-500 transition-colors"
           >
             Retry
           </button>
@@ -89,15 +91,15 @@ export default function ContestList({
 
   if (contests.length === 0) {
     return (
-      <div className="bg-white rounded-lg shadow p-6">
-        <h3 className="text-lg font-semibold text-gray-900 mb-4">
+      <div className="bg-slate-900 border border-slate-700 rounded-lg p-6">
+        <h3 className="text-lg font-semibold text-white mb-4">
           📋 Existing Contests
         </h3>
-        <div className="text-center py-8 text-gray-500">
+        <div className="text-center py-8 text-slate-400">
           <div className="text-4xl mb-2">🏆</div>
           <p>No contests created yet</p>
           <p className="text-sm mt-1">
-            Create your first contest using the form above
+            Create your first contest using the create page
           </p>
         </div>
       </div>
@@ -105,46 +107,44 @@ export default function ContestList({
   }
 
   return (
-    <div className="bg-white rounded-lg shadow">
-      <div className="px-6 py-4 border-b border-gray-200">
-        <h3 className="text-lg font-semibold text-gray-900">
+    <div className="bg-slate-900 border border-slate-700 rounded-lg">
+      <div className="px-6 py-4 border-b border-slate-700">
+        <h3 className="text-lg font-semibold text-white">
           📋 Existing Contests
         </h3>
-        <p className="text-sm text-gray-600 mt-1">
+        <p className="text-sm text-slate-300 mt-1">
           {contests.length} contest{contests.length !== 1 ? 's' : ''} found
         </p>
       </div>
 
       <div className="overflow-x-auto">
-        <table className="min-w-full divide-y divide-gray-200">
-          <thead className="bg-gray-50">
+        <table className="min-w-full divide-y divide-slate-700">
+          <thead className="bg-slate-800/40">
             <tr>
-              <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+              <th className="px-6 py-3 text-left text-xs font-medium text-slate-300 uppercase tracking-wider">
                 Contest
               </th>
-              <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+              <th className="px-6 py-3 text-left text-xs font-medium text-slate-300 uppercase tracking-wider">
                 Status
               </th>
-              <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+              <th className="px-6 py-3 text-left text-xs font-medium text-slate-300 uppercase tracking-wider">
                 Dates
               </th>
-              <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+              <th className="px-6 py-3 text-left text-xs font-medium text-slate-300 uppercase tracking-wider">
                 Max Submissions
               </th>
-              <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+              <th className="px-6 py-3 text-left text-xs font-medium text-slate-300 uppercase tracking-wider">
                 Created
               </th>
             </tr>
           </thead>
-          <tbody className="bg-white divide-y divide-gray-200">
+          <tbody className="bg-slate-900 divide-y divide-slate-700">
             {contests.map(contest => {
               const isSelected = selectedContestId === contest.id;
               return (
                 <tr
                   key={contest.id}
-                  className={`hover:bg-gray-50 cursor-pointer transition-colors ${
-                    isSelected ? 'bg-blue-50 border-l-4 border-blue-500' : ''
-                  }`}
+                  className={'cursor-pointer'}
                   onClick={() => {
                     // If there's a contest selection handler, call it
                     onContestSelect?.(contest);
@@ -154,36 +154,19 @@ export default function ContestList({
                 >
                   <td className="px-6 py-4 whitespace-nowrap">
                     <div className="flex items-center">
-                      {isSelected && (
-                        <div className="mr-3 text-blue-600">
-                          <svg
-                            className="w-5 h-5"
-                            fill="currentColor"
-                            viewBox="0 0 20 20"
-                          >
-                            <path
-                              fillRule="evenodd"
-                              d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
-                              clipRule="evenodd"
-                            />
-                          </svg>
-                        </div>
-                      )}
                       <div>
-                        <div
-                          className={`text-sm font-medium ${isSelected ? 'text-blue-900' : 'text-gray-900'}`}
-                        >
+                        <div className={'text-sm font-medium text-slate-100'}>
                           {contest.name}
                         </div>
-                        <div className="text-sm text-gray-500">
+                        <div className="text-sm text-slate-400">
                           ID: {contest.id}
                         </div>
                         {contest.description && (
-                          <div className="text-xs text-gray-400 mt-1 max-w-xs truncate">
+                          <div className="text-xs text-slate-400 mt-1 max-w-xs truncate">
                             {contest.description}
                           </div>
                         )}
-                        <div className="text-xs text-blue-600 mt-1 font-medium">
+                        <div className="text-xs text-emerald-400 mt-1 font-medium">
                           Click to view submissions →
                         </div>
                       </div>
@@ -193,21 +176,21 @@ export default function ContestList({
                     <span
                       className={`inline-flex px-2 py-1 text-xs font-semibold rounded-full ${
                         contest.isActive
-                          ? 'bg-green-100 text-green-800'
-                          : 'bg-gray-100 text-gray-800'
+                          ? 'bg-emerald-900/30 text-emerald-300 border border-emerald-800'
+                          : 'bg-slate-800/60 text-slate-300 border border-slate-700'
                       }`}
                     >
                       {contest.isActive ? 'Active' : 'Inactive'}
                     </span>
                   </td>
-                  <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                  <td className="px-6 py-4 whitespace-nowrap text-sm text-slate-300">
                     {formatDate(contest.startDate)} -{' '}
                     {formatDate(contest.endDate)}
                   </td>
-                  <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                  <td className="px-6 py-4 whitespace-nowrap text-sm text-slate-300">
                     {contest.maxSubmissionsPerCategory}
                   </td>
-                  <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                  <td className="px-6 py-4 whitespace-nowrap text-sm text-slate-300">
                     {formatDate(contest.createdAt)}
                   </td>
                 </tr>
@@ -217,10 +200,10 @@ export default function ContestList({
         </table>
       </div>
 
-      {/* Future actions */}
-      <div className="px-6 py-3 bg-gray-50 border-t border-gray-200">
-        <p className="text-xs text-gray-500">
-          💡 Future: Edit/delete actions will be added here
+      {/* Footer note */}
+      <div className="px-6 py-3 bg-slate-900 border-t border-slate-700">
+        <p className="text-xs text-slate-500">
+          💡 More actions will be added here
         </p>
       </div>
     </div>

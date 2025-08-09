@@ -75,7 +75,7 @@ try {
   console.log('   Generating seed.sql from TypeScript definitions...');
 
   // Import and run the seed generation
-  const { generateSeedSQL } = await import('./seeds.js');
+  const { generateSeedSQL } = await import('./seeds.ts');
   const { mkdirSync, writeFileSync } = await import('fs');
 
   // Ensure drizzle directory exists

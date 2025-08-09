@@ -2,7 +2,7 @@ CREATE TABLE `categories` (
 	`id` text PRIMARY KEY NOT NULL,
 	`name` text NOT NULL,
 	`description` text,
-	`created_at` text DEFAULT 'CURRENT_TIMESTAMP'
+	`created_at` text DEFAULT CURRENT_TIMESTAMP
 );
 --> statement-breakpoint
 CREATE UNIQUE INDEX `categories_name_unique` ON `categories` (`name`);--> statement-breakpoint
@@ -14,15 +14,15 @@ CREATE TABLE `contests` (
 	`end_date` text NOT NULL,
 	`is_active` integer DEFAULT false,
 	`max_submissions_per_category` integer DEFAULT 2,
-	`created_at` text DEFAULT 'CURRENT_TIMESTAMP',
-	`updated_at` text DEFAULT 'CURRENT_TIMESTAMP'
+	`created_at` text DEFAULT CURRENT_TIMESTAMP,
+	`updated_at` text DEFAULT CURRENT_TIMESTAMP
 );
 --> statement-breakpoint
 CREATE TABLE `judges` (
 	`id` text PRIMARY KEY NOT NULL,
 	`contest_id` text NOT NULL,
 	`full_name` text NOT NULL,
-	`created_at` text DEFAULT 'CURRENT_TIMESTAMP'
+	`created_at` text DEFAULT CURRENT_TIMESTAMP
 );
 --> statement-breakpoint
 CREATE TABLE `results` (
@@ -31,7 +31,7 @@ CREATE TABLE `results` (
 	`result` text NOT NULL,
 	`first_name` text,
 	`last_name` text,
-	`created_at` text DEFAULT 'CURRENT_TIMESTAMP'
+	`created_at` text DEFAULT CURRENT_TIMESTAMP
 );
 --> statement-breakpoint
 CREATE TABLE `submissions` (
@@ -46,7 +46,7 @@ CREATE TABLE `submissions` (
 	`original_filename` text,
 	`file_size` integer,
 	`content_type` text,
-	`uploaded_at` text DEFAULT 'CURRENT_TIMESTAMP'
+	`uploaded_at` text DEFAULT CURRENT_TIMESTAMP
 );
 --> statement-breakpoint
 CREATE UNIQUE INDEX `submissions_r2_key_unique` ON `submissions` (`r2_key`);--> statement-breakpoint
