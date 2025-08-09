@@ -47,6 +47,7 @@ export default function UnifiedSubmissions() {
   const [titles, setTitles] = useState<Record<string, string>>({});
   const [descriptions, setDescriptions] = useState<Record<string, string>>({});
   const [dialogOpen, setDialogOpen] = useState(false);
+  const [dialogKind, setDialogKind] = useState<'upload' | 'delete'>('upload');
   const [_lastUpload, setLastUpload] = useState<{
     title: string;
   } | null>(null);
@@ -180,6 +181,7 @@ export default function UnifiedSubmissions() {
 
       // Show success dialog
       setLastUpload({ title: data.title });
+      setDialogKind('upload');
       setDialogOpen(true);
     } catch (e) {
       setError(e instanceof Error ? e.message : 'Upload failed');
@@ -212,6 +214,9 @@ export default function UnifiedSubmissions() {
             : cat
         )
       );
+      // Show deletion success dialog
+      setDialogKind('delete');
+      setDialogOpen(true);
     } catch (e) {
       setError(e instanceof Error ? e.message : 'Failed to delete');
     } finally {
@@ -399,13 +404,47 @@ export default function UnifiedSubmissions() {
         })}
       </div>
 
-      {/* Upload Success Dialog */}
+      {/* Upload/Delete Success Dialog */}
       <UploadSuccessDialog
         open={dialogOpen}
         onClose={() => setDialogOpen(false)}
-        title={t('dialog.upload.title')}
-        message={t('toast.upload-success')}
+        title={
+          dialogKind === 'upload'
+            ? t('dialog.upload.title')
+            : t('dialog.delete.title')
+        }
+        message={
+          dialogKind === 'upload'
+            ? t('toast.upload-success')
+            : t('toast.delete-success')
+        }
       />
+
+      {/* Global Uploading/Deleting Overlay */}
+      {(Object.entries(busyIds).some(
+        ([key, val]) => key.startsWith('upload-') && val
+      ) ||
+        Object.entries(busyIds).some(
+          ([key, val]) => key.startsWith('delete-') && val
+        )) && (
+        <div
+          className="fixed inset-0 z-40 bg-black/60 flex items-center justify-center"
+          role="status"
+          aria-busy="true"
+          aria-live="polite"
+        >
+          <div className="flex flex-col items-center">
+            <div className="animate-spin rounded-full h-12 w-12 border-4 border-emerald-500 border-t-transparent"></div>
+            <div className="mt-4 text-slate-200 text-sm">
+              {Object.entries(busyIds).some(
+                ([key, val]) => key.startsWith('delete-') && val
+              )
+                ? t('state.deleting')
+                : t('state.uploading')}
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 }

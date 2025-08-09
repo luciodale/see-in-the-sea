@@ -83,9 +83,9 @@ export default function UploadSuccessDialog({
                 <p id={descriptionId} className="text-slate-200 text-sm">
                   {message}
                 </p>
-                <div className="pt-2 flex justify-end">
+                <div className="pt-4">
                   <button
-                    className="px-6 py-3 rounded-md bg-emerald-600 hover:bg-emerald-500 text-white text-base font-medium"
+                    className="w-full py-3 rounded-md bg-emerald-600 hover:bg-emerald-500 text-white text-base font-medium"
                     onClick={onClose}
                   >
                     OK
