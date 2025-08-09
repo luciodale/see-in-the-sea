@@ -5,6 +5,8 @@ import type {
   AdminResultRow,
   AdminResultsResponse,
 } from '../../../types/api.js';
+import CategorySelect from '../../components/CategorySelect';
+import EditResultModal from '../../components/EditResultModal';
 
 export const Route = createFileRoute('/admin/$contestId/results')({
   component: AdminResultsPage,
@@ -24,9 +26,7 @@ function AdminResultsPage() {
   });
   const [currentPage, setCurrentPage] = useState(1);
   const [itemsPerPage] = useState(20);
-  const [categories, setCategories] = useState<
-    Array<{ id: string; name: string }>
-  >([]);
+  const [editing, setEditing] = useState<AdminResultRow | null>(null);
 
   useEffect(() => {
     (async () => {
@@ -35,24 +35,6 @@ function AdminResultsPage() {
         setError(null);
         const token = await getToken();
         if (!token) throw new Error('Auth token not available');
-        // Fetch categories for dropdown (once)
-        if (categories.length === 0) {
-          const catRes = await fetch('/api/admin/categories', {
-            headers: { Authorization: `Bearer ${token}` },
-          });
-          const catData: unknown = await catRes.json();
-          if (
-            catRes.ok &&
-            (catData as { success?: boolean }).success &&
-            (catData as { data?: Array<{ id: string; name: string }> }).data
-          ) {
-            setCategories(
-              (
-                catData as { data: Array<{ id: string; name: string }> }
-              ).data.map(c => ({ id: c.id, name: c.name }))
-            );
-          }
-        }
 
         const params = new URLSearchParams({
           contestId,
@@ -81,8 +63,6 @@ function AdminResultsPage() {
 
   return (
     <main className="max-w-7xl mx-auto p-6 text-slate-200">
-      <h1 className="text-2xl font-bold mb-4">Results</h1>
-      {/* Header */}
       <div className="px-6 py-4 border-b border-slate-700">
         <div className="flex items-center justify-between">
           <div>
@@ -129,30 +109,17 @@ function AdminResultsPage() {
           </div>
 
           {/* Category Filter (dropdown) */}
-          <div>
-            <label
-              htmlFor="category-filter"
-              className="block text-xs font-medium text-slate-200 mb-1"
-            >
-              Category ID
-            </label>
-            <select
-              id="category-filter"
-              value={filters.categoryId}
-              onChange={e => {
-                setFilters(prev => ({ ...prev, categoryId: e.target.value }));
-                setCurrentPage(1);
-              }}
-              className="w-full px-3 py-2 text-sm border border-slate-700 bg-slate-800 text-white rounded-md focus:outline-none focus:ring-2 focus:ring-emerald-500"
-            >
-              <option value="">All</option>
-              {categories.map(c => (
-                <option key={c.id} value={c.id}>
-                  {c.id}
-                </option>
-              ))}
-            </select>
-          </div>
+          <CategorySelect
+            id="category-filter"
+            label="Category"
+            value={filters.categoryId}
+            onChange={val => {
+              setFilters(prev => ({ ...prev, categoryId: val }));
+              setCurrentPage(1);
+            }}
+            includeAllOption
+            allLabel="All"
+          />
 
           {/* User Email Filter */}
           <div>
@@ -202,6 +169,9 @@ function AdminResultsPage() {
                 <th className="px-6 py-3 text-left text-xs font-medium text-slate-300 uppercase tracking-wider">
                   Preview
                 </th>
+                <th className="px-6 py-3 text-left text-xs font-medium text-slate-300 uppercase tracking-wider">
+                  Actions
+                </th>
               </tr>
             </thead>
             <tbody className="bg-slate-900 divide-y divide-slate-700">
@@ -231,11 +201,112 @@ function AdminResultsPage() {
                       className="w-16 h-16 object-cover rounded border border-slate-700"
                     />
                   </td>
+                  <td className="px-6 py-4 whitespace-nowrap text-sm font-medium space-x-2">
+                    <button
+                      onClick={() => setEditing(r)}
+                      className="inline-flex items-center px-3 py-1 border border-transparent text-sm font-medium rounded-md text-white bg-emerald-600 hover:bg-emerald-500 focus:outline-none focus:ring-2 focus:ring-emerald-500"
+                    >
+                      <svg
+                        className="w-4 h-4 mr-1"
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                      >
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          strokeWidth={2}
+                          d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"
+                        />
+                      </svg>
+                      Edit
+                    </button>
+                    <button
+                      onClick={() =>
+                        window.open(`/api/publicImages/${r.r2Key}`, '_blank')
+                      }
+                      className="inline-flex items-center px-3 py-1 border border-slate-700 text-sm font-medium rounded-md text-slate-200 bg-slate-800 hover:bg-slate-700 focus:outline-none focus:ring-2 focus:ring-emerald-500"
+                    >
+                      <svg
+                        className="w-4 h-4 mr-1"
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                      >
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          strokeWidth={2}
+                          d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"
+                        />
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          strokeWidth={2}
+                          d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"
+                        />
+                      </svg>
+                      View
+                    </button>
+                  </td>
                 </tr>
               ))}
             </tbody>
           </table>
         </div>
+      )}
+      {Math.ceil(totalCount / itemsPerPage) > 1 && (
+        <div className="px-6 py-4 border-t border-slate-700 flex items-center justify-between text-slate-300">
+          <div className="text-sm">
+            Showing page {currentPage} of {Math.ceil(totalCount / itemsPerPage)}{' '}
+            ({totalCount} total)
+          </div>
+          <div className="flex space-x-2">
+            <button
+              onClick={() => setCurrentPage(Math.max(1, currentPage - 1))}
+              disabled={currentPage === 1}
+              className="px-3 py-2 text-sm border border-slate-700 rounded-md disabled:opacity-50 disabled:cursor-not-allowed hover:bg-slate-800"
+            >
+              Previous
+            </button>
+            <span className="px-3 py-2 text-sm">
+              {currentPage} / {Math.ceil(totalCount / itemsPerPage)}
+            </span>
+            <button
+              onClick={() =>
+                setCurrentPage(
+                  Math.min(
+                    Math.ceil(totalCount / itemsPerPage),
+                    currentPage + 1
+                  )
+                )
+              }
+              disabled={currentPage === Math.ceil(totalCount / itemsPerPage)}
+              className="px-3 py-2 text-sm border border-slate-700 rounded-md disabled:opacity-50 disabled:cursor-not-allowed hover:bg-slate-800"
+            >
+              Next
+            </button>
+          </div>
+        </div>
+      )}
+      {editing && (
+        <EditResultModal
+          isOpen={!!editing}
+          onClose={() => setEditing(null)}
+          result={{
+            resultId: editing.resultId,
+            submissionId: editing.submissionId,
+            contestId: editing.contestId,
+            categoryId: editing.categoryId,
+            result: editing.result,
+            firstName: editing.firstName,
+            lastName: editing.lastName,
+          }}
+          onSuccess={() => {
+            // refetch on success
+            setCurrentPage(1);
+          }}
+        />
       )}
     </main>
   );

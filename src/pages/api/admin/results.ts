@@ -46,6 +46,7 @@ export const GET: APIRoute = async ({ request, locals }) => {
     // Fetch all results for contest, join submissions and categories
     const base = db
       .select({
+        resultId: results.id,
         categoryId: submissions.categoryId,
         title: submissions.title,
         userEmail: submissions.userEmail,
@@ -54,12 +55,16 @@ export const GET: APIRoute = async ({ request, locals }) => {
         result: results.result,
         categoryName: categories.name,
         r2Key: submissions.r2Key,
+        contestId: submissions.contestId,
+        uploadedAt: submissions.uploadedAt,
+        firstName: results.firstName,
+        lastName: results.lastName,
       })
       .from(results)
       .innerJoin(submissions, eq(results.submissionId, submissions.id))
       .leftJoin(categories, eq(submissions.categoryId, categories.id))
       .where(and(eq(submissions.contestId, contestId)))
-      .orderBy(asc(submissions.categoryId), asc(results.result));
+      .orderBy(asc(submissions.userEmail), asc(submissions.id));
 
     const allRows = await base;
     const filtered = allRows.filter(

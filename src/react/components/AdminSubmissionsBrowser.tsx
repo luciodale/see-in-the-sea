@@ -4,6 +4,7 @@ import type {
   AdminSubmission,
   AdminSubmissionsResponse,
 } from '../../types/api';
+import CategorySelect from './CategorySelect';
 import EditSubmissionModal from './EditSubmissionModal';
 
 type AdminSubmissionsBrowserProps = {
@@ -187,22 +188,14 @@ export default function AdminSubmissionsBrowser({
             </div>
 
             {/* Category Filter */}
-            <div>
-              <label
-                htmlFor="category-filter"
-                className="block text-xs font-medium text-slate-200 mb-1"
-              >
-                Category ID
-              </label>
-              <input
-                id="category-filter"
-                type="text"
-                value={filters.categoryId}
-                onChange={e => handleFilterChange('categoryId', e.target.value)}
-                placeholder="Filter by category..."
-                className="w-full px-3 py-2 text-sm border border-slate-700 bg-slate-800 text-white rounded-md focus:outline-none focus:ring-2 focus:ring-emerald-500"
-              />
-            </div>
+            <CategorySelect
+              id="category-filter"
+              label="Category"
+              value={filters.categoryId}
+              onChange={val => handleFilterChange('categoryId', val)}
+              includeAllOption
+              allLabel="All"
+            />
 
             {/* User Email Filter */}
             <div>

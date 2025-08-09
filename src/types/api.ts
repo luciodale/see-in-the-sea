@@ -157,6 +157,7 @@ export type AdminSubmissionsResponse = {
 
 // Admin Results Types
 export type AdminResultRow = {
+  resultId: string;
   categoryId: string;
   categoryName: string | null;
   result: 'first' | 'second' | 'third' | 'runner-up';
@@ -165,6 +166,10 @@ export type AdminResultRow = {
   userEmail: string;
   imageUrl: string | null;
   r2Key: string;
+  contestId: string;
+  uploadedAt: string;
+  firstName: string | null;
+  lastName: string | null;
 };
 
 export type AdminResultsResponse = {
@@ -173,6 +178,16 @@ export type AdminResultsResponse = {
   totalCount: number;
   message?: string;
 };
+
+// Manage Results (admin) - request/response types
+export type UpdateResultRequest = {
+  resultId: string;
+  result: 'first' | 'second' | 'third' | 'runner-up';
+  firstName: string | null;
+  lastName: string | null;
+};
+
+export type UpdateResultResponse = ApiResponse<object>;
 
 // Judges API Types
 export type JudgeRow = { fullName: string };
