@@ -40,7 +40,7 @@ export function NavbarContent() {
             {t('navbar.register')}
           </a>
           <a
-            href={lang === 'it' ? '/it/' : '/'}
+            href={lang === 'it' ? '/it/rules' : '/rules'}
             className="text-sm/6 font-semibold text-white"
           >
             {t('navbar.discover')} <span aria-hidden="true">→</span>

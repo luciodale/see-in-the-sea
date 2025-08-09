@@ -14,9 +14,8 @@ export const translations = {
     'nav.sponsors': 'Sponsors',
     'nav.contact': 'Contact Us',
     'nav.rules': 'Rules',
-    'nav.login': 'Login',
+    'nav.login': 'Join the Contest',
     'nav.submissions': 'My Submissions',
-    'nav.submit': 'Join the Contest',
     'nav.admin': 'Admin',
 
     // Home page sections
@@ -30,6 +29,7 @@ export const translations = {
     'home.sponsors.title': 'Our Sponsors',
     'home.sponsors.description':
       "We're grateful to our incredible sponsors who make this competition possible. Their support enables us to celebrate underwater photography and provide amazing opportunities for photographers worldwide.",
+    'home.sponsors.button': 'See Sponsors →',
 
     // Navbar
     'navbar.cta': 'Registration Open!',
@@ -153,9 +153,8 @@ export const translations = {
     'nav.sponsors': 'Sponsor',
     'nav.contact': 'Contatti',
     'nav.rules': 'Regolamento',
-    'nav.login': 'Login',
+    'nav.login': 'Partecipa al Concorso',
     'nav.submissions': 'Le mie candidature',
-    'nav.submit': 'Partecipa al Concorso',
     'nav.admin': 'Admin',
 
     // Home page sections
@@ -169,6 +168,7 @@ export const translations = {
     'home.sponsors.title': 'I Nostri Sponsor',
     'home.sponsors.description':
       'Siamo grati ai nostri incredibili sponsor che rendono possibile questa competizione. Il loro supporto ci permette di celebrare la fotografia subacquea e di fornire opportunità straordinarie ai fotografi di tutto il mondo.',
+    'home.sponsors.button': 'Vedi Sponsor →',
 
     // Navbar
     'navbar.cta': 'Iscrizioni Aperte!',

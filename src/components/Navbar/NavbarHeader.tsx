@@ -30,10 +30,6 @@ const useNavigation = (
     name: t('nav.rules'),
     href: currentLang === 'it' ? '/it/rules' : '/rules',
   },
-  {
-    name: t('nav.submit'),
-    href: currentLang === 'it' ? '/it/submit' : '/submit',
-  },
 ];
 
 const logoPath = '/ortona-sub-logo.svg';

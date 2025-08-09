@@ -55,6 +55,10 @@ const { PUBLIC_CLERK_PUBLISHABLE_KEY } = Astro.locals.runtime.env;
         title={t('home.sponsors.title')}
         description={t('home.sponsors.description')}
         image={{ link: '/images/home/sponsors.jpg', objectFit: true }}
+        buttonCTA={{
+          text: t('home.sponsors.button'),
+          link: getLocalizedPath('sponsors', lang),
+        }}
       />
     </div>
   </Layout>
