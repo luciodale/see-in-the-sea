@@ -55,8 +55,8 @@ async function main() {
         const filePath = join('./migration/pictures', fileName);
 
         if (existsSync(filePath)) {
-          // Generate R2 key similar to how it's done in the upload script
-          const r2Key = `${submission.userEmail}/${submission.contestId}/${submission.categoryId}/${submission.id}.jpg`;
+          // Generate R2 key consistent with the app: contestId/categoryId/id.jpg
+          const r2Key = `${submission.contestId}/${submission.categoryId}/${submission.id}.jpg`;
 
           failedUploads.push({
             filename: fileName,
@@ -74,7 +74,7 @@ async function main() {
   }
 
   console.log(`🎯 Found ${failedUploads.length} files to retry uploading`);
-
+  console.log('is remote update?', isRemote);
   // Retry uploads
   let successCount = 0;
   let failCount = 0;
@@ -91,11 +91,12 @@ async function main() {
 
     try {
       const command = isRemote
-        ? `bunx wrangler r2 object put see-in-the-sea-images/${upload.r2Key} --file "${upload.filePath}"`
-        : `bunx wrangler r2 object put see-in-the-sea-images/${upload.r2Key} --file "${upload.filePath}" --local`;
+        ? `bunx wrangler r2 object put see-in-the-sea-images/${upload.r2Key} --file "${upload.filePath}" --remote`
+        : `bunx wrangler r2 object put see-in-the-sea-images/${upload.r2Key} --file "${upload.filePath}"`;
 
       execSync(command, { stdio: 'pipe' });
       console.log(`✅ ${progress} Success: ${upload.filename}`);
+      console.log(upload.r2Key, upload.filePath);
       successCount++;
       successfulFilenames.push(upload.filename);
 

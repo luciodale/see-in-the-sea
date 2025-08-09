@@ -15,7 +15,7 @@ export const submissions: MigrationSubmission[] = [
   {
     id: 'OVbGju9JQBaE8FXjweBlH',
     contestId: 'uw-2009',
-    categoryId: 'unknown',
+    categoryId: 'environment',
     userEmail: '',
     title: 'Ginnie',
     description: '',
@@ -27,7 +27,7 @@ export const submissions: MigrationSubmission[] = [
   {
     id: 'G9eFq4LOTb95cyBIfOcN5',
     contestId: 'uw-2009',
-    categoryId: 'unknown',
+    categoryId: 'environment',
     userEmail: '',
     title: 'On Tip Toes',
     description: '',
