@@ -155,6 +155,29 @@ export type AdminSubmissionsResponse = {
   totalCount: number;
 };
 
+// Admin Results Types
+export type AdminResultRow = {
+  categoryId: string;
+  categoryName: string | null;
+  result: 'first' | 'second' | 'third' | 'runner-up';
+  submissionId: string;
+  title: string;
+  userEmail: string;
+  imageUrl: string | null;
+  r2Key: string;
+};
+
+export type AdminResultsResponse = {
+  success: boolean;
+  data: AdminResultRow[];
+  totalCount: number;
+  message?: string;
+};
+
+// Judges API Types
+export type JudgeRow = { fullName: string };
+export type JudgesResponse = ApiResponse<JudgeRow[]>;
+
 // Type guards for runtime type checking
 export function isApiSuccess<T>(
   response: ApiResponse<T>

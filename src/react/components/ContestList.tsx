@@ -1,3 +1,4 @@
+import { useNavigate } from '@tanstack/react-router';
 import { useEffect, useState } from 'react';
 import type { Contest } from '../../db/index.js';
 import type { ContestListResponse } from '../../types/api';
@@ -11,11 +12,11 @@ type ContestListProps = {
 export default function ContestList({
   refreshTrigger,
   onContestSelect,
-  selectedContestId,
 }: ContestListProps) {
   const [contests, setContests] = useState<Contest[]>([]);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
+  const navigate = useNavigate();
 
   const fetchContests = async () => {
     try {
@@ -140,16 +141,18 @@ export default function ContestList({
           </thead>
           <tbody className="bg-slate-900 divide-y divide-slate-700">
             {contests.map(contest => {
-              const isSelected = selectedContestId === contest.id;
+              // const isSelected = selectedContestId === contest.id;
               return (
                 <tr
                   key={contest.id}
                   className={'cursor-pointer'}
                   onClick={() => {
-                    // If there's a contest selection handler, call it
                     onContestSelect?.(contest);
-                    // Navigate to submissions page
-                    window.location.href = `/admin/${contest.id}/submissions`;
+                    const to =
+                      contest.status === 'active'
+                        ? '/admin/$contestId/submissions'
+                        : '/admin/$contestId/results';
+                    navigate({ to, params: { contestId: contest.id } });
                   }}
                 >
                   <td className="px-6 py-4 whitespace-nowrap">
@@ -166,15 +169,19 @@ export default function ContestList({
                             {contest.description}
                           </div>
                         )}
-                        <div className="text-xs text-emerald-400 mt-1 font-medium">
-                          Click to view submissions →
+                        <div className="text-xs text-emerald-400 mt-1 font-medium capitalize">
+                          Click to view{' '}
+                          {contest.status === 'active'
+                            ? 'submissions'
+                            : 'results'}{' '}
+                          →
                         </div>
                       </div>
                     </div>
                   </td>
                   <td className="px-6 py-4 whitespace-nowrap">
                     <span className="inline-flex px-2 py-1 text-xs font-semibold rounded-full bg-slate-800/60 text-slate-300 border border-slate-700 capitalize">
-                      {String((contest as any).status || 'inactive')}
+                      {contest.status}
                     </span>
                   </td>
                   <td className="px-6 py-4 whitespace-nowrap text-sm text-slate-300">
