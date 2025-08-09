@@ -3,6 +3,10 @@ import HomePage from '@/components/pages/HomePage.astro';
 import { getLangFromUrl } from '@/i18n';
 
 const currentLang = getLangFromUrl(Astro.url);
+const alternates = [
+  { hrefLang: 'it', href: new URL('/it', Astro.url).toString() },
+  { hrefLang: 'x-default', href: Astro.url.href },
+];
 ---
 
-<HomePage lang={currentLang} />
+<HomePage lang={currentLang} alternates={alternates} />

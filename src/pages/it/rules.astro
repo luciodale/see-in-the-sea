@@ -7,12 +7,17 @@ import { useTranslations } from '@/i18n';
 
 const currentLang = 'it';
 const t = useTranslations(currentLang);
+const alternates = [
+  { hrefLang: 'en', href: new URL('/rules', Astro.url).toString() },
+  { hrefLang: 'x-default', href: Astro.url.href },
+];
 ---
 
 <AppWrapper
   title={t('site.title')}
   description={t('site.description')}
   lang={currentLang}
+  alternates={alternates}
 >
   <NavbarHeaderStandalone lang={currentLang} />
   <Layout>

@@ -6,6 +6,9 @@ interface Props {
   ogType?: string; // e.g., 'website', 'article', 'profile'
   twitterCard?: 'summary' | 'summary_large_image' | 'app' | 'player'; // Twitter card type
   canonicalUrl?: string; // Full canonical URL for the page (optional, defaults to current page URL)
+  siteName?: string;
+  locale?: string; // e.g., en_GB, it_IT
+  alternates?: Array<{ hrefLang: string; href: string }>; // hreflang alternates
 }
 
 const {
@@ -15,6 +18,9 @@ const {
   ogType = 'website',
   twitterCard = 'summary_large_image',
   canonicalUrl = Astro.url.href, // Default to the current page's URL if not provided
+  siteName = 'See in the Sea',
+  locale,
+  alternates = [],
 } = Astro.props;
 
 import '../styles/global.css';
@@ -28,16 +34,45 @@ import '../styles/global.css';
 <title>{title}</title>
 <meta name="description" content={description} />
 <link rel="canonical" href={canonicalUrl} />
+<meta name="robots" content="index, follow" />
+<meta name="theme-color" content="#0f172a" />
 
 <meta property="og:title" content={title} />
 <meta property="og:description" content={description} />
 <meta property="og:url" content={canonicalUrl} />
 <meta property="og:type" content={ogType} />
+<meta property="og:site_name" content={siteName} />
+{locale && <meta property="og:locale" content={locale} />}
 {ogImage && <meta property="og:image" content={ogImage} />}
 <meta name="twitter:card" content={twitterCard} />
 <meta name="twitter:title" content={title} />
 <meta name="twitter:description" content={description} />
 {ogImage && <meta name="twitter:image" content={ogImage} />}
+
+{alternates.map((alt) => (
+  <link rel="alternate" hreflang={alt.hrefLang} href={alt.href} />
+))}
+
+<script type="application/ld+json">{JSON.stringify({
+  '@context': 'https://schema.org',
+  '@type': 'WebSite',
+  name: siteName,
+  url: canonicalUrl,
+  inLanguage: locale?.split('_')[0] || 'en',
+})}</script>
+<script type="application/ld+json">{JSON.stringify({
+  '@context': 'https://schema.org',
+  '@type': 'Organization',
+  name: siteName,
+  url: new URL('/', canonicalUrl).toString(),
+  logo: new URL('/logo.png', canonicalUrl).toString(),
+  contactPoint: [{
+    '@type': 'ContactPoint',
+    email: 'info@ortonasub.com',
+    contactType: 'customer service',
+    availableLanguage: ['en','it']
+  }]
+})}</script>
 <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
 <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
 <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />

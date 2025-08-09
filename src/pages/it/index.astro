@@ -2,4 +2,10 @@
 import HomePage from '@/components/pages/HomePage.astro';
 ---
 
-<HomePage lang="it" />
+<HomePage
+  lang="it"
+  alternates={[
+    { hrefLang: 'en', href: new URL('/', Astro.url).toString() },
+    { hrefLang: 'x-default', href: Astro.url.href },
+  ]}
+/>

@@ -3,6 +3,10 @@ import SponsorsPage from '@/components/pages/SponsorsPage.astro';
 import { getLangFromUrl } from '@/i18n';
 
 const currentLang = getLangFromUrl(Astro.url);
+const alternates = [
+  { hrefLang: 'it', href: new URL('/it/sponsors', Astro.url).toString() },
+  { hrefLang: 'x-default', href: Astro.url.href },
+];
 ---
 
-<SponsorsPage lang={currentLang} />
+<SponsorsPage lang={currentLang} alternates={alternates} />

@@ -2,4 +2,10 @@
 import SponsorsPage from '@/components/pages/SponsorsPage.astro';
 ---
 
-<SponsorsPage lang="it" />
+<SponsorsPage
+  lang="it"
+  alternates={[
+    { hrefLang: 'en', href: new URL('/sponsors', Astro.url).toString() },
+    { hrefLang: 'x-default', href: Astro.url.href },
+  ]}
+/>

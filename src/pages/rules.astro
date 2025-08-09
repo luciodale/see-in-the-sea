@@ -10,6 +10,10 @@ interface Props {
 }
 
 const currentLang = Astro.locals.lang || 'en';
+const alternates = [
+  { hrefLang: 'it', href: new URL('/it/rules', Astro.url).toString() },
+  { hrefLang: 'x-default', href: Astro.url.href },
+];
 const t = useTranslations(currentLang as Language);
 ---
 
@@ -17,6 +21,7 @@ const t = useTranslations(currentLang as Language);
   title={t('site.title')}
   description={t('site.description')}
   lang={currentLang as Language}
+  alternates={alternates}
 >
   <NavbarHeaderStandalone lang={currentLang as Language} />
   <Layout>

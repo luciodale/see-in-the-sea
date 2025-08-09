@@ -12,6 +12,7 @@ interface Props {
   twitterCard?: 'summary' | 'summary_large_image' | 'app' | 'player'; // Twitter card type
   bodyClass?: string;
   lang?: string; // Language code
+  alternates?: Array<{ hrefLang: string; href: string }>; // hreflang alternates
 }
 
 const {
@@ -22,6 +23,7 @@ const {
   twitterCard = 'summary_large_image',
   bodyClass = 'min-h-screen bg-base-100 text-base-content', // Default body styling
   lang,
+  alternates = [],
 } = Astro.props;
 
 // For Open Graph URL, use the current page's URL
@@ -39,6 +41,9 @@ const currentLang = lang || getLangFromUrl(Astro.url);
       ogType={ogType}
       twitterCard={twitterCard}
       canonicalUrl={currentUrl}
+      siteName="See in the Sea"
+      locale={currentLang === 'it' ? 'it_IT' : 'en_GB'}
+      alternates={alternates}
     />
   </head>
   <body class={bodyClass}>

@@ -2,4 +2,10 @@
 import AboutPage from '@/components/pages/AboutPage.astro';
 ---
 
-<AboutPage lang="it" />
+<AboutPage
+  lang="it"
+  alternates={[
+    { hrefLang: 'en', href: new URL('/about', Astro.url).toString() },
+    { hrefLang: 'x-default', href: Astro.url.href },
+  ]}
+/>
