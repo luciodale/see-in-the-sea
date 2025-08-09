@@ -21,6 +21,7 @@ export default function CreateContestForm({
     description: '',
     year: new Date().getFullYear(),
     maxSubmissionsPerCategory: 2,
+    // default to inactive, admin can toggle after creation (status field below)
     isActive: true,
   });
 
@@ -247,34 +248,22 @@ export default function CreateContestForm({
 
           <div>
             <label
-              htmlFor="isActive"
+              htmlFor="status"
               className="block text-sm font-medium text-slate-200 mb-2"
             >
               Contest Status
             </label>
-            <div className="flex items-center p-3 border border-slate-700 rounded-md bg-slate-800">
-              <input
-                id="isActive"
-                name="isActive"
-                type="checkbox"
-                checked={formData.isActive}
-                onChange={handleInputChange}
-                className="h-4 w-4 text-emerald-500 focus:ring-emerald-500 border-slate-700 rounded bg-slate-900"
-              />
-              <div className="ml-3">
-                <label
-                  htmlFor="isActive"
-                  className="text-sm font-medium text-slate-200 cursor-pointer"
-                >
-                  Active Contest
-                </label>
-                <p className="text-xs text-slate-400">
-                  {formData.isActive
-                    ? 'Contest will be visible to users immediately'
-                    : 'Contest will be created as inactive (draft mode)'}
-                </p>
-              </div>
-            </div>
+            <select
+              id="status"
+              name="status"
+              value={(formData as any).status || 'inactive'}
+              onChange={handleInputChange}
+              className="w-full px-3 py-2 border border-slate-700 bg-slate-800 text-white rounded-md focus:outline-none focus:ring-2 focus:ring-emerald-500 capitalize"
+            >
+              <option value="active">active</option>
+              <option value="assessment">assessment</option>
+              <option value="inactive">inactive</option>
+            </select>
           </div>
         </div>
 

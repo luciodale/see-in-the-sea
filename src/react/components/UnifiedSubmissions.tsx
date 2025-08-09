@@ -32,7 +32,9 @@ export default function UnifiedSubmissions() {
     t(`category.${id}` as unknown as TranslationKey);
   const [contestId, setContestId] = useState<string | null>(null);
   const [judges, setJudges] = useState<string[]>([]);
-  const [contestIsActive, setContestIsActive] = useState<boolean>(true);
+  const [contestStatus, setContestStatus] = useState<
+    'active' | 'inactive' | 'assessment'
+  >('inactive');
   const [categories, setCategories] = useState<CategoryState[]>(
     HARDCODED_CATEGORIES.map(c => ({ ...c, submissions: [] }))
   );
@@ -66,12 +68,18 @@ export default function UnifiedSubmissions() {
       const submissionsRes = await fetch('/api/submissions');
       const submissionsData =
         (await submissionsRes.json()) as SubmissionsResponse;
-      if (!submissionsData.success || !submissionsData.data?.contest) {
-        throw new Error(submissionsData.message || 'No active contest found');
+      if (
+        !submissionsRes.ok ||
+        !submissionsData.success ||
+        !submissionsData.data?.contest
+      ) {
+        const prefix = window.location.pathname.startsWith('/it/') ? '/it' : '';
+        window.location.href = `${prefix}/contest`;
+        return;
       }
 
-      const activeContestId = submissionsData.data.contest.id;
-      setContestIsActive(!!submissionsData.data.contest.isActive);
+      const { id: activeContestId, status } = submissionsData.data.contest;
+      setContestStatus(status ?? 'inactive');
       setContestId(activeContestId);
 
       // Map existing submissions into the hardcoded categories by matching names or ids
@@ -108,8 +116,9 @@ export default function UnifiedSubmissions() {
           setJudges(judgesData.data.map(j => j.fullName));
         }
       }
-    } catch (e) {
-      setError(e instanceof Error ? e.message : 'Failed to load');
+    } catch (_e) {
+      const prefix = window.location.pathname.startsWith('/it/') ? '/it' : '';
+      window.location.href = `${prefix}/contest`;
     } finally {
       setLoading(false);
     }
@@ -319,7 +328,7 @@ export default function UnifiedSubmissions() {
                 )}
 
                 {/* Uploader for new submissions only (and only if contest is active) */}
-                {canAdd && contestIsActive && (
+                {canAdd && contestStatus === 'active' && (
                   <div className="bg-slate-900 border border-slate-700 rounded-lg p-4">
                     <div className="space-y-3">
                       <input
@@ -402,7 +411,7 @@ export default function UnifiedSubmissions() {
                 )}
 
                 {/* Inactive notice */}
-                {canAdd && !contestIsActive && (
+                {canAdd && contestStatus !== 'active' && (
                   <div className="bg-amber-900/30 border border-amber-700 text-amber-200 rounded-lg p-4">
                     {t('submissions.closed')}
                   </div>

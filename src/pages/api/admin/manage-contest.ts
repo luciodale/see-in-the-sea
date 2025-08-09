@@ -100,7 +100,9 @@ export const POST: APIRoute = async ({ request, locals }) => {
     console.log(`[manage-contest] Admin access granted for user: ${user.id}`);
 
     // Step 2: Parse and validate request body
-    const body: CreateContestFormData = await request.json();
+    const body: CreateContestFormData & {
+      status?: 'active' | 'inactive' | 'assessment';
+    } = await request.json();
 
     if (!body.id || !body.name || !body.year) {
       return new Response(
@@ -139,7 +141,7 @@ export const POST: APIRoute = async ({ request, locals }) => {
       description: body.description?.trim() || null,
       year: body.year,
       maxSubmissionsPerCategory: body.maxSubmissionsPerCategory || 2,
-      isActive: body.isActive,
+      status: body.status || 'inactive',
       createdAt: now,
       updatedAt: now,
     });

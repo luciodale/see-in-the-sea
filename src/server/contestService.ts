@@ -14,7 +14,7 @@ export async function getActiveContest(db: ReturnType<typeof getDb>): Promise<{
   const contestResult = await db
     .select()
     .from(contests)
-    .where(eq(contests.isActive, true))
+    .where(eq(contests.status, 'active'))
     .orderBy(contests.createdAt)
     .limit(1);
 
@@ -43,7 +43,7 @@ export async function validateActiveContest(
   const contestResult = await db
     .select()
     .from(contests)
-    .where(and(eq(contests.id, contestId), eq(contests.isActive, true)))
+    .where(and(eq(contests.id, contestId), eq(contests.status, 'active')))
     .limit(1);
 
   return {
@@ -61,13 +61,13 @@ export async function canUploadToContest(
   contestId: string
 ): Promise<boolean> {
   const result = await db
-    .select({ isActive: contests.isActive })
+    .select({ status: contests.status })
     .from(contests)
     .where(eq(contests.id, contestId))
     .limit(1);
 
   const row = result[0];
-  return !!row?.isActive;
+  return row?.status === 'active';
 }
 
 /**

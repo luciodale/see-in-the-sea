@@ -147,7 +147,7 @@ export const seeds = {
       description:
         'Annual underwater photography competition celebrating the beauty and diversity of marine life',
       year: 2025,
-      isActive: true,
+      status: 'active',
       judges: [],
     },
     {
@@ -156,7 +156,7 @@ export const seeds = {
       description:
         'Annual underwater photography competition celebrating the beauty and diversity of marine life',
       year: 2024,
-      isActive: false,
+      status: 'inactive',
       judges: [
         {
           fullName: 'Pietro Formis',
@@ -175,7 +175,7 @@ export const seeds = {
       description:
         'Annual underwater photography competition celebrating the beauty and diversity of marine life',
       year: 2014,
-      isActive: false,
+      status: 'inactive',
       judges: [
         {
           fullName: 'Alberto Balbi',
@@ -194,7 +194,7 @@ export const seeds = {
       description:
         'Annual underwater photography competition celebrating the beauty and diversity of marine life',
       year: 2015,
-      isActive: false,
+      status: 'inactive',
       judges: [
         {
           fullName: 'Alberto Balbi',
@@ -213,7 +213,7 @@ export const seeds = {
       description:
         'Annual underwater photography competition celebrating the beauty and diversity of marine life',
       year: 2016,
-      isActive: false,
+      status: 'inactive',
       judges: [
         {
           fullName: 'Marco Colombo',
@@ -232,7 +232,7 @@ export const seeds = {
       description:
         'Annual underwater photography competition celebrating the beauty and diversity of marine life',
       year: 2017,
-      isActive: false,
+      status: 'inactive',
       judges: [
         {
           fullName: 'Marco Colombo',
@@ -251,7 +251,7 @@ export const seeds = {
       description:
         'Annual underwater photography competition celebrating the beauty and diversity of marine life',
       year: 2018,
-      isActive: false,
+      status: 'inactive',
       judges: [
         {
           fullName: 'Domenico Roscigno',
@@ -270,7 +270,7 @@ export const seeds = {
       description:
         'Annual underwater photography competition celebrating the beauty and diversity of marine life',
       year: 2019,
-      isActive: false,
+      status: 'inactive',
       judges: [
         {
           fullName: 'Isabella Maffei',
@@ -289,7 +289,7 @@ export const seeds = {
       description:
         'Annual underwater photography competition celebrating the beauty and diversity of marine life',
       year: 2013,
-      isActive: false,
+      status: 'inactive',
       judges: [
         {
           fullName: 'Silvia Boccato',
@@ -311,7 +311,7 @@ export const seeds = {
       description:
         'Annual underwater photography competition celebrating the beauty and diversity of marine life',
       year: 2009,
-      isActive: false,
+      status: 'inactive',
       judges: [],
     },
   ],
@@ -334,7 +334,7 @@ export function generateSeedSQL(): string {
   const contestInserts = seeds.contests
     .map(
       contest =>
-        `INSERT OR IGNORE INTO contests (id, name, description, year, is_active) VALUES ('${escapeSqlString(contest.id)}', '${escapeSqlString(contest.name)}', '${escapeSqlString(contest.description)}', ${contest.year}, ${contest.isActive});`
+        `INSERT OR IGNORE INTO contests (id, name, description, year, status) VALUES ('${escapeSqlString(contest.id)}', '${escapeSqlString(contest.name)}', '${escapeSqlString(contest.description)}', ${contest.year}, '${escapeSqlString(contest.status)}');`
     )
     .join('\n');
 

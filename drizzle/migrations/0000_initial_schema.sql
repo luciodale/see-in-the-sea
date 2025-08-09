@@ -11,7 +11,7 @@ CREATE TABLE `contests` (
 	`name` text NOT NULL,
 	`description` text,
 	`year` integer NOT NULL,
-	`is_active` integer DEFAULT false,
+	`status` text NOT NULL DEFAULT 'inactive',
 	`max_submissions_per_category` integer DEFAULT 2,
 	`created_at` text DEFAULT CURRENT_TIMESTAMP,
 	`updated_at` text DEFAULT CURRENT_TIMESTAMP

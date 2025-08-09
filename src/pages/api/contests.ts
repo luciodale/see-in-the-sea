@@ -21,7 +21,7 @@ export const GET: APIRoute = async ({ locals }) => {
     const contestResult = await db
       .select()
       .from(contests)
-      .where(eq(contests.isActive, true))
+      .where(eq(contests.status, 'active'))
       .orderBy(contests.createdAt)
       .limit(1);
 

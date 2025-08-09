@@ -173,14 +173,8 @@ export default function ContestList({
                     </div>
                   </td>
                   <td className="px-6 py-4 whitespace-nowrap">
-                    <span
-                      className={`inline-flex px-2 py-1 text-xs font-semibold rounded-full ${
-                        contest.isActive
-                          ? 'bg-emerald-900/30 text-emerald-300 border border-emerald-800'
-                          : 'bg-slate-800/60 text-slate-300 border border-slate-700'
-                      }`}
-                    >
-                      {contest.isActive ? 'Active' : 'Inactive'}
+                    <span className="inline-flex px-2 py-1 text-xs font-semibold rounded-full bg-slate-800/60 text-slate-300 border border-slate-700 capitalize">
+                      {String((contest as any).status || 'inactive')}
                     </span>
                   </td>
                   <td className="px-6 py-4 whitespace-nowrap text-sm text-slate-300">

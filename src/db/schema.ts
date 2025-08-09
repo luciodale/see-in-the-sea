@@ -7,7 +7,10 @@ export const contests = sqliteTable('contests', {
   name: text('name').notNull(),
   description: text('description'),
   year: integer('year').notNull(),
-  isActive: integer('is_active', { mode: 'boolean' }).default(false),
+  status: text('status')
+    .$type<'active' | 'inactive' | 'assessment'>()
+    .notNull()
+    .default('inactive'),
   maxSubmissionsPerCategory: integer('max_submissions_per_category').default(2),
   createdAt: text('created_at').default(sql`CURRENT_TIMESTAMP`),
   updatedAt: text('updated_at').default(sql`CURRENT_TIMESTAMP`),

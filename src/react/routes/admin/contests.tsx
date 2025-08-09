@@ -50,13 +50,11 @@ function AdminContests() {
                 </div>
 
                 {/* Main Content Area - Full width contests list */}
-                <div className="bg-slate-900 border border-slate-700 rounded-lg">
-                  <ContestList
-                    refreshTrigger={refreshTrigger}
-                    onContestSelect={handleContestSelect}
-                    selectedContestId={selectedContest?.id}
-                  />
-                </div>
+                <ContestList
+                  refreshTrigger={refreshTrigger}
+                  onContestSelect={handleContestSelect}
+                  selectedContestId={selectedContest?.id}
+                />
               </div>
             </main>
           </div>

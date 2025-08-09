@@ -98,8 +98,8 @@ export type ContestListResponse = {
     name: string;
     description: string | null;
     year: number;
+    status: 'active' | 'inactive' | 'assessment';
     maxSubmissionsPerCategory: number;
-    isActive: boolean;
     createdAt: string;
     updatedAt: string;
   }>;
