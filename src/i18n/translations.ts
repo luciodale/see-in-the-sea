@@ -15,6 +15,7 @@ export const translations = {
     'nav.login': 'Login',
     'nav.submissions': 'My Submissions',
     'nav.submit': 'Join the Contest',
+    'nav.admin': 'Admin',
 
     // Home page sections
     'home.who-we-are.title': 'Who We Are',
@@ -40,6 +41,29 @@ export const translations = {
 
     // Actions
     'action.learn-more': 'Learn More →',
+    'action.upload': 'Upload Photo',
+    'action.upload-replacement': 'Upload Replacement',
+    'action.replace': 'Replace',
+    'action.delete': 'Delete',
+    'action.cancel': 'Cancel',
+    'state.uploading': 'Uploading...',
+    'state.replacing': 'Replacing...',
+    'state.deleting': 'Deleting...',
+    'toast.upload-success': 'Image uploaded successfully!',
+    'dialog.upload.title': 'Upload Complete',
+    'dialog.upload.image': 'Image',
+    'dialog.upload.titleLabel': 'Title',
+    'dialog.upload.category': 'Category',
+    'dialog.ok': 'OK',
+    // Submissions UI
+    'submissions.jury': 'Jury',
+    'submissions.loading': 'Loading your submissions...',
+    'submissions.max-size': 'Max size',
+    'submissions.count-label': 'submissions',
+    'form.title': 'Title',
+    'form.description-optional': 'Description (optional)',
+    'form.choose-file': 'Choose file',
+    'form.no-file-chosen': 'No file chosen',
 
     // Categories
     'category.wide-angle': 'Wide Angle',
@@ -125,6 +149,7 @@ export const translations = {
     'nav.login': 'Login',
     'nav.submissions': 'Le mie candidature',
     'nav.submit': 'Partecipa al Concorso',
+    'nav.admin': 'Admin',
 
     // Home page sections
     'home.who-we-are.title': 'Chi Siamo',
@@ -150,6 +175,29 @@ export const translations = {
 
     // Actions
     'action.learn-more': 'Scopri di Più →',
+    'action.upload': 'Carica Foto',
+    'action.upload-replacement': 'Carica Sostituzione',
+    'action.replace': 'Sostituisci',
+    'action.delete': 'Elimina',
+    'action.cancel': 'Annulla',
+    'state.uploading': 'Caricamento...',
+    'state.replacing': 'Sostituzione...',
+    'state.deleting': 'Eliminazione...',
+    'toast.upload-success': 'Immagine caricata con successo!',
+    'dialog.upload.title': 'Caricamento completato',
+    'dialog.upload.image': 'Immagine',
+    'dialog.upload.titleLabel': 'Titolo',
+    'dialog.upload.category': 'Categoria',
+    'dialog.ok': 'OK',
+    // Submissions UI
+    'submissions.jury': 'Giuria',
+    'submissions.loading': 'Caricamento delle tue candidature...',
+    'submissions.max-size': 'Dimensione max',
+    'submissions.count-label': 'invii',
+    'form.title': 'Titolo',
+    'form.description-optional': 'Descrizione (opzionale)',
+    'form.choose-file': 'Scegli file',
+    'form.no-file-chosen': 'Nessun file selezionato',
 
     // Categories
     'category.wide-angle': 'Grandangolo',

@@ -1,4 +1,4 @@
-import type { TranslationKey } from '@/i18n';
+import { getLocalizedPath, type TranslationKey } from '@/i18n';
 import { useI18n } from '@/i18n/react';
 import { SignedIn, SignedOut } from '@clerk/clerk-react';
 import { Dialog, DialogPanel } from '@headlessui/react';
@@ -29,18 +29,19 @@ const useNavigation = (
 ];
 
 const logoPath = '/ortona-sub-logo.svg';
-const loginPath = '/user/login';
 
 export function NavbarHeader({ standalone = false }: { standalone?: boolean }) {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const { t, lang } = useI18n();
   const navigation = useNavigation(t, lang);
 
+  const loginPath = getLocalizedPath('user/login', lang);
+
   return (
     <header className={`${!standalone ? 'absolute' : ''} inset-x-0 top-0 z-50`}>
       <nav
         aria-label="Global"
-        className="flex items-center justify-between p-4 lg:px-8"
+        className="flex items-center gap-4 justify-between p-4 lg:px-8"
       >
         <div className="flex lg:flex-1">
           <a href={lang === 'it' ? '/it' : '/'} className="-m-1.5 p-1.5">
@@ -70,7 +71,7 @@ export function NavbarHeader({ standalone = false }: { standalone?: boolean }) {
             </a>
           ))}
         </div>
-        <div className="hidden lg:flex lg:flex-1 lg:justify-end lg:items-center lg:gap-4">
+        <div className="shrink-0 hidden lg:flex lg:flex-1 lg:justify-end lg:items-center lg:gap-4">
           <SignedIn>
             <a
               href={loginPath}

@@ -8,8 +8,19 @@ interface Props {
 }
 
 const { lang = 'en', standalone = true } = Astro.props;
+
+const { PUBLIC_CLERK_PUBLISHABLE_KEY } = Astro.locals.runtime.env;
+
+if (!PUBLIC_CLERK_PUBLISHABLE_KEY) {
+  throw new Error('Clerk public key is required');
+}
 ---
 
 <div class="bg-slate-900 border border-b-slate-700 sticky top-0 z-50">
-  <NavbarHeaderWithI18n client:load lang={lang} standalone={standalone} />
+  <NavbarHeaderWithI18n
+    clerkPublicKey={PUBLIC_CLERK_PUBLISHABLE_KEY}
+    client:load
+    lang={lang}
+    standalone={standalone}
+  />
 </div>

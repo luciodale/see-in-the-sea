@@ -21,6 +21,7 @@
     "@astrojs/sitemap": "3.4.1",
     "@clerk/backend": "^2.5.0",
     "@clerk/clerk-react": "^5.35.0",
+    "@floating-ui/react": "^0.27.15",
     "@headlessui/react": "^2.2.6",
     "@heroicons/react": "^2.2.0",
     "@tailwindcss/typography": "^0.5.16",

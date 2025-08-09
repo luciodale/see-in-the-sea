@@ -11,6 +11,8 @@ interface Props {
 
 const { lang } = Astro.props;
 const t = useTranslations(lang);
+
+const { PUBLIC_CLERK_PUBLISHABLE_KEY } = Astro.locals.runtime.env;
 ---
 
 <AppWrapper
@@ -18,7 +20,11 @@ const t = useTranslations(lang);
   description={t('site.description')}
   lang={lang}
 >
-  <Navbar client:load lang={lang} />
+  <Navbar
+    client:load
+    lang={lang}
+    clerkPublicKey={PUBLIC_CLERK_PUBLISHABLE_KEY}
+  />
   <Layout>
     <div class="flex flex-col gap-32">
       <!-- Who We Are -->

@@ -1,32 +1,39 @@
+import { REDIRECT_URL } from '@/constants.ts';
 import { ClerkProvider } from '@clerk/clerk-react';
 import { createRouter, RouterProvider } from '@tanstack/react-router';
 import { StrictMode } from 'react';
+import { I18nProvider } from '../i18n/react.tsx';
 import { routeTree } from './generated.ts';
 
-const router = createRouter({ routeTree });
+// Default router for type registration
+const _router = createRouter({ routeTree });
 declare module '@tanstack/react-router' {
   interface Register {
-    router: typeof router;
+    router: typeof _router;
   }
 }
-
-const redirectUrl = '/user/manage';
 
 export function App({ clerkPublicKey }: { clerkPublicKey?: string }) {
   if (!clerkPublicKey) {
     throw new Error('Missing Publishable Key');
   }
 
+  const lang = document.documentElement.lang as 'en' | 'it';
+  const basepath = lang === 'it' ? '/it' : '';
+  const runtimeRouter = createRouter({ routeTree, basepath });
+
   return (
     <StrictMode>
-      <ClerkProvider
-        publishableKey={clerkPublicKey}
-        afterSignOutUrl="/"
-        signInForceRedirectUrl={redirectUrl}
-        signUpForceRedirectUrl={redirectUrl}
-      >
-        <RouterProvider router={router} />
-      </ClerkProvider>
+      <I18nProvider lang={document.documentElement.lang as 'en' | 'it'}>
+        <ClerkProvider
+          publishableKey={clerkPublicKey}
+          afterSignOutUrl="/"
+          signInForceRedirectUrl={REDIRECT_URL}
+          signUpForceRedirectUrl={REDIRECT_URL}
+        >
+          <RouterProvider router={runtimeRouter} />
+        </ClerkProvider>
+      </I18nProvider>
     </StrictMode>
   );
 }

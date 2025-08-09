@@ -1,6 +1,6 @@
 import { createRootRoute, Outlet } from '@tanstack/react-router';
 import { TanStackRouterDevtools } from '@tanstack/react-router-devtools';
-import { NavbarHeaderWithI18n } from '../../components/Navbar/NavbarHeaderWithI18n';
+import { NavbarHeader } from '../../components/Navbar/NavbarHeader';
 import { SubNav } from '../components/SubNav';
 
 export const Route = createRootRoute({
@@ -8,15 +8,12 @@ export const Route = createRootRoute({
     <>
       {/* Contest App Header */}
       <div className="bg-slate-900 border border-b-slate-700 sticky top-0 z-50">
-        <NavbarHeaderWithI18n
-          lang={document.documentElement.lang as 'en' | 'it'}
-          standalone
-        />
+        <NavbarHeader standalone />
       </div>
       <SubNav />
       {/* Main Content */}
       <div className="min-h-screen w-full bg-slate-900 relative">
-        <main className="max-w-5xl mx-auto py-16 px-6">
+        <main className="max-w-5xl mx-auto px-6">
           <Outlet />
         </main>
       </div>
