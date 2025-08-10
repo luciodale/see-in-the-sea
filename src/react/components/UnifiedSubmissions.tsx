@@ -250,6 +250,7 @@ export default function UnifiedSubmissions() {
       {/* Header with judges */}
       <div className="text-center">
         <h1 className="text-3xl font-bold text-white">
+          UW 2025 Contest{': '}
           {t('nav.submissions')}
         </h1>
         {!noActiveContest && (
