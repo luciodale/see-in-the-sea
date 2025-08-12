@@ -79,7 +79,7 @@ export function NavbarHeader({ standalone = false }: { standalone?: boolean }) {
           ))}
         </div>
         <div className="hidden lg:flex items-center gap-4">
-          <div className="w-[150px]">
+          <div className="w-[170px]">
             <SignedIn>
               <a
                 href={loginPath}
