@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from 'react';
 import { MAX_IMAGE_SIZE } from '../../constants.js';
 import type { TranslationKey } from '../../i18n';
 import { useI18n } from '../../i18n/react';
+import { ACCEPTED_IMAGE_TYPES } from '../../server/utils.js';
 import type { SubmissionsResponse, UploadResponse } from '../../types/api.js';
 import JudgesBar from './JudgesBar';
 import UploadSuccessDialog from './UploadSuccessDialog';
@@ -350,7 +351,7 @@ export default function UnifiedSubmissions() {
                           }}
                           id={`new-file-${cat.id}`}
                           type="file"
-                          accept="image/*"
+                          accept={ACCEPTED_IMAGE_TYPES}
                           className="hidden"
                           onChange={e =>
                             onFileChange(cat.id, e.target.files?.[0] || null)

@@ -1,5 +1,9 @@
 import { useAuth } from '@clerk/clerk-react';
 import { useEffect, useState } from 'react';
+import {
+  ACCEPTED_IMAGE_TYPES,
+  SUPPORTED_FORMATS_HELP_TEXT,
+} from '../../server/utils.js';
 import type { ManageSubmissionResponse } from '../../types/api';
 
 type EditSubmissionModalProps = {
@@ -270,7 +274,7 @@ export default function EditSubmissionModal({
                     <input
                       id="edit-image-upload"
                       type="file"
-                      accept="image/*"
+                      accept={ACCEPTED_IMAGE_TYPES}
                       onChange={handleFileSelect}
                       className="hidden"
                     />
@@ -295,7 +299,7 @@ export default function EditSubmissionModal({
                         Click to select new image
                       </span>
                       <span className="text-xs text-gray-400">
-                        PNG, JPG up to 10MB
+                        {SUPPORTED_FORMATS_HELP_TEXT}
                       </span>
                     </label>
                   </div>
