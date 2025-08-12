@@ -40,7 +40,7 @@ export function LanguageSwitcherReact() {
       >
         <LanguageIcon className="w-4 h-4" />
         <span className="flag">{currentLanguage.flag}</span>
-        <span className="hidden sm:block">{currentLanguage.label}</span>
+        <span>{currentLanguage.label}</span>
         <ChevronDownIcon
           className={`w-4 h-4 transition-transform duration-200 ${isOpen ? 'rotate-180' : ''}`}
         />
