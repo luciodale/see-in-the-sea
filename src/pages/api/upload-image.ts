@@ -10,13 +10,9 @@ import {
 import type { UploadResponse } from '../../types/api.js';
 
 import {
-  deleteImageFromR2,
-  deleteSubmission,
   generateImageUrlWithUserId,
   generateR2Key,
-  storeImageInR2,
-  storeSubmissionMetadata,
-  validateUserOwnsSubmission,
+  uploadImageWithMetadata,
 } from '../../server/imageService';
 
 import {
@@ -29,8 +25,7 @@ export const prerender = false;
 
 /**
  * POST /api/upload-image
- * Handles new image uploads and image replacements
- * Supports optional 'replacedSubmissionId' for replacing existing images
+ * Handles new image uploads only
  */
 export const POST: APIRoute = async ({ request, locals }) => {
   console.log('[upload-image] Processing upload request');
@@ -52,7 +47,7 @@ export const POST: APIRoute = async ({ request, locals }) => {
   const db = getDb(D1Database);
 
   try {
-    // Step 2: Authentication
+    // Step 1: Authentication
     const authRequestClone = request.clone() as typeof request;
     const { isAuthenticated, user, isAdminRole, unauthenticatedResponse } =
       await authenticateRequest(authRequestClone, locals);
@@ -62,7 +57,7 @@ export const POST: APIRoute = async ({ request, locals }) => {
     }
 
     let userEmail = user.emailAddress || 'unknown';
-    const userId = user.id; // Added userId
+    const userId = user.id;
 
     // Step 2: Parse and validate form data
     const formData = await request.formData();
@@ -114,14 +109,8 @@ export const POST: APIRoute = async ({ request, locals }) => {
       );
     }
 
-    const {
-      imageFile,
-      contestId,
-      categoryId,
-      title,
-      description,
-      replacedSubmissionId,
-    } = formValidation.data;
+    const { imageFile, contestId, categoryId, title, description } =
+      formValidation.data;
 
     // Step 3: Validate image file
     const imageValidation = validateImageFile(imageFile);
@@ -176,32 +165,7 @@ export const POST: APIRoute = async ({ request, locals }) => {
       );
     }
 
-    // Step 5: Handle replacement logic
-    const isReplacement = !!replacedSubmissionId;
-    let replacedSubmission = null;
-
-    if (isReplacement) {
-      // Validate user owns the submission they want to replace
-      const ownershipValidation = await validateUserOwnsSubmission(
-        db,
-        replacedSubmissionId,
-        userEmail
-      );
-
-      if (!ownershipValidation.isOwner) {
-        return new Response(
-          JSON.stringify({
-            success: false,
-            message: 'You can only replace your own submissions.',
-          }),
-          { status: 403 }
-        );
-      }
-
-      replacedSubmission = ownershipValidation.submission;
-    }
-
-    // Step 6: Check submission limits
+    // Step 5: Check submission limits
     const submissionLimits = await checkSubmissionLimits(
       db,
       contestId,
@@ -211,8 +175,7 @@ export const POST: APIRoute = async ({ request, locals }) => {
 
     const actionValidation = validateSubmissionAction(
       submissionLimits.currentCount,
-      submissionLimits.maxAllowed,
-      isReplacement
+      submissionLimits.maxAllowed
     );
 
     if (!actionValidation.isValid) {
@@ -225,7 +188,7 @@ export const POST: APIRoute = async ({ request, locals }) => {
       );
     }
 
-    // Step 7: Generate new image paths and URLs
+    // Step 6: Generate new image paths and URLs
     const { submissionId, r2Key } = generateR2Key(
       contestId,
       categoryId,
@@ -237,67 +200,32 @@ export const POST: APIRoute = async ({ request, locals }) => {
       categoryId,
       userId,
       submissionId
-    ); // Use userId in URL path
-
-    // Step 8: Execute the upload operation
-    console.log(
-      `[upload-image] ${isReplacement ? 'Replacing' : 'Creating'} submission`
     );
 
-    // Store new image in R2
-    await storeImageInR2(R2Bucket, r2Key, image, {
-      submissionId,
-      uploadedBy: userEmail,
-      title,
-      description: description || '',
-      contestId,
-      categoryId,
-    });
+    // Step 7: Execute the upload operation
+    console.log('[upload-image] Creating new submission');
 
-    // Store submission metadata in database
-    await storeSubmissionMetadata(db, {
-      id: submissionId,
+    // Upload image to R2 with retries and store metadata in database
+    await uploadImageWithMetadata(R2Bucket, db, image, {
+      submissionId,
       contestId,
       categoryId,
       userEmail,
       title,
       description: description || '',
       r2Key,
-      imageUrl: imageUrlPath, // Store the path without domain
+      imageUrl: imageUrlPath,
       originalFilename: image.name,
       fileSize: image.size,
       contentType: image.type,
     });
 
-    // Step 9: Clean up replaced submission if this is a replacement
-    if (isReplacement && replacedSubmission) {
-      try {
-        // Delete old image from R2
-        await deleteImageFromR2(R2Bucket, replacedSubmission.r2Key);
-
-        // Delete old submission from database
-        await deleteSubmission(db, replacedSubmissionId);
-
-        console.log(
-          '[upload-image] Successfully cleaned up replaced submission'
-        );
-      } catch (cleanupError) {
-        console.error(
-          '[upload-image] Cleanup error (non-fatal):',
-          cleanupError
-        );
-        // Don't fail the request if cleanup fails - new image is already uploaded
-      }
-    }
-
     console.log('[upload-image] Upload completed successfully');
 
-    // Step 10: Return success response
+    // Step 8: Return success response
     const response: UploadResponse = {
       success: true,
-      message: isReplacement
-        ? 'Image replaced successfully!'
-        : 'Image uploaded successfully!',
+      message: 'Image uploaded successfully!',
       data: {
         submissionId,
         contestId,

@@ -338,6 +338,15 @@ export function generateSeedSQL(): string {
     )
     .join('\n');
 
+  // Only include parent tables in initial seeding to avoid foreign key constraint violations
+  // Judges will be seeded separately after contests are created
+  const result = `-- Seed data for underwater photography contest (parent tables only)\n\n${categoryInserts}\n\n${contestInserts}`;
+  console.log(result);
+  return result;
+}
+
+// Generate SQL for seeding judges (to be called separately after contests are created)
+export function generateJudgesSeedSQL(): string {
   const judgeInserts = seeds.contests
     .flatMap(contest =>
       contest.judges.map(
@@ -347,7 +356,6 @@ export function generateSeedSQL(): string {
     )
     .join('\n');
 
-  const result = `-- Seed data for underwater photography contest\n\n${categoryInserts}\n\n${contestInserts}\n\n${judgeInserts}`;
-  console.log(result);
+  const result = `-- Seed data for judges (after contests are created)\n\n${judgeInserts}`;
   return result;
 }

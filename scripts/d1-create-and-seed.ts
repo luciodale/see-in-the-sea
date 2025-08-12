@@ -95,17 +95,38 @@ try {
   process.exit(1);
 }
 
-// Step 3: Apply seed data
+// Step 3: Apply seed data in correct order
 console.log('\n🌱 STEP 3: Seeding initial data...');
 
 try {
   console.log('   Reading seed data...');
   const seedDataPath = join(process.cwd(), 'drizzle', 'seed.sql');
 
-  console.log('   Seeding categories and contests...');
-  const command = `bunx wrangler d1 execute see-in-the-sea-db --${mode} --file="${seedDataPath}"`;
-  execSync(command, { stdio: 'pipe' });
-  console.log('   ✅ Initial data seeded successfully');
+  // First, seed parent tables (categories and contests)
+  console.log('   Seeding categories and contests (parent tables)...');
+  const parentSeedCommand = `bunx wrangler d1 execute see-in-the-sea-db --${mode} --file="${seedDataPath}"`;
+  execSync(parentSeedCommand, { stdio: 'pipe' });
+  console.log('   ✅ Parent tables seeded successfully');
+
+  // Then, seed judges (which reference contests)
+  console.log('   Seeding judges (child tables)...');
+  const { generateJudgesSeedSQL } = await import('./seeds.ts');
+  const { writeFileSync } = await import('fs');
+
+  const judgesSQL = generateJudgesSeedSQL();
+  const judgesSeedPath = join(process.cwd(), 'drizzle', 'judges-seed.sql');
+  writeFileSync(judgesSeedPath, judgesSQL);
+
+  const judgesSeedCommand = `bunx wrangler d1 execute see-in-the-sea-db --${mode} --file="${judgesSeedPath}"`;
+  execSync(judgesSeedCommand, { stdio: 'pipe' });
+  console.log('   ✅ Judges seeded successfully');
+
+  // Note: Other child tables (submissions, results) will be seeded separately
+  // when running the submission insertion scripts
+  console.log(
+    '   ℹ️  Other child tables (submissions, results) will be populated'
+  );
+  console.log('      when running submission insertion scripts');
 } catch (error) {
   console.log(
     '   ❌ Failed to seed data:',
@@ -135,6 +156,12 @@ try {
   const contestsOutput = execSync(contestsCommand, { encoding: 'utf8' });
   console.log('   📋 Seeded contests:');
   console.log(contestsOutput);
+
+  // Check judges
+  const judgesCommand = `bunx wrangler d1 execute see-in-the-sea-db --${mode} --command="SELECT id, contest_id, full_name FROM judges;"`;
+  const judgesOutput = execSync(judgesCommand, { encoding: 'utf8' });
+  console.log('   📋 Seeded judges:');
+  console.log(judgesOutput);
 } catch (error) {
   console.log(
     '   ❌ Could not verify database setup:',

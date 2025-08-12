@@ -21,7 +21,8 @@ CREATE TABLE `judges` (
 	`id` text PRIMARY KEY NOT NULL,
 	`contest_id` text NOT NULL,
 	`full_name` text NOT NULL,
-	`created_at` text DEFAULT CURRENT_TIMESTAMP
+	`created_at` text DEFAULT CURRENT_TIMESTAMP,
+	FOREIGN KEY (`contest_id`) REFERENCES `contests`(`id`) ON UPDATE no action ON DELETE no action
 );
 --> statement-breakpoint
 CREATE TABLE `results` (
@@ -30,7 +31,8 @@ CREATE TABLE `results` (
 	`result` text NOT NULL,
 	`first_name` text,
 	`last_name` text,
-	`created_at` text DEFAULT CURRENT_TIMESTAMP
+	`created_at` text DEFAULT CURRENT_TIMESTAMP,
+	FOREIGN KEY (`submission_id`) REFERENCES `submissions`(`id`) ON UPDATE no action ON DELETE no action
 );
 --> statement-breakpoint
 CREATE TABLE `submissions` (
@@ -45,7 +47,9 @@ CREATE TABLE `submissions` (
 	`original_filename` text,
 	`file_size` integer,
 	`content_type` text,
-	`uploaded_at` text DEFAULT CURRENT_TIMESTAMP
+	`uploaded_at` text DEFAULT CURRENT_TIMESTAMP,
+	FOREIGN KEY (`contest_id`) REFERENCES `contests`(`id`) ON UPDATE no action ON DELETE no action,
+	FOREIGN KEY (`category_id`) REFERENCES `categories`(`id`) ON UPDATE no action ON DELETE no action
 );
 --> statement-breakpoint
 CREATE UNIQUE INDEX `submissions_r2_key_unique` ON `submissions` (`r2_key`);--> statement-breakpoint

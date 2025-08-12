@@ -6,19 +6,20 @@ import { join } from 'path';
 
 console.log('🗑️  Starting complete tear down of all resources...\n');
 
-// Step 1: Drop all tables from D1 database
+// Step 1: Drop all tables from D1 database in correct order
 console.log('📊 STEP 1: Dropping all D1 database tables...');
 
 // Easy toggle: use --remote flag for remote mode, otherwise local
 const isRemote = process.argv.includes('--remote');
 const mode = isRemote ? 'remote' : 'local';
 
+// Drop tables in order: child tables first (with foreign keys), then parent tables
 const tablesToDrop = [
-  'submissions',
-  'results',
-  'judges',
-  'categories',
-  'contests',
+  'results', // References submissions.id
+  'judges', // References contests.id
+  'submissions', // References contests.id and categories.id
+  'categories', // Referenced by submissions
+  'contests', // Referenced by submissions and judges
 ];
 
 for (const table of tablesToDrop) {

@@ -67,16 +67,12 @@ export function validateUploadFormData(formData: FormData): ValidationResult<{
   categoryId: string;
   title: string;
   description: string | null;
-  replacedSubmissionId?: string;
 }> {
   const imageFile = formData.get('image') as File;
   const contestId = formData.get('contestId') as string;
   const categoryId = formData.get('categoryId') as string;
   const title = formData.get('title') as string;
   const description = formData.get('description') as string | null;
-  const replacedSubmissionId = formData.get('replacedSubmissionId') as
-    | string
-    | undefined;
 
   if (!imageFile || !contestId || !categoryId || !title) {
     return {
@@ -93,29 +89,19 @@ export function validateUploadFormData(formData: FormData): ValidationResult<{
       categoryId,
       title,
       description: description || null,
-      replacedSubmissionId: replacedSubmissionId || undefined,
     },
   };
 }
 
 /**
- * Validates submission limits for replacement logic
- * Pure function - determines if replacement or new submission is allowed
+ * Validates submission limits for new submissions
+ * Pure function - determines if new submission is allowed
  */
 export function validateSubmissionAction(
   currentCount: number,
-  maxAllowed: number,
-  isReplacement: boolean
-): ValidationResult<{ action: 'create' | 'replace' }> {
-  if (isReplacement) {
-    // Replacement is always allowed if user owns the original
-    return {
-      isValid: true,
-      data: { action: 'replace' },
-    };
-  }
-
-  // New submission - check limits
+  maxAllowed: number
+): ValidationResult<{ action: 'create' }> {
+  // Check limits for new submission
   if (currentCount >= maxAllowed) {
     return {
       isValid: false,

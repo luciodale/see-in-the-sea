@@ -61,7 +61,6 @@ export type UploadFormData = {
   categoryId: string;
   title: string;
   description?: string;
-  replacedSubmissionId?: string; // For image replacement
 };
 
 // Error Response Type

@@ -27,8 +27,12 @@ export const categories = sqliteTable('categories', {
 // Submissions table
 export const submissions = sqliteTable('submissions', {
   id: text('id').primaryKey(),
-  contestId: text('contest_id').notNull(),
-  categoryId: text('category_id').notNull(),
+  contestId: text('contest_id')
+    .notNull()
+    .references(() => contests.id),
+  categoryId: text('category_id')
+    .notNull()
+    .references(() => categories.id),
   userEmail: text('user_email').notNull(),
   title: text('title').notNull(),
   description: text('description'),
@@ -43,7 +47,9 @@ export const submissions = sqliteTable('submissions', {
 // Results table for contest winners
 export const results = sqliteTable('results', {
   id: text('id').primaryKey(),
-  submissionId: text('submission_id').notNull(),
+  submissionId: text('submission_id')
+    .notNull()
+    .references(() => submissions.id),
   result: text('result').notNull(), // 'first', 'second', 'third', 'runner-up'
   firstName: text('first_name'),
   lastName: text('last_name'),
@@ -53,7 +59,9 @@ export const results = sqliteTable('results', {
 // Judges table
 export const judges = sqliteTable('judges', {
   id: text('id').primaryKey(),
-  contestId: text('contest_id').notNull(),
+  contestId: text('contest_id')
+    .notNull()
+    .references(() => contests.id),
   fullName: text('full_name').notNull(),
   createdAt: text('created_at').default(sql`CURRENT_TIMESTAMP`),
 });
