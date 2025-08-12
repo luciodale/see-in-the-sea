@@ -1,7 +1,7 @@
 import { eq } from 'drizzle-orm';
 import { nanoid } from 'nanoid';
 import type { getDb } from '../db/index.js';
-import { submissions } from '../db/index.js';
+import { submissions, type Submission } from '../db/index.js';
 
 // Type definitions for better type safety and reusability
 export type ImageUploadMetadata = {
@@ -89,7 +89,7 @@ export async function validateUserOwnsSubmission(
   db: ReturnType<typeof getDb>,
   submissionId: string,
   userEmail: string
-): Promise<{ isOwner: boolean; submission?: any }> {
+): Promise<{ isOwner: boolean; submission?: Submission }> {
   try {
     const result = await db
       .select()

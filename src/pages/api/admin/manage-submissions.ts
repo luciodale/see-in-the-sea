@@ -324,7 +324,7 @@ export const POST: APIRoute = async ({ request, locals }) => {
 
           // Extract userId from existing imageUrl to maintain consistency
           // imageUrl format: contest-id/category-id/user-id/submission-id
-          const existingUrlParts = submission.imageUrl.split('/');
+          const existingUrlParts = submission.imageUrl?.split('/') || [];
           const existingUserId =
             existingUrlParts.length >= 3
               ? existingUrlParts[2]

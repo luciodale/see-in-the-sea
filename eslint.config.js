@@ -58,6 +58,8 @@ export default [
       'worker-configuration.d.ts',
       'src/env.d.ts',
       'drizzle/',
+      'public/',
+      '*.d.ts',
     ],
   },
 ]; 

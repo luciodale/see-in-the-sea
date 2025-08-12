@@ -1,15 +1,20 @@
 import {
   getFileExtensionFromMime,
   SUPPORTED_IMAGE_MIME_TYPES,
+  type SupportedImageMimeType,
 } from './utils.js';
 
 const MAX_IMAGE_SIZE = 10 * 1024 * 1024; // 10MB
 
-export type ValidationResult<T> = {
-  isValid: boolean;
-  error?: string;
-  data?: T;
-};
+export type ValidationResult<T> =
+  | {
+      isValid: true;
+      data: T;
+    }
+  | {
+      isValid: false;
+      error: string;
+    };
 
 /**
  * Validates image file from form data
@@ -35,7 +40,11 @@ export function validateImageFile(imageFile: File): ValidationResult<{
   }
 
   // Check if the MIME type is supported
-  if (!SUPPORTED_IMAGE_MIME_TYPES.includes(imageFile.type as any)) {
+  if (
+    !SUPPORTED_IMAGE_MIME_TYPES.includes(
+      imageFile.type as SupportedImageMimeType
+    )
+  ) {
     return {
       isValid: false,
       error: `Unsupported image format: ${imageFile.type}. Only JPEG, PNG, and WebP formats are supported.`,
