@@ -10,8 +10,11 @@
 export async function getCachedResponse(
   request: Request
 ): Promise<Response | null> {
+  // @ts-expect-error - default is not a property of caches
+  const cache = caches.default;
+
   try {
-    const cachedResponse = await caches.match(request);
+    const cachedResponse = await cache.match(request);
     if (cachedResponse) {
       console.log('[cache-utils] Cache HIT');
       return cachedResponse;
@@ -34,7 +37,6 @@ export function getImageCachingHeaders(): Record<string, string> {
     Expires: new Date(Date.now() + 31536000000).toUTCString(), // Expires in 1 year (365 days)
   };
 }
-
 /**
  * Creates a response with standard image caching headers
  * @param body - The response body
@@ -54,4 +56,15 @@ export function createCachedImageResponse(
       ...additionalHeaders,
     },
   });
+}
+
+export function storeInCache(
+  request: Request,
+  response: Response,
+  locals: App.Locals
+): void {
+  // @ts-expect-error - default is not a property of caches
+  const cache = caches.default;
+
+  locals.runtime.ctx.waitUntil(cache.put(request, response.clone()));
 }

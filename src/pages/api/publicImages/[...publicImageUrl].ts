@@ -2,6 +2,7 @@ import type { APIRoute } from 'astro';
 import {
   createCachedImageResponse,
   getCachedResponse,
+  storeInCache,
 } from '../../../server/cacheUtils';
 
 export const prerender = false;
@@ -12,13 +13,16 @@ export const GET: APIRoute = async ({ params, locals, request }) => {
     return cachedResponse;
   }
 
+  const { publicImageUrl } = params;
+
+  if (!publicImageUrl || typeof publicImageUrl !== 'string') {
+    return new Response('Image key required', { status: 400 });
+  }
+
+  // Variable to track the final response
+  let finalResponse: Response | null = null;
+
   try {
-    const { publicImageUrl } = params;
-
-    if (!publicImageUrl || typeof publicImageUrl !== 'string') {
-      return new Response('Image key required', { status: 400 });
-    }
-
     // Get the R2 bucket and Images service bindings
     const r2Bucket = locals.runtime.env.R2_IMAGES_BUCKET;
     const IMAGES = locals.runtime.env.IMAGES;
@@ -57,7 +61,7 @@ export const GET: APIRoute = async ({ params, locals, request }) => {
         const response = transformedImage.response();
 
         // Add caching headers to the transformed response
-        return new Response(response.body, {
+        finalResponse = new Response(response.body, {
           status: response.status,
           statusText: response.statusText,
           headers: {
@@ -72,7 +76,7 @@ export const GET: APIRoute = async ({ params, locals, request }) => {
           imageError
         );
         // Fallback to original image if transformation fails
-        return createCachedImageResponse(
+        finalResponse = createCachedImageResponse(
           r2Object.body,
           r2Object.httpMetadata?.contentType || 'image/jpeg',
           {
@@ -80,18 +84,28 @@ export const GET: APIRoute = async ({ params, locals, request }) => {
           }
         );
       }
+    } else {
+      // No Images service available, serve original image from R2
+      console.log(
+        '[serve-public-image] No Images service available, serving original image'
+      );
+      finalResponse = createCachedImageResponse(
+        r2Object.body,
+        r2Object.httpMetadata?.contentType || 'image/jpeg',
+        {
+          'X-Optimized': 'none',
+        }
+      );
     }
 
-    // No Images service available, serve original image from R2
-    console.log(
-      '[serve-public-image] No Images service available, serving original image'
-    );
-    return createCachedImageResponse(
-      r2Object.body,
-      r2Object.httpMetadata?.contentType || 'image/jpeg',
-      {
-        'X-Optimized': 'none',
-      }
+    // Single cache storage point
+    if (finalResponse) {
+      storeInCache(request, finalResponse, locals);
+    }
+
+    // Single return point
+    return (
+      finalResponse || new Response('Internal server error', { status: 500 })
     );
   } catch (error) {
     console.error('Error serving public image:', error);

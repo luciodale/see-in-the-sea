@@ -4,6 +4,7 @@ import { getDb, submissions } from '../../../db';
 import {
   createCachedImageResponse,
   getCachedResponse,
+  storeInCache,
 } from '../../../server/cacheUtils';
 
 export const prerender = false;
@@ -13,14 +14,18 @@ export const GET: APIRoute = async ({ params, locals, request }) => {
   if (cachedResponse) {
     return cachedResponse;
   }
+
   const { imageUrl } = params;
 
   if (!imageUrl || typeof imageUrl !== 'string') {
     return new Response('Image key required', { status: 400 });
   }
 
+  // Variables to track the final response
+  let finalResponse: Response | null = null;
+
   try {
-    // split the extension from the imageUrl
+    // Get the R2 bucket and Images service bindings
     const R2Bucket = locals.runtime.env.R2_IMAGES_BUCKET;
     const IMAGES = locals.runtime.env.IMAGES;
     const D1Database = locals.runtime.env.DB;
@@ -80,62 +85,68 @@ export const GET: APIRoute = async ({ params, locals, request }) => {
     }
 
     // Step 3: Transform and serve the image
-    // If no Images service available, serve original with caching
     if (!IMAGES) {
+      // No Images service available, serve original with caching
       console.log(
         '[serve-image] No Images service available, serving original image'
       );
-      return createCachedImageResponse(
+      finalResponse = createCachedImageResponse(
         r2Object.body,
         r2Object.httpMetadata?.contentType || 'image/jpeg'
       );
-    }
+    } else {
+      // Images service available, try to transform
+      console.log('[serve-image] IMAGES service available, transforming image');
 
-    console.log('[serve-image] IMAGES service available, transforming image');
+      try {
+        const imageTransformer = IMAGES.input(r2Object.body);
 
-    // Apply aggressive optimization for web delivery:
-    // - Max width 500px (aggressive size reduction for web)
-    // - WebP format (best compression for web)
-    // - Quality 75 (good balance of quality vs aggressive compression)
-    // - Scale-down fit (never enlarge, preserve aspect ratio)
-    try {
-      const imageTransformer = IMAGES.input(r2Object.body);
+        const webOptimizedTransformer = imageTransformer
+          .transform({
+            width: 500, // Aggressive width reduction
+            fit: 'scale-down', // Never enlarge images
+          })
+          .output({
+            format: 'image/webp', // Best web format
+            quality: 75, // More aggressive compression while maintaining good quality
+          });
 
-      const webOptimizedTransformer = imageTransformer
-        .transform({
-          width: 500, // Aggressive width reduction
-          fit: 'scale-down', // Never enlarge images
-        })
-        .output({
-          format: 'image/webp', // Best web format
-          quality: 75, // More aggressive compression while maintaining good quality
+        const transformedImage = await webOptimizedTransformer;
+        console.log('[serve-image] Transformed image successfully');
+        const response = transformedImage.response();
+
+        // Add caching headers to the transformed response
+        finalResponse = new Response(response.body, {
+          status: response.status,
+          statusText: response.statusText,
+          headers: {
+            ...Object.fromEntries(response.headers.entries()),
+            'Cache-Control': 'public, max-age=31536000, immutable',
+            'X-Optimized': 'web-aggressive',
+          },
         });
-
-      const transformedImage = await webOptimizedTransformer;
-      console.log('[serve-image] Transformed image successfully');
-      const response = transformedImage.response();
-
-      // Add caching headers to the transformed response
-      return new Response(response.body, {
-        status: response.status,
-        statusText: response.statusText,
-        headers: {
-          ...Object.fromEntries(response.headers.entries()),
-          'Cache-Control': 'public, max-age=31536000, immutable',
-          'X-Optimized': 'web-aggressive',
-        },
-      });
-    } catch (imageError) {
-      console.log(
-        '[serve-image] Image transformation failed, serving original:',
-        imageError
-      );
-      // Fallback to original image if transformation fails
-      return createCachedImageResponse(
-        r2Object.body,
-        r2Object.httpMetadata?.contentType || 'image/jpeg'
-      );
+      } catch (imageError) {
+        console.log(
+          '[serve-image] Image transformation failed, serving original:',
+          imageError
+        );
+        // Fallback to original image if transformation fails
+        finalResponse = createCachedImageResponse(
+          r2Object.body,
+          r2Object.httpMetadata?.contentType || 'image/jpeg'
+        );
+      }
     }
+
+    // Single cache storage point
+    if (finalResponse) {
+      storeInCache(request, finalResponse, locals);
+    }
+
+    // Single return point
+    return (
+      finalResponse || new Response('Internal server error', { status: 500 })
+    );
   } catch (error) {
     console.error(`[serve-image] Error serving image ${imageUrl}:`, error);
     return new Response('Internal server error', { status: 500 });
