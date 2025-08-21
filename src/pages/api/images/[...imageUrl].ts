@@ -1,10 +1,18 @@
 import type { APIRoute } from 'astro';
 import { eq } from 'drizzle-orm';
 import { getDb, submissions } from '../../../db';
+import {
+  createCachedImageResponse,
+  getCachedResponse,
+} from '../../../server/cacheUtils';
 
 export const prerender = false;
 
-export const GET: APIRoute = async ({ params, locals }) => {
+export const GET: APIRoute = async ({ params, locals, request }) => {
+  const cachedResponse = await getCachedResponse(request);
+  if (cachedResponse) {
+    return cachedResponse;
+  }
   const { imageUrl } = params;
 
   if (!imageUrl || typeof imageUrl !== 'string') {
@@ -77,12 +85,10 @@ export const GET: APIRoute = async ({ params, locals }) => {
       console.log(
         '[serve-image] No Images service available, serving original image'
       );
-      return new Response(r2Object.body, {
-        headers: {
-          'Content-Type': r2Object.httpMetadata?.contentType || 'image/jpeg',
-          'Cache-Control': 'public, max-age=31536000, immutable',
-        },
-      });
+      return createCachedImageResponse(
+        r2Object.body,
+        r2Object.httpMetadata?.contentType || 'image/jpeg'
+      );
     }
 
     console.log('[serve-image] IMAGES service available, transforming image');
@@ -125,11 +131,10 @@ export const GET: APIRoute = async ({ params, locals }) => {
         imageError
       );
       // Fallback to original image if transformation fails
-      return new Response(r2Object.body, {
-        headers: {
-          'Content-Type': r2Object.httpMetadata?.contentType || 'image/jpeg',
-        },
-      });
+      return createCachedImageResponse(
+        r2Object.body,
+        r2Object.httpMetadata?.contentType || 'image/jpeg'
+      );
     }
   } catch (error) {
     console.error(`[serve-image] Error serving image ${imageUrl}:`, error);

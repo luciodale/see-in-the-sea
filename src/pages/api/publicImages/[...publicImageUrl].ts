@@ -1,8 +1,17 @@
 import type { APIRoute } from 'astro';
+import {
+  createCachedImageResponse,
+  getCachedResponse,
+} from '../../../server/cacheUtils';
 
 export const prerender = false;
 
-export const GET: APIRoute = async ({ params, locals }) => {
+export const GET: APIRoute = async ({ params, locals, request }) => {
+  const cachedResponse = await getCachedResponse(request);
+  if (cachedResponse) {
+    return cachedResponse;
+  }
+
   try {
     const { publicImageUrl } = params;
 
@@ -63,13 +72,13 @@ export const GET: APIRoute = async ({ params, locals }) => {
           imageError
         );
         // Fallback to original image if transformation fails
-        return new Response(r2Object.body, {
-          headers: {
-            'Content-Type': r2Object.httpMetadata?.contentType || 'image/jpeg',
-            'Cache-Control': 'public, max-age=31536000',
+        return createCachedImageResponse(
+          r2Object.body,
+          r2Object.httpMetadata?.contentType || 'image/jpeg',
+          {
             'X-Optimized': 'fallback',
-          },
-        });
+          }
+        );
       }
     }
 
@@ -77,14 +86,13 @@ export const GET: APIRoute = async ({ params, locals }) => {
     console.log(
       '[serve-public-image] No Images service available, serving original image'
     );
-    return new Response(r2Object.body, {
-      headers: {
-        'Content-Type': r2Object.httpMetadata?.contentType || 'image/jpeg',
-        'Cache-Control': 'public, max-age=31536000, immutable', // Cache for 1 year (365 days)
+    return createCachedImageResponse(
+      r2Object.body,
+      r2Object.httpMetadata?.contentType || 'image/jpeg',
+      {
         'X-Optimized': 'none',
-        Expires: new Date(Date.now() + 31536000000).toUTCString(), // Expires in 1 year (365 days)
-      },
-    });
+      }
+    );
   } catch (error) {
     console.error('Error serving public image:', error);
     return new Response('Internal server error', { status: 500 });
