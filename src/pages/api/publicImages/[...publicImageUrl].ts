@@ -80,8 +80,9 @@ export const GET: APIRoute = async ({ params, locals }) => {
     return new Response(r2Object.body, {
       headers: {
         'Content-Type': r2Object.httpMetadata?.contentType || 'image/jpeg',
-        'Cache-Control': 'public, max-age=31536000, immutable',
+        'Cache-Control': 'public, max-age=31536000, immutable', // Cache for 1 year (365 days)
         'X-Optimized': 'none',
+        Expires: new Date(Date.now() + 31536000000).toUTCString(), // Expires in 1 year (365 days)
       },
     });
   } catch (error) {
