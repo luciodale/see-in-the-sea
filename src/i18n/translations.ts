@@ -10,7 +10,7 @@ export const translations = {
   en: {
     // Navigation
     'nav.about': 'About',
-    'nav.contests': 'Contests',
+    'nav.contests': 'Past Editions',
     'nav.sponsors': 'Sponsors',
     'nav.contact': 'Contact Us',
     'nav.rules': 'Rules',
@@ -149,7 +149,7 @@ export const translations = {
   it: {
     // Navigation
     'nav.about': 'Chi Siamo',
-    'nav.contests': 'Concorsi',
+    'nav.contests': 'Edizioni Precedenti',
     'nav.sponsors': 'Sponsor',
     'nav.contact': 'Contatti',
     'nav.rules': 'Regolamento',

@@ -67,18 +67,18 @@ export function NavbarHeader({ standalone = false }: { standalone?: boolean }) {
             <Bars3Icon aria-hidden="true" className="size-6" />
           </button>
         </div>
-        <div className="hidden lg:flex lg:gap-x-8 lg:flex-wrap">
+        <div className="hidden lg:flex lg:gap-14">
           {navigation.map(item => (
             <a
               key={item.name}
               href={item.href}
-              className="text-sm/6 font-semibold text-white"
+              className="text-xl font-light text-white"
             >
               {item.name}
             </a>
           ))}
         </div>
-        <div className="hidden lg:flex items-center gap-4">
+        <div className="hidden lg:flex items-center flex-wrap justify-end gap-4">
           <div className="w-[170px]">
             <SignedIn>
               <a
