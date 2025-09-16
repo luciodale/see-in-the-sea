@@ -22,14 +22,19 @@ export function NavbarContent() {
         </div>
       )}
       <div className="text-center">
-        <div className="flex justify-center items-center">
-          <img src="/logo.png" alt="Logo" className="h-40" />
-          <h1 className="text-5xl text-left font-semibold tracking-tight text-balance text-white sm:text-7xl">
-            See in <br /> the sea
+        <div className="flex sm:flex-row flex-col items-center justify-center">
+          <img src="/images/logo.svg" alt="Logo" className="h-52" />
+          <h1 className="sm:text-left flex flex-col gap-1 tracking-tight text-balance text-white">
+            <span className="sm:text-5xl text-4xl font-semibold">
+              See In The Sea
+            </span>
+            <span className="sm:text-4xl text-2xl">
+              International Underwater Photocontest
+            </span>
           </h1>
         </div>
 
-        <p className="mt-8 text-lg font-light text-pretty text-gray-300 sm:text-xl/8">
+        <p className="sm:mt-2 mt-4 text-lg font-light text-pretty text-gray-300 sm:text-xl/8">
           {t('site.description')}
         </p>
         <div className="mt-10 flex items-center justify-center gap-x-6">

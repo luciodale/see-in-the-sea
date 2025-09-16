@@ -2,6 +2,9 @@
  * Utility functions for handling HTTP caching
  */
 
+// Declare the caches global for Cloudflare Workers
+declare const caches: CacheStorage & { default: Cache };
+
 /**
  * Checks if a cached response exists for the given request
  * @param request - The incoming HTTP request
@@ -10,19 +13,23 @@
 export async function getCachedResponse(
   request: Request
 ): Promise<Response | null> {
-  // @ts-expect-error - default is not a property of caches
-  const cache = caches.default;
+  if (typeof caches !== 'undefined' && caches) {
+    const cache = caches.default;
 
-  try {
-    const cachedResponse = await cache.match(request);
-    if (cachedResponse) {
-      console.log('[cache-utils] Cache HIT');
-      return cachedResponse;
+    try {
+      const cachedResponse = await cache.match(request);
+      if (cachedResponse) {
+        console.log('[cache-utils] Cache HIT');
+        return cachedResponse;
+      }
+      console.log('[cache-utils] Cache MISS');
+      return null;
+    } catch (error) {
+      console.log('[cache-utils] Cache check failed:', error);
+      return null;
     }
-    console.log('[cache-utils] Cache MISS');
-    return null;
-  } catch (error) {
-    console.log('[cache-utils] Cache check failed:', error);
+  } else {
+    console.log('[cache-utils] No caches available');
     return null;
   }
 }
@@ -63,8 +70,11 @@ export function storeInCache(
   response: Response,
   locals: App.Locals
 ): void {
-  // @ts-expect-error - default is not a property of caches
-  const cache = caches.default;
+  if (typeof caches !== 'undefined' && caches) {
+    const cache = caches.default;
 
-  locals.runtime.ctx.waitUntil(cache.put(request, response.clone()));
+    locals.runtime.ctx.waitUntil(cache.put(request, response.clone()));
+  } else {
+    console.log('[cache-utils] No caches available');
+  }
 }

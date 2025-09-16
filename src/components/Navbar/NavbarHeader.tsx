@@ -32,7 +32,7 @@ const useNavigation = (
   },
 ];
 
-const logoPath = '/ortona-sub-logo.svg';
+const logoPath = '/images/ortona-sub-logo.svg';
 
 export function NavbarHeader({ standalone = false }: { standalone?: boolean }) {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
