@@ -48,6 +48,13 @@ export const translations = {
     'action.replace': 'Replace',
     'action.delete': 'Delete',
     'action.cancel': 'Cancel',
+
+    // Footer
+    'footer.copyright': 'See in the Sea',
+    'footer.description': 'Celebrating the beauty of underwater photography',
+    'footer.quick-links': 'Quick Links',
+    'footer.contact': 'Contact',
+    'footer.follow-us': 'Follow Us',
     'state.uploading': 'Uploading...',
     'state.replacing': 'Replacing...',
     'state.deleting': 'Deleting...',
@@ -187,6 +194,13 @@ export const translations = {
     'action.replace': 'Sostituisci',
     'action.delete': 'Elimina',
     'action.cancel': 'Annulla',
+
+    // Footer
+    'footer.copyright': 'See in the Sea',
+    'footer.description': 'Celebrando la bellezza della fotografia subacquea',
+    'footer.quick-links': 'Link Rapidi',
+    'footer.contact': 'Contatti',
+    'footer.follow-us': 'Seguici',
     'state.uploading': 'Caricamento...',
     'state.replacing': 'Sostituzione...',
     'state.deleting': 'Eliminazione...',

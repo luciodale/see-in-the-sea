@@ -1,4 +1,5 @@
-import { getLocalizedPath, type TranslationKey } from '@/i18n';
+import { getNavigationItems } from '@/config/navigation';
+import { getLocalizedPath } from '@/i18n';
 import { useI18n } from '@/i18n/react';
 import { SignedIn, SignedOut } from '@clerk/clerk-react';
 import { Dialog, DialogPanel } from '@headlessui/react';
@@ -6,38 +7,12 @@ import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline';
 import { useState } from 'react';
 import { LanguageSwitcherReact } from '../LanguageSwitcherReact';
 
-const useNavigation = (
-  t: (key: TranslationKey) => string,
-  currentLang: string
-) => [
-  {
-    name: t('nav.about'),
-    href: currentLang === 'it' ? '/it/about' : '/about',
-  },
-  {
-    name: t('nav.contests'),
-    href: currentLang === 'it' ? '/it/contest' : '/contest',
-  },
-  {
-    name: t('nav.sponsors'),
-    href: currentLang === 'it' ? '/it/sponsors' : '/sponsors',
-  },
-  {
-    name: t('nav.contact'),
-    href: currentLang === 'it' ? '/it/contact' : '/contact',
-  },
-  {
-    name: t('nav.rules'),
-    href: currentLang === 'it' ? '/it/rules' : '/rules',
-  },
-];
-
 const logoPath = '/images/ortona-sub-logo.svg';
 
 export function NavbarHeader({ standalone = false }: { standalone?: boolean }) {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const { t, lang } = useI18n();
-  const navigation = useNavigation(t, lang);
+  const navigation = getNavigationItems(lang, t);
 
   const loginPath = getLocalizedPath('user/login', lang);
 
