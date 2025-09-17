@@ -161,7 +161,7 @@ export const translations = {
     'home.who-we-are.title': 'Chi Siamo',
     'home.who-we-are.description':
       "Scopri la comunità appassionata di fotografi subacquei che catturano la bellezza nascosta sotto le onde. La nostra piattaforma celebra l'arte della fotografia marina, riunendo appassionati da tutto il mondo per condividere le loro prospettive uniche del regno sottomarino.",
-    'home.past-contests.title': 'Concorsi Precedenti',
+    'home.past-contests.title': 'Edizioni Precedenti',
     'home.past-contests.description':
       "Esplora le straordinarie opere vincitrici degli anni precedenti, che mostrano l'incredibile talento e creatività della nostra comunità. Ogni immagine racconta una storia di pazienza, abilità e momenti magici catturati sotto la superficie.",
     'home.past-contests.button': 'Vedi i Vincitori Precedenti →',
@@ -243,7 +243,7 @@ export const translations = {
     'author.by': 'di',
 
     // Contests page
-    'contests.title': "Albo d'oro",
+    'contests.title': 'Edizioni Precedenti',
     'contests.description':
       "Esplora le nostre competizioni annuali di fotografia subacquea. Ogni anno riunisce fotografi appassionati da tutto il mondo per mostrare l'incredibile bellezza sotto le onde.",
     'contests.no-contests': 'Nessun Concorso Disponibile',
