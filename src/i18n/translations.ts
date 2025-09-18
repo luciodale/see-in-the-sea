@@ -11,6 +11,7 @@ export const translations = {
     // Navigation
     'nav.about': 'About',
     'nav.contests': 'Past Editions',
+    'nav.trophy': 'Trophy',
     'nav.sponsors': 'Sponsors',
     'nav.contact': 'Contact Us',
     'nav.rules': 'Rules',
@@ -21,7 +22,7 @@ export const translations = {
     // Home page sections
     'home.who-we-are.title': 'Who We Are',
     'home.who-we-are.description':
-      'Discover the passionate community of underwater photographers who capture the hidden beauty beneath the waves. Our platform celebrates the art of marine photography, bringing together enthusiasts from around the world to share their unique perspectives of the underwater realm.',
+      'Discover the passionate community of underwater photographers who capture the hidden beauty beneath the waves. Our platform celebrates the art of marine photography, bringing together enthusiasts worldwide to share their unique visions of the underwater world.',
     'home.past-contests.title': 'Past Contests',
     'home.past-contests.description':
       'Explore the extraordinary winning entries from previous years, showcasing the incredible talent and creativity of our community. Each image tells a story of patience, skill, and the magical moments captured beneath the surface.',
@@ -66,6 +67,7 @@ export const translations = {
     'dialog.upload.titleLabel': 'Title',
     'dialog.upload.category': 'Category',
     'dialog.ok': 'OK',
+
     // Submissions UI
     'submissions.jury': 'Jury',
     'submissions.loading': 'Loading your submissions...',
@@ -103,7 +105,7 @@ export const translations = {
     'result.second-place': 'Second Place',
     'result.third-place': 'Third Place',
     'result.runner-up': 'Runner Up',
-    'result.runner-ups': 'Runner Ups',
+    'result.runner-ups': 'Runners Up',
 
     // Anonymous author
     'author.anonymous': 'Anonymous',
@@ -120,20 +122,20 @@ export const translations = {
     'about.title': 'About Us',
     'about.section1.title': 'The Magic of Underwater Encounters',
     'about.section1.paragraph1':
-      'I have asked myself... I have asked myself so many times staring in silence at this blank page...',
+      'I have asked myself so many times, staring in silence at this blank page...',
     'about.section1.paragraph2':
-      'Fragments of blue overlap with blurred faces, the muffled echo of light bubbles, distant waves, suspended sensations that smell of sun, salt, sea water... changing colors and shapes where nothing is as it seems...',
+      'Fragments of blue overlap with blurred faces, the muffled echo of light bubbles, distant waves, suspended sensations scented with sun, salt, and seawater... shifting colors and shapes where nothing is as it seems...',
     'about.section1.paragraph3':
       'In a now distant past I tried to tell our journey, a meeting of gazes, fused passions to create a story to tell, the thrill of an irrational vision, the magic of searching beyond the horizon...',
     'about.section2.title': 'See in the Sea UW International Photocontest',
     'about.section2.paragraph1': 'Today we write a new chapter.',
     'about.section2.paragraph2':
-      'See in the Sea UW International Photocontest is a won challenge, a project that takes wind again, it is wanting to continue discovering your emotions captured in an instant of wonder, the fascination of discovering unknown seas through other eyes.',
+      'See in the Sea UW International Photocontest is a challenge fulfilled, a project that takes wind again. It seeks to continue discovering your emotions captured in an instant of wonder, the fascination of exploring unknown seas through other eyes.',
     'about.section2.paragraph3':
       'See in the Sea lives on important skills, respect for those who choose to get involved with a smile, visceral passions expressed through unrepeatable moments...',
     'about.section3.title': '15th Edition',
     'about.section3.paragraph1':
-      'We want to continue listening to your stories, being moved by the images you will choose to select, we will admire them in silence, enchanted, they will remain in our eyes forever, they will tell the Sea...',
+      'We want to continue listening to your stories, being moved by the images you choose to share. We will admire them in silence, enchanted; they will remain in our eyes forever, telling the story of the Sea...',
     'about.section3.emphasis': 'a Sea for everyone...',
     'about.section3.paragraph2':
       'From here restarts the 15th edition of See in the Sea UW International Photocontest, from the hundreds of friends who have chosen us, from the thousands of photos you have given us, from the emotions we have created and you wanted to share...',
@@ -152,11 +154,23 @@ export const translations = {
     'sponsors.coming-soon.cta': 'Become a Sponsor',
     'sponsors.coming-soon.contact':
       'Contact us to learn more about sponsorship opportunities',
+
+    // Trophy page
+    'trophy.title': 'Sculpture "Click Fish"',
+    'trophy.description':
+      'The upper part of the work, a visual translation of the waves, suggests shifting attention beneath the surface of the water. There, among seaweed and corals, or hidden in an inlet, a fish gazes back at us, almost hypnotized. Yet the viewer, just like a photographer, can only "capture" its image. Trapped by the lens, the circularity of the sculpture and the grooves traced within it appear, while the subject remains free. Thus, the physical void is replaced by memory, or by a photograph.',
+    'trophy.description-title': 'Description',
+    'trophy.artist-title': 'Artist',
+    'trophy.artist-description':
+      'Valter Polleggioni was born in 1957 in Ortona, where he lives and has worked as a sculptor since 1984. To learn more visit his page.',
+    'trophy.artist-cta': 'Learn more',
   },
+
   it: {
     // Navigation
     'nav.about': 'Chi Siamo',
     'nav.contests': 'Edizioni Precedenti',
+    'nav.trophy': 'Trofeo',
     'nav.sponsors': 'Sponsor',
     'nav.contact': 'Contatti',
     'nav.rules': 'Regolamento',
@@ -167,14 +181,14 @@ export const translations = {
     // Home page sections
     'home.who-we-are.title': 'Chi Siamo',
     'home.who-we-are.description':
-      "Scopri la comunità appassionata di fotografi subacquei che catturano la bellezza nascosta sotto le onde. La nostra piattaforma celebra l'arte della fotografia marina, riunendo appassionati da tutto il mondo per condividere le loro prospettive uniche del regno sottomarino.",
+      "Scopri la comunità appassionata di fotografi subacquei che catturano la bellezza nascosta sotto le onde. La nostra piattaforma celebra l'arte della fotografia marina, riunendo appassionati da tutto il mondo per condividere le loro prospettive uniche del mondo sottomarino.",
     'home.past-contests.title': 'Edizioni Precedenti',
     'home.past-contests.description':
       "Esplora le straordinarie opere vincitrici degli anni precedenti, che mostrano l'incredibile talento e creatività della nostra comunità. Ogni immagine racconta una storia di pazienza, abilità e momenti magici catturati sotto la superficie.",
     'home.past-contests.button': 'Vedi i Vincitori Precedenti →',
     'home.sponsors.title': 'I Nostri Sponsor',
     'home.sponsors.description':
-      'Siamo grati ai nostri incredibili sponsor che rendono possibile questa competizione. Il loro supporto ci permette di celebrare la fotografia subacquea e di fornire opportunità straordinarie ai fotografi di tutto il mondo.',
+      'Siamo grati ai nostri straordinari sponsor che rendono possibile questa competizione. Il loro supporto ci permette di celebrare la fotografia subacquea e di offrire opportunità eccezionali ai fotografi di tutto il mondo.',
     'home.sponsors.button': 'Vedi Sponsor →',
 
     // Navbar
@@ -197,7 +211,7 @@ export const translations = {
 
     // Footer
     'footer.copyright': 'See in the Sea',
-    'footer.description': 'Celebrando la bellezza della fotografia subacquea',
+    'footer.description': 'Celebriamo la bellezza della fotografia subacquea',
     'footer.quick-links': 'Link Rapidi',
     'footer.contact': 'Contatti',
     'footer.follow-us': 'Seguici',
@@ -206,19 +220,20 @@ export const translations = {
     'state.deleting': 'Eliminazione...',
     'toast.upload-success': 'Immagine caricata con successo!',
     'toast.delete-success': 'Immagine eliminata con successo!',
-    'dialog.upload.title': 'Caricamento completato',
-    'dialog.delete.title': 'Eliminazione completata',
+    'dialog.upload.title': 'Caricamento Completato',
+    'dialog.delete.title': 'Eliminazione Completata',
     'dialog.upload.image': 'Immagine',
     'dialog.upload.titleLabel': 'Titolo',
     'dialog.upload.category': 'Categoria',
     'dialog.ok': 'OK',
+
     // Submissions UI
     'submissions.jury': 'Giuria',
     'submissions.loading': 'Caricamento delle tue candidature...',
     'submissions.closed':
       'Le candidature sono chiuse per il concorso corrente.',
-    'submissions.max-size': 'Dimensione max',
-    'submissions.count-label': 'invii',
+    'submissions.max-size': 'Dimensione massima',
+    'submissions.count-label': 'candidature',
     'form.title': 'Titolo',
     'form.description-optional': 'Descrizione (opzionale)',
     'form.choose-file': 'Scegli file',
@@ -267,23 +282,23 @@ export const translations = {
     'about.title': 'Chi Siamo',
     'about.section1.title': 'La Magia degli Incontri Sottomarini',
     'about.section1.paragraph1':
-      'Me lo sono chiesto... me lo sono chiesto tante volte fissando in silenzio questo foglio bianco...',
+      'Me lo sono chiesto tante volte, fissando in silenzio questo foglio bianco...',
     'about.section1.paragraph2':
-      "Frammenti di blu si accavallano a volti sfumati, l'eco sopito di bolle leggere, onde lontane, sensazioni sospese profumano di sole, di sale, di acqua di Mare... colori e forme mutevoli dove nulla è come sembra...",
+      "Frammenti di blu si accavallano a volti sfumati, l'eco sopito di bolle leggere, onde lontane, sensazioni sospese che profumano di sole, sale, acqua di mare... colori e forme mutevoli dove nulla è come sembra...",
     'about.section1.paragraph3':
-      "In un passato ormai lontano ho provato a raccontare il nostro viaggio, incontro di sguardi, passioni fuse per creare una storia da raccontare, il brivido di una visione irrazionale, la magia di cercare oltre l'orizzonte...",
+      "In un passato ormai lontano ho provato a raccontare il nostro viaggio, incontro di sguardi, passioni fuse per creare una storia, il brivido di una visione irrazionale, la magia di cercare oltre l'orizzonte...",
     'about.section2.title': 'See in the Sea UW International Photocontest',
     'about.section2.paragraph1': 'Oggi scriviamo un nuovo capitolo.',
     'about.section2.paragraph2':
-      'See in the Sea UW International Photocontest è una sfida vinta, un progetto che torna a prendere vento, è voler continuare a scoprire le vostre emozioni fermate in un istante di meraviglia, il fascino della scoperta di mari sconosciuti attraverso altri occhi.',
+      'See in the Sea UW International Photocontest è una sfida vinta, un progetto che torna a prendere vento. Vuole continuare a scoprire le vostre emozioni fermate in un istante di meraviglia, il fascino di mari sconosciuti visti attraverso altri occhi.',
     'about.section2.paragraph3':
-      'See in the Sea vive di competenze importanti, del rispetto verso chi sceglie di mettersi in gioco con un sorriso, passioni viscerali declinate attraverso istanti irripetibili...',
-    'about.section3.title': '15ma Edizione',
+      'See in the Sea vive di competenze importanti, del rispetto verso chi sceglie di mettersi in gioco con un sorriso, passioni viscerali espresse attraverso istanti irripetibili...',
+    'about.section3.title': '15ª Edizione',
     'about.section3.paragraph1':
-      'Vogliamo continuare ad ascoltare le vostre storie, emozionarci per le immagini che vorrete selezionare, le ammireremo in silenzio, incantati, resteranno nei nostri occhi per sempre, racconteranno il Mare...',
+      'Vogliamo continuare ad ascoltare le vostre storie, emozionarci con le immagini che vorrete condividere. Le ammireremo in silenzio, incantati, resteranno nei nostri occhi per sempre e racconteranno il Mare...',
     'about.section3.emphasis': 'un Mare di tutti...',
     'about.section3.paragraph2':
-      'Da qui riparte la 15ma edizione di See in the Sea UW International Photocontest, dalle centinaia di amici che ci hanno scelto, dalle migliaia di foto che ci avete regalato, dalle emozioni che abbiamo creato e avete voluto condividere...',
+      'Da qui riparte la 15ª edizione di See in the Sea UW International Photocontest, dalle centinaia di amici che ci hanno scelto, dalle migliaia di foto che ci avete donato, dalle emozioni che abbiamo creato e che avete voluto condividere...',
     'about.quote':
       'Regalateci ancora la meraviglia di questo irripetibile viaggio nei colori del blu.',
     'about.author': 'Paolo De Iure',
@@ -291,14 +306,25 @@ export const translations = {
 
     // Sponsors page
     'sponsors.title': 'I Nostri Sponsor',
-    'sponsors.subtitle': "Supporto all'Eccellenza della Fotografia Subacquea",
+    'sponsors.subtitle':
+      "A sostegno dell'eccellenza nella fotografia subacquea",
     'sponsors.coming-soon.title': 'Sponsor in Arrivo',
     'sponsors.coming-soon.description':
-      'Stiamo attualmente lavorando con partner straordinari per supportare il concorso UW 2025. Restate sintonizzati per annunci emozionanti!',
+      'Stiamo lavorando con partner straordinari per supportare il concorso UW 2025. Restate sintonizzati per annunci emozionanti!',
     'sponsors.coming-soon.contest': 'Concorso UW 2025',
     'sponsors.coming-soon.cta': 'Diventa Sponsor',
     'sponsors.coming-soon.contact':
       'Contattaci per saperne di più sulle opportunità di sponsorizzazione',
+
+    // Trophy page
+    'trophy.title': 'Scultura "Click Fish"',
+    'trophy.description':
+      "La parte superiore dell'opera, traduzione visiva dei flutti, suggerisce di spostare l'attenzione sotto la superficie dell'acqua. Qui, tra alghe e coralli o nascosto in un'insenatura, un pesce ci osserva ipnotizzato. Eppure lo spettatore, proprio come farebbe un fotografo, può solo 'trattenerne' l'immagine. Intrappolato dall'obiettivo, compaiono la circolarità della scultura e i solchi tracciati al suo interno, mentre il soggetto resta libero. Così, al vuoto fisico si sostituisce il ricordo o la fotografia.",
+    'trophy.description-title': 'Descrizione',
+    'trophy.artist-title': 'Artista',
+    'trophy.artist-description':
+      'Valter Polleggioni è nato nel 1957 a Ortona, dove vive e lavora come scultore dal 1984. Per saperne di più visita la sua pagina.',
+    'trophy.artist-cta': 'Scopri di più',
   },
 } as const;
 

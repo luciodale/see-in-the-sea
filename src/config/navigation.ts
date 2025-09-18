@@ -17,6 +17,11 @@ export function getNavigationItems(
       key: 'contest',
     },
     {
+      name: t('nav.trophy'),
+      href: getLocalizedPath('trophy', lang),
+      key: 'trophy',
+    },
+    {
       name: t('nav.rules'),
       href: getLocalizedPath('rules', lang),
       key: 'rules',

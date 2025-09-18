@@ -10,6 +10,7 @@ type Props = {
   buttonCTA?: {
     text: string;
     link: string;
+    target?: string;
   };
 };
 
@@ -41,6 +42,7 @@ const objectFit = image.objectFit ?? false;
             <a
               href={buttonCTA.link}
               class="inline-flex items-center px-6 py-3 bg-blue-600/60 border border-blue-500/70 text-blue-100 rounded transition-all duration-300 text-base font-light tracking-wide uppercase"
+              target={buttonCTA.target}
             >
               {buttonCTA.text}
             </a>

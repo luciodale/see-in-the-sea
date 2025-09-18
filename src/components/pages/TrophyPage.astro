@@ -1,0 +1,71 @@
+---
+import AppWrapper from '@/components/AppWrapper.astro';
+import Layout from '@/components/Gallery/Layout.astro';
+import NavbarHeaderStandalone from '@/components/Navbar/NavbarHeaderStandalone.astro';
+import { useTranslations, type Language } from '@/i18n';
+import HeroSegment from '../HeroSegment.astro';
+
+interface Props {
+  lang: Language;
+  alternates?: Array<{ hrefLang: string; href: string }>;
+}
+
+const { lang, alternates = [] } = Astro.props as Props;
+const t = useTranslations(lang);
+---
+
+<AppWrapper
+  title={`${t('trophy.title')} - See in the Sea`}
+  description={t('trophy.description')}
+  lang={lang}
+  alternates={alternates}
+>
+  <NavbarHeaderStandalone lang={lang} />
+
+  <Layout>
+    <div class="text-center mb-20">
+      <h1
+        class="text-5xl sm:text-6xl font-extralight text-gray-50 uppercase tracking-wider leading-tight"
+      >
+        {t('trophy.title')}
+      </h1>
+    </div>
+
+    <div class="max-w-4xl mx-auto text-center">
+      <div class="flex justify-center mb-12">
+        <img
+          src="/images/trophy/trophy.png"
+          alt={t('trophy.title')}
+          class="max-w-md w-full h-auto"
+        />
+      </div>
+
+      <div class="space-y-6 mb-20">
+        <h2
+          class="text-4xl sm:text-5xl font-extralight text-gray-50 uppercase tracking-wider leading-tight"
+        >
+          {t('trophy.description-title')}
+        </h2>
+        <p
+          class="text-xl font-light text-gray-300 leading-relaxed max-w-2xl mx-auto"
+        >
+          {t('trophy.description')}
+        </p>
+      </div>
+    </div>
+
+    <HeroSegment
+      title={t('trophy.artist-title')}
+      description={t('trophy.artist-description')}
+      image={{
+        link: '/images/trophy/valter-polleggioni.webp',
+        objectFit: true,
+      }}
+      buttonCTA={{
+        text: t('trophy.artist-cta'),
+        link: 'https://www.instagram.com/valterpolleggioni/',
+        target: '_blank',
+      }}
+    />
+  </Layout>
+</AppWrapper>

@@ -47,7 +47,7 @@ export function NavbarHeader({ standalone = false }: { standalone?: boolean }) {
             <a
               key={item.name}
               href={item.href}
-              className="text-xl font-light text-white"
+              className="text-lg font-light text-white"
             >
               {item.name}
             </a>
