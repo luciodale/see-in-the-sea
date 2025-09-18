@@ -1,5 +1,6 @@
 ---
 import AppWrapper from '@/components/AppWrapper.astro';
+import EmailLink from '@/components/EmailLink.astro';
 import Layout from '@/components/Gallery/Layout.astro';
 import NavbarHeaderStandalone from '@/components/Navbar/NavbarHeaderStandalone.astro';
 import { useTranslations, type Language } from '@/i18n';
@@ -20,27 +21,71 @@ const heading = lang === 'it' ? 'Contatti' : 'Contact Us';
 >
   <NavbarHeaderStandalone lang={lang} />
   <Layout>
-    <div class="max-w-3xl mx-auto text-slate-200 space-y-8">
-      <h1 class="text-4xl font-light">{heading}</h1>
+    <div class="max-w-4xl mx-auto text-slate-200 space-y-12">
+      <div class="text-center">
+        <h1
+          class="text-5xl sm:text-6xl font-extralight text-gray-50 uppercase tracking-wider leading-tight"
+        >
+          {heading}
+        </h1>
+      </div>
 
-      <div class="space-y-2">
-        <p class="text-lg font-medium">ASD Ortona Sub APS</p>
-        <p>
-          C/o Palazzetto dello sport – Via Giovanni XXII – 66026 – Ortona (CH)
-        </p>
-        <p>Tel. 339/6577950 – 380/3919121</p>
-        <p>
-          <a
-            href="mailto:info@ortonasub.com"
-            class="text-emerald-400 hover:underline">info@ortonasub.com</a
-          >
-        </p>
+      <!-- Organization Info -->
+      <div class="space-y-6">
+        <div class="text-center">
+          <h2 class="text-2xl font-light text-gray-100 mb-2">
+            {t('contact.organization')}
+          </h2>
+          <p class="text-lg font-medium text-gray-300">
+            {t('contact.address')}:
+          </p>
+          <p class="text-gray-300 leading-relaxed">
+            {t('contact.address-details')}
+          </p>
+          <div class="mt-4">
+            <EmailLink variant="large" showLabel={true} />
+          </div>
+        </div>
+
+        <!-- President -->
+        <div class="bg-slate-800/40 rounded-lg p-6 border border-slate-700/50">
+          <h3 class="text-xl font-semibold text-gray-100 mb-2">
+            {t('contact.president')}
+          </h3>
+          <p class="text-lg text-gray-200 mb-1">Paolo De Iure</p>
+          <p class="text-gray-300">3396577950</p>
+        </div>
+
+        <!-- Technical Director -->
+        <div class="bg-slate-800/40 rounded-lg p-6 border border-slate-700/50">
+          <h3 class="text-xl font-semibold text-gray-100 mb-2">
+            {t('contact.technical-director')}
+          </h3>
+          <p class="text-lg text-gray-200 mb-1">Giuseppe Pignataro</p>
+          <p class="text-gray-300">3285934373</p>
+        </div>
+
+        <!-- Administrative Secretary -->
+        <div class="bg-slate-800/40 rounded-lg p-6 border border-slate-700/50">
+          <h3 class="text-xl font-semibold text-gray-100 mb-4">
+            {t('contact.administrative-secretary')}
+          </h3>
+          <div class="space-y-4">
+            <div>
+              <p class="text-lg text-gray-200 mb-1">Gabriele Di Credico</p>
+              <p class="text-gray-300">3478889007</p>
+            </div>
+            <div>
+              <p class="text-lg text-gray-200 mb-1">Fabrizio Pompilio</p>
+              <p class="text-gray-300">3903919121</p>
+            </div>
+          </div>
+        </div>
       </div>
 
       <div class="rounded-lg overflow-hidden border border-slate-700">
         <iframe
           title="Google Map"
-          frameborder="0"
           style="width:100%;min-height:400px"
           src="https://www.google.com/maps?q=ortona%20sub&output=embed&hl=it-IT&z=12"
         ></iframe>

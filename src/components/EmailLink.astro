@@ -1,0 +1,20 @@
+---
+interface Props {
+  variant?: 'large' | 'small';
+  showLabel?: boolean;
+}
+
+const { variant = 'large', showLabel = false } = Astro.props;
+---
+
+<div class={showLabel ? 'text-center' : ''}>
+  {showLabel && <p class="text-lg text-gray-300 mb-2">Email:</p>}
+  <a
+    href="mailto:info@ortonasub.com"
+    class={`text-emerald-400 hover:text-emerald-300 hover:underline transition-colors ${
+      variant === 'large' ? 'text-xl' : 'text-sm'
+    } ${showLabel ? 'block' : ''}`}
+  >
+    info@ortonasub.com
+  </a>
+</div>

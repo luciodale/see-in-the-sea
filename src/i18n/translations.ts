@@ -52,9 +52,7 @@ export const translations = {
 
     // Footer
     'footer.copyright': 'See in the Sea',
-    'footer.description': 'Celebrating the beauty of underwater photography',
     'footer.quick-links': 'Quick Links',
-    'footer.contact': 'Contact',
     'footer.follow-us': 'Follow Us',
     'state.uploading': 'Uploading...',
     'state.replacing': 'Replacing...',
@@ -98,7 +96,7 @@ export const translations = {
     'category.the-professions-of-the-sea': 'The Professions of the Sea',
     'category.art-in-the-water': 'Art in the Water',
     'category.winners-only': 'Winners Only',
-    'category.winner': 'Winner',
+    'category.winner': 'First Place',
 
     // Contest results
     'result.first-place': 'First Place',
@@ -164,6 +162,15 @@ export const translations = {
     'trophy.artist-description':
       'Valter Polleggioni was born in 1957 in Ortona, where he lives and has worked as a sculptor since 1984. To learn more visit his page.',
     'trophy.artist-cta': 'Learn more',
+
+    // Contact page
+    'contact.organization': 'ASD Ortona Sub APS',
+    'contact.address': 'Address',
+    'contact.address-details':
+      'C/o Palazzetto dello sport – Via Giovanni XXIII – 66026 – Ortona (CH)',
+    'contact.president': 'President Ortona Sub',
+    'contact.technical-director': 'Technical Director',
+    'contact.administrative-secretary': 'Administrative Secretary',
   },
 
   it: {
@@ -211,9 +218,7 @@ export const translations = {
 
     // Footer
     'footer.copyright': 'See in the Sea',
-    'footer.description': 'Celebriamo la bellezza della fotografia subacquea',
     'footer.quick-links': 'Link Rapidi',
-    'footer.contact': 'Contatti',
     'footer.follow-us': 'Seguici',
     'state.uploading': 'Caricamento...',
     'state.replacing': 'Sostituzione...',
@@ -258,12 +263,12 @@ export const translations = {
     'category.the-professions-of-the-sea': 'Le Professioni del Mare',
     'category.art-in-the-water': 'Arte in Acqua',
     'category.winners-only': 'Solo Vincitori',
-    'category.winner': 'Vincitore',
+    'category.winner': 'Primo Classificato',
 
     // Contest results
-    'result.first-place': 'Primo Posto',
-    'result.second-place': 'Secondo Posto',
-    'result.third-place': 'Terzo Posto',
+    'result.first-place': 'Primo Classificato',
+    'result.second-place': 'Secondo Classificato',
+    'result.third-place': 'Terzo Classificato',
     'result.runner-up': 'Menzione',
     'result.runner-ups': 'Menzioni',
 
@@ -325,6 +330,15 @@ export const translations = {
     'trophy.artist-description':
       'Valter Polleggioni è nato nel 1957 a Ortona, dove vive e lavora come scultore dal 1984. Per saperne di più visita la sua pagina.',
     'trophy.artist-cta': 'Scopri di più',
+
+    // Contact page
+    'contact.organization': 'ASD Ortona Sub APS',
+    'contact.address': 'Sede',
+    'contact.address-details':
+      'C/o Palazzetto dello sport – Via Giovanni XXIII – 66026 – Ortona (CH)',
+    'contact.president': 'Presidente Ortona Sub',
+    'contact.technical-director': 'Direttore Tecnico',
+    'contact.administrative-secretary': 'Segreteria Amministrativa',
   },
 } as const;
 

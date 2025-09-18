@@ -1,6 +1,7 @@
 ---
 import { getNavigationItems } from '@/config/navigation';
 import { useTranslations, type Language } from '@/i18n';
+import EmailLink from './EmailLink.astro';
 
 interface Props {
   lang: Language;
@@ -19,17 +20,29 @@ const navigation = getNavigationItems(lang, t);
     <!-- Brand Section -->
     <div class="md:col-span-2 max-w-sm mx-auto sm:mx-0">
       <div
-        class="flex items-center text-center sm:text-left flex-col sm:flex-row gap-2"
+        class="flex sm:items-start items-center text-center sm:text-left flex-col sm:flex-row gap-4"
       >
-        <img src="/images/logo.svg" alt="See in the Sea" class="w-20" />
+        <a class="w-40" href="/">
+          <img
+            src="/images/ortona-sub-logo.svg"
+            alt="See in the Sea"
+            class="w-full"
+          />
+        </a>
         <div>
-          <h3 class="text-2xl font-bold mb-2">{t('footer.copyright')}</h3>
-          <p class="leading-relaxed text-gray-300">
-            {t('footer.description')}
-          </p>
+          <h3 class="text-lg font-bold mb-4">{t('contact.address')}</h3>
+
+          <div class="space-y-2">
+            <p class="text-sm text-gray-300">
+              {t('contact.address-details')}
+            </p>
+            <EmailLink variant="small" />
+          </div>
         </div>
       </div>
     </div>
+
+    <!-- Contact Section -->
 
     <!-- Quick Links Section -->
     <div class="flex flex-col sm:text-left text-center">
