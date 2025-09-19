@@ -1,156 +1,170 @@
-# 16° SEE IN THE SEA INTERNATIONAL UNDERWATER PHOTOCONTEST ORTONAMARE 2025
+# REGULATIONS
 
-The contest is open to all underwater photographers and has a free theme. The contest is divided into the following sections:
+## 16th SEE IN THE SEA INTERNATIONAL UNDERWATER PHOTOCONTEST ORTONAMARE 2025 MEMORIAL DAVID SALVATORI
 
-### Wide Angle (WA)
+The Contest is open to all underwater photographers and has no thematic restrictions. The sections of the Contest are as follows:
 
-Color images that must represent the underwater environment or its species using wide-angle optics or accessories. Long shots and backlighting are permitted, and a human presence can be included as a complementary element. The photographer is free to interpret the theme according to their own compositional style, using any technique. "Over-under" images are also allowed, provided the underwater portion is no less than 50%.
+**Wide Angle (WA):**  
+The image, in color, must represent the underwater environment or its species using wide-angle lenses or adapters. Wide shots and backlit images are allowed. Human presence may be included as a complementary element. The photographer is free to interpret the theme using any technique. Half-and-half images are also allowed, provided the underwater portion covers at least 50%.
 
-### Macro
+**Macro:**  
+The image, in color, must depict aquatic subjects (whole or detail) highlighting aesthetic quality through composition and color choices. Images must be taken exclusively with macro lenses — fisheye lenses for close-up macro are not allowed. Any technique is permitted, provided the main subject reflects the theme.
 
-Color images that must capture whole aquatic subjects or details of underwater life, highlighting the best aesthetic taste through compositional choices and colors. Images must be taken exclusively with macro lenses, excluding the use of fisheye lenses for close-up macro. Any technique is allowed, as long as the main subject of the image represents the theme.
+**Black and White:**  
+All underwater black and white images, wide-angle or macro, with free theme are admitted.
 
-### Black and White (B&W)
+**Mediterranean Portfolio:**  
+One or two series of 3 images (color or B/W) showcasing the environment and fauna typical of the Mediterranean Sea. Each portfolio must include: one Macro, one WA, and one of free choice. Images identical or similar to those presented in previous sections (see Art. 1) are not allowed. Authors submitting two series must specify, via a title or another form permitted by the Regulation, which portfolio each image belongs to.
 
-All free-theme images in black and white are allowed, whether shot with wide-angle or macro lenses.
+### Memorial David Salvatori Trophy
 
----
+The Memorial was created to honor a great sea lover and photographer, whose images celebrated the immense beauty of the ocean.  
+The Organization reserves the right to award the trophy to one of the winning images across all categories.
 
-### Jury Composition
-
-- **Technical Director of the Contest:** Giuseppe Pignataro
-- The Jury will meet to evaluate the works in **January 2026**.
-
----
-
-### Contest File Submission
-
-**Article 1)**
-Authors can submit a maximum of **2 files** per contest category. The same photo cannot be submitted in more than one section. To participate, you must go to the official contest page, **www.seeintheseauw.com**, between **October 1, 2024, and December 6, 2024**, and access the photo submission section. No extensions will be granted for the submission deadline.
-
-To submit your work, you must register on the **www.seeintheseauw.com** portal and give your consent to data processing. After registration, you need to log in. Once logged in, you can select the "photo submission" button and begin uploading your work by following the instructions.
-
-Any works that have already won awards in other national or international contests before **January 1, 2022**, will be excluded.
-
-Each work must meet the following criteria:
-
-- It must be in **JPG format** (the only accepted format).
-- It must not exceed **10MB** in size.
-- It must have dimensions of **30x40 or 30x45 at 200 dpi**.
-- It must have a title (containing only alphanumeric characters without apostrophes, commas, parentheses, etc., and no reference to initials or the author's name).
-- All images must contain **EXIF data** to verify their category. Any information that could identify the author must be removed. The EXIF data will not be accessible to the jurors during the session, but only to the organization for verification.
-
-**Article 2)**
-For digital images, the following are allowed:
-
-- A maximum crop of **20%** of the original image area.
-- Limited use of the clone stamp to clean up any tiny defects.
-- Small variations in brightness, contrast, color temperature, sharpness, and saturation.
-- **Photomontages or image overlays are not allowed.**
-- Multiple exposures are permitted only if allowed by the camera's features and after generating the single RAW file.
-
-Images must be free of frames, passe-partouts, watermarks, or any logo or signature that could identify the photographer.
-
-Underwater images taken through submerged portholes, aquariums, or pools are not allowed.
-
-Images that show damage to the seabed, or frightened, stressed, or unnatural-looking animals will not be accepted, except for images intended to document or report negative human actions.
-
-The organization, in agreement with the jury, reserves the right to exclude images that, upon verification, do not comply with the provisions of Article 2.
-
-All ranked images will be required to submit the **RAW file**.
-
-The jury's decision is final and will be based on the image's technical, naturalistic, artistic, and documentary aspects. Images with significant technical and artistic deficiencies may receive a negative judgment, even if they have high naturalistic content.
-
-**Article 3)**
-A registration fee is required as a reimbursement of expenses:
-
-- **€20.00** for those who register for a single category.
-- **€30.00** for those who register for multiple categories.
-
-Payment can be made via **Bank Transfer** to IBAN **IT34W0103077780000000067719**. The payment description must be "Quota iscrizione Photocontest See in the Sea 2024 – [Participant's Name and Surname] and [number of categories to participate in]".
-
-**Article 4)**
-The organization will rename all contest files so that the jury can view them independently and without knowing the authors' names.
-
-**Article 5)**
-Prizes will be awarded to the 1st, 2nd, and 3rd place winners of each section. Each participant can only win one prize offered by the sponsors. In the case of multiple wins by the same participant, priority will be given to the prize of the highest value.
-
-- **NOTE:** The jury may, at its sole discretion, award prizes for photos designated as **"SEGNALATE"** (Honorable Mention), regardless of the category or theme.
-
-**Article 6)**
-During the Award Ceremony, the organization will present all winning photos, honorable mentions, and any others that, at the jury's sole discretion, show particular technical and emotional interest. The winning photos, honorable mentions, and those deemed most significant will be published on the official website **www.seeintheseauw.com** and on the contest's Facebook and Instagram pages at the same time as the official rankings are published.
-
-**Article 7)**
-Works will be admitted to the contest only and exclusively after payment of the registration fee mentioned in Article 3.
+**Technical Director of the Contest:** Giuseppe Pignataro  
+The jury will meet to evaluate the entries in **January 2026**.
 
 ---
 
-### Awards Ceremony
+## SUBMISSION OF FILES
 
-The contest awards ceremony will take place on:
+**Art. 1**  
+Authors may submit up to 2 files per section and up to 2 series for the Mediterranean Portfolio. The same photo cannot be entered in more than one section.  
+To participate, submissions must be uploaded between **01/10/2025 and 31/12/2025** on the official contest website [www.seeintheseauw.com](http://www.seeintheseauw.com), in the dedicated submission area. No deadline extensions will be granted.
 
-- **Saturday, February 22, 2025, during the EUDI Show in Bologna.**
+To submit works, registration on the portal [www.seeintheseauw.com](http://www.seeintheseauw.com) is required, via the **Join the Contest** button in the navigation bar. By registering, consent to data processing for purposes strictly related to site functionality will be considered implicit. Once registration is completed, login will be automatic and the user will be redirected to the submission area, where photos can be uploaded and managed, and the entry fee can be paid.
 
-Given that the presence of the authors at the Award Ceremony is highly appreciated, the organization will communicate the detailed program of the event to all winners in advance.
+Each work must comply with the following:
 
-The organization, considering the inability of some contestants to attend the Award Ceremony, will prepare a format (videoclip) that will allow the author to be virtually present and briefly introduce themselves by talking about their awarded image. The organization, in compliance with the imposed regulations, reserves the right to publish the videos on the contest's web and social channels.
+- Format: JPG (only format accepted)
+- File size: between 5 MB and 10 MB
+- Dimensions: 30×40 or 30×45 at 200 dpi
+- Each image must have a title
+- All images must include EXIF data to confirm their category. Any info that may identify the author must be removed. EXIF data will not be visible to the jury but, if necessary, can be accessed by the Organization.
 
-- **NOTE:** Prizes not collected due to the absence of the winners or their delegates will be shipped at the expense of the organization only for international authors with a foreign residence. For all others, shipping can be arranged, by telephone agreement with the organization, exclusively with cash on delivery at the recipient's full expense.
+**Art. 2**  
+For digital images the following are allowed:
 
-For info, contact via email: **info@ortonasub.com**.
+- Cropping up to a maximum of 20% of the original image area
+- Limited use of clone stamp to clean small defects
+- Minor adjustments to brightness, contrast, color temperature, sharpness, and saturation
+- No photomontages or overlaying of images
+- Multiple exposures only if supported by the camera used and generating a single RAW file
+- No AI (Artificial Intelligence) generated or processed images
+
+Images must not include frames, borders, watermarks, logos, or signatures that may identify the photographer.
+
+Images taken through submerged portholes, aquariums, or swimming pools are not permitted.
+
+Images showing damaged seabeds, frightened or stressed animals, or unnatural situations will not be accepted, except if documenting or denouncing human-caused negative situations.
+
+The Organization, in agreement with the Jury, reserves the right to exclude any images that do not comply with Art. 2.
+
+RAW files will be required for all awarded images.
+
+The jury’s judgment is final and will be based on technical, naturalistic, artistic, and documentary aspects. Images with significant technical or artistic flaws, even if containing strong naturalistic value, may be judged negatively.
+
+**Art. 3**  
+An entry fee is required as reimbursement of expenses:
+
+- €20.00 for entry into one single category
+- €30.00 for entry into multiple categories
+
+Payment must be made via **Stripe** after uploading the works in the chosen categories.
+
+In case of problems with Stripe payments, contact the Organizing Secretariat at **info@ortonasub.com** or **info@ortonamare.org**, or Mr. Fabrizio Pompilio at **+39 3803919121**.
+
+**Art. 4**  
+The 1st, 2nd, and 3rd place winners of each section will be awarded. Each participant may win only one prize offered by the sponsors. In case of multiple awards to the same participant, the prize of higher value will take priority.  
+_Note: At the Jury’s sole discretion, additional awards (“Mentions”) may be given regardless of category or theme._
+
+**Art. 5**  
+During the Award Ceremony, the Organization will present all winning photos, mentions, and any images deemed particularly interesting for their technical or emotional value.
+
+Winning, mentioned, and significant images will be published on the official website [www.ortonamare.org](http://www.ortonamare.org) and on the Contest’s Facebook and Instagram pages along with the official rankings.
+
+**Art. 6**  
+Works will be admitted to the Contest only after the entry fee (Art. 3) has been paid.
 
 ---
 
-### Rankings
+## AWARDS CEREMONY
 
-The rankings will be published on the website **www.seeintheseauw.com** after notification via mailing list. For any other information, contact the contest secretariat by writing to the email address **info@ortonasub.com**.
+The Award Ceremony will take place during the **EUDI Show in Bologna, 2026**.
 
----
+As the presence of authors at the Ceremony is highly appreciated, the Organization will notify all winners in advance with the detailed program.
 
-### Prizes
+For participants unable to attend, the Organization will prepare a format (video clip) allowing the author to be virtually present and briefly introduce their awarded image. The Organization, in compliance with current regulations, reserves the right to publish such videos on the Contest’s web and social channels.
 
-The organizing secretariat reserves the right to ship uncollected prizes within 60 days from the awards ceremony. Prizes are not cumulative. Uncollected prizes that remain in the possession of the organization without being claimed one month after the awards ceremony will automatically be added to the prize pool for the following year's contest.
+_Note: Uncollected prizes will be shipped at the Organization’s expense only for international authors residing abroad. For all others, shipping may be arranged by prior agreement with the Organization, exclusively cash on delivery at the recipient’s expense._
 
----
-
-### Copyright and Image Usage Rights
-
-The organization, in accordance with established copyright laws, considers the works submitted to the contest to be free from any artistic property rights or rights belonging to third parties. The contestants authorize the use of their works by the organization for the promotion of the contest, including through posters, brochures, calendars for non-profit purposes, and web publications.
-
-The images, free from the payment of copyright fees or any other type of remuneration, will always be used with the obligation to mention the author's name. In no case will the organizers make commercial use of these works, and people who may be interested in purchasing a work will be put in direct contact with the author.
-
-By participating in the contest, contestants authorize the organization to process their data in order to receive updates on the developments of this initiative, it being understood that the data will in no case be transmitted to third parties, in compliance with the provisions of Law 196/2003 on the protection of personal data.
-
-- **NOTE:** Registration and participation in the contest imply unconditional acceptance of these Regulations. The files and prints of the respective categories will not be returned and will become part of the exhibition archive.
+For info contact: **info@ortonasub.com**
 
 ---
 
-### Information - Article 13 of Law Decree 196 of 06/30/2003 (Code regarding the protection of personal data)
+## RANKINGS
 
-Pursuant to Article 13 of the aforementioned law, we INFORM you that ORTONA SUB processes the personal data of supporters, collaborators, suppliers, and individuals who have voluntarily communicated their personal details to our representatives, in order to receive information about our services and/or initiatives.
+Rankings will be published on [www.seeintheseauw.com](http://www.seeintheseauw.com) after notification via mailing list.  
+For further information contact the Secretariat at **info@ortonasub.com** or **info@ortonamare.org**.
 
-According to the law indicated (ref. Art. 2 – Purpose), ORTONA SUB guarantees that the processing of personal data will be carried out in compliance with fundamental rights and freedoms, as well as the dignity of the data subject, with particular reference to confidentiality, personal identity, and the right to the protection of personal data.
+---
 
-**Purpose of personal data processing:**
-Fulfilment of obligations related to the company's economic activity and, in particular, for the compilation of personal data, internal statistics, invoicing, customer-supplier accounting, and to satisfy the obligations provided for by law, regulations, community legislation, and civil and tax rules.
+## PRIZES
 
-The data collected by the representatives regarding initiatives and anything else related to the activities of ASD ORTONA SUB APS will be stored for the purpose of sending information and advertising material related to the activities of ASD ORTONA SUB APS itself (via post, fax, SMS, and email). The data processing takes place using paper and/or computer media, by electronic means, also through automated tools designed to store, manage, and transmit the data itself, with the observance of every precautionary measure that guarantees its security and confidentiality.
+**Prize pool:** Trophy, dive trips, underwater photo equipment and accessories, scuba gear, etc.
 
-Personal data, if necessary, is also communicated to all subjects to whom the right of access to such data is recognized by regulatory provisions.
+_Note 1:_ The use conditions of the prizes (cruises, stays, full-day trips, equipment, etc.) are set directly by the suppliers who partnered with ORTONA SUB for the “SEE in the SEA UW Photo Contest OrtonAmare.” Those interested in more details must contact the suppliers directly.
 
-The data is stored at our company's operational headquarters, for the time prescribed by civil and tax laws.
+The Secretariat reserves the right to ship uncollected prizes within 60 days of the Award Ceremony.
 
-The data controller is **ASD ORTONA SUB APS – Ortona (CH)**. The provision of personal data by individuals who intend to establish a relationship with our association is to be considered optional, but the eventual failure to provide it could result in the failure to continue the relationship, its correct execution, and any legal, including tax, obligations. We also inform you that, in relation to the aforementioned processing, interested parties can at any time exercise the rights referred to in Article 7 and Article 8, in the manner expressed in Article 9 of the same Law Decree no. 196 of June 30, 2003, by contacting the data controller directly by post, fax, or email.
+_Note 2:_ Prizes are not cumulative. Prizes uncollected or not claimed within one month after the Ceremony will automatically be included in the following year’s prize pool.
 
-**CONSENT to the processing of personal data**
+---
 
-In relation to the request made to us, having taken note of the information above, in particular, having taken note of the rights recognized by Article 7 of Law Decree 196/2003:
+## COPYRIGHT AND IMAGE USE
 
-1.  The interested party has the right to obtain confirmation of the existence or otherwise of personal data concerning them, even if not yet registered, and its communication in an intelligible form.
-2.  The interested party has the right to obtain the indication of the origin of the personal data, the purposes and methods of the processing, the logic applied in case of processing with the aid of electronic tools, and the identification details of the owner and managers.
-3.  The interested party has the right to obtain the update, rectification, or integration of the data; the cancellation, transformation into an anonymous form, or blocking of data processed in violation of the law; and certification that these operations have been brought to the attention of those to whom the data has been communicated.
-4.  The interested party has the right to object, in whole or in part, for legitimate reasons, to the processing of personal data concerning them.
+In compliance with copyright laws, the Organization considers the works submitted free of any third-party artistic or property rights. By participating, contestants authorize the Organization to use their works for promotional purposes of the Contest (posters, brochures, calendars, non-profit publications, and online).
 
-We give our consent pursuant to Article 23 of the aforementioned Law Decree, to the processing of our personal data and to their communication and dissemination, for the purposes and within the limits of the aforementioned information.
+Images will always be credited with the author’s name and will never be used for commercial purposes. Any potential buyers will be put directly in contact with the author.
 
-**ASD ORTONA SUB APS**
+By entering the Contest, participants authorize the Organization to process their data for updates regarding the initiative. Data will never be shared with third parties, in compliance with Italian Law 196/2003 on personal data protection.
+
+_Note: Entry and participation imply unconditional acceptance of this Regulation. Files and prints will not be returned and will become part of the Contest archive._
+
+---
+
+## INFORMATION NOTICE – Art. 13 of Legislative Decree 196/2003 (Personal Data Protection Code)
+
+Pursuant to Art. 13 of the above decree, we inform you that **ORTONA SUB** processes personal data of supporters, collaborators, suppliers, and individuals who voluntarily provided their data (in person, by phone, fax, email, or registration on [www.ortonamare.org](http://www.ortonamare.org)) in order to receive information about our services and/or initiatives.
+
+According to the law (Art. 2 – Purposes), ORTONA SUB guarantees that the processing of personal data respects the rights, freedoms, and dignity of individuals, with special regard to privacy, personal identity, and data protection.
+
+**Purposes of data processing:**  
+Administrative and economic activities, including creation of records, internal statistics, invoicing, accounting, legal obligations, civil and fiscal regulations, and EU directives.
+
+Collected data may also be used to send information and promotional material about ORTONA SUB activities (by mail, fax, SMS, email). Processing will be carried out using paper and/or electronic systems, including automated tools, with all necessary safeguards to ensure security and confidentiality.
+
+Personal data may be communicated to parties authorized by law to access them. Data will be stored at our headquarters for the legally prescribed time.
+
+**Data controller:** ORTONA SUB – Ortona (CH). Providing personal data is optional, but refusal may prevent continuation of relations, correct performance of services, or fulfillment of legal obligations.
+
+Participants may exercise their rights under Art. 7 and 8 of Legislative Decree 196/2003 (including access, correction, deletion, objection) by contacting the Data Controller.
+
+---
+
+## CONSENT TO PERSONAL DATA PROCESSING
+
+By accepting this Regulation, participants acknowledge the above Information Notice and grant consent under Art. 23 of Legislative Decree 196/2003 for the processing of their personal data and their communication/dissemination for the purposes and within the limits described.
+
+**ORTONA SUB**  
+c/o Sports Hall – Via Giovanni XXIII – 66026 Ortona (CH)  
+Tel. +39 3396577950 – +39 3803919121  
+[www.ortonasub.com](http://www.ortonasub.com) – info@ortonasub.com
+
+---
+
+**ORTONA SUB**  
+Via Papa Giovanni XXIII – Sports Hall Ortona  
+66026 ORTONA – Italy  
+[www.ortonasub.com](http://www.ortonasub.com)  
+info@ortonasub.com

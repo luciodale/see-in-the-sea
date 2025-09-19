@@ -1,154 +1,113 @@
-# 16° SEE IN THE SEA INTERNATIONAL UNDERWATER PHOTOCONTEST ORTONAMARE 2025
+# REGOLAMENTO
 
-Il Concorso è aperto a tutti i fotografi subacquei ed è a tema libero. Le sezioni sono le seguenti:
+## 16° SEE IN THE SEA INTERNATIONAL UNDERWATER PHOTOCONTEST ORTONAMARE 2025 MEMORIAL DAVID SALVATORI
 
-### Grandangolo (Wide Angle - WA)
+Il Concorso è aperto a tutti i fotografi subacquei ed è a tema libero. Le sezioni nelle quali si articola il Concorso sono le seguenti:
 
-L'immagine a colori deve rappresentare l'ambiente subacqueo o le specie che lo popolano usando ottiche o aggiuntivi grandangolari. Sono ammessi campi lunghi e controluce. La presenza umana può essere inserita come elemento complementare. Il fotografo è libero di interpretare il tema con qualsiasi tecnica. Sono ammesse anche immagini "a mezz’acqua", purché la parte subacquea non sia inferiore al 50%.
+**Grandangolo Wide Angle (WA):**  
+L'immagine, a colori, dovrà rappresentare l'ambiente subacqueo o le specie che lo popolano attraverso l'uso di ottiche o aggiuntivi grandangolari. Sono ammessi i campi lunghi e i controluce, la presenza umana potrà essere inserita nell'immagine come elemento complementare. Il fotografo è libero di interpretare il tema secondo il proprio gusto compositivo, utilizzando qualunque tipo di tecnica. Sono ammesse anche immagini a mezz'acqua, nelle quali la parte subacquea non deve essere inferiore al 50%.
 
-### Macro
+**Macro:**  
+L'immagine, a colori, dovrà riprendere soggetti acquatici interi o particolari di soggetti o di vita subacquea che evidenzino il miglior gusto estetico attraverso scelte compositive e cromatismi. Le immagini dovranno essere realizzate unicamente con ottiche macro, si esclude quindi l'utilizzo di ottiche fisheye per macro ravvicinate. È ammessa qualunque tipo di tecnica, purché il soggetto principale dell'immagine rappresenti il tema.
 
-L'immagine a colori deve riprendere soggetti acquatici interi o particolari che evidenzino il miglior gusto estetico attraverso scelte compositive e cromatiche. Le immagini devono essere realizzate unicamente con ottiche macro, escludendo l'uso di ottiche fisheye per macro ravvicinate. È ammessa qualsiasi tecnica, purché il soggetto principale rappresenti il tema.
+**Bianco e Nero:**  
+Sono ammesse tutte le immagini subacquee a tema libero in BN scattate con ottiche grandangolari o macro.
 
-### Bianco e Nero (BN)
+**Portfolio Mediterraneo:**  
+Una o due serie di 3 immagini a colori o B/N, che esaltino l'ambiente e la fauna tipiche del Mar Mediterraneo. Ogni portfolio deve essere così composto: una Macro, una WA ed una a scelta personale. Non sono ammesse immagini Macro o WA uguali o similari a quelle presentate nelle precedenti sezioni (vedi rif. Art.1). Gli autori che inviano due serie devono indicare con un titolo o altra forma di caratterizzazione consentita dal Regolamento a quale Portfolio attribuire ogni singola immagine.
 
-Sono ammesse tutte le immagini a tema libero in BN scattate con ottiche grandangolari o macro.
+### Trofeo Memorial David Salvatori
 
----
+Il Memorial nasce per ricordare un grande amante del mare, un fotografo, ogni sua immagine è un inno all'immensa bellezza del mare, un grande amico.  
+L'organizzazione si riserva di assegnare il trofeo ad una immagine scelta tra le premiate di ogni categoria.
 
-### Composizione Giuria
+**Direttore Tecnico del Concorso:** Giuseppe Pignataro  
+La giuria si riunirà per la valutazione delle opere a Gennaio 2026
 
-- **Direttore Tecnico:** Giuseppe Pignataro
-- La Giuria si riunirà per la valutazione delle opere a **Gennaio 2026**.
+## PRESENTAZIONE FILES IN CONCORSO
 
----
+**Art. 1)**  
+Gli autori possono presentare un massimo di 2 files per sezione e 2 serie per il Portfolio Mediterraneo. La stessa foto non può essere presentata in più sezioni. Per partecipare al concorso sarà necessario collegarsi dal **01/10/2025 al 31/12/2025** alla pagina ufficiale del concorso [www.seeintheseauw.com](http://www.seeintheseauw.com) ed accedere alla sezione dedicata all'iscrizione foto. Si specifica che non saranno concesse proroghe per la data di invio delle opere.
 
-### Presentazione dei File
+Per inviare le proprie opere è necessario registrarsi al portale [www.seeintheseauw.com](http://www.seeintheseauw.com) tramite il pulsante **Partecipa al concorso** presente nella barra di navigazione. Con l'iscrizione alla piattaforma, il consenso al trattamento dei dati per fini strettamente legati alla funzionalità del sito sarà considerato implicito. Una volta completata la registrazione, l'accesso sarà automatico e l'utente verrà reindirizzato alla sezione dedicata alle candidature, da cui potrà caricare e gestire le foto per il concorso ed effettuare il pagamento della quota di iscrizione.
 
-**Art. 1)**
-Gli autori possono presentare un massimo di **2 file** per categoria. La stessa foto non può essere presentata in più sezioni. Per partecipare, è necessario collegarsi tra il **01/10/2024 e il 06/12/2024** al sito ufficiale del concorso, **www.seeintheseauw.com**, e accedere alla sezione dedicata all’iscrizione. Non saranno concesse proroghe.
+Si precisa che ogni opera:
 
-Per inviare le proprie opere, è necessario registrarsi al portale e dare il consenso al trattamento dei dati. Una volta completata la registrazione e effettuato il login, sarà possibile caricare i propri lavori.
+- Deve essere di formato JPG (unico formato accettato).
+- Il file deve essere compreso tra 5Mb e 10Mb.
+- Deve avere le seguenti dimensioni 30×40 o 30×45 a 200 dpi.
+- Dovrà avere un titolo.
+- Tutte le immagini devono contenere i dati exif a riscontro delle categorie di appartenenza. Qualunque info che possa rendere identificabile l'autore deve essere rimossa. I dati exif non saranno accessibili dai giurati durante la sessione ma, in caso di riscontro, solo dall'organizzazione.
 
-Saranno escluse tutte le opere già premiate in altri concorsi, nazionali e internazionali, entro la data del **01/01/2022**.
-
-Ogni opera deve rispettare i seguenti requisiti:
-
-- Formato **JPG** (unico formato accettato).
-- Peso massimo di **10Mb**.
-- Dimensioni di **30x40 o 30x45 a 200 dpi**.
-- Deve avere un titolo (contenente solo caratteri alfanumerici, senza apostrofi, virgole, parentesi, ecc., e senza riferimenti al nome dell'autore).
-- Tutte le immagini devono contenere i dati **exif**. Qualsiasi informazione che possa identificare l'autore deve essere rimossa. I dati exif non saranno accessibili ai giurati, ma solo all'organizzazione in caso di verifica.
-
-**Art. 2)**
+**Art. 2)**  
 Per le immagini digitali sono consentiti:
 
-- Un crop massimo del **20%** dell’area originale.
-- Uso limitato del timbro clone per correggere piccoli difetti.
+- Un crop massimo del 20% dell'area dell'immagine originale.
+- Uso limitato del timbro clone per ripulirle da eventuali minuscoli difetti.
 - Piccole variazioni di luminosità, contrasto, temperatura colore, nitidezza e saturazione.
-- **Non sono ammessi fotomontaggi o sovrapposizioni di immagini.**
-- Sono ammesse le esposizioni multiple solo se consentite dalla fotocamera usata e previa generazione del file RAW.
+- Non sono consentiti fotomontaggi o sovrapposizione di immagini.
+- Sono ammesse le esposizioni multiple solo se consentite dalle caratteristiche della fotocamera usata e previa generazione del singolo file RAW.
+- Non sono ammesse immagini elaborate con IA (Intelligenza Artificiale).
 
-Le immagini devono essere prive di cornici, passe-partout, filigrane o loghi/firme che possano identificare il fotografo.
+Le immagini devono essere prive di cornici o passe-partout, filigrane e di qualunque logo o firma che possa identificare il fotografo.
 
-Non sono ammesse immagini subacquee riprese attraverso oblò sommersi, acquari o piscine.
+Non sono ammesse immagini subacquee riprese attraverso oblò sommersi, acquari e piscine.
 
-Non saranno ammesse immagini che mostrino danneggiamenti al fondale, animali spaventati, stressati o in situazioni innaturali, salvo che documentino o denuncino manifestazioni umane negative.
+Non saranno ammesse immagini che palesano danneggiamenti del fondale, animali spaventati, stressati o in situazioni innaturali, salvo immagini che vogliano documentare o denunciare manifestazioni umane negative.
 
-L’organizzazione, in accordo con la giuria, si riserva il diritto di escludere le immagini non conformi a quanto espresso nell'Art. 2.
+L'organizzazione in accordo con la giuria si riserva il diritto di escludere le immagini che, in fase di verifica, non siano conformi a quanto espresso nell'Art. 2.
 
-A tutte le immagini in classifica verrà richiesto obbligatoriamente il file **RAW**.
+A tutte le immagini in classifica verrà richiesto d'obbligo il file RAW.
 
-Il giudizio della giuria è inappellabile e verterà su aspetti tecnici, naturalistici, artistici e documentaristici. Immagini con importanti carenze tecniche e artistiche, anche se con alto contenuto naturalistico, potrebbero ricevere un giudizio negativo.
+Il giudizio della giuria è inappellabile e verterà su aspetti tecnici dell'immagine, naturalistici, artistici e documentaristici. Immagini con carenze tecniche e artistiche importanti, anche se con alto contenuto naturalistico, potrebbero ricevere un giudizio negativo.
 
-**Art. 3)**
+**Art. 3)**  
 A titolo di rimborso spese, è richiesta una quota di iscrizione pari a:
 
-- **€20,00** per chi si iscrive a una sola categoria.
-- **€30,00** per chi si iscrive a più categorie.
+- Euro 20,00 per chi si iscrive ad una sola categoria.
+- Euro 30,00 per chi si iscrive a più categorie.
 
-Il versamento può essere effettuato tramite **Bonifico Bancario** sull'IBAN **IT34W0103077780000000067719**. Nella causale inserire "Quota iscrizione Photocontest See in the Sea 2024 – Nome e Cognome partecipante e numero categorie alle quali si intende partecipare".
+Il versamento potrà essere effettuato tramite pagamento **Stripe** una volta effettuato l'upload delle opere nelle categorie a cui si è partecipato.
 
-**Art. 4)**
-L'organizzazione rinominerà tutti i file in concorso in modo che la Giuria possa visionarli senza conoscere il nome degli autori.
+In caso di problemi con la modalità di pagamento attraverso il sistema Stripe, contattare la segreteria organizzativa **info@ortonasub.com** o **info@ortonamare.org**, o eventualmente il Sig. Fabrizio Pompilio al **3803919121**.
 
-**Art. 5)**
-Saranno premiati il 1°, il 2° e il 3° classificato di ogni sezione. Ogni concorrente può vincere un solo premio messo in palio dagli sponsor. In caso di più vincite dello stesso concorrente, avrà priorità il premio di maggior valore.
+**Art. 4)**  
+Saranno premiati il 1°, il 2° e il 3° classificato di ogni sezione del Concorso. Ogni concorrente può vincere un solo premio messo in palio dagli sponsor. In caso di più vincite di uno stesso concorrente, verrà data priorità al premio di maggior valore.  
+**NOTA:** ad insindacabile giudizio della Giuria potranno essere assegnati premi, indipendentemente dalla categoria e dalla tematica, anche a foto che il Regolamento qualifica come "SEGNALATE".
 
-- **NOTA:** A insindacabile giudizio della Giuria potranno essere assegnati premi anche a foto che il Regolamento qualifica come **"SEGNALATE"**, indipendentemente dalla categoria.
+**Art. 5)**  
+L'organizzazione presenterà, durante la Cerimonia di Premiazione, tutte le foto vincitrici, le segnalate e tutte quelle che, ad insindacabile giudizio della Giuria, evidenzieranno particolari motivi di interesse tecnico ed emozionale.
 
-**Art. 6)**
-L'organizzazione presenterà, durante la Cerimonia di Premiazione, tutte le foto vincitrici, quelle segnalate e quelle che la Giuria riterrà di particolare interesse tecnico ed emozionale. Le foto vincitrici, segnalate e quelle più significative saranno pubblicate sul sito ufficiale **www.seeintheseauw.com** e sulle pagine Facebook e Instagram del Concorso, contestualmente alla pubblicazione delle classifiche ufficiali.
+Le foto vincitrici, le segnalate e quelle ritenute maggiormente significative saranno pubblicate sul sito ufficiale [www.ortonamare.org](http://www.ortonamare.org) e sulla pagina Facebook e Instagram del Concorso contestualmente alla pubblicazione delle classifiche ufficiali.
 
-**Art. 7)**
-Le opere saranno ammesse al Concorso solo ed esclusivamente previo pagamento della quota di iscrizione.
+**Art. 6)**  
+Le opere saranno ammesse al Concorso solo ed esclusivamente previo pagamento della quota di iscrizione di cui all'art. 3.
 
----
+## PREMIAZIONI
 
-### Premiazione
+La premiazione del Concorso avverrà in occasione dell'**EUDI Show di Bologna 2026**.
 
-La premiazione del Concorso avverrà:
+Tenuto conto di come sia particolarmente gradita la presenza degli autori alla Cerimonia di Premiazione, sarà cura dell'Organizzazione comunicare preventivamente a tutti i vincitori il programma dettagliato della manifestazione.
 
-- **Sabato 22 Febbraio 2025, in occasione dell'EUDI Show a Bologna.**
+L'organizzazione, tenuto conto dell'impossibilità di alcuni concorrenti a partecipare alla Cerimonia di Premiazione, predisporrà un format (**videoclip**) che consentirà all'autore di essere presente virtualmente e presentarsi raccontando sinteticamente l'immagine premiata. L'Organizzazione, nel rispetto delle normative imposte, si riserva di pubblicare i video sui canali web e social afferenti al Concorso.
 
-L’organizzazione comunicherà preventivamente il programma dettagliato a tutti i vincitori.
+**NOTA:** I premi non ritirati, per assenza dei vincitori o di un loro delegato, verranno spediti a carico dell'Organizzazione solamente per autori internazionali con residenza all'estero. Per tutti gli altri può essere prevista la spedizione, previo accordo telefonico con l'Organizzazione, esclusivamente con la formula del contrassegno a totale carico del destinatario.
 
-Per i concorrenti impossibilitati a partecipare, l’organizzazione predisporrà un videoclip che permetterà all'autore di essere presente virtualmente e presentare la propria immagine premiata. L'organizzazione si riserva di pubblicare i video sui canali web e social del Concorso.
+Per info contattare attraverso mail: **info@ortonasub.com**
 
-- **NOTA:** I premi non ritirati verranno spediti a carico dell'Organizzazione solo per autori internazionali con residenza all'estero. Per tutti gli altri, la spedizione può essere prevista solo tramite contrassegno a totale carico del destinatario, previo accordo telefonico con l'Organizzazione.
+## CLASSIFICHE
 
-Per informazioni, contattare via mail: **info@ortonasub.com**.
+Le classifiche verranno pubblicate previa comunicazione in mailing list sul sito [www.seeintheseauw.com](http://www.seeintheseauw.com).  
+Per qualsiasi altra informazione contattare la segreteria del Concorso scrivendo all'indirizzo mail **info@ortonasub.com** oppure **info@ortonamare.org**.
 
----
+## PREMI
 
-### Classifiche
+Montepremi: Trofeo, Viaggi sub, apparecchiature ed accessori fotosub, attrezzature subacquee, ecc.
 
-Le classifiche verranno pubblicate sul sito **www.seeintheseauw.com** previa comunicazione in mailing list. Per qualsiasi altra informazione, contattare la segreteria del Concorso all'indirizzo email **info@ortonasub.com**.
+**NOTA 1:** Le modalità di fruizione dei premi (Crociere – Soggiorni – Full day – Attrezzature ecc.) e le loro caratteristiche sono regolate direttamente dai fornitori della collaborazione offerta a ORTONA SUB per la gestione del Concorso "SEE in the SEA UW Photo Contest OrtonAmare" anno 2022. Quanti fossero preventivamente interessati a maggiori dettagli, oppure a particolari informazioni, dovranno pertanto prendere contatto direttamente con i fornitori dei premi.
 
----
+La segreteria organizzativa si riserva il diritto di spedire i premi non ritirati in occasione della Cerimonia di premiazione entro il termine di 60 gg. dalla data di premiazione.
 
-### Premi
-
-La segreteria organizzativa si riserva il diritto di spedire i premi non ritirati entro 60 giorni dalla premiazione. I premi non sono cumulabili. I premi non ritirati e rimasti in giacenza per un mese dalla data della cerimonia entreranno automaticamente nel montepremi del concorso successivo.
-
----
-
-### Copyright e Concessione di Utilizzo Immagini
-
-L’organizzazione, in conformità con le leggi sul copyright, considera le opere presentate esenti da qualsiasi diritto di proprietà artistica o di terzi. I concorrenti autorizzano l’utilizzo delle loro opere da parte dell'Organizzazione per la promozione del Concorso (manifesti, brochure, calendari senza fini di lucro, pubblicazioni web).
-
-Le immagini, svincolate dal pagamento dei diritti d'autore, saranno sempre utilizzate con l’obbligo di menzione del nome dell’autore. In nessun caso gli organizzatori faranno uso commerciale delle opere. Le persone interessate all’acquisto di un'opera saranno messe direttamente in contatto con l'autore.
-
-Con la partecipazione, i concorrenti autorizzano l’organizzazione al trattamento dei dati per ricevere aggiornamenti. I dati non saranno in alcun caso trasmessi a terzi, nel rispetto della Legge 196/2003.
-
-- **NOTA:** L’iscrizione e la partecipazione implicano l’accettazione incondizionata del presente Regolamento. I file e le stampe non saranno restituiti ed entreranno a far parte dell'archivio della mostra.
-
----
-
-### Informativa – Art. 13 del D.L. 196 del 30/06/2003 (Codice in materia di protezione dei dati personali)
-
-Ai sensi dell’articolo 13, informiamo che ORTONA SUB tratta dati personali di simpatizzanti, collaboratori e fornitori che hanno volontariamente comunicato i loro dati per ricevere informazioni sui nostri servizi/iniziative.
-
-ORTONA SUB garantisce che il trattamento dei dati si svolga nel rispetto dei diritti e delle libertà fondamentali, con particolare riferimento alla riservatezza, all’identità personale e al diritto alla protezione dei dati.
-
-**Finalità del trattamento:**
-Adempimenti connessi all’attività economica dell’azienda, statistiche interne, fatturazione, contabilità e per soddisfare gli obblighi di legge, regolamenti e norme fiscali.
-
-I dati raccolti verranno conservati per l’invio di informazioni e materiale pubblicitario relativo alle attività di ASD ORTONA SUB APS (via posta, fax, sms ed e-mail). Il trattamento avviene utilizzando supporti cartacei e/o informatici, con l’osservanza di ogni misura cautelativa che ne garantisca la sicurezza e la riservatezza.
-
-I dati possono essere comunicati a soggetti a cui la facoltà di accesso è riconosciuta da provvedimenti normativi. I dati sono conservati presso la sede operativa per il tempo prescritto dalle norme civilistiche e fiscali.
-
-Il titolare del trattamento è **ASD ORTONA SUB APS – Ortona (CH)**. Il conferimento dei dati personali è facoltativo, ma l'eventuale mancato conferimento potrebbe impedire la prosecuzione del rapporto. Gli interessati possono esercitare i diritti di cui all'art. 7 e 8, rivolgendosi direttamente al Responsabile del trattamento.
-
-**CONSENSO al trattamento dei dati personali**
-
-In relazione alla richiesta, preso atto dell’informativa e dei diritti riconosciuti dall'Art. 7 del Decreto Legge 196/2003:
-
-1.  L’interessato ha diritto di ottenere la conferma dell’esistenza o meno di dati personali che lo riguardano, anche se non ancora registrati, e la loro comunicazione in forma intelligibile.
-2.  L’interessato ha diritto di ottenere l’indicazione dell’origine dei dati personali, delle finalità e modalità del trattamento, della logica applicata in caso di trattamento con strumenti elettronici e degli estremi identificativi del titolare e dei responsabili.
-3.  L’interessato ha diritto di ottenere l’aggiornamento, la rettificazione o l’integrazione dei dati; la cancellazione, la trasformazione in forma anonima o il blocco dei dati trattati in violazione di legge; l'attestazione che tali operazioni sono state portate a conoscenza di coloro ai quali i dati sono stati comunicati.
-4.  L’interessato ha diritto di opporsi, in tutto o in parte, per motivi legittimi, al trattamento dei dati personali che lo riguardano.
-
-Prestiamo il nostro consenso ai sensi dell’articolo 23 del Decreto Legge, al trattamento dei nostri dati personali e alla loro comunicazione e diffusione, per le finalità e nei limiti della sopracitata informativa.
-
-**ASD ORTONA SUB APS**
+**NOTA 2:**  
+I premi non sono cumulabili.  
+I premi non ritirati e rimasti in giacenza presso l'Organizzazione senza essere reclamati, trascorso un mese dalla data della cerimonia di premiazione, entreranno automaticamente nel monte premi del concorso dell'anno successivo.
