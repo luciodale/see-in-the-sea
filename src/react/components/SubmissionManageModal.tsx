@@ -1,29 +1,37 @@
 import { useState } from 'react';
 import { useI18n } from '../../i18n/react';
 import type { UISubmission } from '../../types/ui';
-import { getImageUrl } from '../utils/imageUtils';
+import { OptimizedImage } from './OptimizedImage';
 
-type SubmissionDisplayProps = {
-  submission: UISubmission;
-  onDelete: (submissionId: string) => void;
+interface SubmissionManageModalProps {
+  submission: UISubmission | null;
+  isOpen: boolean;
   onClose: () => void;
-};
+  onDelete: (submissionId: string) => void;
+}
 
-export function SubmissionDisplay({
+export function SubmissionManageModal({
   submission,
-  onDelete,
+  isOpen,
   onClose,
-}: SubmissionDisplayProps) {
+  onDelete,
+}: SubmissionManageModalProps) {
   const { t } = useI18n();
   const [isDeleting, setIsDeleting] = useState(false);
 
+  if (!isOpen || !submission) {
+    return null;
+  }
+
   const handleDelete = async () => {
+    if (isDeleting) return;
+
     setIsDeleting(true);
     try {
       await onDelete(submission.id);
       onClose();
     } catch (error) {
-      // Error handling is done in parent component
+      console.error('Failed to delete submission:', error);
     } finally {
       setIsDeleting(false);
     }
@@ -40,14 +48,14 @@ export function SubmissionDisplay({
             </h2>
             <button
               onClick={onClose}
-              disabled={isDeleting}
-              className="text-slate-400 hover:text-white disabled:opacity-50"
+              className="text-slate-400 hover:text-white transition-colors"
             >
               <svg
                 className="w-6 h-6"
                 fill="none"
                 stroke="currentColor"
                 viewBox="0 0 24 24"
+                xmlns="http://www.w3.org/2000/svg"
               >
                 <path
                   strokeLinecap="round"
@@ -63,16 +71,15 @@ export function SubmissionDisplay({
           <div className="space-y-6">
             {/* Image */}
             <div className="w-full bg-slate-900 rounded-lg overflow-hidden">
-              {submission.imageUrl && (
-                <img
-                  src={getImageUrl(submission.imageUrl) || ''}
-                  alt={submission.title}
-                  className="w-full h-auto max-h-96 object-contain"
-                />
-              )}
+              <OptimizedImage
+                r2Key={submission.imageUrl}
+                alt={submission.title}
+                className="w-full h-auto max-h-96 object-contain"
+                loading="eager"
+              />
             </div>
 
-            {/* Details */}
+            {/* Submission Details */}
             <div className="space-y-4">
               <div>
                 <h3 className="text-lg font-semibold text-white mb-2">
@@ -83,6 +90,12 @@ export function SubmissionDisplay({
                     {submission.description}
                   </p>
                 )}
+                {submission.portfolio && submission.portfolioPhotoType && (
+                  <div className="mt-3 text-sm text-slate-400">
+                    <p>Portfolio: {submission.portfolio}</p>
+                    <p>Type: {submission.portfolioPhotoType}</p>
+                  </div>
+                )}
               </div>
             </div>
 
@@ -91,14 +104,14 @@ export function SubmissionDisplay({
               <button
                 onClick={onClose}
                 disabled={isDeleting}
-                className="flex-1 py-2 px-4 bg-slate-700 hover:bg-slate-600 text-white rounded-lg disabled:opacity-50"
+                className="flex-1 py-2 px-4 bg-slate-700 hover:bg-slate-600 text-white rounded-lg disabled:opacity-50 transition-colors"
               >
                 {t('action.close')}
               </button>
               <button
                 onClick={handleDelete}
                 disabled={isDeleting}
-                className="flex-1 py-2 px-4 bg-red-600 hover:bg-red-500 text-white rounded-lg disabled:opacity-50"
+                className="flex-1 py-2 px-4 bg-red-600 hover:bg-red-500 text-white rounded-lg disabled:opacity-50 transition-colors"
               >
                 {isDeleting ? t('state.deleting') : t('action.delete')}
               </button>

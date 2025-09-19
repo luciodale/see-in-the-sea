@@ -1,7 +1,8 @@
 import type { TranslationKey } from '../../i18n';
 import { useI18n } from '../../i18n/react';
 import type { UISubmission } from '../../types/ui';
-import { getImageUrl } from '../utils/imageUtils';
+import { ImageIcon } from './ImageIcon';
+import { ManageButton } from './ManageButton';
 
 type CategorySummaryProps = {
   categoryId: string;
@@ -9,7 +10,7 @@ type CategorySummaryProps = {
   maxSubmissionsPerCategory: number;
   contestStatus: 'active' | 'inactive' | 'assessment';
   onUploadClick: () => void;
-  onSubmissionClick: (submission: UISubmission) => void;
+  onManageSubmission: (submission: UISubmission) => void;
 };
 
 export function CategorySummary({
@@ -18,7 +19,7 @@ export function CategorySummary({
   maxSubmissionsPerCategory,
   contestStatus,
   onUploadClick,
-  onSubmissionClick,
+  onManageSubmission,
 }: CategorySummaryProps) {
   const { t } = useI18n();
 
@@ -71,18 +72,14 @@ export function CategorySummary({
           {submissions.map(submission => (
             <div
               key={submission.id}
-              onClick={() => onSubmissionClick(submission)}
-              className="bg-slate-900 border border-slate-700 rounded-lg p-4 cursor-pointer hover:bg-slate-800 transition-colors"
+              className="bg-slate-900 border border-slate-700 rounded-lg p-4"
             >
               <div className="flex items-center gap-4">
-                <div className="w-24 h-18 bg-slate-800 rounded overflow-hidden flex-shrink-0">
-                  {submission.imageUrl && (
-                    <img
-                      src={getImageUrl(submission.imageUrl) || ''}
-                      alt={submission.title}
-                      className="w-full h-full object-cover"
-                    />
-                  )}
+                <div className="w-24 h-18 rounded overflow-hidden flex-shrink-0">
+                  <ImageIcon
+                    variant="uploaded"
+                    className="w-full h-full rounded"
+                  />
                 </div>
                 <div className="flex-1 min-w-0">
                   <h4 className="text-white font-medium truncate">
@@ -94,9 +91,7 @@ export function CategorySummary({
                     </p>
                   )}
                 </div>
-                <div className="text-xs text-slate-500">
-                  {t('action.click-to-manage')}
-                </div>
+                <ManageButton onClick={() => onManageSubmission(submission)} />
               </div>
             </div>
           ))}

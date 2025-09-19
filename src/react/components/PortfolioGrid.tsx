@@ -1,25 +1,28 @@
-import { PHOTOS_PER_PORTFOLIO, PHOTO_TYPES } from '../../constants';
+import { useMemo } from 'react';
+import { PHOTOS_PER_PORTFOLIO } from '../../constants';
+import { useI18n } from '../../i18n/react';
 import type { UISubmission } from '../../types/ui';
-import { getImageUrl } from '../utils/imageUtils';
+import { PhotoSlot } from './PhotoSlot';
 
 type PortfolioGridProps = {
   portfolioNumber: 1 | 2;
   submissions: UISubmission[];
   onUploadClick: (portfolio: string, portfolioPhotoType: string) => void;
-  onDeleteClick: (submissionId: string) => void;
+  onManageSubmission: (submission: UISubmission) => void;
 };
 
 export function PortfolioGrid({
   portfolioNumber,
   submissions,
   onUploadClick,
-  onDeleteClick,
+  onManageSubmission,
 }: PortfolioGridProps) {
-  const portfolioSubmissions = submissions.filter(
-    s => s.portfolio === portfolioNumber.toString()
-  );
+  const { t } = useI18n();
+  const portfolioSubmissions = useMemo(() => {
+    return submissions.filter(s => s.portfolio === portfolioNumber.toString());
+  }, [submissions, portfolioNumber]);
 
-  const getPortfolioStatus = () => {
+  const status = useMemo(() => {
     const hasMacro = portfolioSubmissions.some(
       s => s.portfolioPhotoType === 'macro'
     );
@@ -37,76 +40,47 @@ export function PortfolioGrid({
       isComplete: hasMacro && hasWideAngle && hasFree,
       count: portfolioSubmissions.length,
     };
-  };
+  }, [portfolioSubmissions]);
 
-  const status = getPortfolioStatus();
-
-  const PhotoSlot = ({
-    photoType,
-    label,
-  }: {
-    photoType: (typeof PHOTO_TYPES)[number];
-    label: string;
-  }) => {
-    const submission = portfolioSubmissions.find(
-      s => s.portfolioPhotoType === photoType
-    );
-
-    return (
-      <div className="text-center">
-        {submission?.imageUrl ? (
-          // Show image with delete button when image exists
-          <div className="w-full aspect-square bg-slate-700 rounded-lg overflow-hidden mb-2 relative">
-            <img
-              src={getImageUrl(submission.imageUrl) || ''}
-              alt={label}
-              className="w-full h-full object-cover"
-            />
-            <button
-              onClick={e => {
-                e.stopPropagation();
-                onDeleteClick(submission.id);
-              }}
-              className="absolute top-2 right-2 bg-red-600 hover:bg-red-500 text-white text-xs px-2 py-1 rounded transition-colors"
-            >
-              Delete
-            </button>
-          </div>
-        ) : (
-          // Show upload button when no image exists
-          <button
-            onClick={() => onUploadClick(portfolioNumber.toString(), photoType)}
-            className="w-full aspect-square bg-slate-700 rounded-lg overflow-hidden mb-2 hover:bg-slate-600 transition-colors group"
-          >
-            <div className="w-full h-full flex items-center justify-center">
-              <button className="bg-emerald-600 hover:bg-emerald-500 text-white text-xs px-3 py-2 rounded transition-colors">
-                Click to upload
-              </button>
-            </div>
-          </button>
-        )}
-        <p className="text-xs text-slate-300">{label}</p>
-      </div>
-    );
-  };
+  const photoSlots = useMemo(() => {
+    return [
+      { photoType: 'macro' as const, label: t('photo-type.macro') },
+      { photoType: 'wide-angle' as const, label: t('photo-type.wide-angle') },
+      { photoType: 'free' as const, label: t('photo-type.free') },
+    ];
+  }, [t]);
 
   return (
     <div className="bg-slate-800 border border-slate-700 rounded-lg p-4">
       <h3 className="text-lg font-semibold text-white mb-3">
-        Portfolio {portfolioNumber}
+        {t('portfolio.title')} {portfolioNumber}
       </h3>
       <div className="grid grid-cols-3 gap-3 mb-3">
-        <PhotoSlot photoType="macro" label="Macro" />
-        <PhotoSlot photoType="wide-angle" label="Wide Angle" />
-        <PhotoSlot photoType="free" label="Free Choice" />
+        {photoSlots.map(({ photoType, label }) => {
+          const submission = portfolioSubmissions.find(
+            s => s.portfolioPhotoType === photoType
+          );
+
+          return (
+            <PhotoSlot
+              key={photoType}
+              photoType={photoType}
+              label={label}
+              submission={submission}
+              portfolioNumber={portfolioNumber}
+              onUploadClick={onUploadClick}
+              onManageSubmission={onManageSubmission}
+            />
+          );
+        })}
       </div>
       <div className="pt-3 border-t border-slate-700">
         <span
           className={`text-sm font-medium ${status.isComplete ? 'text-emerald-400' : 'text-slate-400'}`}
         >
           {status.isComplete
-            ? 'Complete'
-            : `${status.count}/${PHOTOS_PER_PORTFOLIO} photos`}
+            ? t('portfolio.complete')
+            : `${status.count}/${PHOTOS_PER_PORTFOLIO} ${t('portfolio.photos-count')}`}
         </span>
       </div>
     </div>

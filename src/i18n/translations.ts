@@ -49,6 +49,7 @@ export const translations = {
     'action.upload-picture': 'Upload Picture',
     'action.replace': 'Replace',
     'action.delete': 'Delete',
+    'action.manage': 'Manage',
     'action.cancel': 'Cancel',
     'action.close': 'Close',
     'action.click-to-manage': 'Click to manage',
@@ -83,6 +84,24 @@ export const translations = {
     'submissions.category-complete':
       'Category complete - maximum submissions reached',
     'submissions.your-pictures': 'Your pictures',
+
+    // Portfolio and photo types
+    'portfolio.title': 'Portfolio',
+    'portfolio.complete': 'Complete',
+    'portfolio.photos-count': 'photos',
+    'photo-type.macro': 'Macro',
+    'photo-type.wide-angle': 'Wide Angle',
+    'photo-type.free': 'Free Choice',
+    'image-status.empty': 'Empty',
+    'image-status.uploaded': 'Uploaded',
+
+    // Mediterranean instructions
+    'mediterranean.instructions.title': 'Instructions:',
+    'mediterranean.instructions.content':
+      'Click on any empty photo slot to upload. To replace a photo, first delete it using the manage button, then upload a new one. Each portfolio must include exactly one Macro, one Wide Angle, and one Free Choice photo. You can upload up to',
+    'mediterranean.instructions.portfolios': 'complete portfolios',
+    'mediterranean.instructions.photos-total': 'photos total',
+
     'form.title': 'Title',
     'form.title-placeholder': 'Enter a title for your photo',
     'form.description-optional': 'Description (optional)',
@@ -228,6 +247,7 @@ export const translations = {
     'action.upload-picture': 'Carica Foto',
     'action.replace': 'Sostituisci',
     'action.delete': 'Elimina',
+    'action.manage': 'Gestisci',
     'action.cancel': 'Annulla',
     'action.close': 'Chiudi',
     'action.click-to-manage': 'Clicca per gestire',
@@ -263,6 +283,24 @@ export const translations = {
     'submissions.category-complete':
       'Categoria completa - massimo numero di candidature raggiunto',
     'submissions.your-pictures': 'Le tue foto',
+
+    // Portfolio and photo types
+    'portfolio.title': 'Portfolio',
+    'portfolio.complete': 'Completo',
+    'portfolio.photos-count': 'foto',
+    'photo-type.macro': 'Macro',
+    'photo-type.wide-angle': 'Grandangolo',
+    'photo-type.free': 'Libera Scelta',
+    'image-status.empty': 'Vuoto',
+    'image-status.uploaded': 'Caricato',
+
+    // Mediterranean instructions
+    'mediterranean.instructions.title': 'Istruzioni:',
+    'mediterranean.instructions.content':
+      'Clicca su qualsiasi slot foto vuoto per caricare. Per sostituire una foto, prima eliminarla usando il pulsante gestisci, poi caricarne una nuova. Ogni portfolio deve includere esattamente una Macro, una Grandangolo e una Libera Scelta. Puoi caricare fino a',
+    'mediterranean.instructions.portfolios': 'portfolio completi',
+    'mediterranean.instructions.photos-total': 'foto totali',
+
     'form.title': 'Titolo',
     'form.title-placeholder': 'Inserisci un titolo per la tua foto',
     'form.description-optional': 'Descrizione (opzionale)',

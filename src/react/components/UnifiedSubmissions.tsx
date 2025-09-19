@@ -2,12 +2,12 @@ import { useEffect, useState } from 'react';
 import { DEFAULT_MAX_SUBMISSIONS_PER_CATEGORY } from '../../constants';
 import { useI18n } from '../../i18n/react';
 import type { SubmissionsResponse, UploadResponse } from '../../types/api';
-import type { UICategory } from '../../types/ui';
+import type { UICategory, UISubmission } from '../../types/ui';
 import { CategoryNavigation } from './CategoryNavigation';
 import { CategorySummary } from './CategorySummary';
 import JudgesBar from './JudgesBar';
 import { MediterraneanPortfolioManager } from './MediterraneanPortfolioManager';
-import { SubmissionDisplay } from './SubmissionDisplay';
+import { SubmissionManageModal } from './SubmissionManageModal';
 import { UploadModal } from './UploadModal';
 import UploadSuccessDialog from './UploadSuccessDialog';
 
@@ -43,9 +43,6 @@ export function UnifiedSubmissions() {
   // UI state
   const [activeCategoryId, setActiveCategoryId] = useState<string | null>(null);
   const [uploadModalOpen, setUploadModalOpen] = useState(false);
-  const [selectedSubmission, setSelectedSubmission] = useState<
-    CategoryState['submissions'][0] | null
-  >(null);
   const [dialogOpen, setDialogOpen] = useState(false);
   const [dialogKind, setDialogKind] = useState<'upload' | 'delete'>('upload');
   const [uploadPortfolio, setUploadPortfolio] = useState<string | undefined>(
@@ -54,6 +51,11 @@ export function UnifiedSubmissions() {
   const [uploadPortfolioPhotoType, setUploadPortfolioPhotoType] = useState<
     string | undefined
   >(undefined);
+
+  // Modal state
+  const [selectedSubmission, setSelectedSubmission] =
+    useState<UISubmission | null>(null);
+  const [isManageModalOpen, setIsManageModalOpen] = useState(false);
 
   useEffect(() => {
     void initialize();
@@ -178,6 +180,11 @@ export function UnifiedSubmissions() {
     // Error is now handled in the UploadModal component
   }
 
+  const handleManageSubmission = (submission: UISubmission) => {
+    setSelectedSubmission(submission);
+    setIsManageModalOpen(true);
+  };
+
   async function handleDeleteSubmission(submissionId: string) {
     try {
       const response = await fetch('/api/delete-image', {
@@ -260,7 +267,7 @@ export function UnifiedSubmissions() {
             <MediterraneanPortfolioManager
               submissions={activeCategory.submissions}
               onUploadClick={handleUploadClick}
-              onDeleteClick={handleDeleteSubmission}
+              onManageSubmission={handleManageSubmission}
             />
           ) : (
             <CategorySummary
@@ -269,7 +276,7 @@ export function UnifiedSubmissions() {
               maxSubmissionsPerCategory={activeCategory.maxSubmissions}
               contestStatus={contestStatus}
               onUploadClick={() => handleUploadClick()}
-              onSubmissionClick={handleSubmissionClick}
+              onManageSubmission={handleManageSubmission}
             />
           )}
         </>
@@ -294,13 +301,15 @@ export function UnifiedSubmissions() {
       )}
 
       {/* Submission Display Modal */}
-      {selectedSubmission && (
-        <SubmissionDisplay
-          submission={selectedSubmission}
-          onDelete={handleDeleteSubmission}
-          onClose={() => setSelectedSubmission(null)}
-        />
-      )}
+      <SubmissionManageModal
+        submission={selectedSubmission}
+        isOpen={isManageModalOpen}
+        onClose={() => {
+          setIsManageModalOpen(false);
+          setSelectedSubmission(null);
+        }}
+        onDelete={handleDeleteSubmission}
+      />
 
       {/* Upload/Delete Success Dialog */}
       <UploadSuccessDialog
