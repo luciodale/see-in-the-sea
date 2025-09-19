@@ -46,9 +46,12 @@ export const translations = {
     'action.learn-more': 'Learn More →',
     'action.upload': 'Upload Photo',
     'action.upload-replacement': 'Upload Replacement',
+    'action.upload-picture': 'Upload Picture',
     'action.replace': 'Replace',
     'action.delete': 'Delete',
     'action.cancel': 'Cancel',
+    'action.close': 'Close',
+    'action.click-to-manage': 'Click to manage',
 
     // Footer
     'footer.copyright': 'See in the Sea',
@@ -65,6 +68,9 @@ export const translations = {
     'dialog.upload.titleLabel': 'Title',
     'dialog.upload.category': 'Category',
     'dialog.ok': 'OK',
+    'modal.upload.title': 'Upload Photo',
+    'modal.submission.title': 'Manage Submission',
+    'modal.delete.confirm': 'Are you sure you want to delete this submission?',
 
     // Submissions UI
     'submissions.jury': 'Jury',
@@ -72,8 +78,15 @@ export const translations = {
     'submissions.closed': 'Submissions are closed for the current contest.',
     'submissions.max-size': 'Max size',
     'submissions.count-label': 'submissions',
+    'submissions.no-pictures-uploaded': 'No pictures uploaded yet',
+    'submissions.pictures-uploaded': 'picture(s) uploaded',
+    'submissions.category-complete':
+      'Category complete - maximum submissions reached',
+    'submissions.your-pictures': 'Your pictures',
     'form.title': 'Title',
+    'form.title-placeholder': 'Enter a title for your photo',
     'form.description-optional': 'Description (optional)',
+    'form.description-placeholder': 'Describe your photo (optional)',
     'form.choose-file': 'Choose file',
     'form.no-file-chosen': 'No file chosen',
 
@@ -212,9 +225,12 @@ export const translations = {
     'action.learn-more': 'Scopri di Più →',
     'action.upload': 'Carica Foto',
     'action.upload-replacement': 'Carica Sostituzione',
+    'action.upload-picture': 'Carica Foto',
     'action.replace': 'Sostituisci',
     'action.delete': 'Elimina',
     'action.cancel': 'Annulla',
+    'action.close': 'Chiudi',
+    'action.click-to-manage': 'Clicca per gestire',
 
     // Footer
     'footer.copyright': 'See in the Sea',
@@ -231,6 +247,9 @@ export const translations = {
     'dialog.upload.titleLabel': 'Titolo',
     'dialog.upload.category': 'Categoria',
     'dialog.ok': 'OK',
+    'modal.upload.title': 'Carica Foto',
+    'modal.submission.title': 'Gestisci Candidatura',
+    'modal.delete.confirm': 'Sei sicuro di voler eliminare questa candidatura?',
 
     // Submissions UI
     'submissions.jury': 'Giuria',
@@ -239,8 +258,15 @@ export const translations = {
       'Le candidature sono chiuse per il concorso corrente.',
     'submissions.max-size': 'Dimensione massima',
     'submissions.count-label': 'candidature',
+    'submissions.no-pictures-uploaded': 'Nessuna foto caricata ancora',
+    'submissions.pictures-uploaded': 'foto caricate',
+    'submissions.category-complete':
+      'Categoria completa - massimo numero di candidature raggiunto',
+    'submissions.your-pictures': 'Le tue foto',
     'form.title': 'Titolo',
+    'form.title-placeholder': 'Inserisci un titolo per la tua foto',
     'form.description-optional': 'Descrizione (opzionale)',
+    'form.description-placeholder': 'Descrivi la tua foto (opzionale)',
     'form.choose-file': 'Scegli file',
     'form.no-file-chosen': 'Nessun file selezionato',
 

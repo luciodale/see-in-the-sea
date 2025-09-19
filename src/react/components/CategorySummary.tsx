@@ -1,0 +1,112 @@
+import type { TranslationKey } from '../../i18n';
+import { useI18n } from '../../i18n/react';
+
+type Submission = {
+  id: string;
+  title: string;
+  description: string | null;
+  imageUrl: string | null;
+};
+
+type CategorySummaryProps = {
+  categoryId: string;
+  submissions: Submission[];
+  maxSubmissionsPerCategory: number;
+  contestStatus: 'active' | 'inactive' | 'assessment';
+  onUploadClick: () => void;
+  onSubmissionClick: (submission: Submission) => void;
+};
+
+export function CategorySummary({
+  categoryId,
+  submissions,
+  maxSubmissionsPerCategory,
+  contestStatus,
+  onUploadClick,
+  onSubmissionClick,
+}: CategorySummaryProps) {
+  const { t } = useI18n();
+
+  const canAddMore = submissions.length < maxSubmissionsPerCategory;
+  const isContestActive = contestStatus === 'active';
+
+  return (
+    <div className="bg-slate-800 border border-slate-700 rounded-xl p-6">
+      <div className="mb-4">
+        <h2 className="text-xl font-semibold text-white mb-2">
+          {t(`category.${categoryId}` as unknown as TranslationKey)}
+        </h2>
+        <p className="text-sm text-slate-400">
+          {submissions.length === 0
+            ? t('submissions.no-pictures-uploaded')
+            : `${submissions.length} ${t('submissions.pictures-uploaded')}`}
+        </p>
+      </div>
+
+      {/* Upload button */}
+      {canAddMore && isContestActive && (
+        <button
+          onClick={onUploadClick}
+          className="w-full py-3 bg-emerald-600 hover:bg-emerald-500 text-white rounded-lg font-medium transition-colors"
+        >
+          {t('action.upload-picture')}
+        </button>
+      )}
+
+      {/* Contest closed notice */}
+      {canAddMore && !isContestActive && (
+        <div className="bg-amber-900/30 border border-amber-700 text-amber-200 rounded-lg p-4 text-center">
+          {t('submissions.closed')}
+        </div>
+      )}
+
+      {/* Category full notice */}
+      {!canAddMore && (
+        <div className="bg-emerald-900/30 border border-emerald-700 text-emerald-200 rounded-lg p-4 text-center">
+          {t('submissions.category-complete')}
+        </div>
+      )}
+
+      {/* Existing submissions */}
+      {submissions.length > 0 && (
+        <div className="mt-6 space-y-3">
+          <h3 className="text-sm font-medium text-slate-300">
+            {t('submissions.your-pictures')}
+          </h3>
+          {submissions.map(submission => (
+            <div
+              key={submission.id}
+              onClick={() => onSubmissionClick(submission)}
+              className="bg-slate-900 border border-slate-700 rounded-lg p-4 cursor-pointer hover:bg-slate-800 transition-colors"
+            >
+              <div className="flex items-center gap-4">
+                <div className="w-24 h-18 bg-slate-800 rounded overflow-hidden flex-shrink-0">
+                  {submission.imageUrl && (
+                    <img
+                      src={`/api/images/${submission.imageUrl}`}
+                      alt={submission.title}
+                      className="w-full h-full object-cover"
+                    />
+                  )}
+                </div>
+                <div className="flex-1 min-w-0">
+                  <h4 className="text-white font-medium truncate">
+                    {submission.title}
+                  </h4>
+                  {submission.description && (
+                    <p className="text-sm text-slate-400 line-clamp-1">
+                      {submission.description}
+                    </p>
+                  )}
+                </div>
+                <div className="text-xs text-slate-500">
+                  {t('action.click-to-manage')}
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+      )}
+    </div>
+  );
+}

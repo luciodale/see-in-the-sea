@@ -1,6 +1,6 @@
 import { RedirectToSignIn, SignedIn, SignedOut } from '@clerk/clerk-react';
 import { createFileRoute } from '@tanstack/react-router';
-import UnifiedSubmissions from '../../components/UnifiedSubmissions';
+import { UnifiedSubmissions } from '../../components/UnifiedSubmissions';
 
 export const Route = createFileRoute('/user/submissions')({
   component: UserSubmissions,
