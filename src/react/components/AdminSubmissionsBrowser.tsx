@@ -270,6 +270,9 @@ export default function AdminSubmissionsBrowser({
                     Contest & Category
                   </th>
                   <th className="px-6 py-3 text-left text-xs font-medium text-slate-300 uppercase tracking-wider">
+                    Portfolio Info
+                  </th>
+                  <th className="px-6 py-3 text-left text-xs font-medium text-slate-300 uppercase tracking-wider">
                     User
                   </th>
                   <th className="px-6 py-3 text-left text-xs font-medium text-slate-300 uppercase tracking-wider">
@@ -320,6 +323,23 @@ export default function AdminSubmissionsBrowser({
                           {submission.contestId} / {submission.categoryId}
                         </p>
                       </div>
+                    </td>
+
+                    {/* Portfolio Info */}
+                    <td className="px-6 py-4 whitespace-nowrap">
+                      {submission.categoryId === 'mediterranean' &&
+                      submission.meta ? (
+                        <div>
+                          <p className="text-sm font-medium text-white">
+                            Portfolio {submission.meta.portfolio}
+                          </p>
+                          <p className="text-xs text-slate-400 capitalize">
+                            {submission.meta.photoType.replace('-', ' ')}
+                          </p>
+                        </div>
+                      ) : (
+                        <span className="text-xs text-slate-500">—</span>
+                      )}
                     </td>
 
                     {/* User */}

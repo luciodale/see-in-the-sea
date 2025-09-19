@@ -29,23 +29,8 @@
     {
       "binding": "DB",
       "database_name": "see-in-the-sea-db",
-      "database_id": "e385ed45-21fc-4f9b-90ad-93b6397789b1"
+      "database_id": "e385ed45-21fc-4f9b-90ad-93b6397789b1",
+      "migrations_dir": "drizzle/migrations"
     }
   ]
-  /**
-   * Note: Use secrets to store sensitive data.
-   * https://developers.cloudflare.com/workers/configuration/secrets/
-   */
-
-  /**
-   * Static Assets
-   * https://developers.cloudflare.com/workers/static-assets/binding/
-   */
-  // "assets": { "directory": "./public/", "binding": "ASSETS" },
-
-  /**
-   * Service Bindings (communicate between multiple Workers)
-   * https://developers.cloudflare.com/workers/wrangler/configuration/#service-bindings
-   */
-  // "services": [{ "binding": "MY_SERVICE", "service": "my-service" }]
 }

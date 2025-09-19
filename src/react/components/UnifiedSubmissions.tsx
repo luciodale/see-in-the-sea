@@ -12,6 +12,7 @@ const HARDCODED_CATEGORIES = [
   { id: 'wide-angle', name: 'Wide Angle' },
   { id: 'macro', name: 'Macro' },
   { id: 'black-and-white', name: 'Black & White' },
+  { id: 'mediterranean', name: 'Mediterranean Portfolio' },
 ];
 
 const MAX_SUBMISSIONS_PER_CATEGORY = 2 as const;

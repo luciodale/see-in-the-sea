@@ -95,6 +95,7 @@ export const GET: APIRoute = async ({ request, locals }) => {
         contestName: contests.name,
         categoryId: submissions.categoryId,
         categoryName: categories.name,
+        meta: submissions.meta,
       })
       .from(submissions)
       .innerJoin(contests, eq(submissions.contestId, contests.id))
@@ -277,7 +278,7 @@ export const POST: APIRoute = async ({ request, locals }) => {
       }
 
       const submission = existingSubmission[0];
-      let updateData: Submission | Record<string, never> = {};
+      let updateData: Partial<Submission> = {};
 
       // Handle image replacement if requested
       if (body.replaceImage && newImageFile) {
@@ -360,6 +361,7 @@ export const POST: APIRoute = async ({ request, locals }) => {
             originalFilename: newImageFile.name,
             fileSize: newImageFile.size,
             contentType: newImageFile.type,
+            meta: body.meta || null,
             uploadedAt: new Date().toISOString(),
           };
 
@@ -381,6 +383,13 @@ export const POST: APIRoute = async ({ request, locals }) => {
             { status: 500 }
           );
         }
+      } else {
+        // Basic update without image replacement
+        updateData = {
+          title: body.title.trim(),
+          description: body.description?.trim() || null,
+          meta: body.meta || null,
+        };
       }
 
       // Update submission in database

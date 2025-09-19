@@ -109,7 +109,7 @@ export const POST: APIRoute = async ({ request, locals }) => {
       );
     }
 
-    const { imageFile, contestId, categoryId, title, description } =
+    const { imageFile, contestId, categoryId, title, description, meta } =
       formValidation.data;
 
     // Step 3: Validate image file
@@ -218,6 +218,7 @@ export const POST: APIRoute = async ({ request, locals }) => {
       originalFilename: image.name,
       fileSize: image.size,
       contentType: image.type,
+      meta,
     });
 
     console.log('[upload-image] Upload completed successfully');

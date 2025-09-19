@@ -2,6 +2,7 @@ import { eq } from 'drizzle-orm';
 import { nanoid } from 'nanoid';
 import type { getDb } from '../db/index.js';
 import { submissions, type Submission } from '../db/index.js';
+import type { MediterraneanMeta } from '../types/api.js';
 
 // Type definitions for better type safety and reusability
 export type ImageUploadMetadata = {
@@ -25,6 +26,7 @@ export type SubmissionMetadata = {
   originalFilename: string;
   fileSize: number;
   contentType: string;
+  meta?: MediterraneanMeta;
 };
 
 export type UploadData = {
@@ -39,6 +41,7 @@ export type UploadData = {
   originalFilename: string;
   fileSize: number;
   contentType: string;
+  meta?: MediterraneanMeta;
 };
 
 /**
@@ -252,6 +255,7 @@ export async function uploadImageWithMetadata(
       originalFilename: uploadData.originalFilename,
       fileSize: uploadData.fileSize,
       contentType: uploadData.contentType,
+      meta: uploadData.meta,
     });
 
     console.log(
@@ -335,6 +339,7 @@ export async function storeSubmissionMetadata(
       originalFilename: data.originalFilename,
       fileSize: data.fileSize,
       contentType: data.contentType,
+      meta: data.meta,
       uploadedAt: new Date().toISOString(),
     });
 

@@ -32,6 +32,12 @@ export type UserContestData = {
 
 export type SubmissionsResponse = ApiResponse<UserContestData>;
 
+// Mediterranean Portfolio Types
+export type MediterraneanMeta = {
+  portfolio: 1 | 2;
+  photoType: 'macro' | 'wide-angle' | 'free';
+};
+
 // Upload API Types
 export type UploadMetadata = {
   originalFileName: string;
@@ -61,6 +67,7 @@ export type UploadFormData = {
   categoryId: string;
   title: string;
   description?: string;
+  meta?: MediterraneanMeta;
 };
 
 // Error Response Type
@@ -124,6 +131,7 @@ export type ManageSubmissionFormData = {
   title: string;
   description?: string;
   replaceImage?: boolean; // For image replacement
+  meta?: MediterraneanMeta;
 };
 
 export type ManageSubmissionResponse = {
@@ -157,6 +165,7 @@ export type AdminSubmission = {
   contestName: string;
   categoryId: string;
   categoryName: string;
+  meta?: MediterraneanMeta;
 };
 
 export type AdminSubmissionsResponse = {
