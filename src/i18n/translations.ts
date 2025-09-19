@@ -61,6 +61,7 @@ export const translations = {
     'state.uploading': 'Uploading...',
     'state.replacing': 'Replacing...',
     'state.deleting': 'Deleting...',
+    'upload.processing-large-file': 'Processing large file, please wait...',
     'toast.upload-success': 'Image uploaded successfully!',
     'toast.delete-success': 'Image deleted successfully!',
     'dialog.upload.title': 'Upload Complete',
@@ -259,6 +260,8 @@ export const translations = {
     'state.uploading': 'Caricamento...',
     'state.replacing': 'Sostituzione...',
     'state.deleting': 'Eliminazione...',
+    'upload.processing-large-file':
+      'Elaborazione file di grandi dimensioni, attendere...',
     'toast.upload-success': 'Immagine caricata con successo!',
     'toast.delete-success': 'Immagine eliminata con successo!',
     'dialog.upload.title': 'Caricamento Completato',

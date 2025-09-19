@@ -112,8 +112,23 @@ export function UploadModal({
   return (
     <div className="fixed inset-0 z-50 bg-black/60 flex items-center justify-center p-4">
       <div
-        className={`${error ? 'bg-red-700 border-red-600' : 'bg-slate-800 border-slate-700'} border rounded-xl w-full max-w-2xl max-h-[90vh] overflow-y-auto`}
+        className={`${error ? 'bg-red-700 border-red-600' : 'bg-slate-800 border-slate-700'} border rounded-xl w-full max-w-2xl max-h-[90vh] overflow-y-auto relative`}
       >
+        {/* Loading overlay */}
+        {isUploading && (
+          <div className="absolute inset-0 bg-slate-800/90 backdrop-blur-sm flex items-center justify-center z-10 rounded-xl">
+            <div className="text-center">
+              <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-emerald-500 mx-auto mb-4"></div>
+              <p className="text-white text-lg font-medium">
+                {t('state.uploading')}
+              </p>
+              <p className="text-slate-400 text-sm mt-2">
+                {t('upload.processing-large-file')}
+              </p>
+            </div>
+          </div>
+        )}
+
         <div className="p-6">
           {/* Header */}
           <div className="flex items-center justify-between mb-6">
@@ -240,8 +255,11 @@ export function UploadModal({
             <button
               onClick={handleUpload}
               disabled={!selectedFile || !title.trim() || isUploading}
-              className="flex-1 py-2 px-4 bg-emerald-600 hover:bg-emerald-500 text-white rounded-lg disabled:opacity-50"
+              className="flex-1 py-2 px-4 bg-emerald-600 hover:bg-emerald-500 text-white rounded-lg disabled:opacity-50 flex items-center justify-center gap-2"
             >
+              {isUploading && (
+                <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-white"></div>
+              )}
               {isUploading ? t('state.uploading') : t('action.upload')}
             </button>
           </div>
