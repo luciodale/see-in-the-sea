@@ -1,6 +1,6 @@
 ---
 import { getNavigationItems } from '@/config/navigation';
-import { useTranslations, type Language } from '@/i18n';
+import { getLocalizedPath, useTranslations, type Language } from '@/i18n';
 import EmailLink from './EmailLink.astro';
 
 interface Props {
@@ -22,7 +22,7 @@ const navigation = getNavigationItems(lang, t);
       <div
         class="flex sm:items-start items-center text-center sm:text-left flex-col sm:flex-row gap-4"
       >
-        <a class="w-40" href="/">
+        <a class="w-40" href={getLocalizedPath('/', lang)}>
           <img
             src="/images/ortona-sub-logo.svg"
             alt="See in the Sea"
