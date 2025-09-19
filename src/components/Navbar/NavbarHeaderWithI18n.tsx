@@ -18,6 +18,7 @@ export function NavbarHeaderWithI18n({
       <NavbarHeaderWithClerk
         clerkPublicKey={clerkPublicKey}
         standalone={standalone}
+        lang={lang}
       />
     </I18nProvider>
   );

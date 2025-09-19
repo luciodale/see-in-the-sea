@@ -89,3 +89,32 @@ export function getResultName(result: string, lang: Language): string {
   const translated = translations[lang][translationKey];
   return translated || result;
 }
+
+/**
+ * Get language-aware redirect URL for authentication flows
+ */
+export function getLanguageAwareRedirectUrl(
+  basePath: string,
+  lang?: Language
+): string {
+  // If no language provided, try to detect from current URL
+  if (!lang) {
+    if (typeof window !== 'undefined') {
+      const currentPath = window.location.pathname;
+      const detectedLang = getLangFromUrl(
+        new URL(currentPath, window.location.origin)
+      );
+      return getLocalizedPath(basePath, detectedLang);
+    }
+    return getLocalizedPath(basePath, defaultLang);
+  }
+
+  return getLocalizedPath(basePath, lang);
+}
+
+/**
+ * Get language-aware redirect URL for sign out
+ */
+export function getLanguageAwareSignOutUrl(lang?: Language): string {
+  return getLanguageAwareRedirectUrl('/', lang);
+}

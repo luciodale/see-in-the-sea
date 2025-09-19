@@ -3,6 +3,10 @@ import { ClerkProvider } from '@clerk/clerk-react';
 import { createRouter, RouterProvider } from '@tanstack/react-router';
 import { StrictMode } from 'react';
 import { I18nProvider } from '../i18n/react.tsx';
+import {
+  getLanguageAwareRedirectUrl,
+  getLanguageAwareSignOutUrl,
+} from '../i18n/utils';
 import { routeTree } from './generated.ts';
 
 // Default router for type registration
@@ -22,14 +26,19 @@ export function App({ clerkPublicKey }: { clerkPublicKey?: string }) {
   const basepath = lang === 'it' ? '/it' : '';
   const runtimeRouter = createRouter({ routeTree, basepath });
 
+  // Generate language-aware redirect URLs
+  const signInRedirectUrl = getLanguageAwareRedirectUrl(REDIRECT_URL, lang);
+  const signUpRedirectUrl = getLanguageAwareRedirectUrl(REDIRECT_URL, lang);
+  const signOutRedirectUrl = getLanguageAwareSignOutUrl(lang);
+
   return (
     <StrictMode>
       <I18nProvider lang={document.documentElement.lang as 'en' | 'it'}>
         <ClerkProvider
           publishableKey={clerkPublicKey}
-          afterSignOutUrl="/"
-          signInForceRedirectUrl={REDIRECT_URL}
-          signUpForceRedirectUrl={REDIRECT_URL}
+          afterSignOutUrl={signOutRedirectUrl}
+          signInForceRedirectUrl={signInRedirectUrl}
+          signUpForceRedirectUrl={signUpRedirectUrl}
         >
           <RouterProvider router={runtimeRouter} />
         </ClerkProvider>
