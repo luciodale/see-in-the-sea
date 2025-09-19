@@ -1,8 +1,8 @@
 import type { APIRoute } from 'astro';
-import { getDb } from '../../db/index.js';
+import { getDb } from '../../db/index';
 import { authenticateRequest } from '../../server/authenticateRequest';
 import { getUserContestSubmissions } from '../../server/contestService';
-import type { SubmissionsResponse } from '../../types/api.js';
+import type { SubmissionsResponse } from '../../types/api';
 
 export const prerender = false;
 

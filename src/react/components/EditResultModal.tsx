@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react';
 import type {
   UpdateResultRequest,
   UpdateResultResponse,
-} from '../../types/api.js';
+} from '../../types/api';
 import StyledSelect from './StyledSelect';
 
 type EditResultModalProps = {

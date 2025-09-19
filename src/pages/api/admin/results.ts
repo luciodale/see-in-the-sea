@@ -1,8 +1,8 @@
 import type { APIRoute } from 'astro';
 import { and, asc, eq } from 'drizzle-orm';
-import { categories, getDb, results, submissions } from '../../../db/index.js';
+import { categories, getDb, results, submissions } from '../../../db/index';
 import { authenticateAdmin } from '../../../server/authenticateRequest';
-import type { AdminResultsResponse } from '../../../types/api.js';
+import type { AdminResultsResponse } from '../../../types/api';
 
 // Using shared AdminResultsResponse type from types
 

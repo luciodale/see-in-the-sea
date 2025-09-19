@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react';
 import {
   ACCEPTED_IMAGE_TYPES,
   SUPPORTED_FORMATS_HELP_TEXT,
-} from '../../server/utils.js';
+} from '../../server/utils';
 import type { ManageSubmissionResponse } from '../../types/api';
 
 type EditSubmissionModalProps = {

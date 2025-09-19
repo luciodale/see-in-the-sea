@@ -1,5 +1,5 @@
 import type { APIRoute } from 'astro';
-import { getDb } from '../../db/index.js';
+import { getDb } from '../../db/index';
 import { authenticateRequest } from '../../server/authenticateRequest';
 import {
   canUploadToContest,
@@ -7,7 +7,7 @@ import {
   validateActiveCategory,
   validateActiveContest,
 } from '../../server/contestService';
-import type { UploadResponse } from '../../types/api.js';
+import type { UploadResponse } from '../../types/api';
 
 import {
   generateImageUrlWithUserId,
@@ -109,8 +109,15 @@ export const POST: APIRoute = async ({ request, locals }) => {
       );
     }
 
-    const { imageFile, contestId, categoryId, title, description, meta } =
-      formValidation.data;
+    const {
+      imageFile,
+      contestId,
+      categoryId,
+      title,
+      description,
+      portfolio,
+      portfolioPhotoType,
+    } = formValidation.data;
 
     // Step 3: Validate image file
     const imageValidation = validateImageFile(imageFile);
@@ -218,7 +225,8 @@ export const POST: APIRoute = async ({ request, locals }) => {
       originalFilename: image.name,
       fileSize: image.size,
       contentType: image.type,
-      meta,
+      portfolio,
+      portfolioPhotoType,
     });
 
     console.log('[upload-image] Upload completed successfully');
@@ -242,6 +250,8 @@ export const POST: APIRoute = async ({ request, locals }) => {
           contentType: image.type,
           uploadedAt: new Date().toISOString(),
         },
+        portfolio,
+        portfolioPhotoType,
       },
     };
 

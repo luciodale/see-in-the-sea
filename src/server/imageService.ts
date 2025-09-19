@@ -1,8 +1,8 @@
 import { eq } from 'drizzle-orm';
 import { nanoid } from 'nanoid';
-import type { getDb } from '../db/index.js';
-import { submissions, type Submission } from '../db/index.js';
-import type { MediterraneanMeta } from '../types/api.js';
+import { MAX_RETRY_ATTEMPTS, RETRY_BACKOFF_BASE } from '../constants';
+import type { getDb } from '../db/index';
+import { submissions, type NewSubmission, type Submission } from '../db/index';
 
 // Type definitions for better type safety and reusability
 export type ImageUploadMetadata = {
@@ -26,7 +26,8 @@ export type SubmissionMetadata = {
   originalFilename: string;
   fileSize: number;
   contentType: string;
-  meta?: MediterraneanMeta;
+  portfolio?: string;
+  portfolioPhotoType?: string;
 };
 
 export type UploadData = {
@@ -41,7 +42,8 @@ export type UploadData = {
   originalFilename: string;
   fileSize: number;
   contentType: string;
-  meta?: MediterraneanMeta;
+  portfolio?: string;
+  portfolioPhotoType?: string;
 };
 
 /**
@@ -163,7 +165,7 @@ export async function storeImageInR2WithRetry(
   r2Key: string,
   imageFile: File,
   metadata: ImageUploadMetadata,
-  maxRetries: number = 3
+  maxRetries: number = MAX_RETRY_ATTEMPTS
 ): Promise<void> {
   let lastError: Error | null = null;
 
@@ -193,7 +195,7 @@ export async function storeImageInR2WithRetry(
       }
 
       // Wait before retrying (exponential backoff: 1s, 2s, 4s)
-      const waitTime = Math.pow(2, attempt - 1) * 1000;
+      const waitTime = Math.pow(2, attempt - 1) * RETRY_BACKOFF_BASE;
       console.log(
         `[storeImageInR2WithRetry] Waiting ${waitTime}ms before retry...`
       );
@@ -255,7 +257,8 @@ export async function uploadImageWithMetadata(
       originalFilename: uploadData.originalFilename,
       fileSize: uploadData.fileSize,
       contentType: uploadData.contentType,
-      meta: uploadData.meta,
+      portfolio: uploadData.portfolio,
+      portfolioPhotoType: uploadData.portfolioPhotoType,
     });
 
     console.log(
@@ -327,7 +330,7 @@ export async function storeSubmissionMetadata(
   data: SubmissionMetadata
 ): Promise<void> {
   try {
-    await db.insert(submissions).values({
+    const insertData: NewSubmission = {
       id: data.id,
       contestId: data.contestId,
       categoryId: data.categoryId,
@@ -339,9 +342,18 @@ export async function storeSubmissionMetadata(
       originalFilename: data.originalFilename,
       fileSize: data.fileSize,
       contentType: data.contentType,
-      meta: data.meta,
       uploadedAt: new Date().toISOString(),
-    });
+    };
+
+    // Only include portfolio fields if they have values
+    if (data.portfolio) {
+      insertData.portfolio = data.portfolio;
+    }
+    if (data.portfolioPhotoType) {
+      insertData.portfolioPhotoType = data.portfolioPhotoType;
+    }
+
+    await db.insert(submissions).values(insertData);
 
     console.log(
       `[storeSubmissionMetadata] Successfully stored metadata for submission: ${data.id}`

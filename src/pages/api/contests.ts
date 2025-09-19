@@ -1,7 +1,7 @@
 import type { APIRoute } from 'astro';
 import { eq } from 'drizzle-orm';
-import { categories, contests, getDb } from '../../db/index.js';
-import type { ContestsResponse } from '../../types/api.js';
+import { categories, contests, getDb } from '../../db/index';
+import type { ContestsResponse } from '../../types/api';
 
 export const prerender = false;
 

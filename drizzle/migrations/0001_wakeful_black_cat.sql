@@ -1,1 +1,0 @@
-ALTER TABLE `submissions` ADD `meta` text;

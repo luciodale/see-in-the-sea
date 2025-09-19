@@ -1,13 +1,13 @@
 import type { D1Database } from '@cloudflare/workers-types';
 import { and, eq, inArray } from 'drizzle-orm';
-import { getDb } from '../../db/index.js';
+import { getDb } from '../../db/index';
 import {
   categories,
   contests,
   judges,
   results,
   submissions,
-} from '../../db/schema.js';
+} from '../../db/schema';
 
 /**
  * Fetches contest details by contest ID

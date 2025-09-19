@@ -1,15 +1,10 @@
 import { useState } from 'react';
 import { useI18n } from '../../i18n/react';
-
-type Submission = {
-  id: string;
-  title: string;
-  description: string | null;
-  imageUrl: string | null;
-};
+import type { UISubmission } from '../../types/ui';
+import { getImageUrl } from '../utils/imageUtils';
 
 type SubmissionDisplayProps = {
-  submission: Submission;
+  submission: UISubmission;
   onDelete: (submissionId: string) => void;
   onClose: () => void;
 };
@@ -70,7 +65,7 @@ export function SubmissionDisplay({
             <div className="w-full bg-slate-900 rounded-lg overflow-hidden">
               {submission.imageUrl && (
                 <img
-                  src={`/api/images/${submission.imageUrl}`}
+                  src={getImageUrl(submission.imageUrl) || ''}
                   alt={submission.title}
                   className="w-full h-auto max-h-96 object-contain"
                 />

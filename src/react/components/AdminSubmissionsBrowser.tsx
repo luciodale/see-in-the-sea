@@ -328,13 +328,14 @@ export default function AdminSubmissionsBrowser({
                     {/* Portfolio Info */}
                     <td className="px-6 py-4 whitespace-nowrap">
                       {submission.categoryId === 'mediterranean' &&
-                      submission.meta ? (
+                      submission.portfolio &&
+                      submission.portfolioPhotoType ? (
                         <div>
                           <p className="text-sm font-medium text-white">
-                            Portfolio {submission.meta.portfolio}
+                            Portfolio {submission.portfolio}
                           </p>
                           <p className="text-xs text-slate-400 capitalize">
-                            {submission.meta.photoType.replace('-', ' ')}
+                            {submission.portfolioPhotoType.replace('-', ' ')}
                           </p>
                         </div>
                       ) : (

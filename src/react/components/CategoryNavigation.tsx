@@ -1,29 +1,21 @@
+import {
+  PHOTOS_PER_PORTFOLIO,
+  PORTFOLIOS_PER_MEDITERRANEAN,
+} from '../../constants';
 import type { TranslationKey } from '../../i18n';
 import { useI18n } from '../../i18n/react';
-
-type Category = {
-  id: string;
-  name: string;
-  submissions: Array<{
-    id: string;
-    title: string;
-    description: string | null;
-    imageUrl: string | null;
-  }>;
-};
+import type { UICategory } from '../../types/ui';
 
 type CategoryNavigationProps = {
-  categories: Category[];
+  categories: UICategory[];
   activeCategoryId: string | null;
   onCategorySelect: (categoryId: string) => void;
-  maxSubmissionsPerCategory: number;
 };
 
 export function CategoryNavigation({
   categories,
   activeCategoryId,
   onCategorySelect,
-  maxSubmissionsPerCategory,
 }: CategoryNavigationProps) {
   const { t } = useI18n();
 
@@ -33,7 +25,39 @@ export function CategoryNavigation({
         {categories.map(category => {
           const submissionCount = category.submissions.length;
           const isActive = activeCategoryId === category.id;
-          const isComplete = submissionCount >= maxSubmissionsPerCategory;
+
+          // Special handling for Mediterranean category
+          let isComplete = false;
+          let displayText = `${submissionCount}/${category.maxSubmissions}`;
+
+          if (category.id === 'mediterranean') {
+            // Count complete portfolios (3 photos each)
+            const portfolio1 = category.submissions.filter(
+              s => s.portfolio === '1'
+            );
+            const portfolio2 = category.submissions.filter(
+              s => s.portfolio === '2'
+            );
+
+            const portfolio1Complete =
+              portfolio1.length === PHOTOS_PER_PORTFOLIO &&
+              portfolio1.some(s => s.portfolioPhotoType === 'macro') &&
+              portfolio1.some(s => s.portfolioPhotoType === 'wide-angle') &&
+              portfolio1.some(s => s.portfolioPhotoType === 'free');
+
+            const portfolio2Complete =
+              portfolio2.length === PHOTOS_PER_PORTFOLIO &&
+              portfolio2.some(s => s.portfolioPhotoType === 'macro') &&
+              portfolio2.some(s => s.portfolioPhotoType === 'wide-angle') &&
+              portfolio2.some(s => s.portfolioPhotoType === 'free');
+
+            const completePortfolios =
+              (portfolio1Complete ? 1 : 0) + (portfolio2Complete ? 1 : 0);
+            displayText = `${completePortfolios}/${PORTFOLIOS_PER_MEDITERRANEAN} portfolios`;
+            isComplete = completePortfolios >= PORTFOLIOS_PER_MEDITERRANEAN;
+          } else {
+            isComplete = submissionCount >= category.maxSubmissions;
+          }
 
           return (
             <button
@@ -63,7 +87,7 @@ export function CategoryNavigation({
                   }
                 `}
                 >
-                  {submissionCount}/{maxSubmissionsPerCategory}
+                  {displayText}
                 </span>
               </div>
             </button>

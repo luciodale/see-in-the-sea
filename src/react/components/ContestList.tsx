@@ -1,6 +1,6 @@
 import { useNavigate } from '@tanstack/react-router';
 import { useEffect, useState } from 'react';
-import type { Contest } from '../../db/index.js';
+import type { Contest } from '../../db/index';
 import type { ContestListResponse } from '../../types/api';
 import EditContestModal from './EditContestModal';
 

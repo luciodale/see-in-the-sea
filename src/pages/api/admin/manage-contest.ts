@@ -1,13 +1,13 @@
 import type { APIRoute } from 'astro';
 import { desc, eq } from 'drizzle-orm';
-import { contests, getDb } from '../../../db/index.js';
+import { contests, getDb } from '../../../db/index';
 import { authenticateAdmin } from '../../../server/authenticateRequest';
 import type {
   CreateContestFormData,
   CreateContestResponse,
   UpdateContestRequest,
   UpdateContestResponse,
-} from '../../../types/api.js';
+} from '../../../types/api';
 
 export const prerender = false;
 

@@ -1,5 +1,5 @@
 import type { APIRoute } from 'astro';
-import { categories, getDb } from '../../../db/index.js';
+import { categories, getDb } from '../../../db/index';
 import { authenticateAdmin } from '../../../server/authenticateRequest';
 
 export const prerender = false;

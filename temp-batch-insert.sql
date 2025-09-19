@@ -6616,7 +6616,7 @@ INSERT OR IGNORE INTO submissions (
 INSERT OR IGNORE INTO results (
         id, submission_id, result, first_name, last_name
       ) VALUES (
-        'AIKypo7NjRVO7m4chEiWO', 
+        'VveAY-VtcYPuu7VuzBHEH', 
         'OVbGju9JQBaE8FXjweBlH', 
         'second', 
         'Alessio', 
@@ -6625,7 +6625,7 @@ INSERT OR IGNORE INTO results (
 INSERT OR IGNORE INTO results (
         id, submission_id, result, first_name, last_name
       ) VALUES (
-        'M7V0skWgOgEgNMzpfDZOx', 
+        'yZTcXq4vXqumEpH2IDqPQ', 
         'G9eFq4LOTb95cyBIfOcN5', 
         'third', 
         'Stefano', 
@@ -6634,7 +6634,7 @@ INSERT OR IGNORE INTO results (
 INSERT OR IGNORE INTO results (
         id, submission_id, result, first_name, last_name
       ) VALUES (
-        'cHkDn3cuA79Aozxprww7j', 
+        'kFMqKWytTpaKSdVYFuA6N', 
         'V2mcO9xEXrptVXg9wgGxJ', 
         'first', 
         'Giovanni', 
@@ -6643,7 +6643,7 @@ INSERT OR IGNORE INTO results (
 INSERT OR IGNORE INTO results (
         id, submission_id, result, first_name, last_name
       ) VALUES (
-        'aosdNjLd3DUTlhWxd-YzO', 
+        'f_jm4_G8Oqw4YQCY53VM6', 
         'oV5oTV9uO3PiBquT2PDG1', 
         'third', 
         'Giovanni', 
@@ -6652,7 +6652,7 @@ INSERT OR IGNORE INTO results (
 INSERT OR IGNORE INTO results (
         id, submission_id, result, first_name, last_name
       ) VALUES (
-        'jLTj_7VpQYDBKU_S2YkwZ', 
+        'd0ocfjg1dWJuL_sFuiz8_', 
         'Md2IMv_Ju2AHtojwNhPCm', 
         'first', 
         'Giuseppe', 
@@ -6661,7 +6661,7 @@ INSERT OR IGNORE INTO results (
 INSERT OR IGNORE INTO results (
         id, submission_id, result, first_name, last_name
       ) VALUES (
-        '1h6IuwMyyY_GKpS5HqZAy', 
+        'QZItduodadtgJzrVcegcF', 
         'VzIQJKr2R7pkPHMCGRr7p', 
         'second', 
         'Stefano', 
@@ -6670,7 +6670,7 @@ INSERT OR IGNORE INTO results (
 INSERT OR IGNORE INTO results (
         id, submission_id, result, first_name, last_name
       ) VALUES (
-        '8gRMlx87xpX-1MehO36eL', 
+        'QFgKhDz7KERgdC5TCnVaf', 
         'r1fxEebj3VD8af59V6d2u', 
         'third', 
         'Gabriele', 
@@ -6679,7 +6679,7 @@ INSERT OR IGNORE INTO results (
 INSERT OR IGNORE INTO results (
         id, submission_id, result, first_name, last_name
       ) VALUES (
-        'BT6x0cDO4f4GbAoUqXzLC', 
+        'Ub2hsZlm2CAmNEhlgLyDc', 
         'snKomzKCORrxN40M6mC5w', 
         'first', 
         'Antonio', 
@@ -6688,7 +6688,7 @@ INSERT OR IGNORE INTO results (
 INSERT OR IGNORE INTO results (
         id, submission_id, result, first_name, last_name
       ) VALUES (
-        'HC8-bjGbbNHiaFPv6HOM7', 
+        'FYFBGaIeUy2KAcJpBUi6N', 
         'XxlhClezP3SIC9ZUjStAD', 
         'second', 
         'Giovanni', 
@@ -6697,7 +6697,7 @@ INSERT OR IGNORE INTO results (
 INSERT OR IGNORE INTO results (
         id, submission_id, result, first_name, last_name
       ) VALUES (
-        '99fWFlV4Jnd9KivL8ax63', 
+        'XyKY_FGRi8lnke7eLDxnK', 
         'duXmVDutzkYbSDMZKzN_s', 
         'second', 
         'Salvatore', 
@@ -6706,7 +6706,7 @@ INSERT OR IGNORE INTO results (
 INSERT OR IGNORE INTO results (
         id, submission_id, result, first_name, last_name
       ) VALUES (
-        'JZnv7jfoO7ig9pKVPMdd0', 
+        'tFhvLZ2MdajFK4TGmp7yG', 
         'MDI71EatiTLPFu4BRfzZj', 
         'third', 
         'Annibale', 
@@ -6715,7 +6715,7 @@ INSERT OR IGNORE INTO results (
 INSERT OR IGNORE INTO results (
         id, submission_id, result, first_name, last_name
       ) VALUES (
-        'e28fd92q3VlBSMkbDNlKz', 
+        'dOE59Ibr-61dggtHS6jd9', 
         'p8jXFd9yKwQKN7ZhYSysu', 
         'first', 
         'Stefano', 
@@ -6724,7 +6724,7 @@ INSERT OR IGNORE INTO results (
 INSERT OR IGNORE INTO results (
         id, submission_id, result, first_name, last_name
       ) VALUES (
-        'p3HT8aNWqfsOwWTOA6p84', 
+        'ajQF8s3HTux-yzUD7osTl', 
         '3H-BlySO0TMarMRhuPCda', 
         'first', 
         'Hoarau', 
@@ -6733,7 +6733,7 @@ INSERT OR IGNORE INTO results (
 INSERT OR IGNORE INTO results (
         id, submission_id, result, first_name, last_name
       ) VALUES (
-        'Ymby3bS9nPl0UR1qKbYqC', 
+        'iie22ESKoeAi2qcCcyzHY', 
         'oJgaX65FmJo39kMLm6dDq', 
         'second', 
         'Luc', 
@@ -6742,7 +6742,7 @@ INSERT OR IGNORE INTO results (
 INSERT OR IGNORE INTO results (
         id, submission_id, result, first_name, last_name
       ) VALUES (
-        '4LtYdl_zUFo9Fs2ltktUO', 
+        '5sXjKXtfp-jf5Y7wRiUWZ', 
         'HQrP1Kgpybm1OZuhTVmJf', 
         'third', 
         'Francesco', 
@@ -6751,7 +6751,7 @@ INSERT OR IGNORE INTO results (
 INSERT OR IGNORE INTO results (
         id, submission_id, result, first_name, last_name
       ) VALUES (
-        'Ma-LOrEgAqZ32p3tFVRvL', 
+        'oAMTFtbPG5dVJS9wbUP4v', 
         '4zsBxE5hpxDq8l39Axhwr', 
         'runner-up', 
         'Raffaele', 
@@ -6760,7 +6760,7 @@ INSERT OR IGNORE INTO results (
 INSERT OR IGNORE INTO results (
         id, submission_id, result, first_name, last_name
       ) VALUES (
-        'eBRm7bAsa-KmYVrnPxYBQ', 
+        'I9I0MRr7hoVfWkr3yFnPz', 
         'HZMyS5zQIdJRhHRZJQoY0', 
         'runner-up', 
         'Stefano', 
@@ -6769,7 +6769,7 @@ INSERT OR IGNORE INTO results (
 INSERT OR IGNORE INTO results (
         id, submission_id, result, first_name, last_name
       ) VALUES (
-        'Ngvg6xzhSiknHisYlwWTt', 
+        'YpxfTuJRm7l9-sq1pY1m2', 
         'xgEwnMalPRWU5KedSyJ7W', 
         'runner-up', 
         'Lena', 
@@ -6778,7 +6778,7 @@ INSERT OR IGNORE INTO results (
 INSERT OR IGNORE INTO results (
         id, submission_id, result, first_name, last_name
       ) VALUES (
-        'h-WKsiR2Yr_hNc9_V-8WL', 
+        'OhPq8VDxzJOJowtRC0Gg9', 
         'VJDHLAK6pJHXOkp3R-32Q', 
         'runner-up', 
         'Gino', 
@@ -6787,7 +6787,7 @@ INSERT OR IGNORE INTO results (
 INSERT OR IGNORE INTO results (
         id, submission_id, result, first_name, last_name
       ) VALUES (
-        'wV7fovbYxiFpdBazz8fdR', 
+        'bj9lr5NGc9_5CmDDByyGj', 
         'JyIHjiGZVHV2bvw5-Deok', 
         'runner-up', 
         'Gino', 
@@ -6796,7 +6796,7 @@ INSERT OR IGNORE INTO results (
 INSERT OR IGNORE INTO results (
         id, submission_id, result, first_name, last_name
       ) VALUES (
-        '3veursF39RZOODTuW5U0P', 
+        'KtTcs0jH817U-pKYZNK99', 
         '1ocmMiY9WmMAAnORYbgsD', 
         'runner-up', 
         'Alessandro', 
@@ -6805,7 +6805,7 @@ INSERT OR IGNORE INTO results (
 INSERT OR IGNORE INTO results (
         id, submission_id, result, first_name, last_name
       ) VALUES (
-        'jUBgm2jAx-kRhWyFPwFDW', 
+        'gia2XGcyueYQXOr7gadAp', 
         'VIijqw9C_NHG3_SpNL3wc', 
         'runner-up', 
         'Alessandro', 
@@ -6814,7 +6814,7 @@ INSERT OR IGNORE INTO results (
 INSERT OR IGNORE INTO results (
         id, submission_id, result, first_name, last_name
       ) VALUES (
-        'TOAFw2p91m7W6fay0hoZa', 
+        '-NR6E1urANiCnv2RawMRf', 
         'L9kW2mX8vYpQ3nR7sT1uC', 
         'first', 
         'Paolo', 
@@ -6823,7 +6823,7 @@ INSERT OR IGNORE INTO results (
 INSERT OR IGNORE INTO results (
         id, submission_id, result, first_name, last_name
       ) VALUES (
-        'EfHIyhYF6W_Cjcq2yDAi5', 
+        'p6GR4oDfRzPThvdAbcIB1', 
         'M3pK9qR5tU8wV2nX7sA1B', 
         'second', 
         'Hoarau', 
@@ -6832,7 +6832,7 @@ INSERT OR IGNORE INTO results (
 INSERT OR IGNORE INTO results (
         id, submission_id, result, first_name, last_name
       ) VALUES (
-        'mHcRnqQQmpFfiZApScIZ4', 
+        'KiG2MyEEz_2NyIUi8X9Hf', 
         'N7dF2hY9pL6mK3rT8uQ5W', 
         'third', 
         'Marco', 
@@ -6841,7 +6841,7 @@ INSERT OR IGNORE INTO results (
 INSERT OR IGNORE INTO results (
         id, submission_id, result, first_name, last_name
       ) VALUES (
-        'k1Xm080d3GCMVFryYC1NR', 
+        'U6yOZ5VmQUhAmMSQZlx-H', 
         'P8kQ3rT5uV9wX2nY7sB1C', 
         'runner-up', 
         'Stefano', 
@@ -6850,7 +6850,7 @@ INSERT OR IGNORE INTO results (
 INSERT OR IGNORE INTO results (
         id, submission_id, result, first_name, last_name
       ) VALUES (
-        'CJXySQLHcb4EF7aQP_5dn', 
+        'E1O9M6gOh2j8MthxgzSpD', 
         'Q9mS4tU6vW0xY3nZ8sC2D', 
         'runner-up', 
         'Marco', 
@@ -6859,7 +6859,7 @@ INSERT OR IGNORE INTO results (
 INSERT OR IGNORE INTO results (
         id, submission_id, result, first_name, last_name
       ) VALUES (
-        'SQbsyAZeq-_0wsI6XDCyT', 
+        'wnXHmJtE5g1nFbMCMgJw0', 
         'R1nT5uW7xZ0yA4oB9sD3E', 
         'runner-up', 
         'Enrico', 
@@ -6868,7 +6868,7 @@ INSERT OR IGNORE INTO results (
 INSERT OR IGNORE INTO results (
         id, submission_id, result, first_name, last_name
       ) VALUES (
-        'OaoIfFqLzk1uvgSEdWRIY', 
+        'gvQnFuU5Rdxt1zHtY9ylI', 
         'S2oU6vY8zA1yB5pC0sE4F', 
         'runner-up', 
         'Francesco', 
@@ -6877,7 +6877,7 @@ INSERT OR IGNORE INTO results (
 INSERT OR IGNORE INTO results (
         id, submission_id, result, first_name, last_name
       ) VALUES (
-        'cHLvuW1huymJF1XUWEE1G', 
+        'wA9_Wm-fasfmQRAQhfGtO', 
         'T3pV7wZ9aB2yC6qD1sF5G', 
         'runner-up', 
         'Fabio', 
@@ -6886,7 +6886,7 @@ INSERT OR IGNORE INTO results (
 INSERT OR IGNORE INTO results (
         id, submission_id, result, first_name, last_name
       ) VALUES (
-        '9X7_TN4gLpLXn2J-08mEl', 
+        'pYjlG8RNz1js9621fglSF', 
         'U4qW8xA0bC3yD7rE2sG6H', 
         'runner-up', 
         'Stefano', 
@@ -6895,7 +6895,7 @@ INSERT OR IGNORE INTO results (
 INSERT OR IGNORE INTO results (
         id, submission_id, result, first_name, last_name
       ) VALUES (
-        '2yUrZ3L2EPQaC4rLaEwaZ', 
+        '6mPQH-fxIs2LDV5Z0dUFa', 
         'V5rX9yB1cD4zE8sF3tH7I', 
         'runner-up', 
         'Giacomo', 
@@ -6904,7 +6904,7 @@ INSERT OR IGNORE INTO results (
 INSERT OR IGNORE INTO results (
         id, submission_id, result, first_name, last_name
       ) VALUES (
-        'oalf-OAnDeeQvvk46FhhD', 
+        'TLgGqGpMKYNWYVVZlkjJ2', 
         'Z1cV3wS5lP0oE8sF3tH7I', 
         'first', 
         'Salvatore', 
@@ -6913,7 +6913,7 @@ INSERT OR IGNORE INTO results (
 INSERT OR IGNORE INTO results (
         id, submission_id, result, first_name, last_name
       ) VALUES (
-        'iZATLPr7CZjq-FFEWdFZj', 
+        'GFaX3gy79CB6i7jUvJqwG', 
         'W6sY0zC2dE5aF9tG4uI8J', 
         'first', 
         'Salvatore', 
@@ -6922,7 +6922,7 @@ INSERT OR IGNORE INTO results (
 INSERT OR IGNORE INTO results (
         id, submission_id, result, first_name, last_name
       ) VALUES (
-        'Lu66Rj1ZGEkOyL8v5lncD', 
+        'WfRT4v4ZgP0U8qlHZBk3p', 
         'X7tZ1aD3eF6bG0uH5vJ9K', 
         'first', 
         'Salvatore', 
@@ -6931,7 +6931,7 @@ INSERT OR IGNORE INTO results (
 INSERT OR IGNORE INTO results (
         id, submission_id, result, first_name, last_name
       ) VALUES (
-        'YetI4W74OxUF-OomY_Mc_', 
+        'Mzdxx9XW-tBlbsceu66-D', 
         'Y8uA2bE4fG7cH1vI6wK0L', 
         'second', 
         'Francesco', 
@@ -6940,7 +6940,7 @@ INSERT OR IGNORE INTO results (
 INSERT OR IGNORE INTO results (
         id, submission_id, result, first_name, last_name
       ) VALUES (
-        '27mmFmnOiGEFdTdEfF98Y', 
+        'vYWDGdQA_KWgRRtFn_wl7', 
         'Z9vB3cF5gH8dI2wJ7xL1M', 
         'second', 
         'Francesco', 
@@ -6949,7 +6949,7 @@ INSERT OR IGNORE INTO results (
 INSERT OR IGNORE INTO results (
         id, submission_id, result, first_name, last_name
       ) VALUES (
-        'me4G06lINS8soUDyaog_k', 
+        'o9qNcRQaYT3VTRrP7s7CN', 
         'A0wC4dG6hI9eJ3xK8yM2N', 
         'second', 
         'Francesco', 
@@ -6958,7 +6958,7 @@ INSERT OR IGNORE INTO results (
 INSERT OR IGNORE INTO results (
         id, submission_id, result, first_name, last_name
       ) VALUES (
-        'DuesDXcsrBRvNw3XlFSi_', 
+        'nIwO7XQQKzr0wMeiqKxO8', 
         'B1xD5eH7iJ0fK4yL9zN3O', 
         'third', 
         'Alessandro', 
@@ -6967,7 +6967,7 @@ INSERT OR IGNORE INTO results (
 INSERT OR IGNORE INTO results (
         id, submission_id, result, first_name, last_name
       ) VALUES (
-        'As4OL7NfpKzKIktrZN7SF', 
+        'NxmAxdCyw7MYtVlXRAOXN', 
         'C2yE6fI8jK1gL5zM0aN4P', 
         'third', 
         'Alessandro', 
@@ -6976,7 +6976,7 @@ INSERT OR IGNORE INTO results (
 INSERT OR IGNORE INTO results (
         id, submission_id, result, first_name, last_name
       ) VALUES (
-        'CgaYpZ9o9qNOp99G8WiEc', 
+        'J7KyQwSb7035T3d4VWbKr', 
         'D3zF7gJ9kL2hM6aN1bO5Q', 
         'third', 
         'Alessandro', 
@@ -6985,7 +6985,7 @@ INSERT OR IGNORE INTO results (
 INSERT OR IGNORE INTO results (
         id, submission_id, result, first_name, last_name
       ) VALUES (
-        '6ZsOt9sMfLqW8OFyYasqU', 
+        'hPlSPmNW6PJ2SX6GiLJbB', 
         'E4aG8hK0lM3iN7bO2cP6R', 
         'runner-up', 
         'Pasquale', 
@@ -6994,7 +6994,7 @@ INSERT OR IGNORE INTO results (
 INSERT OR IGNORE INTO results (
         id, submission_id, result, first_name, last_name
       ) VALUES (
-        '-jf9ZT-DHScVPvBAmUOmC', 
+        'ov74BkWmVpmf_uDS_MMYG', 
         'F5bH9iL1mN4jO8cP3dQ7S', 
         'runner-up', 
         'Pasquale', 
@@ -7003,7 +7003,7 @@ INSERT OR IGNORE INTO results (
 INSERT OR IGNORE INTO results (
         id, submission_id, result, first_name, last_name
       ) VALUES (
-        'Zn-flk4mdXLf7cr8vDegQ', 
+        '2hrUFWATHiRtUTX7Cq3Fk', 
         'G6cI0jM2nO5kP9dQ4eR8T', 
         'runner-up', 
         'Pasquale', 
@@ -7012,7 +7012,7 @@ INSERT OR IGNORE INTO results (
 INSERT OR IGNORE INTO results (
         id, submission_id, result, first_name, last_name
       ) VALUES (
-        'hGQ6VELzNjpmJWuSC4EcN', 
+        'Ty9fkzvAIjuhFOR-K5IFe', 
         'H7dJ1kN3oP6lQ0eR5fS9U', 
         'runner-up', 
         'Nicholas', 
@@ -7021,7 +7021,7 @@ INSERT OR IGNORE INTO results (
 INSERT OR IGNORE INTO results (
         id, submission_id, result, first_name, last_name
       ) VALUES (
-        'yGQXDm9l9WYVj5VWUF4yL', 
+        'GhfUi8h8ai8PkGkR9SLze', 
         'ay7adZWHfCETUSNhI8b78', 
         'first', 
         'Alessandro', 
@@ -7030,7 +7030,7 @@ INSERT OR IGNORE INTO results (
 INSERT OR IGNORE INTO results (
         id, submission_id, result, first_name, last_name
       ) VALUES (
-        'ASuFTrHI3CW_NmA1EgQBc', 
+        '9pCfu8IARhlxhfB69DKVV', 
         'WkyXOBiiYiqZNWSbQlFUu', 
         'second', 
         'Hoarau', 
@@ -7039,7 +7039,7 @@ INSERT OR IGNORE INTO results (
 INSERT OR IGNORE INTO results (
         id, submission_id, result, first_name, last_name
       ) VALUES (
-        'HZn_A8qbf4G5DZkqyk-2p', 
+        'y1ISr0KttCB6R0px9Wyq5', 
         'DJUOgux7nB_wk_WrWt_jt', 
         'second', 
         'Hoarau', 
@@ -7048,7 +7048,7 @@ INSERT OR IGNORE INTO results (
 INSERT OR IGNORE INTO results (
         id, submission_id, result, first_name, last_name
       ) VALUES (
-        'FORC59NWi15DJ4aFyarox', 
+        'pJoicEvAUhBIBaVVTHNsb', 
         '8VpeiNQkbkKGCsyCiQ3Dr', 
         'second', 
         'Hoarau', 
@@ -7057,7 +7057,7 @@ INSERT OR IGNORE INTO results (
 INSERT OR IGNORE INTO results (
         id, submission_id, result, first_name, last_name
       ) VALUES (
-        'tDoJzSktX4wvgKSBlb8Fv', 
+        'NYqVMgCH78efiS09xXtB-', 
         'Zch6ynbwBo7-jdzR1F5BL', 
         'second', 
         'Hoarau', 
@@ -7066,7 +7066,7 @@ INSERT OR IGNORE INTO results (
 INSERT OR IGNORE INTO results (
         id, submission_id, result, first_name, last_name
       ) VALUES (
-        'BJOqFRhtvSszmdIR3RKwV', 
+        'g5kjb0fl-ZUZ1oTZYWjPj', 
         'MEl79lKsykGxbUKjTO-Ug', 
         'second', 
         'Hoarau', 
@@ -7075,7 +7075,7 @@ INSERT OR IGNORE INTO results (
 INSERT OR IGNORE INTO results (
         id, submission_id, result, first_name, last_name
       ) VALUES (
-        'Vmfnx8vf22KLjgr_Wn0UZ', 
+        'JOMInr66dPc9eKiKwRHhF', 
         'OSQEi-1CMxcM-IzDObaIt', 
         'third', 
         'Marcello', 
@@ -7084,7 +7084,7 @@ INSERT OR IGNORE INTO results (
 INSERT OR IGNORE INTO results (
         id, submission_id, result, first_name, last_name
       ) VALUES (
-        'MnQkY2FlwA7W8kc-Kw6AA', 
+        'tY5wsjOGBfJWpZVwJPo7W', 
         'PfzURhzOUG2CiN32-x5Em', 
         'third', 
         'Marcello', 
@@ -7093,7 +7093,7 @@ INSERT OR IGNORE INTO results (
 INSERT OR IGNORE INTO results (
         id, submission_id, result, first_name, last_name
       ) VALUES (
-        'Mlq9xuPXmFQmnWxyh4_qf', 
+        'X9gZAB0WAnXM88tOXbfHQ', 
         'cTdbgJryjHwT4XumyMPuB', 
         'third', 
         'Marcello', 
@@ -7102,7 +7102,7 @@ INSERT OR IGNORE INTO results (
 INSERT OR IGNORE INTO results (
         id, submission_id, result, first_name, last_name
       ) VALUES (
-        '0Yt-TVxcUg7NlcnkXkHVr', 
+        'UffgIwXJ8pSCB93eAH18x', 
         'uZW3-SrqxGzfgddYFTe2u', 
         'third', 
         'Marcello', 
@@ -7111,7 +7111,7 @@ INSERT OR IGNORE INTO results (
 INSERT OR IGNORE INTO results (
         id, submission_id, result, first_name, last_name
       ) VALUES (
-        'vndU6l_li36oJDVuwSo5P', 
+        'SlWlQJh4QiQiV5MbDBzmB', 
         'DkjPjg_ZBavDqmLk0c7No', 
         'third', 
         'Marcello', 
@@ -7120,7 +7120,7 @@ INSERT OR IGNORE INTO results (
 INSERT OR IGNORE INTO results (
         id, submission_id, result, first_name, last_name
       ) VALUES (
-        'D7dcWaouZWOM9L5JAOzbG', 
+        'uwe0t1z_ORIKgDF18JAh0', 
         'wacdYP7sYUW9NJUxUnIo7', 
         'runner-up', 
         'Francesco', 
@@ -7129,7 +7129,7 @@ INSERT OR IGNORE INTO results (
 INSERT OR IGNORE INTO results (
         id, submission_id, result, first_name, last_name
       ) VALUES (
-        '42ia8xH4EewHcvDmGruKP', 
+        'B1SHvbSrQiEhTq-R5gO5p', 
         'n14Q6neTGyPxkuD16R3xE', 
         'runner-up', 
         'Francesco', 
@@ -7138,7 +7138,7 @@ INSERT OR IGNORE INTO results (
 INSERT OR IGNORE INTO results (
         id, submission_id, result, first_name, last_name
       ) VALUES (
-        'pbdFFN_D5HlsDG3dxhnP5', 
+        'ilWdddMZzHY6qhfrHe1VC', 
         'XDKn7Ng9o7IEXGTphrfiX', 
         'runner-up', 
         'Francesco', 
@@ -7147,7 +7147,7 @@ INSERT OR IGNORE INTO results (
 INSERT OR IGNORE INTO results (
         id, submission_id, result, first_name, last_name
       ) VALUES (
-        'xz_Dh2wuNsvCmndP7NKra', 
+        'J7OTjRYaGZok57DqBRf88', 
         'aRQNOd_HuPlNgcKUIaUWw', 
         'runner-up', 
         'Francesco', 
@@ -7156,7 +7156,7 @@ INSERT OR IGNORE INTO results (
 INSERT OR IGNORE INTO results (
         id, submission_id, result, first_name, last_name
       ) VALUES (
-        '60JDaJRm4ivUjSObsIWCJ', 
+        '6yRBRZwYyTQ6qXfN4TN0G', 
         'lEiedJFqXaghxLKeUK_5X', 
         'runner-up', 
         'Francesco', 
@@ -7165,7 +7165,7 @@ INSERT OR IGNORE INTO results (
 INSERT OR IGNORE INTO results (
         id, submission_id, result, first_name, last_name
       ) VALUES (
-        'r-sxQeoOgk5RlwNYuXbTy', 
+        'bKd5oHUCcwppRB47-pKSS', 
         '0_F72aLv7Jm_Zv3YAAaS3', 
         'runner-up', 
         'Giovanni', 
@@ -7174,7 +7174,7 @@ INSERT OR IGNORE INTO results (
 INSERT OR IGNORE INTO results (
         id, submission_id, result, first_name, last_name
       ) VALUES (
-        'lxVUDS7T15CNNawWtILJC', 
+        'KZbkYrlxiQZhQtjaQmCW7', 
         'Xg-idX7A_tDzJlPeMmNir', 
         'first', 
         'Marco', 
@@ -7183,7 +7183,7 @@ INSERT OR IGNORE INTO results (
 INSERT OR IGNORE INTO results (
         id, submission_id, result, first_name, last_name
       ) VALUES (
-        'QKbRqvvfUOKzyLOcU20jf', 
+        'EcT1YZDXkBjB8ffaEkcip', 
         'W219oeiy_ZyRW7wQUp3Y5', 
         'second', 
         'Paolo', 
@@ -7192,7 +7192,7 @@ INSERT OR IGNORE INTO results (
 INSERT OR IGNORE INTO results (
         id, submission_id, result, first_name, last_name
       ) VALUES (
-        'kGBTRaxA40ERX2eJQygit', 
+        '1o_jQ8UgSSm_86nHAwu5i', 
         'K8mN2pQr9sT3vW5xZ7aB1c', 
         'third', 
         'Anonymous', 
@@ -7201,7 +7201,7 @@ INSERT OR IGNORE INTO results (
 INSERT OR IGNORE INTO results (
         id, submission_id, result, first_name, last_name
       ) VALUES (
-        'sIJY0mC4HpO2kq3hIDlZk', 
+        'RPTSU15xeZB5dSD0fqtkG', 
         'L9nO3qRs0tU4wX6yA8bC2d', 
         'runner-up', 
         'Anonymous', 
@@ -7210,7 +7210,7 @@ INSERT OR IGNORE INTO results (
 INSERT OR IGNORE INTO results (
         id, submission_id, result, first_name, last_name
       ) VALUES (
-        'd3YFvMXiuKt1Lafw_FElv', 
+        'hJCtTOmYkBEIVRnP5SsXc', 
         'M0oP4rSt1uV5xY7zB9cD3e', 
         'runner-up', 
         'Anonymous', 
@@ -7219,7 +7219,7 @@ INSERT OR IGNORE INTO results (
 INSERT OR IGNORE INTO results (
         id, submission_id, result, first_name, last_name
       ) VALUES (
-        'AW9kI9ixz3_j746y2gkDh', 
+        'GwhRg8ugCy17OkQCa45l_', 
         'N1pQ5sTu2vW6yZ8aC0dE4f', 
         'runner-up', 
         'Anonymous', 
@@ -7228,7 +7228,7 @@ INSERT OR IGNORE INTO results (
 INSERT OR IGNORE INTO results (
         id, submission_id, result, first_name, last_name
       ) VALUES (
-        'we5pP4fRo3aKLlf81rJwb', 
+        '9juN4pBEjkfwWj1M60Nw8', 
         'O2qR6tUv3wX7zA9bD1eF5g', 
         'runner-up', 
         'Anonymous', 
@@ -7237,7 +7237,7 @@ INSERT OR IGNORE INTO results (
 INSERT OR IGNORE INTO results (
         id, submission_id, result, first_name, last_name
       ) VALUES (
-        'hD6Znlbqfg3VgvkzrH6ZW', 
+        'S5xcsBOpyeuvlsbgRbqsT', 
         'P3rS7uVw4xY8aB0cE2fG6h', 
         'runner-up', 
         'Anonymous', 
@@ -7246,7 +7246,7 @@ INSERT OR IGNORE INTO results (
 INSERT OR IGNORE INTO results (
         id, submission_id, result, first_name, last_name
       ) VALUES (
-        'kZ4aikVVGYn03Tsi4GEQP', 
+        'vQVKWqpkawcxRJNqd3PN2', 
         'Q4sT8vWx5yZ9bC1dF3gH7i', 
         'runner-up', 
         'Anonymous', 
@@ -7255,7 +7255,7 @@ INSERT OR IGNORE INTO results (
 INSERT OR IGNORE INTO results (
         id, submission_id, result, first_name, last_name
       ) VALUES (
-        'iCqCQKYGin-MQTQgjfL8_', 
+        'EGludhhH6iHq2c7II91rC', 
         '0F14dvZm-WjjbMgD822EC', 
         'first', 
         'Alessio', 
@@ -7264,7 +7264,7 @@ INSERT OR IGNORE INTO results (
 INSERT OR IGNORE INTO results (
         id, submission_id, result, first_name, last_name
       ) VALUES (
-        'JXfBButjRg1zWZddO12fb', 
+        'yfHm7QcEKq93ETJ4pox9T', 
         'R-KUk22-R8KFJJgd-Lz7d', 
         'second', 
         'Stefano', 
@@ -7273,7 +7273,7 @@ INSERT OR IGNORE INTO results (
 INSERT OR IGNORE INTO results (
         id, submission_id, result, first_name, last_name
       ) VALUES (
-        'B82v0M5XUstXtmUmeedFf', 
+        'hO3xJm_mH8x_Xa7ykpQs7', 
         '4ZWtBkr9nJnO9EKOHLY3-', 
         'third', 
         'Davide', 
@@ -7282,7 +7282,7 @@ INSERT OR IGNORE INTO results (
 INSERT OR IGNORE INTO results (
         id, submission_id, result, first_name, last_name
       ) VALUES (
-        'nkjHCZKCbzqB4Rcrgebr4', 
+        'GhGvvjvzXMa37ByNBWhlL', 
         'uL5B-pECq4aYJeGnNxZXL', 
         'runner-up', 
         'Chuang', 
@@ -7291,7 +7291,7 @@ INSERT OR IGNORE INTO results (
 INSERT OR IGNORE INTO results (
         id, submission_id, result, first_name, last_name
       ) VALUES (
-        'G4G_qzL9-od-kWhY9OWvM', 
+        'tD9mE37yAsN1SQAdla_ET', 
         'gv6g_Sc_iubByA64Kk4_X', 
         'runner-up', 
         'Chen', 
@@ -7300,7 +7300,7 @@ INSERT OR IGNORE INTO results (
 INSERT OR IGNORE INTO results (
         id, submission_id, result, first_name, last_name
       ) VALUES (
-        'vQxm4izQqZOXFw7nizzEl', 
+        '_m3iq2WCDXc4ZEsce7-6L', 
         'GZcFeSDuz40xkxabwpa_j', 
         'runner-up', 
         'Gianluca', 
@@ -7309,7 +7309,7 @@ INSERT OR IGNORE INTO results (
 INSERT OR IGNORE INTO results (
         id, submission_id, result, first_name, last_name
       ) VALUES (
-        'L-XDK3ncrOke2QogOqX9b', 
+        'Tk_gfoeJA_81NGrYlrZaP', 
         'GZinETc4Jc0i31pl5YGpT', 
         'first', 
         'Luc', 
@@ -7318,7 +7318,7 @@ INSERT OR IGNORE INTO results (
 INSERT OR IGNORE INTO results (
         id, submission_id, result, first_name, last_name
       ) VALUES (
-        'bMEyz65FGVymt_JR7gwrK', 
+        'gltq3eu1TZmD_TlQoBvhM', 
         'Ys_wg0seX6B1yrxSpP8MY', 
         'second', 
         'Francesco', 
@@ -7327,7 +7327,7 @@ INSERT OR IGNORE INTO results (
 INSERT OR IGNORE INTO results (
         id, submission_id, result, first_name, last_name
       ) VALUES (
-        'POMXU1BxFdmHcp9eGd5vO', 
+        'NpL2p26yDdwCsYw2xCjQH', 
         'xhOOVcGuLybDPRI3FrcgF', 
         'third', 
         'Claudio', 
@@ -7336,7 +7336,7 @@ INSERT OR IGNORE INTO results (
 INSERT OR IGNORE INTO results (
         id, submission_id, result, first_name, last_name
       ) VALUES (
-        'Gcr1SAamvnmfu8b4pA1-w', 
+        'MIltQU3hV3BjuZucY0D1K', 
         'kP8MLP43qodrS4JhKVS0L', 
         'runner-up', 
         'Francesco', 
@@ -7345,7 +7345,7 @@ INSERT OR IGNORE INTO results (
 INSERT OR IGNORE INTO results (
         id, submission_id, result, first_name, last_name
       ) VALUES (
-        'KP2uN1-0XUSSjNyYH2zZ-', 
+        'ZmaN8MOj_tGvZ4QvCdtNf', 
         'AwF3Rndl1BpetVXtdRmNh', 
         'runner-up', 
         'Gabriella', 
@@ -7354,7 +7354,7 @@ INSERT OR IGNORE INTO results (
 INSERT OR IGNORE INTO results (
         id, submission_id, result, first_name, last_name
       ) VALUES (
-        'CGANuPVVtBQqwyKs247gV', 
+        'qPaAZ9pfuBI2UY3I8iQXq', 
         '32qTCwrXcBCNiUvQVdHRe', 
         'runner-up', 
         'Claudio', 
@@ -7363,7 +7363,7 @@ INSERT OR IGNORE INTO results (
 INSERT OR IGNORE INTO results (
         id, submission_id, result, first_name, last_name
       ) VALUES (
-        'uf8p5XTyX0ca3Ru0fRJWm', 
+        '4bO7VY551yu3qU_u5ekU3', 
         'q3q5sN2OWhUtGTTemr6w5', 
         'first', 
         'Songda', 
@@ -7372,7 +7372,7 @@ INSERT OR IGNORE INTO results (
 INSERT OR IGNORE INTO results (
         id, submission_id, result, first_name, last_name
       ) VALUES (
-        'pLTPORjw9Xmf2_v2FsXPp', 
+        '3Dv2V_08qM7djgev1TwYb', 
         'r6kh5qs27jM-clUWwUsRk', 
         'second', 
         'Paolo', 
@@ -7381,7 +7381,7 @@ INSERT OR IGNORE INTO results (
 INSERT OR IGNORE INTO results (
         id, submission_id, result, first_name, last_name
       ) VALUES (
-        'Y7sxcMXBrpVVAQ6o5iPAz', 
+        'n0KLD9MIavV4yHyIL1iLy', 
         'gExzeqBxJceeCSrVNkrLq', 
         'third', 
         'Claudio', 
@@ -7390,7 +7390,7 @@ INSERT OR IGNORE INTO results (
 INSERT OR IGNORE INTO results (
         id, submission_id, result, first_name, last_name
       ) VALUES (
-        'HuWxRs5Wf6mHAQCkw0Ms5', 
+        'IG7duKCicWmtIAq4ce8hZ', 
         'wlJ_1k0CgykQgt3nf2XI3', 
         'first', 
         'Virginia', 
@@ -7399,7 +7399,7 @@ INSERT OR IGNORE INTO results (
 INSERT OR IGNORE INTO results (
         id, submission_id, result, first_name, last_name
       ) VALUES (
-        'gwbuDW3h2GjVE7NXfXHCo', 
+        'LDwpBd3M38fU1GFvwz_gF', 
         'LlO7F1akO90VSFhkBXzS-', 
         'first', 
         'Virginia', 
@@ -7408,7 +7408,7 @@ INSERT OR IGNORE INTO results (
 INSERT OR IGNORE INTO results (
         id, submission_id, result, first_name, last_name
       ) VALUES (
-        'asRpoNofUrnqFLSf1r8ls', 
+        'dMwXf4VBbI1tzASTIV_RW', 
         'xVi7jS1z60fQcGQezQzL4', 
         'first', 
         'Virginia', 
@@ -7417,7 +7417,7 @@ INSERT OR IGNORE INTO results (
 INSERT OR IGNORE INTO results (
         id, submission_id, result, first_name, last_name
       ) VALUES (
-        '2Hd-NjO1-DejUzdiCgeOa', 
+        '9I-LqlBi27lNu2og8CkCO', 
         '61B2PUdv9_yNDDeWnO_Rl', 
         'second', 
         'Nicholas', 
@@ -7426,7 +7426,7 @@ INSERT OR IGNORE INTO results (
 INSERT OR IGNORE INTO results (
         id, submission_id, result, first_name, last_name
       ) VALUES (
-        'Vi7iyLSixi0F_hwGBOUV2', 
+        'asQaCiyWa_NSJs2KPvQhm', 
         'yWckJo7ThrlUZfhEZTnJ8', 
         'second', 
         'Nicholas', 
@@ -7435,7 +7435,7 @@ INSERT OR IGNORE INTO results (
 INSERT OR IGNORE INTO results (
         id, submission_id, result, first_name, last_name
       ) VALUES (
-        'WqpWDlWpjtAXg3uwF1K7X', 
+        '2g5tZ0SNSVMMasw9Wa0vi', 
         'bij4eHg1KdoEOKiOVsWIa', 
         'second', 
         'Nicholas', 
@@ -7444,7 +7444,7 @@ INSERT OR IGNORE INTO results (
 INSERT OR IGNORE INTO results (
         id, submission_id, result, first_name, last_name
       ) VALUES (
-        'tp1C-W2Cvc-nIYtUXMaJ2', 
+        '8Rn-A9c2qsIs22Zm8r3hr', 
         'EdPNpr0Q23oeUMZoOewPS', 
         'third', 
         'Salvatore', 
@@ -7453,7 +7453,7 @@ INSERT OR IGNORE INTO results (
 INSERT OR IGNORE INTO results (
         id, submission_id, result, first_name, last_name
       ) VALUES (
-        'ES9EIkVN_lW7uDei-gs_Q', 
+        '3wqKhcvIDRYhlgLkw1qce', 
         'SPztK1iBmYfm03oSr8_sX', 
         'third', 
         'Salvatore', 
@@ -7462,7 +7462,7 @@ INSERT OR IGNORE INTO results (
 INSERT OR IGNORE INTO results (
         id, submission_id, result, first_name, last_name
       ) VALUES (
-        '9afii0VY-EcPRZ__oKMQE', 
+        'hT_tpuqIiNCjgBybJEx__', 
         'eEAJ1txhvVVcX0BCoi8xp', 
         'third', 
         'Salvatore', 
@@ -7471,7 +7471,7 @@ INSERT OR IGNORE INTO results (
 INSERT OR IGNORE INTO results (
         id, submission_id, result, first_name, last_name
       ) VALUES (
-        'w5gYmX2UBJ3j41BJk-R5c', 
+        'IJl86wKVV9lAhFR-NqSLM', 
         'zSQgxVLRMH27nzenfi7Fj', 
         'runner-up', 
         'Guido', 
@@ -7480,7 +7480,7 @@ INSERT OR IGNORE INTO results (
 INSERT OR IGNORE INTO results (
         id, submission_id, result, first_name, last_name
       ) VALUES (
-        '_VICaj20kWEVBI_iilW2T', 
+        'xA-kCD4H1Z0_CWtJaTkpU', 
         'K3eSDktmAhVnGqJdJb7q5', 
         'runner-up', 
         'Guido', 
@@ -7489,7 +7489,7 @@ INSERT OR IGNORE INTO results (
 INSERT OR IGNORE INTO results (
         id, submission_id, result, first_name, last_name
       ) VALUES (
-        'vmk8HV9_qPCOTwgHVKgXw', 
+        'Y5Cj6YpVsN4QcXJxN4qIs', 
         's6Gxm990CQt9fLqtuulm4', 
         'runner-up', 
         'Guido', 
@@ -7498,7 +7498,7 @@ INSERT OR IGNORE INTO results (
 INSERT OR IGNORE INTO results (
         id, submission_id, result, first_name, last_name
       ) VALUES (
-        '0SqXD1m4tyDxHkqzdEhJe', 
+        'rZ3C0f-6X-NTVhcdVPKu3', 
         'IOwYGAGVImTzvAYRSZVMe', 
         'runner-up', 
         'Paolo', 
@@ -7507,7 +7507,7 @@ INSERT OR IGNORE INTO results (
 INSERT OR IGNORE INTO results (
         id, submission_id, result, first_name, last_name
       ) VALUES (
-        'h0FglmJQx6yRYkLsUJx_e', 
+        'l7ySxnXAbzMB4Nn-LfTW0', 
         '8HVjvtgVduuXxjyTPT7Gn', 
         'runner-up', 
         'Paolo', 
@@ -7516,7 +7516,7 @@ INSERT OR IGNORE INTO results (
 INSERT OR IGNORE INTO results (
         id, submission_id, result, first_name, last_name
       ) VALUES (
-        'WXzBGOTQA0I7fcEHpAkGE', 
+        'lfD12QJ4L6ak27N7_5w3A', 
         'PzCkfi-0moOGS4yVsTBOk', 
         'runner-up', 
         'Paolo', 
@@ -7525,7 +7525,7 @@ INSERT OR IGNORE INTO results (
 INSERT OR IGNORE INTO results (
         id, submission_id, result, first_name, last_name
       ) VALUES (
-        'CsJSdjGTXPAUmDYZ7z1WH', 
+        '3Y-dvHDG97EjNBET5x8gy', 
         'sG6DfMuwtE_xSRUg0gzMP', 
         'runner-up', 
         'Fabio', 
@@ -7534,7 +7534,7 @@ INSERT OR IGNORE INTO results (
 INSERT OR IGNORE INTO results (
         id, submission_id, result, first_name, last_name
       ) VALUES (
-        'SqDAtyK4RMrCXYqriwnlD', 
+        'iAJQ1jGoi0sq8Dicfi0w4', 
         'i_0O4CPsEbJBuSo6TcWFz', 
         'runner-up', 
         'Fabio', 
@@ -7543,7 +7543,7 @@ INSERT OR IGNORE INTO results (
 INSERT OR IGNORE INTO results (
         id, submission_id, result, first_name, last_name
       ) VALUES (
-        'm9Qc5xoirw-umIiO0LqxU', 
+        'oWqaLUFZsdLAZEHS7a-8O', 
         'foyMhDcubcuV99y5P-Qj2', 
         'runner-up', 
         'Fabio', 
@@ -7552,7 +7552,7 @@ INSERT OR IGNORE INTO results (
 INSERT OR IGNORE INTO results (
         id, submission_id, result, first_name, last_name
       ) VALUES (
-        'ma6Uo8y2UL9QdHVsn2wrs', 
+        'V8gydU-AHFan6yO-fHQEY', 
         'IGNlzQEZRDTb8vhmY4PLo', 
         'first', 
         'Virginia', 
@@ -7561,7 +7561,7 @@ INSERT OR IGNORE INTO results (
 INSERT OR IGNORE INTO results (
         id, submission_id, result, first_name, last_name
       ) VALUES (
-        'gKt74sTWp-XxVhZ5daUIw', 
+        '9irT1Bji5CEVljoRHPEsA', 
         'JVT3twI8JkPpvwuBX5CQI', 
         'second', 
         'Gabriella', 
@@ -7570,7 +7570,7 @@ INSERT OR IGNORE INTO results (
 INSERT OR IGNORE INTO results (
         id, submission_id, result, first_name, last_name
       ) VALUES (
-        'qhNGGemW92SHaZC4UYoqP', 
+        'a_0DAYkTGInW97EfTKUoR', 
         'L0sVwlcNsvCumgfFsftqA', 
         'third', 
         'Emanuele', 
@@ -7579,7 +7579,7 @@ INSERT OR IGNORE INTO results (
 INSERT OR IGNORE INTO results (
         id, submission_id, result, first_name, last_name
       ) VALUES (
-        'yFKD7yc1AE4MTeb-lDtad', 
+        'BgLX40PDkmHIBCKmGZxoZ', 
         'hPSLlD-Y0wAO8n5pqs_5I', 
         'first', 
         'Davide', 
@@ -7588,7 +7588,7 @@ INSERT OR IGNORE INTO results (
 INSERT OR IGNORE INTO results (
         id, submission_id, result, first_name, last_name
       ) VALUES (
-        'Ek3nMi36JVqVT3IEOtSYR', 
+        'TQkM2ilbGf7-XyPJJJcSq', 
         'IZ20izNQrEGNS5WnyCKt1', 
         'second', 
         'Stefano', 
@@ -7597,7 +7597,7 @@ INSERT OR IGNORE INTO results (
 INSERT OR IGNORE INTO results (
         id, submission_id, result, first_name, last_name
       ) VALUES (
-        'nG31E_AOjFQZsd7wXWMSm', 
+        '30julHkzZvN2BPxqu5KQH', 
         '0AYEntN5A62R59hJpn4if', 
         'third', 
         'Giacomo', 
@@ -7606,7 +7606,7 @@ INSERT OR IGNORE INTO results (
 INSERT OR IGNORE INTO results (
         id, submission_id, result, first_name, last_name
       ) VALUES (
-        'xqDle-M1zdV00xiEaNxJ5', 
+        'WGLKj-cMRJ51M-pv0ef7n', 
         'eVhD7QJEAe6Mhyx1tdFcl', 
         'runner-up', 
         'Enrico', 
@@ -7615,7 +7615,7 @@ INSERT OR IGNORE INTO results (
 INSERT OR IGNORE INTO results (
         id, submission_id, result, first_name, last_name
       ) VALUES (
-        'PO1u6MrYuAUsS4obvtSGC', 
+        'dDKWJeBiPSqSA-nr7mXZM', 
         'ypaWGPXzZYNdKg6N8dYWb', 
         'runner-up', 
         'Francesco', 
@@ -7624,7 +7624,7 @@ INSERT OR IGNORE INTO results (
 INSERT OR IGNORE INTO results (
         id, submission_id, result, first_name, last_name
       ) VALUES (
-        'u8Rbm9O4s0xnTfM27mMKM', 
+        'ZjywedglhsL9S-8LE_a0N', 
         'l5dGPgE06FIASYWN8cl5S', 
         'runner-up', 
         'Edoardo', 
@@ -7633,7 +7633,7 @@ INSERT OR IGNORE INTO results (
 INSERT OR IGNORE INTO results (
         id, submission_id, result, first_name, last_name
       ) VALUES (
-        'VD5baICVpytUSh0JQauWy', 
+        'n18nBooBQlVvGOcbEdyLb', 
         '8MtYErWj1Xu6KBYerR7lr', 
         'first', 
         'Paolo', 
@@ -7642,7 +7642,7 @@ INSERT OR IGNORE INTO results (
 INSERT OR IGNORE INTO results (
         id, submission_id, result, first_name, last_name
       ) VALUES (
-        'SDJcye_wJmmPKEtXIbJuY', 
+        '4NXdL0MUH2IaBVmdlHZ7Z', 
         'jqTi5oebum-19zHJ30TC7', 
         'second', 
         'Gabriella', 
@@ -7651,7 +7651,7 @@ INSERT OR IGNORE INTO results (
 INSERT OR IGNORE INTO results (
         id, submission_id, result, first_name, last_name
       ) VALUES (
-        'FC-gSwM4Hj7fdShTrxyCp', 
+        'vUOH9CZWoD1AhSr34okZd', 
         'DfUjkVbK9n1yoOiuGiPWu', 
         'third', 
         'Domenico', 
@@ -7660,7 +7660,7 @@ INSERT OR IGNORE INTO results (
 INSERT OR IGNORE INTO results (
         id, submission_id, result, first_name, last_name
       ) VALUES (
-        'YS5oJFhdp6bSyZXq93aTr', 
+        'ZkOocGWIv4fNgPkSXmIcX', 
         '3vrOQkkwFDWaSYuxuOR5v', 
         'runner-up', 
         'Massimo', 
@@ -7669,7 +7669,7 @@ INSERT OR IGNORE INTO results (
 INSERT OR IGNORE INTO results (
         id, submission_id, result, first_name, last_name
       ) VALUES (
-        'gnJv-Dm47xMv9lAiFOk0Z', 
+        'fwj38JWikFaRy9QmU0EQ1', 
         'uJ-ijcCXcwGfh6aU9qwjx', 
         'runner-up', 
         'Francesco', 
@@ -7678,7 +7678,7 @@ INSERT OR IGNORE INTO results (
 INSERT OR IGNORE INTO results (
         id, submission_id, result, first_name, last_name
       ) VALUES (
-        'xZTatC4Ksmtgu6uX_MyVT', 
+        '835DtrCD8ZdILNBPeGXkg', 
         'U6rNF2btKAHgOIk8oEIhC', 
         'runner-up', 
         'Massimo', 
@@ -7687,7 +7687,7 @@ INSERT OR IGNORE INTO results (
 INSERT OR IGNORE INTO results (
         id, submission_id, result, first_name, last_name
       ) VALUES (
-        'cfCnWveHEuNTw6E5ugllL', 
+        'J3NoLjFCuIZVoRKbM6tEO', 
         'GeY0GBryJc8QguS5XhRoI', 
         'first', 
         'Gabriella', 
@@ -7696,7 +7696,7 @@ INSERT OR IGNORE INTO results (
 INSERT OR IGNORE INTO results (
         id, submission_id, result, first_name, last_name
       ) VALUES (
-        'f9L94s9UrcGTdEjrJvKar', 
+        '9EmT_AlynnnVBBBpzciCB', 
         'GZqDRQMpZkvTxj1_IlJgq', 
         'second', 
         'Paolo', 
@@ -7705,7 +7705,7 @@ INSERT OR IGNORE INTO results (
 INSERT OR IGNORE INTO results (
         id, submission_id, result, first_name, last_name
       ) VALUES (
-        'okzFssypbTJkHXO55_4-c', 
+        'IGouc3hlafR20Td8IR0JK', 
         '0Wiv9brEuay9HP6PtlAVY', 
         'third', 
         'Domenico', 
@@ -7714,7 +7714,7 @@ INSERT OR IGNORE INTO results (
 INSERT OR IGNORE INTO results (
         id, submission_id, result, first_name, last_name
       ) VALUES (
-        'EZ0bpB-Gfxi8xhBsafP0h', 
+        'yP1Hap8QJTQcGi88dko5D', 
         'zS5frlKh-QqqpFQz25Fgt', 
         'runner-up', 
         'Francesco', 
@@ -7723,7 +7723,7 @@ INSERT OR IGNORE INTO results (
 INSERT OR IGNORE INTO results (
         id, submission_id, result, first_name, last_name
       ) VALUES (
-        'HuZyptsKiqk4INz3PMJXF', 
+        'rSc-6kMZedzMSJGuqINRs', 
         '8oqYC9arnbML9tUrL212H', 
         'runner-up', 
         'Raffaele', 
@@ -7732,7 +7732,7 @@ INSERT OR IGNORE INTO results (
 INSERT OR IGNORE INTO results (
         id, submission_id, result, first_name, last_name
       ) VALUES (
-        'nRcaLD_nPgY6VdoPuLC3v', 
+        'rJ3b33GlxIoZpK8zYr16e', 
         'gn_NXO_6lW6HI1nxTfOfS', 
         'runner-up', 
         'Mauro', 
@@ -7741,7 +7741,7 @@ INSERT OR IGNORE INTO results (
 INSERT OR IGNORE INTO results (
         id, submission_id, result, first_name, last_name
       ) VALUES (
-        '2Q9miSuOfip9tru5rwXO1', 
+        'Cnx-Zqn1TJznWslNK_tzA', 
         'x0hoHg3ICabXfMbJQA-kr', 
         'first', 
         'Marco', 
@@ -7750,7 +7750,7 @@ INSERT OR IGNORE INTO results (
 INSERT OR IGNORE INTO results (
         id, submission_id, result, first_name, last_name
       ) VALUES (
-        'N3guK330vhCOgiswoEhL9', 
+        '9ELAUDWGlxn-eX4fDz-zs', 
         'FfeJNLInnA2Ct7qeqUpYy', 
         'first', 
         'Marco', 
@@ -7759,7 +7759,7 @@ INSERT OR IGNORE INTO results (
 INSERT OR IGNORE INTO results (
         id, submission_id, result, first_name, last_name
       ) VALUES (
-        'OumpRIOr85dg_1FLJIzu2', 
+        'MDjC4JKpvhe7vBFBlXvvK', 
         'jrFaS9HB-zgsIVFEVZueJ', 
         'first', 
         'Marco', 
@@ -7768,7 +7768,7 @@ INSERT OR IGNORE INTO results (
 INSERT OR IGNORE INTO results (
         id, submission_id, result, first_name, last_name
       ) VALUES (
-        'DROo_Oce0G9edMa80YRze', 
+        'TxFRmMvWYw3X80mVHlOpt', 
         'szbdu1ybReysMtSWSFkbS', 
         'second', 
         'Nicholas', 
@@ -7777,7 +7777,7 @@ INSERT OR IGNORE INTO results (
 INSERT OR IGNORE INTO results (
         id, submission_id, result, first_name, last_name
       ) VALUES (
-        'atKesnuICixCqGZb-8_lx', 
+        'uumlqx5e_CmCAi3jXYkrJ', 
         '3eFF9BK3DsjrDpbXGY5zk', 
         'second', 
         'Nicholas', 
@@ -7786,7 +7786,7 @@ INSERT OR IGNORE INTO results (
 INSERT OR IGNORE INTO results (
         id, submission_id, result, first_name, last_name
       ) VALUES (
-        'uadUqWmURgvEkS2FUZa2O', 
+        'QBZ68t-Ftn2Pr5sqLLCR4', 
         'Koufj_WRW4CYrdzCFZMOT', 
         'second', 
         'Nicholas', 
@@ -7795,7 +7795,7 @@ INSERT OR IGNORE INTO results (
 INSERT OR IGNORE INTO results (
         id, submission_id, result, first_name, last_name
       ) VALUES (
-        'Soix-gizHzHRChfeVrQV5', 
+        'ppvETmbZGjAp-hKMD_unS', 
         'TWfYjpAcS2PbUgD5UTflM', 
         'third', 
         'Salvatore', 
@@ -7804,7 +7804,7 @@ INSERT OR IGNORE INTO results (
 INSERT OR IGNORE INTO results (
         id, submission_id, result, first_name, last_name
       ) VALUES (
-        'UW1vTFul_1ljSNQ-K3kHU', 
+        'rtQgDHHt1GILCesmWukc9', 
         'i9GcVtsySfmkTglromet6', 
         'third', 
         'Salvatore', 
@@ -7813,7 +7813,7 @@ INSERT OR IGNORE INTO results (
 INSERT OR IGNORE INTO results (
         id, submission_id, result, first_name, last_name
       ) VALUES (
-        '9pAI6-v02Q2ZdK2fYscQs', 
+        '51Io5adRmYgy1ayU2JrB3', 
         'Sbi9Hf3eHN_1-XdMIFKPP', 
         'third', 
         'Salvatore', 
@@ -7822,7 +7822,7 @@ INSERT OR IGNORE INTO results (
 INSERT OR IGNORE INTO results (
         id, submission_id, result, first_name, last_name
       ) VALUES (
-        'UJbLPQTY81u33UqYda0kT', 
+        'wCu0_nkA27xahUtTVLXoF', 
         'zcUJU8kmOU83MKltXtt8_', 
         'runner-up', 
         'Davide', 
@@ -7831,7 +7831,7 @@ INSERT OR IGNORE INTO results (
 INSERT OR IGNORE INTO results (
         id, submission_id, result, first_name, last_name
       ) VALUES (
-        'OvuOga2k8bWKyVDdur_MA', 
+        'qgG0CJdJMDYJiHSByN80F', 
         'YyKLO0PsFTcwBrnifFyHf', 
         'runner-up', 
         'Davide', 
@@ -7840,7 +7840,7 @@ INSERT OR IGNORE INTO results (
 INSERT OR IGNORE INTO results (
         id, submission_id, result, first_name, last_name
       ) VALUES (
-        'slJTk9fyYq1hkFiOpvQFz', 
+        'pz_VIGPwaqjqc7LyszNed', 
         '8HM8jMGjY_j4v9jx3p8j_', 
         'runner-up', 
         'Davide', 
@@ -7849,7 +7849,7 @@ INSERT OR IGNORE INTO results (
 INSERT OR IGNORE INTO results (
         id, submission_id, result, first_name, last_name
       ) VALUES (
-        'mzVGkoMilygtJTjdZUeL-', 
+        '6hbisWKedCZV1ripB8eX2', 
         'C5P48A4Ya9ePHqqL25i2t', 
         'runner-up', 
         'Domenico', 
@@ -7858,7 +7858,7 @@ INSERT OR IGNORE INTO results (
 INSERT OR IGNORE INTO results (
         id, submission_id, result, first_name, last_name
       ) VALUES (
-        'xPU9WgqgF7wYCTfdkUFk0', 
+        'afsnGbN8wUW2FyZ160YmE', 
         '6d1zsPf9yIFKch1grRgmd', 
         'runner-up', 
         'Domenico', 
@@ -7867,7 +7867,7 @@ INSERT OR IGNORE INTO results (
 INSERT OR IGNORE INTO results (
         id, submission_id, result, first_name, last_name
       ) VALUES (
-        'iYvGcJ7346oFrCgMeDXn_', 
+        'paqo5oFcRcsD0V8MJxqor', 
         'h0RnnRsKytXh7vSOFGFZp', 
         'runner-up', 
         'Domenico', 
@@ -7876,7 +7876,7 @@ INSERT OR IGNORE INTO results (
 INSERT OR IGNORE INTO results (
         id, submission_id, result, first_name, last_name
       ) VALUES (
-        '1rHsZE5v6Vs5sHknaT_DY', 
+        'eu8t-5OzuFfq34aclhbPX', 
         '1BVBGYS3YdacGjRxVCho4', 
         'runner-up', 
         'Claudio', 
@@ -7885,7 +7885,7 @@ INSERT OR IGNORE INTO results (
 INSERT OR IGNORE INTO results (
         id, submission_id, result, first_name, last_name
       ) VALUES (
-        'CXd0Syj1i0Nh6loo8BTPa', 
+        'V3uUSxgG0DlPna0VvzZwJ', 
         'uoALdoyJpF_8lVBVedUmI', 
         'runner-up', 
         'Claudio', 
@@ -7894,7 +7894,7 @@ INSERT OR IGNORE INTO results (
 INSERT OR IGNORE INTO results (
         id, submission_id, result, first_name, last_name
       ) VALUES (
-        'g458laYGQozIVwGnYN1-4', 
+        'cYybDp7Rgr9EfHOBDJ9kF', 
         'wLXSIEh9q3jrZV3NtvFdd', 
         'runner-up', 
         'Claudio', 
@@ -7903,7 +7903,7 @@ INSERT OR IGNORE INTO results (
 INSERT OR IGNORE INTO results (
         id, submission_id, result, first_name, last_name
       ) VALUES (
-        'XO4kmkMXjxuKy9oMSM117', 
+        'C6fuBGQRPHsbk-tKRpecJ', 
         'EqhGxVZtl0Ep-l4kcWdpp', 
         'first', 
         'Fan', 
@@ -7912,7 +7912,7 @@ INSERT OR IGNORE INTO results (
 INSERT OR IGNORE INTO results (
         id, submission_id, result, first_name, last_name
       ) VALUES (
-        'wRpn3GLYxzFBzOq6O2tdl', 
+        'EN8a_r7JJ5gC5DxuHEsDx', 
         'tOh1Rs5chSGGgNodiBlnW', 
         'second', 
         'Flavio', 
@@ -7921,7 +7921,7 @@ INSERT OR IGNORE INTO results (
 INSERT OR IGNORE INTO results (
         id, submission_id, result, first_name, last_name
       ) VALUES (
-        'tgCNjjtuBbzXaqTN_X6UZ', 
+        'ZFm3IZEWpCPuWVUVS4cLc', 
         '1Fm9fCdPLxTGftpJGXYxd', 
         'third', 
         'Alessio', 
@@ -7930,7 +7930,7 @@ INSERT OR IGNORE INTO results (
 INSERT OR IGNORE INTO results (
         id, submission_id, result, first_name, last_name
       ) VALUES (
-        'RnO2FnCgaJmUPMmgutoRN', 
+        '8OVsPe1cfiqD93vxSsQ2o', 
         'p4BPp6WGWGGpxBIC4iTU7', 
         'first', 
         'Stefano', 
@@ -7939,7 +7939,7 @@ INSERT OR IGNORE INTO results (
 INSERT OR IGNORE INTO results (
         id, submission_id, result, first_name, last_name
       ) VALUES (
-        'jhhTOmHVV13AlE5gAovCb', 
+        'Wec-K6McB1jsSvkdd_-2k', 
         '-XQXBepZJeUZupXzVzlCt', 
         'second', 
         'Emanuele', 
@@ -7948,7 +7948,7 @@ INSERT OR IGNORE INTO results (
 INSERT OR IGNORE INTO results (
         id, submission_id, result, first_name, last_name
       ) VALUES (
-        '1Vo6L6JSFqhnKANaZ9J6b', 
+        'KkAgMcaMtcQacsoZWNC1n', 
         'bzENyoG-lVEmoSVP56AFC', 
         'third', 
         'Unknown', 
@@ -7957,7 +7957,7 @@ INSERT OR IGNORE INTO results (
 INSERT OR IGNORE INTO results (
         id, submission_id, result, first_name, last_name
       ) VALUES (
-        'TsYPZLgaB9BnciAQEdd6_', 
+        'LgXfM5Zu00MZFZ3538FaN', 
         'vIhtB9oxmmO3dAeEcQ4mt', 
         'first', 
         'Davide', 
@@ -7966,7 +7966,7 @@ INSERT OR IGNORE INTO results (
 INSERT OR IGNORE INTO results (
         id, submission_id, result, first_name, last_name
       ) VALUES (
-        'UrxbSkYAW1Wh84gJR8Abi', 
+        'Yk3Cbq5aHRIdEAS0IdXKy', 
         'PMpRCgfg8vcrNY_-jcYM5', 
         'first', 
         'Fernandez', 
@@ -7975,7 +7975,7 @@ INSERT OR IGNORE INTO results (
 INSERT OR IGNORE INTO results (
         id, submission_id, result, first_name, last_name
       ) VALUES (
-        'aeczCdpoyU0O7Unt31kMF', 
+        '_Kx9jvP8eShkJfkIEXv4v', 
         'up1Fsmm2prLM0R13Dw2VS', 
         'second', 
         'Marco', 
@@ -7984,7 +7984,7 @@ INSERT OR IGNORE INTO results (
 INSERT OR IGNORE INTO results (
         id, submission_id, result, first_name, last_name
       ) VALUES (
-        'yfAMZte6cxrZaJllYpfo5', 
+        'G85VJAan0_H7ppvXG38gZ', 
         'k1zrV3ftlf1WsxybtCNio', 
         'third', 
         'Raimundo', 
@@ -7993,7 +7993,7 @@ INSERT OR IGNORE INTO results (
 INSERT OR IGNORE INTO results (
         id, submission_id, result, first_name, last_name
       ) VALUES (
-        '1TM3y8IuCaE9dRVWZeb9S', 
+        'dD6GDLoeN-UerWG3UlVrW', 
         'CZYYVAurKkC1m8RVDbd-1', 
         'runner-up', 
         'Giordano', 
@@ -8002,7 +8002,7 @@ INSERT OR IGNORE INTO results (
 INSERT OR IGNORE INTO results (
         id, submission_id, result, first_name, last_name
       ) VALUES (
-        'LblxtKh9wOGz1lZ_YEhEQ', 
+        '5WLWLfYjlSuax-mTUTZBh', 
         'ENMtec3oyC4a4uBBvKg-8', 
         'runner-up', 
         'Tiziana', 
@@ -8011,7 +8011,7 @@ INSERT OR IGNORE INTO results (
 INSERT OR IGNORE INTO results (
         id, submission_id, result, first_name, last_name
       ) VALUES (
-        '-iyi-PQNyeMgBqDZttxdQ', 
+        'ZZQWb5lYqeq0YGVyBgJu9', 
         'phEe_6fJJTSAgF-_CXZ5Y', 
         'first', 
         'Giuseppe', 
@@ -8020,7 +8020,7 @@ INSERT OR IGNORE INTO results (
 INSERT OR IGNORE INTO results (
         id, submission_id, result, first_name, last_name
       ) VALUES (
-        'sDzcENcNqKQK8gZpN319I', 
+        'DivmOQzXZRhrswVWVw93h', 
         'gulNSQBEkXpcpZdKmlsu3', 
         'first', 
         'Giuseppe', 
@@ -8029,7 +8029,7 @@ INSERT OR IGNORE INTO results (
 INSERT OR IGNORE INTO results (
         id, submission_id, result, first_name, last_name
       ) VALUES (
-        'A2-aAmZmChJFg-T-qRay0', 
+        '_afv4E0BcPchpy8KwlfOg', 
         '4w6IwARftRNqm3Fs2jasH', 
         'second', 
         'Luc', 
@@ -8038,7 +8038,7 @@ INSERT OR IGNORE INTO results (
 INSERT OR IGNORE INTO results (
         id, submission_id, result, first_name, last_name
       ) VALUES (
-        'rJ72rEP-iWbNp_ngBqyMX', 
+        '9RFy3M-winaG2NWADoyKi', 
         'zVmuDcE5rQnObSEVYdSbz', 
         'third', 
         'Davide', 
@@ -8047,7 +8047,7 @@ INSERT OR IGNORE INTO results (
 INSERT OR IGNORE INTO results (
         id, submission_id, result, first_name, last_name
       ) VALUES (
-        'I419zBZOlprzGfVAv6fBQ', 
+        'Xowju67g8pXyyEkB7dcfM', 
         '-2iipIrh_bdwE3UQblFjs', 
         'runner-up', 
         'Paolo', 
@@ -8056,7 +8056,7 @@ INSERT OR IGNORE INTO results (
 INSERT OR IGNORE INTO results (
         id, submission_id, result, first_name, last_name
       ) VALUES (
-        'dOmPcpCfL0i8eAsdiBhpL', 
+        'HNJJ1N9pLlOtG777dBgt8', 
         '71123iAvXGgWkhCJ7gn3N', 
         'runner-up', 
         'Filippo', 
@@ -8065,7 +8065,7 @@ INSERT OR IGNORE INTO results (
 INSERT OR IGNORE INTO results (
         id, submission_id, result, first_name, last_name
       ) VALUES (
-        'qKJXIzC26BJII1tv467Tm', 
+        'E_Gu9AcZ63cxIqvJB30QT', 
         'p3fTwd2YoyOKcGgGmnjUX', 
         'runner-up', 
         'Giuseppe', 
@@ -8074,7 +8074,7 @@ INSERT OR IGNORE INTO results (
 INSERT OR IGNORE INTO results (
         id, submission_id, result, first_name, last_name
       ) VALUES (
-        'Vr3RbSAx2WOZTLvei5Gdl', 
+        'Ba81gXQ3YFiFr7rnXET3H', 
         'ndIiHRL1wbd1jfFV5-Ek6', 
         'runner-up', 
         'Matteo', 
@@ -8083,7 +8083,7 @@ INSERT OR IGNORE INTO results (
 INSERT OR IGNORE INTO results (
         id, submission_id, result, first_name, last_name
       ) VALUES (
-        '3gzCcsheDAW7Sb4GzcOGn', 
+        '46Zl6h0HIj1FkqR06gf9O', 
         'R5VoW1B5cOxAy9b9SXRGI', 
         'runner-up', 
         'Pietro', 
@@ -8092,7 +8092,7 @@ INSERT OR IGNORE INTO results (
 INSERT OR IGNORE INTO results (
         id, submission_id, result, first_name, last_name
       ) VALUES (
-        'BlfU_Ocnhmv7-bW8lYt9x', 
+        'pcKgHiIpyNjBkznlGt6xl', 
         'iQ6ZvkByUVN8Ioeypk-0V', 
         'runner-up', 
         'Davide', 
@@ -8101,7 +8101,7 @@ INSERT OR IGNORE INTO results (
 INSERT OR IGNORE INTO results (
         id, submission_id, result, first_name, last_name
       ) VALUES (
-        'FGF2STKDTrBDIIHuA23Xh', 
+        'jdU-SqGvWRGz-KLHN1zvH', 
         '5wtlVYqo4dl5wKWqTtYkS', 
         'runner-up', 
         'Adriano', 
@@ -8110,7 +8110,7 @@ INSERT OR IGNORE INTO results (
 INSERT OR IGNORE INTO results (
         id, submission_id, result, first_name, last_name
       ) VALUES (
-        '4Cv6CN_6U9AttS2vTvgkU', 
+        'TiRmQ9LpZ0LhSWXxOoRyR', 
         '7g8Q-fz55QeZkaKkMmd9Q', 
         'first', 
         'Filippo', 
@@ -8119,7 +8119,7 @@ INSERT OR IGNORE INTO results (
 INSERT OR IGNORE INTO results (
         id, submission_id, result, first_name, last_name
       ) VALUES (
-        'L-VcLpEth4uPOE1TU-BjX', 
+        'vIAwIoS2zgEKiC9ceHxol', 
         'sf-Oikzh6TpaedWl0SWfF', 
         'second', 
         'Domenico', 
@@ -8128,7 +8128,7 @@ INSERT OR IGNORE INTO results (
 INSERT OR IGNORE INTO results (
         id, submission_id, result, first_name, last_name
       ) VALUES (
-        'abTIkIdBRlVkowQnG2zmz', 
+        '5UxNy1FMSGiU1OHSzOAlm', 
         'utz8HapC54XFnmhJ3CyhY', 
         'third', 
         'Fernandez', 
@@ -8137,7 +8137,7 @@ INSERT OR IGNORE INTO results (
 INSERT OR IGNORE INTO results (
         id, submission_id, result, first_name, last_name
       ) VALUES (
-        '3dCmNho7Snra-YmBvY6Zd', 
+        '87wtg-5x6H-xUF5cto9Ic', 
         '5Nh9nXLzsSi-WcZs7_UPf', 
         'runner-up', 
         'Isabella', 
@@ -8146,7 +8146,7 @@ INSERT OR IGNORE INTO results (
 INSERT OR IGNORE INTO results (
         id, submission_id, result, first_name, last_name
       ) VALUES (
-        'AJIsMgwQYe6MCW0fPtYkN', 
+        'waNXUOxUTNULuIrPkJg3u', 
         'U-Q1U0IbDebHGXuO1sM8Y', 
         'runner-up', 
         'Filippo', 
@@ -8155,7 +8155,7 @@ INSERT OR IGNORE INTO results (
 INSERT OR IGNORE INTO results (
         id, submission_id, result, first_name, last_name
       ) VALUES (
-        'UJu5X4Tgu5CyHVrYqWn5O', 
+        'QH2LgE5gHvhsXq9aWido1', 
         'n8ndKjCAzrzc7kUQemYEq', 
         'runner-up', 
         'Montse', 
@@ -8164,7 +8164,7 @@ INSERT OR IGNORE INTO results (
 INSERT OR IGNORE INTO results (
         id, submission_id, result, first_name, last_name
       ) VALUES (
-        'dboThkTBBsdRP-GIYj4gw', 
+        'fESUGk4e9FajPPm69lElx', 
         'Zusmh1YtYmVNb5FcLRxom', 
         'runner-up', 
         'Marcello', 
@@ -8173,7 +8173,7 @@ INSERT OR IGNORE INTO results (
 INSERT OR IGNORE INTO results (
         id, submission_id, result, first_name, last_name
       ) VALUES (
-        'faN1_h0tQUjuqpiVqU6_z', 
+        'TqTDz8-MHVgEvT75xZpSQ', 
         'dPCci8pKpHidOJMwQepJb', 
         'runner-up', 
         'Isabella', 
@@ -8182,7 +8182,7 @@ INSERT OR IGNORE INTO results (
 INSERT OR IGNORE INTO results (
         id, submission_id, result, first_name, last_name
       ) VALUES (
-        'RP7MXKQsKilokNltAk-2L', 
+        '19r-0Z9PY9Xa2c9Yv8fRK', 
         '-dd887Vw1Hw8QGX538mzB', 
         'runner-up', 
         'Alberto', 
@@ -8191,7 +8191,7 @@ INSERT OR IGNORE INTO results (
 INSERT OR IGNORE INTO results (
         id, submission_id, result, first_name, last_name
       ) VALUES (
-        'BymCUGc4imsNsgM4hO0J3', 
+        'Uir5HgLp2zOgpz7ri29dJ', 
         'tJPLEtCiF4dYRWtkxSbKT', 
         'first', 
         'Rosanna', 
@@ -8200,7 +8200,7 @@ INSERT OR IGNORE INTO results (
 INSERT OR IGNORE INTO results (
         id, submission_id, result, first_name, last_name
       ) VALUES (
-        'X9inJryRWOLGJuhDtAWdW', 
+        '4w4cCg_Qd5rFc4pfu5A2W', 
         '1F956js3mdpxbDDYfC_yc', 
         'second', 
         'Francesco', 
@@ -8209,7 +8209,7 @@ INSERT OR IGNORE INTO results (
 INSERT OR IGNORE INTO results (
         id, submission_id, result, first_name, last_name
       ) VALUES (
-        'PRpift4MiECEZ0ycTznKD', 
+        'BKi9Y0Pjb_z8onGYC8R2C', 
         'QZKIt6T3_LX3Gjns3C-hx', 
         'third', 
         'Filippo', 
@@ -8218,7 +8218,7 @@ INSERT OR IGNORE INTO results (
 INSERT OR IGNORE INTO results (
         id, submission_id, result, first_name, last_name
       ) VALUES (
-        '9_2IFts4QlXWPMxXC0IR8', 
+        '3Kbb2S7jBOAViPkJ7e3Hu', 
         'QC3ImBVn57j4IPBe6t22D', 
         'runner-up', 
         'Nadia', 
@@ -8227,7 +8227,7 @@ INSERT OR IGNORE INTO results (
 INSERT OR IGNORE INTO results (
         id, submission_id, result, first_name, last_name
       ) VALUES (
-        'deqqzCFMLeQpIe_uxzxwZ', 
+        'CVrnPL13-ydtWxVQTw-6C', 
         'umfScLHnJ8phqwHPscV3D', 
         'runner-up', 
         'Rosanna', 
@@ -8236,7 +8236,7 @@ INSERT OR IGNORE INTO results (
 INSERT OR IGNORE INTO results (
         id, submission_id, result, first_name, last_name
       ) VALUES (
-        'yqKlojXQ18LqfRWJ71Fwz', 
+        'jFY04HjFig4WQcibQONB-', 
         'FL4FLyRhYM7-asKs9ti4Z', 
         'runner-up', 
         'Gianni', 
@@ -8245,7 +8245,7 @@ INSERT OR IGNORE INTO results (
 INSERT OR IGNORE INTO results (
         id, submission_id, result, first_name, last_name
       ) VALUES (
-        'hlXdWr_2bUqSpWKqlKM4N', 
+        'WaC5mvCwPwFkpexmAT2W-', 
         'QhyL-ZJKJg6HFQhwV7duo', 
         'runner-up', 
         'Marco', 
@@ -8254,7 +8254,7 @@ INSERT OR IGNORE INTO results (
 INSERT OR IGNORE INTO results (
         id, submission_id, result, first_name, last_name
       ) VALUES (
-        'sdyoWAlG6GMthnSNez1kl', 
+        '9m1bSUpSdIT5dyOffpsuI', 
         '6Wt_7wrj0bt7YdH1Mp6RH', 
         'runner-up', 
         'Paolo', 
@@ -8263,7 +8263,7 @@ INSERT OR IGNORE INTO results (
 INSERT OR IGNORE INTO results (
         id, submission_id, result, first_name, last_name
       ) VALUES (
-        'PSlLLvtyutx9U7zjIZeiH', 
+        '4vUletGppk4ZkYCfQK4CG', 
         'PH7qzTWzDvaC0EJKesYt5', 
         'runner-up', 
         'Flavio', 
@@ -8272,7 +8272,7 @@ INSERT OR IGNORE INTO results (
 INSERT OR IGNORE INTO results (
         id, submission_id, result, first_name, last_name
       ) VALUES (
-        '7VTX3yPzHTZDOr5122Ryn', 
+        'Ylfx_k-sY4PXMq-3M--mP', 
         'us-68mycwVu-vfRkAFej6', 
         'runner-up', 
         'Marco', 
@@ -8281,7 +8281,7 @@ INSERT OR IGNORE INTO results (
 INSERT OR IGNORE INTO results (
         id, submission_id, result, first_name, last_name
       ) VALUES (
-        'QOguaHJzvixl9cJpn4_Z3', 
+        'jExcV9oKjreq2EJicVTo-', 
         'BqO_9WSUA4_b3QiKO_p3j', 
         'first', 
         'Marc', 
@@ -8290,7 +8290,7 @@ INSERT OR IGNORE INTO results (
 INSERT OR IGNORE INTO results (
         id, submission_id, result, first_name, last_name
       ) VALUES (
-        'fsuN4MlqqL5eBZm7v1oEh', 
+        'sS1eVtASW-4h7lY5M-sep', 
         'DhQZ8smumk_Ka0QfDvVrd', 
         'first', 
         'Marc', 
@@ -8299,7 +8299,7 @@ INSERT OR IGNORE INTO results (
 INSERT OR IGNORE INTO results (
         id, submission_id, result, first_name, last_name
       ) VALUES (
-        '5dp7sEJ016vGmTSx5KjYK', 
+        'HLWRPrhgHBap3sb4FDMJs', 
         'fuBZ4CP0KP9GP98pMO6-_', 
         'first', 
         'Marc', 
@@ -8308,7 +8308,7 @@ INSERT OR IGNORE INTO results (
 INSERT OR IGNORE INTO results (
         id, submission_id, result, first_name, last_name
       ) VALUES (
-        'baXTw-QyXsRKhs6CvkANv', 
+        'fyzkxWMoTxF9IxAdXvR5e', 
         'TEwFUnu08nN8aTNfiT27Q', 
         'second', 
         'Pietro', 
@@ -8317,7 +8317,7 @@ INSERT OR IGNORE INTO results (
 INSERT OR IGNORE INTO results (
         id, submission_id, result, first_name, last_name
       ) VALUES (
-        '4-n6GSrMGegapgYJ7meHI', 
+        'yvNrBrKU0JAn5SPoB8Qeq', 
         '6g9hhwWVqG6a-BRSW8sL2', 
         'second', 
         'Pietro', 
@@ -8326,7 +8326,7 @@ INSERT OR IGNORE INTO results (
 INSERT OR IGNORE INTO results (
         id, submission_id, result, first_name, last_name
       ) VALUES (
-        'NduNvyFSWYSneZ-yX5BAN', 
+        'd4OIacEWgvOpb4k3IZOKe', 
         '-koBHPUgHEHmglxvJLOh8', 
         'second', 
         'Pietro', 
@@ -8335,7 +8335,7 @@ INSERT OR IGNORE INTO results (
 INSERT OR IGNORE INTO results (
         id, submission_id, result, first_name, last_name
       ) VALUES (
-        'qeO4k34A2Tcx0fJRqzjL6', 
+        'O8ExO9YfNSO6gC4c4EsJ1', 
         'Q5dntF6h5_Z5kBDX4I9UL', 
         'third', 
         'Maurizio', 
@@ -8344,7 +8344,7 @@ INSERT OR IGNORE INTO results (
 INSERT OR IGNORE INTO results (
         id, submission_id, result, first_name, last_name
       ) VALUES (
-        'Bn4_90TTmpbqZBhWaUV23', 
+        'ICQ4GQm8eeYuXuuMkxRWH', 
         'B3WjI9PNOwWgbVMdG-QKI', 
         'third', 
         'Maurizio', 
@@ -8353,7 +8353,7 @@ INSERT OR IGNORE INTO results (
 INSERT OR IGNORE INTO results (
         id, submission_id, result, first_name, last_name
       ) VALUES (
-        '8HggGgalY0v7G-s1qqPm1', 
+        '0sjUDdF6fgIvLQhizFdxv', 
         'QbVNJYciWzMTL6QyRGNWe', 
         'third', 
         'Maurizio', 
@@ -8362,7 +8362,7 @@ INSERT OR IGNORE INTO results (
 INSERT OR IGNORE INTO results (
         id, submission_id, result, first_name, last_name
       ) VALUES (
-        'FZRM0UX6cMdgU-1X3TF2A', 
+        'WNAdt0s9Gh2GdA5jrbE7-', 
         'noL4vK1cgO6aXr9LXUDhf', 
         'runner-up', 
         'David', 
@@ -8371,7 +8371,7 @@ INSERT OR IGNORE INTO results (
 INSERT OR IGNORE INTO results (
         id, submission_id, result, first_name, last_name
       ) VALUES (
-        'WtFJoEoaaGQ6zvbwRlRgs', 
+        '46McfjnOEoswWx7elIbcF', 
         'gjefqYbYH0GXyn4iTIhWN', 
         'runner-up', 
         'David', 
@@ -8380,7 +8380,7 @@ INSERT OR IGNORE INTO results (
 INSERT OR IGNORE INTO results (
         id, submission_id, result, first_name, last_name
       ) VALUES (
-        '_ks3m2pSJGEPDGaa7TDcp', 
+        'rYGhUSaL14Rdhr-U_LeAx', 
         '4LcWrJpg4LQqdRAxnWtGO', 
         'runner-up', 
         'David', 
@@ -8389,7 +8389,7 @@ INSERT OR IGNORE INTO results (
 INSERT OR IGNORE INTO results (
         id, submission_id, result, first_name, last_name
       ) VALUES (
-        'h9JezNXlNdpJX_geUg7jW', 
+        '6Xeu2hPiXmZrNREFSS5AC', 
         '6CP0hInp09rx2DKb199fZ', 
         'runner-up', 
         'Domenico', 
@@ -8398,7 +8398,7 @@ INSERT OR IGNORE INTO results (
 INSERT OR IGNORE INTO results (
         id, submission_id, result, first_name, last_name
       ) VALUES (
-        'BUkKy6ouiccShkK4hbulK', 
+        'LHWS60ILY7mXCOgtPQL7v', 
         'RQGrmMKv9TN4C-Ljmxjxz', 
         'runner-up', 
         'Domenico', 
@@ -8407,7 +8407,7 @@ INSERT OR IGNORE INTO results (
 INSERT OR IGNORE INTO results (
         id, submission_id, result, first_name, last_name
       ) VALUES (
-        'KRMUiB33b4zyPdTG_3mat', 
+        'H5tRKkvw32Ax_KGsBZvvX', 
         'OVuTWCJiB6OvdqPOje9L5', 
         'runner-up', 
         'Domenico', 
@@ -8416,7 +8416,7 @@ INSERT OR IGNORE INTO results (
 INSERT OR IGNORE INTO results (
         id, submission_id, result, first_name, last_name
       ) VALUES (
-        'kRcDuKMMQPoVPQyb1uYXk', 
+        'WBix_tGGmNGAfPhrQnzT1', 
         'AIzhWjW1iNdwNqz0Yfu6_', 
         'runner-up', 
         'Adriano', 
@@ -8425,7 +8425,7 @@ INSERT OR IGNORE INTO results (
 INSERT OR IGNORE INTO results (
         id, submission_id, result, first_name, last_name
       ) VALUES (
-        'I_1Ox-uVEA-RgdXz2xNZ-', 
+        '3C-aromCG_Jv-7RisEVND', 
         '4YxzvJF7PvNidRh5NgAlA', 
         'runner-up', 
         'Adriano', 
@@ -8434,7 +8434,7 @@ INSERT OR IGNORE INTO results (
 INSERT OR IGNORE INTO results (
         id, submission_id, result, first_name, last_name
       ) VALUES (
-        '3nqlnYGoJMhgNwyHzueZ6', 
+        'gGAiT4VojdfPvjQPp6Utx', 
         'C4sVtncI6RvMSPx1mkM8M', 
         'runner-up', 
         'Adriano', 
@@ -8443,7 +8443,7 @@ INSERT OR IGNORE INTO results (
 INSERT OR IGNORE INTO results (
         id, submission_id, result, first_name, last_name
       ) VALUES (
-        'zJoAFgLGAhiu1Oz9k7jNJ', 
+        'mpfDz0MwWmmpjzrLBP-zt', 
         'vKbYChbPX8JoADhMbgDsY', 
         'runner-up', 
         'Salvatore', 
@@ -8452,7 +8452,7 @@ INSERT OR IGNORE INTO results (
 INSERT OR IGNORE INTO results (
         id, submission_id, result, first_name, last_name
       ) VALUES (
-        'AM0afkmEecmdAdwQm61bE', 
+        'IdBrYchm88Xc-e4GtgnIp', 
         'GI3CECb4_E0iBaG5a8O_U', 
         'runner-up', 
         'Salvatore', 
@@ -8461,7 +8461,7 @@ INSERT OR IGNORE INTO results (
 INSERT OR IGNORE INTO results (
         id, submission_id, result, first_name, last_name
       ) VALUES (
-        's64LJX1wRoTexKhWth8u3', 
+        'z9NTDk20MD65DUmn7V1HW', 
         'CK2s8s_KbNY_iJsGUx9m6', 
         'runner-up', 
         'Salvatore', 
@@ -8470,7 +8470,7 @@ INSERT OR IGNORE INTO results (
 INSERT OR IGNORE INTO results (
         id, submission_id, result, first_name, last_name
       ) VALUES (
-        'VTbnh4Wob3PHSmhVQ5rVJ', 
+        'OMl9wgPFdMS-kpHl9OLKY', 
         'r-zy9c-2DBAGALZCd0iam', 
         'runner-up', 
         'Alberto', 
@@ -8479,7 +8479,7 @@ INSERT OR IGNORE INTO results (
 INSERT OR IGNORE INTO results (
         id, submission_id, result, first_name, last_name
       ) VALUES (
-        'Gbc8wQed8kMS3xrYO369g', 
+        'g0WYkcjMqOtNbzY-R9JUj', 
         '2z6BmNzHQNK6eRWGVrqmi', 
         'runner-up', 
         'Alberto', 
@@ -8488,7 +8488,7 @@ INSERT OR IGNORE INTO results (
 INSERT OR IGNORE INTO results (
         id, submission_id, result, first_name, last_name
       ) VALUES (
-        'Ymp_fx9OsWWsrHaJx2Bsf', 
+        'Klv6aPKhiIrl4fbw162Q5', 
         'o4yfGtGB_2AJV-DkC5vrU', 
         'runner-up', 
         'Alberto', 
@@ -8497,7 +8497,7 @@ INSERT OR IGNORE INTO results (
 INSERT OR IGNORE INTO results (
         id, submission_id, result, first_name, last_name
       ) VALUES (
-        'DZ7knCb6ldzg7_EAO1TuD', 
+        'o26j4DoMUS8FTFRdbU8Sj', 
         'TQRxEholyEEcr-sqwr5bi', 
         'runner-up', 
         'Giuseppe', 
@@ -8506,7 +8506,7 @@ INSERT OR IGNORE INTO results (
 INSERT OR IGNORE INTO results (
         id, submission_id, result, first_name, last_name
       ) VALUES (
-        'vE37SMUmRkF85o66e3Ku8', 
+        'unBAc8YuKFWAQ9ab0L-3c', 
         'YJWoZ0heTcsQVI2HOoC1i', 
         'runner-up', 
         'Giuseppe', 
@@ -8515,7 +8515,7 @@ INSERT OR IGNORE INTO results (
 INSERT OR IGNORE INTO results (
         id, submission_id, result, first_name, last_name
       ) VALUES (
-        '_Ab8i4Pb7png_sgHoAFuI', 
+        'LaK0cB9xz8MFfnBabPkCa', 
         'EXyXqIkRQQFacwkCNMRb0', 
         'runner-up', 
         'Marcello', 
@@ -8524,7 +8524,7 @@ INSERT OR IGNORE INTO results (
 INSERT OR IGNORE INTO results (
         id, submission_id, result, first_name, last_name
       ) VALUES (
-        'qNB5Jbd5i2FU1lM5zuh4c', 
+        '48ch8Ifyud1PzDfpuHset', 
         'bwFPEcEI_GtI-9kQ4zSfQ', 
         'runner-up', 
         'Marcello', 
@@ -8533,7 +8533,7 @@ INSERT OR IGNORE INTO results (
 INSERT OR IGNORE INTO results (
         id, submission_id, result, first_name, last_name
       ) VALUES (
-        'v7p7PNlo1DJK16KzM65py', 
+        'EJYK0k9F0_CPsBZmWg-UN', 
         'Ztcr_ZVJa9vMv4gTSLufX', 
         'runner-up', 
         'Marcello', 
@@ -8542,7 +8542,7 @@ INSERT OR IGNORE INTO results (
 INSERT OR IGNORE INTO results (
         id, submission_id, result, first_name, last_name
       ) VALUES (
-        'ZiKxnQIJfS-hvt1AbjQoD', 
+        'DEWZ1fFr-Lz4O9wCIp3mR', 
         'bMbmAE4sUgLhOQy9vTVRL', 
         'first', 
         'Corrado', 
@@ -8551,7 +8551,7 @@ INSERT OR IGNORE INTO results (
 INSERT OR IGNORE INTO results (
         id, submission_id, result, first_name, last_name
       ) VALUES (
-        'ScSWazfuEw-qx8IenvZm2', 
+        'xj7tsau-KZr34SAyOUZjJ', 
         'IVKUiEhX78-Gg-caP22NL', 
         'second', 
         'Manuela', 
@@ -8560,7 +8560,7 @@ INSERT OR IGNORE INTO results (
 INSERT OR IGNORE INTO results (
         id, submission_id, result, first_name, last_name
       ) VALUES (
-        'r0PmhbgjjyzUmeO6N-eem', 
+        'U2sQNog5weoRRgTFj1G5M', 
         'bb6591vkQLn0oOw15nfSX', 
         'third', 
         'Corrado', 
@@ -8569,7 +8569,7 @@ INSERT OR IGNORE INTO results (
 INSERT OR IGNORE INTO results (
         id, submission_id, result, first_name, last_name
       ) VALUES (
-        'DaUm81if2yRLzj6LNIZih', 
+        'X8vzY5CkzLvEnNtrhXeRs', 
         'L4JeEIgHJxEV9Ruzzftt3', 
         'runner-up', 
         'Gabriele', 
@@ -8578,7 +8578,7 @@ INSERT OR IGNORE INTO results (
 INSERT OR IGNORE INTO results (
         id, submission_id, result, first_name, last_name
       ) VALUES (
-        'uGspuWZ9pzWrZB2yF0P_J', 
+        'vdQLstoTj2f941qqNTtwT', 
         '2GMTkmNxFjctLnwqM6xHS', 
         'runner-up', 
         'Mario', 
@@ -8587,7 +8587,7 @@ INSERT OR IGNORE INTO results (
 INSERT OR IGNORE INTO results (
         id, submission_id, result, first_name, last_name
       ) VALUES (
-        'jqnJmbrkLZWA9Q4q1vHqd', 
+        '6T_fD4NNi8PHuLi7A4Zij', 
         '0nRCFMZDr9YoCc54BVqhf', 
         'runner-up', 
         'Fabio', 
@@ -8596,7 +8596,7 @@ INSERT OR IGNORE INTO results (
 INSERT OR IGNORE INTO results (
         id, submission_id, result, first_name, last_name
       ) VALUES (
-        'AGLV-6f0hW09qfCVDZ-JA', 
+        'J_Udsg6hojCKMDl0RgBO1', 
         'sOl2OB-c8a7PnVtKZ4qXp', 
         'runner-up', 
         'Marco', 
@@ -8605,7 +8605,7 @@ INSERT OR IGNORE INTO results (
 INSERT OR IGNORE INTO results (
         id, submission_id, result, first_name, last_name
       ) VALUES (
-        'kGqHvamWTH6GDqVJvZYBh', 
+        'mVXorjrjIeNXRE6Dq4tV6', 
         'WLdgkk4qxJGbY5-9Ie9zG', 
         'runner-up', 
         'Mario', 
@@ -8614,7 +8614,7 @@ INSERT OR IGNORE INTO results (
 INSERT OR IGNORE INTO results (
         id, submission_id, result, first_name, last_name
       ) VALUES (
-        'wytuggLJCazL18EWQkNzt', 
+        'THYvDZRtABxlH-pz-id3V', 
         'kK5PN4I7R3iUb0r13_IDp', 
         'runner-up', 
         'Fabrizio', 
@@ -8623,7 +8623,7 @@ INSERT OR IGNORE INTO results (
 INSERT OR IGNORE INTO results (
         id, submission_id, result, first_name, last_name
       ) VALUES (
-        'HRelR6jbcjACYp_k7MHVv', 
+        'cyF5RdGuDJ4BMU3W-6Rgu', 
         'w0wHWqC-_3hRNW4ovVygT', 
         'runner-up', 
         'Marco', 
@@ -8632,7 +8632,7 @@ INSERT OR IGNORE INTO results (
 INSERT OR IGNORE INTO results (
         id, submission_id, result, first_name, last_name
       ) VALUES (
-        'uk4qbuFu_HfYVXJm45bQr', 
+        'LAL3N7DpEkuYxX_qx-b9j', 
         '8hGGW1e7gqv0bhBCGeLaA', 
         'first', 
         'Edoardo', 
@@ -8641,7 +8641,7 @@ INSERT OR IGNORE INTO results (
 INSERT OR IGNORE INTO results (
         id, submission_id, result, first_name, last_name
       ) VALUES (
-        'yKTGBY3YkKKUmfGj6Y0a9', 
+        'QeDn2jfRQgxCL0bqgarXi', 
         'Lk0UH_JEcGptmMDR24Zpp', 
         'second', 
         'Gianluca', 
@@ -8650,7 +8650,7 @@ INSERT OR IGNORE INTO results (
 INSERT OR IGNORE INTO results (
         id, submission_id, result, first_name, last_name
       ) VALUES (
-        'Uiu8iwECj8VuX1uMIyegW', 
+        'yxvxNIPuK-_Udw2TAVuG_', 
         'TRm4mWRyH_QMT0JEioBKz', 
         'third', 
         'Andrea', 
@@ -8659,7 +8659,7 @@ INSERT OR IGNORE INTO results (
 INSERT OR IGNORE INTO results (
         id, submission_id, result, first_name, last_name
       ) VALUES (
-        'uAFluEFISJ-YZ_8vaTGpa', 
+        'kWSIMXy9Os-gXBZLwNy1A', 
         'Z12bqJBAgeNZZ61WR5rOl', 
         'runner-up', 
         'Pierluigi', 
@@ -8668,7 +8668,7 @@ INSERT OR IGNORE INTO results (
 INSERT OR IGNORE INTO results (
         id, submission_id, result, first_name, last_name
       ) VALUES (
-        'vLmMgh4HSt_yCrJOI-orF', 
+        'phvko1DKnwCWiRu2vwheW', 
         'i0IxfDm2KRuWFJf5bY9OJ', 
         'runner-up', 
         'Massimo', 
@@ -8677,7 +8677,7 @@ INSERT OR IGNORE INTO results (
 INSERT OR IGNORE INTO results (
         id, submission_id, result, first_name, last_name
       ) VALUES (
-        '3Q4GXA8VK71Atu-r5UthJ', 
+        'AGILZ7rFoErsVWiR0sXkI', 
         'B5Mu6kngeZCQvXSO3iTzM', 
         'runner-up', 
         'Lynn', 
@@ -8686,7 +8686,7 @@ INSERT OR IGNORE INTO results (
 INSERT OR IGNORE INTO results (
         id, submission_id, result, first_name, last_name
       ) VALUES (
-        'qzeTrQulfJjP-yTOIPqdg', 
+        'xyGjjA2ASlEXD7NxeKl7C', 
         'YVAgJvIR7nNEuAjqmU2FA', 
         'runner-up', 
         'Virginia', 
@@ -8695,7 +8695,7 @@ INSERT OR IGNORE INTO results (
 INSERT OR IGNORE INTO results (
         id, submission_id, result, first_name, last_name
       ) VALUES (
-        'gulWIHiBu8kXlPV9CZJoT', 
+        '6JhC3u4JajbbWHhc5tJnD', 
         'DhWqpAjNdXaQ4mpZjuhwg', 
         'runner-up', 
         'Gianni', 
@@ -8704,7 +8704,7 @@ INSERT OR IGNORE INTO results (
 INSERT OR IGNORE INTO results (
         id, submission_id, result, first_name, last_name
       ) VALUES (
-        'OYAHNDGosZWxzS1Pq4VTa', 
+        'dTuYQCgI71Sa3IhJm1rhs', 
         'sMfHyl74g7tUDtioinA2Q', 
         'runner-up', 
         'Stefano', 
@@ -8713,7 +8713,7 @@ INSERT OR IGNORE INTO results (
 INSERT OR IGNORE INTO results (
         id, submission_id, result, first_name, last_name
       ) VALUES (
-        'C8Wa1Umw8AJ7dnla9Et5d', 
+        '-aNpuyItA_thqWHQJ6pS5', 
         'gD5EejmNFy7e2UmnHWqm4', 
         'runner-up', 
         'Emanuele', 
@@ -8722,7 +8722,7 @@ INSERT OR IGNORE INTO results (
 INSERT OR IGNORE INTO results (
         id, submission_id, result, first_name, last_name
       ) VALUES (
-        '-HSKWCUVye-tdFKFv6glf', 
+        'aXrnQbtA1BSCoqL3S9Nig', 
         '62119fs-s8Bxa9hEXAEkZ', 
         'first', 
         'Giacomo', 
@@ -8731,7 +8731,7 @@ INSERT OR IGNORE INTO results (
 INSERT OR IGNORE INTO results (
         id, submission_id, result, first_name, last_name
       ) VALUES (
-        'z4ejRq8t-GkOI1N2Pd2A8', 
+        'cDFLIObLhsXGoU5_iIR88', 
         'nnffRNn9eTn5anoqRKqAz', 
         'second', 
         'Rooman', 
@@ -8740,7 +8740,7 @@ INSERT OR IGNORE INTO results (
 INSERT OR IGNORE INTO results (
         id, submission_id, result, first_name, last_name
       ) VALUES (
-        '50iMIzVKO02Ai4Z5az7oV', 
+        '7neelgSvmE7u16h5zqFAY', 
         '0_LVA4xclDOR7FAN8qCLT', 
         'third', 
         'Jorge', 
@@ -8749,7 +8749,7 @@ INSERT OR IGNORE INTO results (
 INSERT OR IGNORE INTO results (
         id, submission_id, result, first_name, last_name
       ) VALUES (
-        '36W4uRlZPHm0p-ZTIpAb0', 
+        'jIJtuJpETcBHgnCiwpRz9', 
         '56L4yUDl7bHYTGPR1GCNq', 
         'runner-up', 
         'Alberto', 
@@ -8758,7 +8758,7 @@ INSERT OR IGNORE INTO results (
 INSERT OR IGNORE INTO results (
         id, submission_id, result, first_name, last_name
       ) VALUES (
-        'wWrJfoQGZmdrNPHG5o9yA', 
+        '_SEXfBf2VkowIcYZTqj7M', 
         'EZV3jmDy_qsXQpq_cnhOu', 
         'runner-up', 
         'Lynn', 
@@ -8767,7 +8767,7 @@ INSERT OR IGNORE INTO results (
 INSERT OR IGNORE INTO results (
         id, submission_id, result, first_name, last_name
       ) VALUES (
-        'QuHNyF0I4iTFlOLckMAkA', 
+        'vzaz39Yu3mlYCCf_-VhqL', 
         'zPJom7RxXrt_v0o-HG7zt', 
         'runner-up', 
         'Mauro', 
@@ -8776,7 +8776,7 @@ INSERT OR IGNORE INTO results (
 INSERT OR IGNORE INTO results (
         id, submission_id, result, first_name, last_name
       ) VALUES (
-        '4KivoHsk3HF3PaGTgBsBL', 
+        'fsE0yBQVRePcNvUR05FAB', 
         'CZgbEOqkXW9vqSJ8AuGIu', 
         'runner-up', 
         'Alessandro', 
@@ -8785,7 +8785,7 @@ INSERT OR IGNORE INTO results (
 INSERT OR IGNORE INTO results (
         id, submission_id, result, first_name, last_name
       ) VALUES (
-        'df_vjCB9J9aKvxPJufqZg', 
+        'Qryuz8zx_cVTc5K7cEkJh', 
         'CNn6SZDCKsx6gE94kocs0', 
         'runner-up', 
         'Domenico', 
@@ -8794,7 +8794,7 @@ INSERT OR IGNORE INTO results (
 INSERT OR IGNORE INTO results (
         id, submission_id, result, first_name, last_name
       ) VALUES (
-        '4oI_sFdvcO9PqnSVwcj6s', 
+        'heLXyCBj2i11BKzqqEfEF', 
         'LnXWjDhncQo396et7IgqW', 
         'runner-up', 
         'Staes', 
@@ -8803,7 +8803,7 @@ INSERT OR IGNORE INTO results (
 INSERT OR IGNORE INTO results (
         id, submission_id, result, first_name, last_name
       ) VALUES (
-        'QHq0GMCJ1j8H3bkKT28AJ', 
+        '1OKPD9Ova0okmMjt3olkw', 
         'S3RRKtkInbMNnXkLpjfAp', 
         'runner-up', 
         'Gianni', 
@@ -8812,7 +8812,7 @@ INSERT OR IGNORE INTO results (
 INSERT OR IGNORE INTO results (
         id, submission_id, result, first_name, last_name
       ) VALUES (
-        'IoS6XOznOvhqVblDtRWo5', 
+        'Q4e0OI_z49L1M7D8jX3tX', 
         'qVF361bRTvxZrpv_N2mXx', 
         'runner-up', 
         'Gianluca', 
@@ -8821,7 +8821,7 @@ INSERT OR IGNORE INTO results (
 INSERT OR IGNORE INTO results (
         id, submission_id, result, first_name, last_name
       ) VALUES (
-        'bOC6Gxt4wZDk0YsPLbp2l', 
+        'TvN6wQXDOXIqkvuaEOQ8b', 
         'BwUOgQaF_MElP923r6Gqn', 
         'first', 
         'Gabriella', 
@@ -8830,7 +8830,7 @@ INSERT OR IGNORE INTO results (
 INSERT OR IGNORE INTO results (
         id, submission_id, result, first_name, last_name
       ) VALUES (
-        'y1SSwPSarxBaF57lSdtwF', 
+        'dx7V9MLt9SK1RGHMpJyao', 
         'st6MBQ17SqMM3E34IBdWP', 
         'second', 
         'Renato', 
@@ -8839,7 +8839,7 @@ INSERT OR IGNORE INTO results (
 INSERT OR IGNORE INTO results (
         id, submission_id, result, first_name, last_name
       ) VALUES (
-        'Fu1kn0Zrxrgv_Wuifj5hH', 
+        'ceWi85yyQ2WvrLxFkrGoJ', 
         'Zw9T3wLcIoOiuLWL9Bys4', 
         'third', 
         'Fabio', 
@@ -8848,7 +8848,7 @@ INSERT OR IGNORE INTO results (
 INSERT OR IGNORE INTO results (
         id, submission_id, result, first_name, last_name
       ) VALUES (
-        '4vWENjiRAj1MVjWCm8t1h', 
+        'yJmpe9ddSgUMFlhKzukY3', 
         'hBGxp-tSkdRkxLBWazYG-', 
         'runner-up', 
         'Flavio', 
@@ -8857,7 +8857,7 @@ INSERT OR IGNORE INTO results (
 INSERT OR IGNORE INTO results (
         id, submission_id, result, first_name, last_name
       ) VALUES (
-        'eZsTOJ-D663Yl4hPCwSBQ', 
+        'nfHIVqMhNKVW5qJxwf-_h', 
         'wSZ9TPG_eJLWrOdspXYdw', 
         'runner-up', 
         'Alberto', 
@@ -8866,7 +8866,7 @@ INSERT OR IGNORE INTO results (
 INSERT OR IGNORE INTO results (
         id, submission_id, result, first_name, last_name
       ) VALUES (
-        'eIf70ygm6ec8aCjs9ONq4', 
+        'zDgoYE8kaLryyGOPXbwjb', 
         'PMVyMuhzF6pCXd7O_ATeW', 
         'runner-up', 
         'Mauro', 
@@ -8875,7 +8875,7 @@ INSERT OR IGNORE INTO results (
 INSERT OR IGNORE INTO results (
         id, submission_id, result, first_name, last_name
       ) VALUES (
-        'G8EJ7rGkgN50rGz519wj8', 
+        'B2JDI9huW-lygzIU9RtP9', 
         'bpkjLTTj7OxdxKj2410KH', 
         'runner-up', 
         'Yen-Yi', 
@@ -8884,7 +8884,7 @@ INSERT OR IGNORE INTO results (
 INSERT OR IGNORE INTO results (
         id, submission_id, result, first_name, last_name
       ) VALUES (
-        '5sWQKziRu6bw8NjLWiekV', 
+        'Dp-DJBPooq5m83FysEbC0', 
         '_OJnBg3ShUy98xG8dA0Aq', 
         'runner-up', 
         'Massimo', 
@@ -8893,7 +8893,7 @@ INSERT OR IGNORE INTO results (
 INSERT OR IGNORE INTO results (
         id, submission_id, result, first_name, last_name
       ) VALUES (
-        'cpw5damPAt0rEJC9d1p6j', 
+        'gMqCkQoqFw7SNCCILJ96f', 
         'aJBBdYR96ejHyTtNb8JBZ', 
         'runner-up', 
         'Mauro', 
@@ -8902,7 +8902,7 @@ INSERT OR IGNORE INTO results (
 INSERT OR IGNORE INTO results (
         id, submission_id, result, first_name, last_name
       ) VALUES (
-        'rJimoADfxvz086nDnhbKn', 
+        'AsbGFrUHQbx6j31T4s7ux', 
         'MdN6WbjuBOeiB9Sqq5gAO', 
         'runner-up', 
         'Plamena', 
@@ -8911,7 +8911,7 @@ INSERT OR IGNORE INTO results (
 INSERT OR IGNORE INTO results (
         id, submission_id, result, first_name, last_name
       ) VALUES (
-        'hwD_o3Y174VceQcehOSFw', 
+        '-IZfOW5vwl4jmK6jKf7fW', 
         'qHDkOBQ0q9txjIgfCAhWs', 
         'first', 
         'Pietro', 
@@ -8920,7 +8920,7 @@ INSERT OR IGNORE INTO results (
 INSERT OR IGNORE INTO results (
         id, submission_id, result, first_name, last_name
       ) VALUES (
-        'Gnrpd1gmRMP9lRz8egvOJ', 
+        'EmYwjkSq6m7KSj2BQlvpy', 
         'Of0pvz4RVBzpy7jgcpQUJ', 
         'first', 
         'Pietro', 
@@ -8929,7 +8929,7 @@ INSERT OR IGNORE INTO results (
 INSERT OR IGNORE INTO results (
         id, submission_id, result, first_name, last_name
       ) VALUES (
-        '994vkwrYpuqzQgxBZrFI_', 
+        'nBBfhtNjHDgQ8vp9Lv7np', 
         'ibuiNVHUkO4XP70Vr-0aZ', 
         'first', 
         'Pietro', 
@@ -8938,7 +8938,7 @@ INSERT OR IGNORE INTO results (
 INSERT OR IGNORE INTO results (
         id, submission_id, result, first_name, last_name
       ) VALUES (
-        'aRgRwSjxX2uq5hqody-5U', 
+        '96FhZx4ixXrcllIzuxzMv', 
         'h74iiwn-Wx_GAN2N33uQF', 
         'second', 
         'Gabriella', 
@@ -8947,7 +8947,7 @@ INSERT OR IGNORE INTO results (
 INSERT OR IGNORE INTO results (
         id, submission_id, result, first_name, last_name
       ) VALUES (
-        'Szrly-47GPH8gCNwU5NFj', 
+        'YiKqygt9bYrDJFzEXwhNC', 
         'qAnU6fGxkQgjaofHa9OtD', 
         'second', 
         'Gabriella', 
@@ -8956,7 +8956,7 @@ INSERT OR IGNORE INTO results (
 INSERT OR IGNORE INTO results (
         id, submission_id, result, first_name, last_name
       ) VALUES (
-        'z3dJhAQxU4mC_hTQWDfeA', 
+        'HAzuKTsh_7xFItM1J9QO2', 
         '4pyb5JTjTUOaMsjQ1NMsY', 
         'second', 
         'Gabriella', 
@@ -8965,7 +8965,7 @@ INSERT OR IGNORE INTO results (
 INSERT OR IGNORE INTO results (
         id, submission_id, result, first_name, last_name
       ) VALUES (
-        'WiziyrSueYC-Rj7Cp-zJH', 
+        'CsGdwCS6B9R-J5kHA_Lpv', 
         'SKpz59dxXoMN8-qZ4MF82', 
         'third', 
         'Massimo', 
@@ -8974,7 +8974,7 @@ INSERT OR IGNORE INTO results (
 INSERT OR IGNORE INTO results (
         id, submission_id, result, first_name, last_name
       ) VALUES (
-        'c634YVSGWS26j7AODs2kf', 
+        'ImAg6s5nunbzvNHI40bZI', 
         'WKtYwtEHbb6z_9qbI4900', 
         'third', 
         'Massimo', 
@@ -8983,7 +8983,7 @@ INSERT OR IGNORE INTO results (
 INSERT OR IGNORE INTO results (
         id, submission_id, result, first_name, last_name
       ) VALUES (
-        'nksP69Ur8ExE0X7vM1ux2', 
+        'ranvpVyQC8iWt3Y40_YJ9', 
         'QjtGasqDhYJrlVHqgQOWL', 
         'third', 
         'Massimo', 
@@ -8992,7 +8992,7 @@ INSERT OR IGNORE INTO results (
 INSERT OR IGNORE INTO results (
         id, submission_id, result, first_name, last_name
       ) VALUES (
-        'jmLtb5bbvrcouARrdqKjz', 
+        '6X49uhsEh4ymJYcOEXZP9', 
         'TQNAjba3qoXjYs1zgvjkP', 
         'runner-up', 
         'Salvatore', 
@@ -9001,7 +9001,7 @@ INSERT OR IGNORE INTO results (
 INSERT OR IGNORE INTO results (
         id, submission_id, result, first_name, last_name
       ) VALUES (
-        '-hOA5k0NbNfvmYUh29PX1', 
+        'oFRx2kcZPLsQq8NJ39OLQ', 
         '55CgO_UaOum0nMksnDFCL', 
         'runner-up', 
         'Salvatore', 
@@ -9010,7 +9010,7 @@ INSERT OR IGNORE INTO results (
 INSERT OR IGNORE INTO results (
         id, submission_id, result, first_name, last_name
       ) VALUES (
-        'Vtxr2XOHEUzoD4oCx5uze', 
+        'GaDDl7YjqEwqZsGmU3YyH', 
         '9RTXQFplSjpdRBC2IBbcq', 
         'runner-up', 
         'Salvatore', 
@@ -9019,7 +9019,7 @@ INSERT OR IGNORE INTO results (
 INSERT OR IGNORE INTO results (
         id, submission_id, result, first_name, last_name
       ) VALUES (
-        '9u5R-ajs_1DP7rY2KE96B', 
+        'Ff4wyoefptpYhQbtXxvR7', 
         'A9WTD17h9DnDTReFg2_1V', 
         'runner-up', 
         'Pasquale', 
@@ -9028,7 +9028,7 @@ INSERT OR IGNORE INTO results (
 INSERT OR IGNORE INTO results (
         id, submission_id, result, first_name, last_name
       ) VALUES (
-        'Z8EvkK_hhOXEA6zldOKQM', 
+        'n5fqNOt47fMekrZJdTKmw', 
         'MwPL-hw0ptzQXgUwFWYPf', 
         'runner-up', 
         'Pasquale', 
@@ -9037,7 +9037,7 @@ INSERT OR IGNORE INTO results (
 INSERT OR IGNORE INTO results (
         id, submission_id, result, first_name, last_name
       ) VALUES (
-        'IfbOv3HjA6Z9jMb8X20kh', 
+        'q1Kk6kTTU4X-aPZ8MRKgl', 
         'eDw0bvSD6XJd2E051Xv9t', 
         'runner-up', 
         'Pasquale', 
@@ -9046,7 +9046,7 @@ INSERT OR IGNORE INTO results (
 INSERT OR IGNORE INTO results (
         id, submission_id, result, first_name, last_name
       ) VALUES (
-        '91U7ZnusHpnexfyIuJray', 
+        'BGC3Y3h8EHbR7r6h3U4NP', 
         'vK1bccTzP9QWcObIOY0CV', 
         'runner-up', 
         'Virginia', 
@@ -9055,7 +9055,7 @@ INSERT OR IGNORE INTO results (
 INSERT OR IGNORE INTO results (
         id, submission_id, result, first_name, last_name
       ) VALUES (
-        'PSZDcoa1DyBfsXXr9fvCs', 
+        '6Bm49vIQ6LG2tSywTDhAl', 
         'hddHV0zcf3mMb6LN1PRgO', 
         'runner-up', 
         'Virginia', 
@@ -9064,7 +9064,7 @@ INSERT OR IGNORE INTO results (
 INSERT OR IGNORE INTO results (
         id, submission_id, result, first_name, last_name
       ) VALUES (
-        'SS48nQhDDhiBur4le66yV', 
+        'K61PbiTlwDgaPEJDLS_Ww', 
         'ttDsVVkdNDupd_5L8p0ab', 
         'runner-up', 
         'Virginia', 
@@ -9073,7 +9073,7 @@ INSERT OR IGNORE INTO results (
 INSERT OR IGNORE INTO results (
         id, submission_id, result, first_name, last_name
       ) VALUES (
-        'IVWNbF6eJ3mvJA3KST1-0', 
+        '6U0GRhFVS4K0e2j0IxYiN', 
         'm9PMrfBA1nTk1smDHMAAP', 
         'first', 
         'Gianluca', 
@@ -9082,7 +9082,7 @@ INSERT OR IGNORE INTO results (
 INSERT OR IGNORE INTO results (
         id, submission_id, result, first_name, last_name
       ) VALUES (
-        'QSk9t_AMb_0M872PIB5R9', 
+        'qfVrlF7-n9q7O8ZVlfgkY', 
         'paZMZOaFoKfuZVRHdNFON', 
         'second', 
         'Flavio', 
@@ -9091,7 +9091,7 @@ INSERT OR IGNORE INTO results (
 INSERT OR IGNORE INTO results (
         id, submission_id, result, first_name, last_name
       ) VALUES (
-        'Oyu_WH9URcK5NHVN1h52W', 
+        'LgUMtygmFx8c2uWwElWa-', 
         'JEz8h2fnxzfhFp5ZZKjRh', 
         'third', 
         'Mauro', 
@@ -9100,7 +9100,7 @@ INSERT OR IGNORE INTO results (
 INSERT OR IGNORE INTO results (
         id, submission_id, result, first_name, last_name
       ) VALUES (
-        'J9tv-rkLWX0XSrKWaT9Fv', 
+        'vpq0xlabMHjUhZBEmy23g', 
         'gRh5_EzuyMe3w107mwSRc', 
         'runner-up', 
         'Giacomo', 
@@ -9109,7 +9109,7 @@ INSERT OR IGNORE INTO results (
 INSERT OR IGNORE INTO results (
         id, submission_id, result, first_name, last_name
       ) VALUES (
-        'TpQOrGYz_Dbhg7LpWGQWL', 
+        'dfYFQp2ehTiiGUqLX7c7d', 
         'JeScQtWEv47aEUBAUSBT8', 
         'runner-up', 
         'Marco', 
@@ -9118,7 +9118,7 @@ INSERT OR IGNORE INTO results (
 INSERT OR IGNORE INTO results (
         id, submission_id, result, first_name, last_name
       ) VALUES (
-        'vzAtx7Z29hKbBbtV6eR6j', 
+        'nQQ7vi3C_pBSOwKA_GDyo', 
         'uvCXULX1aXuQ7AIxu7Tuo', 
         'runner-up', 
         'Massimo', 
@@ -9127,7 +9127,7 @@ INSERT OR IGNORE INTO results (
 INSERT OR IGNORE INTO results (
         id, submission_id, result, first_name, last_name
       ) VALUES (
-        'SW_6yQ1R1IBDMGLri38sY', 
+        'riRl1pKSh9jQDFR-vLupZ', 
         'VXoDhxb0SptEaBT88q6XH', 
         'runner-up', 
         'Gianni', 
@@ -9136,7 +9136,7 @@ INSERT OR IGNORE INTO results (
 INSERT OR IGNORE INTO results (
         id, submission_id, result, first_name, last_name
       ) VALUES (
-        '7XFFtgJe1f1jgeLvK-eBb', 
+        '36E4Fz6XJ4Zhc5CCXo0Hz', 
         'SOO7lwkSnxA_HIdsgHiAz', 
         'runner-up', 
         'Raffaele', 
@@ -9145,7 +9145,7 @@ INSERT OR IGNORE INTO results (
 INSERT OR IGNORE INTO results (
         id, submission_id, result, first_name, last_name
       ) VALUES (
-        'KZ3yJ9ZeI7z_nivmqAoG8', 
+        'xQIzUO3Uo-b-HdRvrFqwv', 
         'm829hsnfuBz2hIbi0PIUh', 
         'runner-up', 
         'Jordi', 
@@ -9154,7 +9154,7 @@ INSERT OR IGNORE INTO results (
 INSERT OR IGNORE INTO results (
         id, submission_id, result, first_name, last_name
       ) VALUES (
-        'XX_VOPtUbSP9L3WI-L9QA', 
+        'NyoxnDyMtSv2e8ibDKK-0', 
         '-LxsWcDHoHIVkhmb4o7GY', 
         'first', 
         'Andrea', 
@@ -9163,7 +9163,7 @@ INSERT OR IGNORE INTO results (
 INSERT OR IGNORE INTO results (
         id, submission_id, result, first_name, last_name
       ) VALUES (
-        'FfL48KR4_ztUdk0itC3ZT', 
+        'D0KFE1vivUYw5QJpnybuK', 
         'z-AtHBKJnKCVAt0qdaG9r', 
         'second', 
         'Carlos', 
@@ -9172,7 +9172,7 @@ INSERT OR IGNORE INTO results (
 INSERT OR IGNORE INTO results (
         id, submission_id, result, first_name, last_name
       ) VALUES (
-        'iF0N_MaDYGgosDUl_LmWk', 
+        'VPWn3OkOBDzUnJNzZLf-T', 
         '5ZzbGAegWUcijTM82Cb0i', 
         'third', 
         'Mauro', 
@@ -9181,7 +9181,7 @@ INSERT OR IGNORE INTO results (
 INSERT OR IGNORE INTO results (
         id, submission_id, result, first_name, last_name
       ) VALUES (
-        'Ep0UtLpuxDaNRoMFf32P4', 
+        'RBZzy_EqBfQcey83tIlsL', 
         'c88BcfQs2rf76ODPotG3D', 
         'runner-up', 
         'Beth', 
@@ -9190,7 +9190,7 @@ INSERT OR IGNORE INTO results (
 INSERT OR IGNORE INTO results (
         id, submission_id, result, first_name, last_name
       ) VALUES (
-        '6h0isB6_V1Xi24b5ma_-W', 
+        '47AJGxuEtYder_s87z52s', 
         '5-jUOwkOreQAG0BHnGyC1', 
         'runner-up', 
         'Gianluca', 
@@ -9199,7 +9199,7 @@ INSERT OR IGNORE INTO results (
 INSERT OR IGNORE INTO results (
         id, submission_id, result, first_name, last_name
       ) VALUES (
-        'JhSTvAy2j-LNqVj1c4zNu', 
+        'TnGQ7F3cxyhbwFxwZ4EWL', 
         'ikEhot6w0CmjXX5vN0cc2', 
         'runner-up', 
         'Gianluca', 
@@ -9208,7 +9208,7 @@ INSERT OR IGNORE INTO results (
 INSERT OR IGNORE INTO results (
         id, submission_id, result, first_name, last_name
       ) VALUES (
-        '87yppVa_Hh47bPdpFL7h6', 
+        'lPzvKeVLtLqohovRjciPx', 
         'oBHY-HSjxfv9Roi0z_fIF', 
         'first', 
         'Rooman', 
@@ -9217,7 +9217,7 @@ INSERT OR IGNORE INTO results (
 INSERT OR IGNORE INTO results (
         id, submission_id, result, first_name, last_name
       ) VALUES (
-        'AkGCivNdjkLmTcyTHO5BH', 
+        'tAZ_asSEvAUviEUCoo-Jn', 
         'gZucoWJlfoZzem669kFFg', 
         'second', 
         'Maurizio', 
@@ -9226,7 +9226,7 @@ INSERT OR IGNORE INTO results (
 INSERT OR IGNORE INTO results (
         id, submission_id, result, first_name, last_name
       ) VALUES (
-        'I1aHu9de3PIMrk40UUwbU', 
+        'Hren5Y9Bf_FFsQDxm-zlc', 
         'nJYmtsrEkhVE-NB7OmX7X', 
         'third', 
         'Virginia', 
@@ -9235,7 +9235,7 @@ INSERT OR IGNORE INTO results (
 INSERT OR IGNORE INTO results (
         id, submission_id, result, first_name, last_name
       ) VALUES (
-        'cln-VBqxCRIjN5ThQMeQX', 
+        '8QPIOblmO78WREQsagJrc', 
         'j5kgR2h7ho7YUsCDO6EYK', 
         'runner-up', 
         'Maurizio', 
@@ -9244,7 +9244,7 @@ INSERT OR IGNORE INTO results (
 INSERT OR IGNORE INTO results (
         id, submission_id, result, first_name, last_name
       ) VALUES (
-        'US8gW3LZx_MR_Bo3hf1A9', 
+        't3ECHHctaPSiTtxfe51ZM', 
         '3ppnHqqDBBPA02fpRYs80', 
         'runner-up', 
         'Rooman', 
@@ -9253,7 +9253,7 @@ INSERT OR IGNORE INTO results (
 INSERT OR IGNORE INTO results (
         id, submission_id, result, first_name, last_name
       ) VALUES (
-        '86ffHW0qK4lybwUTk4SC4', 
+        'isGXNFP9nPXCNyWSbpgyN', 
         'KwNtsm-WFNOK7fJwRXiWD', 
         'runner-up', 
         'Francesco', 
@@ -9262,7 +9262,7 @@ INSERT OR IGNORE INTO results (
 INSERT OR IGNORE INTO results (
         id, submission_id, result, first_name, last_name
       ) VALUES (
-        '1BigV-hv7R_HWWncMnIDY', 
+        'mQDFUwIZ9TtTNZ7dKwZ-F', 
         'jJf9k8LGczICdVbrUrfo5', 
         'first', 
         'Davide', 
@@ -9271,7 +9271,7 @@ INSERT OR IGNORE INTO results (
 INSERT OR IGNORE INTO results (
         id, submission_id, result, first_name, last_name
       ) VALUES (
-        'Dg7oPzG8BtYIog4gs53Fw', 
+        'ART-G-fPBBCPXWdded-O-', 
         'TqA8Rczao0vpiGKGyzERt', 
         'second', 
         'Raffaele', 
@@ -9280,7 +9280,7 @@ INSERT OR IGNORE INTO results (
 INSERT OR IGNORE INTO results (
         id, submission_id, result, first_name, last_name
       ) VALUES (
-        'HQ7Nrfx4m5CA3GkqT9aMh', 
+        'ST9154P-9UzmAXkigkwr8', 
         'IUTBDLaTAYixfXjZktLTh', 
         'third', 
         'Domenico', 
@@ -9289,7 +9289,7 @@ INSERT OR IGNORE INTO results (
 INSERT OR IGNORE INTO results (
         id, submission_id, result, first_name, last_name
       ) VALUES (
-        'auFargJMIgSpuagV0Q9mL', 
+        'e6N-qRy_z5aopukELipfv', 
         'iIz-hBBiTX0EBJW-0DN_b', 
         'runner-up', 
         'Marco', 
@@ -9298,7 +9298,7 @@ INSERT OR IGNORE INTO results (
 INSERT OR IGNORE INTO results (
         id, submission_id, result, first_name, last_name
       ) VALUES (
-        '73DCC35mEE3pZ9nGMNogb', 
+        '4jpRctTUDw7cQgRqt_qQG', 
         'fjkogCnKW_RBgZ01efRQn', 
         'runner-up', 
         'Francesco', 
@@ -9307,7 +9307,7 @@ INSERT OR IGNORE INTO results (
 INSERT OR IGNORE INTO results (
         id, submission_id, result, first_name, last_name
       ) VALUES (
-        'sP7vD7rQlp1P4vYz3RjxW', 
+        'lqOQAOe1fPGcZumfwpRjk', 
         'Yp-NXDMJYYxkp7atuy7pF', 
         'runner-up', 
         'Claudio', 
@@ -9316,7 +9316,7 @@ INSERT OR IGNORE INTO results (
 INSERT OR IGNORE INTO results (
         id, submission_id, result, first_name, last_name
       ) VALUES (
-        'H3AqBie_cPcZA5Vfl3mmj', 
+        'yFWnsUODIE92GKFkQTtXb', 
         'AE0Vz2aEMcrXBm2O7iViU', 
         'first', 
         'Elio', 
@@ -9325,7 +9325,7 @@ INSERT OR IGNORE INTO results (
 INSERT OR IGNORE INTO results (
         id, submission_id, result, first_name, last_name
       ) VALUES (
-        '1RDTIumnsNnx_u6QeP3ep', 
+        'R3IiPuB82PDvrqxIhoTd1', 
         'lvmh-M5sDgNArIX5BPjzg', 
         'second', 
         'Claudio', 
@@ -9334,7 +9334,7 @@ INSERT OR IGNORE INTO results (
 INSERT OR IGNORE INTO results (
         id, submission_id, result, first_name, last_name
       ) VALUES (
-        'AF0AUfzWOuQoiGvoiTMm9', 
+        'waYvmzM2f7InNH9zFw8Cr', 
         'YqEXyTuTENq5xTxP4qCw1', 
         'third', 
         'Paolo', 
@@ -9343,7 +9343,7 @@ INSERT OR IGNORE INTO results (
 INSERT OR IGNORE INTO results (
         id, submission_id, result, first_name, last_name
       ) VALUES (
-        'nQh2mcg1Cj-eI-e_OtWxq', 
+        'ewNtPAUBbyldZnPRcS-Fh', 
         'nfw6fWhJewIJ5Hxdj6kZC', 
         'runner-up', 
         'Matteo', 
@@ -9352,7 +9352,7 @@ INSERT OR IGNORE INTO results (
 INSERT OR IGNORE INTO results (
         id, submission_id, result, first_name, last_name
       ) VALUES (
-        'N_g6hCAw_ZoQcvT25sXyv', 
+        'uLmqDCabI6LonpfGmDD2H', 
         'zZZh6yHPhVvsXl7nwHvCI', 
         'runner-up', 
         'Beth', 
@@ -9361,7 +9361,7 @@ INSERT OR IGNORE INTO results (
 INSERT OR IGNORE INTO results (
         id, submission_id, result, first_name, last_name
       ) VALUES (
-        '5cdRoe8CMAwkXJEvaeLWj', 
+        'QhFCpxGabP5240BY_aSQp', 
         'WbxcdDL6OS8QKSD76_8kD', 
         'runner-up', 
         'Nicholaus', 
@@ -9370,7 +9370,7 @@ INSERT OR IGNORE INTO results (
 INSERT OR IGNORE INTO results (
         id, submission_id, result, first_name, last_name
       ) VALUES (
-        'WD1PZzPPtm6jPLm0LbDmZ', 
+        'Y-43BIP4MgU1T-vgpJLQP', 
         'MgxlSvbmn60E-53r9Vb12', 
         'runner-up', 
         'Lorenzo', 
@@ -9379,7 +9379,7 @@ INSERT OR IGNORE INTO results (
 INSERT OR IGNORE INTO results (
         id, submission_id, result, first_name, last_name
       ) VALUES (
-        'DUXeHDS3CHTucLouuR6nl', 
+        'SgfYOVU15h0HvDMqbw_ag', 
         'd7ejT5v58mMmhrg3CIDQl', 
         'first', 
         'Salvatore', 
@@ -9388,7 +9388,7 @@ INSERT OR IGNORE INTO results (
 INSERT OR IGNORE INTO results (
         id, submission_id, result, first_name, last_name
       ) VALUES (
-        'duZ0x-ZfN5j48fntwZDGU', 
+        '8sQGd-w8_w-zQOvZLDpFw', 
         '87hemlSVp-AU6JCaEBgZB', 
         'first', 
         'Salvatore', 
@@ -9397,7 +9397,7 @@ INSERT OR IGNORE INTO results (
 INSERT OR IGNORE INTO results (
         id, submission_id, result, first_name, last_name
       ) VALUES (
-        'SmWHnF5fL7eOvHBPiKL_d', 
+        'sw3to49XmY3aCAZPxL1dE', 
         'RvNvRJJhbgtiYQNf7gNlO', 
         'first', 
         'Salvatore', 
@@ -9406,7 +9406,7 @@ INSERT OR IGNORE INTO results (
 INSERT OR IGNORE INTO results (
         id, submission_id, result, first_name, last_name
       ) VALUES (
-        'C0-z0jtNXMqRvHb0dT41-', 
+        'anGRM9t_dZufLhJb1L2xO', 
         '0QP15S5wPrBBY2QJP_RMM', 
         'second', 
         'Francesco', 
@@ -9415,7 +9415,7 @@ INSERT OR IGNORE INTO results (
 INSERT OR IGNORE INTO results (
         id, submission_id, result, first_name, last_name
       ) VALUES (
-        'osOpesDGhVFkmajyU4sjd', 
+        'zoQ8xoXmUgA5xwXx-4pL0', 
         'NMMuWIYhMtBx2M-P7B013', 
         'second', 
         'Francesco', 
@@ -9424,7 +9424,7 @@ INSERT OR IGNORE INTO results (
 INSERT OR IGNORE INTO results (
         id, submission_id, result, first_name, last_name
       ) VALUES (
-        'rNp2_VJLLhP8ZLu-ji-zw', 
+        'rdlcP5gEyr7fJKv2LM7hQ', 
         'brFAwJIK_J7P2hrJpNTFk', 
         'second', 
         'Francesco', 
@@ -9433,7 +9433,7 @@ INSERT OR IGNORE INTO results (
 INSERT OR IGNORE INTO results (
         id, submission_id, result, first_name, last_name
       ) VALUES (
-        'rJS75ycQSI3vi9lDBF9Rx', 
+        'OmLopR6FPks1ujEG1c3XR', 
         'REAoFMXf5Jo3494I9pXMh', 
         'third', 
         'Davide', 
@@ -9442,7 +9442,7 @@ INSERT OR IGNORE INTO results (
 INSERT OR IGNORE INTO results (
         id, submission_id, result, first_name, last_name
       ) VALUES (
-        '9L7hQTiF-j6hqzilCnVcY', 
+        'iJYaZsLOZqzh8dH_oke8d', 
         'eXB6EYrzHLWt_mM9RKMLQ', 
         'third', 
         'Davide', 
@@ -9451,7 +9451,7 @@ INSERT OR IGNORE INTO results (
 INSERT OR IGNORE INTO results (
         id, submission_id, result, first_name, last_name
       ) VALUES (
-        'if-BUPIMCxGJNJO7cWSVr', 
+        'qOSA-WekOKjQbP_eLovh3', 
         'OJrSBkvEHc3HcsgtCncQ9', 
         'third', 
         'Davide', 
@@ -9460,7 +9460,7 @@ INSERT OR IGNORE INTO results (
 INSERT OR IGNORE INTO results (
         id, submission_id, result, first_name, last_name
       ) VALUES (
-        'pDew4iY9QD2VzCHGeU_WJ', 
+        'HQKrXvVdlwbxgwaoLwmUX', 
         'NXbeRZfuKeAKv99c6PVi_', 
         'runner-up', 
         'Domenico', 
@@ -9469,7 +9469,7 @@ INSERT OR IGNORE INTO results (
 INSERT OR IGNORE INTO results (
         id, submission_id, result, first_name, last_name
       ) VALUES (
-        'sW8UpbZjH3uIEEbrtION0', 
+        'jf3yEcmCJ90GNyk8M5sJI', 
         'z5_XYR_InQWdE4pahXj8s', 
         'runner-up', 
         'Domenico', 
@@ -9478,7 +9478,7 @@ INSERT OR IGNORE INTO results (
 INSERT OR IGNORE INTO results (
         id, submission_id, result, first_name, last_name
       ) VALUES (
-        'Vi71OL_AYuYt4S7pyX6Dd', 
+        '2jrkFhq-nkLuwqCXO-8TV', 
         'KPkYujjqskt4BKLc4eDdW', 
         'runner-up', 
         'Domenico', 
@@ -9487,7 +9487,7 @@ INSERT OR IGNORE INTO results (
 INSERT OR IGNORE INTO results (
         id, submission_id, result, first_name, last_name
       ) VALUES (
-        'C2-9EDDMqIHa5CCH0v4WZ', 
+        'nhfAeLCsyTIjAKgDTCVty', 
         'arJkcCR4h83VYDJdgwzqI', 
         'runner-up', 
         'Pasquale', 
@@ -9496,7 +9496,7 @@ INSERT OR IGNORE INTO results (
 INSERT OR IGNORE INTO results (
         id, submission_id, result, first_name, last_name
       ) VALUES (
-        'fWL-GviZqQCCDElsVLanj', 
+        'Gn6Bi-bguQY9coJlTLuM4', 
         'NjFK8SJPxMWo_0gKAyceP', 
         'runner-up', 
         'Pasquale', 
@@ -9505,7 +9505,7 @@ INSERT OR IGNORE INTO results (
 INSERT OR IGNORE INTO results (
         id, submission_id, result, first_name, last_name
       ) VALUES (
-        'itVq8YLtHzHcHmJKFTAqF', 
+        'dECUuy46veU3eOldXLFsG', 
         'aU_tWM_6bShz7KKCBwj_Y', 
         'runner-up', 
         'Pasquale', 
@@ -9514,7 +9514,7 @@ INSERT OR IGNORE INTO results (
 INSERT OR IGNORE INTO results (
         id, submission_id, result, first_name, last_name
       ) VALUES (
-        'AprOXHWEmMReVkUuvb9Qq', 
+        'Iiczp-ZwQZn8QFeAyKvvA', 
         'KJJ96SVXIv7DfCkTwxNT_', 
         'runner-up', 
         'Alessandro', 
@@ -9523,7 +9523,7 @@ INSERT OR IGNORE INTO results (
 INSERT OR IGNORE INTO results (
         id, submission_id, result, first_name, last_name
       ) VALUES (
-        'cWjvUpx6-S1w5LdKmEzti', 
+        'JBd1kc9Uw0rFtonzgrhKL', 
         'ebq-dhdAek9Gs04tp8dpB', 
         'runner-up', 
         'Alessandro', 
@@ -9532,7 +9532,7 @@ INSERT OR IGNORE INTO results (
 INSERT OR IGNORE INTO results (
         id, submission_id, result, first_name, last_name
       ) VALUES (
-        'pY-dG36NYys6N2j_vun7O', 
+        'mjhfGEkRAzIHYxP18XinK', 
         'gmI0NDRYNKoh2dy_RCq_d', 
         'runner-up', 
         'Alessandro', 
@@ -9541,7 +9541,7 @@ INSERT OR IGNORE INTO results (
 INSERT OR IGNORE INTO results (
         id, submission_id, result, first_name, last_name
       ) VALUES (
-        'fk1qKAJhA0cjOXAxxVpHr', 
+        'Vgwcac75ptVMIXU4q3euq', 
         'NP1i9F1VfoZ4KNygC_LKr', 
         'first', 
         'Angelo', 
@@ -9550,7 +9550,7 @@ INSERT OR IGNORE INTO results (
 INSERT OR IGNORE INTO results (
         id, submission_id, result, first_name, last_name
       ) VALUES (
-        'K22hwbglPpXtuJ78bqlVf', 
+        'yhbS41bAMnXdzgS2Wyvdh', 
         'nypAYToq-7qxEEUnVjTWB', 
         'second', 
         'Alberto', 
@@ -9559,7 +9559,7 @@ INSERT OR IGNORE INTO results (
 INSERT OR IGNORE INTO results (
         id, submission_id, result, first_name, last_name
       ) VALUES (
-        '3pm1ohpHnRFdr_xf0dGjk', 
+        'cc4OPsS9FjQwuMcjKDXWo', 
         'Z2hc4wpWd0ka63cCygV1v', 
         'third', 
         'Daniele', 
@@ -9568,7 +9568,7 @@ INSERT OR IGNORE INTO results (
 INSERT OR IGNORE INTO results (
         id, submission_id, result, first_name, last_name
       ) VALUES (
-        'woNzqs_lOQ67EoM2286rw', 
+        '2LJWKL_IkY2lX-Ph0PVCm', 
         'Tcb48J6nmpTDpDZni8ZhH', 
         'runner-up', 
         'Giancarlo', 
@@ -9577,7 +9577,7 @@ INSERT OR IGNORE INTO results (
 INSERT OR IGNORE INTO results (
         id, submission_id, result, first_name, last_name
       ) VALUES (
-        'R06K_vLeefYiOkF1GnW2s', 
+        'Nt9sLP1X0X1_H9QyzOMsP', 
         'SuMVWJmN3N7_9Ei-DrJWv', 
         'runner-up', 
         'Gabriella', 
@@ -9586,7 +9586,7 @@ INSERT OR IGNORE INTO results (
 INSERT OR IGNORE INTO results (
         id, submission_id, result, first_name, last_name
       ) VALUES (
-        'xNK2HmqW5iuRFhltyKQG3', 
+        'G3JBRRYeUuyWGFhxwYOpt', 
         'IcSWrxAB_hQTv4kEZFJZl', 
         'runner-up', 
         'Kevin', 
@@ -9595,7 +9595,7 @@ INSERT OR IGNORE INTO results (
 INSERT OR IGNORE INTO results (
         id, submission_id, result, first_name, last_name
       ) VALUES (
-        'iA16ZQG1v8dkYTyS__Ile', 
+        't-jerUxGwuwwVxalOLIm2', 
         'iVMRgheK1DHYJkbq_ADrK', 
         'first', 
         'Virginia', 
@@ -9604,7 +9604,7 @@ INSERT OR IGNORE INTO results (
 INSERT OR IGNORE INTO results (
         id, submission_id, result, first_name, last_name
       ) VALUES (
-        'bg5--M0qs8MpdMkzLPNOb', 
+        'uIt4If43FD63WLfM8hZb_', 
         'ES2EJ2OdM2s65A-UZLtAP', 
         'second', 
         'Vito', 
@@ -9613,7 +9613,7 @@ INSERT OR IGNORE INTO results (
 INSERT OR IGNORE INTO results (
         id, submission_id, result, first_name, last_name
       ) VALUES (
-        'VC4Ko9Cl3iVUFPd7rYsLv', 
+        'Fnx_6CvOC9wcHihF-eCGN', 
         'vQgppTgiAk19ODPBNKfTy', 
         'third', 
         'Lorenzo', 
@@ -9622,7 +9622,7 @@ INSERT OR IGNORE INTO results (
 INSERT OR IGNORE INTO results (
         id, submission_id, result, first_name, last_name
       ) VALUES (
-        'gXb0UiFqAx44e9Z4dbonL', 
+        'sOE7Kqzvckc1Vd7_QtG7m', 
         '4m2I4AwY1OE8pF40IBjvC', 
         'runner-up', 
         'Alberto', 
@@ -9631,7 +9631,7 @@ INSERT OR IGNORE INTO results (
 INSERT OR IGNORE INTO results (
         id, submission_id, result, first_name, last_name
       ) VALUES (
-        'XFZnizXW_277V0jGL8vX7', 
+        'kbB4pHWHKSonEmlBHi9_f', 
         'cerFO0usFkhc5dcpZyXdo', 
         'runner-up', 
         'Fabrizio', 
@@ -9640,7 +9640,7 @@ INSERT OR IGNORE INTO results (
 INSERT OR IGNORE INTO results (
         id, submission_id, result, first_name, last_name
       ) VALUES (
-        'iOvCqFr0Eh5fZR-L9jgiT', 
+        '0I_qWQpFN8X_0Zr4epe3u', 
         'hQ_SrmSw0N8kze69eZN9R', 
         'runner-up', 
         'Lorenzo', 
@@ -9649,7 +9649,7 @@ INSERT OR IGNORE INTO results (
 INSERT OR IGNORE INTO results (
         id, submission_id, result, first_name, last_name
       ) VALUES (
-        'Xp1xRtnM6Hdo8DE4DNaqZ', 
+        'oodvyTqEId4-ZbnFkOezp', 
         'YToOpPSk_NIMgXrj2vFOA', 
         'first', 
         'Pietro', 
@@ -9658,7 +9658,7 @@ INSERT OR IGNORE INTO results (
 INSERT OR IGNORE INTO results (
         id, submission_id, result, first_name, last_name
       ) VALUES (
-        'AYOwszCmJNSfmPKQC-KRy', 
+        'H7KPbdASPnkdyiVBBu-ar', 
         'UpjmDUoRXVIM_N5v_KOt0', 
         'second', 
         'Pietro', 
@@ -9667,7 +9667,7 @@ INSERT OR IGNORE INTO results (
 INSERT OR IGNORE INTO results (
         id, submission_id, result, first_name, last_name
       ) VALUES (
-        'lBcY8wCWTaiDi4YWgkbXH', 
+        '3DGPl-sY9HmB3MDqylUJa', 
         'ehZIp4NbtuMCdRmHSgE0G', 
         'third', 
         'Matteo', 
@@ -9676,7 +9676,7 @@ INSERT OR IGNORE INTO results (
 INSERT OR IGNORE INTO results (
         id, submission_id, result, first_name, last_name
       ) VALUES (
-        'vSC5Bu_pvFhZaVKiITkqT', 
+        '_Yw_F72oX7MFLF8OYPh3D', 
         'CWWvaWO9IsBygg89FUljc', 
         'runner-up', 
         'Guido', 
@@ -9685,7 +9685,7 @@ INSERT OR IGNORE INTO results (
 INSERT OR IGNORE INTO results (
         id, submission_id, result, first_name, last_name
       ) VALUES (
-        'Dx7ZOMxC59eGqfou3FTC-', 
+        'pJWWgwbqdHLcVdbUpyj8b', 
         'VgR7DO-2hdJB-IoURB6lb', 
         'runner-up', 
         'Alessio', 
@@ -9694,7 +9694,7 @@ INSERT OR IGNORE INTO results (
 INSERT OR IGNORE INTO results (
         id, submission_id, result, first_name, last_name
       ) VALUES (
-        'jKr6XMH8pclXrvvju6H1c', 
+        'q5CWLp0IfWu9BhzyRPLDk', 
         'ZwCJQ7pSS7h4BzZC5iNbb', 
         'runner-up', 
         'Pietro', 
@@ -9703,7 +9703,7 @@ INSERT OR IGNORE INTO results (
 INSERT OR IGNORE INTO results (
         id, submission_id, result, first_name, last_name
       ) VALUES (
-        'RUg4TCR_NYdOKOQV176CI', 
+        'Wy3z-F-gIxj9GupvdtRN8', 
         'nLWBNYmmx0cztQ5iUNRCH', 
         'runner-up', 
         'Matteo', 
@@ -9712,7 +9712,7 @@ INSERT OR IGNORE INTO results (
 INSERT OR IGNORE INTO results (
         id, submission_id, result, first_name, last_name
       ) VALUES (
-        'dR4elOOmW00wN1NOXBO5G', 
+        'rAZSrhrVjcuQeOAVzpbw4', 
         '_HLyaF9PQVbP02-QbBw_O', 
         'runner-up', 
         'Francesco', 
@@ -9721,7 +9721,7 @@ INSERT OR IGNORE INTO results (
 INSERT OR IGNORE INTO results (
         id, submission_id, result, first_name, last_name
       ) VALUES (
-        '5puWEshgszXo7zGRlLCXm', 
+        '6cYoV8XQYYDB_YnyVlZAB', 
         '0rO3EpD7R5oQVe3tfd_ny', 
         'runner-up', 
         'Gianni', 
@@ -9730,7 +9730,7 @@ INSERT OR IGNORE INTO results (
 INSERT OR IGNORE INTO results (
         id, submission_id, result, first_name, last_name
       ) VALUES (
-        'cAERZCg2SvejrlUzv8cw-', 
+        'bbLz87tMMr94D0BzC_ytK', 
         'iCi6G9GEE8GzSZQZojO7t', 
         'runner-up', 
         'Francesco', 
@@ -9739,7 +9739,7 @@ INSERT OR IGNORE INTO results (
 INSERT OR IGNORE INTO results (
         id, submission_id, result, first_name, last_name
       ) VALUES (
-        '5Oox6ZAj9CgwjK86g9dLz', 
+        'D1oZTdUKn6vSSDs71sR7b', 
         'j3CgxU_8Lp1-AjX--DiJ-', 
         'first', 
         'Gianni', 
@@ -9748,7 +9748,7 @@ INSERT OR IGNORE INTO results (
 INSERT OR IGNORE INTO results (
         id, submission_id, result, first_name, last_name
       ) VALUES (
-        '3vaVsK2Mx_7NLvQOxS3Ax', 
+        'H0BTa7tPy-a9LAg5Pj1Cb', 
         'iK0z5TgXYMu5Zq4nVVQKo', 
         'second', 
         'Mario', 
@@ -9757,7 +9757,7 @@ INSERT OR IGNORE INTO results (
 INSERT OR IGNORE INTO results (
         id, submission_id, result, first_name, last_name
       ) VALUES (
-        'aSAvA_yFr2_QHlssUJjEj', 
+        'MHGeOBQhiwdxCdqfRl9fe', 
         'rqVV-f9-rHVsNWVY2lWi3', 
         'third', 
         'Davide', 
@@ -9766,7 +9766,7 @@ INSERT OR IGNORE INTO results (
 INSERT OR IGNORE INTO results (
         id, submission_id, result, first_name, last_name
       ) VALUES (
-        'CtYoqC8WpH7K04RQU9RRY', 
+        'qIAnVq8IWgBpMUDfUIjHU', 
         'wOgFgkIVv01j9fZRF5Zwz', 
         'runner-up', 
         'Domenico', 
@@ -9775,7 +9775,7 @@ INSERT OR IGNORE INTO results (
 INSERT OR IGNORE INTO results (
         id, submission_id, result, first_name, last_name
       ) VALUES (
-        'BO8vw08rF3eVJBOn8IQga', 
+        'JZL1N9upSbtYHvXctz9aJ', 
         'fuf3zwwHeXr-vxCC2_MWL', 
         'runner-up', 
         'Alessio', 
@@ -9784,7 +9784,7 @@ INSERT OR IGNORE INTO results (
 INSERT OR IGNORE INTO results (
         id, submission_id, result, first_name, last_name
       ) VALUES (
-        'QhuxqlwjL7Vvu_iuOGIc6', 
+        '_6PI_ea8h1qdZ8bX19fFS', 
         'DkdzHIYIetzQMzVldezTr', 
         'runner-up', 
         'Alberto', 
@@ -9793,7 +9793,7 @@ INSERT OR IGNORE INTO results (
 INSERT OR IGNORE INTO results (
         id, submission_id, result, first_name, last_name
       ) VALUES (
-        'nF1cawQ4_St0TLcRfp2lF', 
+        'mg5hrLao1r7qluQUXaXqC', 
         'Zpbd1sxB4x0-hJnboXB6b', 
         'runner-up', 
         'Giacomo', 
@@ -9802,7 +9802,7 @@ INSERT OR IGNORE INTO results (
 INSERT OR IGNORE INTO results (
         id, submission_id, result, first_name, last_name
       ) VALUES (
-        'h1-YiGyPzwx7lyZyzRPmf', 
+        'LFUlszdg02MoAZSVLf14H', 
         'hdv5xnBKj6el1ft_DpxMT', 
         'runner-up', 
         'Beth', 
@@ -9811,7 +9811,7 @@ INSERT OR IGNORE INTO results (
 INSERT OR IGNORE INTO results (
         id, submission_id, result, first_name, last_name
       ) VALUES (
-        'l-iCYBio4vcdOl4MBh3FN', 
+        'IZ3U8nbj7CsNLWzNWjKgH', 
         'uRr7AqRkeNSnYQ75Kn21z', 
         'runner-up', 
         'Beth', 
@@ -9820,7 +9820,7 @@ INSERT OR IGNORE INTO results (
 INSERT OR IGNORE INTO results (
         id, submission_id, result, first_name, last_name
       ) VALUES (
-        'HJFJke0ESAB0eKVqVVOjc', 
+        'oDITI5MLklu2Yxzl4Hhey', 
         'hvNF9rP9hTpfBTuqXt6Hr', 
         'runner-up', 
         'David', 
@@ -9829,7 +9829,7 @@ INSERT OR IGNORE INTO results (
 INSERT OR IGNORE INTO results (
         id, submission_id, result, first_name, last_name
       ) VALUES (
-        'JgFVcw4vxAf36jkzSbVgg', 
+        'uL2yahIbyWaauZ_4tdjjJ', 
         'cJ5b1jai35ORhX9Dngw4A', 
         'first', 
         'Beth', 
@@ -9838,7 +9838,7 @@ INSERT OR IGNORE INTO results (
 INSERT OR IGNORE INTO results (
         id, submission_id, result, first_name, last_name
       ) VALUES (
-        'eBTMRZi5O0_hqMuDscXpM', 
+        'PS0agRzpb43hZxFZfmPYY', 
         'VYiTAX-LB706bMn5CyREr', 
         'second', 
         'Marco', 
@@ -9847,7 +9847,7 @@ INSERT OR IGNORE INTO results (
 INSERT OR IGNORE INTO results (
         id, submission_id, result, first_name, last_name
       ) VALUES (
-        'USyXwPARgOiw6dKy1xc7i', 
+        'zLIDVHuHfYgcySk_MILry', 
         'fUiD2xT0pedo4jt2uwPgt', 
         'third', 
         'Paolo', 
@@ -9856,7 +9856,7 @@ INSERT OR IGNORE INTO results (
 INSERT OR IGNORE INTO results (
         id, submission_id, result, first_name, last_name
       ) VALUES (
-        '8In-Hy3CQw-fzURkkKREN', 
+        't3msBGCp_BiHETzPGEPht', 
         'pdDrTw1yRfylnf-5EGeAP', 
         'runner-up', 
         'Giacomo', 
@@ -9865,7 +9865,7 @@ INSERT OR IGNORE INTO results (
 INSERT OR IGNORE INTO results (
         id, submission_id, result, first_name, last_name
       ) VALUES (
-        'o-9GVAIqRtjetbB712jRD', 
+        'tFwWqvdqL6OuWXIbjZg8s', 
         'cx_BRhHyWW5WytCXv5dEm', 
         'runner-up', 
         'Lynn', 
@@ -9874,7 +9874,7 @@ INSERT OR IGNORE INTO results (
 INSERT OR IGNORE INTO results (
         id, submission_id, result, first_name, last_name
       ) VALUES (
-        'OgMyrpNn1-W1JqD88PQ_K', 
+        'g3UDD3Zkcil5XB6eAvm8R', 
         'Vf8sv9wx3JQ737GfRFW6Q', 
         'runner-up', 
         'Jordi', 
@@ -9883,7 +9883,7 @@ INSERT OR IGNORE INTO results (
 INSERT OR IGNORE INTO results (
         id, submission_id, result, first_name, last_name
       ) VALUES (
-        'I11m-tvTeYoJb2rd6fyE6', 
+        '93nKNlco0ROyRz1WruikD', 
         'jfDUSFgPb47wzpPPZSj4e', 
         'runner-up', 
         'Jordi', 
@@ -9892,7 +9892,7 @@ INSERT OR IGNORE INTO results (
 INSERT OR IGNORE INTO results (
         id, submission_id, result, first_name, last_name
       ) VALUES (
-        'MfimVn07XtV2pEA6Gn9ET', 
+        'Ij7QfvexAWf4EjL2nWMRa', 
         'QpNL5pGvhLN9dZiFufl2_', 
         'runner-up', 
         'Raimundo', 
@@ -9901,7 +9901,7 @@ INSERT OR IGNORE INTO results (
 INSERT OR IGNORE INTO results (
         id, submission_id, result, first_name, last_name
       ) VALUES (
-        'cJMrwv4NVIlK0oGY-aHij', 
+        'iXH54kQg0kh_ETQQsnL6B', 
         'u6afNdQjcxk74TRI43XIK', 
         'runner-up', 
         'Francesco', 
@@ -9910,7 +9910,7 @@ INSERT OR IGNORE INTO results (
 INSERT OR IGNORE INTO results (
         id, submission_id, result, first_name, last_name
       ) VALUES (
-        '8h-xzT6xvZBSJnYlx1Rqz', 
+        'lMsoZJzUKMag5xcwZQKLI', 
         'pJPhSj2vqQx6q7hsq5FY2', 
         'runner-up', 
         'Nicholas', 
@@ -9919,7 +9919,7 @@ INSERT OR IGNORE INTO results (
 INSERT OR IGNORE INTO results (
         id, submission_id, result, first_name, last_name
       ) VALUES (
-        'PHCPmu1YwWiZsxqrKnX_1', 
+        'hUSoc-Zmv6dIkcqPqLru_', 
         'sF-mg8LQ7xA9uiFYyN5Y2', 
         'first', 
         'Domenico', 
@@ -9928,7 +9928,7 @@ INSERT OR IGNORE INTO results (
 INSERT OR IGNORE INTO results (
         id, submission_id, result, first_name, last_name
       ) VALUES (
-        'RCXb4Yd4M6nd5p0pHw4pf', 
+        'ZEciSeKmntG-zSMXNXj8k', 
         'KbWJVbr1xs_mHZBgN8Z4Z', 
         'first', 
         'Domenico', 
@@ -9937,7 +9937,7 @@ INSERT OR IGNORE INTO results (
 INSERT OR IGNORE INTO results (
         id, submission_id, result, first_name, last_name
       ) VALUES (
-        'AIl8P7Y0Ri9M-buA7t5iT', 
+        'e49F-7aR2awlcjTEYEyLd', 
         'SOMds3iAPeu5ihiodgqee', 
         'first', 
         'Domenico', 
@@ -9946,7 +9946,7 @@ INSERT OR IGNORE INTO results (
 INSERT OR IGNORE INTO results (
         id, submission_id, result, first_name, last_name
       ) VALUES (
-        'XJftFrZ54W9gyu4zMjlsh', 
+        'tKhY3o8MbObNn1Xj7LSk6', 
         'OKrXDdOYJ_-zy-F0UvCPr', 
         'second', 
         'Nicholas', 
@@ -9955,7 +9955,7 @@ INSERT OR IGNORE INTO results (
 INSERT OR IGNORE INTO results (
         id, submission_id, result, first_name, last_name
       ) VALUES (
-        'w4gPBIQNUk3spXTZ0RK5v', 
+        'Q1kr8mPFTvQkNxcoWijGQ', 
         'adCUqS9nV8FRdu8SH_7CY', 
         'second', 
         'Nicholas', 
@@ -9964,7 +9964,7 @@ INSERT OR IGNORE INTO results (
 INSERT OR IGNORE INTO results (
         id, submission_id, result, first_name, last_name
       ) VALUES (
-        'd8KRwo7oIZf9fo80PQm6R', 
+        'SUWBSpjQxp9S2-2_99MiX', 
         'fD8g5y7VWSeVlqtR3blLh', 
         'second', 
         'Nicholas', 
@@ -9973,7 +9973,7 @@ INSERT OR IGNORE INTO results (
 INSERT OR IGNORE INTO results (
         id, submission_id, result, first_name, last_name
       ) VALUES (
-        'VUTHMC_qS9pt0F5prBt2U', 
+        '54L9bvoqV5GXUs-ZvA7gV', 
         'o9sMs7dDF0Oj-ti-l7wkX', 
         'third', 
         'Adriano', 
@@ -9982,7 +9982,7 @@ INSERT OR IGNORE INTO results (
 INSERT OR IGNORE INTO results (
         id, submission_id, result, first_name, last_name
       ) VALUES (
-        'KdA0Z5AwpkexV-xnZAI_S', 
+        'lj_BZzifCgkMzNb89z4WO', 
         'VZkAORX5chUvOT4uWeq8T', 
         'third', 
         'Adriano', 
@@ -9991,7 +9991,7 @@ INSERT OR IGNORE INTO results (
 INSERT OR IGNORE INTO results (
         id, submission_id, result, first_name, last_name
       ) VALUES (
-        '6VSeYe-sEqnwiayxgr_8b', 
+        'v3joTaTtQR-ukwkudr43j', 
         'k3cXltm-_mkEfhLXYpJAZ', 
         'third', 
         'Adriano', 
@@ -10000,7 +10000,7 @@ INSERT OR IGNORE INTO results (
 INSERT OR IGNORE INTO results (
         id, submission_id, result, first_name, last_name
       ) VALUES (
-        'bY81q_BXjW_RbiNSpq8H7', 
+        '9IZ4MH1zADF4jbbcuNzE_', 
         'invRhhcrVKpsaDfb2CtRY', 
         'runner-up', 
         'Elio', 
@@ -10009,7 +10009,7 @@ INSERT OR IGNORE INTO results (
 INSERT OR IGNORE INTO results (
         id, submission_id, result, first_name, last_name
       ) VALUES (
-        'B7YNv2Tty_Jpaciyyqalb', 
+        'L7Z5bt-Rka3_EQrU6uqB4', 
         '6g5KWQF4IRfmgCJbP2BE1', 
         'runner-up', 
         'Elio', 
@@ -10018,7 +10018,7 @@ INSERT OR IGNORE INTO results (
 INSERT OR IGNORE INTO results (
         id, submission_id, result, first_name, last_name
       ) VALUES (
-        'DvVwRUILgxNrIpv0ay6-c', 
+        'MY6biQOMlcqQDwhjWc6fE', 
         'pyzWXsaFBpWZQfwLw1ME3', 
         'runner-up', 
         'Elio', 
@@ -10027,7 +10027,7 @@ INSERT OR IGNORE INTO results (
 INSERT OR IGNORE INTO results (
         id, submission_id, result, first_name, last_name
       ) VALUES (
-        'Cg2ZAzKKUgFCYrUF1v_bO', 
+        '9ciYiucWv4zblYgxrPCnl', 
         'PT5HcOWjDnalf7gye0siW', 
         'runner-up', 
         'Marco', 
@@ -10036,7 +10036,7 @@ INSERT OR IGNORE INTO results (
 INSERT OR IGNORE INTO results (
         id, submission_id, result, first_name, last_name
       ) VALUES (
-        'XN9TGOYehR5K66HS9Khmv', 
+        'aPwjVj_5RxmRlwZDpuvob', 
         'QOmud8le_1PzzX14YT0vo', 
         'runner-up', 
         'Marco', 
@@ -10045,7 +10045,7 @@ INSERT OR IGNORE INTO results (
 INSERT OR IGNORE INTO results (
         id, submission_id, result, first_name, last_name
       ) VALUES (
-        'c5fyaPfWJRiwiHZVBPdJA', 
+        'PibNiDWFl0cyBN0BKib1h', 
         'Py0Bj6w7I_Tn_H38GMR8-', 
         'runner-up', 
         'Marco', 
@@ -10054,7 +10054,7 @@ INSERT OR IGNORE INTO results (
 INSERT OR IGNORE INTO results (
         id, submission_id, result, first_name, last_name
       ) VALUES (
-        'wMhvia-IYSYp_zqktmJ6B', 
+        '3X0zxRoO9kBu1-AgV7fxO', 
         'Xjz29KG6ev2Ytn1v7h-aa', 
         'runner-up', 
         'Jordi', 
@@ -10063,7 +10063,7 @@ INSERT OR IGNORE INTO results (
 INSERT OR IGNORE INTO results (
         id, submission_id, result, first_name, last_name
       ) VALUES (
-        'h6f5-55U3bi1fYMPqphzJ', 
+        'Hbo9B_hEdWwIroFzzneZR', 
         'IvDhMwLuXCQq-hoGfgbrV', 
         'runner-up', 
         'Jordi', 
@@ -10072,7 +10072,7 @@ INSERT OR IGNORE INTO results (
 INSERT OR IGNORE INTO results (
         id, submission_id, result, first_name, last_name
       ) VALUES (
-        'LMHqK2SNg5GDwBkg-fcRN', 
+        'sHBco1n09QpslLs22Xv7T', 
         'nXERi7Re96osrQ06QA41F', 
         'runner-up', 
         'Jordi', 
@@ -10081,7 +10081,7 @@ INSERT OR IGNORE INTO results (
 INSERT OR IGNORE INTO results (
         id, submission_id, result, first_name, last_name
       ) VALUES (
-        'Nkjn3y2rem6Vn7CPVhWjM', 
+        'u5NNpl2nKTLX9F5Lb_Nko', 
         'zHINuY1NGeIe8-2oIT89q', 
         'runner-up', 
         'Filippo', 
@@ -10090,7 +10090,7 @@ INSERT OR IGNORE INTO results (
 INSERT OR IGNORE INTO results (
         id, submission_id, result, first_name, last_name
       ) VALUES (
-        '_D_5nNmUyFJ9kATLj-I1z', 
+        'xdyv8gbvKCCYokGS53fJ5', 
         'fi6VQ2Ee9ThDFNmz8I3na', 
         'runner-up', 
         'Filippo', 
@@ -10099,7 +10099,7 @@ INSERT OR IGNORE INTO results (
 INSERT OR IGNORE INTO results (
         id, submission_id, result, first_name, last_name
       ) VALUES (
-        'zO5U8S7LBcjfiJv9Dtm97', 
+        'mdombFrA99xexCSux30zz', 
         'h6fkkI2qo0ghiikxkbt2P', 
         'runner-up', 
         'Filippo', 
@@ -10108,7 +10108,7 @@ INSERT OR IGNORE INTO results (
 INSERT OR IGNORE INTO results (
         id, submission_id, result, first_name, last_name
       ) VALUES (
-        'dnLqCNP3hGuJfUMxhitFc', 
+        'JInMFOBV-uKkEETDx7JMG', 
         '5t0eTmCy0fKYvOGFAriUL', 
         'runner-up', 
         'David', 
@@ -10117,7 +10117,7 @@ INSERT OR IGNORE INTO results (
 INSERT OR IGNORE INTO results (
         id, submission_id, result, first_name, last_name
       ) VALUES (
-        'mX21ffAbgEbsTthYshho9', 
+        'QH1-tUC2_PYhwfbYCvWyD', 
         'D0PYlq1PbT_UOo7U-oC0P', 
         'runner-up', 
         'David', 
@@ -10126,7 +10126,7 @@ INSERT OR IGNORE INTO results (
 INSERT OR IGNORE INTO results (
         id, submission_id, result, first_name, last_name
       ) VALUES (
-        'B6XA2CTwo5rE4AW6XSOkD', 
+        '0NjtI_0kaasLepSuGnv-W', 
         'UuMqKlhD25ye2ltncJB3F', 
         'runner-up', 
         'David', 
@@ -10135,7 +10135,7 @@ INSERT OR IGNORE INTO results (
 INSERT OR IGNORE INTO results (
         id, submission_id, result, first_name, last_name
       ) VALUES (
-        '2Am6DF2oMcxqbqgc_ir1U', 
+        'M7q3Ymselc4QvgNfvatTM', 
         'evww3qRjAdt1uNGhSA_sG', 
         'runner-up', 
         'Virginia', 
@@ -10144,7 +10144,7 @@ INSERT OR IGNORE INTO results (
 INSERT OR IGNORE INTO results (
         id, submission_id, result, first_name, last_name
       ) VALUES (
-        '3aL3Dus7P2Fng01HNr_WM', 
+        '_xWqcn65IpJWBVU0gLEgw', 
         'hyrARIu9J9qonNgybkZE4', 
         'runner-up', 
         'Virginia', 
@@ -10153,7 +10153,7 @@ INSERT OR IGNORE INTO results (
 INSERT OR IGNORE INTO results (
         id, submission_id, result, first_name, last_name
       ) VALUES (
-        'C2iDX3bv3iYwVAkw8s3KK', 
+        'AM0-1c5MrPaSdgPKmksxD', 
         'T29PnXwI2s73-xwu1wuxP', 
         'runner-up', 
         'Virginia', 
@@ -10162,7 +10162,7 @@ INSERT OR IGNORE INTO results (
 INSERT OR IGNORE INTO results (
         id, submission_id, result, first_name, last_name
       ) VALUES (
-        'HrD-DAL7sBkU9nc7zTrVa', 
+        '3z4s6F6eNHX3FNuTZJJD0', 
         '48smQ2GN8BZegqQyDwunf', 
         'runner-up', 
         'David', 
@@ -10171,7 +10171,7 @@ INSERT OR IGNORE INTO results (
 INSERT OR IGNORE INTO results (
         id, submission_id, result, first_name, last_name
       ) VALUES (
-        'mOz8J-6z-HymRVejbpSHe', 
+        'SWzmqFip1531Y4WAQ1PwB', 
         '5UAVTjRzsxG6wOcz0CDj-', 
         'runner-up', 
         'Francesco', 
@@ -10180,7 +10180,7 @@ INSERT OR IGNORE INTO results (
 INSERT OR IGNORE INTO results (
         id, submission_id, result, first_name, last_name
       ) VALUES (
-        '5kuH25WLFM8CI8i_EHaJV', 
+        'pjPq2p6p88rhRlgEaYMAA', 
         'uMj0GooHr0-b8zzhn_m9-', 
         'runner-up', 
         'David', 
@@ -10189,7 +10189,7 @@ INSERT OR IGNORE INTO results (
 INSERT OR IGNORE INTO results (
         id, submission_id, result, first_name, last_name
       ) VALUES (
-        'ZW5UwDEA-Cy1ROsZOxzIG', 
+        'bPdhQF_w23kbQ2sYEfMpp', 
         'K68CQgDwEsPm1QzMC7Va1', 
         'first', 
         'Mario', 
@@ -10198,7 +10198,7 @@ INSERT OR IGNORE INTO results (
 INSERT OR IGNORE INTO results (
         id, submission_id, result, first_name, last_name
       ) VALUES (
-        'mep4fjE066ki2SfniNnuJ', 
+        'u3ZRsHSwjKs6GKYeD94kQ', 
         'SYzvS1vbpPK6FSZsGyMYD', 
         'second', 
         'Filippo', 
@@ -10207,7 +10207,7 @@ INSERT OR IGNORE INTO results (
 INSERT OR IGNORE INTO results (
         id, submission_id, result, first_name, last_name
       ) VALUES (
-        'S5enfQllxMWRJMmJuDOZ4', 
+        'mSJlLXagNWRyjWrIxN_-L', 
         'aAvFMCfdMjVMUdIhMCIbk', 
         'third', 
         'Adriano', 
@@ -10216,7 +10216,7 @@ INSERT OR IGNORE INTO results (
 INSERT OR IGNORE INTO results (
         id, submission_id, result, first_name, last_name
       ) VALUES (
-        'R9CX-3bRm9zKZxeeOZ1ab', 
+        'SXr8vqyd1vrAfdvL6Ks6z', 
         'jFHCQHddXlsGPc0BuMHBI', 
         'runner-up', 
         'Marco', 
@@ -10225,7 +10225,7 @@ INSERT OR IGNORE INTO results (
 INSERT OR IGNORE INTO results (
         id, submission_id, result, first_name, last_name
       ) VALUES (
-        'aAKartPcdfijBEnttYbHg', 
+        '60LJHIuBzDs9rgb6R4G8D', 
         '8FJG04q40pnkNaUYRWTu_', 
         'runner-up', 
         'Roberto', 
@@ -10234,7 +10234,7 @@ INSERT OR IGNORE INTO results (
 INSERT OR IGNORE INTO results (
         id, submission_id, result, first_name, last_name
       ) VALUES (
-        'JmWD1RWOb7KmRU1PuxV10', 
+        'HcgOmkB_XiE5kLiE1CE3F', 
         '0f2zDha48528XgHDiD3rm', 
         'runner-up', 
         'Domenico', 
@@ -10243,7 +10243,7 @@ INSERT OR IGNORE INTO results (
 INSERT OR IGNORE INTO results (
         id, submission_id, result, first_name, last_name
       ) VALUES (
-        '_moNnUKAopHy2MjQo8muc', 
+        'STjCJrgobPT5KjfR9TD_3', 
         'LNF4dM578EQNbdGjpQ7nL', 
         'runner-up', 
         'Giancarlo', 
@@ -10252,7 +10252,7 @@ INSERT OR IGNORE INTO results (
 INSERT OR IGNORE INTO results (
         id, submission_id, result, first_name, last_name
       ) VALUES (
-        '3u5anB9azToAlb7H52t9E', 
+        'm7PV5rZgcenTagLEV_OHG', 
         'QNJiN62jWYJ3lEcpZhyI0', 
         'runner-up', 
         'Pier', 
@@ -10261,7 +10261,7 @@ INSERT OR IGNORE INTO results (
 INSERT OR IGNORE INTO results (
         id, submission_id, result, first_name, last_name
       ) VALUES (
-        'HmFf0yr2UClPA-appRYco', 
+        'u6Oy05XkZYP4G-4ckD5du', 
         'HUhd1HsqdBJO-Qyw0ynX1', 
         'runner-up', 
         'Mauro', 
@@ -10270,7 +10270,7 @@ INSERT OR IGNORE INTO results (
 INSERT OR IGNORE INTO results (
         id, submission_id, result, first_name, last_name
       ) VALUES (
-        'iDuKNp9-niUod4-j2Du3T', 
+        'UpaVhvF75NDplTf-X3O03', 
         'O6_tm-pgf2k1R82b-wanW', 
         'first', 
         'Aldo', 
@@ -10279,7 +10279,7 @@ INSERT OR IGNORE INTO results (
 INSERT OR IGNORE INTO results (
         id, submission_id, result, first_name, last_name
       ) VALUES (
-        'Dsq_pWYuLDxcrvlyVVeHD', 
+        'ttsRaEPSRoRm9XKLSEF9o', 
         '4JxzrfaBFoB6uuoknLk3E', 
         'second', 
         'Marco', 
@@ -10288,7 +10288,7 @@ INSERT OR IGNORE INTO results (
 INSERT OR IGNORE INTO results (
         id, submission_id, result, first_name, last_name
       ) VALUES (
-        'XN8YDu1_CfUkcDtdAWGVN', 
+        'toUENUixxcJJJnV6-rxop', 
         'HSQ8FD3dSsRFeamvfeADJ', 
         'third', 
         'Gianni', 
@@ -10297,7 +10297,7 @@ INSERT OR IGNORE INTO results (
 INSERT OR IGNORE INTO results (
         id, submission_id, result, first_name, last_name
       ) VALUES (
-        '2a-NWuTCUI99b2u82WEJz', 
+        '5dRQGcC0X7eTrm5YW2Eu4', 
         'HjSUsEOPHBBDqp0F6ReTp', 
         'runner-up', 
         'Aldo', 
@@ -10306,7 +10306,7 @@ INSERT OR IGNORE INTO results (
 INSERT OR IGNORE INTO results (
         id, submission_id, result, first_name, last_name
       ) VALUES (
-        'knDp6sSghalZl5QtF1x3Y', 
+        '7mNF0P5gi9kXnh7d0BdR1', 
         'Y8-cHNQMUnr-B0gAu9yDu', 
         'runner-up', 
         'Alessio', 
@@ -10315,7 +10315,7 @@ INSERT OR IGNORE INTO results (
 INSERT OR IGNORE INTO results (
         id, submission_id, result, first_name, last_name
       ) VALUES (
-        'Ki8LX5q2PMR9AMB7s1Hel', 
+        'SVqg2VwD_a2af-4t_s33I', 
         '-mO7rSpq7AovJbMj1Etkq', 
         'runner-up', 
         'Alessio', 
@@ -10324,7 +10324,7 @@ INSERT OR IGNORE INTO results (
 INSERT OR IGNORE INTO results (
         id, submission_id, result, first_name, last_name
       ) VALUES (
-        '49eKWgKCisfuc5Qem2ab5', 
+        'gpion53ykq9dO91hBWKL_', 
         'dNJEcdnxt-oGv3sB9JE5w', 
         'runner-up', 
         'Pietro', 
@@ -10333,7 +10333,7 @@ INSERT OR IGNORE INTO results (
 INSERT OR IGNORE INTO results (
         id, submission_id, result, first_name, last_name
       ) VALUES (
-        'GFftn24-OsZNBKeHgEzMf', 
+        '2U4m4bg36npoPKWJMFVQ4', 
         'TSAuDkSpRM0ii4-KMVTMT', 
         'runner-up', 
         'Andrea', 
@@ -10342,7 +10342,7 @@ INSERT OR IGNORE INTO results (
 INSERT OR IGNORE INTO results (
         id, submission_id, result, first_name, last_name
       ) VALUES (
-        'c-RBtbPAQITBIHNWN0fQW', 
+        'vchnxKFJqQM0KtY8oQjiF', 
         'Z6ZiPyeSNbkDnUyCxieAo', 
         'runner-up', 
         'Jordi', 
@@ -10351,7 +10351,7 @@ INSERT OR IGNORE INTO results (
 INSERT OR IGNORE INTO results (
         id, submission_id, result, first_name, last_name
       ) VALUES (
-        'nbllmDAyfzQQZcrT5eAUA', 
+        'HVeF-aWb8IZJvBSmhN7rw', 
         'ubjCwSEzAov98K8cOlC84', 
         'runner-up', 
         'Gianni', 
@@ -10360,7 +10360,7 @@ INSERT OR IGNORE INTO results (
 INSERT OR IGNORE INTO results (
         id, submission_id, result, first_name, last_name
       ) VALUES (
-        'mPOziMdkdTR3sILvRcX9q', 
+        'fBPKGTTKNg-R8g09hr4jf', 
         'J2tv_0zBzFe6jBsYsBX34', 
         'first', 
         'Stefano', 
@@ -10369,7 +10369,7 @@ INSERT OR IGNORE INTO results (
 INSERT OR IGNORE INTO results (
         id, submission_id, result, first_name, last_name
       ) VALUES (
-        '5Fm3GVu-zKBnfZhoQ2EP4', 
+        '149Fvw38gDW7cadDWXLK9', 
         'QfiZp-BDxeWF1VAdtSN3l', 
         'second', 
         'Luc', 
@@ -10378,7 +10378,7 @@ INSERT OR IGNORE INTO results (
 INSERT OR IGNORE INTO results (
         id, submission_id, result, first_name, last_name
       ) VALUES (
-        'jl1p3o_mCnmT-oNV9L9vw', 
+        'nyOVJCpwQwNLluWym4FM0', 
         'i-JTs6jORIXHpy35YqS4r', 
         'third', 
         'Enrico', 
@@ -10387,7 +10387,7 @@ INSERT OR IGNORE INTO results (
 INSERT OR IGNORE INTO results (
         id, submission_id, result, first_name, last_name
       ) VALUES (
-        '9XuC8U3HlruMBATQ3Wz1m', 
+        'FGBwQApAGwAo4rRmc4Mbz', 
         'BRwkzj7TtYNiqz54i1COP', 
         'runner-up', 
         'Luc', 
@@ -10396,7 +10396,7 @@ INSERT OR IGNORE INTO results (
 INSERT OR IGNORE INTO results (
         id, submission_id, result, first_name, last_name
       ) VALUES (
-        'AMv5wiTtdv-pGP9RYom8c', 
+        'WySR0ZRwMGXiW5_EchsHl', 
         'tlQvfH5DIaxu7YblNuPp6', 
         'runner-up', 
         'Rosario', 
@@ -10405,7 +10405,7 @@ INSERT OR IGNORE INTO results (
 INSERT OR IGNORE INTO results (
         id, submission_id, result, first_name, last_name
       ) VALUES (
-        'OLtLITAoeXWb1d5nAe8Hj', 
+        'QJ9ubaNMj12tRkTOAl6bA', 
         '5I9m9Il7HH2hK2TeBsjE7', 
         'runner-up', 
         'Francesco', 
@@ -10414,7 +10414,7 @@ INSERT OR IGNORE INTO results (
 INSERT OR IGNORE INTO results (
         id, submission_id, result, first_name, last_name
       ) VALUES (
-        'FaTZqF9Wl_zgv3OrX1chA', 
+        'mSnkjxyPAeHevD0-HMS0K', 
         'cRe2lWpv4A264SYz7101N', 
         'runner-up', 
         'Stefano', 
@@ -10423,7 +10423,7 @@ INSERT OR IGNORE INTO results (
 INSERT OR IGNORE INTO results (
         id, submission_id, result, first_name, last_name
       ) VALUES (
-        'WlofrYCg5E9zxkRVjLOv9', 
+        'wshz2fpEsstl5GjqNMvOw', 
         '-ks58wviNjf3uP-mgbQgJ', 
         'runner-up', 
         'Alessandro', 
@@ -10432,7 +10432,7 @@ INSERT OR IGNORE INTO results (
 INSERT OR IGNORE INTO results (
         id, submission_id, result, first_name, last_name
       ) VALUES (
-        'umObBALz3UOtgtc2SqfuZ', 
+        'fbrhr5N7LOlTsrQXZyxPF', 
         '4dMRuuCbAuReo8aDVU3MS', 
         'runner-up', 
         'Davide', 
@@ -10441,7 +10441,7 @@ INSERT OR IGNORE INTO results (
 INSERT OR IGNORE INTO results (
         id, submission_id, result, first_name, last_name
       ) VALUES (
-        'cwutLWDHm4ic5K8dIYRUE', 
+        'nfDtKwiUeU-g5W5yEdVqd', 
         'QCO7exLR013iOAmeXGtXF', 
         'runner-up', 
         'Gabriella', 
@@ -10450,7 +10450,7 @@ INSERT OR IGNORE INTO results (
 INSERT OR IGNORE INTO results (
         id, submission_id, result, first_name, last_name
       ) VALUES (
-        'N2XTAjHWaigk2WPMcogtN', 
+        '9vYxewDsAxIPgP9fsfYnc', 
         'M-cI2y_SAsKR_uziqEMVc', 
         'first', 
         'Massimo', 
@@ -10459,7 +10459,7 @@ INSERT OR IGNORE INTO results (
 INSERT OR IGNORE INTO results (
         id, submission_id, result, first_name, last_name
       ) VALUES (
-        '6FLiP64Utj4AvDxfM8mnA', 
+        '5zEiRFaIMPi0_TTprMpE2', 
         'f0bGy0H79T84CUvQuwypw', 
         'second', 
         'Luc', 
@@ -10468,7 +10468,7 @@ INSERT OR IGNORE INTO results (
 INSERT OR IGNORE INTO results (
         id, submission_id, result, first_name, last_name
       ) VALUES (
-        'CfUZZaknVnFYf_aw19qd8', 
+        'Pr4aTeKHsIlL5zpc3Oi6g', 
         'OI7r822HH1G4LzVMRoVoj', 
         'third', 
         'Giancarlo', 
@@ -10477,7 +10477,7 @@ INSERT OR IGNORE INTO results (
 INSERT OR IGNORE INTO results (
         id, submission_id, result, first_name, last_name
       ) VALUES (
-        'fravd3bT_Cjl_iVIZfkjf', 
+        '1D7NTv-GhBRMANbk3vwy4', 
         'K3PlZelgc-nwF_FaqE1vY', 
         'runner-up', 
         'Galice', 
@@ -10486,7 +10486,7 @@ INSERT OR IGNORE INTO results (
 INSERT OR IGNORE INTO results (
         id, submission_id, result, first_name, last_name
       ) VALUES (
-        '9r1SEvYCaEuP2Vk-2LMVL', 
+        'Gp_EeG2NcWf5-iHQRZbS1', 
         '-M_An40J4idR_Ti7d5wva', 
         'runner-up', 
         'Alberto', 
@@ -10495,7 +10495,7 @@ INSERT OR IGNORE INTO results (
 INSERT OR IGNORE INTO results (
         id, submission_id, result, first_name, last_name
       ) VALUES (
-        'VOnfSKaIARSAU_DA72BwM', 
+        'nOfmPPH-KdGgclxDc_kRC', 
         '_wkqj-04Aq_DYnkWWU-Bz', 
         'runner-up', 
         'Luc', 
@@ -10504,7 +10504,7 @@ INSERT OR IGNORE INTO results (
 INSERT OR IGNORE INTO results (
         id, submission_id, result, first_name, last_name
       ) VALUES (
-        'lNPGPiFs_EJCUeML-SSxe', 
+        'cVdXOFB4iOstBsGnpFFaW', 
         'EL3-Lk33z75J6RZ6ffGsl', 
         'runner-up', 
         'Raffaele', 
@@ -10513,7 +10513,7 @@ INSERT OR IGNORE INTO results (
 INSERT OR IGNORE INTO results (
         id, submission_id, result, first_name, last_name
       ) VALUES (
-        'QDu4wm1rQRbd0Bap_w__5', 
+        'ziCTZOpgEFjHgAWCplRZ7', 
         'lqK1ITrXtD4wuTvxBPs-v', 
         'first', 
         'Luc', 
@@ -10522,7 +10522,7 @@ INSERT OR IGNORE INTO results (
 INSERT OR IGNORE INTO results (
         id, submission_id, result, first_name, last_name
       ) VALUES (
-        '2Xlbvf_d3WFUcIoHTgxOV', 
+        'MZ6eMPC9qQq6ivkRq5wz3', 
         'NbebkX_2kI2sjxdMJJfOa', 
         'second', 
         'Raffaele', 
@@ -10531,7 +10531,7 @@ INSERT OR IGNORE INTO results (
 INSERT OR IGNORE INTO results (
         id, submission_id, result, first_name, last_name
       ) VALUES (
-        'QhKoEW11Wj1kjdVzcyEmK', 
+        'yzvgACoBXuJQLreqx4CzV', 
         'dgXmmuv7xK8rB0Ki78agm', 
         'third', 
         'Stefano', 
@@ -10540,7 +10540,7 @@ INSERT OR IGNORE INTO results (
 INSERT OR IGNORE INTO results (
         id, submission_id, result, first_name, last_name
       ) VALUES (
-        'dedA9iiJ55ZRN6L6ImVqn', 
+        'BJc08v9qtF8myFdr2NUux', 
         'c_blXjthUaYoPMz6nzUxg', 
         'runner-up', 
         'Gabriella', 
@@ -10549,7 +10549,7 @@ INSERT OR IGNORE INTO results (
 INSERT OR IGNORE INTO results (
         id, submission_id, result, first_name, last_name
       ) VALUES (
-        'Q2-IRbX2CZOyiejY8PPC6', 
+        'sAPrnXnko3hK_qnDzO3FK', 
         'QsGzUh5X8UsrCY0roaaze', 
         'runner-up', 
         'Lorenzo', 
@@ -10558,7 +10558,7 @@ INSERT OR IGNORE INTO results (
 INSERT OR IGNORE INTO results (
         id, submission_id, result, first_name, last_name
       ) VALUES (
-        '_x4qduT5KYDwiPq3qBa6k', 
+        'ON_6oWT5sVM3jQOBSw0z_', 
         'TnnMP1jA7m92eyB53ZpcX', 
         'runner-up', 
         'Massimo', 
@@ -10567,7 +10567,7 @@ INSERT OR IGNORE INTO results (
 INSERT OR IGNORE INTO results (
         id, submission_id, result, first_name, last_name
       ) VALUES (
-        'ZFkn9-JGiEm2_8I_KId0v', 
+        'pAc39GvN8nffFTGb8UfnE', 
         'tn2F3xs5TSkeANytiPzFP', 
         'runner-up', 
         'Davide', 
@@ -10576,7 +10576,7 @@ INSERT OR IGNORE INTO results (
 INSERT OR IGNORE INTO results (
         id, submission_id, result, first_name, last_name
       ) VALUES (
-        '4tvAO2b_a6jx9y7UXgwlQ', 
+        '6ddgDUkPQr45sQ8_rHDrQ', 
         'U9p4Q4CfBPWVwgeJbcnOP', 
         'runner-up', 
         'Marco', 

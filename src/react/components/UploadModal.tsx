@@ -1,14 +1,16 @@
 import { useRef, useState } from 'react';
-import { MAX_IMAGE_SIZE } from '../../constants.js';
+import { MAX_IMAGE_SIZE } from '../../constants';
 import { useI18n } from '../../i18n/react';
-import { ACCEPTED_IMAGE_TYPES } from '../../server/utils.js';
-import type { MediterraneanMeta, UploadResponse } from '../../types/api.js';
+import { ACCEPTED_IMAGE_TYPES } from '../../server/utils';
+import type { UploadResponse } from '../../types/api';
 
 type UploadModalProps = {
   isOpen: boolean;
   onClose: () => void;
   categoryId: string;
   contestId: string;
+  portfolio?: string;
+  portfolioPhotoType?: string;
   onUploadSuccess: (data: UploadResponse['data']) => void;
   onUploadError: (error: string) => void;
 };
@@ -18,6 +20,8 @@ export function UploadModal({
   onClose,
   categoryId,
   contestId,
+  portfolio,
+  portfolioPhotoType,
   onUploadSuccess,
   onUploadError,
 }: UploadModalProps) {
@@ -32,13 +36,6 @@ export function UploadModal({
   const [isUploading, setIsUploading] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
-  // Mediterranean category specific state
-  const isMediterranean = categoryId === 'mediterranean';
-  const [portfolio, setPortfolio] = useState<1 | 2 | null>(null);
-  const [photoType, setPhotoType] = useState<
-    'macro' | 'wide-angle' | 'free' | null
-  >(null);
-
   const handleFileChange = (file: File | null) => {
     setSelectedFile(file);
     setError(null); // Clear any previous errors when selecting a new file
@@ -48,14 +45,6 @@ export function UploadModal({
 
   const handleUpload = async () => {
     if (!selectedFile || !title.trim()) return;
-
-    // For Mediterranean category, validate meta fields
-    if (isMediterranean && (!portfolio || !photoType)) {
-      setError(
-        'Please select both portfolio and photo type for Mediterranean category'
-      );
-      return;
-    }
 
     setIsUploading(true);
     setError(null);
@@ -67,10 +56,12 @@ export function UploadModal({
       form.append('title', title.trim());
       form.append('description', description.trim());
 
-      // Add meta data for Mediterranean category
-      if (isMediterranean && portfolio && photoType) {
-        const meta: MediterraneanMeta = { portfolio, photoType };
-        form.append('meta', JSON.stringify(meta));
+      // Add portfolio fields if provided
+      if (portfolio) {
+        form.append('portfolio', portfolio);
+      }
+      if (portfolioPhotoType) {
+        form.append('portfolioPhotoType', portfolioPhotoType);
       }
 
       const res = await fetch('/api/upload-image', {
@@ -90,8 +81,6 @@ export function UploadModal({
       setTitle('');
       setDescription('');
       setError(null);
-      setPortfolio(null);
-      setPhotoType(null);
       if (fileInputRef.current) fileInputRef.current.value = '';
 
       onUploadSuccess(result.data);
@@ -113,8 +102,6 @@ export function UploadModal({
     setTitle('');
     setDescription('');
     setError(null);
-    setPortfolio(null);
-    setPhotoType(null);
     if (fileInputRef.current) fileInputRef.current.value = '';
 
     onClose();
@@ -235,91 +222,6 @@ export function UploadModal({
               />
             </div>
 
-            {/* Mediterranean Portfolio Selection */}
-            {isMediterranean && (
-              <>
-                <div>
-                  <label className="block text-sm font-medium text-slate-300 mb-2">
-                    Portfolio * (Choose 1 or 2)
-                  </label>
-                  <div className="flex gap-3">
-                    <button
-                      type="button"
-                      onClick={() => setPortfolio(1)}
-                      disabled={isUploading}
-                      className={`flex-1 py-2 px-4 rounded-lg border disabled:opacity-50 ${
-                        portfolio === 1
-                          ? 'bg-emerald-600 border-emerald-500 text-white'
-                          : 'bg-slate-700 border-slate-600 text-slate-300 hover:bg-slate-600'
-                      }`}
-                    >
-                      Portfolio 1
-                    </button>
-                    <button
-                      type="button"
-                      onClick={() => setPortfolio(2)}
-                      disabled={isUploading}
-                      className={`flex-1 py-2 px-4 rounded-lg border disabled:opacity-50 ${
-                        portfolio === 2
-                          ? 'bg-emerald-600 border-emerald-500 text-white'
-                          : 'bg-slate-700 border-slate-600 text-slate-300 hover:bg-slate-600'
-                      }`}
-                    >
-                      Portfolio 2
-                    </button>
-                  </div>
-                </div>
-
-                <div>
-                  <label className="block text-sm font-medium text-slate-300 mb-2">
-                    Photo Type * (Choose one per upload)
-                  </label>
-                  <div className="grid grid-cols-1 gap-2">
-                    <button
-                      type="button"
-                      onClick={() => setPhotoType('macro')}
-                      disabled={isUploading}
-                      className={`py-2 px-4 rounded-lg border disabled:opacity-50 ${
-                        photoType === 'macro'
-                          ? 'bg-emerald-600 border-emerald-500 text-white'
-                          : 'bg-slate-700 border-slate-600 text-slate-300 hover:bg-slate-600'
-                      }`}
-                    >
-                      Macro
-                    </button>
-                    <button
-                      type="button"
-                      onClick={() => setPhotoType('wide-angle')}
-                      disabled={isUploading}
-                      className={`py-2 px-4 rounded-lg border disabled:opacity-50 ${
-                        photoType === 'wide-angle'
-                          ? 'bg-emerald-600 border-emerald-500 text-white'
-                          : 'bg-slate-700 border-slate-600 text-slate-300 hover:bg-slate-600'
-                      }`}
-                    >
-                      Wide Angle
-                    </button>
-                    <button
-                      type="button"
-                      onClick={() => setPhotoType('free')}
-                      disabled={isUploading}
-                      className={`py-2 px-4 rounded-lg border disabled:opacity-50 ${
-                        photoType === 'free'
-                          ? 'bg-emerald-600 border-emerald-500 text-white'
-                          : 'bg-slate-700 border-slate-600 text-slate-300 hover:bg-slate-600'
-                      }`}
-                    >
-                      Free Choice
-                    </button>
-                  </div>
-                  <div className="mt-2 text-xs text-slate-400">
-                    Each portfolio must include: 1 Macro + 1 Wide Angle + 1 Free
-                    Choice
-                  </div>
-                </div>
-              </>
-            )}
-
             {/* File size info */}
             <div className="text-xs text-slate-400">
               {t('submissions.max-size')}: {MAX_MB}MB
@@ -337,12 +239,7 @@ export function UploadModal({
             </button>
             <button
               onClick={handleUpload}
-              disabled={
-                !selectedFile ||
-                !title.trim() ||
-                isUploading ||
-                (isMediterranean && (!portfolio || !photoType))
-              }
+              disabled={!selectedFile || !title.trim() || isUploading}
               className="flex-1 py-2 px-4 bg-emerald-600 hover:bg-emerald-500 text-white rounded-lg disabled:opacity-50"
             >
               {isUploading ? t('state.uploading') : t('action.upload')}

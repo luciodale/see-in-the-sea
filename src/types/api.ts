@@ -1,6 +1,6 @@
 // Shared API response types - Single source of truth for client/server
 
-import type { Category, Contest, Submission } from '../db/index.js';
+import type { Category, Contest, Submission } from '../db/index';
 
 // Base API response wrapper
 export type ApiResponse<T = unknown> = {
@@ -32,12 +32,6 @@ export type UserContestData = {
 
 export type SubmissionsResponse = ApiResponse<UserContestData>;
 
-// Mediterranean Portfolio Types
-export type MediterraneanMeta = {
-  portfolio: 1 | 2;
-  photoType: 'macro' | 'wide-angle' | 'free';
-};
-
 // Upload API Types
 export type UploadMetadata = {
   originalFileName: string;
@@ -56,6 +50,8 @@ export type UploadResult = {
   imageUrl: string;
   action: 'create' | 'replace';
   metadata: UploadMetadata;
+  portfolio?: string;
+  portfolioPhotoType?: string;
 };
 
 export type UploadResponse = ApiResponse<UploadResult>;
@@ -67,7 +63,8 @@ export type UploadFormData = {
   categoryId: string;
   title: string;
   description?: string;
-  meta?: MediterraneanMeta;
+  portfolio?: string;
+  portfolioPhotoType?: string;
 };
 
 // Error Response Type
@@ -131,7 +128,8 @@ export type ManageSubmissionFormData = {
   title: string;
   description?: string;
   replaceImage?: boolean; // For image replacement
-  meta?: MediterraneanMeta;
+  portfolio?: string;
+  portfolioPhotoType?: string;
 };
 
 export type ManageSubmissionResponse = {
@@ -165,7 +163,8 @@ export type AdminSubmission = {
   contestName: string;
   categoryId: string;
   categoryName: string;
-  meta?: MediterraneanMeta;
+  portfolio?: string;
+  portfolioPhotoType?: string;
 };
 
 export type AdminSubmissionsResponse = {

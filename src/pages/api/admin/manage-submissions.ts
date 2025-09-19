@@ -95,7 +95,8 @@ export const GET: APIRoute = async ({ request, locals }) => {
         contestName: contests.name,
         categoryId: submissions.categoryId,
         categoryName: categories.name,
-        meta: submissions.meta,
+        portfolio: submissions.portfolio,
+        portfolioPhotoType: submissions.portfolioPhotoType,
       })
       .from(submissions)
       .innerJoin(contests, eq(submissions.contestId, contests.id))
@@ -361,9 +362,16 @@ export const POST: APIRoute = async ({ request, locals }) => {
             originalFilename: newImageFile.name,
             fileSize: newImageFile.size,
             contentType: newImageFile.type,
-            meta: body.meta || null,
             uploadedAt: new Date().toISOString(),
           };
+
+          // Only include portfolio fields if they have values
+          if (body.portfolio) {
+            updateData.portfolio = body.portfolio;
+          }
+          if (body.portfolioPhotoType) {
+            updateData.portfolioPhotoType = body.portfolioPhotoType;
+          }
 
           // Update database with new image paths
           updateData.id = newSubmissionId;
@@ -388,8 +396,15 @@ export const POST: APIRoute = async ({ request, locals }) => {
         updateData = {
           title: body.title.trim(),
           description: body.description?.trim() || null,
-          meta: body.meta || null,
         };
+
+        // Only include portfolio fields if they have values
+        if (body.portfolio) {
+          updateData.portfolio = body.portfolio;
+        }
+        if (body.portfolioPhotoType) {
+          updateData.portfolioPhotoType = body.portfolioPhotoType;
+        }
       }
 
       // Update submission in database

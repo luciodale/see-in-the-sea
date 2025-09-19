@@ -1,7 +1,7 @@
 import type { APIRoute } from 'astro';
 import { and, eq } from 'drizzle-orm';
-import { getDb } from '../../db/index.js';
-import { submissions } from '../../db/schema.js';
+import { getDb } from '../../db/index';
+import { submissions } from '../../db/schema';
 import { authenticateRequest } from '../../server/authenticateRequest';
 import { deleteImageFromR2, deleteSubmission } from '../../server/imageService';
 

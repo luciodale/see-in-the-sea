@@ -1,11 +1,11 @@
 import type { APIRoute } from 'astro';
 import { eq } from 'drizzle-orm';
-import { getDb, results } from '../../../db/index.js';
+import { getDb, results } from '../../../db/index';
 import { authenticateAdmin } from '../../../server/authenticateRequest';
 import type {
   UpdateResultRequest,
   UpdateResultResponse,
-} from '../../../types/api.js';
+} from '../../../types/api';
 
 export const prerender = false;
 

@@ -41,10 +41,8 @@ export const submissions = sqliteTable('submissions', {
   originalFilename: text('original_filename'),
   fileSize: integer('file_size'),
   contentType: text('content_type'),
-  meta: text('meta', { mode: 'json' }).$type<{
-    portfolio?: 1 | 2;
-    photoType?: 'macro' | 'wide-angle' | 'free';
-  }>(),
+  portfolio: text('portfolio'),
+  portfolioPhotoType: text('portfolio_photo_type'),
   uploadedAt: text('uploaded_at').default(sql`CURRENT_TIMESTAMP`),
 });
 

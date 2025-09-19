@@ -4,7 +4,7 @@ import { useEffect, useState } from 'react';
 import type {
   AdminResultRow,
   AdminResultsResponse,
-} from '../../../types/api.js';
+} from '../../../types/api';
 import CategorySelect from '../../components/CategorySelect';
 import EditResultModal from '../../components/EditResultModal';
 
@@ -197,7 +197,7 @@ function AdminResultsPage() {
                   <td className="px-6 py-4 whitespace-nowrap">
                     <img
                       src={`/api/publicImages/${r.r2Key}`}
-                      alt=""
+                      alt="Submission image"
                       className="w-16 h-16 object-cover rounded border border-slate-700"
                     />
                   </td>

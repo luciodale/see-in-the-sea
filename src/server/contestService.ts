@@ -1,6 +1,10 @@
 import { and, count, eq } from 'drizzle-orm';
-import type { Category, Contest, Submission } from '../db/index.js';
-import { categories, contests, getDb, submissions } from '../db/index.js';
+import type { Category, Contest, Submission } from '../db/index';
+import { categories, contests, getDb, submissions } from '../db/index';
+
+// Submission limits
+const DEFAULT_MAX_SUBMISSIONS_PER_CATEGORY = 2;
+const MEDITERRANEAN_MAX_SUBMISSIONS = 6; // 2 portfolios × 3 photos each
 
 /**
  * Gets the single active contest with categories
@@ -124,7 +128,14 @@ export async function checkSubmissionLimits(
     .where(eq(contests.id, contestId))
     .limit(1);
 
-  const maxAllowed = contestResult[0]?.maxSubmissionsPerCategory || 2;
+  let maxAllowed =
+    contestResult[0]?.maxSubmissionsPerCategory ||
+    DEFAULT_MAX_SUBMISSIONS_PER_CATEGORY;
+
+  // Mediterranean category allows up to 6 submissions (2 portfolios × 3 photos each)
+  if (categoryId === 'mediterranean') {
+    maxAllowed = MEDITERRANEAN_MAX_SUBMISSIONS;
+  }
 
   return {
     currentCount,
@@ -174,11 +185,18 @@ export async function getUserContestSubmissions(
       sub => sub.categoryId === category.id
     );
 
+    // Mediterranean category allows up to 6 submissions (2 portfolios × 3 photos each)
+    const maxSubmissions =
+      category.id === 'mediterranean'
+        ? MEDITERRANEAN_MAX_SUBMISSIONS
+        : contest.maxSubmissionsPerCategory ||
+          DEFAULT_MAX_SUBMISSIONS_PER_CATEGORY;
+
     return {
       ...category,
       submissions: categorySubmissions,
       submissionCount: categorySubmissions.length,
-      maxSubmissions: contest.maxSubmissionsPerCategory || 2,
+      maxSubmissions,
     };
   });
 

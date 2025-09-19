@@ -1,9 +1,8 @@
-import type { MediterraneanMeta } from '../types/api.js';
 import {
   getFileExtensionFromMime,
   SUPPORTED_IMAGE_MIME_TYPES,
   type SupportedImageMimeType,
-} from './utils.js';
+} from './utils';
 
 const MAX_IMAGE_SIZE = 10 * 1024 * 1024; // 10MB
 
@@ -86,14 +85,18 @@ export function validateUploadFormData(formData: FormData): ValidationResult<{
   categoryId: string;
   title: string;
   description: string | null;
-  meta?: MediterraneanMeta;
+  portfolio?: string;
+  portfolioPhotoType?: string;
 }> {
   const imageFile = formData.get('image') as File;
   const contestId = formData.get('contestId') as string;
   const categoryId = formData.get('categoryId') as string;
   const title = formData.get('title') as string;
   const description = formData.get('description') as string | null;
-  const metaString = formData.get('meta') as string | null;
+  const portfolio = formData.get('portfolio') as string | null;
+  const portfolioPhotoType = formData.get('portfolioPhotoType') as
+    | string
+    | null;
 
   if (!imageFile || !contestId || !categoryId || !title) {
     return {
@@ -102,47 +105,30 @@ export function validateUploadFormData(formData: FormData): ValidationResult<{
     };
   }
 
-  // Parse and validate meta for Mediterranean category
-  let meta: MediterraneanMeta | undefined;
+  // Validate portfolio fields for Mediterranean category
   if (categoryId === 'mediterranean') {
-    if (!metaString) {
+    if (!portfolio || !portfolioPhotoType) {
       return {
         isValid: false,
-        error: 'Meta data is required for Mediterranean category.',
+        error:
+          'Portfolio and portfolio photo type are required for Mediterranean category.',
       };
     }
 
-    try {
-      const parsedMeta = JSON.parse(metaString) as MediterraneanMeta;
-
-      // Validate portfolio
-      if (
-        !parsedMeta.portfolio ||
-        (parsedMeta.portfolio !== 1 && parsedMeta.portfolio !== 2)
-      ) {
-        return {
-          isValid: false,
-          error: 'Portfolio must be 1 or 2 for Mediterranean category.',
-        };
-      }
-
-      // Validate photo type
-      if (
-        !parsedMeta.photoType ||
-        !['macro', 'wide-angle', 'free'].includes(parsedMeta.photoType)
-      ) {
-        return {
-          isValid: false,
-          error:
-            'Photo type must be macro, wide-angle, or free for Mediterranean category.',
-        };
-      }
-
-      meta = parsedMeta;
-    } catch (error) {
+    // Validate portfolio
+    if (portfolio !== '1' && portfolio !== '2') {
       return {
         isValid: false,
-        error: 'Invalid meta data format for Mediterranean category.',
+        error: 'Portfolio must be 1 or 2 for Mediterranean category.',
+      };
+    }
+
+    // Validate photo type
+    if (!['macro', 'wide-angle', 'free'].includes(portfolioPhotoType)) {
+      return {
+        isValid: false,
+        error:
+          'Portfolio photo type must be macro, wide-angle, or free for Mediterranean category.',
       };
     }
   }
@@ -155,7 +141,8 @@ export function validateUploadFormData(formData: FormData): ValidationResult<{
       categoryId,
       title,
       description: description || null,
-      meta,
+      portfolio: portfolio || undefined,
+      portfolioPhotoType: portfolioPhotoType || undefined,
     },
   };
 }

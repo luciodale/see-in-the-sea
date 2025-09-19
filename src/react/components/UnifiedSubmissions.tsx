@@ -1,9 +1,12 @@
 import { useEffect, useState } from 'react';
+import { DEFAULT_MAX_SUBMISSIONS_PER_CATEGORY } from '../../constants';
 import { useI18n } from '../../i18n/react';
-import type { SubmissionsResponse, UploadResponse } from '../../types/api.js';
+import type { SubmissionsResponse, UploadResponse } from '../../types/api';
+import type { UICategory } from '../../types/ui';
 import { CategoryNavigation } from './CategoryNavigation';
 import { CategorySummary } from './CategorySummary';
 import JudgesBar from './JudgesBar';
+import { MediterraneanPortfolioManager } from './MediterraneanPortfolioManager';
 import { SubmissionDisplay } from './SubmissionDisplay';
 import { UploadModal } from './UploadModal';
 import UploadSuccessDialog from './UploadSuccessDialog';
@@ -15,18 +18,7 @@ const HARDCODED_CATEGORIES = [
   { id: 'mediterranean', name: 'Mediterranean Portfolio' },
 ];
 
-const MAX_SUBMISSIONS_PER_CATEGORY = 2 as const;
-
-type CategoryState = {
-  id: string;
-  name: string;
-  submissions: Array<{
-    id: string;
-    title: string;
-    description: string | null;
-    imageUrl: string | null;
-  }>;
-};
+type CategoryState = UICategory;
 
 export function UnifiedSubmissions() {
   const { t } = useI18n();
@@ -38,7 +30,11 @@ export function UnifiedSubmissions() {
     'active' | 'inactive' | 'assessment'
   >('inactive');
   const [categories, setCategories] = useState<CategoryState[]>(
-    HARDCODED_CATEGORIES.map(c => ({ ...c, submissions: [] }))
+    HARDCODED_CATEGORIES.map(c => ({
+      ...c,
+      submissions: [],
+      maxSubmissions: DEFAULT_MAX_SUBMISSIONS_PER_CATEGORY,
+    }))
   );
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
@@ -52,6 +48,12 @@ export function UnifiedSubmissions() {
   >(null);
   const [dialogOpen, setDialogOpen] = useState(false);
   const [dialogKind, setDialogKind] = useState<'upload' | 'delete'>('upload');
+  const [uploadPortfolio, setUploadPortfolio] = useState<string | undefined>(
+    undefined
+  );
+  const [uploadPortfolioPhotoType, setUploadPortfolioPhotoType] = useState<
+    string | undefined
+  >(undefined);
 
   useEffect(() => {
     void initialize();
@@ -96,12 +98,16 @@ export function UnifiedSubmissions() {
         return {
           id: cat.id,
           name: cat.name,
+          maxSubmissions:
+            found?.maxSubmissions ?? DEFAULT_MAX_SUBMISSIONS_PER_CATEGORY,
           submissions:
             found?.submissions.map(s => ({
               id: s.id,
               title: s.title,
               description: s.description ?? null,
               imageUrl: s.imageUrl,
+              portfolio: s.portfolio ?? undefined,
+              portfolioPhotoType: s.portfolioPhotoType ?? undefined,
             })) ?? [],
         };
       });
@@ -131,7 +137,9 @@ export function UnifiedSubmissions() {
     setActiveCategoryId(categoryId);
   }
 
-  function handleUploadClick() {
+  function handleUploadClick(portfolio?: string, portfolioPhotoType?: string) {
+    setUploadPortfolio(portfolio);
+    setUploadPortfolioPhotoType(portfolioPhotoType);
     setUploadModalOpen(true);
   }
 
@@ -151,13 +159,12 @@ export function UnifiedSubmissions() {
           title: data.title,
           description: data.description,
           imageUrl: data.imageUrl,
+          portfolio: data.portfolio,
+          portfolioPhotoType: data.portfolioPhotoType,
         };
         return {
           ...cat,
-          submissions: [...cat.submissions, newSubmission].slice(
-            0,
-            MAX_SUBMISSIONS_PER_CATEGORY
-          ),
+          submissions: [...cat.submissions, newSubmission],
         };
       })
     );
@@ -243,29 +250,44 @@ export function UnifiedSubmissions() {
           categories={categories}
           activeCategoryId={activeCategoryId}
           onCategorySelect={handleCategorySelect}
-          maxSubmissionsPerCategory={MAX_SUBMISSIONS_PER_CATEGORY}
         />
       )}
 
       {/* Active Category Summary */}
       {!noActiveContest && activeCategory && (
-        <CategorySummary
-          categoryId={activeCategory.id}
-          submissions={activeCategory.submissions}
-          maxSubmissionsPerCategory={MAX_SUBMISSIONS_PER_CATEGORY}
-          contestStatus={contestStatus}
-          onUploadClick={handleUploadClick}
-          onSubmissionClick={handleSubmissionClick}
-        />
+        <>
+          {activeCategory.id === 'mediterranean' ? (
+            <MediterraneanPortfolioManager
+              submissions={activeCategory.submissions}
+              onUploadClick={handleUploadClick}
+              onDeleteClick={handleDeleteSubmission}
+            />
+          ) : (
+            <CategorySummary
+              categoryId={activeCategory.id}
+              submissions={activeCategory.submissions}
+              maxSubmissionsPerCategory={activeCategory.maxSubmissions}
+              contestStatus={contestStatus}
+              onUploadClick={() => handleUploadClick()}
+              onSubmissionClick={handleSubmissionClick}
+            />
+          )}
+        </>
       )}
 
       {/* Upload Modal */}
       {activeCategory && contestId && (
         <UploadModal
           isOpen={uploadModalOpen}
-          onClose={() => setUploadModalOpen(false)}
+          onClose={() => {
+            setUploadModalOpen(false);
+            setUploadPortfolio(undefined);
+            setUploadPortfolioPhotoType(undefined);
+          }}
           categoryId={activeCategory.id}
           contestId={contestId}
+          portfolio={uploadPortfolio}
+          portfolioPhotoType={uploadPortfolioPhotoType}
           onUploadSuccess={handleUploadSuccess}
           onUploadError={handleUploadError}
         />

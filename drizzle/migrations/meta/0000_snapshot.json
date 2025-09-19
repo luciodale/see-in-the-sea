@@ -1,7 +1,7 @@
 {
   "version": "6",
   "dialect": "sqlite",
-  "id": "33eba9be-6711-4394-8fcc-f0bf7e827daa",
+  "id": "6133b841-683b-4057-8b94-208a5c1bc7a2",
   "prevId": "00000000-0000-0000-0000-000000000000",
   "tables": {
     "categories": {
@@ -316,6 +316,20 @@
         },
         "content_type": {
           "name": "content_type",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "portfolio": {
+          "name": "portfolio",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "portfolio_photo_type": {
+          "name": "portfolio_photo_type",
           "type": "text",
           "primaryKey": false,
           "notNull": false,

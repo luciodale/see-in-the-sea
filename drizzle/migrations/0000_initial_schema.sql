@@ -47,6 +47,8 @@ CREATE TABLE `submissions` (
 	`original_filename` text,
 	`file_size` integer,
 	`content_type` text,
+	`portfolio` text,
+	`portfolio_photo_type` text,
 	`uploaded_at` text DEFAULT CURRENT_TIMESTAMP,
 	FOREIGN KEY (`contest_id`) REFERENCES `contests`(`id`) ON UPDATE no action ON DELETE no action,
 	FOREIGN KEY (`category_id`) REFERENCES `categories`(`id`) ON UPDATE no action ON DELETE no action

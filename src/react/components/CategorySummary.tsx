@@ -1,20 +1,15 @@
 import type { TranslationKey } from '../../i18n';
 import { useI18n } from '../../i18n/react';
-
-type Submission = {
-  id: string;
-  title: string;
-  description: string | null;
-  imageUrl: string | null;
-};
+import type { UISubmission } from '../../types/ui';
+import { getImageUrl } from '../utils/imageUtils';
 
 type CategorySummaryProps = {
   categoryId: string;
-  submissions: Submission[];
+  submissions: UISubmission[];
   maxSubmissionsPerCategory: number;
   contestStatus: 'active' | 'inactive' | 'assessment';
   onUploadClick: () => void;
-  onSubmissionClick: (submission: Submission) => void;
+  onSubmissionClick: (submission: UISubmission) => void;
 };
 
 export function CategorySummary({
@@ -83,7 +78,7 @@ export function CategorySummary({
                 <div className="w-24 h-18 bg-slate-800 rounded overflow-hidden flex-shrink-0">
                   {submission.imageUrl && (
                     <img
-                      src={`/api/images/${submission.imageUrl}`}
+                      src={getImageUrl(submission.imageUrl) || ''}
                       alt={submission.title}
                       className="w-full h-full object-cover"
                     />
