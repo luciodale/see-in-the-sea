@@ -8,8 +8,8 @@ import { CategorySummary } from './CategorySummary';
 import JudgesBar from './JudgesBar';
 import { MediterraneanPortfolioManager } from './MediterraneanPortfolioManager';
 import { SubmissionManageModal } from './SubmissionManageModal';
+import { SuccessModal } from './SuccessModal';
 import { UploadModal } from './UploadModal';
-import UploadSuccessDialog from './UploadSuccessDialog';
 
 const HARDCODED_CATEGORIES = [
   { id: 'wide-angle', name: 'Wide Angle' },
@@ -312,8 +312,8 @@ export function UnifiedSubmissions() {
       />
 
       {/* Upload/Delete Success Dialog */}
-      <UploadSuccessDialog
-        open={dialogOpen}
+      <SuccessModal
+        isOpen={dialogOpen}
         onClose={() => setDialogOpen(false)}
         title={
           dialogKind === 'upload'
@@ -325,6 +325,7 @@ export function UnifiedSubmissions() {
             ? t('toast.upload-success')
             : t('toast.delete-success')
         }
+        variant="success"
       />
     </div>
   );

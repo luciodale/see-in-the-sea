@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { useI18n } from '../../i18n/react';
 import type { UISubmission } from '../../types/ui';
+import { BaseModal } from './BaseModal';
 import { OptimizedImage } from './OptimizedImage';
 
 interface SubmissionManageModalProps {
@@ -38,87 +39,68 @@ export function SubmissionManageModal({
   };
 
   return (
-    <div className="fixed inset-0 z-50 bg-black/60 flex items-center justify-center p-4">
-      <div className="bg-slate-800 border border-slate-700 rounded-xl w-full max-w-4xl max-h-[90vh] overflow-y-auto">
-        <div className="p-6">
-          {/* Header */}
-          <div className="flex items-center justify-between mb-6">
-            <h2 className="text-xl font-semibold text-white">
-              {t('modal.submission.title')}
-            </h2>
-            <button
-              onClick={onClose}
-              className="text-slate-400 hover:text-white transition-colors"
-            >
-              <svg
-                className="w-6 h-6"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M6 18L18 6M6 6l12 12"
-                />
-              </svg>
-            </button>
-          </div>
+    <BaseModal
+      isOpen={isOpen}
+      onClose={onClose}
+      title={t('modal.submission.title')}
+      isLoading={isDeleting}
+      loadingMessage={t('state.deleting')}
+      loadingSubMessage={t('modal.please-wait')}
+      maxWidth="4xl"
+    >
+      {/* Content */}
+      <div className="space-y-6">
+        {/* Image */}
+        <div className="w-full bg-slate-900 rounded-lg overflow-hidden">
+          <OptimizedImage
+            r2Key={submission.imageUrl}
+            alt={submission.title}
+            className="w-full h-auto max-h-96 object-contain"
+            loading="eager"
+          />
+        </div>
 
-          {/* Content */}
-          <div className="space-y-6">
-            {/* Image */}
-            <div className="w-full bg-slate-900 rounded-lg overflow-hidden">
-              <OptimizedImage
-                r2Key={submission.imageUrl}
-                alt={submission.title}
-                className="w-full h-auto max-h-96 object-contain"
-                loading="eager"
-              />
-            </div>
-
-            {/* Submission Details */}
-            <div className="space-y-4">
-              <div>
-                <h3 className="text-lg font-semibold text-white mb-2">
-                  {submission.title}
-                </h3>
-                {submission.description && (
-                  <p className="text-slate-300 leading-relaxed">
-                    {submission.description}
-                  </p>
-                )}
-                {submission.portfolio && submission.portfolioPhotoType && (
-                  <div className="mt-3 text-sm text-slate-400">
-                    <p>Portfolio: {submission.portfolio}</p>
-                    <p>Type: {submission.portfolioPhotoType}</p>
-                  </div>
-                )}
+        {/* Submission Details */}
+        <div className="space-y-4">
+          <div>
+            <h3 className="text-lg font-semibold text-white mb-2">
+              {submission.title}
+            </h3>
+            {submission.description && (
+              <p className="text-slate-300 leading-relaxed">
+                {submission.description}
+              </p>
+            )}
+            {submission.portfolio && submission.portfolioPhotoType && (
+              <div className="mt-3 text-sm text-slate-400">
+                <p>Portfolio: {submission.portfolio}</p>
+                <p>Type: {submission.portfolioPhotoType}</p>
               </div>
-            </div>
-
-            {/* Actions */}
-            <div className="flex gap-3 pt-4 border-t border-slate-700">
-              <button
-                onClick={onClose}
-                disabled={isDeleting}
-                className="flex-1 py-2 px-4 bg-slate-700 hover:bg-slate-600 text-white rounded-lg disabled:opacity-50 transition-colors"
-              >
-                {t('action.close')}
-              </button>
-              <button
-                onClick={handleDelete}
-                disabled={isDeleting}
-                className="flex-1 py-2 px-4 bg-red-600 hover:bg-red-500 text-white rounded-lg disabled:opacity-50 transition-colors"
-              >
-                {isDeleting ? t('state.deleting') : t('action.delete')}
-              </button>
-            </div>
+            )}
           </div>
         </div>
+
+        {/* Actions */}
+        <div className="flex gap-3 pt-4 border-t border-slate-700">
+          <button
+            onClick={onClose}
+            disabled={isDeleting}
+            className="flex-1 py-2 px-4 bg-slate-700 hover:bg-slate-600 text-white rounded-lg disabled:opacity-50 transition-colors"
+          >
+            {t('action.close')}
+          </button>
+          <button
+            onClick={handleDelete}
+            disabled={isDeleting}
+            className="flex-1 py-2 px-4 bg-red-600 hover:bg-red-500 text-white rounded-lg disabled:opacity-50 transition-colors flex items-center justify-center gap-2"
+          >
+            {isDeleting && (
+              <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-white"></div>
+            )}
+            {isDeleting ? t('state.deleting') : t('action.delete')}
+          </button>
+        </div>
       </div>
-    </div>
+    </BaseModal>
   );
 }
