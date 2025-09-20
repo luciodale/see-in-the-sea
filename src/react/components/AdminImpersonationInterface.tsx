@@ -224,7 +224,7 @@ export function AdminImpersonationInterface({
     return (
       <div className="flex items-center justify-center p-12">
         <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-400"></div>
-        <span className="ml-3 text-slate-300">Loading submissions...</span>
+        <span className="ml-3 text-slate-300">Caricamento invia...</span>
       </div>
     );
   }
@@ -236,18 +236,18 @@ export function AdminImpersonationInterface({
       {/* Header with user email and change button */}
       <div className="text-center">
         <h1 className="text-3xl font-bold text-white">
-          UW 2025 Contest: Admin Upload
+          Concorso UW 2025: Caricamento Amministratore
         </h1>
         <div className="mt-2 flex items-center justify-center gap-4">
           <p className="text-slate-300">
-            Uploading on behalf of:{' '}
+            Caricamento per conto di:{' '}
             <span className="font-semibold text-white">{userEmail}</span>
           </p>
           <button
             onClick={onEmailChange}
             className="px-3 py-1 bg-slate-700 hover:bg-slate-600 text-slate-300 rounded-lg text-sm transition-colors cursor-pointer"
           >
-            Change Email
+            Cambia Email
           </button>
         </div>
         {!noActiveContest && (

@@ -57,18 +57,18 @@ export default function CreateContestForm({
       // Get JWT token for authentication
       const token = await getToken();
       if (!token) {
-        throw new Error('Authentication token not available');
+        throw new Error('Token di autenticazione non disponibile');
       }
 
       // Validate form data
       if (!formData.id.trim()) {
-        throw new Error('Contest ID is required');
+        throw new Error('ID del concorso richiesto');
       }
       if (!formData.name.trim()) {
-        throw new Error('Contest name is required');
+        throw new Error('Nome del concorso richiesto');
       }
       if (!formData.year || Number.isNaN(Number(formData.year))) {
-        throw new Error('Year is required');
+        throw new Error('Anno richiesto');
       }
 
       // Submit to API
@@ -84,10 +84,10 @@ export default function CreateContestForm({
       const result = (await response.json()) as CreateContestResponse;
 
       if (!response.ok) {
-        throw new Error(result.message || 'Failed to create contest');
+        throw new Error(result.message || 'Impossibile creare il concorso');
       }
 
-      setSuccess('Contest created successfully! 🎉');
+      setSuccess('Concorso creato con successo! 🎉');
 
       // Reset form
       setFormData({
@@ -106,7 +106,9 @@ export default function CreateContestForm({
     } catch (error) {
       console.error('Error creating contest:', error);
       setError(
-        error instanceof Error ? error.message : 'An unexpected error occurred'
+        error instanceof Error
+          ? error.message
+          : 'Si è verificato un errore imprevisto'
       );
     } finally {
       setIsSubmitting(false);
@@ -119,10 +121,11 @@ export default function CreateContestForm({
     <div className="bg-slate-900 border border-slate-700 rounded-lg p-6">
       <div className="mb-6">
         <h2 className="text-2xl font-bold text-white mb-2">
-          🏆 Create New Contest
+          🏆 Crea Nuovo Concorso
         </h2>
         <p className="text-slate-300">
-          Set up a new underwater photography contest with all the details.
+          Configura un nuovo concorso di fotografia subacquea con tutti i
+          dettagli.
         </p>
       </div>
 
@@ -145,7 +148,7 @@ export default function CreateContestForm({
             htmlFor="id"
             className="block text-sm font-medium text-slate-200 mb-2"
           >
-            Contest ID *
+            ID Concorso *
           </label>
           <input
             id="id"
@@ -158,7 +161,8 @@ export default function CreateContestForm({
             className="w-full px-3 py-2 border border-slate-700 bg-slate-800 text-white rounded-md focus:outline-none focus:ring-2 focus:ring-emerald-500"
           />
           <p className="text-xs text-slate-400 mt-1">
-            Unique identifier for the contest (used in URLs and database)
+            Identificatore univoco per il concorso (usato negli URL e nel
+            database)
           </p>
         </div>
 
@@ -168,7 +172,7 @@ export default function CreateContestForm({
             htmlFor="name"
             className="block text-sm font-medium text-slate-200 mb-2"
           >
-            Contest Name *
+            Nome Concorso *
           </label>
           <input
             id="name"
@@ -188,7 +192,7 @@ export default function CreateContestForm({
             htmlFor="description"
             className="block text-sm font-medium text-slate-200 mb-2"
           >
-            Description
+            Descrizione
           </label>
           <textarea
             id="description"
@@ -196,7 +200,7 @@ export default function CreateContestForm({
             rows={4}
             value={formData.description}
             onChange={handleInputChange}
-            placeholder="Describe the contest theme, rules, or special instructions..."
+            placeholder="Descrivi il tema del concorso, le regole o le istruzioni speciali..."
             className="w-full px-3 py-2 border border-slate-700 bg-slate-800 text-white rounded-md focus:outline-none focus:ring-2 focus:ring-emerald-500"
           />
         </div>
@@ -207,7 +211,7 @@ export default function CreateContestForm({
             htmlFor="year"
             className="block text-sm font-medium text-slate-2 00 mb-2"
           >
-            Year *
+            Anno *
           </label>
           <input
             id="year"
@@ -229,7 +233,7 @@ export default function CreateContestForm({
               htmlFor="maxSubmissionsPerCategory"
               className="block text-sm font-medium text-slate-200 mb-2"
             >
-              Max Submissions per Category
+              Max Invia per Categoria
             </label>
             <select
               id="maxSubmissionsPerCategory"
@@ -238,11 +242,11 @@ export default function CreateContestForm({
               onChange={handleInputChange}
               className="w-full px-3 py-2 border border-slate-700 bg-slate-800 text-white rounded-md focus:outline-none focus:ring-2 focus:ring-emerald-500"
             >
-              <option value={1}>1 submission</option>
-              <option value={2}>2 submissions</option>
-              <option value={3}>3 submissions</option>
-              <option value={5}>5 submissions</option>
-              <option value={10}>10 submissions</option>
+              <option value={1}>1 invia</option>
+              <option value={2}>2 invia</option>
+              <option value={3}>3 invia</option>
+              <option value={5}>5 invia</option>
+              <option value={10}>10 invia</option>
             </select>
           </div>
 
@@ -251,7 +255,7 @@ export default function CreateContestForm({
               htmlFor="status"
               className="block text-sm font-medium text-slate-200 mb-2"
             >
-              Contest Status
+              Stato Concorso
             </label>
             <select
               id="status"
@@ -296,10 +300,10 @@ export default function CreateContestForm({
                     d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
                   ></path>
                 </svg>
-                Creating Contest...
+                Creazione Concorso...
               </span>
             ) : (
-              '🏆 Create Contest'
+              '🏆 Crea Concorso'
             )}
           </button>
 
@@ -309,7 +313,7 @@ export default function CreateContestForm({
               onClick={onCancel}
               className="px-6 py-2 border border-slate-700 text-slate-200 rounded-md hover:bg-slate-800 focus:outline-none focus:ring-2 focus:ring-emerald-500 cursor-pointer"
             >
-              Cancel
+              Annulla
             </button>
           )}
         </div>
@@ -318,9 +322,9 @@ export default function CreateContestForm({
       {/* Helper Text */}
       <div className="mt-6 p-4 bg-slate-800 border border-slate-700 rounded-md">
         <p className="text-slate-300 text-sm">
-          <strong>💡 Tip:</strong> Once created, the contest will appear in the
-          user interface. Make sure year and submission limits are correct
-          before creating.
+          <strong>💡 Suggerimento:</strong> Una volta creato, il concorso
+          apparirà nell'interfaccia utente. Assicurati che anno e limiti di
+          invia siano corretti prima di creare.
         </p>
       </div>
     </div>

@@ -1,10 +1,7 @@
 import { useAuth } from '@clerk/clerk-react';
 import { createFileRoute } from '@tanstack/react-router';
 import { useEffect, useState } from 'react';
-import type {
-  AdminResultRow,
-  AdminResultsResponse,
-} from '../../../types/api';
+import type { AdminResultRow, AdminResultsResponse } from '../../../types/api';
 import CategorySelect from '../../components/CategorySelect';
 import EditResultModal from '../../components/EditResultModal';
 
@@ -66,10 +63,10 @@ function AdminResultsPage() {
       <div className="px-6 py-4 border-b border-slate-700">
         <div className="flex items-center justify-between">
           <div>
-            <h2 className="text-xl font-bold text-white">Results</h2>
+            <h2 className="text-xl font-bold text-white">Risultati</h2>
             <p className="text-slate-300 text-sm">
-              {totalCount} total results{' '}
-              {totalCount !== rows.length && `(showing ${rows.length})`}
+              {totalCount} risultati totali{' '}
+              {totalCount !== rows.length && `(mostrando ${rows.length})`}
             </p>
           </div>
           <button
@@ -79,7 +76,7 @@ function AdminResultsPage() {
             }}
             className="px-4 py-2 text-sm text-slate-300 hover:text-white border border-slate-700 rounded-md hover:bg-slate-800 cursor-pointer"
           >
-            Clear Filters
+            Cancella Filtri
           </button>
         </div>
       </div>
@@ -93,7 +90,7 @@ function AdminResultsPage() {
               htmlFor="search-filter"
               className="block text-xs font-medium text-slate-200 mb-1"
             >
-              Search Title
+              Cerca Titolo
             </label>
             <input
               id="search-filter"
@@ -103,7 +100,7 @@ function AdminResultsPage() {
                 setFilters(prev => ({ ...prev, search: e.target.value }));
                 setCurrentPage(1);
               }}
-              placeholder="Search by title..."
+              placeholder="Cerca per titolo..."
               className="w-full px-3 py-2 text-sm border border-slate-700 bg-slate-800 text-white rounded-md focus:outline-none focus:ring-2 focus:ring-emerald-500"
             />
           </div>
@@ -111,14 +108,14 @@ function AdminResultsPage() {
           {/* Category Filter (dropdown) */}
           <CategorySelect
             id="category-filter"
-            label="Category"
+            label="Categoria"
             value={filters.categoryId}
             onChange={val => {
               setFilters(prev => ({ ...prev, categoryId: val }));
               setCurrentPage(1);
             }}
             includeAllOption
-            allLabel="All"
+            allLabel="Tutte"
           />
 
           {/* User Email Filter */}
@@ -127,7 +124,7 @@ function AdminResultsPage() {
               htmlFor="email-filter"
               className="block text-xs font-medium text-slate-200 mb-1"
             >
-              User Email
+              Email Utente
             </label>
             <input
               id="email-filter"
@@ -137,7 +134,7 @@ function AdminResultsPage() {
                 setFilters(prev => ({ ...prev, userEmail: e.target.value }));
                 setCurrentPage(1);
               }}
-              placeholder="Filter by email..."
+              placeholder="Filtra per email..."
               className="w-full px-3 py-2 text-sm border border-slate-700 bg-slate-800 text-white rounded-md focus:outline-none focus:ring-2 focus:ring-emerald-500"
             />
           </div>
@@ -145,32 +142,34 @@ function AdminResultsPage() {
       </div>
 
       {loading ? (
-        <div className="py-12 text-center">Loading...</div>
+        <div className="py-12 text-center">Caricamento...</div>
       ) : error ? (
         <div className="bg-red-900/30 border border-red-800 text-red-200 p-4 rounded">
           {error}
         </div>
       ) : rows.length === 0 ? (
-        <div className="text-slate-400">No results found for this contest.</div>
+        <div className="text-slate-400">
+          Nessun risultato trovato per questo concorso.
+        </div>
       ) : (
         <div className="overflow-x-auto rounded-b-lg">
           <table className="min-w-full divide-y divide-slate-700">
             <thead className="bg-slate-800/40">
               <tr>
                 <th className="px-6 py-3 text-left text-xs font-medium text-slate-300 uppercase tracking-wider">
-                  Result
+                  Risultato
                 </th>
                 <th className="px-6 py-3 text-left text-xs font-medium text-slate-300 uppercase tracking-wider">
-                  Category
+                  Categoria
                 </th>
                 <th className="px-6 py-3 text-left text-xs font-medium text-slate-300 uppercase tracking-wider">
-                  Title & User
+                  Titolo e Utente
                 </th>
                 <th className="px-6 py-3 text-left text-xs font-medium text-slate-300 uppercase tracking-wider">
-                  Preview
+                  Anteprima
                 </th>
                 <th className="px-6 py-3 text-left text-xs font-medium text-slate-300 uppercase tracking-wider">
-                  Actions
+                  Azioni
                 </th>
               </tr>
             </thead>
@@ -219,7 +218,7 @@ function AdminResultsPage() {
                           d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"
                         />
                       </svg>
-                      Edit
+                      Modifica
                     </button>
                     <button
                       onClick={() =>
@@ -246,7 +245,7 @@ function AdminResultsPage() {
                           d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"
                         />
                       </svg>
-                      View
+                      Visualizza
                     </button>
                   </td>
                 </tr>
@@ -258,8 +257,8 @@ function AdminResultsPage() {
       {Math.ceil(totalCount / itemsPerPage) > 1 && (
         <div className="px-6 py-4 border-t border-slate-700 flex items-center justify-between text-slate-300">
           <div className="text-sm">
-            Showing page {currentPage} of {Math.ceil(totalCount / itemsPerPage)}{' '}
-            ({totalCount} total)
+            Mostrando pagina {currentPage} di{' '}
+            {Math.ceil(totalCount / itemsPerPage)} ({totalCount} totali)
           </div>
           <div className="flex space-x-2">
             <button
@@ -267,7 +266,7 @@ function AdminResultsPage() {
               disabled={currentPage === 1}
               className="px-3 py-2 text-sm border border-slate-700 rounded-md disabled:opacity-50 disabled:cursor-not-allowed hover:bg-slate-800 cursor-pointer"
             >
-              Previous
+              Precedente
             </button>
             <span className="px-3 py-2 text-sm">
               {currentPage} / {Math.ceil(totalCount / itemsPerPage)}
@@ -284,7 +283,7 @@ function AdminResultsPage() {
               disabled={currentPage === Math.ceil(totalCount / itemsPerPage)}
               className="px-3 py-2 text-sm border border-slate-700 rounded-md disabled:opacity-50 disabled:cursor-not-allowed hover:bg-slate-800 cursor-pointer"
             >
-              Next
+              Successivo
             </button>
           </div>
         </div>

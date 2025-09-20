@@ -16,7 +16,7 @@ function AdminCreateContest() {
       <div className="flex items-center justify-center py-12">
         <div className="text-center">
           <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-emerald-500 mx-auto mb-4"></div>
-          <p className="text-slate-300">Loading...</p>
+          <p className="text-slate-300">Caricamento...</p>
         </div>
       </div>
     );
@@ -37,16 +37,17 @@ function AdminCreateContest() {
             <div className="max-w-md w-full bg-slate-900 border border-slate-700 rounded-lg p-6 text-center text-slate-100">
               <div className="text-red-400 text-6xl mb-4">🚫</div>
               <h2 className="text-2xl font-bold text-white mb-2">
-                Access Denied
+                Accesso Negato
               </h2>
               <p className="text-slate-400 mb-4">
-                You need admin privileges to access this area.
+                Hai bisogno di privilegi amministrativi per accedere a questa
+                area.
               </p>
               <Link
                 to="/user"
                 className="inline-flex items-center px-4 py-2 bg-emerald-600 text-white rounded-md hover:bg-emerald-500 transition-colors"
               >
-                ← Return to User Dashboard
+                ← Torna alla Dashboard Utente
               </Link>
             </div>
           </div>
@@ -56,10 +57,10 @@ function AdminCreateContest() {
         <div className="min-h-screen flex items-center justify-center bg-slate-900">
           <div className="max-w-md w-full bg-slate-900 border border-slate-700 rounded-lg p-6 text-center text-slate-100">
             <h2 className="text-2xl font-bold text-white mb-4">
-              Admin Login Required
+              Login Amministratore Richiesto
             </h2>
             <p className="text-slate-400 mb-6">
-              Please sign in to access the admin panel.
+              Effettua l'accesso per accedere al pannello amministratore.
             </p>
             <RedirectToSignIn />
           </div>

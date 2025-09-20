@@ -59,7 +59,7 @@ export default function EditResultModal({
       setSaving(true);
       setError(null);
       const token = await getToken();
-      if (!token) throw new Error('Auth token not available');
+      if (!token) throw new Error('Token di autenticazione non disponibile');
       const res = await fetch('/api/admin/manage-results', {
         method: 'POST',
         headers: {
@@ -75,11 +75,13 @@ export default function EditResultModal({
       });
       const data: UpdateResultResponse = await res.json();
       if (!res.ok || !data.success)
-        throw new Error(data.message || 'Failed to update result');
+        throw new Error(data.message || 'Impossibile aggiornare il risultato');
       onSuccess();
       onClose();
     } catch (e) {
-      setError(e instanceof Error ? e.message : 'Failed to update result');
+      setError(
+        e instanceof Error ? e.message : 'Impossibile aggiornare il risultato'
+      );
     } finally {
       setSaving(false);
     }
@@ -89,9 +91,9 @@ export default function EditResultModal({
     <BaseModal
       isOpen={isOpen}
       onClose={onClose}
-      title="Edit Result"
+      title="Modifica Risultato"
       isLoading={saving}
-      loadingMessage="Updating result..."
+      loadingMessage="Aggiornamento risultato..."
       maxWidth="md"
     >
       {error && (
@@ -102,7 +104,7 @@ export default function EditResultModal({
       <div className="space-y-3">
         <StyledSelect
           id="placement-select"
-          label="Placement"
+          label="Posizionamento"
           value={form.result}
           onChange={value =>
             setForm(prev => ({
@@ -119,7 +121,7 @@ export default function EditResultModal({
         />
 
         <label className="block text-sm" htmlFor="first-name">
-          First Name
+          Nome
         </label>
         <input
           id="first-name"
@@ -132,7 +134,7 @@ export default function EditResultModal({
         />
 
         <label className="block text-sm" htmlFor="last-name">
-          Last Name
+          Cognome
         </label>
         <input
           id="last-name"
@@ -149,14 +151,14 @@ export default function EditResultModal({
           onClick={onClose}
           className="px-4 py-2 text-sm border border-slate-700 rounded-md hover:bg-slate-700 transition-colors cursor-pointer"
         >
-          Cancel
+          Annulla
         </button>
         <button
           onClick={handleSave}
           disabled={saving}
           className="px-4 py-2 text-sm bg-emerald-600 hover:bg-emerald-500 text-white rounded-md disabled:opacity-50 transition-colors cursor-pointer"
         >
-          Save
+          Salva
         </button>
       </div>
     </BaseModal>

@@ -50,7 +50,7 @@ export default function AdminSubmissionsBrowser({
 
       const token = await getToken();
       if (!token) {
-        throw new Error('Authentication token not available');
+        throw new Error('Token di autenticazione non disponibile');
       }
 
       // Build query parameters - contestId is always included
@@ -73,7 +73,7 @@ export default function AdminSubmissionsBrowser({
       const result: AdminSubmissionsResponse = await response.json();
 
       if (!response.ok || !result.success) {
-        throw new Error('Failed to fetch submissions');
+        throw new Error('Impossibile recuperare le invia');
       }
 
       setSubmissions(result.data || []);
@@ -81,7 +81,9 @@ export default function AdminSubmissionsBrowser({
     } catch (error) {
       console.error('Error fetching submissions:', error);
       setError(
-        error instanceof Error ? error.message : 'Failed to fetch submissions'
+        error instanceof Error
+          ? error.message
+          : 'Impossibile recuperare le invia'
       );
     } finally {
       setIsLoading(false);
@@ -150,18 +152,18 @@ export default function AdminSubmissionsBrowser({
         <div className="px-6 py-4 border-b border-slate-700">
           <div className="flex items-center justify-between">
             <div>
-              <h2 className="text-xl font-bold text-white">All Submissions</h2>
+              <h2 className="text-xl font-bold text-white">Tutte le Invia</h2>
               <p className="text-slate-300 text-sm">
-                {totalCount} total submissions{' '}
+                {totalCount} invia totali{' '}
                 {totalCount !== submissions.length &&
-                  `(showing ${submissions.length})`}
+                  `(mostrando ${submissions.length})`}
               </p>
             </div>
             <button
               onClick={clearFilters}
               className="px-4 py-2 text-sm text-slate-300 hover:text-white border border-slate-700 rounded-md hover:bg-slate-800 cursor-pointer"
             >
-              Clear Filters
+              Cancella Filtri
             </button>
           </div>
         </div>
@@ -175,14 +177,14 @@ export default function AdminSubmissionsBrowser({
                 htmlFor="search-filter"
                 className="block text-xs font-medium text-slate-200 mb-1"
               >
-                Search Title
+                Cerca Titolo
               </label>
               <input
                 id="search-filter"
                 type="text"
                 value={filters.search}
                 onChange={e => handleFilterChange('search', e.target.value)}
-                placeholder="Search by title..."
+                placeholder="Cerca per titolo..."
                 className="w-full px-3 py-2 text-sm border border-slate-700 bg-slate-800 text-white rounded-md focus:outline-none focus:ring-2 focus:ring-emerald-500"
               />
             </div>
@@ -190,11 +192,11 @@ export default function AdminSubmissionsBrowser({
             {/* Category Filter */}
             <CategorySelect
               id="category-filter"
-              label="Category"
+              label="Categoria"
               value={filters.categoryId}
               onChange={val => handleFilterChange('categoryId', val)}
               includeAllOption
-              allLabel="All"
+              allLabel="Tutte"
             />
 
             {/* User Email Filter */}
@@ -203,14 +205,14 @@ export default function AdminSubmissionsBrowser({
                 htmlFor="email-filter"
                 className="block text-xs font-medium text-slate-200 mb-1"
               >
-                User Email
+                Email Utente
               </label>
               <input
                 id="email-filter"
                 type="text"
                 value={filters.userEmail}
                 onChange={e => handleFilterChange('userEmail', e.target.value)}
-                placeholder="Filter by email..."
+                placeholder="Filtra per email..."
                 className="w-full px-3 py-2 text-sm border border-slate-700 bg-slate-800 text-white rounded-md focus:outline-none focus:ring-2 focus:ring-emerald-500"
               />
             </div>
@@ -230,7 +232,7 @@ export default function AdminSubmissionsBrowser({
             <div className="px-6 py-12 text-center">
               <div className="text-slate-300">
                 <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-emerald-500 mx-auto mb-4"></div>
-                <p>Loading submissions...</p>
+                <p>Caricamento invia...</p>
               </div>
             </div>
           ) : submissions.length === 0 ? (
@@ -250,12 +252,12 @@ export default function AdminSubmissionsBrowser({
                   />
                 </svg>
                 <h3 className="text-lg font-medium text-white mb-2">
-                  No Submissions Found
+                  Nessuna Invia Trovata
                 </h3>
                 <p className="text-slate-300">
                   {Object.values(filters).some(v => v)
-                    ? 'Try adjusting your filters to see more results.'
-                    : 'No submissions have been uploaded yet.'}
+                    ? 'Prova ad aggiustare i filtri per vedere più risultati.'
+                    : 'Nessuna invia è stata ancora caricata.'}
                 </p>
               </div>
             </div>
@@ -264,22 +266,22 @@ export default function AdminSubmissionsBrowser({
               <thead className="bg-slate-800/40">
                 <tr>
                   <th className="px-6 py-3 text-left text-xs font-medium text-slate-300 uppercase tracking-wider">
-                    Submission
+                    Invia
                   </th>
                   <th className="px-6 py-3 text-left text-xs font-medium text-slate-300 uppercase tracking-wider">
-                    Contest & Category
+                    Concorso e Categoria
                   </th>
                   <th className="px-6 py-3 text-left text-xs font-medium text-slate-300 uppercase tracking-wider">
-                    Portfolio Info
+                    Info Portfolio
                   </th>
                   <th className="px-6 py-3 text-left text-xs font-medium text-slate-300 uppercase tracking-wider">
-                    User
+                    Utente
                   </th>
                   <th className="px-6 py-3 text-left text-xs font-medium text-slate-300 uppercase tracking-wider">
-                    Upload Date
+                    Data Caricamento
                   </th>
                   <th className="px-6 py-3 text-left text-xs font-medium text-slate-300 uppercase tracking-wider">
-                    Actions
+                    Azioni
                   </th>
                 </tr>
               </thead>
@@ -374,7 +376,7 @@ export default function AdminSubmissionsBrowser({
                             d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"
                           />
                         </svg>
-                        Edit
+                        Modifica
                       </button>
 
                       <button
@@ -405,7 +407,7 @@ export default function AdminSubmissionsBrowser({
                             d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"
                           />
                         </svg>
-                        View
+                        Visualizza
                       </button>
                     </td>
                   </tr>
@@ -419,7 +421,8 @@ export default function AdminSubmissionsBrowser({
         {totalPages > 1 && (
           <div className="px-6 py-4 border-t border-slate-700 flex items-center justify-between text-slate-300">
             <div className="text-sm">
-              Showing page {currentPage} of {totalPages} ({totalCount} total)
+              Mostrando pagina {currentPage} di {totalPages} ({totalCount}{' '}
+              totali)
             </div>
             <div className="flex space-x-2">
               <button
@@ -427,7 +430,7 @@ export default function AdminSubmissionsBrowser({
                 disabled={currentPage === 1}
                 className="px-3 py-2 text-sm border border-slate-700 rounded-md disabled:opacity-50 disabled:cursor-not-allowed hover:bg-slate-800"
               >
-                Previous
+                Precedente
               </button>
               <span className="px-3 py-2 text-sm">
                 {currentPage} / {totalPages}
@@ -439,7 +442,7 @@ export default function AdminSubmissionsBrowser({
                 disabled={currentPage === totalPages}
                 className="px-3 py-2 text-sm border border-slate-700 rounded-md disabled:opacity-50 disabled:cursor-not-allowed hover:bg-slate-800"
               >
-                Next
+                Successivo
               </button>
             </div>
           </div>

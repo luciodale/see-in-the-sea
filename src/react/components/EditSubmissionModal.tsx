@@ -84,13 +84,13 @@ export default function EditSubmissionModal({
     if (file) {
       // Validate file type
       if (!file.type.startsWith('image/')) {
-        setError('Please select an image file');
+        setError('Seleziona un file immagine');
         return;
       }
 
       // Validate file size (10MB limit)
       if (file.size > 10 * 1024 * 1024) {
-        setError('Image must be less than 10MB');
+        setError("L'immagine deve essere inferiore a 10MB");
         return;
       }
 
@@ -125,17 +125,17 @@ export default function EditSubmissionModal({
     try {
       // Validate form
       if (!formData.title.trim()) {
-        throw new Error('Title is required');
+        throw new Error('Il titolo è richiesto');
       }
 
       if (formData.replaceImage && !formData.imageFile) {
-        throw new Error('Please select an image to replace with');
+        throw new Error("Seleziona un'immagine da sostituire");
       }
 
       // Get JWT token
       const token = await getToken();
       if (!token) {
-        throw new Error('Authentication token not available');
+        throw new Error('Token di autenticazione non disponibile');
       }
 
       let requestBody;
@@ -180,7 +180,7 @@ export default function EditSubmissionModal({
       const result = (await response.json()) as ManageSubmissionResponse;
 
       if (!response.ok || !result.success) {
-        throw new Error(result.message || 'Failed to update submission');
+        throw new Error(result.message || "Impossibile aggiornare l'invia");
       }
 
       onSuccess();
@@ -188,7 +188,9 @@ export default function EditSubmissionModal({
     } catch (error) {
       console.error('Error updating submission:', error);
       setError(
-        error instanceof Error ? error.message : 'Failed to update submission'
+        error instanceof Error
+          ? error.message
+          : "Impossibile aggiornare l'invia"
       );
     } finally {
       setIsSubmitting(false);
@@ -199,9 +201,9 @@ export default function EditSubmissionModal({
     <BaseModal
       isOpen={isOpen}
       onClose={onClose}
-      title="Edit Submission"
+      title="Modifica Invia"
       isLoading={isSubmitting}
-      loadingMessage="Updating submission..."
+      loadingMessage="Aggiornamento invia..."
       maxWidth="2xl"
     >
       {error && (
@@ -214,7 +216,7 @@ export default function EditSubmissionModal({
         {/* Current Image */}
         <div>
           <div className="block text-sm font-medium text-slate-300 mb-2">
-            Current Photo
+            Foto Attuale
           </div>
           <img
             src={`/api/images/${submission.imageUrl}`}
@@ -234,7 +236,7 @@ export default function EditSubmissionModal({
               className="w-4 h-4 text-emerald-600 focus:ring-emerald-500 border-slate-600 rounded bg-slate-700"
             />
             <span className="text-sm font-medium text-slate-300">
-              Replace image with new one
+              Sostituisci immagine con una nuova
             </span>
           </label>
         </div>
@@ -246,7 +248,7 @@ export default function EditSubmissionModal({
               htmlFor="edit-image-upload"
               className="block text-sm font-medium text-slate-300 mb-2"
             >
-              New Image
+              Nuova Immagine
             </label>
 
             {!preview ? (
@@ -276,7 +278,7 @@ export default function EditSubmissionModal({
                     />
                   </svg>
                   <span className="text-sm text-slate-300">
-                    Click to select new image
+                    Clicca per selezionare una nuova immagine
                   </span>
                   <span className="text-xs text-slate-400">
                     {SUPPORTED_FORMATS_HELP_TEXT}
@@ -320,7 +322,7 @@ export default function EditSubmissionModal({
             htmlFor="title"
             className="block text-sm font-medium text-slate-300 mb-2"
           >
-            Title *
+            Titolo *
           </label>
           <input
             id="title"
@@ -339,7 +341,7 @@ export default function EditSubmissionModal({
             htmlFor="description"
             className="block text-sm font-medium text-slate-300 mb-2"
           >
-            Description
+            Descrizione
           </label>
           <textarea
             id="description"
@@ -358,14 +360,14 @@ export default function EditSubmissionModal({
             onClick={onClose}
             className="flex-1 bg-slate-700 text-slate-300 py-2 px-4 rounded-lg hover:bg-slate-600 focus:outline-none focus:ring-2 focus:ring-slate-500 transition-colors cursor-pointer"
           >
-            Cancel
+            Annulla
           </button>
           <button
             type="submit"
             disabled={isSubmitting}
             className="flex-1 bg-emerald-600 text-white py-2 px-4 rounded-lg hover:bg-emerald-500 focus:outline-none focus:ring-2 focus:ring-emerald-500 disabled:opacity-50 transition-colors cursor-pointer"
           >
-            Update Submission
+            Aggiorna Invia
           </button>
         </div>
       </form>

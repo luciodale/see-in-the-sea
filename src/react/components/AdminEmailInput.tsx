@@ -19,12 +19,12 @@ export function AdminEmailInput({ onEmailSubmit, isLoading = false }: AdminEmail
     setError(null);
 
     if (!email.trim()) {
-      setError('Email is required');
+      setError('Email richiesta');
       return;
     }
 
     if (!validateEmail(email)) {
-      setError('Please enter a valid email address');
+      setError('Inserisci un indirizzo email valido');
       return;
     }
 
@@ -36,17 +36,17 @@ export function AdminEmailInput({ onEmailSubmit, isLoading = false }: AdminEmail
       <div className="bg-slate-800 border border-slate-700 rounded-xl p-6">
         <div className="text-center mb-6">
           <h2 className="text-xl font-semibold text-white mb-2">
-            Admin Upload Interface
+            Interfaccia Caricamento Amministratore
           </h2>
           <p className="text-slate-300 text-sm">
-            Enter the email address of the user you want to upload photos for
+            Inserisci l'indirizzo email dell'utente per cui vuoi caricare le foto
           </p>
         </div>
 
         <form onSubmit={handleSubmit} className="space-y-4">
           <div>
             <label htmlFor="user-email" className="block text-sm font-medium text-slate-300 mb-2">
-              User Email Address
+              Indirizzo Email Utente
             </label>
             <input
               id="user-email"
@@ -67,13 +67,13 @@ export function AdminEmailInput({ onEmailSubmit, isLoading = false }: AdminEmail
             disabled={isLoading || !email.trim()}
             className="w-full py-2 bg-emerald-600 hover:bg-emerald-500 disabled:bg-slate-600 disabled:cursor-not-allowed text-white rounded-lg font-medium transition-colors cursor-pointer"
           >
-            {isLoading ? 'Loading...' : 'Enter Interface'}
+            {isLoading ? 'Caricamento...' : 'Accedi all'Interfaccia'}
           </button>
         </form>
 
         <div className="mt-4 p-3 bg-blue-900/30 border border-blue-700 rounded-lg">
           <p className="text-xs text-blue-200">
-            <strong>Note:</strong> You will be able to browse categories and upload photos on behalf of this user for the 2025 contest.
+            <strong>Nota:</strong> Potrai sfogliare le categorie e caricare foto per conto di questo utente per il concorso 2025.
           </p>
         </div>
       </div>

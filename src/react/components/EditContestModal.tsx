@@ -56,9 +56,7 @@ export default function EditContestModal({
       const year = parseInt(form.year, 10);
       const max = parseInt(form.maxSubmissionsPerCategory, 10);
       if (!form.name.trim() || Number.isNaN(year) || Number.isNaN(max)) {
-        throw new Error(
-          'Please provide a valid name, year and max submissions.'
-        );
+        throw new Error('Fornisci un nome, anno e max invia validi.');
       }
 
       const token = await getToken();
@@ -79,12 +77,14 @@ export default function EditContestModal({
       });
       const json: { success?: boolean; message?: string } = await res.json();
       if (!res.ok || !json.success) {
-        throw new Error(json.message || 'Failed to update contest');
+        throw new Error(json.message || 'Impossibile aggiornare il concorso');
       }
       onSuccess();
       onClose();
     } catch (e) {
-      setError(e instanceof Error ? e.message : 'Failed to update contest');
+      setError(
+        e instanceof Error ? e.message : 'Impossibile aggiornare il concorso'
+      );
     } finally {
       setSaving(false);
     }
@@ -94,9 +94,9 @@ export default function EditContestModal({
     <BaseModal
       isOpen={isOpen}
       onClose={onClose}
-      title="Edit Contest"
+      title="Modifica Concorso"
       isLoading={saving}
-      loadingMessage="Updating contest..."
+      loadingMessage="Aggiornamento concorso..."
       maxWidth="lg"
     >
       {error && (
@@ -108,7 +108,7 @@ export default function EditContestModal({
       <div className="space-y-4">
         <div>
           <label htmlFor="contest-name" className="block text-sm mb-1">
-            Name
+            Nome
           </label>
           <input
             id="contest-name"
@@ -121,7 +121,7 @@ export default function EditContestModal({
 
         <div>
           <label htmlFor="contest-desc" className="block text-sm mb-1">
-            Description
+            Descrizione
           </label>
           <textarea
             id="contest-desc"
@@ -137,7 +137,7 @@ export default function EditContestModal({
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
           <div>
             <label htmlFor="contest-year" className="block text-sm mb-1">
-              Year
+              Anno
             </label>
             <input
               id="contest-year"
@@ -153,7 +153,7 @@ export default function EditContestModal({
           <div>
             <StyledSelect
               id="contest-status"
-              label="Status"
+              label="Stato"
               value={form.status}
               onChange={value =>
                 setForm(prev => ({
@@ -170,7 +170,7 @@ export default function EditContestModal({
           </div>
           <div>
             <label htmlFor="contest-max" className="block text-sm mb-1">
-              Max per Category
+              Max per Categoria
             </label>
             <input
               id="contest-max"
@@ -194,14 +194,14 @@ export default function EditContestModal({
             onClick={onClose}
             className="px-4 py-2 text-sm border border-slate-700 rounded-md cursor-pointer hover:bg-slate-700 transition-colors"
           >
-            Cancel
+            Annulla
           </button>
           <button
             onClick={handleSave}
             disabled={saving}
             className="px-4 py-2 text-sm bg-emerald-600 hover:bg-emerald-500 text-white rounded-md disabled:opacity-50 transition-colors cursor-pointer"
           >
-            Save
+            Salva
           </button>
         </div>
       </div>
