@@ -5,6 +5,7 @@ import {
   SUPPORTED_FORMATS_HELP_TEXT,
 } from '../../server/utils';
 import type { ManageSubmissionResponse } from '../../types/api';
+import { BaseModal } from './BaseModal';
 
 type EditSubmissionModalProps = {
   isOpen: boolean;
@@ -194,229 +195,180 @@ export default function EditSubmissionModal({
     }
   };
 
-  if (!isOpen) return null;
-
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 z-50">
-      <div className="bg-white rounded-lg max-w-2xl w-full max-h-[90vh] overflow-y-auto">
-        {/* Header */}
-        <div className="flex items-center justify-between p-6 border-b">
-          <h2 className="text-xl font-bold text-gray-900">Edit Submission</h2>
-          <button
-            onClick={onClose}
-            className="text-gray-400 hover:text-gray-600 transition-colors"
-          >
-            <svg
-              className="w-6 h-6"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={2}
-                d="M6 18L18 6M6 6l12 12"
-              />
-            </svg>
-          </button>
+    <BaseModal
+      isOpen={isOpen}
+      onClose={onClose}
+      title="Edit Submission"
+      isLoading={isSubmitting}
+      loadingMessage="Updating submission..."
+      maxWidth="2xl"
+    >
+      {error && (
+        <div className="mb-4 p-4 bg-red-900/40 border border-red-800 rounded-lg">
+          <p className="text-red-200 text-sm">❌ {error}</p>
+        </div>
+      )}
+
+      <form onSubmit={handleSubmit} className="space-y-6">
+        {/* Current Image */}
+        <div>
+          <div className="block text-sm font-medium text-slate-300 mb-2">
+            Current Photo
+          </div>
+          <img
+            src={`/api/images/${submission.imageUrl}`}
+            alt={submission.title}
+            className="w-full h-48 object-cover rounded-lg border border-slate-600"
+          />
         </div>
 
-        {/* Content */}
-        <div className="p-6">
-          {error && (
-            <div className="mb-4 p-4 bg-red-50 border border-red-200 rounded-md">
-              <p className="text-red-800 text-sm">❌ {error}</p>
-            </div>
-          )}
+        {/* Replace Image Option */}
+        <div>
+          <label className="flex items-center space-x-2 cursor-pointer">
+            <input
+              type="checkbox"
+              name="replaceImage"
+              checked={formData.replaceImage}
+              onChange={handleInputChange}
+              className="w-4 h-4 text-emerald-600 focus:ring-emerald-500 border-slate-600 rounded bg-slate-700"
+            />
+            <span className="text-sm font-medium text-slate-300">
+              Replace image with new one
+            </span>
+          </label>
+        </div>
 
-          <form onSubmit={handleSubmit} className="space-y-6">
-            {/* Current Image */}
-            <div>
-              <div className="block text-sm font-medium text-gray-700 mb-2">
-                Current Photo
-              </div>
-              <img
-                src={`/api/images/${submission.imageUrl}`}
-                alt={submission.title}
-                className="w-full h-48 object-cover rounded-lg border border-gray-300"
-              />
-            </div>
+        {/* New Image Upload */}
+        {formData.replaceImage && (
+          <div>
+            <label
+              htmlFor="edit-image-upload"
+              className="block text-sm font-medium text-slate-300 mb-2"
+            >
+              New Image
+            </label>
 
-            {/* Replace Image Option */}
-            <div>
-              <label className="flex items-center space-x-2 cursor-pointer">
+            {!preview ? (
+              <div className="border-2 border-dashed border-slate-600 rounded-lg p-6 text-center hover:border-slate-500 transition-colors">
                 <input
-                  type="checkbox"
-                  name="replaceImage"
-                  checked={formData.replaceImage}
-                  onChange={handleInputChange}
-                  className="w-4 h-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded"
+                  id="edit-image-upload"
+                  type="file"
+                  accept={ACCEPTED_IMAGE_TYPES}
+                  onChange={handleFileSelect}
+                  className="hidden"
                 />
-                <span className="text-sm font-medium text-gray-700">
-                  Replace image with new one
-                </span>
-              </label>
-            </div>
-
-            {/* New Image Upload */}
-            {formData.replaceImage && (
-              <div>
                 <label
                   htmlFor="edit-image-upload"
-                  className="block text-sm font-medium text-gray-700 mb-2"
+                  className="cursor-pointer flex flex-col items-center space-y-2"
                 >
-                  New Image
+                  <svg
+                    className="w-12 h-12 text-slate-400"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M12 6v6m0 0v6m0-6h6m-6 0H6"
+                    />
+                  </svg>
+                  <span className="text-sm text-slate-300">
+                    Click to select new image
+                  </span>
+                  <span className="text-xs text-slate-400">
+                    {SUPPORTED_FORMATS_HELP_TEXT}
+                  </span>
                 </label>
-
-                {!preview ? (
-                  <div className="border-2 border-dashed border-gray-300 rounded-lg p-6 text-center hover:border-gray-400 transition-colors">
-                    <input
-                      id="edit-image-upload"
-                      type="file"
-                      accept={ACCEPTED_IMAGE_TYPES}
-                      onChange={handleFileSelect}
-                      className="hidden"
+              </div>
+            ) : (
+              <div className="relative">
+                <img
+                  src={preview}
+                  alt="Preview of replacement"
+                  className="w-full h-48 object-cover rounded-lg border border-slate-600"
+                />
+                <button
+                  type="button"
+                  onClick={removeImage}
+                  className="absolute top-2 right-2 bg-red-600 text-white rounded-full p-1 hover:bg-red-700 transition-colors cursor-pointer"
+                >
+                  <svg
+                    className="w-4 h-4"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M6 18L18 6M6 6l12 12"
                     />
-                    <label
-                      htmlFor="edit-image-upload"
-                      className="cursor-pointer flex flex-col items-center space-y-2"
-                    >
-                      <svg
-                        className="w-12 h-12 text-gray-400"
-                        fill="none"
-                        stroke="currentColor"
-                        viewBox="0 0 24 24"
-                      >
-                        <path
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                          strokeWidth={2}
-                          d="M12 6v6m0 0v6m0-6h6m-6 0H6"
-                        />
-                      </svg>
-                      <span className="text-sm text-gray-600">
-                        Click to select new image
-                      </span>
-                      <span className="text-xs text-gray-400">
-                        {SUPPORTED_FORMATS_HELP_TEXT}
-                      </span>
-                    </label>
-                  </div>
-                ) : (
-                  <div className="relative">
-                    <img
-                      src={preview}
-                      alt="Preview of replacement"
-                      className="w-full h-48 object-cover rounded-lg border border-gray-300"
-                    />
-                    <button
-                      type="button"
-                      onClick={removeImage}
-                      className="absolute top-2 right-2 bg-red-600 text-white rounded-full p-1 hover:bg-red-700 transition-colors"
-                    >
-                      <svg
-                        className="w-4 h-4"
-                        fill="none"
-                        stroke="currentColor"
-                        viewBox="0 0 24 24"
-                      >
-                        <path
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                          strokeWidth={2}
-                          d="M6 18L18 6M6 6l12 12"
-                        />
-                      </svg>
-                    </button>
-                  </div>
-                )}
+                  </svg>
+                </button>
               </div>
             )}
+          </div>
+        )}
 
-            {/* Title */}
-            <div>
-              <label
-                htmlFor="title"
-                className="block text-sm font-medium text-gray-700 mb-2"
-              >
-                Title *
-              </label>
-              <input
-                id="title"
-                name="title"
-                type="text"
-                required
-                value={formData.title}
-                onChange={handleInputChange}
-                className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-              />
-            </div>
-
-            {/* Description */}
-            <div>
-              <label
-                htmlFor="description"
-                className="block text-sm font-medium text-gray-700 mb-2"
-              >
-                Description
-              </label>
-              <textarea
-                id="description"
-                name="description"
-                rows={3}
-                value={formData.description}
-                onChange={handleInputChange}
-                className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-              />
-            </div>
-
-            {/* Actions */}
-            <div className="flex space-x-4 pt-4">
-              <button
-                type="button"
-                onClick={onClose}
-                className="flex-1 bg-gray-100 text-gray-700 py-2 px-4 rounded-md hover:bg-gray-200 focus:outline-none focus:ring-2 focus:ring-gray-500"
-              >
-                Cancel
-              </button>
-              <button
-                type="submit"
-                disabled={isSubmitting}
-                className="flex-1 bg-blue-600 text-white py-2 px-4 rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 disabled:opacity-50"
-              >
-                {isSubmitting ? (
-                  <span className="flex items-center justify-center">
-                    <svg
-                      className="animate-spin -ml-1 mr-3 h-5 w-5 text-white"
-                      xmlns="http://www.w3.org/2000/svg"
-                      fill="none"
-                      viewBox="0 0 24 24"
-                    >
-                      <circle
-                        className="opacity-25"
-                        cx="12"
-                        cy="12"
-                        r="10"
-                        stroke="currentColor"
-                        strokeWidth="4"
-                      ></circle>
-                      <path
-                        className="opacity-75"
-                        fill="currentColor"
-                        d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
-                      ></path>
-                    </svg>
-                    Updating...
-                  </span>
-                ) : (
-                  'Update Submission'
-                )}
-              </button>
-            </div>
-          </form>
+        {/* Title */}
+        <div>
+          <label
+            htmlFor="title"
+            className="block text-sm font-medium text-slate-300 mb-2"
+          >
+            Title *
+          </label>
+          <input
+            id="title"
+            name="title"
+            type="text"
+            required
+            value={formData.title}
+            onChange={handleInputChange}
+            className="w-full px-3 py-2 bg-slate-700 border border-slate-600 rounded-lg text-white placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-transparent"
+          />
         </div>
-      </div>
-    </div>
+
+        {/* Description */}
+        <div>
+          <label
+            htmlFor="description"
+            className="block text-sm font-medium text-slate-300 mb-2"
+          >
+            Description
+          </label>
+          <textarea
+            id="description"
+            name="description"
+            rows={3}
+            value={formData.description}
+            onChange={handleInputChange}
+            className="w-full px-3 py-2 bg-slate-700 border border-slate-600 rounded-lg text-white placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-transparent"
+          />
+        </div>
+
+        {/* Actions */}
+        <div className="flex space-x-4 pt-4">
+          <button
+            type="button"
+            onClick={onClose}
+            className="flex-1 bg-slate-700 text-slate-300 py-2 px-4 rounded-lg hover:bg-slate-600 focus:outline-none focus:ring-2 focus:ring-slate-500 transition-colors cursor-pointer"
+          >
+            Cancel
+          </button>
+          <button
+            type="submit"
+            disabled={isSubmitting}
+            className="flex-1 bg-emerald-600 text-white py-2 px-4 rounded-lg hover:bg-emerald-500 focus:outline-none focus:ring-2 focus:ring-emerald-500 disabled:opacity-50 transition-colors cursor-pointer"
+          >
+            Update Submission
+          </button>
+        </div>
+      </form>
+    </BaseModal>
   );
 }

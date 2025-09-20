@@ -64,7 +64,7 @@ export function CategoryNavigation({
               key={category.id}
               onClick={() => onCategorySelect(category.id)}
               className={`
-                px-4 py-2 rounded-lg text-sm font-medium transition-colors
+                px-4 py-2 rounded-lg text-sm font-medium transition-colors cursor-pointer
                 ${
                   isActive
                     ? 'bg-emerald-600 text-white'

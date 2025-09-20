@@ -47,7 +47,7 @@ export function PhotoSlot({
         // Show empty slot when no image exists
         <button
           onClick={handleUploadClick}
-          className="w-full aspect-square rounded-lg overflow-hidden mb-2 hover:opacity-80 transition-opacity"
+          className="w-full aspect-square rounded-lg overflow-hidden mb-2 hover:opacity-80 transition-opacity cursor-pointer"
         >
           <ImageIcon variant="empty" className="w-full h-full rounded-lg" />
         </button>

@@ -33,7 +33,7 @@ export function LanguageSwitcherReact() {
     <div className="relative inline-block">
       <button
         type="button"
-        className="flex items-center gap-2 px-3 py-2 text-sm font-medium text-white bg-white/10 border border-white/20 rounded-md hover:bg-white/20 focus:outline-none focus:ring-2 focus:ring-white/50"
+        className="flex items-center gap-2 px-3 py-2 text-sm font-medium text-white bg-white/10 border border-white/20 rounded-md hover:bg-white/20 focus:outline-none focus:ring-2 focus:ring-white/50 cursor-pointer"
         onClick={() => setIsOpen(!isOpen)}
         aria-expanded={isOpen}
         aria-haspopup="true"
@@ -50,7 +50,7 @@ export function LanguageSwitcherReact() {
         <>
           {/* Backdrop */}
           <button
-            className="fixed inset-0 z-10"
+            className="fixed inset-0 z-10 cursor-pointer"
             onClick={() => setIsOpen(false)}
           />
 
@@ -62,7 +62,7 @@ export function LanguageSwitcherReact() {
                   key={language.code}
                   type="button"
                   onClick={() => handleLanguageChange(language.code)}
-                  className={`w-full text-left block px-4 py-2 text-sm transition-colors duration-150 ${
+                  className={`w-full text-left block px-4 py-2 text-sm transition-colors duration-150 cursor-pointer ${
                     language.code === lang
                       ? 'bg-indigo-600 text-white font-medium'
                       : 'text-gray-200 hover:bg-gray-700 hover:text-white'

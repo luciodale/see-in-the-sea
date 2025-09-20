@@ -9,8 +9,9 @@ export const prerender = false;
 
 /**
  * DELETE /api/delete-image
- * Body: { submissionId: string }
+ * Body: { submissionId: string, adminDelete?: boolean }
  * Deletes a submission (image + metadata) owned by the authenticated user
+ * If adminDelete is true, admin can delete any submission
  */
 export const DELETE: APIRoute = async ({ request, locals }) => {
   const D1Database = locals.runtime.env.DB;
@@ -24,7 +25,7 @@ export const DELETE: APIRoute = async ({ request, locals }) => {
   }
 
   try {
-    const { isAuthenticated, user, unauthenticatedResponse } =
+    const { isAuthenticated, user, isAdminRole, unauthenticatedResponse } =
       await authenticateRequest(request, locals);
 
     if (!isAuthenticated) {
@@ -32,8 +33,9 @@ export const DELETE: APIRoute = async ({ request, locals }) => {
     }
 
     const db = getDb(D1Database);
-    const { submissionId } = (await request.json()) as {
+    const { submissionId, adminDelete } = (await request.json()) as {
       submissionId?: string;
+      adminDelete?: boolean;
     };
 
     if (!submissionId) {
@@ -43,27 +45,65 @@ export const DELETE: APIRoute = async ({ request, locals }) => {
       );
     }
 
-    // Verify ownership of submission
-    const rows = await db
-      .select({ id: submissions.id, r2Key: submissions.r2Key })
-      .from(submissions)
-      .where(
-        and(
-          eq(submissions.id, submissionId),
-          eq(submissions.userEmail, user.emailAddress || '')
-        )
-      )
-      .limit(1);
+    // Verify ownership of submission (unless admin delete)
+    let submission;
+    if (adminDelete) {
+      // Verify admin role
+      if (!isAdminRole()) {
+        return new Response(
+          JSON.stringify({
+            success: false,
+            message: 'Access denied. Admin role required for admin delete.',
+            error: 'INSUFFICIENT_PERMISSIONS',
+          }),
+          { status: 403 }
+        );
+      }
 
-    const submission = rows[0];
-    if (!submission) {
-      return new Response(
-        JSON.stringify({
-          success: false,
-          message: 'Submission not found or not owned by user',
-        }),
-        { status: 404 }
+      // Admin can delete any submission
+      const rows = await db
+        .select({ id: submissions.id, r2Key: submissions.r2Key })
+        .from(submissions)
+        .where(eq(submissions.id, submissionId))
+        .limit(1);
+
+      submission = rows[0];
+      if (!submission) {
+        return new Response(
+          JSON.stringify({
+            success: false,
+            message: 'Submission not found',
+          }),
+          { status: 404 }
+        );
+      }
+
+      console.log(
+        `[delete-image] Admin ${user.id} deleting submission ${submissionId}`
       );
+    } else {
+      // Regular user can only delete their own submissions
+      const rows = await db
+        .select({ id: submissions.id, r2Key: submissions.r2Key })
+        .from(submissions)
+        .where(
+          and(
+            eq(submissions.id, submissionId),
+            eq(submissions.userEmail, user.emailAddress || '')
+          )
+        )
+        .limit(1);
+
+      submission = rows[0];
+      if (!submission) {
+        return new Response(
+          JSON.stringify({
+            success: false,
+            message: 'Submission not found or not owned by user',
+          }),
+          { status: 404 }
+        );
+      }
     }
 
     // Delete from R2 and DB

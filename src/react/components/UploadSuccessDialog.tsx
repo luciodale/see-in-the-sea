@@ -72,7 +72,7 @@ export default function UploadSuccessDialog({
                 </h3>
                 <button
                   onClick={onClose}
-                  className="text-slate-300 hover:text-white rounded-md px-3 py-2 text-2xl leading-none"
+                  className="text-slate-300 hover:text-white rounded-md px-3 py-2 text-2xl leading-none cursor-pointer"
                   aria-label="Close"
                 >
                   ×
@@ -85,7 +85,7 @@ export default function UploadSuccessDialog({
                 </p>
                 <div className="pt-4">
                   <button
-                    className="w-full py-3 rounded-md bg-emerald-600 hover:bg-emerald-500 text-white text-base font-medium"
+                    className="w-full py-3 rounded-md bg-emerald-600 hover:bg-emerald-500 text-white text-base font-medium cursor-pointer"
                     onClick={onClose}
                   >
                     OK

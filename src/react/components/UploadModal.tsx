@@ -14,6 +14,8 @@ type UploadModalProps = {
   portfolioPhotoType?: string;
   onUploadSuccess: (data: UploadResponse['data']) => void;
   onUploadError: (error: string) => void;
+  isAdminUpload?: boolean;
+  adminUserEmail?: string;
 };
 
 export function UploadModal({
@@ -25,6 +27,8 @@ export function UploadModal({
   portfolioPhotoType,
   onUploadSuccess,
   onUploadError,
+  isAdminUpload = false,
+  adminUserEmail,
 }: UploadModalProps) {
   const { t } = useI18n();
   const MAX_MB = Math.floor(MAX_IMAGE_SIZE / (1024 * 1024));
@@ -63,6 +67,14 @@ export function UploadModal({
       }
       if (portfolioPhotoType) {
         form.append('portfolioPhotoType', portfolioPhotoType);
+      }
+
+      // Add admin upload fields if this is an admin upload
+      if (isAdminUpload) {
+        form.append('adminUpload', 'true');
+        if (adminUserEmail) {
+          form.append('userEmail', adminUserEmail);
+        }
       }
 
       const res = await fetch('/api/upload-image', {
@@ -112,7 +124,7 @@ export function UploadModal({
     <BaseModal
       isOpen={isOpen}
       onClose={handleClose}
-      title={t('modal.upload.title')}
+      title={isAdminUpload ? 'Admin Upload' : t('modal.upload.title')}
       isLoading={isUploading}
       loadingMessage={t('state.uploading')}
       loadingSubMessage={t('upload.processing-large-file')}
@@ -121,6 +133,15 @@ export function UploadModal({
     >
       {/* Form */}
       <div className="space-y-4">
+        {/* Admin Upload Notice */}
+        {isAdminUpload && adminUserEmail && (
+          <div className="bg-blue-900/30 border border-blue-700 text-blue-200 rounded-lg p-3">
+            <p className="text-sm">
+              <strong>Admin Upload:</strong> This image will be uploaded on
+              behalf of <span className="font-mono">{adminUserEmail}</span>
+            </p>
+          </div>
+        )}
         {/* File input */}
         <div>
           <input
@@ -134,7 +155,7 @@ export function UploadModal({
             type="button"
             onClick={() => fileInputRef.current?.click()}
             disabled={isUploading}
-            className="w-full py-3 px-4 bg-slate-700 hover:bg-slate-600 text-white rounded-lg border border-slate-600 disabled:opacity-50"
+            className="w-full py-3 px-4 bg-slate-700 hover:bg-slate-600 text-white rounded-lg border border-slate-600 disabled:opacity-50 cursor-pointer"
           >
             {selectedFile ? selectedFile.name : t('form.choose-file')}
           </button>
@@ -211,14 +232,14 @@ export function UploadModal({
         <button
           onClick={handleClose}
           disabled={isUploading}
-          className="flex-1 py-2 px-4 bg-slate-700 hover:bg-slate-600 text-white rounded-lg disabled:opacity-50"
+          className="flex-1 py-2 px-4 bg-slate-700 hover:bg-slate-600 text-white rounded-lg disabled:opacity-50 cursor-pointer"
         >
           {t('action.cancel')}
         </button>
         <button
           onClick={handleUpload}
           disabled={!selectedFile || !title.trim() || isUploading}
-          className="flex-1 py-2 px-4 bg-emerald-600 hover:bg-emerald-500 text-white rounded-lg disabled:opacity-50 flex items-center justify-center gap-2"
+          className="flex-1 py-2 px-4 bg-emerald-600 hover:bg-emerald-500 text-white rounded-lg disabled:opacity-50 flex items-center justify-center gap-2 cursor-pointer"
         >
           {isUploading && (
             <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-white"></div>

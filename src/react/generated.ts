@@ -13,6 +13,7 @@ import { Route as UserIndexRouteImport } from './routes/user/index'
 import { Route as AdminIndexRouteImport } from './routes/admin/index'
 import { Route as UserSubmissionsRouteImport } from './routes/user/submissions'
 import { Route as UserLoginRouteImport } from './routes/user/login'
+import { Route as AdminManualEntryRouteImport } from './routes/admin/manual-entry'
 import { Route as AdminCreateRouteImport } from './routes/admin/create'
 import { Route as AdminContestsRouteImport } from './routes/admin/contests'
 import { Route as AdminContestIdSubmissionsRouteImport } from './routes/admin/$contestId.submissions'
@@ -36,6 +37,11 @@ const UserSubmissionsRoute = UserSubmissionsRouteImport.update({
 const UserLoginRoute = UserLoginRouteImport.update({
   id: '/user/login',
   path: '/user/login',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AdminManualEntryRoute = AdminManualEntryRouteImport.update({
+  id: '/admin/manual-entry',
+  path: '/admin/manual-entry',
   getParentRoute: () => rootRouteImport,
 } as any)
 const AdminCreateRoute = AdminCreateRouteImport.update({
@@ -63,6 +69,7 @@ const AdminContestIdResultsRoute = AdminContestIdResultsRouteImport.update({
 export interface FileRoutesByFullPath {
   '/admin/contests': typeof AdminContestsRoute
   '/admin/create': typeof AdminCreateRoute
+  '/admin/manual-entry': typeof AdminManualEntryRoute
   '/user/login': typeof UserLoginRoute
   '/user/submissions': typeof UserSubmissionsRoute
   '/admin': typeof AdminIndexRoute
@@ -73,6 +80,7 @@ export interface FileRoutesByFullPath {
 export interface FileRoutesByTo {
   '/admin/contests': typeof AdminContestsRoute
   '/admin/create': typeof AdminCreateRoute
+  '/admin/manual-entry': typeof AdminManualEntryRoute
   '/user/login': typeof UserLoginRoute
   '/user/submissions': typeof UserSubmissionsRoute
   '/admin': typeof AdminIndexRoute
@@ -84,6 +92,7 @@ export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/admin/contests': typeof AdminContestsRoute
   '/admin/create': typeof AdminCreateRoute
+  '/admin/manual-entry': typeof AdminManualEntryRoute
   '/user/login': typeof UserLoginRoute
   '/user/submissions': typeof UserSubmissionsRoute
   '/admin/': typeof AdminIndexRoute
@@ -96,6 +105,7 @@ export interface FileRouteTypes {
   fullPaths:
     | '/admin/contests'
     | '/admin/create'
+    | '/admin/manual-entry'
     | '/user/login'
     | '/user/submissions'
     | '/admin'
@@ -106,6 +116,7 @@ export interface FileRouteTypes {
   to:
     | '/admin/contests'
     | '/admin/create'
+    | '/admin/manual-entry'
     | '/user/login'
     | '/user/submissions'
     | '/admin'
@@ -116,6 +127,7 @@ export interface FileRouteTypes {
     | '__root__'
     | '/admin/contests'
     | '/admin/create'
+    | '/admin/manual-entry'
     | '/user/login'
     | '/user/submissions'
     | '/admin/'
@@ -127,6 +139,7 @@ export interface FileRouteTypes {
 export interface RootRouteChildren {
   AdminContestsRoute: typeof AdminContestsRoute
   AdminCreateRoute: typeof AdminCreateRoute
+  AdminManualEntryRoute: typeof AdminManualEntryRoute
   UserLoginRoute: typeof UserLoginRoute
   UserSubmissionsRoute: typeof UserSubmissionsRoute
   AdminIndexRoute: typeof AdminIndexRoute
@@ -165,6 +178,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof UserLoginRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/admin/manual-entry': {
+      id: '/admin/manual-entry'
+      path: '/admin/manual-entry'
+      fullPath: '/admin/manual-entry'
+      preLoaderRoute: typeof AdminManualEntryRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/admin/create': {
       id: '/admin/create'
       path: '/admin/create'
@@ -199,6 +219,7 @@ declare module '@tanstack/react-router' {
 const rootRouteChildren: RootRouteChildren = {
   AdminContestsRoute: AdminContestsRoute,
   AdminCreateRoute: AdminCreateRoute,
+  AdminManualEntryRoute: AdminManualEntryRoute,
   UserLoginRoute: UserLoginRoute,
   UserSubmissionsRoute: UserSubmissionsRoute,
   AdminIndexRoute: AdminIndexRoute,

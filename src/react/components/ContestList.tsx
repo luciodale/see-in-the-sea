@@ -84,7 +84,7 @@ export default function ContestList({
           <p className="text-red-300">{error}</p>
           <button
             onClick={fetchContests}
-            className="mt-3 px-4 py-2 bg-emerald-600 text-white rounded-md hover:bg-emerald-500 transition-colors"
+            className="mt-3 px-4 py-2 bg-emerald-600 text-white rounded-md hover:bg-emerald-500 transition-colors cursor-pointer"
           >
             Retry
           </button>
@@ -201,7 +201,7 @@ export default function ContestList({
                   </td>
                   <td className="px-6 py-4 whitespace-nowrap text-right text-sm">
                     <button
-                      className="inline-flex items-center px-3 py-1 border border-slate-700 text-sm font-medium rounded-md text-slate-200 bg-slate-800 hover:bg-slate-700 focus:outline-none focus:ring-2 focus:ring-emerald-500"
+                      className="inline-flex items-center px-3 py-1 border border-slate-700 text-sm font-medium rounded-md text-slate-200 bg-slate-800 hover:bg-slate-700 focus:outline-none focus:ring-2 focus:ring-emerald-500 cursor-pointer"
                       onClick={async e => {
                         e.stopPropagation();
                         setEditing(contest);

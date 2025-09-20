@@ -70,7 +70,7 @@ export function BaseModal({
             <button
               onClick={onClose}
               disabled={isLoading}
-              className="text-slate-400 hover:text-white disabled:opacity-50 transition-colors"
+              className="text-slate-400 hover:text-white disabled:opacity-50 transition-colors cursor-pointer"
               aria-label={t('action.close')}
             >
               <svg

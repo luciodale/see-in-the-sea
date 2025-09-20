@@ -77,7 +77,7 @@ function AdminResultsPage() {
               setFilters({ categoryId: '', userEmail: '', search: '' });
               setCurrentPage(1);
             }}
-            className="px-4 py-2 text-sm text-slate-300 hover:text-white border border-slate-700 rounded-md hover:bg-slate-800"
+            className="px-4 py-2 text-sm text-slate-300 hover:text-white border border-slate-700 rounded-md hover:bg-slate-800 cursor-pointer"
           >
             Clear Filters
           </button>
@@ -204,7 +204,7 @@ function AdminResultsPage() {
                   <td className="px-6 py-4 whitespace-nowrap text-sm font-medium space-x-2">
                     <button
                       onClick={() => setEditing(r)}
-                      className="inline-flex items-center px-3 py-1 border border-transparent text-sm font-medium rounded-md text-white bg-emerald-600 hover:bg-emerald-500 focus:outline-none focus:ring-2 focus:ring-emerald-500"
+                      className="inline-flex items-center px-3 py-1 border border-transparent text-sm font-medium rounded-md text-white bg-emerald-600 hover:bg-emerald-500 focus:outline-none focus:ring-2 focus:ring-emerald-500 cursor-pointer"
                     >
                       <svg
                         className="w-4 h-4 mr-1"
@@ -225,7 +225,7 @@ function AdminResultsPage() {
                       onClick={() =>
                         window.open(`/api/publicImages/${r.r2Key}`, '_blank')
                       }
-                      className="inline-flex items-center px-3 py-1 border border-slate-700 text-sm font-medium rounded-md text-slate-200 bg-slate-800 hover:bg-slate-700 focus:outline-none focus:ring-2 focus:ring-emerald-500"
+                      className="inline-flex items-center px-3 py-1 border border-slate-700 text-sm font-medium rounded-md text-slate-200 bg-slate-800 hover:bg-slate-700 focus:outline-none focus:ring-2 focus:ring-emerald-500 cursor-pointer"
                     >
                       <svg
                         className="w-4 h-4 mr-1"
@@ -265,7 +265,7 @@ function AdminResultsPage() {
             <button
               onClick={() => setCurrentPage(Math.max(1, currentPage - 1))}
               disabled={currentPage === 1}
-              className="px-3 py-2 text-sm border border-slate-700 rounded-md disabled:opacity-50 disabled:cursor-not-allowed hover:bg-slate-800"
+              className="px-3 py-2 text-sm border border-slate-700 rounded-md disabled:opacity-50 disabled:cursor-not-allowed hover:bg-slate-800 cursor-pointer"
             >
               Previous
             </button>
@@ -282,7 +282,7 @@ function AdminResultsPage() {
                 )
               }
               disabled={currentPage === Math.ceil(totalCount / itemsPerPage)}
-              className="px-3 py-2 text-sm border border-slate-700 rounded-md disabled:opacity-50 disabled:cursor-not-allowed hover:bg-slate-800"
+              className="px-3 py-2 text-sm border border-slate-700 rounded-md disabled:opacity-50 disabled:cursor-not-allowed hover:bg-slate-800 cursor-pointer"
             >
               Next
             </button>

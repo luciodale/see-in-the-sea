@@ -14,7 +14,15 @@ import { UploadModal } from './UploadModal';
 
 type CategoryState = UICategory;
 
-export function UnifiedSubmissions() {
+type AdminImpersonationInterfaceProps = {
+  userEmail: string;
+  onEmailChange: () => void;
+};
+
+export function AdminImpersonationInterface({
+  userEmail,
+  onEmailChange,
+}: AdminImpersonationInterfaceProps) {
   const { t } = useI18n();
 
   // Core state
@@ -52,8 +60,8 @@ export function UnifiedSubmissions() {
   const [isManageModalOpen, setIsManageModalOpen] = useState(false);
 
   useEffect(() => {
-    initialize();
-  }, []);
+    void initialize();
+  }, [userEmail]);
 
   // Set first category as active when categories are loaded
   useEffect(() => {
@@ -68,7 +76,9 @@ export function UnifiedSubmissions() {
       setError(null);
 
       // Fetch user's submissions for active contest
-      const submissionsRes = await fetch('/api/submissions');
+      const submissionsRes = await fetch(
+        `/api/submissions?userEmail=${encodeURIComponent(userEmail)}`
+      );
       const submissionsData =
         (await submissionsRes.json()) as SubmissionsResponse;
       if (
@@ -186,7 +196,7 @@ export function UnifiedSubmissions() {
       const response = await fetch('/api/delete-image', {
         method: 'DELETE',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ submissionId }),
+        body: JSON.stringify({ submissionId, adminDelete: true }),
       });
       const result = (await response.json()) as {
         success: boolean;
@@ -214,7 +224,7 @@ export function UnifiedSubmissions() {
     return (
       <div className="flex items-center justify-center p-12">
         <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-400"></div>
-        <span className="ml-3 text-slate-300">{t('submissions.loading')}</span>
+        <span className="ml-3 text-slate-300">Loading submissions...</span>
       </div>
     );
   }
@@ -223,12 +233,23 @@ export function UnifiedSubmissions() {
 
   return (
     <div className="space-y-6">
-      {/* Header with judges */}
+      {/* Header with user email and change button */}
       <div className="text-center">
         <h1 className="text-3xl font-bold text-white">
-          UW 2025 Contest{': '}
-          {t('nav.submissions')}
+          UW 2025 Contest: Admin Upload
         </h1>
+        <div className="mt-2 flex items-center justify-center gap-4">
+          <p className="text-slate-300">
+            Uploading on behalf of:{' '}
+            <span className="font-semibold text-white">{userEmail}</span>
+          </p>
+          <button
+            onClick={onEmailChange}
+            className="px-3 py-1 bg-slate-700 hover:bg-slate-600 text-slate-300 rounded-lg text-sm transition-colors cursor-pointer"
+          >
+            Change Email
+          </button>
+        </div>
         {!noActiveContest && (
           <JudgesBar judges={judges} label={t('submissions.jury')} />
         )}
@@ -293,6 +314,8 @@ export function UnifiedSubmissions() {
           portfolioPhotoType={uploadPortfolioPhotoType}
           onUploadSuccess={handleUploadSuccess}
           onUploadError={handleUploadError}
+          isAdminUpload={true}
+          adminUserEmail={userEmail}
         />
       )}
 

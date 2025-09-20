@@ -4,6 +4,7 @@ import type {
   UpdateResultRequest,
   UpdateResultResponse,
 } from '../../types/api';
+import { BaseModal } from './BaseModal';
 import StyledSelect from './StyledSelect';
 
 type EditResultModalProps = {
@@ -85,83 +86,79 @@ export default function EditResultModal({
   };
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center">
-      <div
-        role="button"
-        tabIndex={0}
-        aria-label="Close"
-        className="absolute inset-0 bg-black/60"
-        onClick={onClose}
-        onKeyDown={e => {
-          if (e.key === 'Escape' || e.key === 'Enter' || e.key === ' ') {
-            onClose();
+    <BaseModal
+      isOpen={isOpen}
+      onClose={onClose}
+      title="Edit Result"
+      isLoading={saving}
+      loadingMessage="Updating result..."
+      maxWidth="md"
+    >
+      {error && (
+        <div className="mb-4 p-4 bg-red-900/40 border border-red-800 rounded-lg">
+          <p className="text-red-200 text-sm">❌ {error}</p>
+        </div>
+      )}
+      <div className="space-y-3">
+        <StyledSelect
+          id="placement-select"
+          label="Placement"
+          value={form.result}
+          onChange={value =>
+            setForm(prev => ({
+              ...prev,
+              result: value as typeof prev.result,
+            }))
           }
-        }}
-      />
-      <div className="relative bg-slate-900 border border-slate-700 rounded-lg p-6 w-full max-w-md text-slate-200">
-        <h3 className="text-lg font-semibold mb-4">Edit Result</h3>
-        {error && <div className="mb-3 text-sm text-red-300">{error}</div>}
-        <div className="space-y-3">
-          <StyledSelect
-            id="placement-select"
-            label="Placement"
-            value={form.result}
-            onChange={value =>
-              setForm(prev => ({
-                ...prev,
-                result: value as typeof prev.result,
-              }))
-            }
-            options={[
-              { value: 'first', label: 'first' },
-              { value: 'second', label: 'second' },
-              { value: 'third', label: 'third' },
-              { value: 'runner-up', label: 'runner-up' },
-            ]}
-          />
+          options={[
+            { value: 'first', label: 'first' },
+            { value: 'second', label: 'second' },
+            { value: 'third', label: 'third' },
+            { value: 'runner-up', label: 'runner-up' },
+          ]}
+        />
 
-          <label className="block text-sm" htmlFor="first-name">
-            First Name
-          </label>
-          <input
-            id="first-name"
-            type="text"
-            value={form.firstName}
-            onChange={e =>
-              setForm(prev => ({ ...prev, firstName: e.target.value }))
-            }
-            className="w-full px-3 py-2 text-sm border border-slate-700 bg-slate-800 text-white rounded-md focus:outline-none focus:ring-2 focus:ring-emerald-500"
-          />
+        <label className="block text-sm" htmlFor="first-name">
+          First Name
+        </label>
+        <input
+          id="first-name"
+          type="text"
+          value={form.firstName}
+          onChange={e =>
+            setForm(prev => ({ ...prev, firstName: e.target.value }))
+          }
+          className="w-full px-3 py-2 text-sm border border-slate-700 bg-slate-800 text-white rounded-md focus:outline-none focus:ring-2 focus:ring-emerald-500"
+        />
 
-          <label className="block text-sm" htmlFor="last-name">
-            Last Name
-          </label>
-          <input
-            id="last-name"
-            type="text"
-            value={form.lastName}
-            onChange={e =>
-              setForm(prev => ({ ...prev, lastName: e.target.value }))
-            }
-            className="w-full px-3 py-2 text-sm border border-slate-700 bg-slate-800 text-white rounded-md focus:outline-none focus:ring-2 focus:ring-emerald-500"
-          />
-        </div>
-        <div className="mt-5 flex justify-end gap-2">
-          <button
-            onClick={onClose}
-            className="px-4 py-2 text-sm border border-slate-700 rounded-md"
-          >
-            Cancel
-          </button>
-          <button
-            onClick={handleSave}
-            disabled={saving}
-            className="px-4 py-2 text-sm bg-emerald-600 hover:bg-emerald-500 text-white rounded-md disabled:opacity-50"
-          >
-            {saving ? 'Saving...' : 'Save'}
-          </button>
-        </div>
+        <label className="block text-sm" htmlFor="last-name">
+          Last Name
+        </label>
+        <input
+          id="last-name"
+          type="text"
+          value={form.lastName}
+          onChange={e =>
+            setForm(prev => ({ ...prev, lastName: e.target.value }))
+          }
+          className="w-full px-3 py-2 text-sm border border-slate-700 bg-slate-800 text-white rounded-md focus:outline-none focus:ring-2 focus:ring-emerald-500"
+        />
       </div>
-    </div>
+      <div className="mt-5 flex justify-end gap-2">
+        <button
+          onClick={onClose}
+          className="px-4 py-2 text-sm border border-slate-700 rounded-md hover:bg-slate-700 transition-colors cursor-pointer"
+        >
+          Cancel
+        </button>
+        <button
+          onClick={handleSave}
+          disabled={saving}
+          className="px-4 py-2 text-sm bg-emerald-600 hover:bg-emerald-500 text-white rounded-md disabled:opacity-50 transition-colors cursor-pointer"
+        >
+          Save
+        </button>
+      </div>
+    </BaseModal>
   );
 }

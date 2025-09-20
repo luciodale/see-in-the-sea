@@ -85,14 +85,14 @@ export function SubmissionManageModal({
           <button
             onClick={onClose}
             disabled={isDeleting}
-            className="flex-1 py-2 px-4 bg-slate-700 hover:bg-slate-600 text-white rounded-lg disabled:opacity-50 transition-colors"
+            className="flex-1 py-2 px-4 bg-slate-700 hover:bg-slate-600 text-white rounded-lg disabled:opacity-50 transition-colors cursor-pointer"
           >
             {t('action.close')}
           </button>
           <button
             onClick={handleDelete}
             disabled={isDeleting}
-            className="flex-1 py-2 px-4 bg-red-600 hover:bg-red-500 text-white rounded-lg disabled:opacity-50 transition-colors flex items-center justify-center gap-2"
+            className="flex-1 py-2 px-4 bg-red-600 hover:bg-red-500 text-white rounded-lg disabled:opacity-50 transition-colors flex items-center justify-center gap-2 cursor-pointer"
           >
             {isDeleting && (
               <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-white"></div>

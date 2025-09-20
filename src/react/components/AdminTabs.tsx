@@ -18,6 +18,13 @@ export default function AdminTabs() {
         >
           Create Contest
         </Link>
+        <Link
+          to="/admin/manual-entry"
+          className="px-2 py-1 text-slate-300 hover:text-white"
+          activeProps={{ className: 'text-emerald-400 font-semibold' }}
+        >
+          Manual Entry
+        </Link>
       </nav>
     </div>
   );
