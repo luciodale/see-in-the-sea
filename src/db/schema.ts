@@ -75,19 +75,10 @@ export const payments = sqliteTable('payments', {
     .notNull()
     .references(() => contests.id),
   userEmail: text('user_email').notNull(),
-  stripeSessionId: text('stripe_session_id').notNull().unique(),
-  stripePaymentIntentId: text('stripe_payment_intent_id').unique(),
   amount: integer('amount').notNull(), // Amount in cents
   currency: text('currency').notNull().default('eur'),
-  status: text('status')
-    .$type<'pending' | 'completed' | 'failed' | 'refunded'>()
-    .notNull()
-    .default('pending'),
-  categoryCount: integer('category_count').notNull(), // Number of categories user submitted to
-  metadata: text('metadata'), // JSON string for additional data
-  paidAt: text('paid_at'),
-  createdAt: text('created_at').default(sql`CURRENT_TIMESTAMP`),
-  updatedAt: text('updated_at').default(sql`CURRENT_TIMESTAMP`),
+  stripeSessionId: text('stripe_session_id').notNull().unique(), // For cross-checking with Stripe
+  paidAt: text('paid_at').notNull(),
 });
 
 // Indexes - defined separately to avoid deprecation warning
@@ -121,9 +112,6 @@ export const paymentsContestUserIdx = index('idx_payments_contest_user').on(
 );
 export const paymentsStripeSessionIdx = index('idx_payments_stripe_session').on(
   payments.stripeSessionId
-);
-export const paymentsStatusIdx = index('idx_payments_status').on(
-  payments.status
 );
 export const paymentsPaidAtIdx = index('idx_payments_paid_at').on(
   payments.paidAt

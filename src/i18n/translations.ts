@@ -293,6 +293,7 @@ export const translations = {
     'payment.cancelled.try-again':
       'You can try again anytime from your submissions page.',
     'payment.cancelled.back-to-submissions': 'Back to My Submissions',
+    'payment.submissions-locked': 'Submissions locked after payment',
   },
 
   it: {
@@ -585,6 +586,7 @@ export const translations = {
     'payment.cancelled.try-again':
       'Puoi riprovare in qualsiasi momento dalla pagina delle tue candidature.',
     'payment.cancelled.back-to-submissions': 'Torna alle Mie Candidature',
+    'payment.submissions-locked': 'Candidature bloccate dopo il pagamento',
   },
 } as const;
 

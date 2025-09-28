@@ -4,6 +4,7 @@ import { CURRENT_CONTEST_CATEGORIES } from '../../constants/categories';
 import { useI18n } from '../../i18n/react';
 import type { SubmissionsResponse, UploadResponse } from '../../types/api';
 import type { UICategory, UISubmission } from '../../types/ui';
+import { usePaymentStatus } from '../hooks/usePaymentStatus';
 import { CategoryNavigation } from './CategoryNavigation';
 import { CategorySummary } from './CategorySummary';
 import JudgesBar from './JudgesBar';
@@ -50,6 +51,9 @@ export function UnifiedSubmissions() {
   const [selectedSubmission, setSelectedSubmission] =
     useState<UISubmission | null>(null);
   const [isManageModalOpen, setIsManageModalOpen] = useState(false);
+
+  // Payment status
+  const { hasPaid, loading: paymentLoading } = usePaymentStatus(contestId);
 
   useEffect(() => {
     initialize();
@@ -136,6 +140,9 @@ export function UnifiedSubmissions() {
   }
 
   function handleUploadClick(portfolio?: string, portfolioPhotoType?: string) {
+    if (hasPaid) {
+      return; // Button should be disabled, but this is a safety check
+    }
     setUploadPortfolio(portfolio);
     setUploadPortfolioPhotoType(portfolioPhotoType);
     setUploadModalOpen(true);
@@ -177,11 +184,17 @@ export function UnifiedSubmissions() {
   }
 
   const handleManageSubmission = (submission: UISubmission) => {
+    if (hasPaid) {
+      return; // Button should be disabled, but this is a safety check
+    }
     setSelectedSubmission(submission);
     setIsManageModalOpen(true);
   };
 
   async function handleDeleteSubmission(submissionId: string) {
+    if (hasPaid) {
+      return; // Should not be called when paid, but safety check
+    }
     try {
       const response = await fetch('/api/delete-image', {
         method: 'DELETE',
@@ -277,6 +290,7 @@ export function UnifiedSubmissions() {
           {activeCategory.id === 'mediterranean' ? (
             <MediterraneanPortfolioManager
               submissions={activeCategory.submissions}
+              hasPaid={hasPaid}
               onUploadClick={handleUploadClick}
               onManageSubmission={handleManageSubmission}
             />
@@ -286,6 +300,7 @@ export function UnifiedSubmissions() {
               submissions={activeCategory.submissions}
               maxSubmissionsPerCategory={activeCategory.maxSubmissions}
               contestStatus={contestStatus}
+              hasPaid={hasPaid}
               onUploadClick={() => handleUploadClick()}
               onManageSubmission={handleManageSubmission}
             />
@@ -315,6 +330,7 @@ export function UnifiedSubmissions() {
       <SubmissionManageModal
         submission={selectedSubmission}
         isOpen={isManageModalOpen}
+        hasPaid={hasPaid}
         onClose={() => {
           setIsManageModalOpen(false);
           setSelectedSubmission(null);

@@ -7,6 +7,7 @@ import { PhotoSlot } from './PhotoSlot';
 type PortfolioGridProps = {
   portfolioNumber: 1 | 2;
   submissions: UISubmission[];
+  hasPaid?: boolean;
   onUploadClick: (portfolio: string, portfolioPhotoType: string) => void;
   onManageSubmission: (submission: UISubmission) => void;
 };
@@ -14,6 +15,7 @@ type PortfolioGridProps = {
 export function PortfolioGrid({
   portfolioNumber,
   submissions,
+  hasPaid = false,
   onUploadClick,
   onManageSubmission,
 }: PortfolioGridProps) {
@@ -68,6 +70,7 @@ export function PortfolioGrid({
               label={label}
               submission={submission}
               portfolioNumber={portfolioNumber}
+              hasPaid={hasPaid}
               onUploadClick={onUploadClick}
               onManageSubmission={onManageSubmission}
             />

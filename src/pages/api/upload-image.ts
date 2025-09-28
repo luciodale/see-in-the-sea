@@ -1,5 +1,7 @@
 import type { APIRoute } from 'astro';
+import { and, eq } from 'drizzle-orm';
 import { getDb } from '../../db/index';
+import { payments } from '../../db/schema';
 import { authenticateRequest } from '../../server/authenticateRequest';
 import {
   canUploadToContest,
@@ -172,7 +174,31 @@ export const POST: APIRoute = async ({ request, locals }) => {
       );
     }
 
-    // Step 5: Check submission limits
+    // Step 5: Check if user has paid (only for regular users, not admin uploads)
+    if (!isAdminUpload) {
+      const payment = await db
+        .select()
+        .from(payments)
+        .where(
+          and(
+            eq(payments.contestId, contestId),
+            eq(payments.userEmail, userEmail)
+          )
+        )
+        .limit(1);
+
+      if (payment.length > 0) {
+        return new Response(
+          JSON.stringify({
+            success: false,
+            message: 'You cannot modify your submissions after payment has been completed.',
+          }),
+          { status: 403 }
+        );
+      }
+    }
+
+    // Step 6: Check submission limits
     const submissionLimits = await checkSubmissionLimits(
       db,
       contestId,

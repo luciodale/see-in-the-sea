@@ -102,8 +102,9 @@ export const POST: APIRoute = async ({ request, locals }) => {
     const categoryCount = uniqueCategories.size;
 
     // Pricing logic: 20€ for 1 category, 30€ for 2+ categories
-    const priceId =
-      categoryCount === 1 ? STRIPE_PRICE_ID_20 : STRIPE_PRICE_ID_30;
+    const testPrice = 'price_1SCHiI0GkfoIDCTPm5f5zNHL';
+    const priceId = testPrice;
+    // categoryCount === 1 ? STRIPE_PRICE_ID_20 : STRIPE_PRICE_ID_30;
 
     const session = await stripe.checkout.sessions.create({
       line_items: [

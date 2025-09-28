@@ -1,7 +1,7 @@
 import type { APIRoute } from 'astro';
 import { and, eq } from 'drizzle-orm';
 import { getDb } from '../../db/index';
-import { submissions } from '../../db/schema';
+import { payments, submissions } from '../../db/schema';
 import { authenticateRequest } from '../../server/authenticateRequest';
 import { deleteImageFromR2, deleteSubmission } from '../../server/imageService';
 
@@ -84,7 +84,11 @@ export const DELETE: APIRoute = async ({ request, locals }) => {
     } else {
       // Regular user can only delete their own submissions
       const rows = await db
-        .select({ id: submissions.id, r2Key: submissions.r2Key })
+        .select({
+          id: submissions.id,
+          r2Key: submissions.r2Key,
+          contestId: submissions.contestId,
+        })
         .from(submissions)
         .where(
           and(
@@ -102,6 +106,29 @@ export const DELETE: APIRoute = async ({ request, locals }) => {
             message: 'Submission not found or not owned by user',
           }),
           { status: 404 }
+        );
+      }
+
+      // Check if user has paid for this contest
+      const payment = await db
+        .select()
+        .from(payments)
+        .where(
+          and(
+            eq(payments.contestId, submission.contestId),
+            eq(payments.userEmail, user.emailAddress || '')
+          )
+        )
+        .limit(1);
+
+      if (payment.length > 0) {
+        return new Response(
+          JSON.stringify({
+            success: false,
+            message:
+              'You cannot modify your submissions after payment has been completed.',
+          }),
+          { status: 403 }
         );
       }
     }

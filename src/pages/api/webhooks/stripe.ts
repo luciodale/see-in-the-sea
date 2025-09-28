@@ -1,7 +1,6 @@
 import type { APIRoute } from 'astro';
-import Stripe from 'stripe';
-import { eq } from 'drizzle-orm';
 import { nanoid } from 'nanoid';
+import Stripe from 'stripe';
 import { getDb } from '../../../db';
 import { payments } from '../../../db/schema';
 
@@ -10,7 +9,8 @@ export const prerender = false;
 export const POST: APIRoute = async ({ request, locals }) => {
   const D1Database = locals.runtime.env.DB;
   const STRIPE_SECRET_KEY = locals.runtime.env.STRIPE_SECRET_KEY as string;
-  const STRIPE_WEBHOOK_SECRET = locals.runtime.env.STRIPE_WEBHOOK_SECRET as string;
+  const STRIPE_WEBHOOK_SECRET = locals.runtime.env
+    .STRIPE_WEBHOOK_SECRET as string;
 
   if (!D1Database || !STRIPE_SECRET_KEY || !STRIPE_WEBHOOK_SECRET) {
     return new Response('Server configuration error', { status: 500 });
@@ -22,15 +22,17 @@ export const POST: APIRoute = async ({ request, locals }) => {
 
   const body = await request.text();
   const signature = request.headers.get('stripe-signature');
-
   if (!signature) {
     return new Response('Missing stripe-signature header', { status: 400 });
   }
 
   let event: Stripe.Event;
-
   try {
-    event = stripe.webhooks.constructEvent(body, signature, STRIPE_WEBHOOK_SECRET);
+    event = stripe.webhooks.constructEvent(
+      body,
+      signature,
+      STRIPE_WEBHOOK_SECRET
+    );
   } catch (err) {
     console.error('[webhook] Signature verification failed:', err);
     return new Response('Invalid signature', { status: 400 });
@@ -42,60 +44,41 @@ export const POST: APIRoute = async ({ request, locals }) => {
     switch (event.type) {
       case 'checkout.session.completed': {
         const session = event.data.object as Stripe.Checkout.Session;
-        
-        if (!session.metadata || !session.customer_email) {
-          console.error('[webhook] Missing required metadata or customer email');
+
+        const contestId = session.metadata?.contestId;
+        const userEmail = session.metadata?.userEmail ?? session.customer_email;
+
+        if (!contestId || !userEmail) {
+          console.error('[webhook] Missing contestId or userEmail');
           return new Response('Missing required data', { status: 400 });
         }
 
-        const { contestId, userEmail, categoryCount } = session.metadata;
-        
-        // Create payment record
-        await db.insert(payments).values({
-          id: nanoid(),
-          contestId,
-          userEmail,
-          stripeSessionId: session.id,
-          stripePaymentIntentId: session.payment_intent as string,
-          amount: session.amount_total || 0,
-          currency: session.currency || 'eur',
-          status: 'completed',
-          categoryCount: parseInt(categoryCount),
-          metadata: JSON.stringify({
-            sessionMode: session.mode,
-            customerEmail: session.customer_email,
-            paymentStatus: session.payment_status,
-          }),
-          paidAt: new Date().toISOString(),
-        });
-
-        console.log(`[webhook] Payment recorded for user ${userEmail}, contest ${contestId}`);
+        try {
+          await db.insert(payments).values({
+            id: nanoid(),
+            contestId,
+            userEmail,
+            amount: session.amount_total ?? 0,
+            currency: session.currency ?? 'eur',
+            stripeSessionId: session.id,
+            paidAt: new Date().toISOString(),
+          });
+          console.log(
+            `[webhook] Payment recorded for ${userEmail}, contest ${contestId}`
+          );
+        } catch (dbErr: any) {
+          if (isUniqueViolation(dbErr)) {
+            console.log(`[webhook] Duplicate session ${session.id}, ignoring`);
+          } else {
+            throw dbErr;
+          }
+        }
         break;
       }
 
       case 'checkout.session.expired': {
         const session = event.data.object as Stripe.Checkout.Session;
-        
-        // You might want to handle expired sessions here
         console.log(`[webhook] Session expired: ${session.id}`);
-        break;
-      }
-
-      case 'payment_intent.payment_failed': {
-        const paymentIntent = event.data.object as Stripe.PaymentIntent;
-        
-        // Update payment status to failed if it exists
-        if (paymentIntent.id) {
-          await db
-            .update(payments)
-            .set({
-              status: 'failed',
-              updatedAt: new Date().toISOString(),
-            })
-            .where(eq(payments.stripePaymentIntentId, paymentIntent.id));
-        }
-
-        console.log(`[webhook] Payment failed: ${paymentIntent.id}`);
         break;
       }
 
@@ -109,3 +92,8 @@ export const POST: APIRoute = async ({ request, locals }) => {
     return new Response('Webhook processing failed', { status: 500 });
   }
 };
+
+// helper: detect unique violation (adjust to your D1 client)
+function isUniqueViolation(err: any): boolean {
+  return typeof err?.message === 'string' && err.message.includes('UNIQUE');
+}

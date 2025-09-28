@@ -9,6 +9,7 @@ import { PortfolioGrid } from './PortfolioGrid';
 
 type MediterraneanPortfolioManagerProps = {
   submissions: UISubmission[];
+  hasPaid?: boolean;
   onUploadClick: (portfolio: string, portfolioPhotoType: string) => void;
   onManageSubmission: (submission: UISubmission) => void;
 };
@@ -16,6 +17,7 @@ type MediterraneanPortfolioManagerProps = {
 export const MediterraneanPortfolioManager = memo(
   function MediterraneanPortfolioManager({
     submissions,
+    hasPaid = false,
     onUploadClick,
     onManageSubmission,
   }: MediterraneanPortfolioManagerProps) {
@@ -33,6 +35,7 @@ export const MediterraneanPortfolioManager = memo(
               key={portfolioNumber}
               portfolioNumber={portfolioNumber}
               submissions={submissions}
+              hasPaid={hasPaid}
               onUploadClick={onUploadClick}
               onManageSubmission={onManageSubmission}
             />

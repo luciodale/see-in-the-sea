@@ -1,3 +1,4 @@
+import clsx from 'clsx';
 import { PHOTO_TYPES } from '../../constants';
 import type { UISubmission } from '../../types/ui';
 import { ImageIcon } from './ImageIcon';
@@ -8,6 +9,7 @@ interface PhotoSlotProps {
   label: string;
   submission?: UISubmission;
   portfolioNumber: number;
+  hasPaid?: boolean;
   onUploadClick: (portfolio: string, portfolioPhotoType: string) => void;
   onManageSubmission: (submission: UISubmission) => void;
 }
@@ -17,6 +19,7 @@ export function PhotoSlot({
   label,
   submission,
   portfolioNumber,
+  hasPaid = false,
   onUploadClick,
   onManageSubmission,
 }: PhotoSlotProps) {
@@ -40,14 +43,21 @@ export function PhotoSlot({
             <ManageButton
               onClick={handleManageClick}
               className="text-xs px-2 py-1"
+              disabled={hasPaid}
             />
           </div>
         </div>
       ) : (
         // Show empty slot when no image exists
         <button
-          onClick={handleUploadClick}
-          className="w-full aspect-square rounded-lg overflow-hidden mb-2 hover:opacity-80 transition-opacity cursor-pointer"
+          onClick={hasPaid ? undefined : handleUploadClick}
+          disabled={hasPaid}
+          className={clsx(
+            'w-full aspect-square rounded-lg overflow-hidden mb-2 transition-opacity',
+            hasPaid
+              ? 'cursor-not-allowed opacity-50'
+              : 'hover:opacity-80 cursor-pointer'
+          )}
         >
           <ImageIcon variant="empty" className="w-full h-full rounded-lg" />
         </button>

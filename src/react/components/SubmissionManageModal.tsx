@@ -1,3 +1,4 @@
+import clsx from 'clsx';
 import { useState } from 'react';
 import { useI18n } from '../../i18n/react';
 import type { UISubmission } from '../../types/ui';
@@ -7,6 +8,7 @@ import { OptimizedImage } from './OptimizedImage';
 interface SubmissionManageModalProps {
   submission: UISubmission | null;
   isOpen: boolean;
+  hasPaid?: boolean;
   onClose: () => void;
   onDelete: (submissionId: string) => void;
 }
@@ -14,6 +16,7 @@ interface SubmissionManageModalProps {
 export function SubmissionManageModal({
   submission,
   isOpen,
+  hasPaid = false,
   onClose,
   onDelete,
 }: SubmissionManageModalProps) {
@@ -25,7 +28,7 @@ export function SubmissionManageModal({
   }
 
   const handleDelete = async () => {
-    if (isDeleting) return;
+    if (isDeleting || hasPaid) return;
 
     setIsDeleting(true);
     try {
@@ -91,8 +94,13 @@ export function SubmissionManageModal({
           </button>
           <button
             onClick={handleDelete}
-            disabled={isDeleting}
-            className="flex-1 py-2 px-4 bg-red-600 hover:bg-red-500 text-white rounded-lg disabled:opacity-50 transition-colors flex items-center justify-center gap-2 cursor-pointer"
+            disabled={isDeleting || hasPaid}
+            className={clsx(
+              'flex-1 py-2 px-4 text-white rounded-lg transition-colors flex items-center justify-center gap-2',
+              isDeleting || hasPaid
+                ? 'bg-slate-600 cursor-not-allowed opacity-50'
+                : 'bg-red-600 hover:bg-red-500 cursor-pointer'
+            )}
           >
             {isDeleting && (
               <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-white"></div>

@@ -10,6 +10,7 @@ interface Env {
   IMAGES_API_TOKEN?: string;
   ACCOUNT_ID?: string;
   STRIPE_SECRET_KEY?: string;
+  STRIPE_WEBHOOK_SECRET?: string;
 }
 
 type Runtime = import('@astrojs/cloudflare').Runtime<Env>;

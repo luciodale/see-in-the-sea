@@ -9,6 +9,7 @@ type CategorySummaryProps = {
   submissions: UISubmission[];
   maxSubmissionsPerCategory: number;
   contestStatus: 'active' | 'inactive' | 'assessment';
+  hasPaid?: boolean;
   onUploadClick: () => void;
   onManageSubmission: (submission: UISubmission) => void;
 };
@@ -18,6 +19,7 @@ export function CategorySummary({
   submissions,
   maxSubmissionsPerCategory,
   contestStatus,
+  hasPaid = false,
   onUploadClick,
   onManageSubmission,
 }: CategorySummaryProps) {
@@ -25,6 +27,7 @@ export function CategorySummary({
 
   const canAddMore = submissions.length < maxSubmissionsPerCategory;
   const isContestActive = contestStatus === 'active';
+  const canUpload = canAddMore && isContestActive && !hasPaid;
 
   return (
     <div className="bg-slate-800 border border-slate-700 rounded-xl p-6">
@@ -40,13 +43,20 @@ export function CategorySummary({
       </div>
 
       {/* Upload button */}
-      {canAddMore && isContestActive && (
+      {canUpload && (
         <button
           onClick={onUploadClick}
           className="w-full py-3 bg-emerald-600 hover:bg-emerald-500 text-white rounded-lg font-medium transition-colors cursor-pointer"
         >
           {t('action.upload-picture')}
         </button>
+      )}
+
+      {/* Payment status message */}
+      {hasPaid && canAddMore && isContestActive && (
+        <div className="w-full py-3 bg-slate-700 text-slate-300 rounded-lg font-medium text-center">
+          {t('payment.submissions-locked')}
+        </div>
       )}
 
       {/* Contest closed notice */}
@@ -91,7 +101,10 @@ export function CategorySummary({
                     </p>
                   )}
                 </div>
-                <ManageButton onClick={() => onManageSubmission(submission)} />
+                <ManageButton
+                  onClick={() => onManageSubmission(submission)}
+                  disabled={hasPaid}
+                />
               </div>
             </div>
           ))}

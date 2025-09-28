@@ -32,6 +32,13 @@ export type UserContestData = {
 
 export type SubmissionsResponse = ApiResponse<UserContestData>;
 
+// Payment API Types
+export type PaymentStatusData = {
+  hasPaid: boolean;
+};
+
+export type PaymentStatusResponse = ApiResponse<PaymentStatusData>;
+
 // Upload API Types
 export type UploadMetadata = {
   originalFileName: string;
