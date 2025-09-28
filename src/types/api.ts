@@ -211,6 +211,13 @@ export type UpdateResultResponse = ApiResponse<object>;
 export type JudgeRow = { fullName: string };
 export type JudgesResponse = ApiResponse<JudgeRow[]>;
 
+// Checkout API Types
+export type CheckoutResponse = {
+  success: boolean;
+  url?: string;
+  message?: string;
+};
+
 // Type guards for runtime type checking
 export function isApiSuccess<T>(
   response: ApiResponse<T>

@@ -9,6 +9,7 @@ interface Env {
   CLERK_JWT_KEY?: string;
   IMAGES_API_TOKEN?: string;
   ACCOUNT_ID?: string;
+  STRIPE_SECRET_KEY?: string;
 }
 
 type Runtime = import('@astrojs/cloudflare').Runtime<Env>;

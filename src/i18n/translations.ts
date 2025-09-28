@@ -16,7 +16,7 @@ export const translations = {
     'nav.contact': 'Contact Us',
     'nav.rules': 'Rules',
     'nav.login': 'Join the Contest',
-    'nav.submissions': 'My Submissions',
+    'nav.submissions': 'My Photos',
     'nav.admin': 'Admin',
 
     // Home page sections
@@ -78,6 +78,7 @@ export const translations = {
 
     // Submissions UI
     'submissions.jury': 'Jury',
+    'submissions.technical-director': 'Technical Director',
     'submissions.loading': 'Loading your submissions...',
     'submissions.closed': 'Submissions are closed for the current contest.',
     'submissions.max-size': 'Max size',
@@ -134,11 +135,17 @@ export const translations = {
     'category.winner': 'First Place',
 
     // Contest results
-    'result.first-place': 'First Place',
-    'result.second-place': 'Second Place',
-    'result.third-place': 'Third Place',
+    'result.first-place': 'Gold',
+    'result.second-place': 'Silver',
+    'result.third-place': 'Bronze',
     'result.runner-up': 'Runner Up',
     'result.runner-ups': 'Runners Up',
+
+    // Rank translations
+    'rank.first': 'Winner',
+    'rank.second': 'Runner Up',
+    'rank.third': 'Third Place',
+    'rank.runner-up': 'Honorable Mention',
 
     // Anonymous author
     'author.anonymous': 'Anonymous',
@@ -146,8 +153,7 @@ export const translations = {
 
     // Contests page
     'contests.title': 'Contest Years',
-    'contests.description':
-      'Explore our annual underwater photography competitions. Each year brings together passionate photographers from around the world to showcase the incredible beauty beneath the waves.',
+    'contests.description': 'Explore the winners of the past contests',
     'contests.no-contests': 'No Contests Available',
     'contests.check-back': 'Check back soon for upcoming competitions!',
 
@@ -192,6 +198,8 @@ export const translations = {
     'trophy.title': 'Sculpture "Click Fish"',
     'trophy.description':
       'The upper part of the work, a visual translation of the waves, suggests shifting attention beneath the surface of the water. There, among seaweed and corals, or hidden in an inlet, a fish gazes back at us, almost hypnotized. Yet the viewer, just like a photographer, can only "capture" its image. Trapped by the lens, the circularity of the sculpture and the grooves traced within it appear, while the subject remains free. Thus, the physical void is replaced by memory, or by a photograph.',
+    'trophy.description-intro':
+      'Sculpture in reconstructed marble and metal, created exclusively for the ASD Ortona Sub APS Association on the occasion of the See in the Sea Underwater Photocontest; limited edition of 100 numbered pieces from 1/100 to 100/100.',
     'trophy.description-title': 'Description',
     'trophy.artist-title': 'Artist',
     'trophy.artist-description':
@@ -206,6 +214,85 @@ export const translations = {
     'contact.president': 'President Ortona Sub',
     'contact.technical-director': 'Technical Director',
     'contact.administrative-secretary': 'Administrative Secretary',
+    'contact.web-master': 'Web Master',
+
+    // Authentication
+    'auth.choice.title': 'Welcome to See in the Sea',
+    'auth.choice.subtitle': 'Join our underwater photography contest',
+    'auth.choice.login': 'Sign In',
+    'auth.choice.signup': 'Create Account',
+    'auth.choice.existing-account': 'Already have an account?',
+
+    'auth.login.title': 'Sign In',
+    'auth.login.subtitle': 'Access your photo submissions',
+    'auth.login.email': 'Email',
+    'auth.login.email-placeholder': 'Enter your email address',
+    'auth.login.password': 'Password',
+    'auth.login.password-placeholder': 'Enter your password',
+    'auth.login.submit': 'Sign In',
+    'auth.login.submitting': 'Signing in...',
+    'auth.login.back': 'Back to options',
+
+    'auth.signup.title': 'Create Account',
+    'auth.signup.first-name': 'First Name',
+    'auth.signup.first-name-placeholder': 'Enter your first name',
+    'auth.signup.last-name': 'Last Name',
+    'auth.signup.last-name-placeholder': 'Enter your last name',
+    'auth.signup.email': 'Email',
+    'auth.signup.email-placeholder': 'Enter your email address',
+    'auth.signup.password': 'Password',
+    'auth.signup.password-placeholder': 'Create a password',
+    'auth.signup.confirm-password': 'Confirm Password',
+    'auth.signup.confirm-password-placeholder': 'Confirm your password',
+    'auth.signup.submit': 'Create Account',
+    'auth.signup.submitting': 'Creating account...',
+    'auth.signup.back': 'Back to options',
+    'auth.signup.passwords-no-match': 'Passwords do not match',
+    'auth.signup.password-too-short':
+      'Password must be at least 8 characters long',
+    'auth.signup.email-verification':
+      'Please check your email and verify your account to complete registration.',
+
+    'auth.verify.title': 'Verify Your Email',
+    'auth.verify.subtitle': 'Enter the verification code sent to your email',
+    'auth.verify.instructions':
+      'We sent a 6-digit verification code to your email address. Please check your inbox and enter the code below.',
+    'auth.verify.code': 'Verification Code',
+    'auth.verify.code-placeholder': 'Enter 6-digit code',
+    'auth.verify.submit': 'Verify Email',
+    'auth.verify.submitting': 'Verifying...',
+    'auth.verify.back': 'Back to signup',
+
+    'auth.logout': 'Sign Out',
+    'auth.signup.registration-incomplete':
+      'Please complete the registration process.',
+    'auth.verify.failed':
+      'Verification failed. Please check your code and try again.',
+
+    // Payment
+    'payment.title': 'Complete Your Entry',
+    'payment.single-category': 'Single Category Entry',
+    'payment.multiple-categories': 'Multiple Categories Entry',
+    'payment.categories-submitted':
+      '{count} {count, plural, one {category} other {categories}} submitted',
+    'payment.pay-now': 'Pay Now',
+    'payment.processing': 'Processing...',
+    'payment.secure-payment': 'Secure payment powered by Stripe',
+    'payment.no-submissions-title': 'No Submissions Yet',
+    'payment.no-submissions-desc':
+      'Submit to at least one category before making payment',
+    'payment.success.title': 'Payment Successful!',
+    'payment.success.message':
+      'Your contest entry has been successfully processed.',
+    'payment.success.next-steps':
+      'You will receive a confirmation email shortly. Good luck with the contest!',
+    'payment.success.back-to-submissions': 'Back to My Submissions',
+    'payment.cancelled.title': 'Payment Cancelled',
+    'payment.cancelled.message':
+      'Your payment was cancelled. No charges have been made.',
+    'payment.cancelled.try-again':
+      'You can try again anytime from your submissions page.',
+    'payment.cancelled.back-to-submissions': 'Back to My Submissions',
   },
 
   it: {
@@ -217,7 +304,7 @@ export const translations = {
     'nav.contact': 'Contatti',
     'nav.rules': 'Regolamento',
     'nav.login': 'Partecipa al Concorso',
-    'nav.submissions': 'Le mie candidature',
+    'nav.submissions': 'Le mie foto',
     'nav.admin': 'Admin',
 
     // Home page sections
@@ -280,6 +367,7 @@ export const translations = {
 
     // Submissions UI
     'submissions.jury': 'Giuria',
+    'submissions.technical-director': 'Direttore Tecnico',
     'submissions.loading': 'Caricamento delle tue candidature...',
     'submissions.closed':
       'Le candidature sono chiuse per il concorso corrente.',
@@ -337,11 +425,17 @@ export const translations = {
     'category.winner': 'Primo Classificato',
 
     // Contest results
-    'result.first-place': 'Primo Classificato',
-    'result.second-place': 'Secondo Classificato',
-    'result.third-place': 'Terzo Classificato',
+    'result.first-place': 'Oro',
+    'result.second-place': 'Argento',
+    'result.third-place': 'Bronzo',
     'result.runner-up': 'Menzione',
     'result.runner-ups': 'Menzioni',
+
+    // Rank translations
+    'rank.first': 'Oro',
+    'rank.second': 'Argento',
+    'rank.third': 'Bronzo',
+    'rank.runner-up': "Menzione d'Onore",
 
     // Anonymous author
     'author.anonymous': 'Anonimo',
@@ -349,8 +443,7 @@ export const translations = {
 
     // Contests page
     'contests.title': 'Edizioni Precedenti',
-    'contests.description':
-      "Esplora le nostre competizioni annuali di fotografia subacquea. Ogni anno riunisce fotografi appassionati da tutto il mondo per mostrare l'incredibile bellezza sotto le onde.",
+    'contests.description': "Esplora l'albo d'oro dei contest",
     'contests.no-contests': 'Nessun Concorso Disponibile',
     'contests.check-back': 'Torna presto per le prossime competizioni!',
 
@@ -396,6 +489,8 @@ export const translations = {
     'trophy.title': 'Scultura "Click Fish"',
     'trophy.description':
       "La parte superiore dell'opera, traduzione visiva dei flutti, suggerisce di spostare l'attenzione sotto la superficie dell'acqua. Qui, tra alghe e coralli o nascosto in un'insenatura, un pesce ci osserva ipnotizzato. Eppure lo spettatore, proprio come farebbe un fotografo, può solo 'trattenerne' l'immagine. Intrappolato dall'obiettivo, compaiono la circolarità della scultura e i solchi tracciati al suo interno, mentre il soggetto resta libero. Così, al vuoto fisico si sostituisce il ricordo o la fotografia.",
+    'trophy.description-intro':
+      "Scultura in marmo ricostruito e metallo, realizzata in esclusiva per l'Associazione ASD Ortona Sub ASP in occasione del concorso See in the Sea Underwater Photocontest; tirata in 100 esemplari numerati da 1/100 a 100/100.",
     'trophy.description-title': 'Descrizione',
     'trophy.artist-title': 'Artista',
     'trophy.artist-description':
@@ -410,6 +505,86 @@ export const translations = {
     'contact.president': 'Presidente Ortona Sub',
     'contact.technical-director': 'Direttore Tecnico',
     'contact.administrative-secretary': 'Segreteria Amministrativa',
+    'contact.web-master': 'Web Master',
+
+    // Authentication
+    'auth.choice.title': 'Benvenuti a See in the Sea',
+    'auth.choice.subtitle':
+      'Unisciti al nostro concorso di fotografia subacquea',
+    'auth.choice.login': 'Accedi',
+    'auth.choice.signup': 'Crea Account',
+    'auth.choice.existing-account': 'Hai già un account?',
+
+    'auth.login.title': 'Accedi',
+    'auth.login.subtitle': 'Accedi alle tue foto',
+    'auth.login.email': 'Email',
+    'auth.login.email-placeholder': 'Inserisci il tuo indirizzo email',
+    'auth.login.password': 'Password',
+    'auth.login.password-placeholder': 'Inserisci la tua password',
+    'auth.login.submit': 'Accedi',
+    'auth.login.submitting': 'Accesso in corso...',
+    'auth.login.back': 'Torna alle opzioni',
+
+    'auth.signup.title': 'Crea Account',
+    'auth.signup.first-name': 'Nome',
+    'auth.signup.first-name-placeholder': 'Inserisci il tuo nome',
+    'auth.signup.last-name': 'Cognome',
+    'auth.signup.last-name-placeholder': 'Inserisci il tuo cognome',
+    'auth.signup.email': 'Email',
+    'auth.signup.email-placeholder': 'Inserisci il tuo indirizzo email',
+    'auth.signup.password': 'Password',
+    'auth.signup.password-placeholder': 'Crea una password',
+    'auth.signup.confirm-password': 'Conferma Password',
+    'auth.signup.confirm-password-placeholder': 'Conferma la tua password',
+    'auth.signup.submit': 'Crea Account',
+    'auth.signup.submitting': 'Creazione account...',
+    'auth.signup.back': 'Torna alle opzioni',
+    'auth.signup.passwords-no-match': 'Le password non corrispondono',
+    'auth.signup.password-too-short':
+      'La password deve essere di almeno 8 caratteri',
+    'auth.signup.email-verification':
+      'Controlla la tua email e verifica il tuo account per completare la registrazione.',
+
+    'auth.verify.title': 'Verifica la tua Email',
+    'auth.verify.subtitle':
+      'Inserisci il codice di verifica inviato alla tua email',
+    'auth.verify.instructions':
+      'Abbiamo inviato un codice di verifica a 6 cifre al tuo indirizzo email. Controlla la tua casella di posta e inserisci il codice qui sotto.',
+    'auth.verify.code': 'Codice di Verifica',
+    'auth.verify.code-placeholder': 'Inserisci codice a 6 cifre',
+    'auth.verify.submit': 'Verifica Email',
+    'auth.verify.submitting': 'Verifica in corso...',
+    'auth.verify.back': 'Torna alla registrazione',
+
+    'auth.logout': 'Disconnetti',
+    'auth.signup.registration-incomplete':
+      'Completa il processo di registrazione.',
+    'auth.verify.failed': 'Verifica fallita. Controlla il codice e riprova.',
+
+    // Payment
+    'payment.title': 'Completa la tua Iscrizione',
+    'payment.single-category': 'Iscrizione Singola Categoria',
+    'payment.multiple-categories': 'Iscrizione Categorie Multiple',
+    'payment.categories-submitted':
+      '{count} {count, plural, one {categoria} other {categorie}} inviate',
+    'payment.pay-now': 'Paga Ora',
+    'payment.processing': 'Elaborazione...',
+    'payment.secure-payment': 'Pagamento sicuro tramite Stripe',
+    'payment.no-submissions-title': 'Nessuna Candidatura Ancora',
+    'payment.no-submissions-desc':
+      'Invia almeno una candidatura prima di effettuare il pagamento',
+    'payment.success.title': 'Pagamento Riuscito!',
+    'payment.success.message':
+      'La tua iscrizione al concorso è stata elaborata con successo.',
+    'payment.success.next-steps':
+      "Riceverai un'email di conferma a breve. In bocca al lupo per il concorso!",
+    'payment.success.back-to-submissions': 'Torna alle Mie Candidature',
+    'payment.cancelled.title': 'Pagamento Annullato',
+    'payment.cancelled.message':
+      'Il tuo pagamento è stato annullato. Non sono stati effettuati addebiti.',
+    'payment.cancelled.try-again':
+      'Puoi riprovare in qualsiasi momento dalla pagina delle tue candidature.',
+    'payment.cancelled.back-to-submissions': 'Torna alle Mie Candidature',
   },
 } as const;
 

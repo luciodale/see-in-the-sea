@@ -76,7 +76,9 @@ const processedImages = firstPlaceWinners.map(result => {
     processedImages.length > 0 ? (
       processedImages.map(winner => (
         <TopWinnerImage
-          result={getResultName(`${winner.categoryName} Winner`, currentLang)}
+          categoryName={winner.categoryName}
+          rank={getResultName('First Place', currentLang)}
+          rawResult={winner.result}
           imageUrl={winner.imageUrl}
           title={winner.title}
           author={winner.author}

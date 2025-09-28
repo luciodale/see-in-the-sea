@@ -1,7 +1,8 @@
-import { SignedIn, UserButton } from '@clerk/clerk-react';
+import { SignedIn } from '@clerk/clerk-react';
 import { Link } from '@tanstack/react-router';
 import { useI18n } from '../../i18n/react';
 import { useUserRole } from '../hooks/useUserRole';
+import { LogoutButton } from './LogoutButton.tsx';
 
 const linkClasses =
   'text-gray-300 font-medium [&.active]:text-white [&.active]:font-semibold';
@@ -25,7 +26,7 @@ export function SubNav() {
                 </Link>
               )}
             </div>
-            <UserButton userProfileUrl="/user/account" />
+            <LogoutButton />
           </SignedIn>
         </nav>
       </div>

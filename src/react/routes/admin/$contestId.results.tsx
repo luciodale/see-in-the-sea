@@ -1,3 +1,4 @@
+import { getRankColorClass } from '@/utils/rankUtils';
 import { useAuth } from '@clerk/clerk-react';
 import { createFileRoute } from '@tanstack/react-router';
 import { useEffect, useState } from 'react';
@@ -176,7 +177,9 @@ function AdminResultsPage() {
             <tbody className="bg-slate-900 divide-y divide-slate-700">
               {rows.map(r => (
                 <tr key={r.submissionId}>
-                  <td className="px-6 py-4 whitespace-nowrap text-sm text-slate-200 capitalize">
+                  <td
+                    className={`px-6 py-4 whitespace-nowrap text-sm capitalize font-medium ${getRankColorClass(r.result)}`}
+                  >
                     {r.result}
                   </td>
                   <td className="px-6 py-4 whitespace-nowrap text-sm text-slate-300">

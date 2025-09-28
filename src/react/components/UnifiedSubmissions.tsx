@@ -221,6 +221,13 @@ export function UnifiedSubmissions() {
 
   const activeCategory = categories.find(cat => cat.id === activeCategoryId);
 
+  // Calculate payment info
+  const categoriesWithSubmissions = categories.filter(
+    cat => cat.submissions.length > 0
+  );
+  const hasSubmissions = categoriesWithSubmissions.length > 0;
+  const categoryCount = categoriesWithSubmissions.length;
+
   return (
     <div className="space-y-6">
       {/* Header with judges */}
@@ -255,6 +262,14 @@ export function UnifiedSubmissions() {
           onCategorySelect={handleCategorySelect}
         />
       )}
+
+      {/* Payment Section */}
+      {/* {!noActiveContest && contestStatus === 'active' && (
+        <PayNowButton
+          hasSubmissions={hasSubmissions}
+          categoryCount={categoryCount}
+        />
+      )} */}
 
       {/* Active Category Summary */}
       {!noActiveContest && activeCategory && (

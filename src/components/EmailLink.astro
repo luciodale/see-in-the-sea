@@ -11,8 +11,8 @@ const { variant = 'large', showLabel = false } = Astro.props;
   {showLabel && <p class="text-lg text-gray-300 mb-2">Email:</p>}
   <a
     href="mailto:info@ortonasub.com"
-    class={`text-emerald-400 hover:text-emerald-300 hover:underline transition-colors ${
-      variant === 'large' ? 'text-xl' : 'text-sm'
+    class={`text-emerald-400 font-bold hover:text-emerald-300 hover:underline transition-colors ${
+      variant === 'large' ? 'text-4xl' : 'text-sm'
     } ${showLabel ? 'block' : ''}`}
   >
     info@ortonasub.com

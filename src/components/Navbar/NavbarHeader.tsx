@@ -29,7 +29,7 @@ export function NavbarHeader({ standalone = false }: { standalone?: boolean }) {
           >
             <span className="sr-only">See in the sea</span>
 
-            <img alt="" src={logoPath} className="h-12" />
+            <img alt="" src={logoPath} className="h-24" />
           </a>
         </div>
         <div className="flex lg:hidden">
@@ -47,7 +47,7 @@ export function NavbarHeader({ standalone = false }: { standalone?: boolean }) {
             <a
               key={item.name}
               href={item.href}
-              className="text-lg font-light text-white"
+              className="text-lg font-bold uppercase text-white"
             >
               {item.name}
             </a>
@@ -58,7 +58,7 @@ export function NavbarHeader({ standalone = false }: { standalone?: boolean }) {
             <SignedIn>
               <a
                 href={loginPath}
-                className="text-sm/6 font-semibold text-white"
+                className="text-sm/6 font-bold uppercase text-white"
               >
                 {t('nav.submissions')} <span aria-hidden="true">&rarr;</span>
               </a>

@@ -21,9 +21,9 @@ function AdminDashboard() {
     );
   }
 
-  // Redirect admins immediately to contests (main entry)
+  // Redirect admins immediately to current contest (main entry)
   if (isAdmin) {
-    router.navigate({ to: '/admin/contests' });
+    router.navigate({ to: '/admin/current-contest' });
     return null;
   }
 

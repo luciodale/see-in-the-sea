@@ -1,6 +1,6 @@
 import { RedirectToSignIn, SignedIn, SignedOut } from '@clerk/clerk-react';
 import { createFileRoute, Link } from '@tanstack/react-router';
-import AdminSubmissionsBrowser from '../../components/AdminSubmissionsBrowser';
+import { AdminSubmissionsViewer } from '../../components/AdminSubmissionsViewer';
 import AdminTabs from '../../components/AdminTabs';
 import { useUserRole } from '../../hooks/useUserRole';
 
@@ -50,7 +50,7 @@ function AdminContestSubmissions() {
                 </div>
 
                 <div className="max-w-[1400px] mx-auto">
-                  <AdminSubmissionsBrowser contestId={contestId} />
+                  <AdminSubmissionsViewer contestId={contestId} />
                 </div>
               </div>
             </main>

@@ -1,5 +1,10 @@
 ---
-import { getLangFromUrl, getResultName, useTranslations } from '@/i18n';
+import {
+  getCategoryName,
+  getLangFromUrl,
+  getResultName,
+  useTranslations,
+} from '@/i18n';
 import GalleryInfo from './GalleryInfo.astro';
 import Layout from './Layout.astro';
 import {
@@ -56,6 +61,11 @@ const categoryMap = await getCategoryNamesByIds(
 // Process images - using direct R2 URLs for now
 const processedImages = sortedResults.map(result => {
   const categoryName = categoryMap.get(result.categoryId) || result.categoryId;
+  const translatedCategoryName = getCategoryName(
+    result.categoryId,
+    categoryName,
+    currentLang
+  );
 
   // Use our public images API route with optimization for web delivery
   const imageUrl = `/api/publicImages/${result.r2Key}`;
@@ -63,7 +73,7 @@ const processedImages = sortedResults.map(result => {
   return {
     ...result,
     imageUrl,
-    categoryName,
+    categoryName: translatedCategoryName,
     author:
       result.firstName && result.lastName
         ? `${result.firstName} ${result.lastName}`
@@ -91,7 +101,9 @@ const runnerUps = processedImages?.slice(3) || [];
       firstPlace && (
         <div class="space-y-8">
           <TopWinnerImage
-            result={getResultName('First Place', currentLang)}
+            categoryName={firstPlace.categoryName}
+            rank={getResultName('First Place', currentLang)}
+            rawResult={firstPlace.result}
             imageUrl={firstPlace.imageUrl}
             title={firstPlace.title}
             author={firstPlace.author}
@@ -105,7 +117,9 @@ const runnerUps = processedImages?.slice(3) || [];
       secondPlace && (
         <div class="space-y-8">
           <TopWinnerImage
-            result={getResultName('Second Place', currentLang)}
+            categoryName={secondPlace.categoryName}
+            rank={getResultName('Second Place', currentLang)}
+            rawResult={secondPlace.result}
             imageUrl={secondPlace.imageUrl}
             title={secondPlace.title}
             author={secondPlace.author}
@@ -119,7 +133,9 @@ const runnerUps = processedImages?.slice(3) || [];
       thirdPlace && (
         <div class="space-y-8">
           <TopWinnerImage
-            result={getResultName('Third Place', currentLang)}
+            categoryName={thirdPlace.categoryName}
+            rank={getResultName('Third Place', currentLang)}
+            rawResult={thirdPlace.result}
             imageUrl={thirdPlace.imageUrl}
             title={thirdPlace.title}
             author={thirdPlace.author}

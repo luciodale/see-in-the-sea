@@ -23,7 +23,7 @@ export function NavbarContent() {
       )}
       <div className="text-center">
         <div className="flex sm:flex-row flex-col items-center justify-center">
-          <img src="/images/logo.svg" alt="Logo" className="h-52" />
+          <img src="/images/logo.svg" alt="Logo" className="h-64" />
           <h1 className="sm:text-left flex flex-col gap-1 tracking-tight text-balance text-white">
             <span className="sm:text-5xl text-4xl font-semibold">
               See In The Sea
