@@ -126,7 +126,6 @@ export function CategorySummary({
                   </p>
                 </div>
               </div>
-
               <div className="flex items-center gap-4">
                 <div className="w-24 h-18 rounded overflow-hidden flex-shrink-0">
                   <ImageIcon

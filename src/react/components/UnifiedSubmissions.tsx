@@ -9,7 +9,6 @@ import { CategoryNavigation } from './CategoryNavigation';
 import { CategorySummary } from './CategorySummary';
 import JudgesBar from './JudgesBar';
 import { MediterraneanPortfolioManager } from './MediterraneanPortfolioManager';
-import { PayNowButton } from './PayNowButton';
 import { PaymentSuccessBanner } from './PaymentSuccessBanner';
 import { SubmissionManageModal } from './SubmissionManageModal';
 import { SuccessModal } from './SuccessModal';
@@ -276,14 +275,9 @@ export function UnifiedSubmissions() {
             categories={categories}
             activeCategoryId={activeCategoryId}
             onCategorySelect={handleCategorySelect}
+            hasSubmissions={hasSubmissions}
+            hasPaid={hasPaid}
           />
-
-          {/* Pay Now Button - only show if user has submissions and hasn't paid */}
-          {hasSubmissions && !hasPaid && (
-            <div className="flex justify-center">
-              <PayNowButton />
-            </div>
-          )}
         </div>
       )}
 

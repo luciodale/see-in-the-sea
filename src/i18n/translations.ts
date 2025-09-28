@@ -283,6 +283,8 @@ export const translations = {
     'payment.pay-now': 'Pay Now',
     'payment.processing': 'Processing...',
     'payment.secure-payment': 'Secure payment powered by Stripe',
+    'payment.ready-to-pay':
+      'Your photos are ready! Complete your submission by making payment.',
     'payment.no-submissions-title': 'No Submissions Yet',
     'payment.no-submissions-desc':
       'Submit to at least one category before making payment',
@@ -585,6 +587,8 @@ export const translations = {
     'payment.pay-now': 'Paga Ora',
     'payment.processing': 'Elaborazione...',
     'payment.secure-payment': 'Pagamento sicuro tramite Stripe',
+    'payment.ready-to-pay':
+      'Le tue foto sono pronte! Completa la tua iscrizione effettuando il pagamento.',
     'payment.no-submissions-title': 'Nessuna Candidatura Ancora',
     'payment.no-submissions-desc':
       'Invia almeno una candidatura prima di effettuare il pagamento',
