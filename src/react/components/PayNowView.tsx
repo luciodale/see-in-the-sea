@@ -80,7 +80,6 @@ export function PayNowView() {
           </div>
 
           <div className="mb-6">
-            <div className="text-3xl font-bold text-emerald-400 mb-2">€20</div>
             <p className="text-slate-300 text-sm">
               {t('payment.secure-payment')}
             </p>
