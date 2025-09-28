@@ -3,7 +3,11 @@ import { and, eq } from 'drizzle-orm';
 import Stripe from 'stripe';
 import { getDb } from '../../db';
 import { contests, submissions } from '../../db/schema';
-import { getBackendTranslation } from '../../i18n/utils';
+import {
+  getBackendTranslation,
+  getLangFromUrl,
+  getLocalizedPath,
+} from '../../i18n/utils';
 import { authenticateRequest } from '../../server/authenticateRequest';
 import type { CheckoutResponse } from '../../types/api';
 // Stripe test key should be stored in environment variables
@@ -22,6 +26,9 @@ export const POST: APIRoute = async ({ request, locals }) => {
 
   const url = new URL(request.url);
   const DOMAIN = url.origin;
+
+  // Get language from the request URL
+  const lang = getLangFromUrl(url);
 
   if (
     !D1Database ||
@@ -119,8 +126,8 @@ export const POST: APIRoute = async ({ request, locals }) => {
         },
       ],
       mode: 'payment',
-      success_url: `${DOMAIN}/user/payment/success`,
-      cancel_url: `${DOMAIN}/user/payment/cancel`,
+      success_url: `${DOMAIN}${getLocalizedPath('user/payment/success', lang)}`,
+      cancel_url: `${DOMAIN}${getLocalizedPath('user/payment/cancel', lang)}`,
       customer_email: user.emailAddress!,
       metadata: {
         contestId: activeContest[0].id,

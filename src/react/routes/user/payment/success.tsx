@@ -39,15 +39,6 @@ function PaymentSuccess() {
           >
             {t('payment.success.back-to-submissions')}
           </Link>
-
-          {/* Decorative Elements */}
-          <div className="mt-8 pt-6 border-t border-slate-700">
-            <div className="flex items-center justify-center space-x-2 text-slate-500 text-sm">
-              <div className="w-2 h-2 bg-emerald-400 rounded-full animate-pulse"></div>
-              <span>Contest Entry Confirmed</span>
-              <div className="w-2 h-2 bg-emerald-400 rounded-full animate-pulse"></div>
-            </div>
-          </div>
         </div>
       </div>
     </div>
