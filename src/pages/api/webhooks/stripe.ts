@@ -51,6 +51,7 @@ export const POST: APIRoute = async ({ request, locals }) => {
   const db = getDb(D1Database);
 
   try {
+    console.log(`[webhook] Processing event: ${event.type}`);
     switch (event.type) {
       case 'checkout.session.completed': {
         const session = event.data.object as Stripe.Checkout.Session;

@@ -87,7 +87,12 @@ export const translations = {
     'submissions.pictures-uploaded': 'picture(s) uploaded',
     'submissions.category-complete':
       'Category complete - maximum submissions reached',
+    'submissions.category-complete-description':
+      'Maximum submissions reached for this category',
     'submissions.your-pictures': 'Your pictures',
+    'submissions.success-received': '✓ Picture Successfully Received!',
+    'submissions.success-description':
+      'Your photo has been uploaded and is ready for the contest',
 
     // Portfolio and photo types
     'portfolio.title': 'Portfolio',
@@ -382,7 +387,12 @@ export const translations = {
     'submissions.pictures-uploaded': 'foto caricate',
     'submissions.category-complete':
       'Categoria completa - massimo numero di candidature raggiunto',
+    'submissions.category-complete-description':
+      'Massimo numero di candidature raggiunto per questa categoria',
     'submissions.your-pictures': 'Le tue foto',
+    'submissions.success-received': '✓ Foto Ricevuta con Successo!',
+    'submissions.success-description':
+      'La tua foto è stata caricata ed è pronta per il concorso',
 
     // Portfolio and photo types
     'portfolio.title': 'Portfolio',

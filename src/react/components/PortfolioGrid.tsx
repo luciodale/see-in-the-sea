@@ -53,11 +53,11 @@ export function PortfolioGrid({
   }, [t]);
 
   return (
-    <div className="bg-slate-800 border border-slate-700 rounded-lg p-4">
-      <h3 className="text-lg font-semibold text-white mb-3">
+    <div className="bg-slate-800 border border-slate-700 rounded-xl p-5">
+      <h3 className="text-lg font-semibold text-white mb-4">
         {t('portfolio.title')} {portfolioNumber}
       </h3>
-      <div className="grid grid-cols-3 gap-3 mb-3">
+      <div className="grid grid-cols-3 gap-3 mb-4">
         {photoSlots.map(({ photoType, label }) => {
           const submission = portfolioSubmissions.find(
             s => s.portfolioPhotoType === photoType
@@ -77,14 +77,29 @@ export function PortfolioGrid({
           );
         })}
       </div>
-      <div className="pt-3 border-t border-slate-700">
-        <span
-          className={`text-sm font-medium ${status.isComplete ? 'text-emerald-400' : 'text-slate-400'}`}
-        >
-          {status.isComplete
-            ? t('portfolio.complete')
-            : `${status.count}/${PHOTOS_PER_PORTFOLIO} ${t('portfolio.photos-count')}`}
-        </span>
+      <div className="pt-4 border-t border-slate-700">
+        <div className="flex items-center justify-center gap-2">
+          {status.isComplete && (
+            <svg
+              className="w-4 h-4 text-emerald-400"
+              fill="currentColor"
+              viewBox="0 0 20 20"
+            >
+              <path
+                fillRule="evenodd"
+                d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                clipRule="evenodd"
+              />
+            </svg>
+          )}
+          <span
+            className={`text-sm font-medium ${status.isComplete ? 'text-emerald-400' : 'text-slate-400'}`}
+          >
+            {status.isComplete
+              ? t('portfolio.complete')
+              : `${status.count}/${PHOTOS_PER_PORTFOLIO} ${t('portfolio.photos-count')}`}
+          </span>
+        </div>
       </div>
     </div>
   );
