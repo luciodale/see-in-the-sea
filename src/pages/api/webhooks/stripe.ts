@@ -53,14 +53,19 @@ export const POST: APIRoute = async ({ request, locals }) => {
   try {
     console.log(`[webhook] Processing event: ${event.type}`);
     switch (event.type) {
-      case 'payment_intent.succeeded': {
-        const session = event.data.object;
+      case 'checkout.session.completed': {
+        // ✅ Correct event
+        const session = event.data.object; // Now 'session' is the Checkout Session object
 
+        // Your existing logic will now work perfectly
         const contestId = session.metadata?.contestId;
-        const userEmail = session.metadata?.userEmail ?? session.customer_email;
+        const userEmail =
+          session.metadata?.userEmail ?? session.customer_details?.email; // A good fallback
 
         if (!contestId || !userEmail) {
-          console.error('[webhook] Missing contestId or userEmail');
+          console.error(
+            '[webhook] Missing contestId or userEmail from metadata'
+          );
           return new Response(
             getBackendTranslation('error.missing-required-data', request),
             { status: 400 }
@@ -72,9 +77,9 @@ export const POST: APIRoute = async ({ request, locals }) => {
             id: nanoid(),
             contestId,
             userEmail,
-            amount: session.amount_total ?? 0,
-            currency: session.currency ?? 'eur',
-            stripeSessionId: session.id,
+            amount: session.amount_total ?? 0, // This property exists on the Session
+            currency: session.currency ?? 'eur', // This property exists on the Session
+            stripeSessionId: session.id, // This is the ID of the Checkout Session
             paidAt: new Date().toISOString(),
           });
           console.log(
