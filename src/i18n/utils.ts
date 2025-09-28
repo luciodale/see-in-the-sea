@@ -1,4 +1,8 @@
 import {
+  backendTranslations,
+  type BackendTranslationKey,
+} from './backend-translations';
+import {
   defaultLang,
   translations,
   type Language,
@@ -117,4 +121,44 @@ export function getLanguageAwareRedirectUrl(
  */
 export function getLanguageAwareSignOutUrl(lang?: Language): string {
   return getLanguageAwareRedirectUrl('/', lang);
+}
+
+/**
+ * Get the backend translation function for a specific language
+ */
+export function useBackendTranslations(lang: Language = defaultLang) {
+  return function bt(key: BackendTranslationKey): string {
+    return (
+      backendTranslations[lang][key] ||
+      backendTranslations[defaultLang][key] ||
+      key
+    );
+  };
+}
+
+/**
+ * Get backend translation for server-side use
+ * @param key - The translation key
+ * @param request - Optional request to detect language from
+ * @returns The translated string
+ */
+export function getBackendTranslation(
+  key: BackendTranslationKey,
+  request?: Request
+): string {
+  let lang: Language = defaultLang;
+
+  // Try to detect language from request if provided
+  if (request) {
+    const referer = request.headers.get('referer');
+    if (referer && referer.includes('/it/')) {
+      lang = 'it';
+    }
+  }
+
+  return (
+    backendTranslations[lang][key] ||
+    backendTranslations[defaultLang][key] ||
+    key
+  );
 }

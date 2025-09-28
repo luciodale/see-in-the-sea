@@ -2,6 +2,7 @@ import type { APIRoute } from 'astro';
 import { and, eq } from 'drizzle-orm';
 import { getDb } from '../../db';
 import { payments } from '../../db/schema';
+import { getBackendTranslation } from '../../i18n/utils';
 import { authenticateRequest } from '../../server/authenticateRequest';
 import type { PaymentStatusResponse } from '../../types/api';
 
@@ -11,7 +12,10 @@ export const GET: APIRoute = async ({ request, locals, url }) => {
   const D1Database = locals.runtime.env.DB;
 
   if (!D1Database) {
-    return new Response('Server configuration error', { status: 500 });
+    return new Response(
+      getBackendTranslation('error.server-configuration', request),
+      { status: 500 }
+    );
   }
 
   try {
@@ -27,7 +31,7 @@ export const GET: APIRoute = async ({ request, locals, url }) => {
     if (!contestId) {
       const response: PaymentStatusResponse = {
         success: false,
-        message: 'Contest ID is required',
+        message: getBackendTranslation('error.contest-id-required', request),
       };
       return new Response(JSON.stringify(response), {
         status: 400,
@@ -63,7 +67,10 @@ export const GET: APIRoute = async ({ request, locals, url }) => {
     console.error('[payment-status] Error checking payment status:', error);
     const response: PaymentStatusResponse = {
       success: false,
-      message: 'Failed to check payment status',
+      message: getBackendTranslation(
+        'error.failed-to-check-payment-status',
+        request
+      ),
     };
     return new Response(JSON.stringify(response), {
       status: 500,

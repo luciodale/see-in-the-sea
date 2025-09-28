@@ -3,6 +3,7 @@ import { and, eq } from 'drizzle-orm';
 import Stripe from 'stripe';
 import { getDb } from '../../db';
 import { contests, submissions } from '../../db/schema';
+import { getBackendTranslation } from '../../i18n/utils';
 import { authenticateRequest } from '../../server/authenticateRequest';
 import type { CheckoutResponse } from '../../types/api';
 // Stripe test key should be stored in environment variables
@@ -29,7 +30,7 @@ export const POST: APIRoute = async ({ request, locals }) => {
     return new Response(
       JSON.stringify({
         success: false,
-        message: 'Server configuration error',
+        message: getBackendTranslation('error.server-configuration', request),
       } as CheckoutResponse),
       {
         status: 500,
@@ -63,7 +64,7 @@ export const POST: APIRoute = async ({ request, locals }) => {
       return new Response(
         JSON.stringify({
           success: false,
-          message: 'No active contest found',
+          message: getBackendTranslation('error.no-active-contest', request),
         } as CheckoutResponse),
         {
           status: 400,
@@ -87,8 +88,10 @@ export const POST: APIRoute = async ({ request, locals }) => {
       return new Response(
         JSON.stringify({
           success: false,
-          message:
-            'You need to submit to at least one category to be able to pay.',
+          message: getBackendTranslation(
+            'error.need-submission-to-pay',
+            request
+          ),
         } as CheckoutResponse),
         {
           status: 400,
@@ -136,7 +139,7 @@ export const POST: APIRoute = async ({ request, locals }) => {
     return new Response(
       JSON.stringify({
         success: false,
-        message: 'Internal server error',
+        message: getBackendTranslation('error.internal-server', request),
       } as CheckoutResponse),
       {
         status: 500,

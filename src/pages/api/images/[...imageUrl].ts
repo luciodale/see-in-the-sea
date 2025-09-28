@@ -1,6 +1,7 @@
 import type { APIRoute } from 'astro';
 import { eq } from 'drizzle-orm';
 import { getDb, submissions } from '../../../db';
+import { getBackendTranslation } from '../../../i18n/utils';
 import {
   createCachedImageResponse,
   getCachedResponse,
@@ -18,7 +19,10 @@ export const GET: APIRoute = async ({ params, locals, request }) => {
   const { imageUrl } = params;
 
   if (!imageUrl || typeof imageUrl !== 'string') {
-    return new Response('Image key required', { status: 400 });
+    return new Response(
+      getBackendTranslation('error.image-key-required', request),
+      { status: 400 }
+    );
   }
 
   // Variables to track the final response
@@ -31,7 +35,10 @@ export const GET: APIRoute = async ({ params, locals, request }) => {
     const D1Database = locals.runtime.env.DB;
 
     if (!R2Bucket || !D1Database) {
-      return new Response('Storage or database unavailable', { status: 503 });
+      return new Response(
+        getBackendTranslation('error.storage-unavailable', request),
+        { status: 503 }
+      );
     }
 
     const db = getDb(D1Database);
@@ -43,7 +50,10 @@ export const GET: APIRoute = async ({ params, locals, request }) => {
     const urlParts = imageUrl.split('/');
     if (urlParts.length !== 4) {
       console.log('[serve-image] Invalid imageUrl format:', imageUrl);
-      return new Response('Invalid image URL format', { status: 400 });
+      return new Response(
+        getBackendTranslation('error.invalid-image-url-format', request),
+        { status: 400 }
+      );
     }
 
     const [contestId, categoryId, userId, submissionId] = urlParts;
@@ -70,7 +80,10 @@ export const GET: APIRoute = async ({ params, locals, request }) => {
         '[serve-image] No submission found for submissionId:',
         submissionId
       );
-      return new Response('Image not found', { status: 404 });
+      return new Response(
+        getBackendTranslation('error.image-not-found', request),
+        { status: 404 }
+      );
     }
 
     const { r2Key } = submissionResult[0];
@@ -81,7 +94,10 @@ export const GET: APIRoute = async ({ params, locals, request }) => {
 
     if (!r2Object || !r2Object.body) {
       console.log('[serve-image] Image not found in R2 for key:', r2Key);
-      return new Response('Image not found in storage', { status: 404 });
+      return new Response(
+        getBackendTranslation('error.image-not-found-storage', request),
+        { status: 404 }
+      );
     }
 
     // Step 3: Transform and serve the image
@@ -149,6 +165,9 @@ export const GET: APIRoute = async ({ params, locals, request }) => {
     );
   } catch (error) {
     console.error(`[serve-image] Error serving image ${imageUrl}:`, error);
-    return new Response('Internal server error', { status: 500 });
+    return new Response(
+      getBackendTranslation('error.internal-server', request),
+      { status: 500 }
+    );
   }
 };

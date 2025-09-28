@@ -3,6 +3,7 @@ import { eq } from 'drizzle-orm';
 import { getDb } from '../../db/index';
 import { judges } from '../../db/schema';
 import { authenticateRequest } from '../../server/authenticateRequest';
+import { getBackendTranslation } from '../../i18n/utils';
 
 export const prerender = false;
 
@@ -15,7 +16,7 @@ export const GET: APIRoute = async ({ request, locals, url }) => {
 
   if (!D1Database) {
     return new Response(
-      JSON.stringify({ success: false, message: 'Database not available' }),
+      JSON.stringify({ success: false, message: getBackendTranslation('error.database-unavailable', request) }),
       { status: 500 }
     );
   }
@@ -32,7 +33,7 @@ export const GET: APIRoute = async ({ request, locals, url }) => {
     const contestId = url.searchParams.get('contestId');
     if (!contestId) {
       return new Response(
-        JSON.stringify({ success: false, message: 'contestId is required' }),
+        JSON.stringify({ success: false, message: getBackendTranslation('error.contest-id-required', request) }),
         { status: 400 }
       );
     }
@@ -52,7 +53,7 @@ export const GET: APIRoute = async ({ request, locals, url }) => {
     return new Response(
       JSON.stringify({
         success: false,
-        message: 'Failed to fetch judges',
+        message: getBackendTranslation('error.failed-to-fetch-judges', request),
         error: error instanceof Error ? error.message : String(error),
       }),
       { status: 500, headers: { 'Content-Type': 'application/json' } }

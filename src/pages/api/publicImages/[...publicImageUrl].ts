@@ -4,6 +4,7 @@ import {
   getCachedResponse,
   storeInCache,
 } from '../../../server/cacheUtils';
+import { getBackendTranslation } from '../../../i18n/utils';
 
 export const prerender = false;
 
@@ -16,7 +17,7 @@ export const GET: APIRoute = async ({ params, locals, request }) => {
   const { publicImageUrl } = params;
 
   if (!publicImageUrl || typeof publicImageUrl !== 'string') {
-    return new Response('Image key required', { status: 400 });
+    return new Response(getBackendTranslation('error.image-key-required', request), { status: 400 });
   }
 
   // Variable to track the final response
@@ -28,14 +29,14 @@ export const GET: APIRoute = async ({ params, locals, request }) => {
     const IMAGES = locals.runtime.env.IMAGES;
 
     if (!r2Bucket) {
-      return new Response('R2 bucket not configured', { status: 500 });
+      return new Response(getBackendTranslation('error.r2-not-configured', request), { status: 500 });
     }
 
     // Fetch the image directly from R2 using the r2Key
     const r2Object = await r2Bucket.get(publicImageUrl);
 
     if (!r2Object || !r2Object.body) {
-      return new Response('Image not found', { status: 404 });
+      return new Response(getBackendTranslation('error.image-not-found', request), { status: 404 });
     }
 
     // If Images service is available, use it for optimization
@@ -109,6 +110,6 @@ export const GET: APIRoute = async ({ params, locals, request }) => {
     );
   } catch (error) {
     console.error('Error serving public image:', error);
-    return new Response('Internal server error', { status: 500 });
+    return new Response(getBackendTranslation('error.internal-server', request), { status: 500 });
   }
 };

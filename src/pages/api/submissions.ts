@@ -1,5 +1,6 @@
 import type { APIRoute } from 'astro';
 import { getDb } from '../../db/index';
+import { getBackendTranslation } from '../../i18n/utils';
 import { authenticateRequest } from '../../server/authenticateRequest';
 import { getUserContestSubmissions } from '../../server/contestService';
 import type { SubmissionsResponse } from '../../types/api';
@@ -19,7 +20,7 @@ export const GET: APIRoute = async ({ request, locals }) => {
     return new Response(
       JSON.stringify({
         success: false,
-        message: 'Database not available',
+        message: getBackendTranslation('error.database-unavailable', request),
       }),
       { status: 500 }
     );
@@ -72,7 +73,7 @@ export const GET: APIRoute = async ({ request, locals }) => {
     if (!contestData.contest) {
       const response: SubmissionsResponse = {
         success: false,
-        message: 'No active contest found',
+        message: getBackendTranslation('error.no-active-contest', request),
       };
 
       return new Response(JSON.stringify(response), {
@@ -95,7 +96,10 @@ export const GET: APIRoute = async ({ request, locals }) => {
     return new Response(
       JSON.stringify({
         success: false,
-        message: 'Failed to fetch submissions',
+        message: getBackendTranslation(
+          'error.failed-to-fetch-submissions',
+          request
+        ),
         error: error instanceof Error ? error.message : String(error),
       }),
       {

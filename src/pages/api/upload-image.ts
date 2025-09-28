@@ -2,6 +2,7 @@ import type { APIRoute } from 'astro';
 import { and, eq } from 'drizzle-orm';
 import { getDb } from '../../db/index';
 import { payments } from '../../db/schema';
+import { getBackendTranslation } from '../../i18n/utils';
 import { authenticateRequest } from '../../server/authenticateRequest';
 import {
   canUploadToContest,
@@ -40,7 +41,7 @@ export const POST: APIRoute = async ({ request, locals }) => {
     return new Response(
       JSON.stringify({
         success: false,
-        message: 'Server configuration error: Missing R2 bucket or database.',
+        message: getBackendTranslation('error.server-config-missing', request),
       }),
       { status: 500 }
     );
@@ -74,8 +75,14 @@ export const POST: APIRoute = async ({ request, locals }) => {
         return new Response(
           JSON.stringify({
             success: false,
-            message: 'Access denied. Admin role required for admin uploads.',
-            error: 'INSUFFICIENT_PERMISSIONS',
+            message: getBackendTranslation(
+              'error.access-denied-admin',
+              request
+            ),
+            error: getBackendTranslation(
+              'error.insufficient-permissions',
+              request
+            ),
           }),
           { status: 403 }
         );
@@ -86,7 +93,10 @@ export const POST: APIRoute = async ({ request, locals }) => {
         return new Response(
           JSON.stringify({
             success: false,
-            message: 'User email is required for admin uploads.',
+            message: getBackendTranslation(
+              'error.user-email-required',
+              request
+            ),
           }),
           { status: 400 }
         );
@@ -146,7 +156,7 @@ export const POST: APIRoute = async ({ request, locals }) => {
       return new Response(
         JSON.stringify({
           success: false,
-          message: 'Contest not found or inactive.',
+          message: getBackendTranslation('error.contest-not-found', request),
         }),
         { status: 400 }
       );
@@ -156,7 +166,7 @@ export const POST: APIRoute = async ({ request, locals }) => {
       return new Response(
         JSON.stringify({
           success: false,
-          message: 'Invalid or inactive category.',
+          message: getBackendTranslation('error.category-invalid', request),
         }),
         { status: 400 }
       );
@@ -168,7 +178,7 @@ export const POST: APIRoute = async ({ request, locals }) => {
       return new Response(
         JSON.stringify({
           success: false,
-          message: 'Submissions are closed for this contest.',
+          message: getBackendTranslation('error.submissions-closed', request),
         }),
         { status: 403 }
       );
@@ -191,7 +201,7 @@ export const POST: APIRoute = async ({ request, locals }) => {
         return new Response(
           JSON.stringify({
             success: false,
-            message: 'You cannot modify your submissions after payment has been completed.',
+            message: getBackendTranslation('error.submissions-locked', request),
           }),
           { status: 403 }
         );
@@ -260,7 +270,7 @@ export const POST: APIRoute = async ({ request, locals }) => {
     // Step 8: Return success response
     const response: UploadResponse = {
       success: true,
-      message: 'Image uploaded successfully!',
+      message: getBackendTranslation('success.image-uploaded', request),
       data: {
         submissionId,
         contestId,
@@ -290,7 +300,7 @@ export const POST: APIRoute = async ({ request, locals }) => {
     return new Response(
       JSON.stringify({
         success: false,
-        message: 'Failed to upload image',
+        message: getBackendTranslation('error.failed-to-upload-image', request),
         error: error instanceof Error ? error.message : String(error),
       }),
       {

@@ -2,6 +2,7 @@ import type { APIRoute } from 'astro';
 import { and, eq } from 'drizzle-orm';
 import { getDb } from '../../db/index';
 import { payments, submissions } from '../../db/schema';
+import { getBackendTranslation } from '../../i18n/utils';
 import { authenticateRequest } from '../../server/authenticateRequest';
 import { deleteImageFromR2, deleteSubmission } from '../../server/imageService';
 
@@ -19,7 +20,10 @@ export const DELETE: APIRoute = async ({ request, locals }) => {
 
   if (!D1Database || !R2Bucket) {
     return new Response(
-      JSON.stringify({ success: false, message: 'Server configuration error' }),
+      JSON.stringify({
+        success: false,
+        message: getBackendTranslation('error.server-configuration', request),
+      }),
       { status: 500 }
     );
   }
@@ -40,7 +44,13 @@ export const DELETE: APIRoute = async ({ request, locals }) => {
 
     if (!submissionId) {
       return new Response(
-        JSON.stringify({ success: false, message: 'submissionId is required' }),
+        JSON.stringify({
+          success: false,
+          message: getBackendTranslation(
+            'error.submission-id-required',
+            request
+          ),
+        }),
         { status: 400 }
       );
     }
@@ -53,8 +63,14 @@ export const DELETE: APIRoute = async ({ request, locals }) => {
         return new Response(
           JSON.stringify({
             success: false,
-            message: 'Access denied. Admin role required for admin delete.',
-            error: 'INSUFFICIENT_PERMISSIONS',
+            message: getBackendTranslation(
+              'error.access-denied-admin-delete',
+              request
+            ),
+            error: getBackendTranslation(
+              'error.insufficient-permissions',
+              request
+            ),
           }),
           { status: 403 }
         );
@@ -72,7 +88,10 @@ export const DELETE: APIRoute = async ({ request, locals }) => {
         return new Response(
           JSON.stringify({
             success: false,
-            message: 'Submission not found',
+            message: getBackendTranslation(
+              'error.submission-not-found',
+              request
+            ),
           }),
           { status: 404 }
         );
@@ -103,7 +122,10 @@ export const DELETE: APIRoute = async ({ request, locals }) => {
         return new Response(
           JSON.stringify({
             success: false,
-            message: 'Submission not found or not owned by user',
+            message: getBackendTranslation(
+              'error.submission-not-owned',
+              request
+            ),
           }),
           { status: 404 }
         );
@@ -125,8 +147,7 @@ export const DELETE: APIRoute = async ({ request, locals }) => {
         return new Response(
           JSON.stringify({
             success: false,
-            message:
-              'You cannot modify your submissions after payment has been completed.',
+            message: getBackendTranslation('error.submissions-locked', request),
           }),
           { status: 403 }
         );
@@ -138,7 +159,10 @@ export const DELETE: APIRoute = async ({ request, locals }) => {
     await deleteSubmission(db, submissionId);
 
     return new Response(
-      JSON.stringify({ success: true, message: 'Submission deleted' }),
+      JSON.stringify({
+        success: true,
+        message: getBackendTranslation('success.submission-deleted', request),
+      }),
       { status: 200, headers: { 'Content-Type': 'application/json' } }
     );
   } catch (error) {
@@ -146,7 +170,10 @@ export const DELETE: APIRoute = async ({ request, locals }) => {
     return new Response(
       JSON.stringify({
         success: false,
-        message: 'Failed to delete submission',
+        message: getBackendTranslation(
+          'error.failed-to-delete-submission',
+          request
+        ),
       }),
       { status: 500 }
     );

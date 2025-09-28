@@ -3,6 +3,7 @@ import { nanoid } from 'nanoid';
 import Stripe from 'stripe';
 import { getDb } from '../../../db';
 import { payments } from '../../../db/schema';
+import { getBackendTranslation } from '../../../i18n/utils';
 
 export const prerender = false;
 
@@ -13,7 +14,10 @@ export const POST: APIRoute = async ({ request, locals }) => {
     .STRIPE_WEBHOOK_SECRET as string;
 
   if (!D1Database || !STRIPE_SECRET_KEY || !STRIPE_WEBHOOK_SECRET) {
-    return new Response('Server configuration error', { status: 500 });
+    return new Response(
+      getBackendTranslation('error.server-configuration', request),
+      { status: 500 }
+    );
   }
 
   const stripe = new Stripe(STRIPE_SECRET_KEY, {
@@ -23,7 +27,10 @@ export const POST: APIRoute = async ({ request, locals }) => {
   const body = await request.text();
   const signature = request.headers.get('stripe-signature');
   if (!signature) {
-    return new Response('Missing stripe-signature header', { status: 400 });
+    return new Response(
+      getBackendTranslation('error.missing-stripe-signature', request),
+      { status: 400 }
+    );
   }
 
   let event: Stripe.Event;
@@ -35,7 +42,10 @@ export const POST: APIRoute = async ({ request, locals }) => {
     );
   } catch (err) {
     console.error('[webhook] Signature verification failed:', err);
-    return new Response('Invalid signature', { status: 400 });
+    return new Response(
+      getBackendTranslation('error.invalid-signature', request),
+      { status: 400 }
+    );
   }
 
   const db = getDb(D1Database);
@@ -50,7 +60,10 @@ export const POST: APIRoute = async ({ request, locals }) => {
 
         if (!contestId || !userEmail) {
           console.error('[webhook] Missing contestId or userEmail');
-          return new Response('Missing required data', { status: 400 });
+          return new Response(
+            getBackendTranslation('error.missing-required-data', request),
+            { status: 400 }
+          );
         }
 
         try {
@@ -89,7 +102,10 @@ export const POST: APIRoute = async ({ request, locals }) => {
     return new Response('OK', { status: 200 });
   } catch (error) {
     console.error('[webhook] Error processing webhook:', error);
-    return new Response('Webhook processing failed', { status: 500 });
+    return new Response(
+      getBackendTranslation('error.webhook-processing-failed', request),
+      { status: 500 }
+    );
   }
 };
 

@@ -1,17 +1,23 @@
 import type { APIRoute } from 'astro';
 import { eq } from 'drizzle-orm';
 import { categories, contests, getDb } from '../../db/index';
+import { getBackendTranslation } from '../../i18n/utils';
 import type { ContestsResponse } from '../../types/api';
 
 export const prerender = false;
 
-export const GET: APIRoute = async ({ locals }) => {
+export const GET: APIRoute = async ({ request, locals }) => {
   const D1Database = locals.runtime.env.DB;
 
   if (!D1Database) {
-    return new Response(JSON.stringify({ message: 'Database not available' }), {
-      status: 500,
-    });
+    return new Response(
+      JSON.stringify({
+        message: getBackendTranslation('error.database-unavailable', request),
+      }),
+      {
+        status: 500,
+      }
+    );
   }
 
   const db = getDb(D1Database);
@@ -28,7 +34,7 @@ export const GET: APIRoute = async ({ locals }) => {
     if (contestResult.length === 0) {
       const response: ContestsResponse = {
         success: false,
-        message: 'No active contest found',
+        message: getBackendTranslation('error.no-active-contest', request),
       };
 
       return new Response(JSON.stringify(response), {
@@ -56,7 +62,10 @@ export const GET: APIRoute = async ({ locals }) => {
     console.error('[contests] Query error:', error);
     return new Response(
       JSON.stringify({
-        message: 'Failed to fetch contest and categories',
+        message: getBackendTranslation(
+          'error.failed-to-fetch-contest-categories',
+          request
+        ),
         error: error instanceof Error ? error.message : String(error),
       }),
       {
