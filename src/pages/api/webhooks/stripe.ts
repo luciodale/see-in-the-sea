@@ -53,8 +53,8 @@ export const POST: APIRoute = async ({ request, locals }) => {
   try {
     console.log(`[webhook] Processing event: ${event.type}`);
     switch (event.type) {
-      case 'checkout.session.completed': {
-        const session = event.data.object as Stripe.Checkout.Session;
+      case 'payment_intent.succeeded': {
+        const session = event.data.object;
 
         const contestId = session.metadata?.contestId;
         const userEmail = session.metadata?.userEmail ?? session.customer_email;
@@ -87,12 +87,6 @@ export const POST: APIRoute = async ({ request, locals }) => {
             throw dbErr;
           }
         }
-        break;
-      }
-
-      case 'checkout.session.expired': {
-        const session = event.data.object as Stripe.Checkout.Session;
-        console.log(`[webhook] Session expired: ${session.id}`);
         break;
       }
 
