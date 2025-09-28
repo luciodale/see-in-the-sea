@@ -1,12 +1,12 @@
 ---
 import ContestDetailPage from '@/components/pages/ContestDetailPage.astro';
-import { getLangFromUrl } from '@/i18n';
+import { getLangFromUrl, getLocalizedPath } from '@/i18n';
 
 const { contestId } = Astro.params;
 const currentLang = getLangFromUrl(Astro.url);
 
 if (!contestId) {
-  return Astro.redirect('/404');
+  return Astro.redirect(getLocalizedPath('404', currentLang));
 }
 ---
 

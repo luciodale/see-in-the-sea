@@ -1,13 +1,14 @@
 import { XCircleIcon } from '@heroicons/react/24/outline';
 import { Link, createFileRoute } from '@tanstack/react-router';
 import { useI18n } from '../../../../i18n/react';
+import { getLocalizedPath } from '../../../../i18n/utils';
 
 export const Route = createFileRoute('/user/payment/cancel')({
   component: PaymentCancel,
 });
 
 function PaymentCancel() {
-  const { t } = useI18n();
+  const { t, lang } = useI18n();
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-900 via-orange-900/20 to-slate-900 flex items-center justify-center p-4">
@@ -34,14 +35,14 @@ function PaymentCancel() {
           {/* Action Buttons */}
           <div className="space-y-3">
             <Link
-              to="/user/submissions"
+              to={getLocalizedPath('user/submissions', lang)}
               className="inline-flex items-center justify-center w-full bg-emerald-600 hover:bg-emerald-700 text-white font-semibold py-3 px-6 rounded-lg transition-colors duration-200"
             >
               {t('payment.cancelled.back-to-submissions')}
             </Link>
 
             <Link
-              to="/contest"
+              to={getLocalizedPath('contest', lang)}
               className="inline-flex items-center justify-center w-full bg-slate-600 hover:bg-slate-700 text-white font-medium py-2 px-4 rounded-lg transition-colors duration-200 text-sm"
             >
               View Contest Gallery

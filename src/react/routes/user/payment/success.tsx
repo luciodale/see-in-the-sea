@@ -1,13 +1,14 @@
 import { CheckCircleIcon } from '@heroicons/react/24/solid';
 import { Link, createFileRoute } from '@tanstack/react-router';
 import { useI18n } from '../../../../i18n/react';
+import { getLocalizedPath } from '../../../../i18n/utils';
 
 export const Route = createFileRoute('/user/payment/success')({
   component: PaymentSuccess,
 });
 
 function PaymentSuccess() {
-  const { t } = useI18n();
+  const { t, lang } = useI18n();
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-900 via-emerald-900/20 to-slate-900 flex items-center justify-center p-4">
@@ -33,7 +34,7 @@ function PaymentSuccess() {
 
           {/* Action Button */}
           <Link
-            to="/user/submissions"
+            to={getLocalizedPath('user/submissions', lang)}
             className="inline-flex items-center justify-center w-full bg-emerald-600 hover:bg-emerald-700 text-white font-semibold py-3 px-6 rounded-lg transition-colors duration-200"
           >
             {t('payment.success.back-to-submissions')}

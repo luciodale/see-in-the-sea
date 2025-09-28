@@ -1,10 +1,11 @@
 ---
 import ContestDetailPage from '@/components/pages/ContestDetailPage.astro';
+import { getLocalizedPath } from '@/i18n';
 
 const { contestId } = Astro.params;
 
 if (!contestId) {
-  return Astro.redirect('/404');
+  return Astro.redirect(getLocalizedPath('404', 'it'));
 }
 ---
 

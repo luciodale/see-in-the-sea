@@ -3,7 +3,7 @@ import AppWrapper from '@/components/AppWrapper.astro';
 import ContestWinners from '@/components/Gallery/ContestWinners.astro';
 import Layout from '@/components/Gallery/Layout.astro';
 import NavbarHeaderStandalone from '@/components/Navbar/NavbarHeaderStandalone.astro';
-import { useTranslations, type Language } from '@/i18n';
+import { getLocalizedPath, useTranslations, type Language } from '@/i18n';
 
 interface Props {
   lang: Language;
@@ -14,7 +14,7 @@ const { lang, contestId } = Astro.props;
 const t = useTranslations(lang);
 
 if (!contestId) {
-  return Astro.redirect('/404');
+  return Astro.redirect(getLocalizedPath('404', lang));
 }
 ---
 
