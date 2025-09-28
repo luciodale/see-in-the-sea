@@ -9,6 +9,8 @@ import { CategoryNavigation } from './CategoryNavigation';
 import { CategorySummary } from './CategorySummary';
 import JudgesBar from './JudgesBar';
 import { MediterraneanPortfolioManager } from './MediterraneanPortfolioManager';
+import { PayNowButton } from './PayNowButton';
+import { PaymentSuccessBanner } from './PaymentSuccessBanner';
 import { SubmissionManageModal } from './SubmissionManageModal';
 import { SuccessModal } from './SuccessModal';
 import { UploadModal } from './UploadModal';
@@ -269,20 +271,24 @@ export function UnifiedSubmissions() {
 
       {/* Category Navigation */}
       {!noActiveContest && categories.length > 0 && (
-        <CategoryNavigation
-          categories={categories}
-          activeCategoryId={activeCategoryId}
-          onCategorySelect={handleCategorySelect}
-        />
+        <div className="space-y-4">
+          <CategoryNavigation
+            categories={categories}
+            activeCategoryId={activeCategoryId}
+            onCategorySelect={handleCategorySelect}
+          />
+
+          {/* Pay Now Button - only show if user has submissions and hasn't paid */}
+          {hasSubmissions && !hasPaid && (
+            <div className="flex justify-center">
+              <PayNowButton />
+            </div>
+          )}
+        </div>
       )}
 
-      {/* Payment Section */}
-      {/* {!noActiveContest && contestStatus === 'active' && (
-        <PayNowButton
-          hasSubmissions={hasSubmissions}
-          categoryCount={categoryCount}
-        />
-      )} */}
+      {/* Payment Success Banner - show if user has paid */}
+      {hasPaid && <PaymentSuccessBanner />}
 
       {/* Active Category Summary */}
       {!noActiveContest && activeCategory && (

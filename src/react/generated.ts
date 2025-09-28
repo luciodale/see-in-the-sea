@@ -17,6 +17,7 @@ import { Route as AdminManualEntryRouteImport } from './routes/admin/manual-entr
 import { Route as AdminCurrentContestRouteImport } from './routes/admin/current-contest'
 import { Route as AdminCreateRouteImport } from './routes/admin/create'
 import { Route as AdminContestsRouteImport } from './routes/admin/contests'
+import { Route as UserPaymentIndexRouteImport } from './routes/user/payment/index'
 import { Route as UserPaymentSuccessRouteImport } from './routes/user/payment/success'
 import { Route as UserPaymentCancelRouteImport } from './routes/user/payment/cancel'
 import { Route as AdminContestIdSubmissionsRouteImport } from './routes/admin/$contestId.submissions'
@@ -62,6 +63,11 @@ const AdminContestsRoute = AdminContestsRouteImport.update({
   path: '/admin/contests',
   getParentRoute: () => rootRouteImport,
 } as any)
+const UserPaymentIndexRoute = UserPaymentIndexRouteImport.update({
+  id: '/user/payment/',
+  path: '/user/payment/',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const UserPaymentSuccessRoute = UserPaymentSuccessRouteImport.update({
   id: '/user/payment/success',
   path: '/user/payment/success',
@@ -97,6 +103,7 @@ export interface FileRoutesByFullPath {
   '/admin/$contestId/submissions': typeof AdminContestIdSubmissionsRoute
   '/user/payment/cancel': typeof UserPaymentCancelRoute
   '/user/payment/success': typeof UserPaymentSuccessRoute
+  '/user/payment': typeof UserPaymentIndexRoute
 }
 export interface FileRoutesByTo {
   '/admin/contests': typeof AdminContestsRoute
@@ -111,6 +118,7 @@ export interface FileRoutesByTo {
   '/admin/$contestId/submissions': typeof AdminContestIdSubmissionsRoute
   '/user/payment/cancel': typeof UserPaymentCancelRoute
   '/user/payment/success': typeof UserPaymentSuccessRoute
+  '/user/payment': typeof UserPaymentIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -126,6 +134,7 @@ export interface FileRoutesById {
   '/admin/$contestId/submissions': typeof AdminContestIdSubmissionsRoute
   '/user/payment/cancel': typeof UserPaymentCancelRoute
   '/user/payment/success': typeof UserPaymentSuccessRoute
+  '/user/payment/': typeof UserPaymentIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -142,6 +151,7 @@ export interface FileRouteTypes {
     | '/admin/$contestId/submissions'
     | '/user/payment/cancel'
     | '/user/payment/success'
+    | '/user/payment'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/admin/contests'
@@ -156,6 +166,7 @@ export interface FileRouteTypes {
     | '/admin/$contestId/submissions'
     | '/user/payment/cancel'
     | '/user/payment/success'
+    | '/user/payment'
   id:
     | '__root__'
     | '/admin/contests'
@@ -170,6 +181,7 @@ export interface FileRouteTypes {
     | '/admin/$contestId/submissions'
     | '/user/payment/cancel'
     | '/user/payment/success'
+    | '/user/payment/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -185,6 +197,7 @@ export interface RootRouteChildren {
   AdminContestIdSubmissionsRoute: typeof AdminContestIdSubmissionsRoute
   UserPaymentCancelRoute: typeof UserPaymentCancelRoute
   UserPaymentSuccessRoute: typeof UserPaymentSuccessRoute
+  UserPaymentIndexRoute: typeof UserPaymentIndexRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -245,6 +258,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AdminContestsRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/user/payment/': {
+      id: '/user/payment/'
+      path: '/user/payment'
+      fullPath: '/user/payment'
+      preLoaderRoute: typeof UserPaymentIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/user/payment/success': {
       id: '/user/payment/success'
       path: '/user/payment/success'
@@ -289,6 +309,7 @@ const rootRouteChildren: RootRouteChildren = {
   AdminContestIdSubmissionsRoute: AdminContestIdSubmissionsRoute,
   UserPaymentCancelRoute: UserPaymentCancelRoute,
   UserPaymentSuccessRoute: UserPaymentSuccessRoute,
+  UserPaymentIndexRoute: UserPaymentIndexRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

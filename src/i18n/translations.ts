@@ -294,6 +294,10 @@ export const translations = {
       'You can try again anytime from your submissions page.',
     'payment.cancelled.back-to-submissions': 'Back to My Submissions',
     'payment.submissions-locked': 'Submissions locked after payment',
+    'payment.warning.title': 'Final Step: Payment',
+    'payment.warning.message':
+      'Once you complete payment, you will not be able to make any more edits to your submissions.',
+    'payment.back-to-submissions': '← Back to submissions',
   },
 
   it: {
@@ -587,6 +591,10 @@ export const translations = {
       'Puoi riprovare in qualsiasi momento dalla pagina delle tue candidature.',
     'payment.cancelled.back-to-submissions': 'Torna alle Mie Candidature',
     'payment.submissions-locked': 'Candidature bloccate dopo il pagamento',
+    'payment.warning.title': 'Passo Finale: Pagamento',
+    'payment.warning.message':
+      'Una volta completato il pagamento, non potrai più modificare le tue candidature.',
+    'payment.back-to-submissions': '← Torna alle candidature',
   },
 } as const;
 
