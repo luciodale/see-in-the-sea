@@ -19,7 +19,9 @@ export const POST: APIRoute = async ({ request, locals }) => {
   const STRIPE_SECRET_KEY = locals.runtime.env.STRIPE_SECRET_KEY;
   const STRIPE_PRICE_ID_20 = test20 || PRICE_ID_PROD_20;
   const STRIPE_PRICE_ID_30 = test30 || PRICE_ID_PROD_30;
-  const DOMAIN = 'http://localhost:4321';
+
+  const url = new URL(request.url);
+  const DOMAIN = url.origin;
 
   if (
     !D1Database ||
