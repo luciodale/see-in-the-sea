@@ -119,7 +119,7 @@ export const POST: APIRoute = async ({ request, locals }) => {
           console.log(
             '[webhook] Immediate payment succeeded. Fulfilling order...'
           );
-          fulfillOrder(session.id, stripe, db);
+          await fulfillOrder(session.id, stripe, db);
         } else {
           console.log(
             '[webhook] Delayed payment initiated. Awaiting confirmation.'
@@ -131,7 +131,7 @@ export const POST: APIRoute = async ({ request, locals }) => {
       case 'checkout.session.async_payment_succeeded': {
         const session = event.data.object;
         console.log('[webhook] Delayed payment succeeded. Fulfilling order...');
-        fulfillOrder(session.id, stripe, db);
+        await fulfillOrder(session.id, stripe, db);
         break;
       }
 
