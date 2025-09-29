@@ -15,14 +15,11 @@ import type { CheckoutResponse } from '../../types/api';
 const PRICE_ID_PROD_20 = 'price_1SA7Q80GkfoIDCTPaiqKExvB';
 const PRICE_ID_PROD_30 = 'price_1SA7QP0GkfoIDCTPQgyBnXsS';
 
-const test20 = 'price_1SA7w90R4NmBbOmzleSnMbP2';
-const test30 = 'price_1SA7wU0R4NmBbOmz0ZSjsRwL';
-
 export const POST: APIRoute = async ({ request, locals }) => {
   const D1Database = locals.runtime.env.DB;
   const STRIPE_SECRET_KEY = locals.runtime.env.STRIPE_SECRET_KEY;
-  const STRIPE_PRICE_ID_20 = test20 || PRICE_ID_PROD_20;
-  const STRIPE_PRICE_ID_30 = test30 || PRICE_ID_PROD_30;
+  const STRIPE_PRICE_ID_20 = PRICE_ID_PROD_20;
+  const STRIPE_PRICE_ID_30 = PRICE_ID_PROD_30;
 
   const url = new URL(request.url);
   const DOMAIN = url.origin;
@@ -114,9 +111,8 @@ export const POST: APIRoute = async ({ request, locals }) => {
     const categoryCount = uniqueCategories.size;
 
     // Pricing logic: 20€ for 1 category, 30€ for 2+ categories
-    const testPrice = 'price_1SCIyz0GkfoIDCTPFoqhDlG9';
-    const priceId = testPrice;
-    // categoryCount === 1 ? STRIPE_PRICE_ID_20 : STRIPE_PRICE_ID_30;
+    const priceId =
+      categoryCount === 1 ? STRIPE_PRICE_ID_20 : STRIPE_PRICE_ID_30;
 
     const session = await stripe.checkout.sessions.create({
       line_items: [
