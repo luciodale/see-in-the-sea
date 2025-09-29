@@ -24,8 +24,9 @@ export const POST: APIRoute = async ({ request, locals }) => {
   const url = new URL(request.url);
   const DOMAIN = url.origin;
 
-  // Get language from the request URL
-  const lang = getLangFromUrl(url);
+  // Get language from the referer header (the page that made the request)
+  const referer = request.headers.get('referer');
+  const lang = referer ? getLangFromUrl(new URL(referer)) : 'en';
 
   if (
     !D1Database ||
