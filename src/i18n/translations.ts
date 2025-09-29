@@ -191,12 +191,8 @@ export const translations = {
     // Sponsors page
     'sponsors.title': 'Our Sponsors',
     'sponsors.subtitle': 'Supporting Underwater Photography Excellence',
-    'sponsors.coming-soon.title': 'Sponsors Coming Soon',
-    'sponsors.coming-soon.description':
-      'We are currently working with amazing partners to support the UW 2025 contest. Stay tuned for exciting announcements!',
-    'sponsors.coming-soon.contest': 'UW 2025 Contest',
-    'sponsors.coming-soon.cta': 'Become a Sponsor',
-    'sponsors.coming-soon.contact':
+    'sponsors.become-sponsor': 'Become a Sponsor',
+    'sponsors.contact':
       'Contact us to learn more about sponsorship opportunities',
 
     // Trophy page
@@ -494,12 +490,8 @@ export const translations = {
     'sponsors.title': 'I Nostri Sponsor',
     'sponsors.subtitle':
       "A sostegno dell'eccellenza nella fotografia subacquea",
-    'sponsors.coming-soon.title': 'Sponsor in Arrivo',
-    'sponsors.coming-soon.description':
-      'Stiamo lavorando con partner straordinari per supportare il concorso UW 2025. Restate sintonizzati per annunci emozionanti!',
-    'sponsors.coming-soon.contest': 'Concorso UW 2025',
-    'sponsors.coming-soon.cta': 'Diventa Sponsor',
-    'sponsors.coming-soon.contact':
+    'sponsors.become-sponsor': 'Diventa Sponsor',
+    'sponsors.contact':
       'Contattaci per saperne di più sulle opportunità di sponsorizzazione',
 
     // Trophy page

@@ -2,6 +2,7 @@
 import AppWrapper from '@/components/AppWrapper.astro';
 import Layout from '@/components/Gallery/Layout.astro';
 import NavbarHeaderStandalone from '@/components/Navbar/NavbarHeaderStandalone.astro';
+import { sponsorAlbatros, sponsors } from '@/constants/sponsors';
 import { useTranslations, type Language } from '@/i18n';
 
 interface Props {
@@ -36,8 +37,58 @@ const t = useTranslations(lang);
       </p>
     </div>
 
-    <!-- Coming Soon Section -->
-    <div class="max-w-4xl mx-auto">
+    <div class="flex justify-center">
+      <a href="https://www.albatrostopboat.com/" target="_blank">
+        <img
+          src="/images/sponsors/albatros-logo.svg"
+          alt="Albatros"
+          class="w-2xl object-contain transition-opacity"
+          loading="lazy"
+        />
+      </a>
+    </div>
+    <div>
+      <div class="flex mx-auto gap-10 justify-center items-center space-y-8">
+        {
+          sponsorAlbatros.map(sponsor => (
+            <div class="flex items-center justify-center">
+              <a href={sponsor.website} target="_blank">
+                <img
+                  src={sponsor.logo}
+                  alt={`${sponsor.logo} logo`}
+                  class={`${sponsor.width ?? 'w-40'} shrink-0 transition-opacity`}
+                  loading="lazy"
+                />
+              </a>
+            </div>
+          ))
+        }
+      </div>
+    </div>
+
+    <!-- Sponsors Content -->
+    <div class="flex flex-col items-center gap-12">
+      {
+        sponsors.map(sponsor => (
+          <div class="flex flex-col items-center justify-center">
+            <a href={sponsor.website} target="_blank">
+              <img
+                src={sponsor.logo}
+                alt={`${sponsor.logo} logo`}
+                class={`${sponsor.width ?? 'w-2xl'} object-contain  transition-opacity`}
+                loading="lazy"
+              />
+            </a>
+            {sponsor.name && (
+              <span class="text-gray-300 text-lg pt-4">{sponsor.name}</span>
+            )}
+          </div>
+        ))
+      }
+    </div>
+
+    <!-- Become a Sponsor CTA -->
+    <div class="max-w-4xl mx-auto mt-20">
       <div
         class="bg-gradient-to-br from-blue-900/20 to-indigo-900/20 border border-blue-500/30 rounded-2xl p-12 backdrop-blur-sm"
       >
@@ -66,24 +117,15 @@ const t = useTranslations(lang);
 
           <!-- Title -->
           <h2 class="text-3xl font-light text-gray-100 uppercase tracking-wide">
-            {t('sponsors.coming-soon.title')}
+            {t('sponsors.become-sponsor')}
           </h2>
 
           <!-- Description -->
           <p
             class="text-lg font-light text-gray-300 leading-relaxed max-w-2xl mx-auto"
           >
-            {t('sponsors.coming-soon.description')}
+            {t('sponsors.contact')}
           </p>
-
-          <!-- Contest Badge -->
-          <div
-            class="inline-flex items-center px-6 py-3 bg-blue-600/30 border border-blue-500/50 rounded-full"
-          >
-            <span class="text-blue-200 font-medium tracking-wide">
-              {t('sponsors.coming-soon.contest')}
-            </span>
-          </div>
 
           <!-- CTA Button -->
           <div class="pt-4">
@@ -91,14 +133,9 @@ const t = useTranslations(lang);
               href="mailto:info@ortonasub.com"
               class="inline-flex items-center px-8 py-4 bg-gradient-to-r from-blue-600/60 to-indigo-600/60 border border-blue-500/70 text-blue-100 rounded-lg transition-all duration-300 text-lg font-medium tracking-wide uppercase hover:from-blue-500/70 hover:to-indigo-500/70 hover:border-blue-400/80 hover:scale-105"
             >
-              {t('sponsors.coming-soon.cta')}
+              {t('sponsors.become-sponsor')}
             </a>
           </div>
-
-          <!-- Contact Info -->
-          <p class="text-sm text-gray-400 font-light">
-            {t('sponsors.coming-soon.contact')}
-          </p>
         </div>
       </div>
     </div>
