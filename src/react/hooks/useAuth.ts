@@ -49,6 +49,8 @@ export function useAuth({ onSuccess }: UseAuthProps = {}) {
 
       if (attempt.status === 'complete') {
         await setActiveSignIn({ session: attempt.createdSessionId });
+        // Scroll to top to show the user the successful state change
+        window.scrollTo({ top: 0, behavior: 'smooth' });
         onSuccess?.();
       } else {
         setError(
@@ -83,6 +85,8 @@ export function useAuth({ onSuccess }: UseAuthProps = {}) {
 
       if (attempt.status === 'complete') {
         await setActiveSignUp({ session: attempt.createdSessionId });
+        // Scroll to top to show the user the successful state change
+        window.scrollTo({ top: 0, behavior: 'smooth' });
         onSuccess?.();
       } else if (attempt.status === 'missing_requirements') {
         // Handle email verification requirement
@@ -115,6 +119,8 @@ export function useAuth({ onSuccess }: UseAuthProps = {}) {
 
       if (attempt.status === 'complete') {
         await setActiveSignUp({ session: attempt.createdSessionId });
+        // Scroll to top to show the user the successful state change
+        window.scrollTo({ top: 0, behavior: 'smooth' });
         onSuccess?.();
       } else {
         setError('VERIFICATION_FAILED');
