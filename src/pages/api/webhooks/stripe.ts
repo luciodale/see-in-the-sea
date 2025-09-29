@@ -1,4 +1,5 @@
 import type { APIRoute } from 'astro';
+import { eq } from 'drizzle-orm';
 import { nanoid } from 'nanoid';
 import Stripe from 'stripe';
 import { getDb } from '../../../db';
@@ -6,6 +7,62 @@ import { payments } from '../../../db/schema';
 import { getBackendTranslation } from '../../../i18n/utils';
 
 export const prerender = false;
+
+// ✅ STEP 1: Create the idempotent fulfillment function
+async function fulfillOrder(
+  sessionId: string,
+  stripe: Stripe,
+  db: ReturnType<typeof getDb>
+) {
+  // Check if we have already processed this payment
+  const existingPayment = await db
+    .select()
+    .from(payments)
+    .where(eq(payments.stripeSessionId, sessionId))
+    .limit(1);
+
+  if (existingPayment.length > 0) {
+    console.log(`[webhook] Order for session ${sessionId} already fulfilled.`);
+    return; // Stop execution to prevent duplicates
+  }
+
+  // If not processed, retrieve the session from Stripe to get all details
+  const session = await stripe.checkout.sessions.retrieve(sessionId);
+
+  // Redundant check for safety: ensure payment was actually successful
+  if (session.payment_status !== 'paid') {
+    console.warn(
+      `[webhook] Fulfill called for session ${sessionId} but payment status is ${session.payment_status}.`
+    );
+    return;
+  }
+
+  const contestId = session.metadata?.contestId;
+  const userEmail =
+    session.metadata?.userEmail ?? session.customer_details?.email;
+
+  if (!contestId || !userEmail) {
+    console.error(
+      `[webhook] Critical: Missing contestId or userEmail in metadata for session ${sessionId}`
+    );
+    return;
+  }
+
+  // Insert the new payment record
+  await db.insert(payments).values({
+    id: nanoid(),
+    contestId,
+    userEmail,
+    amount: session.amount_total ?? 0,
+    currency: session.currency ?? 'eur',
+    stripeSessionId: session.id,
+    paidAt: new Date().toISOString(),
+  });
+
+  console.log(
+    `[webhook] ✅ Payment fulfilled for ${userEmail}, contest ${contestId}, session ${sessionId}`
+  );
+}
 
 export const POST: APIRoute = async ({ request, locals }) => {
   const D1Database = locals.runtime.env.DB;
@@ -52,46 +109,29 @@ export const POST: APIRoute = async ({ request, locals }) => {
 
   try {
     console.log(`[webhook] Processing event: ${event.type}`);
+
+    // ✅ STEP 2: Update the switch statement
     switch (event.type) {
       case 'checkout.session.completed': {
-        // ✅ Correct event
-        const session = event.data.object; // Now 'session' is the Checkout Session object
-
-        // Your existing logic will now work perfectly
-        const contestId = session.metadata?.contestId;
-        const userEmail =
-          session.metadata?.userEmail ?? session.customer_details?.email; // A good fallback
-
-        if (!contestId || !userEmail) {
-          console.error(
-            '[webhook] Missing contestId or userEmail from metadata'
-          );
-          return new Response(
-            getBackendTranslation('error.missing-required-data', request),
-            { status: 400 }
-          );
-        }
-
-        try {
-          await db.insert(payments).values({
-            id: nanoid(),
-            contestId,
-            userEmail,
-            amount: session.amount_total ?? 0, // This property exists on the Session
-            currency: session.currency ?? 'eur', // This property exists on the Session
-            stripeSessionId: session.id, // This is the ID of the Checkout Session
-            paidAt: new Date().toISOString(),
-          });
+        const session = event.data.object;
+        // For immediate payment methods, payment_status will be 'paid'
+        if (session.payment_status === 'paid') {
           console.log(
-            `[webhook] Payment recorded for ${userEmail}, contest ${contestId}`
+            '[webhook] Immediate payment succeeded. Fulfilling order...'
           );
-        } catch (dbErr: any) {
-          if (isUniqueViolation(dbErr)) {
-            console.log(`[webhook] Duplicate session ${session.id}, ignoring`);
-          } else {
-            throw dbErr;
-          }
+          fulfillOrder(session.id, stripe, db);
+        } else {
+          console.log(
+            '[webhook] Delayed payment initiated. Awaiting confirmation.'
+          );
         }
+        break;
+      }
+
+      case 'checkout.session.async_payment_succeeded': {
+        const session = event.data.object;
+        console.log('[webhook] Delayed payment succeeded. Fulfilling order...');
+        fulfillOrder(session.id, stripe, db);
         break;
       }
 
@@ -108,8 +148,3 @@ export const POST: APIRoute = async ({ request, locals }) => {
     );
   }
 };
-
-// helper: detect unique violation (adjust to your D1 client)
-function isUniqueViolation(err: any): boolean {
-  return typeof err?.message === 'string' && err.message.includes('UNIQUE');
-}
