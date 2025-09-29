@@ -31,15 +31,12 @@ export const sponsors: Sponsor[] = [
 
   {
     logo: '/images/sponsors/ciampoli-logo.svg',
-    website: '/',
   },
   {
     logo: '/images/sponsors/pgs-logo.webp',
-    website: '/',
   },
   {
     logo: '/images/sponsors/lega-navale-logo.png',
-    website: '/',
     width: 'w-72',
     name: 'Lega Navale Italiana Sezione di Ortona',
   },

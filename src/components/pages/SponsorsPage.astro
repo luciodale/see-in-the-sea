@@ -2,7 +2,7 @@
 import AppWrapper from '@/components/AppWrapper.astro';
 import Layout from '@/components/Gallery/Layout.astro';
 import NavbarHeaderStandalone from '@/components/Navbar/NavbarHeaderStandalone.astro';
-import { sponsorAlbatros, sponsors } from '@/constants/sponsors';
+import { sponsorAlbatros, sponsors, type Sponsor } from '@/constants/sponsors';
 import { useTranslations, type Language } from '@/i18n';
 
 interface Props {
@@ -12,6 +12,28 @@ interface Props {
 
 const { lang, alternates = [] } = Astro.props as Props;
 const t = useTranslations(lang);
+
+// Helper function to render sponsor image with conditional link
+const renderSponsorImage = (sponsor: Sponsor, imageClass: string) => {
+  const imageElement = (
+    <img
+      src={sponsor.logo}
+      alt={`${sponsor.logo} logo`}
+      class={imageClass}
+      loading="lazy"
+    />
+  );
+
+  if (sponsor.website && sponsor.website !== '/') {
+    return (
+      <a href={sponsor.website} target="_blank">
+        {imageElement}
+      </a>
+    );
+  }
+
+  return imageElement;
+};
 ---
 
 <AppWrapper
@@ -52,14 +74,10 @@ const t = useTranslations(lang);
         {
           sponsorAlbatros.map(sponsor => (
             <div class="flex items-center justify-center">
-              <a href={sponsor.website} target="_blank">
-                <img
-                  src={sponsor.logo}
-                  alt={`${sponsor.logo} logo`}
-                  class={`${sponsor.width ?? 'w-40'} shrink-0 transition-opacity`}
-                  loading="lazy"
-                />
-              </a>
+              {renderSponsorImage(
+                sponsor,
+                `${sponsor.width ?? 'w-40'} shrink-0 transition-opacity`
+              )}
             </div>
           ))
         }
@@ -71,14 +89,10 @@ const t = useTranslations(lang);
       {
         sponsors.map(sponsor => (
           <div class="flex flex-col items-center justify-center">
-            <a href={sponsor.website} target="_blank">
-              <img
-                src={sponsor.logo}
-                alt={`${sponsor.logo} logo`}
-                class={`${sponsor.width ?? 'w-2xl'} object-contain  transition-opacity`}
-                loading="lazy"
-              />
-            </a>
+            {renderSponsorImage(
+              sponsor,
+              `${sponsor.width ?? 'w-2xl'} object-contain transition-opacity`
+            )}
             {sponsor.name && (
               <span class="text-gray-300 text-lg pt-4">{sponsor.name}</span>
             )}
