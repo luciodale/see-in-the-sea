@@ -117,6 +117,7 @@ export const translations = {
     'form.description-placeholder': 'Describe your photo (optional)',
     'form.choose-file': 'Choose file',
     'form.no-file-chosen': 'No file chosen',
+    'form.file-too-large': 'File size exceeds the maximum allowed size',
 
     // Categories
     'category.wide-angle': 'Wide Angle',
@@ -415,6 +416,7 @@ export const translations = {
     'form.description-placeholder': 'Descrivi la tua foto (opzionale)',
     'form.choose-file': 'Scegli file',
     'form.no-file-chosen': 'Nessun file selezionato',
+    'form.file-too-large': 'La dimensione del file supera il limite consentito',
 
     // Categories
     'category.wide-angle': 'Grandangolo',

@@ -42,14 +42,39 @@ export function UploadModal({
   const [error, setError] = useState<string | null>(null);
 
   const handleFileChange = (file: File | null) => {
-    setSelectedFile(file);
     setError(null); // Clear any previous errors when selecting a new file
+
+    if (!file) {
+      setSelectedFile(null);
+      if (preview) URL.revokeObjectURL(preview);
+      setPreview(null);
+      return;
+    }
+
+    // Check file size before proceeding
+    if (file.size > MAX_IMAGE_SIZE) {
+      const actualSize = (file.size / (1024 * 1024)).toFixed(1);
+      setError(`${t('form.file-too-large')} (${actualSize}MB/${MAX_MB}MB)`);
+      setSelectedFile(null);
+      if (preview) URL.revokeObjectURL(preview);
+      setPreview(null);
+      return;
+    }
+
+    setSelectedFile(file);
     if (preview) URL.revokeObjectURL(preview);
-    setPreview(file ? URL.createObjectURL(file) : null);
+    setPreview(URL.createObjectURL(file));
   };
 
   const handleUpload = async () => {
     if (!selectedFile || !title.trim()) return;
+
+    // Double-check file size before upload (safety measure)
+    if (selectedFile.size > MAX_IMAGE_SIZE) {
+      const actualSize = (selectedFile.size / (1024 * 1024)).toFixed(1);
+      setError(`${t('form.file-too-large')} (${actualSize}MB/${MAX_MB}MB)`);
+      return;
+    }
 
     setIsUploading(true);
     setError(null);
