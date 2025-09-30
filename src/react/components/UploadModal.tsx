@@ -51,14 +51,12 @@ export function UploadModal({
       return;
     }
 
-    // Check file size before proceeding
+    // Check file size and set error if too large, but still show preview
     if (file.size > MAX_IMAGE_SIZE) {
       const actualSize = (file.size / (1024 * 1024)).toFixed(1);
       setError(`${t('form.file-too-large')} (${actualSize}MB/${MAX_MB}MB)`);
-      setSelectedFile(null);
-      if (preview) URL.revokeObjectURL(preview);
-      setPreview(null);
-      return;
+    } else {
+      setError(null); // Clear error if file size is OK
     }
 
     setSelectedFile(file);
@@ -263,7 +261,12 @@ export function UploadModal({
         </button>
         <button
           onClick={handleUpload}
-          disabled={!selectedFile || !title.trim() || isUploading}
+          disabled={
+            !selectedFile ||
+            !title.trim() ||
+            isUploading ||
+            (selectedFile && selectedFile.size > MAX_IMAGE_SIZE)
+          }
           className="flex-1 py-2 px-4 bg-emerald-600 hover:bg-emerald-500 text-white rounded-lg disabled:opacity-50 flex items-center justify-center gap-2 cursor-pointer"
         >
           {isUploading && (
