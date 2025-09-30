@@ -1,0 +1,30 @@
+---
+import type { Sponsor } from '../../constants/sponsors';
+
+interface Props {
+  sponsor: Sponsor;
+  imageClass: string;
+}
+
+const { sponsor, imageClass } = Astro.props;
+---
+
+{
+  sponsor.website && sponsor.website !== '/' ? (
+    <a href={sponsor.website} target="_blank">
+      <img
+        src={sponsor.logo}
+        alt={`${sponsor.name} logo`}
+        class={imageClass}
+        loading="lazy"
+      />
+    </a>
+  ) : (
+    <img
+      src={sponsor.logo}
+      alt={`${sponsor.name} logo`}
+      class={imageClass}
+      loading="lazy"
+    />
+  )
+}

@@ -2,7 +2,7 @@
 import AppWrapper from '@/components/AppWrapper.astro';
 import Layout from '@/components/Gallery/Layout.astro';
 import NavbarHeaderStandalone from '@/components/Navbar/NavbarHeaderStandalone.astro';
-import { sponsorAlbatros, sponsors, type Sponsor } from '@/constants/sponsors';
+import { sponsorAlbatros, sponsors } from '@/constants/sponsors';
 import { useTranslations, type Language } from '@/i18n';
 
 interface Props {
@@ -13,27 +13,7 @@ interface Props {
 const { lang, alternates = [] } = Astro.props as Props;
 const t = useTranslations(lang);
 
-// Helper function to render sponsor image with conditional link
-const renderSponsorImage = (sponsor: Sponsor, imageClass: string) => {
-  const imageElement = (
-    <img
-      src={sponsor.logo}
-      alt={`${sponsor.logo} logo`}
-      class={imageClass}
-      loading="lazy"
-    />
-  );
-
-  if (sponsor.website && sponsor.website !== '/') {
-    return (
-      <a href={sponsor.website} target="_blank">
-        {imageElement}
-      </a>
-    );
-  }
-
-  return imageElement;
-};
+import SponsorImage from '../SponsorImage.astro';
 ---
 
 <AppWrapper
@@ -74,10 +54,10 @@ const renderSponsorImage = (sponsor: Sponsor, imageClass: string) => {
         {
           sponsorAlbatros.map(sponsor => (
             <div class="flex items-center justify-center">
-              {renderSponsorImage(
-                sponsor,
-                `${sponsor.width ?? 'w-40'} shrink-0 transition-opacity`
-              )}
+              <SponsorImage
+                sponsor={sponsor}
+                imageClass={`${sponsor.width ?? 'w-40'} shrink-0 transition-opacity`}
+              />
             </div>
           ))
         }
@@ -89,10 +69,10 @@ const renderSponsorImage = (sponsor: Sponsor, imageClass: string) => {
       {
         sponsors.map(sponsor => (
           <div class="flex flex-col items-center justify-center">
-            {renderSponsorImage(
-              sponsor,
-              `${sponsor.width ?? 'w-2xl'} object-contain transition-opacity`
-            )}
+            <SponsorImage
+              sponsor={sponsor}
+              imageClass={`${sponsor.width ?? 'w-2xl'} object-contain transition-opacity`}
+            />
             {sponsor.name && (
               <span class="text-gray-300 text-lg pt-4">{sponsor.name}</span>
             )}
