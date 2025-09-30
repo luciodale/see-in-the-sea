@@ -1,5 +1,6 @@
-import { RedirectToSignIn, SignedIn, SignedOut } from '@clerk/clerk-react';
+import { SignedIn, SignedOut } from '@clerk/clerk-react';
 import { createFileRoute, Link, useRouter } from '@tanstack/react-router';
+import { RedirectToSignIn } from '../../components/RedirectToSignIn';
 import { useUserRole } from '../../hooks/useUserRole';
 
 export const Route = createFileRoute('/admin/')({

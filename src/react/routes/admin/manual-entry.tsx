@@ -1,9 +1,10 @@
-import { RedirectToSignIn, SignedIn, SignedOut } from '@clerk/clerk-react';
+import { SignedIn, SignedOut } from '@clerk/clerk-react';
 import { createFileRoute } from '@tanstack/react-router';
 import { useState } from 'react';
 import { AdminEmailInput } from '../../components/AdminEmailInput';
 import { AdminImpersonationInterface } from '../../components/AdminImpersonationInterface';
 import AdminTabs from '../../components/AdminTabs';
+import { RedirectToSignIn } from '../../components/RedirectToSignIn';
 import { useUserRole } from '../../hooks/useUserRole';
 
 export const Route = createFileRoute('/admin/manual-entry')({

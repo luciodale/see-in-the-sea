@@ -1,7 +1,8 @@
-import { RedirectToSignIn, SignedIn, SignedOut } from '@clerk/clerk-react';
+import { SignedIn, SignedOut } from '@clerk/clerk-react';
 import { createFileRoute, Link } from '@tanstack/react-router';
 import AdminTabs from '../../components/AdminTabs';
 import CreateContestForm from '../../components/CreateContestForm';
+import { RedirectToSignIn } from '../../components/RedirectToSignIn';
 import { useUserRole } from '../../hooks/useUserRole';
 
 export const Route = createFileRoute('/admin/create')({
