@@ -29,6 +29,8 @@ The jury will meet for evaluation of the works in January 2026
 **Art. 1)**  
 Authors may submit a maximum of 2 files per section and 2 series for the Mediterranean Portfolio. The same photo cannot be submitted in multiple sections. To participate, it is necessary to log in from **01/10/2025 to 31/12/2025** to the official contest page [www.seeintheseauw.com](http://www.seeintheseauw.com) and access the section dedicated to photo submission. No extensions for submission deadlines will be granted.
 
+**All works already awarded in other National and International contests by December 31, 2024, will be excluded.**
+
 To submit works, registration on [www.seeintheseauw.com](http://www.seeintheseauw.com) via the **Enter the contest** button in the navigation bar is required. By registering, consent to data processing for purposes strictly related to site functionality is considered implicit. Once registration is completed, access will be automatic, and the user will be redirected to the submission section, where they can upload and manage their contest photos and pay the entry fee.
 
 For each successfully uploaded file, the system will automatically send a confirmation email to the email address provided during registration.

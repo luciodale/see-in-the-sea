@@ -29,6 +29,8 @@ La giuria si riunirà per la valutazione delle opere a Gennaio 2026
 **Art. 1)**  
 Gli autori possono presentare un massimo di 2 files per sezione e 2 serie per il Portfolio Mediterraneo. La stessa foto non può essere presentata in più sezioni. Per partecipare al concorso sarà necessario collegarsi dal **01/10/2025 al 31/12/2025** alla pagina ufficiale del concorso [www.seeintheseauw.com](http://www.seeintheseauw.com) ed accedere alla sezione dedicata all'iscrizione foto. Si specifica che non saranno concesse proroghe per la data di invio delle opere.
 
+**Verranno escluse tutte le opere già premiate in altri concorsi Nazionali ed internazionali entro la data del 31 Dicembre 2024.**
+
 Per inviare le proprie opere è necessario registrarsi al portale [www.seeintheseauw.com](http://www.seeintheseauw.com) tramite il pulsante **Partecipa al concorso** presente nella barra di navigazione. Con l'iscrizione alla piattaforma, il consenso al trattamento dei dati per fini strettamente legati alla funzionalità del sito sarà considerato implicito. Una volta completata la registrazione, l'accesso sarà automatico e l'utente verrà reindirizzato alla sezione dedicata alle candidature, da cui potrà caricare e gestire le foto per il concorso ed effettuare il pagamento della quota di iscrizione.
 
 Ad ogni file caricato con successo, il sistema invierà in automatico un'email di conferma all'indirizzo email fornito durante la registrazione.
