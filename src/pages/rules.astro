@@ -3,6 +3,7 @@ import RulesContent from '@/articles/rules.md';
 import AppWrapper from '@/components/AppWrapper.astro';
 import Layout from '@/components/Gallery/Layout.astro';
 import NavbarHeaderStandalone from '@/components/Navbar/NavbarHeaderStandalone.astro';
+import RulesActions from '@/components/RulesActions.astro';
 import { useTranslations, type Language } from '@/i18n';
 
 interface Props {
@@ -25,6 +26,7 @@ const t = useTranslations(currentLang as Language);
 >
   <NavbarHeaderStandalone lang={currentLang as Language} />
   <Layout>
+    <RulesActions lang={currentLang as Language} />
     <div class="prose prose-invert max-w-none prose-p:text-xl">
       <RulesContent />
     </div>

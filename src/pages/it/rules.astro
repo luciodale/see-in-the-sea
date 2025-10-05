@@ -3,6 +3,7 @@ import RulesContent from '@/articles/rules.it.md';
 import AppWrapper from '@/components/AppWrapper.astro';
 import Layout from '@/components/Gallery/Layout.astro';
 import NavbarHeaderStandalone from '@/components/Navbar/NavbarHeaderStandalone.astro';
+import RulesActions from '@/components/RulesActions.astro';
 import { useTranslations } from '@/i18n';
 
 const currentLang = 'it';
@@ -21,6 +22,7 @@ const alternates = [
 >
   <NavbarHeaderStandalone lang={currentLang} />
   <Layout>
+    <RulesActions lang={currentLang} />
     <div class="prose prose-invert max-w-none prose-p:text-xl">
       <RulesContent />
     </div>

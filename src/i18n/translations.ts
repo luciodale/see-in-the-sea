@@ -53,6 +53,7 @@ export const translations = {
     'action.cancel': 'Cancel',
     'action.close': 'Close',
     'action.click-to-manage': 'Click to manage',
+    'action.print': 'Print',
 
     // Footer
     'footer.copyright': 'See in the Sea',
@@ -350,6 +351,7 @@ export const translations = {
     'action.cancel': 'Annulla',
     'action.close': 'Chiudi',
     'action.click-to-manage': 'Clicca per gestire',
+    'action.print': 'Stampa',
 
     // Footer
     'footer.copyright': 'See in the Sea',
