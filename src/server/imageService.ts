@@ -326,7 +326,6 @@ export async function storeSubmissionMetadata(
       title: data.title,
       description: data.description,
       r2ImageId: data.r2ImageId,
-      r2Key: data.r2ImageId,
       originalFilename: data.originalFilename,
       fileSize: data.fileSize,
       contentType: data.contentType,

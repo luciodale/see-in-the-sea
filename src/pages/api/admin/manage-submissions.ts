@@ -334,7 +334,6 @@ export const POST: APIRoute = async ({ request, locals }) => {
             contestId: body.contestId,
             categoryId: body.categoryId,
             userEmail: body.userEmail.trim(),
-            r2Key: newR2ImageId,
             r2ImageId: newR2ImageId,
             title: body.title.trim(),
             originalFilename: newImageFile.name,
