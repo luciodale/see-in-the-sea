@@ -56,7 +56,7 @@ export function SubmissionManageModal({
         {/* Image */}
         <div className="w-full bg-slate-900 rounded-lg overflow-hidden">
           <OptimizedImage
-            r2Key={submission.imageUrl}
+            r2ImageId={submission.r2ImageId}
             alt={submission.title}
             className="w-full h-auto max-h-96 object-contain"
             loading="eager"

@@ -162,8 +162,7 @@ export type AdminSubmission = {
   id: string;
   title: string;
   description: string | null;
-  imageUrl: string;
-  r2Key: string;
+  r2ImageId: string | null;
   userEmail: string;
   uploadedAt: string;
   contestId: string;
@@ -189,8 +188,7 @@ export type AdminResultRow = {
   submissionId: string;
   title: string;
   userEmail: string;
-  imageUrl: string | null;
-  r2Key: string;
+  r2ImageId: string | null;
   contestId: string;
   uploadedAt: string;
   firstName: string | null;

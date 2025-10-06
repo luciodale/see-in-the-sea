@@ -87,8 +87,7 @@ export const GET: APIRoute = async ({ request, locals }) => {
         id: submissions.id,
         title: submissions.title,
         description: submissions.description,
-        imageUrl: submissions.imageUrl,
-        r2Key: submissions.r2Key,
+        r2ImageId: submissions.r2ImageId,
         userEmail: submissions.userEmail,
         uploadedAt: submissions.uploadedAt,
         contestId: submissions.contestId,
@@ -297,7 +296,7 @@ export const POST: APIRoute = async ({ request, locals }) => {
         const { validateImageFile } = await import(
           '../../../server/validationService'
         );
-        const { generateR2Key, generateImageUrlWithUserId } = await import(
+        const { generateR2ImageId } = await import(
           '../../../server/imageService'
         );
 
@@ -314,39 +313,18 @@ export const POST: APIRoute = async ({ request, locals }) => {
         }
 
         try {
-          // Generate new R2 key and image URL
-          const fileExtension = newImageFile.name.split('.').pop() || 'jpg';
-          const { submissionId: newSubmissionId, r2Key: newR2Key } =
-            generateR2Key(
-              body.contestId,
-              body.categoryId,
-              body.userEmail,
-              fileExtension
-            );
-
-          // Extract userId from existing imageUrl to maintain consistency
-          // imageUrl format: contest-id/category-id/user-id/submission-id
-          const existingUrlParts = submission.imageUrl?.split('/') || [];
-          const existingUserId =
-            existingUrlParts.length >= 3
-              ? existingUrlParts[2]
-              : submission.userEmail;
-
-          const newImageUrl = generateImageUrlWithUserId(
-            body.contestId,
-            body.categoryId,
-            existingUserId, // Maintain the original user's ID
-            newSubmissionId
-          );
+          // Generate new R2 image ID
+          const { submissionId: newSubmissionId, r2ImageId: newR2ImageId } =
+            generateR2ImageId(body.contestId, body.categoryId);
 
           // Upload new image to R2
-          await R2Bucket.put(newR2Key, newImageFile);
+          await R2Bucket.put(newR2ImageId, newImageFile);
 
           // Delete old image from R2
-          if (submission.r2Key) {
-            await R2Bucket.delete(submission.r2Key);
+          if (submission.r2ImageId) {
+            await R2Bucket.delete(submission.r2ImageId);
             console.log(
-              `[manage-submissions] Deleted old image: ${submission.r2Key}`
+              `[manage-submissions] Deleted old image: ${submission.r2ImageId}`
             );
           }
 
@@ -356,8 +334,8 @@ export const POST: APIRoute = async ({ request, locals }) => {
             contestId: body.contestId,
             categoryId: body.categoryId,
             userEmail: body.userEmail.trim(),
-            r2Key: newR2Key,
-            imageUrl: newImageUrl,
+            r2Key: newR2ImageId,
+            r2ImageId: newR2ImageId,
             title: body.title.trim(),
             originalFilename: newImageFile.name,
             fileSize: newImageFile.size,
@@ -372,11 +350,6 @@ export const POST: APIRoute = async ({ request, locals }) => {
           if (body.portfolioPhotoType) {
             updateData.portfolioPhotoType = body.portfolioPhotoType;
           }
-
-          // Update database with new image paths
-          updateData.id = newSubmissionId;
-          updateData.r2Key = newR2Key;
-          updateData.imageUrl = newImageUrl;
 
           console.log(
             `[manage-submissions] Replaced image for submission ${body.id}`

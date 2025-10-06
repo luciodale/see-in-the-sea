@@ -78,7 +78,7 @@ export const DELETE: APIRoute = async ({ request, locals }) => {
 
       // Admin can delete any submission
       const rows = await db
-        .select({ id: submissions.id, r2Key: submissions.r2Key })
+        .select({ id: submissions.id, r2ImageId: submissions.r2ImageId })
         .from(submissions)
         .where(eq(submissions.id, submissionId))
         .limit(1);
@@ -105,7 +105,7 @@ export const DELETE: APIRoute = async ({ request, locals }) => {
       const rows = await db
         .select({
           id: submissions.id,
-          r2Key: submissions.r2Key,
+          r2ImageId: submissions.r2ImageId,
           contestId: submissions.contestId,
         })
         .from(submissions)
@@ -155,7 +155,17 @@ export const DELETE: APIRoute = async ({ request, locals }) => {
     }
 
     // Delete from R2 and DB
-    await deleteImageFromR2(R2Bucket, submission.r2Key);
+    if (!submission.r2ImageId) {
+      return new Response(
+        JSON.stringify({
+          success: false,
+          message: getBackendTranslation('error.image-not-found', request),
+        }),
+        { status: 404, headers: { 'Content-Type': 'application/json' } }
+      );
+    }
+
+    await deleteImageFromR2(R2Bucket, submission.r2ImageId);
     await deleteSubmission(db, submissionId);
 
     return new Response(

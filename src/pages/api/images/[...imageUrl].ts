@@ -1,15 +1,18 @@
 import type { APIRoute } from 'astro';
-import { eq } from 'drizzle-orm';
-import { getDb, submissions } from '../../../db';
-import { getBackendTranslation } from '../../../i18n/utils';
 import {
   createCachedImageResponse,
   getCachedResponse,
   storeInCache,
 } from '../../../server/cacheUtils';
+import { getBackendTranslation } from '../../../i18n/utils';
 
 export const prerender = false;
 
+/**
+ * Unified image serving endpoint
+ * Serves images using r2_image_id format: contest/category/id
+ * No database lookup needed - serves directly from R2
+ */
 export const GET: APIRoute = async ({ params, locals, request }) => {
   const cachedResponse = await getCachedResponse(request);
   if (cachedResponse) {
@@ -25,120 +28,59 @@ export const GET: APIRoute = async ({ params, locals, request }) => {
     );
   }
 
-  // Variables to track the final response
   let finalResponse: Response | null = null;
 
   try {
-    // Get the R2 bucket and Images service bindings
-    const R2Bucket = locals.runtime.env.R2_IMAGES_BUCKET;
+    const r2Bucket = locals.runtime.env.R2_IMAGES_BUCKET;
     const IMAGES = locals.runtime.env.IMAGES;
-    const D1Database = locals.runtime.env.DB;
 
-    if (!R2Bucket || !D1Database) {
+    if (!r2Bucket) {
       return new Response(
-        getBackendTranslation('error.storage-unavailable', request),
-        { status: 503 }
+        getBackendTranslation('error.r2-not-configured', request),
+        { status: 500 }
       );
     }
 
-    const db = getDb(D1Database);
+    // Fetch the image directly from R2 using the r2_image_id (imageUrl)
+    console.log('[serve-image] Fetching image from R2:', imageUrl);
+    const r2Object = await r2Bucket.get(imageUrl);
 
-    // Step 1: Parse userId-based imageUrl and find submission
-    console.log('[serve-image] Looking up submission for imageUrl:', imageUrl);
-
-    // Parse the imageUrl structure: contest-id/category-id/user-id/submission-id
-    const urlParts = imageUrl.split('/');
-    if (urlParts.length !== 4) {
-      console.log('[serve-image] Invalid imageUrl format:', imageUrl);
-      return new Response(
-        getBackendTranslation('error.invalid-image-url-format', request),
-        { status: 400 }
-      );
-    }
-
-    const [contestId, categoryId, userId, submissionId] = urlParts;
-    console.log('[serve-image] Parsed URL parts:', {
-      contestId,
-      categoryId,
-      userId,
-      submissionId,
-    });
-
-    // Find the submission by submissionId (this is unique)
-    const submissionResult = await db
-      .select({
-        r2Key: submissions.r2Key,
-        userEmail: submissions.userEmail,
-        title: submissions.title,
-      })
-      .from(submissions)
-      .where(eq(submissions.id, submissionId))
-      .limit(1);
-
-    if (submissionResult.length === 0) {
-      console.log(
-        '[serve-image] No submission found for submissionId:',
-        submissionId
-      );
+    if (!r2Object || !r2Object.body) {
+      console.log('[serve-image] Image not found in R2:', imageUrl);
       return new Response(
         getBackendTranslation('error.image-not-found', request),
         { status: 404 }
       );
     }
 
-    const { r2Key } = submissionResult[0];
-    console.log('[serve-image] Found r2Key:', r2Key);
-
-    // Step 2: Get the original image from R2 using the r2Key
-    const r2Object = await R2Bucket.get(r2Key);
-
-    if (!r2Object || !r2Object.body) {
-      console.log('[serve-image] Image not found in R2 for key:', r2Key);
-      return new Response(
-        getBackendTranslation('error.image-not-found-storage', request),
-        { status: 404 }
-      );
-    }
-
-    // Step 3: Transform and serve the image
-    if (!IMAGES) {
-      // No Images service available, serve original with caching
-      console.log(
-        '[serve-image] No Images service available, serving original image'
-      );
-      finalResponse = createCachedImageResponse(
-        r2Object.body,
-        r2Object.httpMetadata?.contentType || 'image/jpeg'
-      );
-    } else {
-      // Images service available, try to transform
-      console.log('[serve-image] IMAGES service available, transforming image');
-
+    // If Images service is available, use it for optimization
+    if (IMAGES) {
       try {
+        console.log('[serve-image] Transforming image with IMAGES service');
+
         const imageTransformer = IMAGES.input(r2Object.body);
 
         const webOptimizedTransformer = imageTransformer
           .transform({
-            width: 500, // Aggressive width reduction
-            fit: 'scale-down', // Never enlarge images
+            width: 750,
+            fit: 'scale-down',
           })
           .output({
-            format: 'image/webp', // Best web format
-            quality: 75, // More aggressive compression while maintaining good quality
+            format: 'image/webp',
+            quality: 75,
           });
 
         const transformedImage = await webOptimizedTransformer;
-        console.log('[serve-image] Transformed image successfully');
+        console.log('[serve-image] Image transformed successfully');
         const response = transformedImage.response();
 
-        // Add caching headers to the transformed response
         finalResponse = new Response(response.body, {
           status: response.status,
           statusText: response.statusText,
           headers: {
             ...Object.fromEntries(response.headers.entries()),
             'Cache-Control': 'public, max-age=31536000, immutable',
-            'X-Optimized': 'web-aggressive',
+            'X-Optimized': 'web',
           },
         });
       } catch (imageError) {
@@ -149,25 +91,37 @@ export const GET: APIRoute = async ({ params, locals, request }) => {
         // Fallback to original image if transformation fails
         finalResponse = createCachedImageResponse(
           r2Object.body,
-          r2Object.httpMetadata?.contentType || 'image/jpeg'
+          r2Object.httpMetadata?.contentType || 'image/jpeg',
+          {
+            'X-Optimized': 'fallback',
+          }
         );
       }
+    } else {
+      // No Images service available, serve original image from R2
+      console.log('[serve-image] Serving original image (no IMAGES service)');
+      finalResponse = createCachedImageResponse(
+        r2Object.body,
+        r2Object.httpMetadata?.contentType || 'image/jpeg',
+        {
+          'X-Optimized': 'none',
+        }
+      );
     }
 
-    // Single cache storage point
     if (finalResponse) {
       storeInCache(request, finalResponse, locals);
     }
 
-    // Single return point
     return (
       finalResponse || new Response('Internal server error', { status: 500 })
     );
   } catch (error) {
-    console.error(`[serve-image] Error serving image ${imageUrl}:`, error);
+    console.error('[serve-image] Error serving image:', error);
     return new Response(
       getBackendTranslation('error.internal-server', request),
       { status: 500 }
     );
   }
 };
+

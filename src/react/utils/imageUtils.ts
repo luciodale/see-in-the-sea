@@ -1,9 +1,10 @@
+import { getImageApiUrl } from '../../server/imageService';
+
 /**
  * Constructs the full image URL for display
- * @param imageUrl - The image URL path from the database (e.g., "contest-id/category-id/user-id/submission-id")
+ * @param r2ImageId - The r2ImageId from the database
  * @returns The full API path for the image
  */
-export function getImageUrl(imageUrl: string | null): string | null {
-  if (!imageUrl) return null;
-  return `/api/images/${imageUrl}`;
+export function getImageUrl(r2ImageId: string | null): string | null {
+  return getImageApiUrl(r2ImageId);
 }

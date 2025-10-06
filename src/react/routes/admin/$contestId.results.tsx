@@ -1,3 +1,4 @@
+import { getImageApiUrl } from '@/server/imageService';
 import { getRankColorClass } from '@/utils/rankUtils';
 import { useAuth } from '@clerk/clerk-react';
 import { createFileRoute } from '@tanstack/react-router';
@@ -198,7 +199,7 @@ function AdminResultsPage() {
                   </td>
                   <td className="px-6 py-4 whitespace-nowrap">
                     <img
-                      src={`/api/publicImages/${r.r2Key}`}
+                      src={getImageApiUrl(r.r2ImageId) || ''}
                       alt="Submission image"
                       className="w-16 h-16 object-cover rounded border border-slate-700"
                     />
@@ -225,7 +226,7 @@ function AdminResultsPage() {
                     </button>
                     <button
                       onClick={() =>
-                        window.open(`/api/publicImages/${r.r2Key}`, '_blank')
+                        window.open(getImageApiUrl(r.r2ImageId) || '', '_blank')
                       }
                       className="inline-flex items-center px-3 py-1 border border-slate-700 text-sm font-medium rounded-md text-slate-200 bg-slate-800 hover:bg-slate-700 focus:outline-none focus:ring-2 focus:ring-emerald-500 cursor-pointer"
                     >

@@ -5,6 +5,7 @@ import {
   getResultName,
   useTranslations,
 } from '@/i18n';
+import { getImageApiUrl } from '@/server/imageService';
 import GalleryInfo from './GalleryInfo.astro';
 import {
   getCategoryNamesByIds,
@@ -45,7 +46,7 @@ const categoryMap = await getCategoryNamesByIds(
 
 // Judges are now handled by the Jury component
 
-// Process images - using direct R2 URLs for now
+// Process images
 const processedImages = firstPlaceWinners.map(result => {
   const categoryName = categoryMap.get(result.categoryId) || result.categoryId;
   const translatedCategoryName = getCategoryName(
@@ -54,8 +55,7 @@ const processedImages = firstPlaceWinners.map(result => {
     currentLang
   );
 
-  // Use our public images API route with optimization for web delivery
-  const imageUrl = `/api/publicImages/${result.r2Key}`;
+  const imageUrl = getImageApiUrl(result.r2ImageId);
 
   return {
     ...result,

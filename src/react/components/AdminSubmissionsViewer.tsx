@@ -1,6 +1,7 @@
 import { useAuth } from '@clerk/clerk-react';
 import { useEffect, useState } from 'react';
 import { CURRENT_CONTEST_CATEGORIES } from '../../constants/categories';
+import { getImageApiUrl } from '../../server/imageService';
 import type {
   AdminSubmission,
   AdminSubmissionsResponse,
@@ -50,7 +51,7 @@ export function AdminSubmissionsViewer({
     id: string;
     title: string;
     description: string;
-    imageUrl: string;
+    r2ImageId: string | null;
     contestId: string;
     categoryId: string;
     userEmail: string;
@@ -149,7 +150,7 @@ export function AdminSubmissionsViewer({
       id: submission.id,
       title: submission.title,
       description: submission.description || '',
-      imageUrl: submission.imageUrl,
+      r2ImageId: submission.r2ImageId,
       contestId: submission.contestId,
       categoryId: submission.categoryId,
       userEmail: submission.userEmail,
@@ -563,7 +564,7 @@ export function AdminSubmissionsViewer({
                               <button
                                 onClick={() =>
                                   window.open(
-                                    `/api/images/${submission.imageUrl}`,
+                                    getImageApiUrl(submission.r2ImageId) || '',
                                     '_blank'
                                   )
                                 }

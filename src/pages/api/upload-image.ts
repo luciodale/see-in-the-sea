@@ -13,8 +13,7 @@ import {
 import type { UploadResponse } from '../../types/api';
 
 import {
-  generateImageUrlWithUserId,
-  generateR2Key,
+  generateR2ImageId,
   uploadImageWithMetadata,
 } from '../../server/imageService';
 
@@ -231,18 +230,10 @@ export const POST: APIRoute = async ({ request, locals }) => {
       );
     }
 
-    // Step 6: Generate new image paths and URLs
-    const { submissionId, r2Key } = generateR2Key(
+    // Step 6: Generate new image ID
+    const { submissionId, r2ImageId } = generateR2ImageId(
       contestId,
-      categoryId,
-      userEmail,
-      fileExtension
-    );
-    const imageUrlPath = generateImageUrlWithUserId(
-      contestId,
-      categoryId,
-      userId,
-      submissionId
+      categoryId
     );
 
     // Step 7: Execute the upload operation
@@ -256,8 +247,7 @@ export const POST: APIRoute = async ({ request, locals }) => {
       userEmail,
       title,
       description: description || '',
-      r2Key,
-      imageUrl: imageUrlPath,
+      r2ImageId,
       originalFilename: image.name,
       fileSize: image.size,
       contentType: image.type,
@@ -278,7 +268,7 @@ export const POST: APIRoute = async ({ request, locals }) => {
         uploadedBy: userEmail,
         title,
         description: description || '',
-        imageUrl: imageUrlPath,
+        imageUrl: r2ImageId,
         action: actionValidation.data.action,
         metadata: {
           originalFileName: image.name,

@@ -1,5 +1,6 @@
 import { useAuth } from '@clerk/clerk-react';
 import { useEffect, useState } from 'react';
+import { getImageApiUrl } from '../../server/imageService';
 import {
   ACCEPTED_IMAGE_TYPES,
   SUPPORTED_FORMATS_HELP_TEXT,
@@ -14,7 +15,7 @@ type EditSubmissionModalProps = {
     id: string;
     title: string;
     description: string;
-    imageUrl: string;
+    r2ImageId: string | null;
     contestId: string;
     categoryId: string;
     userEmail: string;
@@ -219,7 +220,7 @@ export default function EditSubmissionModal({
             Foto Attuale
           </div>
           <img
-            src={`/api/images/${submission.imageUrl}`}
+            src={getImageApiUrl(submission.r2ImageId) || ''}
             alt={submission.title}
             className="w-full h-48 object-cover rounded-lg border border-slate-600"
           />

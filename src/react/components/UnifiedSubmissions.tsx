@@ -107,7 +107,7 @@ export function UnifiedSubmissions() {
                 id: s.id,
                 title: s.title,
                 description: s.description ?? null,
-                imageUrl: s.imageUrl,
+                r2ImageId: s.r2ImageId,
                 portfolio: s.portfolio ?? undefined,
                 portfolioPhotoType: s.portfolioPhotoType ?? undefined,
               })) ?? [],
@@ -164,7 +164,7 @@ export function UnifiedSubmissions() {
           id: data.submissionId,
           title: data.title,
           description: data.description,
-          imageUrl: data.imageUrl,
+          r2ImageId: data.imageUrl,
           portfolio: data.portfolio,
           portfolioPhotoType: data.portfolioPhotoType,
         };

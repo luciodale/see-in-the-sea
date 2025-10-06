@@ -7,7 +7,7 @@ export type UISubmission = {
   id: string;
   title: string;
   description: string | null;
-  imageUrl: string | null;
+  r2ImageId: string | null;
   portfolio?: string;
   portfolioPhotoType?: string;
 };

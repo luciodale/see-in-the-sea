@@ -8,6 +8,7 @@ import {
   results,
   submissions,
 } from '../../db/schema';
+import { getImageApiUrl } from '../../server/imageService';
 
 /**
  * Fetches contest details by contest ID
@@ -110,7 +111,7 @@ export async function getFirstPlaceWinnersByContestId(
       submissionId: results.submissionId,
       title: submissions.title,
       categoryId: submissions.categoryId,
-      r2Key: submissions.r2Key,
+      r2ImageId: submissions.r2ImageId,
       originalFilename: submissions.originalFilename,
     })
     .from(results)
@@ -142,7 +143,7 @@ export async function getAllWinnersByContestAndCategory(
       submissionId: results.submissionId,
       title: submissions.title,
       categoryId: submissions.categoryId,
-      r2Key: submissions.r2Key,
+      r2ImageId: submissions.r2ImageId,
       originalFilename: submissions.originalFilename,
     })
     .from(results)
@@ -187,7 +188,7 @@ export async function getAllContests(d1Database: D1Database): Promise<
     allContests.map(async contest => {
       const winningImages = await db
         .select({
-          r2Key: submissions.r2Key,
+          r2ImageId: submissions.r2ImageId,
         })
         .from(results)
         .innerJoin(submissions, eq(results.submissionId, submissions.id))
@@ -205,9 +206,7 @@ export async function getAllContests(d1Database: D1Database): Promise<
 
       return {
         ...contest,
-        winningImage: firstWinningImage
-          ? `/api/publicImages/${firstWinningImage.r2Key}`
-          : undefined,
+        winningImage: getImageApiUrl(firstWinningImage?.r2ImageId) ?? undefined,
       };
     })
   );
@@ -249,7 +248,7 @@ export async function getAllPastContests(d1Database: D1Database): Promise<
     inactiveContests.map(async contest => {
       const winningImages = await db
         .select({
-          r2Key: submissions.r2Key,
+          r2ImageId: submissions.r2ImageId,
         })
         .from(results)
         .innerJoin(submissions, eq(results.submissionId, submissions.id))
@@ -267,9 +266,7 @@ export async function getAllPastContests(d1Database: D1Database): Promise<
 
       return {
         ...contest,
-        winningImage: firstWinningImage
-          ? `/api/publicImages/${firstWinningImage.r2Key}`
-          : undefined,
+        winningImage: getImageApiUrl(firstWinningImage?.r2ImageId) ?? undefined,
       };
     })
   );

@@ -21,8 +21,7 @@ export type SubmissionMetadata = {
   userEmail: string;
   title: string;
   description: string;
-  r2Key: string;
-  imageUrl: string;
+  r2ImageId: string;
   originalFilename: string;
   fileSize: number;
   contentType: string;
@@ -37,8 +36,7 @@ export type UploadData = {
   userEmail: string;
   title: string;
   description: string;
-  r2Key: string;
-  imageUrl: string;
+  r2ImageId: string;
   originalFilename: string;
   fileSize: number;
   contentType: string;
@@ -47,43 +45,31 @@ export type UploadData = {
 };
 
 /**
- * Generates unique R2 key and submission ID for image storage
+ * Generates unique R2 image ID for image storage
+ * Format: contest/category/id (no extension, no email)
  * Pure function - no side effects
  */
-export function generateR2Key(
+export function generateR2ImageId(
   contestId: string,
   categoryId: string,
-  userEmail: string,
-  fileExtension: string,
   existingSubmissionId?: string
-): { submissionId: string; r2Key: string } {
+): { submissionId: string; r2ImageId: string } {
   const submissionId = existingSubmissionId || nanoid();
-  // Clean readable structure: contest/category/user-email/submission-id.ext
-  const r2Key = `${contestId}/${categoryId}/${userEmail}/${submissionId}.${fileExtension}`;
+  // Clean flat structure: contest/category/submission-id (no extension)
+  const r2ImageId = `${contestId}/${categoryId}/${submissionId}`;
 
-  return { submissionId, r2Key };
+  return { submissionId, r2ImageId };
 }
 
 /**
- * Generates the served image URL path (R2 key without extension)
+ * Generates the full API URL for serving an image
  * Pure function - string transformation
  */
-export function generateImageUrl(r2Key: string): string {
-  return r2Key.replace(/\.[^/.]+$/, '');
-}
-
-/**
- * Generates the served image URL path using userId instead of userEmail
- * Pure function - replaces userEmail in path with userId
- */
-export function generateImageUrlWithUserId(
-  contestId: string,
-  categoryId: string,
-  userId: string,
-  submissionId: string
-): string {
-  // Clean readable structure: contest/category/user-id/submission-id (no extension)
-  return `${contestId}/${categoryId}/${userId}/${submissionId}`;
+export function getImageApiUrl(
+  r2ImageId: string | null | undefined
+): string | null {
+  if (!r2ImageId) return null;
+  return `/api/images/${r2ImageId}`;
 }
 
 /**
@@ -122,7 +108,7 @@ export async function validateUserOwnsSubmission(
  */
 export async function storeImageInR2(
   bucket: R2Bucket,
-  r2Key: string,
+  r2ImageId: string,
   imageFile: File,
   metadata: ImageUploadMetadata
 ): Promise<void> {
@@ -130,7 +116,7 @@ export async function storeImageInR2(
     // Convert File to ArrayBuffer - R2 needs known content length
     const imageBuffer = await imageFile.arrayBuffer();
 
-    await bucket.put(r2Key, imageBuffer, {
+    await bucket.put(r2ImageId, imageBuffer, {
       httpMetadata: {
         contentType: imageFile.type,
         contentDisposition: `inline; filename="${metadata.title.replace(/[^a-zA-Z0-9.-]/g, '_')}"`,
@@ -147,9 +133,12 @@ export async function storeImageInR2(
       },
     });
 
-    console.log(`[storeImageInR2] Successfully stored image: ${r2Key}`);
+    console.log(`[storeImageInR2] Successfully stored image: ${r2ImageId}`);
   } catch (error) {
-    console.error(`[storeImageInR2] Failed to store image ${r2Key}:`, error);
+    console.error(
+      `[storeImageInR2] Failed to store image ${r2ImageId}:`,
+      error
+    );
     throw new Error(
       `Failed to store image in R2: ${error instanceof Error ? error.message : String(error)}`
     );
@@ -162,7 +151,7 @@ export async function storeImageInR2(
  */
 export async function storeImageInR2WithRetry(
   bucket: R2Bucket,
-  r2Key: string,
+  r2ImageId: string,
   imageFile: File,
   metadata: ImageUploadMetadata,
   maxRetries: number = MAX_RETRY_ATTEMPTS
@@ -172,10 +161,10 @@ export async function storeImageInR2WithRetry(
   for (let attempt = 1; attempt <= maxRetries; attempt++) {
     try {
       console.log(
-        `[storeImageInR2WithRetry] Attempt ${attempt}/${maxRetries} for ${r2Key}`
+        `[storeImageInR2WithRetry] Attempt ${attempt}/${maxRetries} for ${r2ImageId}`
       );
 
-      await storeImageInR2(bucket, r2Key, imageFile, metadata);
+      await storeImageInR2(bucket, r2ImageId, imageFile, metadata);
 
       console.log(
         `[storeImageInR2WithRetry] Successfully uploaded on attempt ${attempt}`
@@ -185,7 +174,7 @@ export async function storeImageInR2WithRetry(
       lastError = error instanceof Error ? error : new Error(String(error));
 
       console.error(
-        `[storeImageInR2WithRetry] Attempt ${attempt}/${maxRetries} failed for ${r2Key}:`,
+        `[storeImageInR2WithRetry] Attempt ${attempt}/${maxRetries} failed for ${r2ImageId}:`,
         lastError.message
       );
 
@@ -227,7 +216,7 @@ export async function uploadImageWithMetadata(
     // Step 1: Store image in R2 with retry logic
     console.log(`[uploadImageWithMetadata] Step 1: Uploading image to R2...`);
 
-    await storeImageInR2WithRetry(bucket, uploadData.r2Key, imageFile, {
+    await storeImageInR2WithRetry(bucket, uploadData.r2ImageId, imageFile, {
       submissionId: uploadData.submissionId,
       uploadedBy: uploadData.userEmail,
       title: uploadData.title,
@@ -252,8 +241,7 @@ export async function uploadImageWithMetadata(
       userEmail: uploadData.userEmail,
       title: uploadData.title,
       description: uploadData.description,
-      r2Key: uploadData.r2Key,
-      imageUrl: uploadData.imageUrl,
+      r2ImageId: uploadData.r2ImageId,
       originalFilename: uploadData.originalFilename,
       fileSize: uploadData.fileSize,
       contentType: uploadData.contentType,
@@ -282,7 +270,7 @@ export async function uploadImageWithMetadata(
         `[uploadImageWithMetadata] Cleaning up R2 file due to database failure...`
       );
       try {
-        await deleteImageFromR2(bucket, uploadData.r2Key);
+        await deleteImageFromR2(bucket, uploadData.r2ImageId);
         console.log(
           `[uploadImageWithMetadata] ✅ Successfully cleaned up R2 file`
         );
@@ -305,14 +293,14 @@ export async function uploadImageWithMetadata(
  */
 export async function deleteImageFromR2(
   bucket: R2Bucket,
-  r2Key: string
+  r2ImageId: string
 ): Promise<void> {
   try {
-    await bucket.delete(r2Key);
-    console.log(`[deleteImageFromR2] Successfully deleted image: ${r2Key}`);
+    await bucket.delete(r2ImageId);
+    console.log(`[deleteImageFromR2] Successfully deleted image: ${r2ImageId}`);
   } catch (error) {
     console.error(
-      `[deleteImageFromR2] Failed to delete image ${r2Key}:`,
+      `[deleteImageFromR2] Failed to delete image ${r2ImageId}:`,
       error
     );
     throw new Error(
@@ -337,8 +325,8 @@ export async function storeSubmissionMetadata(
       userEmail: data.userEmail,
       title: data.title,
       description: data.description,
-      r2Key: data.r2Key,
-      imageUrl: data.imageUrl,
+      r2ImageId: data.r2ImageId,
+      r2Key: data.r2ImageId,
       originalFilename: data.originalFilename,
       fileSize: data.fileSize,
       contentType: data.contentType,

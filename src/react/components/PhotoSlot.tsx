@@ -38,7 +38,7 @@ export function PhotoSlot({
 
   return (
     <div className="text-center">
-      {submission?.imageUrl ? (
+      {submission?.r2ImageId ? (
         // Show image icon with manage button when image exists
         <div className="w-full">
           {/* Success indicator banner */}

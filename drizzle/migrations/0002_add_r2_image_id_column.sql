@@ -1,0 +1,1 @@
+ALTER TABLE `submissions` ADD `r2_image_id` text;
