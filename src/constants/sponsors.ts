@@ -36,13 +36,15 @@ export const sponsors: Sponsor[] = [
     logo: '/images/sponsors/pgs-logo.webp',
   },
   {
-    logo: '/images/sponsors/lega-navale-logo.png',
-    width: 'w-72',
-    name: 'Lega Navale Italiana Sezione di Ortona',
+    logo: '/images/sponsors/lega-navale-logo.svg',
   },
   {
     logo: '/images/sponsors/ssi-logo.svg',
     website: 'https://www.divessi.com/',
     width: 'w-2xl',
+  },
+  {
+    logo: '/images/sponsors/puntonave.webp',
+    website: 'https://www.puntonavemarineservice.com/',
   },
 ];
