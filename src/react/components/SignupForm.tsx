@@ -52,7 +52,7 @@ export function SignupForm({
       <div className="text-center mb-8">
         <button
           onClick={onBack}
-          className="absolute top-8 left-8 p-2 text-slate-400 hover:text-white transition-colors"
+          className="absolute top-8 left-8 p-2 text-slate-400 hover:text-white transition-colors cursor-pointer"
           disabled={loading}
         >
           <ArrowLeftIcon className="h-5 w-5" />
@@ -203,7 +203,7 @@ export function SignupForm({
         <button
           type="submit"
           disabled={loading}
-          className="w-full bg-gradient-to-r from-emerald-600 to-emerald-700 hover:from-emerald-700 hover:to-emerald-800 disabled:from-slate-600 disabled:to-slate-700 disabled:cursor-not-allowed text-white font-semibold py-3 px-6 rounded-lg transition-all duration-200 flex items-center justify-center"
+          className="cursor-pointer w-full bg-gradient-to-r from-emerald-600 to-emerald-700 hover:from-emerald-700 hover:to-emerald-800 disabled:from-slate-600 disabled:to-slate-700 disabled:cursor-not-allowed text-white font-semibold py-3 px-6 rounded-lg transition-all duration-200 flex items-center justify-center"
         >
           {loading ? (
             <>
@@ -221,7 +221,7 @@ export function SignupForm({
         <button
           onClick={onBack}
           disabled={loading}
-          className="text-sm text-slate-400 hover:text-emerald-400 transition-colors disabled:opacity-50"
+          className="text-sm text-slate-400 hover:text-emerald-400 transition-colors disabled:opacity-50 cursor-pointer"
         >
           {t('auth.signup.back')}
         </button>

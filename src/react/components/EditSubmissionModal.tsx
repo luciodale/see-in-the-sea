@@ -253,7 +253,7 @@ export default function EditSubmissionModal({
             </label>
 
             {!preview ? (
-              <div className="border-2 border-dashed border-slate-600 rounded-lg p-6 text-center hover:border-slate-500 transition-colors">
+              <div className="border-2 border-dashed border-slate-600 rounded-lg p-6 text-center hover:border-slate-500 transition-colors cursor-pointer">
                 <input
                   id="edit-image-upload"
                   type="file"

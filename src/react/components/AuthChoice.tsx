@@ -48,7 +48,7 @@ export function AuthChoice({ onModeSelect }: AuthChoiceProps) {
         {/* Sign Up Button */}
         <button
           onClick={() => onModeSelect('signup')}
-          className="w-full bg-gradient-to-r from-emerald-600 to-emerald-700 hover:from-emerald-700 hover:to-emerald-800 text-white font-semibold py-4 px-6 rounded-lg transition-all duration-200 flex items-center justify-center group"
+          className="w-full bg-gradient-to-r from-emerald-600 to-emerald-700 hover:from-emerald-700 hover:to-emerald-800 text-white font-semibold py-4 px-6 rounded-lg transition-all duration-200 flex items-center justify-center group cursor-pointer"
         >
           <UserPlusIcon className="h-5 w-5 mr-3 group-hover:scale-110 transition-transform" />
           {t('auth.choice.signup')}
@@ -69,7 +69,7 @@ export function AuthChoice({ onModeSelect }: AuthChoiceProps) {
         {/* Sign In Button */}
         <button
           onClick={() => onModeSelect('login')}
-          className="w-full bg-slate-700 hover:bg-slate-600 text-white font-semibold py-4 px-6 rounded-lg transition-colors duration-200 flex items-center justify-center group border border-slate-600"
+          className="w-full bg-slate-700 hover:bg-slate-600 text-white font-semibold py-4 px-6 rounded-lg transition-colors duration-200 flex items-center justify-center group border border-slate-600 cursor-pointer"
         >
           <ArrowRightEndOnRectangleIcon className="h-5 w-5 mr-3 group-hover:scale-110 transition-transform" />
           {t('auth.choice.login')}

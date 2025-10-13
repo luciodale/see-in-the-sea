@@ -5,11 +5,18 @@ import { useI18n } from '../../i18n/react';
 interface LoginFormProps {
   onSubmit: (email: string, password: string) => Promise<void>;
   onBack: () => void;
+  onForgotPassword: () => void;
   loading: boolean;
   error: string | null;
 }
 
-export function LoginForm({ onSubmit, onBack, loading, error }: LoginFormProps) {
+export function LoginForm({
+  onSubmit,
+  onBack,
+  onForgotPassword,
+  loading,
+  error,
+}: LoginFormProps) {
   const { t } = useI18n();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -25,12 +32,12 @@ export function LoginForm({ onSubmit, onBack, loading, error }: LoginFormProps) 
       <div className="text-center mb-8">
         <button
           onClick={onBack}
-          className="absolute top-8 left-8 p-2 text-slate-400 hover:text-white transition-colors"
+          className="absolute top-8 left-8 p-2 text-slate-400 hover:text-white transition-colors cursor-pointer"
           disabled={loading}
         >
           <ArrowLeftIcon className="h-5 w-5" />
         </button>
-        
+
         <div className="w-16 h-16 bg-gradient-to-br from-emerald-500 to-blue-500 rounded-full flex items-center justify-center mx-auto mb-4">
           <svg
             className="w-8 h-8 text-white"
@@ -46,13 +53,11 @@ export function LoginForm({ onSubmit, onBack, loading, error }: LoginFormProps) 
             />
           </svg>
         </div>
-        
+
         <h1 className="text-2xl font-bold text-white mb-2">
           {t('auth.login.title')}
         </h1>
-        <p className="text-slate-300">
-          {t('auth.login.subtitle')}
-        </p>
+        <p className="text-slate-300">{t('auth.login.subtitle')}</p>
       </div>
 
       {/* Error Message */}
@@ -76,7 +81,7 @@ export function LoginForm({ onSubmit, onBack, loading, error }: LoginFormProps) 
             id="email"
             type="email"
             value={email}
-            onChange={(e) => setEmail(e.target.value)}
+            onChange={e => setEmail(e.target.value)}
             placeholder={t('auth.login.email-placeholder')}
             required
             disabled={loading}
@@ -96,7 +101,7 @@ export function LoginForm({ onSubmit, onBack, loading, error }: LoginFormProps) 
             id="password"
             type="password"
             value={password}
-            onChange={(e) => setPassword(e.target.value)}
+            onChange={e => setPassword(e.target.value)}
             placeholder={t('auth.login.password-placeholder')}
             required
             disabled={loading}
@@ -104,11 +109,23 @@ export function LoginForm({ onSubmit, onBack, loading, error }: LoginFormProps) 
           />
         </div>
 
+        {/* Forgot Password Link */}
+        <div className="text-right">
+          <button
+            type="button"
+            onClick={onForgotPassword}
+            disabled={loading}
+            className="cursor-pointer text-sm text-slate-400 hover:text-emerald-400 transition-colors disabled:opacity-50"
+          >
+            {t('auth.reset.forgot-password')}
+          </button>
+        </div>
+
         {/* Submit Button */}
         <button
           type="submit"
           disabled={loading}
-          className="w-full bg-gradient-to-r from-emerald-600 to-emerald-700 hover:from-emerald-700 hover:to-emerald-800 disabled:from-slate-600 disabled:to-slate-700 disabled:cursor-not-allowed text-white font-semibold py-3 px-6 rounded-lg transition-all duration-200 flex items-center justify-center"
+          className="cursor-pointer w-full bg-gradient-to-r from-emerald-600 to-emerald-700 hover:from-emerald-700 hover:to-emerald-800 disabled:from-slate-600 disabled:to-slate-700 disabled:cursor-not-allowed text-white font-semibold py-3 px-6 rounded-lg transition-all duration-200 flex items-center justify-center"
         >
           {loading ? (
             <>
@@ -126,7 +143,7 @@ export function LoginForm({ onSubmit, onBack, loading, error }: LoginFormProps) 
         <button
           onClick={onBack}
           disabled={loading}
-          className="text-sm text-slate-400 hover:text-emerald-400 transition-colors disabled:opacity-50"
+          className="cursor-pointer text-sm text-slate-400 hover:text-emerald-400 transition-colors disabled:opacity-50"
         >
           {t('auth.login.back')}
         </button>

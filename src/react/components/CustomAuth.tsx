@@ -3,6 +3,8 @@ import { useAuth } from '../hooks/useAuth';
 import { AuthChoice } from './AuthChoice.tsx';
 import { EmailVerificationForm } from './EmailVerificationForm.tsx';
 import { LoginForm } from './LoginForm.tsx';
+import { ResetPasswordForm } from './ResetPasswordForm.tsx';
+import { ResetPasswordVerifyForm } from './ResetPasswordVerifyForm.tsx';
 import { SignupForm } from './SignupForm.tsx';
 
 interface CustomAuthProps {
@@ -33,6 +35,7 @@ export function CustomAuth({ onSuccess }: CustomAuthProps) {
           <LoginForm
             onSubmit={auth.signIn}
             onBack={() => auth.setMode('choice')}
+            onForgotPassword={() => auth.setMode('reset-password')}
             loading={auth.loading}
             error={auth.error}
           />
@@ -51,6 +54,25 @@ export function CustomAuth({ onSuccess }: CustomAuthProps) {
           <EmailVerificationForm
             onSubmit={auth.verifyEmail}
             onBack={() => auth.setMode('signup')}
+            loading={auth.loading}
+            error={auth.error}
+          />
+        )}
+
+        {auth.mode === 'reset-password' && (
+          <ResetPasswordForm
+            onSubmit={auth.resetPassword}
+            onBack={() => auth.setMode('login')}
+            loading={auth.loading}
+            error={auth.error}
+            success={auth.resetSuccess}
+          />
+        )}
+
+        {auth.mode === 'reset-verify' && (
+          <ResetPasswordVerifyForm
+            onSubmit={auth.resetPasswordVerify}
+            onBack={() => auth.setMode('reset-password')}
             loading={auth.loading}
             error={auth.error}
           />

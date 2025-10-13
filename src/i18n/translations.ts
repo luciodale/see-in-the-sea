@@ -266,6 +266,34 @@ export const translations = {
     'auth.verify.submitting': 'Verifying...',
     'auth.verify.back': 'Back to signup',
 
+    'auth.reset.forgot-password': 'Forgot your password?',
+    'auth.reset.title': 'Reset Password',
+    'auth.reset.subtitle': 'Enter your email to receive a reset code',
+    'auth.reset.instructions':
+      "We'll send a verification code to your email address to reset your password.",
+    'auth.reset.email': 'Email',
+    'auth.reset.email-placeholder': 'Enter your email address',
+    'auth.reset.send-code': 'Send Reset Code',
+    'auth.reset.sending': 'Sending...',
+    'auth.reset.back': 'Back to login',
+    'auth.reset.code-sent': 'Reset code sent to your email',
+
+    'auth.reset-verify.title': 'Enter Reset Code',
+    'auth.reset-verify.subtitle': 'Check your email for the verification code',
+    'auth.reset-verify.instructions':
+      'Enter the verification code we sent to your email along with your new password.',
+    'auth.reset-verify.code': 'Verification Code',
+    'auth.reset-verify.code-placeholder': 'Enter verification code',
+    'auth.reset-verify.new-password': 'New Password',
+    'auth.reset-verify.new-password-placeholder': 'Enter your new password',
+    'auth.reset-verify.confirm-password': 'Confirm New Password',
+    'auth.reset-verify.confirm-password-placeholder':
+      'Confirm your new password',
+    'auth.reset-verify.submit': 'Reset Password',
+    'auth.reset-verify.submitting': 'Resetting password...',
+    'auth.reset-verify.back': 'Back to reset',
+    'auth.reset-verify.passwords-no-match': 'Passwords do not match',
+
     'auth.logout': 'Sign Out',
     'auth.signup.registration-incomplete':
       'Please complete the registration process.',
@@ -568,6 +596,37 @@ export const translations = {
     'auth.verify.submit': 'Verifica Email',
     'auth.verify.submitting': 'Verifica in corso...',
     'auth.verify.back': 'Torna alla registrazione',
+
+    'auth.reset.forgot-password': 'Hai dimenticato la password?',
+    'auth.reset.title': 'Reimposta Password',
+    'auth.reset.subtitle':
+      'Inserisci la tua email per ricevere un codice di reset',
+    'auth.reset.instructions':
+      'Ti invieremo un codice di verifica al tuo indirizzo email per reimpostare la password.',
+    'auth.reset.email': 'Email',
+    'auth.reset.email-placeholder': 'Inserisci il tuo indirizzo email',
+    'auth.reset.send-code': 'Invia Codice Reset',
+    'auth.reset.sending': 'Invio in corso...',
+    'auth.reset.back': 'Torna al login',
+    'auth.reset.code-sent': 'Codice di reset inviato alla tua email',
+
+    'auth.reset-verify.title': 'Inserisci Codice Reset',
+    'auth.reset-verify.subtitle':
+      'Controlla la tua email per il codice di verifica',
+    'auth.reset-verify.instructions':
+      'Inserisci il codice di verifica che ti abbiamo inviato via email insieme alla tua nuova password.',
+    'auth.reset-verify.code': 'Codice di Verifica',
+    'auth.reset-verify.code-placeholder': 'Inserisci il codice di verifica',
+    'auth.reset-verify.new-password': 'Nuova Password',
+    'auth.reset-verify.new-password-placeholder':
+      'Inserisci la tua nuova password',
+    'auth.reset-verify.confirm-password': 'Conferma Nuova Password',
+    'auth.reset-verify.confirm-password-placeholder':
+      'Conferma la tua nuova password',
+    'auth.reset-verify.submit': 'Reimposta Password',
+    'auth.reset-verify.submitting': 'Reimpostazione password...',
+    'auth.reset-verify.back': 'Torna al reset',
+    'auth.reset-verify.passwords-no-match': 'Le password non corrispondono',
 
     'auth.logout': 'Disconnetti',
     'auth.signup.registration-incomplete':

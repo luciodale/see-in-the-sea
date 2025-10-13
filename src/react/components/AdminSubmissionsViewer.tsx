@@ -419,7 +419,7 @@ export function AdminSubmissionsViewer({
                         {submissions.map(submission => (
                           <tr
                             key={submission.id}
-                            className="hover:bg-slate-800/50"
+                            className="hover:bg-slate-800/50 cursor-pointer"
                           >
                             {/* Title */}
                             <td className="px-6 py-4 whitespace-nowrap">
@@ -496,7 +496,7 @@ export function AdminSubmissionsViewer({
                                       isUnsure: false,
                                     })
                                   }
-                                  className={`px-2 py-1 text-xs rounded ${
+                                  className={`px-2 py-1 text-xs rounded cursor-pointer ${
                                     submission.judgeFlags.isRejected
                                       ? 'bg-red-600 text-white'
                                       : 'bg-slate-700 text-slate-300 hover:bg-red-600'
@@ -512,7 +512,7 @@ export function AdminSubmissionsViewer({
                                       isUnsure: false,
                                     })
                                   }
-                                  className={`px-2 py-1 text-xs rounded ${
+                                  className={`px-2 py-1 text-xs rounded cursor-pointer ${
                                     submission.judgeFlags.isKeep
                                       ? 'bg-green-600 text-white'
                                       : 'bg-slate-700 text-slate-300 hover:bg-green-600'
@@ -528,7 +528,7 @@ export function AdminSubmissionsViewer({
                                       isUnsure: !submission.judgeFlags.isUnsure,
                                     })
                                   }
-                                  className={`px-2 py-1 text-xs rounded ${
+                                  className={`px-2 py-1 text-xs rounded cursor-pointer ${
                                     submission.judgeFlags.isUnsure
                                       ? 'bg-yellow-600 text-white'
                                       : 'bg-slate-700 text-slate-300 hover:bg-yellow-600'

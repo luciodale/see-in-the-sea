@@ -45,7 +45,7 @@ export function PayNowView() {
       <div className="text-center">
         <Link
           to="/user/submissions"
-          className="text-slate-400 hover:text-white transition-colors mb-4 inline-block"
+          className="text-slate-400 hover:text-white transition-colors mb-4 inline-block cursor-pointer"
         >
           {t('payment.back-to-submissions')}
         </Link>
@@ -94,7 +94,7 @@ export function PayNowView() {
           <button
             onClick={handlePayNow}
             disabled={loading}
-            className="w-full bg-emerald-600 hover:bg-emerald-700 disabled:bg-slate-600 disabled:cursor-not-allowed text-white font-semibold py-3 px-6 rounded-lg transition-colors duration-200 flex items-center justify-center"
+            className="cursor-pointer w-full bg-emerald-600 hover:bg-emerald-700 disabled:bg-slate-600 disabled:cursor-not-allowed text-white font-semibold py-3 px-6 rounded-lg transition-colors duration-200 flex items-center justify-center"
           >
             {loading ? (
               <>
