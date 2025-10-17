@@ -40,9 +40,9 @@ const sponsorsBanner: Sponsor[] = [
 <div class="bg-slate-50/80 py-3 overflow-hidden">
   <div class="marquee">
     <!-- prettier-ignore -->
-    <ul class="flex items-center gap-12 pr-12">
+    <ul class="flex items-center gap-8 pr-8">
       {sponsorsBanner.map(s => (
-        <li>
+        <li class="w-40 md:w-48">
           {s.website ? (
             <a
               href={s.website}
@@ -54,7 +54,7 @@ const sponsorsBanner: Sponsor[] = [
               <img
                 src={s.logo}
                 alt={'Sponsor logo'}
-                class="h-10 md:h-16 w-auto opacity-90 hover:opacity-100 transition-opacity"
+                class="w-auto opacity-90 hover:opacity-100 transition-opacity"
                 loading="lazy"
               />
             </a>
@@ -62,7 +62,7 @@ const sponsorsBanner: Sponsor[] = [
             <img
               src={s.logo}
               alt={'Sponsor logo'}
-              class="h-10 md:h-16 w-auto opacity-90"
+              class="w-auto opacity-90"
               loading="lazy"
             />
           )}
@@ -70,9 +70,9 @@ const sponsorsBanner: Sponsor[] = [
       ))}
     </ul>
     <!-- prettier-ignore -->
-    <ul class="flex items-center gap-12 pr-12" aria-hidden="true">
+    <ul class="flex items-center gap-8 pr-8" aria-hidden="true">
       {sponsorsBanner.map(s => (
-        <li>
+        <li class="w-40 md:w-48">
           {s.website ? (
             <a
               href={s.website}
@@ -84,7 +84,7 @@ const sponsorsBanner: Sponsor[] = [
               <img
                 src={s.logo}
                 alt={'Sponsor logo'}
-                class="h-10 md:h-16 w-auto opacity-90 hover:opacity-100 transition-opacity"
+                class="w-auto opacity-90 hover:opacity-100 transition-opacity"
                 loading="lazy"
               />
             </a>
@@ -92,7 +92,7 @@ const sponsorsBanner: Sponsor[] = [
             <img
               src={s.logo}
               alt={'Sponsor logo'}
-              class="h-10 md:h-16 w-auto opacity-90"
+              class="w-auto opacity-90"
               loading="lazy"
             />
           )}
@@ -107,6 +107,14 @@ const sponsorsBanner: Sponsor[] = [
     display: flex;
     width: max-content;
     animation: sitS_marquee 50s linear infinite;
+    will-change: transform;
+    transform: translate3d(0, 0, 0);
+    -webkit-transform: translate3d(0, 0, 0);
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+  }
+  .marquee > ul {
+    flex: none;
   }
   .marquee:hover {
     animation-play-state: paused;
