@@ -5,20 +5,40 @@ export type Sponsor = {
   name?: string;
 };
 
+export const sponsorsMeta = {
+  albatros: {
+    website: 'https://www.albatrostopboat.com/',
+  },
+  easyDive: {
+    website: 'https://www.easydive.it/',
+  },
+  ciampoli: {},
+  pgs: { website: 'https://www.pgs.it/' },
+  legaNavale: { website: 'https://www.lega-navale.it/' },
+  ssi: { website: 'https://www.divessi.com/' },
+  puntoNave: { website: 'https://www.puntonavemarineservice.com/' },
+  isotta: { website: 'https://www.isotecnic.it/' },
+} as const;
+
+export const sponsorAlbatrosMain = {
+  logo: '/images/sponsors/albatros-logo.svg',
+  website: sponsorsMeta.albatros.website,
+};
+
 export const sponsorAlbatros: Sponsor[] = [
   {
     logo: '/images/sponsors/albatros-logo-3.png',
-    website: 'https://www.albatrostopboat.com/',
+    website: sponsorsMeta.albatros.website,
     width: 'w-50',
   },
   {
     logo: '/images/sponsors/albatros-logo-2.png',
-    website: 'https://www.albatrostopboat.com/',
+    website: sponsorsMeta.albatros.website,
     width: 'w-72',
   },
   {
     logo: '/images/sponsors/albatros-logo-4.png',
-    website: 'https://www.albatrostopboat.com/',
+    website: sponsorsMeta.albatros.website,
     width: 'w-40',
   },
 ];
@@ -26,28 +46,30 @@ export const sponsorAlbatros: Sponsor[] = [
 export const sponsors: Sponsor[] = [
   {
     logo: '/images/sponsors/isotta-logo.svg',
-    website: 'https://www.isotecnic.it/',
+    website: sponsorsMeta.isotta.website,
   },
   {
     logo: '/images/sponsors/easy-dive-logo.svg',
-    website: 'https://www.easydive.it/',
+    website: sponsorsMeta.easyDive.website,
   },
   {
     logo: '/images/sponsors/ciampoli-logo.svg',
   },
   {
     logo: '/images/sponsors/pgs-logo.webp',
+    website: sponsorsMeta.pgs.website,
   },
   {
     logo: '/images/sponsors/lega-navale-logo.svg',
+    website: sponsorsMeta.legaNavale.website,
   },
   {
     logo: '/images/sponsors/ssi-logo.svg',
-    website: 'https://www.divessi.com/',
+    website: sponsorsMeta.ssi.website,
     width: 'w-2xl',
   },
   {
     logo: '/images/sponsors/puntonave.webp',
-    website: 'https://www.puntonavemarineservice.com/',
+    website: sponsorsMeta.puntoNave.website,
   },
 ];

@@ -331,6 +331,9 @@ export const translations = {
     'payment.warning.message':
       'Once you complete payment, you will not be able to make any more edits to your submissions.',
     'payment.back-to-submissions': '← Back to submissions',
+
+    // Patrocini
+    'patrocini.title': 'With the high patronage of:',
   },
 
   it: {
@@ -664,6 +667,9 @@ export const translations = {
     'payment.warning.message':
       'Una volta completato il pagamento, non potrai più modificare le tue candidature.',
     'payment.back-to-submissions': '← Torna alle candidature',
+
+    // Patrocini
+    'patrocini.title': "Con l'alto patrocinio di:",
   },
 } as const;
 

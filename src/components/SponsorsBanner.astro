@@ -1,0 +1,126 @@
+---
+import { type Sponsor, sponsorsMeta } from '../constants/sponsors';
+
+const sponsorsBanner: Sponsor[] = [
+  {
+    logo: '/images/sponsors-banner/albatros.jpg',
+    website: sponsorsMeta.albatros.website,
+  },
+  {
+    logo: '/images/sponsors-banner/isotta.jpg',
+    website: sponsorsMeta.isotta.website,
+  },
+  {
+    logo: '/images/sponsors-banner/easy-dive.jpg',
+    website: sponsorsMeta.easyDive.website,
+  },
+  {
+    logo: '/images/sponsors-banner/ciampoli.jpg',
+  },
+  {
+    logo: '/images/sponsors-banner/pgs.jpg',
+    website: sponsorsMeta.pgs.website,
+  },
+  {
+    logo: '/images/sponsors-banner/lega-navale-ortona.jpg',
+    website: sponsorsMeta.legaNavale.website,
+  },
+  {
+    logo: '/images/sponsors-banner/ssi.jpg',
+    website: sponsorsMeta.ssi.website,
+  },
+  {
+    logo: '/images/sponsors-banner/punto-nave.jpg',
+    website: sponsorsMeta.puntoNave.website,
+  },
+];
+---
+
+<div class="bg-white py-3 overflow-hidden">
+  <div class="marquee">
+    <!-- prettier-ignore -->
+    <ul class="flex items-center gap-12 pr-12">
+      {sponsorsBanner.map(s => (
+        <li>
+          {s.website ? (
+            <a
+              href={s.website}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label={s.website ?? 'Sponsor'}
+              class="block"
+            >
+              <img
+                src={s.logo}
+                alt={'Sponsor logo'}
+                class="h-10 md:h-16 w-auto opacity-90 hover:opacity-100 transition-opacity"
+                loading="lazy"
+              />
+            </a>
+          ) : (
+            <img
+              src={s.logo}
+              alt={'Sponsor logo'}
+              class="h-10 md:h-16 w-auto opacity-90"
+              loading="lazy"
+            />
+          )}
+        </li>
+      ))}
+    </ul>
+    <!-- prettier-ignore -->
+    <ul class="flex items-center gap-12 pr-12" aria-hidden="true">
+      {sponsorsBanner.map(s => (
+        <li>
+          {s.website ? (
+            <a
+              href={s.website}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label={s.website ?? 'Sponsor'}
+              class="block"
+            >
+              <img
+                src={s.logo}
+                alt={'Sponsor logo'}
+                class="h-10 md:h-16 w-auto opacity-90 hover:opacity-100 transition-opacity"
+                loading="lazy"
+              />
+            </a>
+          ) : (
+            <img
+              src={s.logo}
+              alt={'Sponsor logo'}
+              class="h-10 md:h-16 w-auto opacity-90"
+              loading="lazy"
+            />
+          )}
+        </li>
+      ))}
+    </ul>
+  </div>
+</div>
+
+<style>
+  .marquee {
+    display: flex;
+    width: max-content;
+    animation: sitS_marquee 60s linear infinite;
+  }
+  .marquee:hover {
+    animation-play-state: paused;
+  }
+  @keyframes sitS_marquee {
+    from {
+      transform: translateX(0);
+    }
+    to {
+      transform: translateX(-50%);
+    }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .marquee {
+      animation: none;
+    }
+  }
+</style>
