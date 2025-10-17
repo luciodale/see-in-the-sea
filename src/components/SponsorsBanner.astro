@@ -106,10 +106,16 @@ const sponsorsBanner: Sponsor[] = [
   .marquee {
     display: flex;
     width: max-content;
-    animation: sitS_marquee 60s linear infinite;
+    animation: sitS_marquee 50s linear infinite;
   }
   .marquee:hover {
     animation-play-state: paused;
+  }
+  /* Faster on mobile */
+  @media (max-width: 640px) {
+    .marquee {
+      animation-duration: 25s;
+    }
   }
   @keyframes sitS_marquee {
     from {
