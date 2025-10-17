@@ -28,7 +28,10 @@ export const sponsors: Sponsor[] = [
     logo: '/images/sponsors/isotta-logo.svg',
     website: 'https://www.isotecnic.it/',
   },
-
+  {
+    logo: '/images/sponsors/easy-dive-logo.svg',
+    website: 'https://www.easydive.it/',
+  },
   {
     logo: '/images/sponsors/ciampoli-logo.svg',
   },

@@ -1,7 +1,7 @@
 export function ImageBackground() {
   return (
     <div>
-      <div className="absolute bottom-10 right-10 text-slate-500 font-bold italic">
+      <div className="absolute bottom-4 right-10 text-slate-500 font-bold italic">
         Max Giorgetta - Vite Protette
       </div>
       <img

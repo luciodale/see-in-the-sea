@@ -23,7 +23,6 @@ export function Navbar({
     <I18nProvider lang={lang}>
       <div className="bg-gray-900 relative">
         <NavbarHeaderWithClerk clerkPublicKey={clerkPublicKey} lang={lang} />
-
         <div className="relative isolate overflow-hidden pt-14">
           <ImageBackground />
           <TopBlurryOverlay />

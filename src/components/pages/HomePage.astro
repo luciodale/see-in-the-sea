@@ -2,6 +2,7 @@
 import AppWrapper from '@/components/AppWrapper.astro';
 import HeroSegment from '@/components/HeroSegment.astro';
 import { Navbar } from '@/components/Navbar/Navbar';
+import { Patrocini } from '@/components/Navbar/Patrocini';
 import { getLocalizedPath, useTranslations, type Language } from '@/i18n';
 import Layout from '../Gallery/Layout.astro';
 
@@ -27,6 +28,9 @@ const { PUBLIC_CLERK_PUBLISHABLE_KEY } = Astro.locals.runtime.env;
     lang={lang}
     clerkPublicKey={PUBLIC_CLERK_PUBLISHABLE_KEY}
   />
+  <div class="relative">
+    <Patrocini />
+  </div>
   <Layout>
     <div class="flex flex-col gap-32">
       <!-- Who We Are -->
