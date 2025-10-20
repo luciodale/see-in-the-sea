@@ -18,6 +18,7 @@ export const sponsorsMeta = {
   ssi: { website: 'https://www.divessi.com/' },
   puntoNave: { website: 'https://www.puntonavemarineservice.com/' },
   isotta: { website: 'https://www.isotecnic.it/' },
+  htc: { website: 'https://htcinfissi.it/' },
 } as const;
 
 export const sponsorAlbatrosMain = {
@@ -58,6 +59,11 @@ export const sponsors: Sponsor[] = [
   {
     logo: '/images/sponsors/pgs-logo.webp',
     website: sponsorsMeta.pgs.website,
+  },
+  {
+    logo: '/images/sponsors/htc-logo.png',
+    website: sponsorsMeta.htc.website,
+    width: 'w-92',
   },
   {
     logo: '/images/sponsors/lega-navale-logo.svg',
