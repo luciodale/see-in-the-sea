@@ -1,61 +1,48 @@
 import { useAuth } from '@clerk/clerk-react';
 import { useEffect, useState } from 'react';
-import { CURRENT_CONTEST_CATEGORIES } from '../../constants/categories';
-import { getImageApiUrl } from '../../server/imageService';
+import {
+  getImageApiUrl,
+  getOriginalImageApiUrl,
+} from '../../server/imageService';
 import type {
   AdminSubmission,
   AdminSubmissionsResponse,
 } from '../../types/api';
-import EditSubmissionModal from './EditSubmissionModal';
 
 type AdminSubmissionsViewerProps = {
   contestId: string;
 };
 
 type Filters = {
-  categoryId: string;
   search: string;
-};
-
-type JudgeFlags = {
-  isRejected: boolean;
-  isKeep: boolean;
-  isUnsure: boolean;
-};
-
-type SubmissionWithFlags = AdminSubmission & {
-  judgeFlags: JudgeFlags;
 };
 
 export function AdminSubmissionsViewer({
   contestId,
 }: AdminSubmissionsViewerProps) {
   const { getToken } = useAuth();
-  const [allSubmissions, setAllSubmissions] = useState<SubmissionWithFlags[]>(
-    []
-  );
+  const [allSubmissions, setAllSubmissions] = useState<AdminSubmission[]>([]);
   const [filteredSubmissions, setFilteredSubmissions] = useState<
-    SubmissionWithFlags[]
+    AdminSubmission[]
   >([]);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const [filters, setFilters] = useState<Filters>({
-    categoryId: '',
     search: '',
   });
-  const [showUserColumn, setShowUserColumn] = useState(false);
-  const [showDateColumn, setShowDateColumn] = useState(false);
-  const [groupByUser, setGroupByUser] = useState(false);
-  const [editModalOpen, setEditModalOpen] = useState(false);
-  const [editingSubmission, setEditingSubmission] = useState<{
-    id: string;
-    title: string;
-    description: string;
-    r2ImageId: string | null;
-    contestId: string;
-    categoryId: string;
-    userEmail: string;
-  } | null>(null);
+  const [expandedRows, setExpandedRows] = useState<Set<string>>(new Set());
+
+  const toggleRow = (submissionId: string) => {
+    setExpandedRows(prev => {
+      const newSet = new Set(prev);
+      if (newSet.has(submissionId)) {
+        newSet.delete(submissionId);
+      } else {
+        newSet.add(submissionId);
+      }
+      return newSet;
+    });
+  };
 
   // Fetch all submissions for the contest (no server-side filtering)
   const fetchAllSubmissions = async () => {
@@ -84,19 +71,7 @@ export function AdminSubmissionsViewer({
         throw new Error('Impossibile recuperare le invia');
       }
 
-      // Add judge flags to each submission
-      const submissionsWithFlags: SubmissionWithFlags[] = (
-        result.data || []
-      ).map((submission: AdminSubmission) => ({
-        ...submission,
-        judgeFlags: {
-          isRejected: false,
-          isKeep: false,
-          isUnsure: false,
-        },
-      }));
-
-      setAllSubmissions(submissionsWithFlags);
+      setAllSubmissions(result.data || []);
     } catch (error) {
       console.error('Error fetching submissions:', error);
       setError(
@@ -113,22 +88,17 @@ export function AdminSubmissionsViewer({
   useEffect(() => {
     let filtered = allSubmissions;
 
-    // Filter by category
-    if (filters.categoryId) {
-      filtered = filtered.filter(
-        submission => submission.categoryId === filters.categoryId
-      );
-    }
-
-    // Filter by search term
+    // Filter by search term (name and email)
     if (filters.search) {
       const searchLower = filters.search.toLowerCase();
-      filtered = filtered.filter(
-        submission =>
-          submission.title.toLowerCase().includes(searchLower) ||
-          (submission.description &&
-            submission.description.toLowerCase().includes(searchLower))
-      );
+      filtered = filtered.filter(submission => {
+        const firstName = submission.firstName?.toLowerCase() || '';
+        const lastName = submission.lastName?.toLowerCase() || '';
+        const fullName = `${firstName} ${lastName}`.trim();
+        const email = submission.userEmail.toLowerCase();
+
+        return fullName.includes(searchLower) || email.includes(searchLower);
+      });
     }
 
     setFilteredSubmissions(filtered);
@@ -138,54 +108,11 @@ export function AdminSubmissionsViewer({
     fetchAllSubmissions();
   }, [contestId]);
 
-  const handleFilterChange = (key: keyof Filters, value: string) => {
-    setFilters(prev => ({
-      ...prev,
-      [key]: value,
-    }));
+  const handleSearchChange = (value: string) => {
+    setFilters({ search: value });
   };
 
-  const handleEditSubmission = (submission: SubmissionWithFlags) => {
-    setEditingSubmission({
-      id: submission.id,
-      title: submission.title,
-      description: submission.description || '',
-      r2ImageId: submission.r2ImageId,
-      contestId: submission.contestId,
-      categoryId: submission.categoryId,
-      userEmail: submission.userEmail,
-    });
-    setEditModalOpen(true);
-  };
-
-  const handleEditSuccess = () => {
-    fetchAllSubmissions(); // Refresh the list
-  };
-
-  const clearFilters = () => {
-    setFilters({
-      categoryId: '',
-      search: '',
-    });
-  };
-
-  const updateJudgeFlags = (
-    submissionId: string,
-    flags: Partial<JudgeFlags>
-  ) => {
-    setAllSubmissions(prev =>
-      prev.map(submission =>
-        submission.id === submissionId
-          ? {
-              ...submission,
-              judgeFlags: { ...submission.judgeFlags, ...flags },
-            }
-          : submission
-      )
-    );
-  };
-
-  const formatDate = (dateString: string) => {
+  const formatDate = (dateString: string | null) => {
     if (!dateString) return '—';
     const parsed = Date.parse(dateString);
     if (Number.isNaN(parsed)) return '—';
@@ -198,20 +125,41 @@ export function AdminSubmissionsViewer({
     });
   };
 
-  // Group submissions by user if requested
-  const groupedSubmissions = groupByUser
-    ? filteredSubmissions.reduce(
-        (groups, submission) => {
-          const userEmail = submission.userEmail;
-          if (!groups[userEmail]) {
-            groups[userEmail] = [];
-          }
-          groups[userEmail].push(submission);
-          return groups;
-        },
-        {} as Record<string, SubmissionWithFlags[]>
-      )
-    : { All: filteredSubmissions };
+  // Always group submissions by user for the new UI
+  const groupedByUser = filteredSubmissions.reduce(
+    (groups, submission) => {
+      const userEmail = submission.userEmail;
+      if (!groups[userEmail]) {
+        groups[userEmail] = [];
+      }
+      groups[userEmail].push(submission);
+      return groups;
+    },
+    {} as Record<string, AdminSubmission[]>
+  );
+
+  // Create user-level rows
+  const userRows = Object.entries(groupedByUser).map(([email, submissions]) => {
+    const firstSubmission = submissions[0];
+    return {
+      userEmail: email,
+      firstName: firstSubmission.firstName,
+      lastName: firstSubmission.lastName,
+      userCreatedAt: firstSubmission.userCreatedAt,
+      userLastActiveAt: firstSubmission.userLastActiveAt,
+      hasPaid: firstSubmission.hasPaid,
+      submissions: submissions,
+      submissionCount: submissions.length,
+    };
+  });
+
+  // Calculate aggregate statistics
+  const totalRegisteredUsers = new Set(allSubmissions.map(s => s.userEmail))
+    .size;
+  const usersWhoSubmitted = Object.keys(groupedByUser).length;
+  const usersWhoPaid = Object.values(groupedByUser).filter(
+    submissions => submissions[0].hasPaid
+  ).length;
 
   return (
     <>
@@ -224,109 +172,133 @@ export function AdminSubmissionsViewer({
                 Concorso Corrente
               </h2>
               <p className="text-slate-300 text-sm">
-                {filteredSubmissions.length} invia mostrate di{' '}
-                {allSubmissions.length} totali
+                {userRows.length} utenti con {filteredSubmissions.length} foto (
+                {allSubmissions.length} totali)
               </p>
-            </div>
-            <div className="flex gap-2">
-              <button
-                onClick={clearFilters}
-                className="px-4 py-2 text-sm text-slate-300 hover:text-white border border-slate-700 rounded-md hover:bg-slate-800 cursor-pointer"
-              >
-                Cancella Filtri
-              </button>
             </div>
           </div>
         </div>
 
-        {/* Filters and Controls */}
-        <div className="px-6 py-4 bg-slate-900 border-b border-slate-700">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mb-4">
-            {/* Search */}
-            <div>
-              <label
-                htmlFor="search-filter"
-                className="block text-xs font-medium text-slate-200 mb-1"
-              >
-                Cerca Titolo
-              </label>
-              <input
-                id="search-filter"
-                type="text"
-                value={filters.search}
-                onChange={e => handleFilterChange('search', e.target.value)}
-                placeholder="Cerca per titolo..."
-                className="w-full px-3 py-2 text-sm border border-slate-700 bg-slate-800 text-white rounded-md focus:outline-none focus:ring-2 focus:ring-emerald-500"
-              />
-            </div>
-
-            {/* Category Filter */}
-            <div>
-              <label
-                htmlFor="category-filter"
-                className="block text-xs font-medium text-slate-200 mb-1"
-              >
-                Categoria
-              </label>
-              <select
-                id="category-filter"
-                value={filters.categoryId}
-                onChange={e => handleFilterChange('categoryId', e.target.value)}
-                className="w-full px-3 py-2 text-sm border border-slate-700 bg-slate-800 text-white rounded-md focus:outline-none focus:ring-2 focus:ring-emerald-500"
-              >
-                <option value="">Tutte le categorie</option>
-                {CURRENT_CONTEST_CATEGORIES.map(category => (
-                  <option key={category.id} value={category.id}>
-                    {category.name}
-                  </option>
-                ))}
-              </select>
-            </div>
-
-            {/* Column Visibility Toggles */}
-            <div className="flex flex-col gap-2">
-              <label className="block text-xs font-medium text-slate-200 mb-1">
-                Colonne Visibili
-              </label>
-              <div className="flex gap-2">
-                <label className="flex items-center space-x-1 cursor-pointer">
-                  <input
-                    type="checkbox"
-                    checked={showUserColumn}
-                    onChange={e => setShowUserColumn(e.target.checked)}
-                    className="w-4 h-4 text-emerald-600 focus:ring-emerald-500 border-slate-600 rounded bg-slate-700"
-                  />
-                  <span className="text-xs text-slate-300">Utente</span>
-                </label>
-                <label className="flex items-center space-x-1 cursor-pointer">
-                  <input
-                    type="checkbox"
-                    checked={showDateColumn}
-                    onChange={e => setShowDateColumn(e.target.checked)}
-                    className="w-4 h-4 text-emerald-600 focus:ring-emerald-500 border-slate-600 rounded bg-slate-700"
-                  />
-                  <span className="text-xs text-slate-300">Data</span>
-                </label>
+        {/* Aggregate Statistics */}
+        <div className="px-6 py-4 bg-slate-800/30 border-b border-slate-700">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+            {/* Total Registered Users */}
+            <div className="bg-slate-900 rounded-lg p-4 border border-slate-700">
+              <div className="flex items-center justify-between">
+                <div>
+                  <p className="text-xs font-medium text-slate-400 uppercase tracking-wider">
+                    Utenti Registrati
+                  </p>
+                  <p className="mt-2 text-3xl font-bold text-white">
+                    {totalRegisteredUsers}
+                  </p>
+                </div>
+                <div className="bg-blue-900/40 rounded-full p-3">
+                  <svg
+                    className="w-6 h-6 text-blue-300"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"
+                    />
+                  </svg>
+                </div>
               </div>
             </div>
 
-            {/* Grouping Toggle */}
-            <div className="flex flex-col gap-2">
-              <label className="block text-xs font-medium text-slate-200 mb-1">
-                Raggruppamento
-              </label>
-              <label className="flex items-center space-x-1 cursor-pointer">
-                <input
-                  type="checkbox"
-                  checked={groupByUser}
-                  onChange={e => setGroupByUser(e.target.checked)}
-                  className="w-4 h-4 text-emerald-600 focus:ring-emerald-500 border-slate-600 rounded bg-slate-700"
-                />
-                <span className="text-xs text-slate-300">
-                  Raggruppa per utente
-                </span>
-              </label>
+            {/* Users Who Submitted */}
+            <div className="bg-slate-900 rounded-lg p-4 border border-slate-700">
+              <div className="flex items-center justify-between">
+                <div>
+                  <p className="text-xs font-medium text-slate-400 uppercase tracking-wider">
+                    Utenti con Foto
+                  </p>
+                  <p className="mt-2 text-3xl font-bold text-white">
+                    {usersWhoSubmitted}
+                  </p>
+                  <p className="text-xs text-slate-400 mt-1">
+                    {totalRegisteredUsers > 0
+                      ? `${Math.round((usersWhoSubmitted / totalRegisteredUsers) * 100)}%`
+                      : '0%'}
+                  </p>
+                </div>
+                <div className="bg-emerald-900/40 rounded-full p-3">
+                  <svg
+                    className="w-6 h-6 text-emerald-300"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"
+                    />
+                  </svg>
+                </div>
+              </div>
             </div>
+
+            {/* Users Who Paid */}
+            <div className="bg-slate-900 rounded-lg p-4 border border-slate-700">
+              <div className="flex items-center justify-between">
+                <div>
+                  <p className="text-xs font-medium text-slate-400 uppercase tracking-wider">
+                    Utenti Pagati
+                  </p>
+                  <p className="mt-2 text-3xl font-bold text-white">
+                    {usersWhoPaid}
+                  </p>
+                  <p className="text-xs text-slate-400 mt-1">
+                    {usersWhoSubmitted > 0
+                      ? `${Math.round((usersWhoPaid / usersWhoSubmitted) * 100)}%`
+                      : '0%'}{' '}
+                    con foto
+                  </p>
+                </div>
+                <div className="bg-green-900/40 rounded-full p-3">
+                  <svg
+                    className="w-6 h-6 text-green-300"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"
+                    />
+                  </svg>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* Filters */}
+        <div className="px-6 py-4 bg-slate-900 border-b border-slate-700">
+          <div className="max-w-md">
+            <label
+              htmlFor="search-filter"
+              className="block text-xs font-medium text-slate-200 mb-1"
+            >
+              Cerca User
+            </label>
+            <input
+              id="search-filter"
+              type="text"
+              value={filters.search}
+              onChange={e => handleSearchChange(e.target.value)}
+              placeholder="Cerca per nome o email..."
+              className="w-full px-3 py-2 text-sm border border-slate-700 bg-slate-800 text-white rounded-md focus:outline-none focus:ring-2 focus:ring-emerald-500"
+            />
           </div>
         </div>
 
@@ -363,259 +335,280 @@ export function AdminSubmissionsViewer({
                   />
                 </svg>
                 <h3 className="text-lg font-medium text-white mb-2">
-                  Nessuna Invia Trovata
+                  Nessun Utente Trovato
                 </h3>
                 <p className="text-slate-300">
-                  {Object.values(filters).some(v => v)
-                    ? 'Prova ad aggiustare i filtri per vedere più risultati.'
-                    : 'Nessuna invia è stata ancora caricata.'}
+                  {filters.search
+                    ? 'Nessun utente corrisponde alla tua ricerca.'
+                    : 'Nessun utente ha ancora inviato foto.'}
                 </p>
               </div>
             </div>
           ) : (
-            <div className="space-y-6">
-              {Object.entries(groupedSubmissions).map(
-                ([groupKey, submissions]) => (
-                  <div key={groupKey}>
-                    {groupByUser && groupKey !== 'All' && showUserColumn && (
-                      <div className="px-6 py-2 bg-slate-800/50 border-b border-slate-700">
-                        <h3 className="text-sm font-medium text-white">
-                          Utente: {groupKey}
-                        </h3>
-                      </div>
-                    )}
+            <div>
+              <table className="min-w-full divide-y divide-slate-700">
+                <thead className="bg-slate-800/40">
+                  <tr>
+                    <th className="px-6 py-3 w-10"></th>
+                    <th className="px-6 py-3 text-left text-xs font-medium text-slate-300 uppercase tracking-wider">
+                      Nome
+                    </th>
+                    <th className="px-6 py-3 text-left text-xs font-medium text-slate-300 uppercase tracking-wider">
+                      Email
+                    </th>
+                    <th className="px-6 py-3 text-left text-xs font-medium text-slate-300 uppercase tracking-wider">
+                      Pagamento
+                    </th>
+                    <th className="px-6 py-3 text-left text-xs font-medium text-slate-300 uppercase tracking-wider">
+                      Registrato
+                    </th>
+                    <th className="px-6 py-3 text-left text-xs font-medium text-slate-300 uppercase tracking-wider">
+                      Ultima Attività
+                    </th>
+                    <th className="px-6 py-3 text-left text-xs font-medium text-slate-300 uppercase tracking-wider">
+                      # Foto
+                    </th>
+                  </tr>
+                </thead>
+                <tbody className="bg-slate-900">
+                  {userRows.map(userRow => {
+                    const isExpanded = expandedRows.has(userRow.userEmail);
+                    return (
+                      <>
+                        {/* User Row */}
+                        <tr
+                          key={userRow.userEmail}
+                          onClick={() => toggleRow(userRow.userEmail)}
+                          className="hover:bg-slate-800/50 cursor-pointer border-b border-slate-700"
+                        >
+                          {/* Expand/Collapse Icon */}
+                          <td className="px-6 py-4 whitespace-nowrap">
+                            <svg
+                              className={`w-5 h-5 text-slate-400 transition-transform ${isExpanded ? 'rotate-90' : ''}`}
+                              fill="none"
+                              stroke="currentColor"
+                              viewBox="0 0 24 24"
+                            >
+                              <path
+                                strokeLinecap="round"
+                                strokeLinejoin="round"
+                                strokeWidth={2}
+                                d="M9 5l7 7-7 7"
+                              />
+                            </svg>
+                          </td>
 
-                    <table className="min-w-full divide-y divide-slate-700">
-                      <thead className="bg-slate-800/40">
-                        <tr>
-                          <th className="px-6 py-3 text-left text-xs font-medium text-slate-300 uppercase tracking-wider">
-                            Titolo
-                          </th>
-                          <th className="px-6 py-3 text-left text-xs font-medium text-slate-300 uppercase tracking-wider">
-                            Categoria
-                          </th>
-                          <th className="px-6 py-3 text-left text-xs font-medium text-slate-300 uppercase tracking-wider">
-                            Info Portfolio
-                          </th>
-                          {showUserColumn && (
-                            <th className="px-6 py-3 text-left text-xs font-medium text-slate-300 uppercase tracking-wider">
-                              Utente
-                            </th>
-                          )}
-                          {showDateColumn && (
-                            <th className="px-6 py-3 text-left text-xs font-medium text-slate-300 uppercase tracking-wider">
-                              Data Caricamento
-                            </th>
-                          )}
-                          <th className="px-6 py-3 text-left text-xs font-medium text-slate-300 uppercase tracking-wider">
-                            Valutazione Giudici
-                          </th>
-                          <th className="px-6 py-3 text-left text-xs font-medium text-slate-300 uppercase tracking-wider">
-                            Azioni
-                          </th>
-                        </tr>
-                      </thead>
-                      <tbody className="bg-slate-900 divide-y divide-slate-700">
-                        {submissions.map(submission => (
-                          <tr
-                            key={submission.id}
-                            className="hover:bg-slate-800/50 cursor-pointer"
-                          >
-                            {/* Title */}
-                            <td className="px-6 py-4 whitespace-nowrap">
-                              <div className="min-w-0 flex-1">
-                                <p className="text-sm font-medium text-white truncate">
-                                  {submission.title}
-                                </p>
-                                {submission.description && (
-                                  <p className="text-xs text-slate-400 truncate max-w-xs">
-                                    {submission.description}
-                                  </p>
-                                )}
-                                <p className="text-xs text-slate-400 break-all truncate">
-                                  ID: {submission.id}
-                                </p>
-                              </div>
-                            </td>
-
-                            {/* Category */}
-                            <td className="px-6 py-4 whitespace-nowrap">
-                              <p className="text-sm text-white">
-                                {submission.categoryName}
+                          {/* Name */}
+                          <td className="px-6 py-4 whitespace-nowrap">
+                            {userRow.firstName || userRow.lastName ? (
+                              <p className="text-sm font-medium text-white">
+                                {userRow.firstName || ''}{' '}
+                                {userRow.lastName || ''}
                               </p>
-                            </td>
-
-                            {/* Portfolio Info */}
-                            <td className="px-6 py-4 whitespace-nowrap">
-                              {submission.categoryId === 'mediterranean' &&
-                              submission.portfolio &&
-                              submission.portfolioPhotoType ? (
-                                <div>
-                                  <p className="text-sm font-medium text-white">
-                                    Portfolio {submission.portfolio}
-                                  </p>
-                                  <p className="text-xs text-slate-400 capitalize">
-                                    {submission.portfolioPhotoType.replace(
-                                      '-',
-                                      ' '
-                                    )}
-                                  </p>
-                                </div>
-                              ) : (
-                                <span className="text-xs text-slate-500">
-                                  —
-                                </span>
-                              )}
-                            </td>
-
-                            {/* User (conditional) */}
-                            {showUserColumn && (
-                              <td className="px-6 py-4 whitespace-nowrap">
-                                <p className="text-sm text-white">
-                                  {submission.userEmail}
-                                </p>
-                              </td>
+                            ) : (
+                              <span className="text-xs text-slate-500">—</span>
                             )}
+                          </td>
 
-                            {/* Upload Date (conditional) */}
-                            {showDateColumn && (
-                              <td className="px-6 py-4 whitespace-nowrap text-sm text-slate-300">
-                                {formatDate(submission.uploadedAt)}
-                              </td>
+                          {/* Email */}
+                          <td className="px-6 py-4 whitespace-nowrap">
+                            <p className="text-sm text-slate-300">
+                              {userRow.userEmail}
+                            </p>
+                          </td>
+
+                          {/* Payment Status */}
+                          <td className="px-6 py-4 whitespace-nowrap">
+                            {userRow.hasPaid ? (
+                              <span className="inline-flex items-center px-2 py-1 rounded-full text-xs font-medium bg-green-900/40 text-green-300 border border-green-700">
+                                ✓ Pagato
+                              </span>
+                            ) : (
+                              <span className="inline-flex items-center px-2 py-1 rounded-full text-xs font-medium bg-red-900/40 text-red-300 border border-red-700">
+                                ✗ Non Pagato
+                              </span>
                             )}
+                          </td>
 
-                            {/* Judge Flags */}
-                            <td className="px-6 py-4 whitespace-nowrap">
-                              <div className="flex gap-2">
-                                <button
-                                  onClick={() =>
-                                    updateJudgeFlags(submission.id, {
-                                      isRejected:
-                                        !submission.judgeFlags.isRejected,
-                                      isKeep: false,
-                                      isUnsure: false,
-                                    })
-                                  }
-                                  className={`px-2 py-1 text-xs rounded cursor-pointer ${
-                                    submission.judgeFlags.isRejected
-                                      ? 'bg-red-600 text-white'
-                                      : 'bg-slate-700 text-slate-300 hover:bg-red-600'
-                                  }`}
-                                >
-                                  ❌ Rifiuta
-                                </button>
-                                <button
-                                  onClick={() =>
-                                    updateJudgeFlags(submission.id, {
-                                      isRejected: false,
-                                      isKeep: !submission.judgeFlags.isKeep,
-                                      isUnsure: false,
-                                    })
-                                  }
-                                  className={`px-2 py-1 text-xs rounded cursor-pointer ${
-                                    submission.judgeFlags.isKeep
-                                      ? 'bg-green-600 text-white'
-                                      : 'bg-slate-700 text-slate-300 hover:bg-green-600'
-                                  }`}
-                                >
-                                  ✅ Mantieni
-                                </button>
-                                <button
-                                  onClick={() =>
-                                    updateJudgeFlags(submission.id, {
-                                      isRejected: false,
-                                      isKeep: false,
-                                      isUnsure: !submission.judgeFlags.isUnsure,
-                                    })
-                                  }
-                                  className={`px-2 py-1 text-xs rounded cursor-pointer ${
-                                    submission.judgeFlags.isUnsure
-                                      ? 'bg-yellow-600 text-white'
-                                      : 'bg-slate-700 text-slate-300 hover:bg-yellow-600'
-                                  }`}
-                                >
-                                  ❓ Incerto
-                                </button>
+                          {/* Registered Date */}
+                          <td className="px-6 py-4 whitespace-nowrap text-sm text-slate-300">
+                            {userRow.userCreatedAt
+                              ? formatDate(userRow.userCreatedAt)
+                              : '—'}
+                          </td>
+
+                          {/* Last Active */}
+                          <td className="px-6 py-4 whitespace-nowrap text-sm text-slate-300">
+                            {userRow.userLastActiveAt
+                              ? formatDate(userRow.userLastActiveAt)
+                              : '—'}
+                          </td>
+
+                          {/* Photo Count */}
+                          <td className="px-6 py-4 whitespace-nowrap">
+                            <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-emerald-900/40 text-emerald-300 border border-emerald-700">
+                              {userRow.submissionCount}
+                            </span>
+                          </td>
+                        </tr>
+
+                        {/* Expanded Submissions */}
+                        {isExpanded && (
+                          <tr className="bg-slate-800/30">
+                            <td colSpan={100} className="px-0 py-0">
+                              <div className="px-8 py-6 space-y-6">
+                                {userRow.submissions.map(submission => (
+                                  <div
+                                    key={submission.id}
+                                    className="bg-slate-900 rounded-lg border border-slate-700 overflow-hidden"
+                                  >
+                                    <div className="grid grid-cols-1 md:grid-cols-3 gap-6 p-6">
+                                      {/* Image Preview */}
+                                      <div className="md:col-span-1">
+                                        {submission.r2ImageId ? (
+                                          <img
+                                            src={
+                                              getImageApiUrl(
+                                                submission.r2ImageId
+                                              ) || ''
+                                            }
+                                            alt={submission.title}
+                                            className="w-full h-auto rounded-lg border border-slate-700"
+                                            loading="lazy"
+                                          />
+                                        ) : (
+                                          <div className="w-full aspect-video bg-slate-800 rounded-lg flex items-center justify-center">
+                                            <span className="text-slate-500 text-sm">
+                                              Nessuna immagine
+                                            </span>
+                                          </div>
+                                        )}
+                                      </div>
+
+                                      {/* Submission Details */}
+                                      <div className="md:col-span-2 space-y-4">
+                                        {/* Title and Description */}
+                                        <div>
+                                          <h3 className="text-lg font-semibold text-white mb-2">
+                                            {submission.title}
+                                          </h3>
+                                          {submission.description && (
+                                            <p className="text-sm text-slate-300">
+                                              {submission.description}
+                                            </p>
+                                          )}
+                                        </div>
+
+                                        {/* Metadata Grid */}
+                                        <div className="grid grid-cols-2 gap-4 text-sm">
+                                          <div>
+                                            <span className="text-slate-400">
+                                              Categoria:
+                                            </span>
+                                            <span className="ml-2 text-white">
+                                              {submission.categoryName}
+                                            </span>
+                                          </div>
+                                          <div>
+                                            <span className="text-slate-400">
+                                              Caricato:
+                                            </span>
+                                            <span className="ml-2 text-white">
+                                              {formatDate(
+                                                submission.uploadedAt
+                                              )}
+                                            </span>
+                                          </div>
+                                          {submission.categoryId ===
+                                            'mediterranean' &&
+                                            submission.portfolio && (
+                                              <>
+                                                <div>
+                                                  <span className="text-slate-400">
+                                                    Portfolio:
+                                                  </span>
+                                                  <span className="ml-2 text-white">
+                                                    {submission.portfolio}
+                                                  </span>
+                                                </div>
+                                                {submission.portfolioPhotoType && (
+                                                  <div>
+                                                    <span className="text-slate-400">
+                                                      Tipo:
+                                                    </span>
+                                                    <span className="ml-2 text-white capitalize">
+                                                      {submission.portfolioPhotoType.replace(
+                                                        '-',
+                                                        ' '
+                                                      )}
+                                                    </span>
+                                                  </div>
+                                                )}
+                                              </>
+                                            )}
+                                          <div className="col-span-2">
+                                            <span className="text-slate-400">
+                                              ID:
+                                            </span>
+                                            <span className="ml-2 text-slate-300 text-xs font-mono">
+                                              {submission.id}
+                                            </span>
+                                          </div>
+                                        </div>
+
+                                        {/* Action Button */}
+                                        <div className="pt-2">
+                                          <button
+                                            onClick={e => {
+                                              e.stopPropagation();
+                                              window.open(
+                                                getOriginalImageApiUrl(
+                                                  submission.r2ImageId
+                                                ) || '',
+                                                '_blank'
+                                              );
+                                            }}
+                                            className="inline-flex items-center px-4 py-2 border border-slate-700 text-sm font-medium rounded-md text-slate-200 bg-slate-800 hover:bg-slate-700 focus:outline-none focus:ring-2 focus:ring-emerald-500 cursor-pointer transition-colors"
+                                          >
+                                            <svg
+                                              className="w-4 h-4 mr-2"
+                                              fill="none"
+                                              stroke="currentColor"
+                                              viewBox="0 0 24 24"
+                                            >
+                                              <path
+                                                strokeLinecap="round"
+                                                strokeLinejoin="round"
+                                                strokeWidth={2}
+                                                d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"
+                                              />
+                                              <path
+                                                strokeLinecap="round"
+                                                strokeLinejoin="round"
+                                                strokeWidth={2}
+                                                d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"
+                                              />
+                                            </svg>
+                                            Visualizza Originale
+                                          </button>
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </div>
+                                ))}
                               </div>
-                            </td>
-
-                            {/* Actions */}
-                            <td className="px-6 py-4 whitespace-nowrap text-right text-sm font-medium space-x-2">
-                              <button
-                                onClick={() => handleEditSubmission(submission)}
-                                className="inline-flex items-center px-3 py-1 border border-transparent text-sm font-medium rounded-md text-white bg-emerald-600 hover:bg-emerald-500 focus:outline-none focus:ring-2 focus:ring-emerald-500 cursor-pointer"
-                              >
-                                <svg
-                                  className="w-4 h-4 mr-1"
-                                  fill="none"
-                                  stroke="currentColor"
-                                  viewBox="0 0 24 24"
-                                >
-                                  <path
-                                    strokeLinecap="round"
-                                    strokeLinejoin="round"
-                                    strokeWidth={2}
-                                    d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"
-                                  />
-                                </svg>
-                                Modifica
-                              </button>
-
-                              <button
-                                onClick={() =>
-                                  window.open(
-                                    getImageApiUrl(submission.r2ImageId) || '',
-                                    '_blank'
-                                  )
-                                }
-                                className="inline-flex items-center px-3 py-1 border border-slate-700 text-sm font-medium rounded-md text-slate-200 bg-slate-800 hover:bg-slate-700 focus:outline-none focus:ring-2 focus:ring-emerald-500 cursor-pointer"
-                              >
-                                <svg
-                                  className="w-4 h-4 mr-1"
-                                  fill="none"
-                                  stroke="currentColor"
-                                  viewBox="0 0 24 24"
-                                >
-                                  <path
-                                    strokeLinecap="round"
-                                    strokeLinejoin="round"
-                                    strokeWidth={2}
-                                    d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"
-                                  />
-                                  <path
-                                    strokeLinecap="round"
-                                    strokeLinejoin="round"
-                                    strokeWidth={2}
-                                    d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"
-                                  />
-                                </svg>
-                                Visualizza
-                              </button>
                             </td>
                           </tr>
-                        ))}
-                      </tbody>
-                    </table>
-                  </div>
-                )
-              )}
+                        )}
+                      </>
+                    );
+                  })}
+                </tbody>
+              </table>
             </div>
           )}
         </div>
       </div>
-
-      {/* Edit Modal */}
-      {editingSubmission && (
-        <EditSubmissionModal
-          isOpen={editModalOpen}
-          onClose={() => {
-            setEditModalOpen(false);
-            setEditingSubmission(null);
-          }}
-          submission={editingSubmission}
-          onSuccess={handleEditSuccess}
-        />
-      )}
     </>
   );
 }

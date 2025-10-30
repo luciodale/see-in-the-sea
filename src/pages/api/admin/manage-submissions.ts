@@ -4,24 +4,75 @@ import { getDb } from '../../../db/index';
 import {
   categories,
   contests,
+  payments,
   submissions,
-  type Submission,
 } from '../../../db/schema';
 import { authenticateAdmin } from '../../../server/authenticateRequest';
 import type {
   AdminSubmission,
-  ManageSubmissionFormData,
-  ManageSubmissionResponse,
   SubmissionListResponse,
 } from '../../../types/api';
 
 export const prerender = false;
+
+// Clerk API types
+type ClerkUser = {
+  id: string;
+  first_name?: string;
+  last_name?: string;
+  created_at?: number;
+  last_active_at?: number;
+  email_addresses?: Array<{ email_address: string }>;
+};
+
+// Fetch all users from Clerk and map by email
+async function fetchAllClerkUsers(
+  bearerToken: string
+): Promise<Map<string, ClerkUser>> {
+  const usersMap = new Map<string, ClerkUser>();
+
+  try {
+    const response = await fetch('https://api.clerk.com/v1/users', {
+      headers: {
+        Authorization: `Bearer ${bearerToken}`,
+        'Content-Type': 'application/json',
+      },
+    });
+
+    if (!response.ok) {
+      console.error(
+        `[manage-submissions] Failed to fetch Clerk users: ${response.status}`
+      );
+      return usersMap;
+    }
+
+    const users: ClerkUser[] = await response.json();
+
+    for (const user of users) {
+      if (user.email_addresses) {
+        for (const emailObj of user.email_addresses) {
+          usersMap.set(emailObj.email_address, user);
+        }
+      }
+    }
+
+    console.log(
+      `[manage-submissions] Fetched ${usersMap.size} users from Clerk`
+    );
+  } catch (error) {
+    console.error('[manage-submissions] Error fetching Clerk users:', error);
+  }
+
+  return usersMap;
+}
 
 // GET: List all submissions with filtering and pagination
 export const GET: APIRoute = async ({ request, locals }) => {
   console.log('[manage-submissions] Processing submission list request');
 
   const D1Database = locals.runtime.env.DB;
+  const clerkSecretKey = locals.runtime.env.CLERK_SECRET_KEY;
+
   if (!D1Database) {
     return new Response(
       JSON.stringify({
@@ -119,9 +170,50 @@ export const GET: APIRoute = async ({ request, locals }) => {
       `[manage-submissions] Found ${allSubmissions.length} submissions (${totalCount} total)`
     );
 
+    // Step 6: Fetch payment status for all users in this contest
+    const paymentRecords = await db
+      .select({
+        userEmail: payments.userEmail,
+      })
+      .from(payments)
+      .where(eq(payments.contestId, contestId));
+
+    const paidUsersSet = new Set(
+      paymentRecords.map(record => record.userEmail)
+    );
+
+    // Step 7: Fetch user data from Clerk
+    let clerkUsersMap = new Map<string, ClerkUser>();
+    if (clerkSecretKey) {
+      clerkUsersMap = await fetchAllClerkUsers(clerkSecretKey);
+    } else {
+      console.warn('[manage-submissions] Clerk secret key not available');
+    }
+
+    // Step 8: Enrich submissions with Clerk user data and payment status
+    const enrichedSubmissions: AdminSubmission[] = allSubmissions.map(
+      submission => {
+        const clerkUser = clerkUsersMap.get(submission.userEmail);
+        const hasPaid = paidUsersSet.has(submission.userEmail);
+
+        return {
+          ...submission,
+          firstName: clerkUser?.first_name,
+          lastName: clerkUser?.last_name,
+          userCreatedAt: clerkUser?.created_at
+            ? new Date(clerkUser.created_at).toISOString()
+            : undefined,
+          userLastActiveAt: clerkUser?.last_active_at
+            ? new Date(clerkUser.last_active_at).toISOString()
+            : undefined,
+          hasPaid,
+        };
+      }
+    );
+
     const response: SubmissionListResponse = {
       success: true,
-      data: allSubmissions as AdminSubmission[],
+      data: enrichedSubmissions,
       totalCount: totalCount,
     };
 
@@ -136,292 +228,6 @@ export const GET: APIRoute = async ({ request, locals }) => {
       JSON.stringify({
         success: false,
         message: 'Failed to fetch submissions',
-        error: error instanceof Error ? error.message : String(error),
-      }),
-      {
-        status: 500,
-        headers: { 'Content-Type': 'application/json' },
-      }
-    );
-  }
-};
-
-// POST: Create or update submission metadata and images
-export const POST: APIRoute = async ({ request, locals }) => {
-  console.log(
-    '[manage-submissions] Processing submission creation/update request'
-  );
-
-  const D1Database = locals.runtime.env.DB;
-  const R2Bucket = locals.runtime.env.R2_IMAGES_BUCKET;
-  const IMAGES = locals.runtime.env.IMAGES;
-
-  if (!D1Database) {
-    return new Response(
-      JSON.stringify({
-        success: false,
-        message: 'Database not available',
-      }),
-      { status: 500 }
-    );
-  }
-
-  const db = getDb(D1Database);
-
-  try {
-    // Step 1: Admin Authentication Check (returns 404 if not admin)
-    const authRequestClone = request.clone() as typeof request;
-    const { isAuthenticated, isAdmin, user, unauthenticatedResponse } =
-      await authenticateAdmin(authRequestClone, locals);
-
-    if (!isAuthenticated || !isAdmin) {
-      return unauthenticatedResponse();
-    }
-
-    console.log(
-      `[manage-submissions] Admin access granted for user: ${user.id}`
-    );
-
-    // Step 2: Parse request data (JSON or FormData)
-    let body: ManageSubmissionFormData;
-    let newImageFile: File | null = null;
-
-    const contentType = request.headers.get('content-type');
-
-    if (contentType?.includes('multipart/form-data')) {
-      // Handle form data (when replacing image)
-      const formData = await request.formData();
-
-      body = {
-        id: formData.get('id')?.toString(),
-        contestId: formData.get('contestId')?.toString() || '',
-        categoryId: formData.get('categoryId')?.toString() || '',
-        userEmail: formData.get('userEmail')?.toString() || '',
-        title: formData.get('title')?.toString() || '',
-        description: formData.get('description')?.toString(),
-        replaceImage: formData.get('replaceImage') === 'true',
-      };
-
-      if (body.replaceImage) {
-        const imageFile = formData.get('image') as File;
-        if (imageFile && imageFile.size > 0) {
-          newImageFile = imageFile;
-        }
-      }
-    } else {
-      // Handle JSON data (when only updating text)
-      body = await request.json();
-    }
-
-    // Step 3: Validate required fields
-    if (!body.contestId || !body.categoryId || !body.userEmail || !body.title) {
-      return new Response(
-        JSON.stringify({
-          success: false,
-          message:
-            'Missing required fields: contestId, categoryId, userEmail, title',
-        }),
-        { status: 400 }
-      );
-    }
-
-    // Step 4: Verify contest exists
-    const contestExists = await db
-      .select()
-      .from(contests)
-      .where(eq(contests.id, body.contestId))
-      .limit(1);
-
-    if (contestExists.length === 0) {
-      return new Response(
-        JSON.stringify({
-          success: false,
-          message: `Contest with ID "${body.contestId}" does not exist`,
-        }),
-        { status: 400 }
-      );
-    }
-
-    // Step 5: Verify category exists
-    const categoryExists = await db
-      .select()
-      .from(categories)
-      .where(eq(categories.id, body.categoryId))
-      .limit(1);
-
-    if (categoryExists.length === 0) {
-      return new Response(
-        JSON.stringify({
-          success: false,
-          message: `Category with ID "${body.categoryId}" does not exist`,
-        }),
-        { status: 400 }
-      );
-    }
-
-    if (body.id) {
-      // Update existing submission
-      const existingSubmission = await db
-        .select()
-        .from(submissions)
-        .where(eq(submissions.id, body.id))
-        .limit(1);
-
-      if (existingSubmission.length === 0) {
-        return new Response(
-          JSON.stringify({
-            success: false,
-            message: `Submission with ID "${body.id}" not found`,
-          }),
-          { status: 404 }
-        );
-      }
-
-      const submission = existingSubmission[0];
-      let updateData: Partial<Submission> = {};
-
-      // Handle image replacement if requested
-      if (body.replaceImage && newImageFile) {
-        if (!R2Bucket || !IMAGES) {
-          return new Response(
-            JSON.stringify({
-              success: false,
-              message: 'Image storage unavailable',
-            }),
-            { status: 503 }
-          );
-        }
-
-        // Import validation and image services
-        const { validateImageFile } = await import(
-          '../../../server/validationService'
-        );
-        const { generateR2ImageId } = await import(
-          '../../../server/imageService'
-        );
-
-        // Validate new image
-        const imageValidation = validateImageFile(newImageFile);
-        if (!imageValidation.isValid) {
-          return new Response(
-            JSON.stringify({
-              success: false,
-              message: imageValidation.error,
-            }),
-            { status: 400 }
-          );
-        }
-
-        try {
-          // Generate new R2 image ID
-          const { submissionId: newSubmissionId, r2ImageId: newR2ImageId } =
-            generateR2ImageId(body.contestId, body.categoryId);
-
-          // Upload new image to R2
-          await R2Bucket.put(newR2ImageId, newImageFile);
-
-          // Delete old image from R2
-          if (submission.r2ImageId) {
-            await R2Bucket.delete(submission.r2ImageId);
-            console.log(
-              `[manage-submissions] Deleted old image: ${submission.r2ImageId}`
-            );
-          }
-
-          updateData = {
-            id: newSubmissionId,
-            description: body.description?.trim() || null,
-            contestId: body.contestId,
-            categoryId: body.categoryId,
-            userEmail: body.userEmail.trim(),
-            r2ImageId: newR2ImageId,
-            title: body.title.trim(),
-            originalFilename: newImageFile.name,
-            fileSize: newImageFile.size,
-            contentType: newImageFile.type,
-            uploadedAt: new Date().toISOString(),
-          };
-
-          // Only include portfolio fields if they have values
-          if (body.portfolio) {
-            updateData.portfolio = body.portfolio;
-          }
-          if (body.portfolioPhotoType) {
-            updateData.portfolioPhotoType = body.portfolioPhotoType;
-          }
-
-          console.log(
-            `[manage-submissions] Replaced image for submission ${body.id}`
-          );
-        } catch (error) {
-          console.error('[manage-submissions] Image replacement error:', error);
-          return new Response(
-            JSON.stringify({
-              success: false,
-              message: 'Failed to replace image',
-            }),
-            { status: 500 }
-          );
-        }
-      } else {
-        // Basic update without image replacement
-        updateData = {
-          title: body.title.trim(),
-          description: body.description?.trim() || null,
-        };
-
-        // Only include portfolio fields if they have values
-        if (body.portfolio) {
-          updateData.portfolio = body.portfolio;
-        }
-        if (body.portfolioPhotoType) {
-          updateData.portfolioPhotoType = body.portfolioPhotoType;
-        }
-      }
-
-      // Update submission in database
-      await db
-        .update(submissions)
-        .set(updateData)
-        .where(eq(submissions.id, body.id));
-
-      console.log(
-        `[manage-submissions] Submission updated successfully: ${body.id}`
-      );
-
-      const response: ManageSubmissionResponse = {
-        success: true,
-        message: 'Submission updated successfully!',
-        data: {
-          submissionId: updateData.id || body.id,
-          title: body.title,
-          contestId: body.contestId,
-          categoryId: body.categoryId,
-          userEmail: body.userEmail,
-        },
-      };
-
-      return new Response(JSON.stringify(response), {
-        status: 200,
-        headers: { 'Content-Type': 'application/json' },
-      });
-    } else {
-      return new Response(
-        JSON.stringify({
-          success: false,
-          message:
-            'Creating new submissions without images is not supported. Use the upload-image endpoint instead.',
-        }),
-        { status: 400 }
-      );
-    }
-  } catch (error) {
-    console.error('[manage-submissions] Error managing submission:', error);
-
-    return new Response(
-      JSON.stringify({
-        success: false,
-        message: 'Failed to manage submission',
         error: error instanceof Error ? error.message : String(error),
       }),
       {

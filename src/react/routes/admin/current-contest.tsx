@@ -61,7 +61,7 @@ function AdminCurrentContest() {
         {isAdmin ? (
           <div className="min-h-screen bg-slate-900 text-slate-100">
             <AdminTabs />
-            <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
+            <div className="w-full px-4 sm:px-6 lg:px-8 py-6">
               <div className="space-y-6">
                 {contestError ? (
                   <div className="bg-red-900/40 border border-red-800 text-red-200 rounded-lg p-6 text-center">
@@ -70,7 +70,7 @@ function AdminCurrentContest() {
                     <p>{contestError}</p>
                   </div>
                 ) : activeContestId ? (
-                  <div className="max-w-[1400px] mx-auto">
+                  <div className="w-screen relative left-1/2 right-1/2 -ml-[50vw] -mr-[50vw] px-4 sm:px-6 lg:px-8">
                     <AdminSubmissionsViewer contestId={activeContestId} />
                   </div>
                 ) : (
@@ -83,7 +83,7 @@ function AdminCurrentContest() {
                   </div>
                 )}
               </div>
-            </main>
+            </div>
           </div>
         ) : (
           <div className="min-h-screen flex items-center justify-center bg-slate-900">

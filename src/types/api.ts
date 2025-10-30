@@ -81,31 +81,6 @@ export type ErrorResponse = {
   error?: string;
 };
 
-// Submission Management Types
-export type ManageSubmissionFormData = {
-  id?: string; // For updates
-  contestId: string;
-  categoryId: string;
-  userEmail: string;
-  title: string;
-  description?: string;
-  replaceImage?: boolean; // For image replacement
-  portfolio?: string;
-  portfolioPhotoType?: string;
-};
-
-export type ManageSubmissionResponse = {
-  success: boolean;
-  message: string;
-  data?: {
-    submissionId: string;
-    title: string;
-    contestId: string;
-    categoryId: string;
-    userEmail: string;
-  };
-};
-
 export type SubmissionListResponse = {
   success: boolean;
   data: AdminSubmission[];
@@ -119,13 +94,20 @@ export type AdminSubmission = {
   description: string | null;
   r2ImageId: string | null;
   userEmail: string;
-  uploadedAt: string;
+  uploadedAt: string | null;
   contestId: string;
   contestName: string;
   categoryId: string;
   categoryName: string;
-  portfolio?: string;
-  portfolioPhotoType?: string;
+  portfolio: string | null;
+  portfolioPhotoType: string | null;
+  // User data from Clerk
+  firstName?: string;
+  lastName?: string;
+  userCreatedAt?: string;
+  userLastActiveAt?: string;
+  // Payment status
+  hasPaid: boolean;
 };
 
 export type AdminSubmissionsResponse = {

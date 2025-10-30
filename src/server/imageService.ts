@@ -62,7 +62,7 @@ export function generateR2ImageId(
 }
 
 /**
- * Generates the full API URL for serving an image
+ * Generates the full API URL for serving an image (compressed/optimized)
  * Pure function - string transformation
  */
 export function getImageApiUrl(
@@ -70,6 +70,17 @@ export function getImageApiUrl(
 ): string | null {
   if (!r2ImageId) return null;
   return `/api/images/${r2ImageId}`;
+}
+
+/**
+ * Generates the full API URL for serving an original uncompressed image
+ * Pure function - string transformation
+ */
+export function getOriginalImageApiUrl(
+  r2ImageId: string | null | undefined
+): string | null {
+  if (!r2ImageId) return null;
+  return `/api/images/${r2ImageId}?original=true`;
 }
 
 /**

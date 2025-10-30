@@ -1,10 +1,10 @@
 import type { APIRoute } from 'astro';
+import { getBackendTranslation } from '../../../i18n/utils';
 import {
   createCachedImageResponse,
   getCachedResponse,
   storeInCache,
 } from '../../../server/cacheUtils';
-import { getBackendTranslation } from '../../../i18n/utils';
 
 export const prerender = false;
 
@@ -13,7 +13,7 @@ export const prerender = false;
  * Serves images using r2_image_id format: contest/category/id
  * No database lookup needed - serves directly from R2
  */
-export const GET: APIRoute = async ({ params, locals, request }) => {
+export const GET: APIRoute = async ({ params, locals, request, url }) => {
   const cachedResponse = await getCachedResponse(request);
   if (cachedResponse) {
     return cachedResponse;
@@ -27,6 +27,9 @@ export const GET: APIRoute = async ({ params, locals, request }) => {
       { status: 400 }
     );
   }
+
+  // Check if original uncompressed image is requested
+  const serveOriginal = url.searchParams.get('original') === 'true';
 
   let finalResponse: Response | null = null;
 
@@ -53,8 +56,19 @@ export const GET: APIRoute = async ({ params, locals, request }) => {
       );
     }
 
+    // If original is requested, skip optimization
+    if (serveOriginal) {
+      console.log('[serve-image] Serving original uncompressed image');
+      finalResponse = createCachedImageResponse(
+        r2Object.body,
+        r2Object.httpMetadata?.contentType || 'image/jpeg',
+        {
+          'X-Optimized': 'original',
+        }
+      );
+    }
     // If Images service is available, use it for optimization
-    if (IMAGES) {
+    else if (IMAGES) {
       try {
         console.log('[serve-image] Transforming image with IMAGES service');
 
@@ -124,4 +138,3 @@ export const GET: APIRoute = async ({ params, locals, request }) => {
     );
   }
 };
-
