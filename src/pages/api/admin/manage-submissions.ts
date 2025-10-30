@@ -32,7 +32,8 @@ async function fetchAllClerkUsers(
   const usersMap = new Map<string, ClerkUser>();
 
   try {
-    const response = await fetch('https://api.clerk.com/v1/users', {
+    // Fetch with a high limit to get all users in one request
+    const response = await fetch('https://api.clerk.com/v1/users?limit=500', {
       headers: {
         Authorization: `Bearer ${bearerToken}`,
         'Content-Type': 'application/json',
@@ -57,7 +58,7 @@ async function fetchAllClerkUsers(
     }
 
     console.log(
-      `[manage-submissions] Fetched ${usersMap.size} users from Clerk`
+      `[manage-submissions] Fetched ${users.length} users from Clerk (${usersMap.size} unique emails)`
     );
   } catch (error) {
     console.error('[manage-submissions] Error fetching Clerk users:', error);
