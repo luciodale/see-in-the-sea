@@ -16,13 +16,9 @@ import { Route as UserLoginRouteImport } from './routes/user/login'
 import { Route as AdminPaymentsRouteImport } from './routes/admin/payments'
 import { Route as AdminManualEntryRouteImport } from './routes/admin/manual-entry'
 import { Route as AdminCurrentContestRouteImport } from './routes/admin/current-contest'
-import { Route as AdminCreateRouteImport } from './routes/admin/create'
-import { Route as AdminContestsRouteImport } from './routes/admin/contests'
 import { Route as UserPaymentIndexRouteImport } from './routes/user/payment/index'
 import { Route as UserPaymentSuccessRouteImport } from './routes/user/payment/success'
 import { Route as UserPaymentCancelRouteImport } from './routes/user/payment/cancel'
-import { Route as AdminContestIdSubmissionsRouteImport } from './routes/admin/$contestId.submissions'
-import { Route as AdminContestIdResultsRouteImport } from './routes/admin/$contestId.results'
 
 const UserIndexRoute = UserIndexRouteImport.update({
   id: '/user/',
@@ -59,16 +55,6 @@ const AdminCurrentContestRoute = AdminCurrentContestRouteImport.update({
   path: '/admin/current-contest',
   getParentRoute: () => rootRouteImport,
 } as any)
-const AdminCreateRoute = AdminCreateRouteImport.update({
-  id: '/admin/create',
-  path: '/admin/create',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const AdminContestsRoute = AdminContestsRouteImport.update({
-  id: '/admin/contests',
-  path: '/admin/contests',
-  getParentRoute: () => rootRouteImport,
-} as any)
 const UserPaymentIndexRoute = UserPaymentIndexRouteImport.update({
   id: '/user/payment/',
   path: '/user/payment/',
@@ -84,21 +70,8 @@ const UserPaymentCancelRoute = UserPaymentCancelRouteImport.update({
   path: '/user/payment/cancel',
   getParentRoute: () => rootRouteImport,
 } as any)
-const AdminContestIdSubmissionsRoute =
-  AdminContestIdSubmissionsRouteImport.update({
-    id: '/admin/$contestId/submissions',
-    path: '/admin/$contestId/submissions',
-    getParentRoute: () => rootRouteImport,
-  } as any)
-const AdminContestIdResultsRoute = AdminContestIdResultsRouteImport.update({
-  id: '/admin/$contestId/results',
-  path: '/admin/$contestId/results',
-  getParentRoute: () => rootRouteImport,
-} as any)
 
 export interface FileRoutesByFullPath {
-  '/admin/contests': typeof AdminContestsRoute
-  '/admin/create': typeof AdminCreateRoute
   '/admin/current-contest': typeof AdminCurrentContestRoute
   '/admin/manual-entry': typeof AdminManualEntryRoute
   '/admin/payments': typeof AdminPaymentsRoute
@@ -106,15 +79,11 @@ export interface FileRoutesByFullPath {
   '/user/submissions': typeof UserSubmissionsRoute
   '/admin': typeof AdminIndexRoute
   '/user': typeof UserIndexRoute
-  '/admin/$contestId/results': typeof AdminContestIdResultsRoute
-  '/admin/$contestId/submissions': typeof AdminContestIdSubmissionsRoute
   '/user/payment/cancel': typeof UserPaymentCancelRoute
   '/user/payment/success': typeof UserPaymentSuccessRoute
   '/user/payment': typeof UserPaymentIndexRoute
 }
 export interface FileRoutesByTo {
-  '/admin/contests': typeof AdminContestsRoute
-  '/admin/create': typeof AdminCreateRoute
   '/admin/current-contest': typeof AdminCurrentContestRoute
   '/admin/manual-entry': typeof AdminManualEntryRoute
   '/admin/payments': typeof AdminPaymentsRoute
@@ -122,16 +91,12 @@ export interface FileRoutesByTo {
   '/user/submissions': typeof UserSubmissionsRoute
   '/admin': typeof AdminIndexRoute
   '/user': typeof UserIndexRoute
-  '/admin/$contestId/results': typeof AdminContestIdResultsRoute
-  '/admin/$contestId/submissions': typeof AdminContestIdSubmissionsRoute
   '/user/payment/cancel': typeof UserPaymentCancelRoute
   '/user/payment/success': typeof UserPaymentSuccessRoute
   '/user/payment': typeof UserPaymentIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
-  '/admin/contests': typeof AdminContestsRoute
-  '/admin/create': typeof AdminCreateRoute
   '/admin/current-contest': typeof AdminCurrentContestRoute
   '/admin/manual-entry': typeof AdminManualEntryRoute
   '/admin/payments': typeof AdminPaymentsRoute
@@ -139,8 +104,6 @@ export interface FileRoutesById {
   '/user/submissions': typeof UserSubmissionsRoute
   '/admin/': typeof AdminIndexRoute
   '/user/': typeof UserIndexRoute
-  '/admin/$contestId/results': typeof AdminContestIdResultsRoute
-  '/admin/$contestId/submissions': typeof AdminContestIdSubmissionsRoute
   '/user/payment/cancel': typeof UserPaymentCancelRoute
   '/user/payment/success': typeof UserPaymentSuccessRoute
   '/user/payment/': typeof UserPaymentIndexRoute
@@ -148,8 +111,6 @@ export interface FileRoutesById {
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
-    | '/admin/contests'
-    | '/admin/create'
     | '/admin/current-contest'
     | '/admin/manual-entry'
     | '/admin/payments'
@@ -157,15 +118,11 @@ export interface FileRouteTypes {
     | '/user/submissions'
     | '/admin'
     | '/user'
-    | '/admin/$contestId/results'
-    | '/admin/$contestId/submissions'
     | '/user/payment/cancel'
     | '/user/payment/success'
     | '/user/payment'
   fileRoutesByTo: FileRoutesByTo
   to:
-    | '/admin/contests'
-    | '/admin/create'
     | '/admin/current-contest'
     | '/admin/manual-entry'
     | '/admin/payments'
@@ -173,15 +130,11 @@ export interface FileRouteTypes {
     | '/user/submissions'
     | '/admin'
     | '/user'
-    | '/admin/$contestId/results'
-    | '/admin/$contestId/submissions'
     | '/user/payment/cancel'
     | '/user/payment/success'
     | '/user/payment'
   id:
     | '__root__'
-    | '/admin/contests'
-    | '/admin/create'
     | '/admin/current-contest'
     | '/admin/manual-entry'
     | '/admin/payments'
@@ -189,16 +142,12 @@ export interface FileRouteTypes {
     | '/user/submissions'
     | '/admin/'
     | '/user/'
-    | '/admin/$contestId/results'
-    | '/admin/$contestId/submissions'
     | '/user/payment/cancel'
     | '/user/payment/success'
     | '/user/payment/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
-  AdminContestsRoute: typeof AdminContestsRoute
-  AdminCreateRoute: typeof AdminCreateRoute
   AdminCurrentContestRoute: typeof AdminCurrentContestRoute
   AdminManualEntryRoute: typeof AdminManualEntryRoute
   AdminPaymentsRoute: typeof AdminPaymentsRoute
@@ -206,8 +155,6 @@ export interface RootRouteChildren {
   UserSubmissionsRoute: typeof UserSubmissionsRoute
   AdminIndexRoute: typeof AdminIndexRoute
   UserIndexRoute: typeof UserIndexRoute
-  AdminContestIdResultsRoute: typeof AdminContestIdResultsRoute
-  AdminContestIdSubmissionsRoute: typeof AdminContestIdSubmissionsRoute
   UserPaymentCancelRoute: typeof UserPaymentCancelRoute
   UserPaymentSuccessRoute: typeof UserPaymentSuccessRoute
   UserPaymentIndexRoute: typeof UserPaymentIndexRoute
@@ -264,20 +211,6 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AdminCurrentContestRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/admin/create': {
-      id: '/admin/create'
-      path: '/admin/create'
-      fullPath: '/admin/create'
-      preLoaderRoute: typeof AdminCreateRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/admin/contests': {
-      id: '/admin/contests'
-      path: '/admin/contests'
-      fullPath: '/admin/contests'
-      preLoaderRoute: typeof AdminContestsRouteImport
-      parentRoute: typeof rootRouteImport
-    }
     '/user/payment/': {
       id: '/user/payment/'
       path: '/user/payment'
@@ -299,26 +232,10 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof UserPaymentCancelRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/admin/$contestId/submissions': {
-      id: '/admin/$contestId/submissions'
-      path: '/admin/$contestId/submissions'
-      fullPath: '/admin/$contestId/submissions'
-      preLoaderRoute: typeof AdminContestIdSubmissionsRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/admin/$contestId/results': {
-      id: '/admin/$contestId/results'
-      path: '/admin/$contestId/results'
-      fullPath: '/admin/$contestId/results'
-      preLoaderRoute: typeof AdminContestIdResultsRouteImport
-      parentRoute: typeof rootRouteImport
-    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
-  AdminContestsRoute: AdminContestsRoute,
-  AdminCreateRoute: AdminCreateRoute,
   AdminCurrentContestRoute: AdminCurrentContestRoute,
   AdminManualEntryRoute: AdminManualEntryRoute,
   AdminPaymentsRoute: AdminPaymentsRoute,
@@ -326,8 +243,6 @@ const rootRouteChildren: RootRouteChildren = {
   UserSubmissionsRoute: UserSubmissionsRoute,
   AdminIndexRoute: AdminIndexRoute,
   UserIndexRoute: UserIndexRoute,
-  AdminContestIdResultsRoute: AdminContestIdResultsRoute,
-  AdminContestIdSubmissionsRoute: AdminContestIdSubmissionsRoute,
   UserPaymentCancelRoute: UserPaymentCancelRoute,
   UserPaymentSuccessRoute: UserPaymentSuccessRoute,
   UserPaymentIndexRoute: UserPaymentIndexRoute,

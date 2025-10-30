@@ -12,13 +12,6 @@ export default function AdminTabs() {
           Concorso Corrente
         </Link>
         <Link
-          to="/admin/create"
-          className="px-2 py-1 text-slate-300 hover:text-white cursor-pointer"
-          activeProps={{ className: 'text-emerald-400 font-semibold' }}
-        >
-          Crea Concorso
-        </Link>
-        <Link
           to="/admin/manual-entry"
           className="px-2 py-1 text-slate-300 hover:text-white cursor-pointer"
           activeProps={{ className: 'text-emerald-400 font-semibold' }}

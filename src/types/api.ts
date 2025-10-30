@@ -81,51 +81,6 @@ export type ErrorResponse = {
   error?: string;
 };
 
-// Contest Management Types
-export type CreateContestFormData = {
-  id: string;
-  name: string;
-  description?: string;
-  year: number;
-  maxSubmissionsPerCategory?: number;
-  status?: 'active' | 'inactive' | 'assessment';
-};
-
-export type CreateContestResponse = {
-  success: boolean;
-  message: string;
-  data?: {
-    contestId: string;
-    name: string;
-    year: number;
-  };
-};
-
-export type UpdateContestRequest = {
-  id: string;
-  name?: string;
-  description?: string | null;
-  year?: number;
-  status?: 'active' | 'inactive' | 'assessment';
-  maxSubmissionsPerCategory?: number;
-};
-
-export type UpdateContestResponse = ApiResponse<{ id: string }>;
-
-export type ContestListResponse = {
-  success: boolean;
-  data: Array<{
-    id: string;
-    name: string;
-    description: string | null;
-    year: number;
-    status: 'active' | 'inactive' | 'assessment';
-    maxSubmissionsPerCategory: number;
-    createdAt: string;
-    updatedAt: string;
-  }>;
-};
-
 // Submission Management Types
 export type ManageSubmissionFormData = {
   id?: string; // For updates
