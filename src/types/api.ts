@@ -1,6 +1,6 @@
 // Shared API response types - Single source of truth for client/server
 
-import type { Category, Contest, Payment, Submission } from '../db/index';
+import type { Category, Contest, Submission } from '../db/index';
 
 // Base API response wrapper
 export type ApiResponse<T = unknown> = {
@@ -159,20 +159,6 @@ export type CheckoutResponse = {
   url?: string;
   message?: string;
 };
-
-// Admin Payments API Types
-export type AdminPayment = Payment & {
-  contestName: string;
-};
-
-export type AdminPaymentsResponse = {
-  success: boolean;
-  data: AdminPayment[];
-  totalCount: number;
-  message?: string;
-};
-
-export type DeletePaymentResponse = ApiResponse<{ id: string }>;
 
 // Type guards for runtime type checking
 export function isApiSuccess<T>(

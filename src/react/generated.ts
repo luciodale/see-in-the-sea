@@ -13,7 +13,6 @@ import { Route as UserIndexRouteImport } from './routes/user/index'
 import { Route as AdminIndexRouteImport } from './routes/admin/index'
 import { Route as UserSubmissionsRouteImport } from './routes/user/submissions'
 import { Route as UserLoginRouteImport } from './routes/user/login'
-import { Route as AdminPaymentsRouteImport } from './routes/admin/payments'
 import { Route as AdminManualEntryRouteImport } from './routes/admin/manual-entry'
 import { Route as AdminCurrentContestRouteImport } from './routes/admin/current-contest'
 import { Route as UserPaymentIndexRouteImport } from './routes/user/payment/index'
@@ -38,11 +37,6 @@ const UserSubmissionsRoute = UserSubmissionsRouteImport.update({
 const UserLoginRoute = UserLoginRouteImport.update({
   id: '/user/login',
   path: '/user/login',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const AdminPaymentsRoute = AdminPaymentsRouteImport.update({
-  id: '/admin/payments',
-  path: '/admin/payments',
   getParentRoute: () => rootRouteImport,
 } as any)
 const AdminManualEntryRoute = AdminManualEntryRouteImport.update({
@@ -74,7 +68,6 @@ const UserPaymentCancelRoute = UserPaymentCancelRouteImport.update({
 export interface FileRoutesByFullPath {
   '/admin/current-contest': typeof AdminCurrentContestRoute
   '/admin/manual-entry': typeof AdminManualEntryRoute
-  '/admin/payments': typeof AdminPaymentsRoute
   '/user/login': typeof UserLoginRoute
   '/user/submissions': typeof UserSubmissionsRoute
   '/admin': typeof AdminIndexRoute
@@ -86,7 +79,6 @@ export interface FileRoutesByFullPath {
 export interface FileRoutesByTo {
   '/admin/current-contest': typeof AdminCurrentContestRoute
   '/admin/manual-entry': typeof AdminManualEntryRoute
-  '/admin/payments': typeof AdminPaymentsRoute
   '/user/login': typeof UserLoginRoute
   '/user/submissions': typeof UserSubmissionsRoute
   '/admin': typeof AdminIndexRoute
@@ -99,7 +91,6 @@ export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/admin/current-contest': typeof AdminCurrentContestRoute
   '/admin/manual-entry': typeof AdminManualEntryRoute
-  '/admin/payments': typeof AdminPaymentsRoute
   '/user/login': typeof UserLoginRoute
   '/user/submissions': typeof UserSubmissionsRoute
   '/admin/': typeof AdminIndexRoute
@@ -113,7 +104,6 @@ export interface FileRouteTypes {
   fullPaths:
     | '/admin/current-contest'
     | '/admin/manual-entry'
-    | '/admin/payments'
     | '/user/login'
     | '/user/submissions'
     | '/admin'
@@ -125,7 +115,6 @@ export interface FileRouteTypes {
   to:
     | '/admin/current-contest'
     | '/admin/manual-entry'
-    | '/admin/payments'
     | '/user/login'
     | '/user/submissions'
     | '/admin'
@@ -137,7 +126,6 @@ export interface FileRouteTypes {
     | '__root__'
     | '/admin/current-contest'
     | '/admin/manual-entry'
-    | '/admin/payments'
     | '/user/login'
     | '/user/submissions'
     | '/admin/'
@@ -150,7 +138,6 @@ export interface FileRouteTypes {
 export interface RootRouteChildren {
   AdminCurrentContestRoute: typeof AdminCurrentContestRoute
   AdminManualEntryRoute: typeof AdminManualEntryRoute
-  AdminPaymentsRoute: typeof AdminPaymentsRoute
   UserLoginRoute: typeof UserLoginRoute
   UserSubmissionsRoute: typeof UserSubmissionsRoute
   AdminIndexRoute: typeof AdminIndexRoute
@@ -188,13 +175,6 @@ declare module '@tanstack/react-router' {
       path: '/user/login'
       fullPath: '/user/login'
       preLoaderRoute: typeof UserLoginRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/admin/payments': {
-      id: '/admin/payments'
-      path: '/admin/payments'
-      fullPath: '/admin/payments'
-      preLoaderRoute: typeof AdminPaymentsRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/admin/manual-entry': {
@@ -238,7 +218,6 @@ declare module '@tanstack/react-router' {
 const rootRouteChildren: RootRouteChildren = {
   AdminCurrentContestRoute: AdminCurrentContestRoute,
   AdminManualEntryRoute: AdminManualEntryRoute,
-  AdminPaymentsRoute: AdminPaymentsRoute,
   UserLoginRoute: UserLoginRoute,
   UserSubmissionsRoute: UserSubmissionsRoute,
   AdminIndexRoute: AdminIndexRoute,
