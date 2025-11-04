@@ -18,6 +18,13 @@ export default function AdminTabs() {
         >
           Inserimento Manuale
         </Link>
+        <Link
+          to="/admin/create-old-contest"
+          className="px-2 py-1 text-slate-300 hover:text-white cursor-pointer"
+          activeProps={{ className: 'text-emerald-400 font-semibold' }}
+        >
+          Gestisci Concorso Passato
+        </Link>
       </nav>
     </div>
   );

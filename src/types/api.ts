@@ -153,6 +153,79 @@ export type UpdateResultResponse = ApiResponse<object>;
 export type JudgeRow = { fullName: string };
 export type JudgesResponse = ApiResponse<JudgeRow[]>;
 
+// Admin Old Contests Types
+export type ContestYearsData = {
+  years: number[];
+};
+export type ContestYearsResponse = ApiResponse<ContestYearsData>;
+
+export type Judge = {
+  id: string;
+  contestId: string;
+  fullName: string;
+  createdAt?: string | null;
+};
+
+export type ResultData = {
+  id: string;
+  submissionId: string;
+  result: string;
+  firstName: string | null;
+  lastName: string | null;
+  createdAt?: string | null;
+};
+
+export type SubmissionWithResult = Submission & {
+  result: ResultData | null;
+  category: Category | null;
+};
+
+export type ContestDetailsData = {
+  contest: Contest;
+  judges: Judge[];
+  submissions: SubmissionWithResult[];
+};
+
+export type ContestDetailsResponse = ApiResponse<ContestDetailsData>;
+
+export type CreateOldContestData = {
+  contest: {
+    id: string;
+    name: string;
+    description: string;
+    year: number;
+    status: 'active' | 'inactive' | 'assessment';
+    maxSubmissionsPerCategory: number;
+  };
+  judges: Array<{
+    id: string;
+    contestId: string;
+    fullName: string;
+  }>;
+};
+
+export type CreateOldContestResponse = ApiResponse<CreateOldContestData>;
+
+export type CreateOldContestSubmissionData = {
+  submissionId: string;
+  resultId: string;
+};
+
+export type CreateOldContestSubmissionResponse =
+  ApiResponse<CreateOldContestSubmissionData>;
+
+export type DeleteSubmissionResponse = ApiResponse<object>;
+
+export type CreateJudgeData = {
+  id: string;
+  contestId: string;
+  fullName: string;
+};
+
+export type CreateJudgeResponse = ApiResponse<CreateJudgeData>;
+export type UpdateJudgeResponse = ApiResponse<object>;
+export type DeleteJudgeResponse = ApiResponse<object>;
+
 // Checkout API Types
 export type CheckoutResponse = {
   success: boolean;

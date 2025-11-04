@@ -50,7 +50,7 @@ function AdminManualEntry() {
             <main className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
               <div className="space-y-8">
                 {/* Page Header */}
-                <div>
+                <div className="text-center">
                   <h2 className="text-2xl font-bold text-white">
                     Inserimento Manuale
                   </h2>
