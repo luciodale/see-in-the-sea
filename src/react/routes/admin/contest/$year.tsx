@@ -8,7 +8,7 @@ import { getImageApiUrl } from '@/server/imageService';
 import type { DeleteSubmissionResponse } from '@/types/api';
 import { SignedIn, SignedOut, useAuth } from '@clerk/clerk-react';
 import { createFileRoute } from '@tanstack/react-router';
-import { useState } from 'react';
+import { useRef, useState } from 'react';
 
 export const Route = createFileRoute('/admin/contest/$year')({
   component: ContestManagementPage,
@@ -35,6 +35,9 @@ function ContestManagementPage() {
   const [deletingSubmissionId, setDeletingSubmissionId] = useState<
     string | null
   >(null);
+
+  // Ref for the form container to scroll to
+  const formContainerRef = useRef<HTMLDivElement>(null);
 
   const handleDeleteSubmission = async (submissionId: string) => {
     if (!confirm('Sei sicuro di voler eliminare questa submission?')) {
@@ -94,6 +97,14 @@ function ContestManagementPage() {
       },
     });
     setShowAddSubmission(false);
+
+    // Scroll to form
+    setTimeout(() => {
+      formContainerRef.current?.scrollIntoView({
+        behavior: 'smooth',
+        block: 'start',
+      });
+    }, 100);
   };
 
   if (!isLoaded || isLoading) {
@@ -150,9 +161,19 @@ function ContestManagementPage() {
                           Risultati
                         </h3>
                         <button
-                          onClick={() =>
-                            setShowAddSubmission(!showAddSubmission)
-                          }
+                          onClick={() => {
+                            setShowAddSubmission(!showAddSubmission);
+                            setEditingSubmission(null);
+                            // Scroll to form when opening
+                            if (!showAddSubmission) {
+                              setTimeout(() => {
+                                formContainerRef.current?.scrollIntoView({
+                                  behavior: 'smooth',
+                                  block: 'start',
+                                });
+                              }, 100);
+                            }
+                          }}
                           className="px-4 py-2 bg-emerald-600 text-white text-sm rounded-md hover:bg-emerald-700 transition-colors"
                         >
                           {showAddSubmission
@@ -162,7 +183,10 @@ function ContestManagementPage() {
                       </div>
 
                       {(showAddSubmission || editingSubmission) && (
-                        <div className="mb-6 p-6 bg-slate-700/50 rounded-md">
+                        <div
+                          ref={formContainerRef}
+                          className="mb-6 p-6 bg-slate-700/50 rounded-md"
+                        >
                           <h4 className="text-lg font-medium text-white mb-4">
                             {editingSubmission
                               ? 'Modifica Submission'
