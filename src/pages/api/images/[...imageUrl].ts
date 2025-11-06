@@ -81,7 +81,7 @@ export const GET: APIRoute = async ({ params, locals, request, url }) => {
           })
           .output({
             format: 'image/webp',
-            quality: 85,
+            quality: 80,
           });
 
         const transformedImage = await webOptimizedTransformer;
