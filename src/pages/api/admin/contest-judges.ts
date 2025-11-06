@@ -2,7 +2,7 @@ import type { APIRoute } from 'astro';
 import { eq } from 'drizzle-orm';
 import { nanoid } from 'nanoid';
 import { getDb } from '../../../db';
-import { judges } from '../../../db/schema';
+import { contests, judges } from '../../../db/schema';
 import { authenticateAdmin } from '../../../server/authenticateRequest';
 import type {
   CreateJudgeResponse,
