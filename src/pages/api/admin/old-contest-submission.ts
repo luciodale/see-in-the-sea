@@ -181,6 +181,7 @@ export const POST: APIRoute = async ({ request, locals }) => {
     if (isEdit && submissionId) {
       // Update existing submission
       const updateData: Record<string, string | number | null> = {
+        categoryId,
         title,
         description,
       };
