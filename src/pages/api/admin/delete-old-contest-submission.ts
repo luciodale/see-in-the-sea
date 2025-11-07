@@ -1,7 +1,7 @@
 import type { APIRoute } from 'astro';
 import { eq } from 'drizzle-orm';
 import { getDb } from '../../../db';
-import { results, submissions } from '../../../db/schema';
+import { contests, results, submissions } from '../../../db/schema';
 import { authenticateAdmin } from '../../../server/authenticateRequest';
 import type { DeleteSubmissionResponse } from '../../../types/api';
 
@@ -83,7 +83,8 @@ export const DELETE: APIRoute = async ({ request, locals }) => {
         return new Response(
           JSON.stringify({
             success: false,
-            message: 'Non puoi eliminare submission da concorsi attuali o futuri',
+            message:
+              'Non puoi eliminare submission da concorsi attuali o futuri',
           }),
           { status: 403 }
         );
