@@ -5,6 +5,7 @@ import { Navbar } from '@/components/Navbar/Navbar';
 import Patrocini from '@/components/Patrocini.astro';
 import SponsorsBanner from '@/components/SponsorsBanner.astro';
 import { getLocalizedPath, useTranslations, type Language } from '@/i18n';
+import Collaborations from '../Collaborations.astro';
 import Layout from '../Gallery/Layout.astro';
 
 interface Props {
@@ -32,6 +33,7 @@ const { PUBLIC_CLERK_PUBLISHABLE_KEY } = Astro.locals.runtime.env;
   <div class="relative">
     <Patrocini lang={lang} />
     <SponsorsBanner />
+    <Collaborations lang={lang} />
   </div>
   <Layout>
     <div class="flex flex-col gap-32">

@@ -335,6 +335,9 @@ export const translations = {
 
     // Patrocini
     'patrocini.title': 'With the high patronage of:',
+
+    // Collaborations
+    'collaborations.title': 'Collaborations:',
   },
 
   it: {
@@ -672,6 +675,9 @@ export const translations = {
 
     // Patrocini
     'patrocini.title': "Con l'alto patrocinio di:",
+
+    // Collaborations
+    'collaborations.title': 'Collaborazioni:',
   },
 } as const;
 

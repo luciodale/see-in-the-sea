@@ -29,7 +29,7 @@ export function NavbarHeader({ standalone = false }: { standalone?: boolean }) {
           >
             <span className="sr-only">See in the sea</span>
 
-            <img alt="" src={logoPath} className="h-24" />
+            <img alt="" src={logoPath} className="h-14 sm:h-24" />
           </a>
         </div>
         <div className="flex lg:hidden">

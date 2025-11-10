@@ -41,67 +41,69 @@ const sponsorsBanner: Sponsor[] = [
 ];
 ---
 
-<div class="bg-slate-50/80 py-3 overflow-hidden">
+<div class="bg-slate-50/80 py-6 sm:py-4 overflow-hidden">
   <div class="marquee">
-    <!-- prettier-ignore -->
     <ul class="flex items-center gap-8 pr-8">
-      {sponsorsBanner.map(s => (
-        <li class="w-40 md:w-48">
-          {s.website ? (
-            <a
-              href={s.website}
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label={s.website ?? 'Sponsor'}
-              class="block"
-            >
+      {
+        sponsorsBanner.map(s => (
+          <li class="w-40 md:w-48">
+            {s.website ? (
+              <a
+                href={s.website}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label={s.website ?? 'Sponsor'}
+                class="block"
+              >
+                <img
+                  src={s.logo}
+                  alt={'Sponsor logo'}
+                  class="w-auto opacity-90 hover:opacity-100 transition-opacity"
+                  loading="lazy"
+                />
+              </a>
+            ) : (
               <img
                 src={s.logo}
                 alt={'Sponsor logo'}
-                class="w-auto opacity-90 hover:opacity-100 transition-opacity"
+                class="w-auto opacity-90"
                 loading="lazy"
               />
-            </a>
-          ) : (
-            <img
-              src={s.logo}
-              alt={'Sponsor logo'}
-              class="w-auto opacity-90"
-              loading="lazy"
-            />
-          )}
-        </li>
-      ))}
+            )}
+          </li>
+        ))
+      }
     </ul>
-    <!-- prettier-ignore -->
     <ul class="flex items-center gap-8 pr-8" aria-hidden="true">
-      {sponsorsBanner.map(s => (
-        <li class="w-40 md:w-48">
-          {s.website ? (
-            <a
-              href={s.website}
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label={s.website ?? 'Sponsor'}
-              class="block"
-            >
+      {
+        sponsorsBanner.map(s => (
+          <li class="w-40 md:w-48">
+            {s.website ? (
+              <a
+                href={s.website}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label={s.website ?? 'Sponsor'}
+                class="block"
+              >
+                <img
+                  src={s.logo}
+                  alt={'Sponsor logo'}
+                  class="w-auto opacity-90 hover:opacity-100 transition-opacity"
+                  loading="lazy"
+                />
+              </a>
+            ) : (
               <img
                 src={s.logo}
                 alt={'Sponsor logo'}
-                class="w-auto opacity-90 hover:opacity-100 transition-opacity"
+                class="w-auto opacity-90"
                 loading="lazy"
               />
-            </a>
-          ) : (
-            <img
-              src={s.logo}
-              alt={'Sponsor logo'}
-              class="w-auto opacity-90"
-              loading="lazy"
-            />
-          )}
-        </li>
-      ))}
+            )}
+          </li>
+        ))
+      }
     </ul>
   </div>
 </div>
