@@ -6,6 +6,15 @@ export type Sponsor = {
 };
 
 export const sponsorsMeta = {
+  aquadiving: {
+    website: 'https://www.aquadiving.it/',
+  },
+  siladen: {
+    website: 'https://www.siladen.com',
+  },
+  coralEye: {
+    website: 'https://www.coral-eye.com/',
+  },
   albatros: {
     website: 'https://www.albatrostopboat.com/',
   },
@@ -48,6 +57,18 @@ export const sponsors: Sponsor[] = [
   {
     logo: '/images/sponsors/isotta-logo.svg',
     website: sponsorsMeta.isotta.website,
+  },
+  {
+    logo: '/images/sponsors/aquadiving-logo.png',
+    website: sponsorsMeta.aquadiving.website,
+  },
+  {
+    logo: '/images/sponsors/siladen-logo.png',
+    website: sponsorsMeta.siladen.website,
+  },
+  {
+    logo: '/images/sponsors/coral-eye-logo.png',
+    website: sponsorsMeta.coralEye.website,
   },
   {
     logo: '/images/sponsors/easy-dive-logo.svg',
