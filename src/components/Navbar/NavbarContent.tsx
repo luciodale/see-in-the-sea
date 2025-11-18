@@ -9,7 +9,19 @@ export function NavbarContent() {
     link: '/',
   };
   return (
-    <div className="mx-auto max-w-2xl py-32 sm:py-48 lg:py-56">
+    <div className="mx-auto max-w-2xl pb-32 pt-6 sm:pt-16 sm:pb-48 lg:pb-38">
+      <div className="flex flex-col items-center justify-center">
+        <p className="font-thin text-gray-300 pb-2">
+          With the high patronage of:
+        </p>
+        <div className="w-30 sm:w-40 mx-auto">
+          <img
+            src="/images/patrocini/regione-abruzzo-logo.svg"
+            alt="Regione Abruzzo"
+            loading="lazy"
+          />
+        </div>
+      </div>
       {cta.show && (
         <div className="hidden sm:mb-8 sm:flex sm:justify-center">
           <a
