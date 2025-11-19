@@ -9,26 +9,34 @@ const { lang } = Astro.props as Props;
 const t = useTranslations(lang);
 ---
 
-<div class="bg-gray-950 text-white text-center py-4">
-  <h2 class="sm:text-xl text-lg font-extralight">
-    {t('collaborations.title')}
-  </h2>
-  <div
-    class="flex flex-col-reverse sm:flex-row justify-center items-center gap-4 mt-2 sm:gap-36 pt-2"
-  >
-    <div class="w-40 flex items-center justify-center">
-      <img
-        src="/images/collabs/zeropixel-logo.png"
-        alt="Zeropixel"
-        loading="lazy"
-      />
-    </div>
-    <div class="w-40 flex items-center justify-center">
-      <img
-        src="/images/collabs/scubaportal-logo.png"
-        alt="Scubaportal"
-        loading="lazy"
-      />
+<div class="bg-gradient-to-b from-gray-950 to-black text-white py-6 sm:py-8">
+  <div class="max-w-6xl mx-auto px-6">
+    <h2
+      class="text-lg sm:text-xl font-light text-gray-300 uppercase tracking-wider mb-6 text-center"
+    >
+      {t('collaborations.title')}
+    </h2>
+    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6 max-w-3xl mx-auto">
+      <div
+        class="backdrop-blur-xl bg-white/5 border border-white/10 rounded-2xl p-8 shadow-xl flex items-center justify-center"
+      >
+        <img
+          src="/images/collabs/zeropixel-logo.png"
+          alt="Zeropixel"
+          loading="lazy"
+          class="w-48 h-auto opacity-90"
+        />
+      </div>
+      <div
+        class="backdrop-blur-xl bg-white/5 border border-white/10 rounded-2xl p-8 shadow-xl flex items-center justify-center"
+      >
+        <img
+          src="/images/collabs/scubaportal-logo.png"
+          alt="Scubaportal"
+          loading="lazy"
+          class="w-48 h-auto opacity-90"
+        />
+      </div>
     </div>
   </div>
 </div>

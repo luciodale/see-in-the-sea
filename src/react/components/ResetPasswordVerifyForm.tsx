@@ -35,18 +35,18 @@ export function ResetPasswordVerifyForm({
   };
 
   return (
-    <div className="bg-slate-800 border border-slate-700 rounded-xl p-8 shadow-2xl">
+    <div className="backdrop-blur-xl bg-gradient-to-br from-slate-900/90 via-blue-950/80 to-slate-900/90 rounded-3xl border border-white/10 p-8 shadow-2xl">
       {/* Header */}
-      <div className="text-center mb-8">
+      <div className="text-center mb-8 relative">
         <button
           onClick={onBack}
-          className="absolute top-8 left-8 p-2 text-slate-400 hover:text-white transition-colors cursor-pointer"
+          className="absolute -top-2 -left-2 p-2 text-gray-300 hover:text-white transition-colors cursor-pointer hover:bg-white/10 rounded-lg"
           disabled={loading}
         >
           <ArrowLeftIcon className="h-5 w-5" />
         </button>
 
-        <div className="w-16 h-16 bg-gradient-to-br from-purple-500 to-pink-500 rounded-full flex items-center justify-center mx-auto mb-4">
+        <div className="w-16 h-16 bg-gradient-to-br from-purple-500 to-pink-600 rounded-full flex items-center justify-center mx-auto mb-4 shadow-lg shadow-purple-500/30">
           <svg
             className="w-8 h-8 text-white"
             fill="none"
@@ -62,22 +62,22 @@ export function ResetPasswordVerifyForm({
           </svg>
         </div>
 
-        <h1 className="text-2xl font-bold text-white mb-2">
+        <h1 className="text-3xl font-light text-white mb-2 tracking-wide">
           {t('auth.reset-verify.title')}
         </h1>
-        <p className="text-slate-300">{t('auth.reset-verify.subtitle')}</p>
+        <p className="text-gray-300">{t('auth.reset-verify.subtitle')}</p>
       </div>
 
       {/* Error Message */}
       {(error || passwordError) && (
-        <div className="bg-red-900/40 border border-red-800 text-red-200 rounded-lg p-3 mb-6 text-sm">
+        <div className="backdrop-blur-md bg-red-950/60 border border-red-800/40 text-red-300 rounded-xl p-3 mb-6 text-sm">
           {error || passwordError}
         </div>
       )}
 
       {/* Instructions */}
-      <div className="bg-slate-700/50 border border-slate-600 rounded-lg p-4 mb-6">
-        <p className="text-slate-300 text-sm">
+      <div className="backdrop-blur-sm bg-slate-800/60 border border-slate-700/40 rounded-xl p-4 mb-6">
+        <p className="text-gray-300 text-sm">
           {t('auth.reset-verify.instructions')}
         </p>
       </div>
@@ -100,7 +100,7 @@ export function ResetPasswordVerifyForm({
             placeholder={t('auth.reset-verify.code-placeholder')}
             required
             disabled={loading}
-            className="w-full px-4 py-3 bg-slate-700 border border-slate-600 rounded-lg text-white placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-purple-500 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
+            className="w-full px-4 py-3 backdrop-blur-sm bg-slate-800/80 border border-slate-600/50 rounded-xl text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-purple-500/50 focus:border-purple-500/50 disabled:opacity-50 disabled:cursor-not-allowed transition-all"
           />
         </div>
 
@@ -120,7 +120,7 @@ export function ResetPasswordVerifyForm({
             placeholder={t('auth.reset-verify.new-password-placeholder')}
             required
             disabled={loading}
-            className="w-full px-4 py-3 bg-slate-700 border border-slate-600 rounded-lg text-white placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-purple-500 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
+            className="w-full px-4 py-3 backdrop-blur-sm bg-slate-800/80 border border-slate-600/50 rounded-xl text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-purple-500/50 focus:border-purple-500/50 disabled:opacity-50 disabled:cursor-not-allowed transition-all"
           />
         </div>
 
@@ -140,7 +140,7 @@ export function ResetPasswordVerifyForm({
             placeholder={t('auth.reset-verify.confirm-password-placeholder')}
             required
             disabled={loading}
-            className="w-full px-4 py-3 bg-slate-700 border border-slate-600 rounded-lg text-white placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-purple-500 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
+            className="w-full px-4 py-3 backdrop-blur-sm bg-slate-800/80 border border-slate-600/50 rounded-xl text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-purple-500/50 focus:border-purple-500/50 disabled:opacity-50 disabled:cursor-not-allowed transition-all"
           />
         </div>
 
@@ -148,7 +148,7 @@ export function ResetPasswordVerifyForm({
         <button
           type="submit"
           disabled={loading}
-          className="cursor-pointer w-full bg-gradient-to-r from-purple-600 to-purple-700 hover:from-purple-700 hover:to-purple-800 disabled:from-slate-600 disabled:to-slate-700 disabled:cursor-not-allowed text-white font-semibold py-3 px-6 rounded-lg transition-all duration-200 flex items-center justify-center"
+          className="cursor-pointer w-full bg-white/10 hover:bg-white/15 disabled:bg-white/5 disabled:cursor-not-allowed text-white font-medium py-3 px-6 rounded-xl transition-all duration-200 flex items-center justify-center border border-white/20 hover:border-white/30 disabled:border-white/10"
         >
           {loading ? (
             <>
@@ -161,16 +161,6 @@ export function ResetPasswordVerifyForm({
         </button>
       </form>
 
-      {/* Back Link */}
-      <div className="mt-6 text-center">
-        <button
-          onClick={onBack}
-          disabled={loading}
-          className="text-sm text-slate-400 hover:text-purple-400 transition-colors disabled:opacity-50 cursor-pointer"
-        >
-          {t('auth.reset-verify.back')}
-        </button>
-      </div>
     </div>
   );
 }

@@ -32,11 +32,6 @@ export function getNavigationItems(
       key: 'sponsors',
     },
     {
-      name: t('nav.about'),
-      href: getLocalizedPath('about', lang),
-      key: 'about',
-    },
-    {
       name: t('nav.contact'),
       href: getLocalizedPath('contact', lang),
       key: 'contact',

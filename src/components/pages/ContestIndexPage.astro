@@ -1,10 +1,9 @@
 ---
 import AppWrapper from '@/components/AppWrapper.astro';
-import ContestCard from '@/components/Gallery/ContestCard.astro';
-import Layout from '@/components/Gallery/Layout.astro';
 import { getAllPastContests } from '@/components/Gallery/queries';
 import NavbarHeaderStandalone from '@/components/Navbar/NavbarHeaderStandalone.astro';
-import { useTranslations, type Language } from '@/i18n';
+import { getLocalizedPath, useTranslations, type Language } from '@/i18n';
+import { ContestSlider } from '@/react/components/ContestSlider';
 
 interface Props {
   lang: Language;
@@ -19,6 +18,11 @@ if (!Astro.locals.runtime.env.DB) {
 
 // Fetch all contests
 const allContests = await getAllPastContests(Astro.locals.runtime.env.DB);
+
+const contestsWithLinks = allContests.map(c => ({
+  ...c,
+  link: getLocalizedPath(`/contest/${c.id}`, lang),
+}));
 ---
 
 <AppWrapper
@@ -28,40 +32,24 @@ const allContests = await getAllPastContests(Astro.locals.runtime.env.DB);
 >
   <NavbarHeaderStandalone lang={lang} />
 
-  <Layout>
-    <div class="space-y-12">
-      <!-- Header -->
-      <div class="text-center space-y-6">
-        <h1
-          class="text-5xl font-extralight text-gray-50 uppercase tracking-wider leading-tight"
-        >
-          {t('contests.title')}
-        </h1>
-        <p
-          class="text-xl font-light text-gray-300 leading-relaxed max-w-3xl mx-auto"
-        >
-          {t('contests.description')}
-        </p>
-      </div>
-
-      <!-- Contest Grid -->
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-6xl mx-auto">
-        {
-          allContests.length > 0 ? (
-            allContests.map(contest => <ContestCard contest={contest} />)
-          ) : (
-            <div class="col-span-full text-center py-16">
-              <div class="space-y-4">
-                <div class="text-6xl">🏆</div>
-                <h3 class="text-2xl font-light text-gray-400">
-                  {t('contests.no-contests')}
-                </h3>
-                <p class="text-gray-500">{t('contests.check-back')}</p>
-              </div>
+  <!-- Contest Slider with Liquid Glass Background -->
+  <div class="w-full">
+    {
+      contestsWithLinks.length > 0 ? (
+        <ContestSlider client:load contests={contestsWithLinks} />
+      ) : (
+        <div class="min-h-screen w-full bg-gradient-to-b from-slate-900 to-gray-900 flex items-center justify-center">
+          <div class="col-span-full text-center py-16">
+            <div class="backdrop-blur-xl bg-gradient-to-br from-white/10 via-blue-500/5 to-transparent rounded-3xl border border-white/20 p-12 shadow-2xl max-w-lg mx-auto">
+              <div class="text-6xl mb-6">🏆</div>
+              <h3 class="text-3xl font-light text-white mb-4 tracking-wide">
+                {t('contests.no-contests')}
+              </h3>
+              <p class="text-gray-300 text-lg">{t('contests.check-back')}</p>
             </div>
-          )
-        }
-      </div>
-    </div>
-  </Layout>
+          </div>
+        </div>
+      )
+    }
+  </div>
 </AppWrapper>

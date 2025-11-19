@@ -9,31 +9,48 @@ const { lang } = Astro.props as Props;
 const t = useTranslations(lang);
 ---
 
-<div class="bg-gray-950 text-white text-center py-4">
-  <p class="sm:text-2xl text-lg font-extralight">{t('patrocini.title')}</p>
-  <div
-    class="flex flex-col-reverse sm:flex-row justify-center items-center sm:gap-36 pt-2"
-  >
-    <div class="sm:w-96 w-60">
-      <img
-        src="/images/patrocini/one-ocean-young-logo.svg"
-        alt="One Ocean Young"
-        loading="lazy"
-      />
-    </div>
-    <div class="w-28">
-      <img
-        src="/images/patrocini/ortona-logo.png"
-        alt="Ortona"
-        loading="lazy"
-      />
-    </div>
-    <div class="sm:w-96 w-60">
-      <img
-        src="/images/patrocini/arpa-abruzzo-logo.svg"
-        alt="ARPA Abruzzo"
-        loading="lazy"
-      />
+<div
+  class="bg-gradient-to-b from-gray-950 to-slate-950 text-white py-6 sm:py-8"
+>
+  <div class="max-w-6xl mx-auto px-6">
+    <h2
+      class="text-lg sm:text-xl font-light text-gray-300 uppercase tracking-wider mb-6 text-center"
+    >
+      {t('patrocini.title')}
+    </h2>
+    <div
+      class="grid grid-cols-1 sm:grid-cols-3 gap-4 sm:gap-6 items-center justify-items-center"
+    >
+      <div
+        class="backdrop-blur-xl bg-white/5 border border-white/10 rounded-xl p-4 sm:p-5 w-full max-w-xs shadow-lg flex items-center justify-center"
+      >
+        <img
+          src="/images/patrocini/one-ocean-young-logo.svg"
+          alt="One Ocean Young"
+          loading="lazy"
+          class="w-full h-auto opacity-90"
+        />
+      </div>
+      <div
+        class="backdrop-blur-xl bg-white/5 border border-white/10 rounded-xl p-4 sm:p-5 w-full max-w-[140px] shadow-lg flex items-center justify-center"
+      >
+        <img
+          src="/images/patrocini/ortona-logo.png"
+          alt="Ortona"
+          loading="lazy"
+          class="w-full h-auto opacity-90"
+        />
+      </div>
+      <div
+        class="backdrop-blur-xl bg-white/5 border border-white/10 rounded-xl p-4 sm:p-5 w-full max-w-xs shadow-lg flex items-center justify-center"
+      >
+        <img
+          src="/images/patrocini/arpa-abruzzo-logo.svg"
+          alt="ARPA Abruzzo"
+          loading="lazy"
+          class="w-full h-auto opacity-90"
+        />
+      </div>
     </div>
   </div>
 </div>

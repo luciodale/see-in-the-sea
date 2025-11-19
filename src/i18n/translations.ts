@@ -36,6 +36,7 @@ export const translations = {
     'navbar.cta': 'Registration Open!',
     'navbar.register': 'Register Now',
     'navbar.discover': 'Discover the Contest',
+    'navbar.patronage': 'With the high patronage of',
 
     // Site branding
     'site.title': 'See in the Sea',
@@ -369,6 +370,7 @@ export const translations = {
     'navbar.cta': 'Iscrizioni Aperte!',
     'navbar.register': 'Iscriviti Ora',
     'navbar.discover': 'Scopri il Concorso',
+    'navbar.patronage': 'Con il patrocinio di',
 
     // Site branding
     'site.title': 'See in the Sea',

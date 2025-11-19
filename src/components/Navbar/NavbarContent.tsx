@@ -10,16 +10,19 @@ export function NavbarContent() {
   };
   return (
     <div className="mx-auto max-w-2xl pb-32 pt-6 sm:pt-16 sm:pb-48 lg:pb-38">
-      <div className="flex flex-col items-center justify-center">
-        <p className="font-thin text-gray-300 pb-2">
-          With the high patronage of:
-        </p>
-        <div className="w-30 sm:w-40 mx-auto">
-          <img
-            src="/images/patrocini/regione-abruzzo-logo.svg"
-            alt="Regione Abruzzo"
-            loading="lazy"
-          />
+      <div className="flex flex-col items-center justify-center mb-8">
+        <div className="backdrop-blur-lg bg-white/5 border border-white/10 rounded-2xl px-8 py-6 shadow-xl">
+          <p className="font-light text-gray-300 text-sm uppercase tracking-wider mb-4 text-center">
+            {t('navbar.patronage')}
+          </p>
+          <div className="w-32 sm:w-40 mx-auto">
+            <img
+              src="/images/patrocini/regione-abruzzo-logo.svg"
+              alt="Regione Abruzzo"
+              loading="lazy"
+              className="w-full h-auto opacity-90"
+            />
+          </div>
         </div>
       </div>
       {cta.show && (

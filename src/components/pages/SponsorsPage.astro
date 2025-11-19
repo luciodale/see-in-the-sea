@@ -29,71 +29,84 @@ import SponsorImage from '../SponsorImage.astro';
   <NavbarHeaderStandalone lang={lang} />
 
   <Layout>
-    <div class="text-center mb-20">
+    <!-- Hero Section -->
+    <div class="text-center mb-20 space-y-6">
       <h1
-        class="text-5xl sm:text-6xl font-extralight text-gray-50 uppercase tracking-wider leading-tight"
+        class="text-5xl sm:text-7xl font-extralight text-white uppercase tracking-[0.2em] drop-shadow-2xl"
       >
         {t('sponsors.title')}
       </h1>
 
       <p
-        class="text-xl font-light text-gray-300 leading-relaxed max-w-3xl mx-auto"
+        class="text-lg font-light text-gray-300 leading-relaxed max-w-2xl mx-auto"
       >
         {t('sponsors.subtitle')}
       </p>
     </div>
 
-    <div class="flex justify-center">
-      <SponsorImage
-        sponsor={sponsorAlbatrosMain}
-        imageClass="w-2xl object-contain transition-opacity"
-      />
-    </div>
-    <div>
-      <div class="flex mx-auto gap-10 justify-center items-center space-y-8">
-        {
-          sponsorAlbatros.map(sponsor => (
-            <div class="flex items-center justify-center">
+    <!-- All Sponsors Grid -->
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-24">
+      <!-- Albatros Main -->
+      <div
+        class="backdrop-blur-lg bg-gradient-to-br from-white/5 to-transparent rounded-2xl border border-white/10 p-10 shadow-xl hover:border-white/20 hover:from-white/8 transition-all duration-500 group"
+      >
+        <div class="flex items-center justify-center h-full">
+          <SponsorImage
+            sponsor={sponsorAlbatrosMain}
+            imageClass="w-full max-w-xs object-contain opacity-90 group-hover:opacity-100 transition-opacity duration-300"
+          />
+        </div>
+      </div>
+
+      <!-- Albatros Subsidiaries -->
+      {
+        sponsorAlbatros.map(sponsor => (
+          <div class="backdrop-blur-lg bg-gradient-to-br from-white/5 to-transparent rounded-2xl border border-white/10 p-10 shadow-xl hover:border-white/20 hover:from-white/8 transition-all duration-500 group">
+            <div class="flex items-center justify-center h-full">
               <SponsorImage
                 sponsor={sponsor}
-                imageClass={`${sponsor.width ?? 'w-40'} shrink-0 transition-opacity`}
+                imageClass={`${sponsor.width ?? 'w-48'} max-w-full object-contain opacity-90 group-hover:opacity-100 transition-opacity duration-300`}
               />
             </div>
-          ))
-        }
-      </div>
-    </div>
+          </div>
+        ))
+      }
 
-    <!-- Sponsors Content -->
-    <div class="flex flex-col items-center gap-12">
+      <!-- Other Sponsors -->
       {
         sponsors.map(sponsor => (
-          <div class="flex flex-col items-center justify-center">
-            <SponsorImage
-              sponsor={sponsor}
-              imageClass={`${sponsor.width ?? 'w-2xl'} object-contain transition-opacity`}
-            />
-            {sponsor.name && (
-              <span class="text-gray-300 text-lg pt-4">{sponsor.name}</span>
-            )}
+          <div class="backdrop-blur-lg bg-gradient-to-br from-white/5 to-transparent rounded-2xl border border-white/10 p-10 shadow-xl hover:border-white/20 hover:from-white/8 transition-all duration-500 group">
+            <div class="flex flex-col items-center justify-center h-full space-y-4">
+              <div class="flex-1 flex items-center justify-center w-full">
+                <SponsorImage
+                  sponsor={sponsor}
+                  imageClass={`${sponsor.width ?? 'w-48'} max-w-full object-contain opacity-90 group-hover:opacity-100 transition-opacity duration-300`}
+                />
+              </div>
+              {sponsor.name && (
+                <span class="text-gray-300 text-sm font-light tracking-wide">
+                  {sponsor.name}
+                </span>
+              )}
+            </div>
           </div>
         ))
       }
     </div>
 
     <!-- Become a Sponsor CTA -->
-    <div class="max-w-4xl mx-auto mt-20">
+    <div class="max-w-4xl mx-auto mt-24">
       <div
-        class="bg-gradient-to-br from-blue-900/20 to-indigo-900/20 border border-blue-500/30 rounded-2xl p-12 backdrop-blur-sm"
+        class="backdrop-blur-xl bg-gradient-to-br from-white/5 via-cyan-500/5 to-transparent rounded-3xl border border-white/10 p-12 shadow-2xl hover:border-white/20 transition-all duration-500"
       >
         <div class="text-center space-y-8">
           <!-- Icon -->
           <div class="flex justify-center">
             <div
-              class="w-24 h-24 bg-gradient-to-br from-blue-500/20 to-indigo-500/20 rounded-full flex items-center justify-center border border-blue-400/30"
+              class="w-20 h-20 bg-gradient-to-br from-cyan-500/20 to-blue-600/20 rounded-full flex items-center justify-center border border-cyan-400/20 shadow-lg shadow-cyan-500/10"
             >
               <svg
-                class="w-12 h-12 text-blue-300"
+                class="w-10 h-10 text-cyan-300"
                 fill="none"
                 stroke="currentColor"
                 viewBox="0 0 24 24"
@@ -110,13 +123,15 @@ import SponsorImage from '../SponsorImage.astro';
           </div>
 
           <!-- Title -->
-          <h2 class="text-3xl font-light text-gray-100 uppercase tracking-wide">
+          <h2
+            class="text-3xl md:text-4xl font-light text-white uppercase tracking-wide"
+          >
             {t('sponsors.become-sponsor')}
           </h2>
 
           <!-- Description -->
           <p
-            class="text-lg font-light text-gray-300 leading-relaxed max-w-2xl mx-auto"
+            class="text-base md:text-lg font-light text-gray-300 leading-relaxed max-w-2xl mx-auto"
           >
             {t('sponsors.contact')}
           </p>
@@ -125,7 +140,7 @@ import SponsorImage from '../SponsorImage.astro';
           <div class="pt-4">
             <a
               href="mailto:info@ortonasub.com"
-              class="inline-flex items-center px-8 py-4 bg-gradient-to-r from-blue-600/60 to-indigo-600/60 border border-blue-500/70 text-blue-100 rounded-lg transition-all duration-300 text-lg font-medium tracking-wide uppercase hover:from-blue-500/70 hover:to-indigo-500/70 hover:border-blue-400/80 hover:scale-105"
+              class="inline-flex items-center px-8 py-4 bg-white/10 hover:bg-white/15 border border-white/20 hover:border-white/30 text-white rounded-xl transition-all duration-300 text-base font-medium tracking-wide uppercase"
             >
               {t('sponsors.become-sponsor')}
             </a>

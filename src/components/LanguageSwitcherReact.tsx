@@ -1,5 +1,5 @@
 import { useI18n } from '@/i18n/react';
-import { ChevronDownIcon, LanguageIcon } from '@heroicons/react/24/outline';
+import { ChevronDownIcon } from '@heroicons/react/24/outline';
 import { useState } from 'react';
 
 export function LanguageSwitcherReact() {
@@ -38,9 +38,7 @@ export function LanguageSwitcherReact() {
         aria-expanded={isOpen}
         aria-haspopup="true"
       >
-        <LanguageIcon className="w-4 h-4" />
         <span className="flag">{currentLanguage.flag}</span>
-        <span>{currentLanguage.label}</span>
         <ChevronDownIcon
           className={`w-4 h-4 transition-transform duration-200 ${isOpen ? 'rotate-180' : ''}`}
         />
@@ -71,7 +69,6 @@ export function LanguageSwitcherReact() {
                 >
                   <div className="flex items-center gap-2">
                     <span className="flag">{language.flag}</span>
-                    <span>{language.label}</span>
                     {language.code === lang && (
                       <svg
                         className="w-4 h-4 ml-auto text-indigo-200"

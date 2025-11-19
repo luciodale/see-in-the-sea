@@ -32,76 +32,89 @@ const contestCategories = await getCategoriesByContestId(
 );
 ---
 
-<div class="space-y-4 pb-6">
-  <!-- Contest Title -->
-  <div class="space-y-4 sm:space-y-2">
-    <div class="text-center">
-      <h1 class="text-5xl font-thin text-gray-50 uppercase">
-        {contestTitle}
-      </h1>
+<div class="space-y-8 pb-12">
+  <!-- Contest Title - Clean & Elegant -->
+  <div class="text-center space-y-6">
+    <h1 class="text-5xl md:text-7xl font-extralight text-white uppercase tracking-[0.2em] drop-shadow-2xl">
+      {contestTitle}
+    </h1>
+    
+    <!-- Subtle Info Line -->
+    <div class="flex flex-col md:flex-row items-center justify-center gap-2 md:gap-6 text-sm md:text-base font-light text-gray-300">
+      <div class="flex items-center gap-2">
+        <span class="text-cyan-400/70 uppercase tracking-wider text-xs">
+          {t('submissions.technical-director')}
+        </span>
+        <span class="text-white/90">Giuseppe Pignataro</span>
+      </div>
+      
+      <span class="hidden md:inline text-white/20">•</span>
+      
+      <div class="flex items-center gap-2">
+        <span class="text-blue-400/70 uppercase tracking-wider text-xs">
+          {t('submissions.jury')}
+        </span>
+        <span class="text-white/90">
+          {contestJudges.map((judge, index) => (
+            <span>
+              {judge.fullName}
+              {index < contestJudges.length - 1 && ', '}
+            </span>
+          ))}
+        </span>
+      </div>
     </div>
   </div>
-
-  <div class="space-y-2">
-    <p class="text-2xl font-light text-gray-300 text-center uppercase">
-      {t('submissions.technical-director')}
-    </p>
-    <ul
-      class="text-lg font-semibold flex flex-col sm:gap-4 sm:flex-row items-center justify-center text-gray-300"
-    >
-      Giuseppe Pignataro
-    </ul>
-  </div>
-
-  <div class="space-y-2">
-    <p class="text-2xl font-light text-gray-300 text-center uppercase">
-      {t('submissions.jury')}
-    </p>
-    <ul
-      class="text-lg font-semibold flex flex-col sm:gap-4 sm:flex-row items-center justify-center text-gray-300"
-    >
-      {contestJudges.map(judge => <li>{judge.fullName}</li>)}
-    </ul>
-  </div>
 </div>
 
-<!-- Categories -->
-<div class="flex flex-wrap justify-center gap-4">
-  <div class="group relative py-2">
-    <a
-      href={getLocalizedPath(`contest/${contestId}`, currentLang)}
-      class={`category-button ${
-        !activeCategoryId
-          ? 'category-button--active'
-          : 'category-button--inactive'
-      }`}
+<!-- Categories Dropdown with Glass Effect -->
+<div class="flex justify-center mt-8">
+  <div class="w-full max-w-md">
+    <select
+      id="category-select"
+      class="w-full pl-6 pr-12 py-4 text-base md:text-lg font-light tracking-wide uppercase backdrop-blur-lg bg-gradient-to-r from-blue-500/40 via-cyan-500/30 to-blue-500/40 border border-blue-400/60 text-white rounded-xl shadow-sm shadow-blue-500/10 hover:shadow-blue-400/15 transition-all duration-300 cursor-pointer focus:outline-none focus:ring-2 focus:ring-blue-400/60 focus:border-blue-400/80 appearance-none bg-no-repeat"
+      style="background-image: url('data:image/svg+xml;charset=UTF-8,%3csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 24 24%27 fill=%27none%27 stroke=%27white%27 stroke-width=%272%27 stroke-linecap=%27round%27 stroke-linejoin=%27round%27%3e%3cpolyline points=%276 9 12 15 18 9%27%3e%3c/polyline%3e%3c/svg%3e'); background-position: right 1rem center; background-size: 1.5em;"
+      onchange="window.location.href = this.value"
     >
-      <span class="text-lg font-light tracking-wide uppercase">
+      <option
+        value={getLocalizedPath(`contest/${contestId}`, currentLang)}
+        selected={!activeCategoryId}
+      >
         {t('category.winners-only')}
-      </span>
-    </a>
-  </div>
-
-  {
-    contestCategories.map(category => {
-      const isActive = activeCategoryId === category.id;
-      return (
-        <div class="group relative py-2">
-          <a
-            href={getLocalizedPath(
-              `contest/${contestId}/${category.id}`,
-              currentLang
-            )}
-            class={`category-button ${
-              isActive ? 'category-button--active' : 'category-button--inactive'
-            }`}
-          >
-            <span class="text-lg font-light tracking-wide uppercase">
+      </option>
+      {
+        contestCategories.map(category => {
+          const isActive = activeCategoryId === category.id;
+          return (
+            <option
+              value={getLocalizedPath(
+                `contest/${contestId}/${category.id}`,
+                currentLang
+              )}
+              selected={isActive}
+            >
               {getCategoryName(category.id, category.name, currentLang)}
-            </span>
-          </a>
-        </div>
-      );
-    })
-  }
+            </option>
+          );
+        })
+      }
+    </select>
+  </div>
 </div>
+
+<style>
+  select option {
+    background-color: rgb(15 23 42);
+    color: white;
+    padding: 12px;
+  }
+
+  select option:checked {
+    background: linear-gradient(
+      to right,
+      rgb(59 130 246 / 0.6),
+      rgb(6 182 212 / 0.5),
+      rgb(59 130 246 / 0.6)
+    );
+  }
+</style>

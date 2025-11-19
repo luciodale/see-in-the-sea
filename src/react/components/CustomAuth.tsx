@@ -17,9 +17,9 @@ export function CustomAuth({ onSuccess }: CustomAuthProps) {
 
   if (!auth.isLoaded) {
     return (
-      <div className="min-h-screen flex items-center justify-center bg-slate-900">
+      <div className="min-h-screen flex items-center justify-center bg-gradient-to-b from-slate-900 to-gray-900">
         <div className="text-center">
-          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-emerald-500 mx-auto mb-4"></div>
+          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-cyan-400 mx-auto mb-4"></div>
           <p className="text-white text-lg font-medium">{t('state.loading')}</p>
         </div>
       </div>
@@ -27,8 +27,8 @@ export function CustomAuth({ onSuccess }: CustomAuthProps) {
   }
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-slate-900 p-4">
-      <div className="w-full max-w-md">
+    <div className="min-h-screen flex items-center justify-center bg-gradient-to-b from-slate-900 to-gray-900 px-4 py-12">
+      <div className="w-full max-w-md mx-auto">
         {auth.mode === 'choice' && <AuthChoice onModeSelect={auth.setMode} />}
 
         {auth.mode === 'login' && (

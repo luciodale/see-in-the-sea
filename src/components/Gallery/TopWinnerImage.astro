@@ -18,30 +18,49 @@ const currentLang = getLangFromUrl(Astro.url);
 const t = useTranslations(currentLang);
 
 const rankColorClass = getRankColorClass(rawResult);
+
+// Define glass background based on rank
+const getGlassBackground = (result: string) => {
+  switch (result) {
+    case 'first':
+      return 'backdrop-blur-lg bg-gradient-to-br from-amber-500/15 via-yellow-500/10 to-transparent border-amber-400/30';
+    case 'second':
+      return 'backdrop-blur-lg bg-gradient-to-br from-gray-400/15 via-slate-400/10 to-transparent border-gray-400/30';
+    case 'third':
+      return 'backdrop-blur-lg bg-gradient-to-br from-orange-700/15 via-amber-700/10 to-transparent border-orange-600/30';
+    default:
+      return 'backdrop-blur-lg bg-gradient-to-br from-white/10 via-blue-500/5 to-transparent border-white/20';
+  }
+};
+
+const glassBackground = getGlassBackground(rawResult);
 ---
 
 <div class="space-y-6 md:space-y-8">
-  <h2
-    class="flex flex-col md:flex-row md:gap-10 gap-2 text-pretty justify-between items-baseline text-gray-100 uppercase"
-  >
-    <div>
-      <p class="text-2xl md:text-3xl md:text-left font-extralight">
-        {categoryName}
-      </p>
-      <p class={`text-xl md:text-2xl font-thin italic ${rankColorClass}`}>
-        {rank}
-      </p>
-    </div>
-    <div>
-      <p class="text-2xl md:text-3xl md:text-right font-thin">
-        {author}
-      </p>
-      <p class="text-xl md:text-2xl md:text-right font-thin italic">
-        {title}
-      </p>
-    </div>
-  </h2>
-  <div class="gap-8">
+  <!-- Glass Header Card -->
+  <div class={`${glassBackground} rounded-2xl p-6 md:p-8 shadow-2xl`}>
+    <h2 class="flex flex-col md:flex-row md:gap-10 gap-4 text-pretty justify-between items-baseline uppercase">
+      <div class="space-y-1">
+        <p class="text-2xl md:text-3xl font-extralight text-white tracking-wider drop-shadow-lg">
+          {categoryName}
+        </p>
+        <p class={`text-xl md:text-2xl font-thin italic ${rankColorClass} drop-shadow-md`}>
+          {rank}
+        </p>
+      </div>
+      <div class="space-y-1 md:text-right">
+        <p class="text-2xl md:text-3xl font-thin text-gray-100 tracking-wide">
+          {author}
+        </p>
+        <p class="text-xl md:text-2xl font-thin italic text-gray-300">
+          {title}
+        </p>
+      </div>
+    </h2>
+  </div>
+
+  <!-- Image Container -->
+  <div class="relative rounded-3xl overflow-hidden shadow-2xl">
     <BaseImage
       imageUrl={imageUrl}
       title={title}

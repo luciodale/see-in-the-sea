@@ -55,10 +55,6 @@ export const sponsorAlbatros: Sponsor[] = [
 
 export const sponsors: Sponsor[] = [
   {
-    logo: '/images/sponsors/isotta-logo.svg',
-    website: sponsorsMeta.isotta.website,
-  },
-  {
     logo: '/images/sponsors/aquadiving-logo.png',
     website: sponsorsMeta.aquadiving.website,
   },
@@ -69,6 +65,10 @@ export const sponsors: Sponsor[] = [
   {
     logo: '/images/sponsors/coral-eye-logo.png',
     website: sponsorsMeta.coralEye.website,
+  },
+  {
+    logo: '/images/sponsors/isotta-logo.svg',
+    website: sponsorsMeta.isotta.website,
   },
   {
     logo: '/images/sponsors/easy-dive-logo.svg',
@@ -84,7 +84,7 @@ export const sponsors: Sponsor[] = [
   {
     logo: '/images/sponsors/htc-logo.png',
     website: sponsorsMeta.htc.website,
-    width: 'w-92',
+    width: 'w-56',
   },
   {
     logo: '/images/sponsors/lega-navale-logo.svg',

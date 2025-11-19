@@ -20,16 +20,17 @@ export function NavbarHeader({ standalone = false }: { standalone?: boolean }) {
     <header className={`${!standalone ? 'absolute' : ''} inset-x-0 top-0 z-50`}>
       <nav
         aria-label="Global"
-        className="flex items-center gap-4 justify-between p-4 lg:px-8"
+        className="mx-auto max-w-screen-2xl flex items-center justify-between p-4 lg:px-6 xl:px-8"
       >
-        <div className="flex">
-          <a
-            href={lang === 'it' ? '/it' : '/'}
-            className="-m-1.5 p-1.5 lg:shrink-0"
-          >
+        <div className="flex-shrink-0 w-24 lg:w-28 xl:w-32">
+          <a href={lang === 'it' ? '/it' : '/'} className="block">
             <span className="sr-only">See in the sea</span>
 
-            <img alt="" src={logoPath} className="h-14 sm:h-24" />
+            <img
+              alt=""
+              src={logoPath}
+              className="h-14 lg:h-16 xl:h-20 2xl:h-24 w-auto"
+            />
           </a>
         </div>
         <div className="flex lg:hidden">
@@ -47,18 +48,18 @@ export function NavbarHeader({ standalone = false }: { standalone?: boolean }) {
             <a
               key={item.name}
               href={item.href}
-              className="text-lg font-bold uppercase text-white"
+              className="text-sm xl:text-base 2xl:text-lg font-bold uppercase text-white whitespace-nowrap"
             >
               {item.name}
             </a>
           ))}
         </div>
-        <div className="hidden lg:flex items-center flex-wrap justify-end gap-4">
-          <div>
+        <div className="hidden lg:flex items-center justify-end gap-2 xl:gap-4 flex-shrink-0 w-56 xl:w-72">
+          <div className="flex-1 text-right">
             <SignedIn>
               <a
                 href={loginPath}
-                className="text-sm/6 font-bold uppercase text-white"
+                className="text-sm/6 font-bold uppercase text-white inline-block"
               >
                 {t('nav.submissions')} <span aria-hidden="true">&rarr;</span>
               </a>
@@ -66,13 +67,13 @@ export function NavbarHeader({ standalone = false }: { standalone?: boolean }) {
             <SignedOut>
               <a
                 href={loginPath}
-                className="text-sm/6 font-semibold text-white"
+                className="text-sm/6 font-semibold text-white inline-block"
               >
                 {t('nav.login')} <span aria-hidden="true">&rarr;</span>
               </a>
             </SignedOut>
           </div>
-          <div className=" lg:gap-x-8 lg:flex-wrap">
+          <div className="flex-shrink-0">
             <LanguageSwitcherReact />
           </div>
         </div>

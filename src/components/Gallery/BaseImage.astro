@@ -11,19 +11,27 @@ type Props = {
 const { imageUrl, title, author, showInfo = true }: Props = Astro.props;
 ---
 
-<div class="bg-gray-950 overflow-hidden shadow-lg">
+<div class="group/image relative overflow-hidden bg-slate-950">
+  <!-- Main Image -->
   <Picture
     width={1000}
     height={1000}
-    class="w-full object-cover"
+    class="w-full object-cover transition-transform duration-700 group-hover/image:scale-105"
     src={imageUrl}
     alt={title}
     loading="lazy"
   />
+  
+  <!-- Subtle gradient overlay for depth -->
+  <div class="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent opacity-0 group-hover/image:opacity-100 transition-opacity duration-500 pointer-events-none"></div>
+  
+  <!-- Glass shine effect on hover -->
+  <div class="absolute inset-0 bg-gradient-to-br from-white/20 via-transparent to-transparent opacity-0 group-hover/image:opacity-30 transition-opacity duration-500 pointer-events-none"></div>
+  
   {
     showInfo && (
-      <div class="px-6 py-2 items-center justify-center">
-        <p class="text-gray-400 text-center font-light">{author}</p>
+      <div class="backdrop-blur-sm bg-black/30 px-6 py-4 border-t border-white/10">
+        <p class="text-gray-200 text-center font-light tracking-wide">{author}</p>
       </div>
     )
   }
