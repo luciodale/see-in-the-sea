@@ -184,7 +184,11 @@ export const POST: APIRoute = async ({ request, locals }) => {
     }
 
     // Step 5: Check if user has paid (only for regular users, not admin uploads)
-    if (!isAdminUpload) {
+    // Exception: Allow certain users to edit even after payment
+    const allowedToEditAfterPayment = ['info@centrosubmonteconero.com'];
+    const canEditAfterPayment = allowedToEditAfterPayment.includes(userEmail);
+
+    if (!isAdminUpload && !canEditAfterPayment) {
       const payment = await db
         .select()
         .from(payments)
