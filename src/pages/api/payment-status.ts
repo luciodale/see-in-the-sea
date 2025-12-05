@@ -41,12 +41,6 @@ export const GET: APIRoute = async ({ request, locals, url }) => {
 
     const db = getDb(D1Database);
 
-    // Exception: Allow certain users to edit even after payment
-    const allowedToEditAfterPayment = ['info@centrosubmonteconero.com'];
-    const canEditAfterPayment = allowedToEditAfterPayment.includes(
-      user.emailAddress || ''
-    );
-
     // Check if user has paid for this contest
     const payment = await db
       .select()
@@ -59,8 +53,7 @@ export const GET: APIRoute = async ({ request, locals, url }) => {
       )
       .limit(1);
 
-    // Return false for users with edit exceptions so UI allows editing
-    const hasPaid = canEditAfterPayment ? false : payment.length > 0;
+    const hasPaid = payment.length > 0;
 
     const response: PaymentStatusResponse = {
       success: true,

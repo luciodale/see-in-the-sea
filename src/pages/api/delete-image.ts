@@ -132,36 +132,25 @@ export const DELETE: APIRoute = async ({ request, locals }) => {
       }
 
       // Check if user has paid for this contest
-      // Exception: Allow certain users to edit even after payment
-      const allowedToEditAfterPayment = ['info@centrosubmonteconero.com'];
-      const canEditAfterPayment = allowedToEditAfterPayment.includes(
-        user.emailAddress || ''
-      );
-
-      if (!canEditAfterPayment) {
-        const payment = await db
-          .select()
-          .from(payments)
-          .where(
-            and(
-              eq(payments.contestId, submission.contestId),
-              eq(payments.userEmail, user.emailAddress || '')
-            )
+      const payment = await db
+        .select()
+        .from(payments)
+        .where(
+          and(
+            eq(payments.contestId, submission.contestId),
+            eq(payments.userEmail, user.emailAddress || '')
           )
-          .limit(1);
+        )
+        .limit(1);
 
-        if (payment.length > 0) {
-          return new Response(
-            JSON.stringify({
-              success: false,
-              message: getBackendTranslation(
-                'error.submissions-locked',
-                request
-              ),
-            }),
-            { status: 403 }
-          );
-        }
+      if (payment.length > 0) {
+        return new Response(
+          JSON.stringify({
+            success: false,
+            message: getBackendTranslation('error.submissions-locked', request),
+          }),
+          { status: 403 }
+        );
       }
     }
 
