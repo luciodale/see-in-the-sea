@@ -1,3 +1,4 @@
+import { useAuth } from '@clerk/clerk-react';
 import { useRef, useState } from 'react';
 import { MAX_IMAGE_SIZE } from '../../constants';
 import { useI18n } from '../../i18n/react';
@@ -31,6 +32,7 @@ export function UploadModal({
   adminUserEmail,
 }: UploadModalProps) {
   const { t } = useI18n();
+  const { getToken } = useAuth();
   const MAX_MB = Math.floor(MAX_IMAGE_SIZE / (1024 * 1024));
 
   const fileInputRef = useRef<HTMLInputElement>(null);
@@ -77,6 +79,13 @@ export function UploadModal({
     setIsUploading(true);
     setError(null);
     try {
+      const token = await getToken();
+      if (!token) {
+        throw new Error(
+          'Authentication required. Please log in and try again.'
+        );
+      }
+
       const form = new FormData();
       form.append('image', selectedFile);
       form.append('contestId', contestId);
@@ -102,6 +111,9 @@ export function UploadModal({
 
       const res = await fetch('/api/upload-image', {
         method: 'POST',
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
         body: form,
       });
 
