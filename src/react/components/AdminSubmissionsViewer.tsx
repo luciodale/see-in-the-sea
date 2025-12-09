@@ -1,5 +1,6 @@
 import { useAuth } from '@clerk/clerk-react';
 import { useEffect, useState } from 'react';
+import type { AdminUsersResponse } from '../../pages/api/admin/users';
 import {
   getImageApiUrl,
   getOriginalImageApiUrl,
@@ -17,6 +18,16 @@ type Filters = {
   search: string;
 };
 
+type UserWithoutUploads = {
+  email: string;
+  firstName?: string;
+  lastName?: string;
+  createdAt?: string;
+  lastActiveAt?: string;
+  hasUploaded: boolean;
+  paymentAmount: number;
+};
+
 export function AdminSubmissionsViewer({
   contestId,
 }: AdminSubmissionsViewerProps) {
@@ -31,6 +42,15 @@ export function AdminSubmissionsViewer({
     search: '',
   });
   const [expandedRows, setExpandedRows] = useState<Set<string>>(new Set());
+
+  // User data from Clerk
+  const [totalClerkUsers, setTotalClerkUsers] = useState<number>(0);
+  const [usersWithoutUploads, setUsersWithoutUploads] = useState<
+    UserWithoutUploads[]
+  >([]);
+  const [userPayments, setUserPayments] = useState<Record<string, number>>({});
+  const [showUsersModal, setShowUsersModal] = useState(false);
+  const [isLoadingUsers, setIsLoadingUsers] = useState(true);
 
   const toggleRow = (submissionId: string) => {
     setExpandedRows(prev => {
@@ -104,25 +124,45 @@ export function AdminSubmissionsViewer({
     setFilteredSubmissions(filtered);
   }, [allSubmissions, filters]);
 
+  // Fetch users data from Clerk
+  const fetchUsersData = async () => {
+    try {
+      setIsLoadingUsers(true);
+
+      const token = await getToken();
+      if (!token) {
+        throw new Error('Token di autenticazione non disponibile');
+      }
+
+      const response = await fetch(`/api/admin/users?contestId=${contestId}`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+
+      const result: AdminUsersResponse = await response.json();
+
+      if (!response.ok || !result.success || !result.data) {
+        throw new Error('Impossibile recuperare i dati degli utenti');
+      }
+
+      setTotalClerkUsers(result.data.totalUsers);
+      setUsersWithoutUploads(result.data.usersWithoutUploads);
+      setUserPayments(result.data.userPayments);
+    } catch (error) {
+      console.error('Error fetching users data:', error);
+    } finally {
+      setIsLoadingUsers(false);
+    }
+  };
+
   useEffect(() => {
     fetchAllSubmissions();
+    fetchUsersData();
   }, [contestId]);
 
   const handleSearchChange = (value: string) => {
     setFilters({ search: value });
-  };
-
-  const formatDate = (dateString: string | null) => {
-    if (!dateString) return '—';
-    const parsed = Date.parse(dateString);
-    if (Number.isNaN(parsed)) return '—';
-    return new Date(parsed).toLocaleDateString('it-IT', {
-      year: 'numeric',
-      month: 'short',
-      day: 'numeric',
-      hour: '2-digit',
-      minute: '2-digit',
-    });
   };
 
   // Always group submissions by user for the new UI
@@ -154,12 +194,27 @@ export function AdminSubmissionsViewer({
   });
 
   // Calculate aggregate statistics
-  const totalRegisteredUsers = new Set(allSubmissions.map(s => s.userEmail))
-    .size;
   const usersWhoSubmitted = Object.keys(groupedByUser).length;
   const usersWhoPaid = Object.values(groupedByUser).filter(
     submissions => submissions[0].hasPaid
   ).length;
+
+  const formatDate = (dateString: string | null | undefined) => {
+    if (!dateString) return '—';
+    const parsed = Date.parse(dateString);
+    if (Number.isNaN(parsed)) return '—';
+    return new Date(parsed).toLocaleDateString('it-IT', {
+      year: 'numeric',
+      month: 'short',
+      day: 'numeric',
+      hour: '2-digit',
+      minute: '2-digit',
+    });
+  };
+
+  const formatAmount = (cents: number) => {
+    return `€${(cents / 100).toFixed(2)}`;
+  };
 
   return (
     <>
@@ -185,13 +240,21 @@ export function AdminSubmissionsViewer({
             {/* Total Registered Users */}
             <div className="bg-slate-900 rounded-lg p-4 border border-slate-700">
               <div className="flex items-center justify-between">
-                <div>
+                <div className="flex-1">
                   <p className="text-xs font-medium text-slate-400 uppercase tracking-wider">
                     Utenti Registrati
                   </p>
                   <p className="mt-2 text-3xl font-bold text-white">
-                    {totalRegisteredUsers}
+                    {isLoadingUsers ? '...' : totalClerkUsers}
                   </p>
+                  {!isLoadingUsers && usersWithoutUploads.length > 0 && (
+                    <button
+                      onClick={() => setShowUsersModal(true)}
+                      className="mt-2 text-xs text-blue-400 hover:text-blue-300 underline"
+                    >
+                      {usersWithoutUploads.length} senza foto
+                    </button>
+                  )}
                 </div>
                 <div className="bg-blue-900/40 rounded-full p-3">
                   <svg
@@ -222,8 +285,8 @@ export function AdminSubmissionsViewer({
                     {usersWhoSubmitted}
                   </p>
                   <p className="text-xs text-slate-400 mt-1">
-                    {totalRegisteredUsers > 0
-                      ? `${Math.round((usersWhoSubmitted / totalRegisteredUsers) * 100)}%`
+                    {totalClerkUsers > 0
+                      ? `${Math.round((usersWhoSubmitted / totalClerkUsers) * 100)}%`
                       : '0%'}
                   </p>
                 </div>
@@ -368,6 +431,9 @@ export function AdminSubmissionsViewer({
                     <th className="px-6 py-3 text-left text-xs font-medium text-slate-300 uppercase tracking-wider">
                       # Foto
                     </th>
+                    <th className="px-6 py-3 text-left text-xs font-medium text-slate-300 uppercase tracking-wider">
+                      Importo Pagato
+                    </th>
                   </tr>
                 </thead>
                 <tbody className="bg-slate-900">
@@ -449,6 +515,17 @@ export function AdminSubmissionsViewer({
                             <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-emerald-900/40 text-emerald-300 border border-emerald-700">
                               {userRow.submissionCount}
                             </span>
+                          </td>
+
+                          {/* Payment Amount */}
+                          <td className="px-6 py-4 whitespace-nowrap text-sm text-slate-300">
+                            {userPayments[userRow.userEmail] ? (
+                              <span className="font-medium text-green-300">
+                                {formatAmount(userPayments[userRow.userEmail])}
+                              </span>
+                            ) : (
+                              <span className="text-slate-500">—</span>
+                            )}
                           </td>
                         </tr>
 
@@ -609,6 +686,108 @@ export function AdminSubmissionsViewer({
           )}
         </div>
       </div>
+
+      {/* Users Without Uploads Modal */}
+      {showUsersModal && (
+        <div className="fixed inset-0 bg-black/60 flex items-center justify-center z-50 p-4">
+          <div className="bg-slate-900 border border-slate-700 rounded-lg max-w-4xl w-full max-h-[80vh] overflow-hidden flex flex-col">
+            {/* Modal Header */}
+            <div className="px-6 py-4 border-b border-slate-700 flex items-center justify-between">
+              <h3 className="text-xl font-bold text-white">
+                Utenti Senza Foto ({usersWithoutUploads.length})
+              </h3>
+              <button
+                onClick={() => setShowUsersModal(false)}
+                className="text-slate-400 hover:text-white transition-colors"
+              >
+                <svg
+                  className="w-6 h-6"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M6 18L18 6M6 6l12 12"
+                  />
+                </svg>
+              </button>
+            </div>
+
+            {/* Modal Content */}
+            <div className="overflow-auto flex-1">
+              <table className="min-w-full divide-y divide-slate-700">
+                <thead className="bg-slate-800/40 sticky top-0">
+                  <tr>
+                    <th className="px-6 py-3 text-left text-xs font-medium text-slate-300 uppercase tracking-wider">
+                      Nome
+                    </th>
+                    <th className="px-6 py-3 text-left text-xs font-medium text-slate-300 uppercase tracking-wider">
+                      Email
+                    </th>
+                    <th className="px-6 py-3 text-left text-xs font-medium text-slate-300 uppercase tracking-wider">
+                      Registrato
+                    </th>
+                    <th className="px-6 py-3 text-left text-xs font-medium text-slate-300 uppercase tracking-wider">
+                      Ultima Attività
+                    </th>
+                    <th className="px-6 py-3 text-left text-xs font-medium text-slate-300 uppercase tracking-wider">
+                      Pagato
+                    </th>
+                  </tr>
+                </thead>
+                <tbody className="bg-slate-900 divide-y divide-slate-700">
+                  {usersWithoutUploads.map(user => (
+                    <tr key={user.email} className="hover:bg-slate-800/50">
+                      <td className="px-6 py-4 whitespace-nowrap">
+                        {user.firstName || user.lastName ? (
+                          <p className="text-sm font-medium text-white">
+                            {user.firstName || ''} {user.lastName || ''}
+                          </p>
+                        ) : (
+                          <span className="text-xs text-slate-500">—</span>
+                        )}
+                      </td>
+                      <td className="px-6 py-4 whitespace-nowrap">
+                        <p className="text-sm text-slate-300">{user.email}</p>
+                      </td>
+                      <td className="px-6 py-4 whitespace-nowrap text-sm text-slate-300">
+                        {formatDate(user.createdAt)}
+                      </td>
+                      <td className="px-6 py-4 whitespace-nowrap text-sm text-slate-300">
+                        {formatDate(user.lastActiveAt)}
+                      </td>
+                      <td className="px-6 py-4 whitespace-nowrap">
+                        {user.paymentAmount > 0 ? (
+                          <span className="text-sm font-medium text-green-300">
+                            {formatAmount(user.paymentAmount)}
+                          </span>
+                        ) : (
+                          <span className="inline-flex items-center px-2 py-1 rounded-full text-xs font-medium bg-red-900/40 text-red-300 border border-red-700">
+                            Non Pagato
+                          </span>
+                        )}
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+
+            {/* Modal Footer */}
+            <div className="px-6 py-4 border-t border-slate-700 flex justify-end">
+              <button
+                onClick={() => setShowUsersModal(false)}
+                className="px-4 py-2 bg-slate-800 hover:bg-slate-700 text-white rounded-md transition-colors"
+              >
+                Chiudi
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
     </>
   );
 }
