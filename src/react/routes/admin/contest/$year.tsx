@@ -223,6 +223,7 @@ function ContestManagementPage() {
                                       getImageApiUrl(submission.r2ImageId) || ''
                                     }
                                     alt={submission.title}
+                                    loading="lazy"
                                     className="w-full h-full object-cover"
                                   />
                                 </div>

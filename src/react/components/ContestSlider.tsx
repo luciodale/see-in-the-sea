@@ -147,6 +147,7 @@ export function ContestSlider({ contests }: ContestSliderProps) {
                     <img
                       src={contest.winningImage}
                       alt={contest.name}
+                      loading="lazy"
                       className="contest-image w-full h-full object-cover absolute inset-0 will-change-transform origin-center"
                     />
                   </div>
