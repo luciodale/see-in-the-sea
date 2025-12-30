@@ -62,7 +62,8 @@ const categoryMap = await getCategoryNamesByIds(
 // Process images - filter out results without valid images
 const processedImages = sortedResults
   .map(result => {
-    const categoryName = categoryMap.get(result.categoryId) || result.categoryId;
+    const categoryName =
+      categoryMap.get(result.categoryId) || result.categoryId;
     const translatedCategoryName = getCategoryName(
       result.categoryId,
       categoryName,
