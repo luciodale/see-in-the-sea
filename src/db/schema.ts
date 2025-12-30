@@ -57,6 +57,24 @@ export const results = sqliteTable('results', {
   createdAt: text('created_at').default(sql`CURRENT_TIMESTAMP`),
 });
 
+// Judging flags table for tracking judge decisions during review
+// Placements are stored here until "Submit Results" is clicked
+export const judgingFlags = sqliteTable('judging_flags', {
+  id: text('id').primaryKey(),
+  submissionId: text('submission_id')
+    .notNull()
+    .references(() => submissions.id),
+  status: text('status')
+    .$type<'pending' | 'shortlisted' | 'rejected'>()
+    .notNull()
+    .default('pending'),
+  rating: integer('rating'), // 1-5 star rating
+  placement: text('placement').$type<
+    'first' | 'second' | 'third' | 'runner-up'
+  >(), // Pending placement before final submission
+  updatedAt: text('updated_at').default(sql`CURRENT_TIMESTAMP`),
+});
+
 // Judges table
 export const judges = sqliteTable('judges', {
   id: text('id').primaryKey(),
@@ -99,6 +117,11 @@ export const resultsSubmissionIdx = index('idx_results_submission').on(
   results.submissionId
 );
 
+// Judging flags indexes
+export const judgingFlagsSubmissionIdx = index(
+  'idx_judging_flags_submission'
+).on(judgingFlags.submissionId);
+
 // Judges indexes
 export const judgesContestIdx = index('idx_judges_contest').on(
   judges.contestId
@@ -129,3 +152,5 @@ export type Judge = typeof judges.$inferSelect;
 export type NewJudge = typeof judges.$inferInsert;
 export type Payment = typeof payments.$inferSelect;
 export type NewPayment = typeof payments.$inferInsert;
+export type JudgingFlag = typeof judgingFlags.$inferSelect;
+export type NewJudgingFlag = typeof judgingFlags.$inferInsert;

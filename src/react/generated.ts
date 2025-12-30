@@ -14,6 +14,7 @@ import { Route as AdminIndexRouteImport } from './routes/admin/index'
 import { Route as UserSubmissionsRouteImport } from './routes/user/submissions'
 import { Route as UserLoginRouteImport } from './routes/user/login'
 import { Route as AdminManualEntryRouteImport } from './routes/admin/manual-entry'
+import { Route as AdminJudgingRouteImport } from './routes/admin/judging'
 import { Route as AdminCurrentContestRouteImport } from './routes/admin/current-contest'
 import { Route as AdminCreateOldContestRouteImport } from './routes/admin/create-old-contest'
 import { Route as UserPaymentIndexRouteImport } from './routes/user/payment/index'
@@ -44,6 +45,11 @@ const UserLoginRoute = UserLoginRouteImport.update({
 const AdminManualEntryRoute = AdminManualEntryRouteImport.update({
   id: '/admin/manual-entry',
   path: '/admin/manual-entry',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AdminJudgingRoute = AdminJudgingRouteImport.update({
+  id: '/admin/judging',
+  path: '/admin/judging',
   getParentRoute: () => rootRouteImport,
 } as any)
 const AdminCurrentContestRoute = AdminCurrentContestRouteImport.update({
@@ -80,6 +86,7 @@ const AdminContestYearRoute = AdminContestYearRouteImport.update({
 export interface FileRoutesByFullPath {
   '/admin/create-old-contest': typeof AdminCreateOldContestRoute
   '/admin/current-contest': typeof AdminCurrentContestRoute
+  '/admin/judging': typeof AdminJudgingRoute
   '/admin/manual-entry': typeof AdminManualEntryRoute
   '/user/login': typeof UserLoginRoute
   '/user/submissions': typeof UserSubmissionsRoute
@@ -93,6 +100,7 @@ export interface FileRoutesByFullPath {
 export interface FileRoutesByTo {
   '/admin/create-old-contest': typeof AdminCreateOldContestRoute
   '/admin/current-contest': typeof AdminCurrentContestRoute
+  '/admin/judging': typeof AdminJudgingRoute
   '/admin/manual-entry': typeof AdminManualEntryRoute
   '/user/login': typeof UserLoginRoute
   '/user/submissions': typeof UserSubmissionsRoute
@@ -107,6 +115,7 @@ export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/admin/create-old-contest': typeof AdminCreateOldContestRoute
   '/admin/current-contest': typeof AdminCurrentContestRoute
+  '/admin/judging': typeof AdminJudgingRoute
   '/admin/manual-entry': typeof AdminManualEntryRoute
   '/user/login': typeof UserLoginRoute
   '/user/submissions': typeof UserSubmissionsRoute
@@ -122,6 +131,7 @@ export interface FileRouteTypes {
   fullPaths:
     | '/admin/create-old-contest'
     | '/admin/current-contest'
+    | '/admin/judging'
     | '/admin/manual-entry'
     | '/user/login'
     | '/user/submissions'
@@ -135,6 +145,7 @@ export interface FileRouteTypes {
   to:
     | '/admin/create-old-contest'
     | '/admin/current-contest'
+    | '/admin/judging'
     | '/admin/manual-entry'
     | '/user/login'
     | '/user/submissions'
@@ -148,6 +159,7 @@ export interface FileRouteTypes {
     | '__root__'
     | '/admin/create-old-contest'
     | '/admin/current-contest'
+    | '/admin/judging'
     | '/admin/manual-entry'
     | '/user/login'
     | '/user/submissions'
@@ -162,6 +174,7 @@ export interface FileRouteTypes {
 export interface RootRouteChildren {
   AdminCreateOldContestRoute: typeof AdminCreateOldContestRoute
   AdminCurrentContestRoute: typeof AdminCurrentContestRoute
+  AdminJudgingRoute: typeof AdminJudgingRoute
   AdminManualEntryRoute: typeof AdminManualEntryRoute
   UserLoginRoute: typeof UserLoginRoute
   UserSubmissionsRoute: typeof UserSubmissionsRoute
@@ -208,6 +221,13 @@ declare module '@tanstack/react-router' {
       path: '/admin/manual-entry'
       fullPath: '/admin/manual-entry'
       preLoaderRoute: typeof AdminManualEntryRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/admin/judging': {
+      id: '/admin/judging'
+      path: '/admin/judging'
+      fullPath: '/admin/judging'
+      preLoaderRoute: typeof AdminJudgingRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/admin/current-contest': {
@@ -258,6 +278,7 @@ declare module '@tanstack/react-router' {
 const rootRouteChildren: RootRouteChildren = {
   AdminCreateOldContestRoute: AdminCreateOldContestRoute,
   AdminCurrentContestRoute: AdminCurrentContestRoute,
+  AdminJudgingRoute: AdminJudgingRoute,
   AdminManualEntryRoute: AdminManualEntryRoute,
   UserLoginRoute: UserLoginRoute,
   UserSubmissionsRoute: UserSubmissionsRoute,
