@@ -1,7 +1,8 @@
 import { SignedIn, SignedOut, useAuth } from '@clerk/clerk-react';
 import { createFileRoute } from '@tanstack/react-router';
 import { Check, RotateCcw, Send, Trophy, X, ZoomOut } from 'lucide-react';
-import { useCallback, useEffect, useRef, useState } from 'react';
+import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
+import { PHOTO_TYPES } from '../../../constants';
 import { CURRENT_CONTEST_CATEGORIES } from '../../../constants/categories';
 import AdminTabs from '../../components/AdminTabs';
 import { RedirectToSignIn } from '../../components/RedirectToSignIn';
@@ -431,28 +432,32 @@ function JudgingPage() {
     [syncToServer]
   );
 
-  // Filter submissions
-  const categorySubmissions = submissions.filter(
-    s => s.categoryId === activeCategory
+  // Filter submissions by category
+  const categorySubmissions = useMemo(
+    () => submissions.filter(s => s.categoryId === activeCategory),
+    [submissions, activeCategory]
   );
 
-  const filteredSubmissions =
-    filterStatus === 'all'
-      ? categorySubmissions
-      : filterStatus === 'winners'
-        ? categorySubmissions.filter(s => s.placement !== null)
-        : categorySubmissions.filter(s => s.flagStatus === filterStatus);
+  // Memoize filtered and sorted submissions to avoid recalculation on every render
+  const sortedSubmissions = useMemo(() => {
+    const filtered =
+      filterStatus === 'all'
+        ? categorySubmissions
+        : filterStatus === 'winners'
+          ? categorySubmissions.filter(s => s.placement !== null)
+          : categorySubmissions.filter(s => s.flagStatus === filterStatus);
 
-  // Sort winners by placement order
-  const sortedSubmissions =
-    filterStatus === 'winners'
-      ? [...filteredSubmissions].sort((a, b) => {
-          const order = { first: 1, second: 2, third: 3, 'runner-up': 4 };
-          const aOrder = a.placement ? order[a.placement] || 99 : 99;
-          const bOrder = b.placement ? order[b.placement] || 99 : 99;
-          return aOrder - bOrder;
-        })
-      : filteredSubmissions;
+    // Sort winners by placement order
+    if (filterStatus === 'winners') {
+      return [...filtered].sort((a, b) => {
+        const order = { first: 1, second: 2, third: 3, 'runner-up': 4 };
+        const aOrder = a.placement ? order[a.placement] || 99 : 99;
+        const bOrder = b.placement ? order[b.placement] || 99 : 99;
+        return aOrder - bOrder;
+      });
+    }
+    return filtered;
+  }, [categorySubmissions, filterStatus]);
 
   // Get current inspected submission and navigation
   const inspectedSubmission = inspectedSubmissionId
@@ -548,13 +553,16 @@ function JudgingPage() {
   // Each portfolio should have exactly 3 unique photos (macro, wide-angle, free)
   const isMediterranean = activeCategory === 'mediterranean';
 
-  // Build portfolios list with composite key: anonymousUserId + portfolio
-  const portfoliosList: {
-    portfolioId: string; // Composite key: `${anonymousUserId}-${portfolio}`
-    submissions: JudgingSubmission[];
-  }[] = [];
+  // Memoize portfolios list to avoid recalculation on every render
+  const portfoliosList = useMemo(() => {
+    if (!isMediterranean) return [];
 
-  if (isMediterranean) {
+    // Build portfolios list with composite key: anonymousUserId + portfolio
+    const result: {
+      portfolioId: string; // Composite key: `${anonymousUserId}-${portfolio}`
+      submissions: JudgingSubmission[];
+    }[] = [];
+
     // Group by composite key: anonymousUserId + portfolio number
     const portfolioMap = new Map<string, JudgingSubmission[]>();
 
@@ -577,26 +585,29 @@ function JudgingPage() {
       }
     });
 
-    // Convert to list, filtering out incomplete portfolios or ungrouped
+    // Convert to list, filtering out ungrouped
     portfolioMap.forEach((subs, compositeKey) => {
       if (!compositeKey.endsWith('-ungrouped') && subs.length > 0) {
-        portfoliosList.push({ portfolioId: compositeKey, submissions: subs });
+        result.push({ portfolioId: compositeKey, submissions: subs });
       }
     });
-  }
+
+    return result;
+  }, [isMediterranean, sortedSubmissions]);
 
   // Legacy grouped structure for backwards compatibility
-  const groupedByUser = isMediterranean
-    ? portfoliosList.reduce(
-        (acc, p) => {
-          const userKey = p.submissions[0]?.anonymousUserId || 'unknown';
-          if (!acc[userKey]) acc[userKey] = {};
-          acc[userKey][p.portfolioId] = p.submissions;
-          return acc;
-        },
-        {} as Record<string, Record<string, JudgingSubmission[]>>
-      )
-    : null;
+  const groupedByUser = useMemo(() => {
+    if (!isMediterranean) return null;
+    return portfoliosList.reduce(
+      (acc, p) => {
+        const userKey = p.submissions[0]?.anonymousUserId || 'unknown';
+        if (!acc[userKey]) acc[userKey] = {};
+        acc[userKey][p.portfolioId] = p.submissions;
+        return acc;
+      },
+      {} as Record<string, Record<string, JudgingSubmission[]>>
+    );
+  }, [isMediterranean, portfoliosList]);
 
   // Get current inspected portfolio and navigation
   const inspectedPortfolio = inspectedPortfolioId
@@ -655,8 +666,9 @@ function JudgingPage() {
   };
 
   // Counts - for Mediterranean, count unique portfolios instead of individual photos
-  const counts = isMediterranean
-    ? {
+  const counts = useMemo(() => {
+    if (isMediterranean) {
+      return {
         total: portfoliosList.length,
         shortlisted: [
           ...new Set(
@@ -686,22 +698,33 @@ function JudgingPage() {
               .map(s => s.portfolio)
           ),
         ].length,
-      }
-    : {
-        total: categorySubmissions.length,
-        shortlisted: categorySubmissions.filter(
-          s => s.flagStatus === 'shortlisted'
-        ).length,
-        rejected: categorySubmissions.filter(s => s.flagStatus === 'rejected')
-          .length,
-        pending: categorySubmissions.filter(s => s.flagStatus === 'pending')
-          .length,
-        winners: categorySubmissions.filter(s => s.placement !== null).length,
       };
+    }
+    const shortlisted = categorySubmissions.filter(
+      s => s.flagStatus === 'shortlisted'
+    ).length;
+    const rejected = categorySubmissions.filter(
+      s => s.flagStatus === 'rejected'
+    ).length;
+    const pending = categorySubmissions.filter(
+      s => s.flagStatus === 'pending'
+    ).length;
+    const winners = categorySubmissions.filter(
+      s => s.placement !== null
+    ).length;
+    return {
+      total: categorySubmissions.length,
+      shortlisted,
+      rejected,
+      pending,
+      winners,
+    };
+  }, [isMediterranean, portfoliosList.length, categorySubmissions]);
 
   // Placement counts - for Mediterranean, count unique portfolios
-  const placementCounts = isMediterranean
-    ? (['first', 'second', 'third', 'runner-up'] as const).reduce(
+  const placementCounts = useMemo(() => {
+    if (isMediterranean) {
+      return (['first', 'second', 'third', 'runner-up'] as const).reduce(
         (acc, placement) => {
           const uniquePortfolios = [
             ...new Set(
@@ -714,14 +737,16 @@ function JudgingPage() {
           return acc;
         },
         {} as Record<string, number>
-      )
-    : categorySubmissions.reduce(
-        (acc, s) => {
-          if (s.placement) acc[s.placement] = (acc[s.placement] || 0) + 1;
-          return acc;
-        },
-        {} as Record<string, number>
       );
+    }
+    return categorySubmissions.reduce(
+      (acc, s) => {
+        if (s.placement) acc[s.placement] = (acc[s.placement] || 0) + 1;
+        return acc;
+      },
+      {} as Record<string, number>
+    );
+  }, [isMediterranean, categorySubmissions]);
 
   // Render submission card
   const renderSubmissionCard = (
@@ -916,6 +941,12 @@ function JudgingPage() {
     if (!firstPhoto) return null;
 
     const isRejected = firstPhoto.flagStatus === 'rejected';
+    const isIncomplete = portfolioSubmissions.length < PHOTO_TYPES.length;
+
+    // Create a map of photo type to submission for quick lookup
+    const photoByType = new Map(
+      portfolioSubmissions.map(s => [s.portfolioPhotoType, s])
+    );
 
     return (
       <div
@@ -923,14 +954,23 @@ function JudgingPage() {
         className={`relative rounded-xl overflow-hidden bg-slate-900 border-2 transition-all group ${
           isRejected
             ? 'border-red-500/50 opacity-50'
-            : firstPhoto.flagStatus === 'shortlisted'
-              ? 'border-emerald-500/50'
-              : firstPhoto.placement
-                ? 'border-yellow-500/50'
-                : 'border-slate-800 hover:border-slate-600'
+            : isIncomplete
+              ? 'border-orange-500/50'
+              : firstPhoto.flagStatus === 'shortlisted'
+                ? 'border-emerald-500/50'
+                : firstPhoto.placement
+                  ? 'border-yellow-500/50'
+                  : 'border-slate-800 hover:border-slate-600'
         }`}
       >
-        {/* 3 Photos Grid - Clickable to open portfolio preview */}
+        {/* Incomplete badge */}
+        {isIncomplete && (
+          <div className="absolute top-0 right-0 bg-orange-500 text-black text-[10px] font-bold px-2 py-0.5 z-10">
+            {portfolioSubmissions.length}/{PHOTO_TYPES.length}
+          </div>
+        )}
+
+        {/* 3 Photos Grid - Always show all 3 slots */}
         <div
           role="button"
           tabIndex={0}
@@ -943,11 +983,17 @@ function JudgingPage() {
             }
           }}
         >
-          {portfolioSubmissions.map(sub => {
-            const imageUrl = getImageUrl(sub.r2ImageId);
+          {PHOTO_TYPES.map(photoType => {
+            const sub = photoByType.get(photoType);
+            const imageUrl = sub ? getImageUrl(sub.r2ImageId) : null;
+            const hasFailed = sub ? failedImages.has(sub.id) : false;
+
             return (
-              <div key={sub.id} className="aspect-square bg-slate-800 relative">
-                {imageUrl && !failedImages.has(sub.id) ? (
+              <div
+                key={photoType}
+                className={`aspect-square relative ${sub ? 'bg-slate-800' : 'bg-slate-800/50 border border-dashed border-slate-600'}`}
+              >
+                {sub && imageUrl && !hasFailed ? (
                   <img
                     src={imageUrl}
                     alt={sub.title}
@@ -962,8 +1008,10 @@ function JudgingPage() {
                     <span className="text-2xl">📷</span>
                   </div>
                 )}
-                <div className="absolute bottom-1 left-1 text-[10px] bg-black/70 text-slate-300 px-1.5 py-0.5 rounded capitalize">
-                  {sub.portfolioPhotoType}
+                <div
+                  className={`absolute bottom-1 left-1 text-[10px] px-1.5 py-0.5 rounded capitalize ${sub ? 'bg-black/70 text-slate-300' : 'bg-slate-700 text-slate-400'}`}
+                >
+                  {photoType}
                 </div>
               </div>
             );
@@ -1343,8 +1391,9 @@ function JudgingPage() {
                                   : renderSubmissionCard(winner, 'large')}
                               </div>
                             ) : (
-                              <div className="aspect-[4/3] bg-slate-800/50 rounded-lg flex items-center justify-center text-slate-500 border-2 border-dashed border-slate-700">
-                                Non assegnato
+                              <div className="aspect-[4/3] bg-slate-800/50 rounded-lg flex flex-col items-center justify-center text-slate-500 border-2 border-dashed border-slate-700 gap-2">
+                                <span className="text-4xl">📷</span>
+                                <span className="text-sm">Non assegnato</span>
                               </div>
                             )}
                           </div>
