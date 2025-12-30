@@ -55,8 +55,20 @@ type JudgingSubmission = {
   rating: number | null;
   portfolio: string | null;
   portfolioPhotoType: string | null;
+  anonymousUserId: string; // Anonymized user identifier for grouping
   isSubmitted: boolean; // Whether this placement is in final results
 };
+
+// Simple hash function to anonymize emails
+function hashEmail(email: string): string {
+  let hash = 0;
+  for (let i = 0; i < email.length; i++) {
+    const char = email.charCodeAt(i);
+    hash = (hash << 5) - hash + char;
+    hash = hash & hash; // Convert to 32bit integer
+  }
+  return Math.abs(hash).toString(36).slice(0, 6).toUpperCase();
+}
 
 /**
  * Judging API endpoint
@@ -99,6 +111,7 @@ export const GET: APIRoute = async ({ request, locals, url }) => {
         categoryId: submissions.categoryId,
         portfolio: submissions.portfolio,
         portfolioPhotoType: submissions.portfolioPhotoType,
+        userEmail: submissions.userEmail,
         flagStatus: judgingFlags.status,
         rating: judgingFlags.rating,
         pendingPlacement: judgingFlags.placement,
@@ -111,7 +124,7 @@ export const GET: APIRoute = async ({ request, locals, url }) => {
       .where(eq(submissions.contestId, contestId))
       .orderBy(submissions.categoryId, submissions.uploadedAt);
 
-    // Map to response format
+    // Map to response format with anonymized user IDs
     const judgingSubmissions: JudgingSubmission[] = submissionsData.map(s => ({
       id: s.id,
       title: s.title,
@@ -124,6 +137,7 @@ export const GET: APIRoute = async ({ request, locals, url }) => {
       rating: s.rating || null,
       portfolio: s.portfolio || null,
       portfolioPhotoType: s.portfolioPhotoType || null,
+      anonymousUserId: hashEmail(s.userEmail),
       isSubmitted: !!s.resultId, // True if placement is in final results
     }));
 

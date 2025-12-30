@@ -1,15 +1,6 @@
 import { SignedIn, SignedOut, useAuth } from '@clerk/clerk-react';
 import { createFileRoute } from '@tanstack/react-router';
-import {
-  Check,
-  Eye,
-  RotateCcw,
-  Send,
-  Star,
-  Trophy,
-  X,
-  ZoomOut,
-} from 'lucide-react';
+import { Check, RotateCcw, Send, Trophy, X, ZoomOut } from 'lucide-react';
 import { useCallback, useEffect, useRef, useState } from 'react';
 import { CURRENT_CONTEST_CATEGORIES } from '../../../constants/categories';
 import AdminTabs from '../../components/AdminTabs';
@@ -40,6 +31,7 @@ type JudgingSubmission = {
   rating: number | null;
   portfolio?: string | null;
   portfolioPhotoType?: string | null;
+  anonymousUserId?: string;
   isSubmitted?: boolean;
 };
 
@@ -48,15 +40,6 @@ const PLACEMENTS: { value: Placement; label: string; color: string }[] = [
   { value: 'second', label: '2°', color: 'bg-gray-400' },
   { value: 'third', label: '3°', color: 'bg-amber-600' },
   { value: 'runner-up', label: 'M', color: 'bg-blue-500' }, // M = Menzione
-];
-
-const STAR_COLORS = [
-  'text-slate-600',
-  'text-red-400',
-  'text-orange-400',
-  'text-yellow-400',
-  'text-lime-400',
-  'text-emerald-400',
 ];
 
 function JudgingPage() {
@@ -71,17 +54,22 @@ function JudgingPage() {
   const [submissions, setSubmissions] = useState<JudgingSubmission[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
-  const [selectedId, setSelectedId] = useState<string | null>(null);
-  const [inspectedImage, setInspectedImage] = useState<{
-    url: string;
-    title: string;
-    description: string | null;
-  } | null>(null);
+  const [inspectedSubmissionId, setInspectedSubmissionId] = useState<
+    string | null
+  >(null);
+  const [inspectedPortfolioId, setInspectedPortfolioId] = useState<
+    string | null
+  >(null);
+  // For zooming into individual photos within a portfolio modal
+  const [zoomedPortfolioPhotoId, setZoomedPortfolioPhotoId] = useState<
+    string | null
+  >(null);
   const [failedImages, setFailedImages] = useState<Set<string>>(new Set());
   const [filterStatus, setFilterStatus] = useState<FilterStatus>('all');
 
   // Zoom state for inspect modal
   const [zoomLevel, setZoomLevel] = useState(1);
+  const [zoomOrigin, setZoomOrigin] = useState({ x: 50, y: 50 }); // percentage
   const imageContainerRef = useRef<HTMLDivElement>(null);
 
   // Sync status
@@ -153,12 +141,19 @@ function JudgingPage() {
     }
   }, [contestId, activeCategory, fetchSubmissions]);
 
-  // Reset zoom when closing modal
+  // Reset zoom when closing modal and lock body scroll
   useEffect(() => {
-    if (!inspectedImage) {
+    if (inspectedSubmissionId || inspectedPortfolioId) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = '';
       setZoomLevel(1);
+      setZoomOrigin({ x: 50, y: 50 });
     }
-  }, [inspectedImage]);
+    return () => {
+      document.body.style.overflow = '';
+    };
+  }, [inspectedSubmissionId, inspectedPortfolioId]);
 
   // Get image URL
   const getImageUrl = (r2ImageId: string | null): string | null => {
@@ -342,20 +337,99 @@ function JudgingPage() {
     [syncToServer]
   );
 
-  // Close modal on Escape
-  useEffect(() => {
-    const handleKeyDown = (e: KeyboardEvent) => {
-      if (e.key === 'Escape') {
-        if (inspectedImage) {
-          setInspectedImage(null);
-        } else if (selectedId) {
-          setSelectedId(null);
+  // Portfolio-level voting (for Mediterranean) - applies to all photos in the portfolio
+  const setPortfolioRating = useCallback(
+    (portfolioId: string, rating: number) => {
+      setSubmissions(prev => {
+        const portfolioSubmissions = prev.filter(
+          s => s.portfolio === portfolioId
+        );
+        portfolioSubmissions.forEach(s => {
+          syncToServer(s.id, 'rating', rating);
+          syncToServer(s.id, 'flag', 'shortlisted');
+        });
+        return prev.map(s =>
+          s.portfolio === portfolioId
+            ? { ...s, rating, flagStatus: 'shortlisted' as FlagStatus }
+            : s
+        );
+      });
+    },
+    [syncToServer]
+  );
+
+  const setPortfolioFlag = useCallback(
+    (portfolioId: string, status: FlagStatus) => {
+      setSubmissions(prev => {
+        const portfolioSubmissions = prev.filter(
+          s => s.portfolio === portfolioId
+        );
+        portfolioSubmissions.forEach(s => {
+          syncToServer(s.id, 'flag', status);
+        });
+        return prev.map(s =>
+          s.portfolio === portfolioId ? { ...s, flagStatus: status } : s
+        );
+      });
+    },
+    [syncToServer]
+  );
+
+  const setPortfolioPlacement = useCallback(
+    (portfolioId: string, placement: Placement) => {
+      setSubmissions(prev => {
+        const portfolioSubmissions = prev.filter(
+          s => s.portfolio === portfolioId
+        );
+        const categoryId = portfolioSubmissions[0]?.categoryId;
+
+        // Clear same placement from other portfolios in category
+        const isUniquePlacement =
+          placement === 'first' ||
+          placement === 'second' ||
+          placement === 'third';
+
+        if (isUniquePlacement && placement && categoryId) {
+          const otherPortfoliosWithPlacement = prev.filter(
+            s =>
+              s.categoryId === categoryId &&
+              s.portfolio !== portfolioId &&
+              s.placement === placement
+          );
+          // Get unique portfolio IDs
+          const otherPortfolioIds = [
+            ...new Set(otherPortfoliosWithPlacement.map(s => s.portfolio)),
+          ];
+          otherPortfolioIds.forEach(pid => {
+            if (pid) {
+              prev
+                .filter(s => s.portfolio === pid)
+                .forEach(s => syncToServer(s.id, 'placement', null));
+            }
+          });
         }
-      }
-    };
-    window.addEventListener('keydown', handleKeyDown);
-    return () => window.removeEventListener('keydown', handleKeyDown);
-  }, [inspectedImage, selectedId]);
+
+        portfolioSubmissions.forEach(s => {
+          syncToServer(s.id, 'placement', placement);
+        });
+
+        return prev.map(s => {
+          if (s.portfolio === portfolioId) {
+            return { ...s, placement };
+          }
+          if (
+            isUniquePlacement &&
+            s.categoryId === categoryId &&
+            s.placement === placement
+          ) {
+            return { ...s, placement: null };
+          }
+          return s;
+        });
+      });
+    },
+    [syncToServer]
+  );
 
   // Filter submissions
   const categorySubmissions = submissions.filter(
@@ -380,19 +454,179 @@ function JudgingPage() {
         })
       : filteredSubmissions;
 
-  // Group Mediterranean submissions by portfolio
+  // Get current inspected submission and navigation
+  const inspectedSubmission = inspectedSubmissionId
+    ? sortedSubmissions.find(s => s.id === inspectedSubmissionId)
+    : null;
+  const inspectedIndex = inspectedSubmissionId
+    ? sortedSubmissions.findIndex(s => s.id === inspectedSubmissionId)
+    : -1;
+  const canGoPrev = inspectedIndex > 0;
+  const canGoNext =
+    inspectedIndex >= 0 && inspectedIndex < sortedSubmissions.length - 1;
+
+  const goToPrevSubmission = () => {
+    if (canGoPrev) {
+      setInspectedSubmissionId(sortedSubmissions[inspectedIndex - 1].id);
+      setZoomLevel(1);
+      setZoomOrigin({ x: 50, y: 50 });
+    }
+  };
+
+  const goToNextSubmission = () => {
+    if (canGoNext) {
+      setInspectedSubmissionId(sortedSubmissions[inspectedIndex + 1].id);
+      setZoomLevel(1);
+      setZoomOrigin({ x: 50, y: 50 });
+    }
+  };
+
+  // Keyboard navigation for modal
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      // Handle zoomed photo within portfolio modal
+      if (zoomedPortfolioPhotoId && inspectedPortfolio) {
+        if (e.key === 'Escape') {
+          setZoomedPortfolioPhotoId(null);
+          setZoomLevel(1);
+          setZoomOrigin({ x: 50, y: 50 });
+        } else if (e.key === 'ArrowLeft') {
+          const currentIdx = inspectedPortfolio.submissions.findIndex(
+            s => s.id === zoomedPortfolioPhotoId
+          );
+          if (currentIdx > 0) {
+            setZoomedPortfolioPhotoId(
+              inspectedPortfolio.submissions[currentIdx - 1].id
+            );
+            setZoomLevel(1);
+            setZoomOrigin({ x: 50, y: 50 });
+          }
+        } else if (e.key === 'ArrowRight') {
+          const currentIdx = inspectedPortfolio.submissions.findIndex(
+            s => s.id === zoomedPortfolioPhotoId
+          );
+          if (currentIdx < inspectedPortfolio.submissions.length - 1) {
+            setZoomedPortfolioPhotoId(
+              inspectedPortfolio.submissions[currentIdx + 1].id
+            );
+            setZoomLevel(1);
+            setZoomOrigin({ x: 50, y: 50 });
+          }
+        }
+        return;
+      }
+
+      // Handle portfolio modal (Mediterranean)
+      if (inspectedPortfolioId) {
+        if (e.key === 'Escape') {
+          setInspectedPortfolioId(null);
+        } else if (e.key === 'ArrowLeft') {
+          goToPrevPortfolio();
+        } else if (e.key === 'ArrowRight') {
+          goToNextPortfolio();
+        }
+        return;
+      }
+
+      // Handle individual submission modal
+      if (!inspectedSubmissionId) return;
+
+      if (e.key === 'Escape') {
+        setInspectedSubmissionId(null);
+      } else if (e.key === 'ArrowLeft') {
+        goToPrevSubmission();
+      } else if (e.key === 'ArrowRight') {
+        goToNextSubmission();
+      }
+    };
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  });
+
+  // Group Mediterranean submissions by user, then by portfolio
   const isMediterranean = activeCategory === 'mediterranean';
-  const groupedByPortfolio = isMediterranean
+  const groupedByUser = isMediterranean
     ? sortedSubmissions.reduce(
         (acc, s) => {
-          const key = s.portfolio || 'ungrouped';
-          if (!acc[key]) acc[key] = [];
-          acc[key].push(s);
+          const userKey = s.anonymousUserId || 'unknown';
+          if (!acc[userKey]) acc[userKey] = {};
+          const portfolioKey = s.portfolio || 'ungrouped';
+          if (!acc[userKey][portfolioKey]) acc[userKey][portfolioKey] = [];
+          acc[userKey][portfolioKey].push(s);
           return acc;
         },
-        {} as Record<string, JudgingSubmission[]>
+        {} as Record<string, Record<string, JudgingSubmission[]>>
       )
     : null;
+
+  // Flat list of portfolios for navigation (Mediterranean only)
+  const portfoliosList: {
+    portfolioId: string;
+    submissions: JudgingSubmission[];
+  }[] = groupedByUser
+    ? Object.values(groupedByUser).flatMap(userPortfolios =>
+        Object.entries(userPortfolios).map(([portfolioId, subs]) => ({
+          portfolioId,
+          submissions: subs,
+        }))
+      )
+    : [];
+
+  // Get current inspected portfolio and navigation
+  const inspectedPortfolio = inspectedPortfolioId
+    ? portfoliosList.find(p => p.portfolioId === inspectedPortfolioId)
+    : null;
+  const inspectedPortfolioIndex = inspectedPortfolioId
+    ? portfoliosList.findIndex(p => p.portfolioId === inspectedPortfolioId)
+    : -1;
+  const canGoToPrevPortfolio = inspectedPortfolioIndex > 0;
+  const canGoToNextPortfolio =
+    inspectedPortfolioIndex >= 0 &&
+    inspectedPortfolioIndex < portfoliosList.length - 1;
+
+  // Zoomed photo within portfolio
+  const zoomedPhoto =
+    zoomedPortfolioPhotoId && inspectedPortfolio
+      ? inspectedPortfolio.submissions.find(
+          s => s.id === zoomedPortfolioPhotoId
+        )
+      : null;
+  const zoomedPhotoIndex =
+    zoomedPortfolioPhotoId && inspectedPortfolio
+      ? inspectedPortfolio.submissions.findIndex(
+          s => s.id === zoomedPortfolioPhotoId
+        )
+      : -1;
+  const zoomedImageUrl = zoomedPhoto
+    ? getImageUrl(zoomedPhoto.r2ImageId)
+    : null;
+  const canGoPrevPhoto = zoomedPhotoIndex > 0;
+  const canGoNextPhoto =
+    inspectedPortfolio && zoomedPhotoIndex >= 0
+      ? zoomedPhotoIndex < inspectedPortfolio.submissions.length - 1
+      : false;
+
+  const goToPrevPortfolio = () => {
+    if (canGoToPrevPortfolio) {
+      setZoomedPortfolioPhotoId(null);
+      setZoomLevel(1);
+      setZoomOrigin({ x: 50, y: 50 });
+      setInspectedPortfolioId(
+        portfoliosList[inspectedPortfolioIndex - 1].portfolioId
+      );
+    }
+  };
+
+  const goToNextPortfolio = () => {
+    if (canGoToNextPortfolio) {
+      setZoomedPortfolioPhotoId(null);
+      setZoomLevel(1);
+      setZoomOrigin({ x: 50, y: 50 });
+      setInspectedPortfolioId(
+        portfoliosList[inspectedPortfolioIndex + 1].portfolioId
+      );
+    }
+  };
 
   // Counts
   const counts = {
@@ -419,130 +653,89 @@ function JudgingPage() {
     size: 'normal' | 'large' = 'normal'
   ) => {
     const imageUrl = getImageUrl(submission.r2ImageId);
-    const isSelected = selectedId === submission.id;
     const isRejected = submission.flagStatus === 'rejected';
 
     return (
       <div
         key={submission.id}
-        role="button"
-        tabIndex={0}
-        className={`relative rounded-lg overflow-hidden bg-slate-900 border-2 transition-all cursor-pointer ${
-          isSelected
-            ? 'border-emerald-500 ring-2 ring-emerald-500/50 scale-[1.02]'
-            : isRejected
-              ? 'border-red-500/50 opacity-40'
-              : submission.flagStatus === 'shortlisted'
-                ? 'border-emerald-500/50'
+        className={`relative rounded-lg overflow-hidden bg-slate-900 border-2 transition-all group ${
+          isRejected
+            ? 'border-red-500/50 opacity-50'
+            : submission.flagStatus === 'shortlisted'
+              ? 'border-emerald-500/50'
+              : submission.placement
+                ? 'border-yellow-500/50'
                 : 'border-slate-800 hover:border-slate-600'
         }`}
-        onClick={() => setSelectedId(isSelected ? null : submission.id)}
-        onKeyDown={e => {
-          if (e.key === 'Enter' || e.key === ' ') {
-            e.preventDefault();
-            setSelectedId(isSelected ? null : submission.id);
-          }
-        }}
       >
-        {/* Image */}
+        {/* Clickable Image - opens preview */}
         <div
-          className={`${size === 'large' ? 'aspect-[4/3]' : 'aspect-square'} bg-slate-800 relative group`}
+          role="button"
+          tabIndex={0}
+          className={`${size === 'large' ? 'aspect-[4/3]' : 'aspect-square'} bg-slate-800 relative cursor-pointer`}
+          onClick={() => {
+            if (imageUrl) {
+              setInspectedSubmissionId(submission.id);
+            }
+          }}
+          onKeyDown={e => {
+            if (e.key === 'Enter' || e.key === ' ') {
+              e.preventDefault();
+              if (imageUrl) {
+                setInspectedSubmissionId(submission.id);
+              }
+            }
+          }}
         >
           {imageUrl && !failedImages.has(submission.id) ? (
-            <>
-              <img
-                src={imageUrl}
-                alt={submission.title}
-                className="w-full h-full object-cover"
-                loading="lazy"
-                onError={() => {
-                  setFailedImages(prev => new Set(prev).add(submission.id));
-                }}
-              />
-              <button
-                type="button"
-                onClick={e => {
-                  e.stopPropagation();
-                  setInspectedImage({
-                    url: imageUrl,
-                    title: submission.title,
-                    description: submission.description,
-                  });
-                }}
-                className="absolute top-2 right-2 w-10 h-10 bg-black/60 hover:bg-black/80 rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity"
-                aria-label="Ispeziona immagine"
-              >
-                <Eye className="w-5 h-5 text-white" />
-              </button>
-            </>
+            <img
+              src={imageUrl}
+              alt={submission.title}
+              className="w-full h-full object-cover"
+              loading="lazy"
+              onError={() => {
+                setFailedImages(prev => new Set(prev).add(submission.id));
+              }}
+            />
           ) : (
             <div className="w-full h-full flex flex-col items-center justify-center text-slate-500 gap-2">
               <span className="text-4xl">📷</span>
               <span className="text-xs">#{submission.id.slice(0, 6)}</span>
             </div>
           )}
-        </div>
 
-        {/* Placement Badge */}
-        {submission.placement && (
-          <div className="absolute top-2 left-2">
-            <span
-              className={`${PLACEMENTS.find(p => p.value === submission.placement)?.color} w-8 h-8 rounded-full flex items-center justify-center text-sm font-bold shadow-lg`}
-            >
-              {PLACEMENTS.find(p => p.value === submission.placement)?.label}
-            </span>
+          {/* Status badges - always visible */}
+          <div className="absolute top-2 left-2 flex gap-1.5">
+            {submission.placement && (
+              <span
+                className={`${PLACEMENTS.find(p => p.value === submission.placement)?.color} w-7 h-7 rounded-full flex items-center justify-center text-xs font-bold shadow-lg`}
+              >
+                {PLACEMENTS.find(p => p.value === submission.placement)?.label}
+              </span>
+            )}
+            {submission.flagStatus === 'shortlisted' && (
+              <span className="bg-emerald-500 w-7 h-7 rounded-full flex items-center justify-center text-xs shadow-lg">
+                ✓
+              </span>
+            )}
+            {submission.flagStatus === 'rejected' && (
+              <span className="bg-red-500 w-7 h-7 rounded-full flex items-center justify-center text-xs shadow-lg">
+                ✗
+              </span>
+            )}
           </div>
-        )}
 
-        {/* Rating Badge */}
-        {submission.rating && submission.rating > 0 && (
-          <div className="absolute top-2 right-14 flex items-center gap-0.5 bg-black/60 px-2 py-1 rounded-full">
-            {[...Array(submission.rating)].map((_, i) => (
-              <Star
-                key={i}
-                className={`w-3 h-3 fill-current ${STAR_COLORS[submission.rating || 0]}`}
-              />
-            ))}
-          </div>
-        )}
-
-        {/* Flag Badge */}
-        {submission.flagStatus !== 'pending' && (
-          <div className="absolute bottom-16 left-2">
-            <span
-              className={`w-6 h-6 rounded-full flex items-center justify-center text-xs font-bold shadow-lg ${
-                submission.flagStatus === 'shortlisted'
-                  ? 'bg-emerald-500'
-                  : 'bg-red-500'
-              }`}
-            >
-              {submission.flagStatus === 'shortlisted' ? '✓' : '✗'}
-            </span>
-          </div>
-        )}
-
-        {/* Title & Description */}
-        <div className="p-2 bg-slate-900">
-          <p className="text-sm text-white font-medium truncate">
-            {submission.title}
-          </p>
-          {submission.description && (
-            <p className="text-xs text-slate-400 truncate mt-0.5">
-              {submission.description}
-            </p>
+          {/* Rating badge */}
+          {submission.rating && submission.rating > 0 && (
+            <div className="absolute top-2 right-2 bg-black/70 px-1.5 py-0.5 rounded text-xs font-bold text-yellow-400">
+              ★{submission.rating}
+            </div>
           )}
-          {submission.portfolioPhotoType && (
-            <p className="text-xs text-slate-500 capitalize mt-0.5">
-              {submission.portfolioPhotoType}
-            </p>
-          )}
-        </div>
 
-        {/* Action Buttons */}
-        {isSelected && (
-          <div className="absolute inset-x-0 bottom-14 p-2 bg-gradient-to-t from-black via-black/90 to-transparent">
-            {/* Star Rating */}
-            <div className="flex justify-center gap-1 mb-2">
+          {/* Hover toolbar - compact and organized */}
+          <div className="absolute inset-x-0 bottom-0 p-2 bg-gradient-to-t from-black/90 to-transparent opacity-0 group-hover:opacity-100 transition-opacity">
+            <div className="flex items-center justify-center gap-1">
+              {/* Stars */}
               {[1, 2, 3, 4, 5].map(stars => (
                 <button
                   key={stars}
@@ -551,31 +744,30 @@ function JudgingPage() {
                     e.stopPropagation();
                     setRating(submission.id, stars);
                   }}
-                  className={`w-8 h-8 rounded-full flex items-center justify-center transition-all ${
+                  className={`w-6 h-6 rounded text-xs font-bold transition-all ${
                     submission.rating === stars
-                      ? 'bg-yellow-500 ring-2 ring-white scale-110'
-                      : 'bg-slate-700 hover:bg-slate-600'
+                      ? 'bg-yellow-500 text-black'
+                      : 'bg-slate-700/80 text-white hover:bg-slate-600'
                   }`}
-                  title={`Valuta ${stars} stelle`}
                 >
-                  <span className="text-sm font-bold">{stars}</span>
+                  {stars}
                 </button>
               ))}
-            </div>
 
-            <div className="flex justify-center gap-1.5 flex-wrap">
+              <div className="w-px h-5 bg-slate-600 mx-1" />
+
+              {/* Flags */}
               <button
                 type="button"
                 onClick={e => {
                   e.stopPropagation();
                   setFlagStatus(submission.id, 'shortlisted');
                 }}
-                className={`bg-emerald-600 hover:bg-emerald-500 w-9 h-9 rounded-full flex items-center justify-center text-sm font-bold transition-all ${
+                className={`w-6 h-6 rounded text-xs transition-all ${
                   submission.flagStatus === 'shortlisted'
-                    ? 'ring-2 ring-white scale-110'
-                    : ''
+                    ? 'bg-emerald-500 text-white'
+                    : 'bg-slate-700/80 text-emerald-400 hover:bg-emerald-600 hover:text-white'
                 }`}
-                title="Seleziona"
               >
                 ✓
               </button>
@@ -585,18 +777,18 @@ function JudgingPage() {
                   e.stopPropagation();
                   setFlagStatus(submission.id, 'rejected');
                 }}
-                className={`bg-red-600 hover:bg-red-500 w-9 h-9 rounded-full flex items-center justify-center text-sm font-bold transition-all ${
+                className={`w-6 h-6 rounded text-xs transition-all ${
                   submission.flagStatus === 'rejected'
-                    ? 'ring-2 ring-white scale-110'
-                    : ''
+                    ? 'bg-red-500 text-white'
+                    : 'bg-slate-700/80 text-red-400 hover:bg-red-600 hover:text-white'
                 }`}
-                title="Scarta"
               >
                 ✗
               </button>
 
-              <div className="w-px bg-slate-600 mx-1" />
+              <div className="w-px h-5 bg-slate-600 mx-1" />
 
+              {/* Placements */}
               {PLACEMENTS.map(p => (
                 <button
                   key={p.value}
@@ -605,30 +797,224 @@ function JudgingPage() {
                     e.stopPropagation();
                     setPlacement(submission.id, p.value);
                   }}
-                  className={`${p.color} hover:opacity-90 w-9 h-9 rounded-full flex items-center justify-center text-sm font-bold transition-all ${
+                  className={`w-6 h-6 rounded text-xs font-bold transition-all ${
                     submission.placement === p.value
-                      ? 'ring-2 ring-white scale-110'
-                      : ''
+                      ? `${p.color} text-white ring-1 ring-white`
+                      : 'bg-slate-700/80 text-slate-300 hover:bg-slate-600'
                   }`}
-                  title={p.label}
                 >
                   {p.label}
                 </button>
               ))}
+              {submission.placement && (
+                <button
+                  type="button"
+                  onClick={e => {
+                    e.stopPropagation();
+                    setPlacement(submission.id, null);
+                  }}
+                  className="w-6 h-6 rounded text-xs bg-slate-700/80 text-slate-400 hover:bg-slate-600 hover:text-white"
+                >
+                  ✕
+                </button>
+              )}
+            </div>
+          </div>
+        </div>
+
+        {/* Title & Description - minimal */}
+        <div className="px-2 py-1.5 bg-slate-900">
+          <p className="text-xs text-slate-300 truncate">{submission.title}</p>
+        </div>
+      </div>
+    );
+  };
+
+  // Render a Mediterranean portfolio card (3 photos + portfolio-level voting)
+  const renderPortfolioCard = (
+    portfolioId: string,
+    portfolioSubmissions: JudgingSubmission[]
+  ) => {
+    // Get portfolio status from first photo (they should all be the same)
+    const firstPhoto = portfolioSubmissions[0];
+    if (!firstPhoto) return null;
+
+    const isRejected = firstPhoto.flagStatus === 'rejected';
+
+    return (
+      <div
+        key={portfolioId}
+        className={`relative rounded-xl overflow-hidden bg-slate-900 border-2 transition-all group ${
+          isRejected
+            ? 'border-red-500/50 opacity-50'
+            : firstPhoto.flagStatus === 'shortlisted'
+              ? 'border-emerald-500/50'
+              : firstPhoto.placement
+                ? 'border-yellow-500/50'
+                : 'border-slate-800 hover:border-slate-600'
+        }`}
+      >
+        {/* 3 Photos Grid - Clickable to open portfolio preview */}
+        <div
+          role="button"
+          tabIndex={0}
+          className="grid grid-cols-3 gap-2 p-2 cursor-pointer"
+          onClick={() => setInspectedPortfolioId(portfolioId)}
+          onKeyDown={e => {
+            if (e.key === 'Enter' || e.key === ' ') {
+              e.preventDefault();
+              setInspectedPortfolioId(portfolioId);
+            }
+          }}
+        >
+          {portfolioSubmissions.map(sub => {
+            const imageUrl = getImageUrl(sub.r2ImageId);
+            return (
+              <div key={sub.id} className="aspect-square bg-slate-800 relative">
+                {imageUrl && !failedImages.has(sub.id) ? (
+                  <img
+                    src={imageUrl}
+                    alt={sub.title}
+                    className="w-full h-full object-cover"
+                    loading="lazy"
+                    onError={() => {
+                      setFailedImages(prev => new Set(prev).add(sub.id));
+                    }}
+                  />
+                ) : (
+                  <div className="w-full h-full flex items-center justify-center text-slate-500">
+                    <span className="text-2xl">📷</span>
+                  </div>
+                )}
+                <div className="absolute bottom-1 left-1 text-[10px] bg-black/70 text-slate-300 px-1.5 py-0.5 rounded capitalize">
+                  {sub.portfolioPhotoType}
+                </div>
+              </div>
+            );
+          })}
+        </div>
+
+        {/* Status badges - portfolio level */}
+        <div className="absolute top-3 left-3 flex gap-1.5">
+          {firstPhoto.placement && (
+            <span
+              className={`${PLACEMENTS.find(p => p.value === firstPhoto.placement)?.color} w-7 h-7 rounded-full flex items-center justify-center text-xs font-bold shadow-lg`}
+            >
+              {PLACEMENTS.find(p => p.value === firstPhoto.placement)?.label}
+            </span>
+          )}
+          {firstPhoto.flagStatus === 'shortlisted' && (
+            <span className="bg-emerald-500 w-7 h-7 rounded-full flex items-center justify-center text-xs shadow-lg">
+              ✓
+            </span>
+          )}
+          {firstPhoto.flagStatus === 'rejected' && (
+            <span className="bg-red-500 w-7 h-7 rounded-full flex items-center justify-center text-xs shadow-lg">
+              ✗
+            </span>
+          )}
+        </div>
+
+        {/* Rating badge - portfolio level */}
+        {firstPhoto.rating && firstPhoto.rating > 0 && (
+          <div className="absolute top-3 right-3 bg-black/70 px-1.5 py-0.5 rounded text-xs font-bold text-yellow-400">
+            ★{firstPhoto.rating}
+          </div>
+        )}
+
+        {/* Hover toolbar - portfolio-level voting */}
+        <div className="absolute inset-x-0 bottom-0 p-3 bg-gradient-to-t from-black via-black/90 to-transparent opacity-0 group-hover:opacity-100 transition-opacity">
+          <div className="flex items-center justify-center gap-1.5">
+            {/* Stars */}
+            {[1, 2, 3, 4, 5].map(stars => (
+              <button
+                key={stars}
+                type="button"
+                onClick={e => {
+                  e.stopPropagation();
+                  setPortfolioRating(portfolioId, stars);
+                }}
+                className={`w-7 h-7 rounded text-sm font-bold transition-all ${
+                  firstPhoto.rating === stars
+                    ? 'bg-yellow-500 text-black'
+                    : 'bg-slate-700/80 text-white hover:bg-slate-600'
+                }`}
+              >
+                {stars}
+              </button>
+            ))}
+
+            <div className="w-px h-6 bg-slate-600 mx-1.5" />
+
+            {/* Flags */}
+            <button
+              type="button"
+              onClick={e => {
+                e.stopPropagation();
+                setPortfolioFlag(portfolioId, 'shortlisted');
+              }}
+              className={`w-7 h-7 rounded text-sm transition-all ${
+                firstPhoto.flagStatus === 'shortlisted'
+                  ? 'bg-emerald-500 text-white'
+                  : 'bg-slate-700/80 text-emerald-400 hover:bg-emerald-600 hover:text-white'
+              }`}
+            >
+              ✓
+            </button>
+            <button
+              type="button"
+              onClick={e => {
+                e.stopPropagation();
+                setPortfolioFlag(portfolioId, 'rejected');
+              }}
+              className={`w-7 h-7 rounded text-sm transition-all ${
+                firstPhoto.flagStatus === 'rejected'
+                  ? 'bg-red-500 text-white'
+                  : 'bg-slate-700/80 text-red-400 hover:bg-red-600 hover:text-white'
+              }`}
+            >
+              ✗
+            </button>
+
+            <div className="w-px h-6 bg-slate-600 mx-1.5" />
+
+            {/* Placements */}
+            {PLACEMENTS.map(p => (
+              <button
+                key={p.value}
+                type="button"
+                onClick={e => {
+                  e.stopPropagation();
+                  setPortfolioPlacement(portfolioId, p.value);
+                }}
+                className={`w-7 h-7 rounded text-sm font-bold transition-all ${
+                  firstPhoto.placement === p.value
+                    ? `${p.color} text-white ring-1 ring-white`
+                    : 'bg-slate-700/80 text-slate-300 hover:bg-slate-600'
+                }`}
+              >
+                {p.label}
+              </button>
+            ))}
+            {firstPhoto.placement && (
               <button
                 type="button"
                 onClick={e => {
                   e.stopPropagation();
-                  setPlacement(submission.id, null);
+                  setPortfolioPlacement(portfolioId, null);
                 }}
-                className="bg-slate-700 hover:bg-slate-600 w-9 h-9 rounded-full flex items-center justify-center text-sm font-bold transition-all"
-                title="Rimuovi piazzamento"
+                className="w-7 h-7 rounded text-sm bg-slate-700/80 text-slate-400 hover:bg-slate-600 hover:text-white"
               >
                 ✕
               </button>
-            </div>
+            )}
           </div>
-        )}
+        </div>
+
+        {/* Portfolio label */}
+        <div className="px-3 py-2 bg-slate-900 text-center">
+          <p className="text-xs text-slate-400">Portfolio</p>
+        </div>
       </div>
     );
   };
@@ -712,7 +1098,6 @@ function JudgingPage() {
                       type="button"
                       onClick={() => {
                         setActiveCategory(cat.id);
-                        setSelectedId(null);
                         setFailedImages(new Set());
                         setFilterStatus('all');
                       }}
@@ -830,65 +1215,134 @@ function JudgingPage() {
                     )}
                   </div>
                 ) : filterStatus === 'winners' ? (
-                  /* Winners Preview - Nice layout */
-                  <div className="space-y-6">
-                    {['first', 'second', 'third', 'runner-up'].map(
-                      placement => {
-                        const winners = sortedSubmissions.filter(
+                  /* Winners Preview - Elegant podium layout */
+                  <div className="space-y-8">
+                    {/* Podium - 1st, 2nd, 3rd */}
+                    <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                      {['second', 'first', 'third'].map(placement => {
+                        const winner = sortedSubmissions.find(
                           s => s.placement === placement
                         );
-                        if (winners.length === 0) return null;
-
                         const placementInfo = PLACEMENTS.find(
                           p => p.value === placement
                         );
+                        const isFirst = placement === 'first';
+
+                        // For Mediterranean, find the portfolio
+                        const winnerPortfolio =
+                          isMediterranean && winner?.portfolio
+                            ? portfoliosList.find(
+                                p => p.portfolioId === winner.portfolio
+                              )
+                            : null;
 
                         return (
-                          <div key={placement}>
-                            <h3 className="text-lg font-medium mb-3 flex items-center gap-2">
+                          <div
+                            key={placement}
+                            className={`${isFirst ? 'md:-mt-4 md:order-2' : placement === 'second' ? 'md:order-1' : 'md:order-3'}`}
+                          >
+                            <div
+                              className={`text-center mb-3 ${isFirst ? 'text-2xl' : 'text-lg'}`}
+                            >
                               <span
-                                className={`${placementInfo?.color} w-8 h-8 rounded-full flex items-center justify-center text-sm font-bold`}
+                                className={`${placementInfo?.color} inline-flex items-center justify-center ${isFirst ? 'w-14 h-14 text-xl' : 'w-10 h-10 text-sm'} rounded-full font-bold shadow-lg`}
                               >
                                 {placementInfo?.label}
                               </span>
-                              <span className="text-slate-300">
-                                {placement === 'first' && '1° Posto'}
-                                {placement === 'second' && '2° Posto'}
-                                {placement === 'third' && '3° Posto'}
-                                {placement === 'runner-up' && 'Menzione'}
-                              </span>
-                            </h3>
-                            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-                              {winners.map(submission =>
-                                renderSubmissionCard(submission, 'large')
-                              )}
+                              <p className="text-slate-300 mt-2 font-medium">
+                                {placement === 'first' && '🥇 1° Posto'}
+                                {placement === 'second' && '🥈 2° Posto'}
+                                {placement === 'third' && '🥉 3° Posto'}
+                              </p>
                             </div>
-                          </div>
-                        );
-                      }
-                    )}
-                  </div>
-                ) : isMediterranean && groupedByPortfolio ? (
-                  <div className="space-y-8">
-                    {Object.entries(groupedByPortfolio).map(
-                      ([portfolioId, portfolioSubmissions]) => (
-                        <div
-                          key={portfolioId}
-                          className="bg-slate-900/50 rounded-xl p-4 border border-slate-800"
-                        >
-                          <h3 className="text-lg font-medium mb-4 text-slate-300">
-                            Portfolio {portfolioId}
-                            <span className="text-sm text-slate-500 ml-2">
-                              ({portfolioSubmissions.length}/3 foto)
-                            </span>
-                          </h3>
-                          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-                            {portfolioSubmissions.map(submission =>
-                              renderSubmissionCard(submission, 'large')
+                            {winner ? (
+                              <div
+                                className={`${isFirst ? 'ring-2 ring-yellow-500/50' : ''} rounded-lg overflow-hidden`}
+                              >
+                                {isMediterranean && winnerPortfolio
+                                  ? renderPortfolioCard(
+                                      winnerPortfolio.portfolioId,
+                                      winnerPortfolio.submissions
+                                    )
+                                  : renderSubmissionCard(winner, 'large')}
+                              </div>
+                            ) : (
+                              <div className="aspect-[4/3] bg-slate-800/50 rounded-lg flex items-center justify-center text-slate-500 border-2 border-dashed border-slate-700">
+                                Non assegnato
+                              </div>
                             )}
                           </div>
+                        );
+                      })}
+                    </div>
+
+                    {/* Runner-ups */}
+                    {sortedSubmissions.filter(s => s.placement === 'runner-up')
+                      .length > 0 && (
+                      <div className="mt-8 pt-8 border-t border-slate-800">
+                        <h3 className="text-lg font-medium mb-4 flex items-center gap-2">
+                          <span className="bg-blue-500 w-8 h-8 rounded-full flex items-center justify-center text-sm font-bold">
+                            M
+                          </span>
+                          <span className="text-slate-300">
+                            Menzioni (
+                            {isMediterranean
+                              ? // Count unique portfolios with runner-up
+                                [
+                                  ...new Set(
+                                    sortedSubmissions
+                                      .filter(s => s.placement === 'runner-up')
+                                      .map(s => s.portfolio)
+                                  ),
+                                ].length
+                              : sortedSubmissions.filter(
+                                  s => s.placement === 'runner-up'
+                                ).length}
+                            )
+                          </span>
+                        </h3>
+                        <div
+                          className={`grid ${isMediterranean ? 'grid-cols-1 md:grid-cols-2' : 'grid-cols-2 md:grid-cols-4'} gap-4`}
+                        >
+                          {isMediterranean
+                            ? // Render unique portfolios with runner-up
+                              [
+                                ...new Set(
+                                  sortedSubmissions
+                                    .filter(s => s.placement === 'runner-up')
+                                    .map(s => s.portfolio)
+                                ),
+                              ].map(portfolioId => {
+                                const portfolio = portfoliosList.find(
+                                  p => p.portfolioId === portfolioId
+                                );
+                                return portfolio
+                                  ? renderPortfolioCard(
+                                      portfolio.portfolioId,
+                                      portfolio.submissions
+                                    )
+                                  : null;
+                              })
+                            : sortedSubmissions
+                                .filter(s => s.placement === 'runner-up')
+                                .map(submission =>
+                                  renderSubmissionCard(submission, 'normal')
+                                )}
                         </div>
-                      )
+                      </div>
+                    )}
+                  </div>
+                ) : isMediterranean && groupedByUser ? (
+                  <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    {Object.entries(groupedByUser).flatMap(
+                      ([_userId, portfolios]) =>
+                        Object.entries(portfolios).map(
+                          ([portfolioId, portfolioSubmissions]) =>
+                            renderPortfolioCard(
+                              portfolioId,
+                              portfolioSubmissions
+                            )
+                        )
                     )}
                   </div>
                 ) : (
@@ -901,76 +1355,664 @@ function JudgingPage() {
               </div>
             </div>
 
-            {/* Inspect Modal - Click to zoom, only X or ESC to close */}
-            {inspectedImage && (
+            {/* Inspect Modal with voting and navigation */}
+            {inspectedSubmission && (
               <div
                 role="dialog"
                 aria-modal="true"
-                aria-label={inspectedImage.title}
+                aria-label={inspectedSubmission.title}
                 className="fixed inset-0 bg-black z-50 flex flex-col"
               >
                 {/* Header */}
-                <div className="flex items-center justify-between p-4 bg-black/50 absolute top-0 left-0 right-0 z-10">
-                  <div>
-                    <div className="text-white text-lg font-light">
-                      {inspectedImage.title}
-                    </div>
-                    {inspectedImage.description && (
-                      <div className="text-slate-400 text-sm mt-1">
-                        {inspectedImage.description}
+                <div className="flex items-center justify-between p-3 bg-slate-900 border-b border-slate-800 shrink-0">
+                  <div className="flex items-center gap-4">
+                    <div>
+                      <div className="text-white font-medium">
+                        {inspectedSubmission.title}
                       </div>
-                    )}
+                      <div className="text-slate-500 text-xs">
+                        {inspectedIndex + 1} / {sortedSubmissions.length} •{' '}
+                        Frecce ←→ per navigare
+                      </div>
+                    </div>
                   </div>
                   <div className="flex items-center gap-2">
-                    <span className="text-white text-sm px-3 py-1 bg-slate-800 rounded">
-                      {Math.round(zoomLevel * 100)}% — Clicca per ingrandire
+                    <span className="text-slate-400 text-xs px-2 py-1 bg-slate-800 rounded">
+                      {Math.round(zoomLevel * 100)}%
                     </span>
                     {zoomLevel > 1 && (
                       <button
                         type="button"
-                        className="w-10 h-10 bg-slate-700 hover:bg-slate-600 rounded-full flex items-center justify-center"
-                        onClick={() => setZoomLevel(1)}
+                        className="w-8 h-8 bg-slate-700 hover:bg-slate-600 rounded flex items-center justify-center"
+                        onClick={() => {
+                          setZoomLevel(1);
+                          setZoomOrigin({ x: 50, y: 50 });
+                        }}
                         aria-label="Reimposta zoom"
                       >
-                        <ZoomOut className="w-5 h-5 text-white" />
+                        <ZoomOut className="w-4 h-4 text-white" />
                       </button>
                     )}
                     <button
                       type="button"
-                      className="w-12 h-12 bg-red-600 hover:bg-red-500 rounded-full flex items-center justify-center"
-                      onClick={() => setInspectedImage(null)}
+                      className="w-10 h-10 bg-red-600 hover:bg-red-500 rounded-lg flex items-center justify-center"
+                      onClick={() => setInspectedSubmissionId(null)}
                       aria-label="Chiudi"
                     >
-                      <X className="w-6 h-6 text-white" />
+                      <X className="w-5 h-5 text-white" />
                     </button>
                   </div>
                 </div>
 
-                {/* Zoomable Image - Click increases zoom */}
-                <div
-                  ref={imageContainerRef}
-                  role="button"
-                  tabIndex={0}
-                  className="flex-1 overflow-auto flex items-center justify-center cursor-zoom-in pt-20"
-                  onClick={() => setZoomLevel(z => (z >= 4 ? 1 : z + 0.5))}
-                  onKeyDown={e => {
-                    if (e.key === 'Enter' || e.key === ' ') {
-                      e.preventDefault();
+                {/* Main content with nav buttons */}
+                <div className="flex-1 min-h-0 flex items-stretch relative">
+                  {/* Prev button */}
+                  <button
+                    type="button"
+                    onClick={goToPrevSubmission}
+                    disabled={!canGoPrev}
+                    className={`absolute left-2 top-1/2 -translate-y-1/2 z-10 w-12 h-12 rounded-full flex items-center justify-center text-2xl transition-all ${
+                      canGoPrev
+                        ? 'bg-black/60 hover:bg-black/80 text-white'
+                        : 'bg-black/20 text-slate-600 cursor-not-allowed'
+                    }`}
+                    aria-label="Foto precedente"
+                  >
+                    ←
+                  </button>
+
+                  {/* Image */}
+                  <div
+                    ref={imageContainerRef}
+                    role="button"
+                    tabIndex={0}
+                    className="flex-1 overflow-auto flex items-center justify-center cursor-zoom-in p-4"
+                    onClick={e => {
+                      const img = e.currentTarget.querySelector('img');
+                      if (img) {
+                        const rect = img.getBoundingClientRect();
+                        const x = ((e.clientX - rect.left) / rect.width) * 100;
+                        const y = ((e.clientY - rect.top) / rect.height) * 100;
+                        setZoomOrigin({ x, y });
+                      }
                       setZoomLevel(z => (z >= 4 ? 1 : z + 0.5));
-                    }
-                  }}
-                >
-                  <img
-                    src={inspectedImage.url}
-                    alt={inspectedImage.title}
-                    style={{
-                      transform: `scale(${zoomLevel})`,
-                      transformOrigin: 'center center',
-                      transition: 'transform 0.2s ease-out',
                     }}
-                    className="max-w-[95vw] max-h-[90vh] object-contain"
-                    draggable={false}
-                  />
+                    onKeyDown={e => {
+                      if (e.key === 'Enter' || e.key === ' ') {
+                        e.preventDefault();
+                        setZoomLevel(z => (z >= 4 ? 1 : z + 0.5));
+                      }
+                    }}
+                  >
+                    <img
+                      src={getImageUrl(inspectedSubmission.r2ImageId) || ''}
+                      alt={inspectedSubmission.title}
+                      style={{
+                        transform: `scale(${zoomLevel})`,
+                        transformOrigin: `${zoomOrigin.x}% ${zoomOrigin.y}%`,
+                        transition: 'transform 0.2s ease-out',
+                      }}
+                      className="max-w-full max-h-full object-contain"
+                      draggable={false}
+                    />
+                  </div>
+
+                  {/* Next button */}
+                  <button
+                    type="button"
+                    onClick={goToNextSubmission}
+                    disabled={!canGoNext}
+                    className={`absolute right-2 top-1/2 -translate-y-1/2 z-10 w-12 h-12 rounded-full flex items-center justify-center text-2xl transition-all ${
+                      canGoNext
+                        ? 'bg-black/60 hover:bg-black/80 text-white'
+                        : 'bg-black/20 text-slate-600 cursor-not-allowed'
+                    }`}
+                    aria-label="Foto successiva"
+                  >
+                    →
+                  </button>
+                </div>
+
+                {/* Bottom voting toolbar */}
+                <div className="p-3 bg-slate-900 border-t border-slate-800 shrink-0">
+                  <div className="flex items-center justify-center gap-2 flex-wrap">
+                    {/* Current status */}
+                    <div className="flex items-center gap-2 mr-4">
+                      {inspectedSubmission.placement && (
+                        <span
+                          className={`${PLACEMENTS.find(p => p.value === inspectedSubmission.placement)?.color} px-2 py-1 rounded text-xs font-bold`}
+                        >
+                          {
+                            PLACEMENTS.find(
+                              p => p.value === inspectedSubmission.placement
+                            )?.label
+                          }
+                        </span>
+                      )}
+                      {inspectedSubmission.rating && (
+                        <span className="bg-yellow-500/20 text-yellow-400 px-2 py-1 rounded text-xs font-bold">
+                          ★{inspectedSubmission.rating}
+                        </span>
+                      )}
+                      {inspectedSubmission.flagStatus !== 'pending' && (
+                        <span
+                          className={`px-2 py-1 rounded text-xs ${
+                            inspectedSubmission.flagStatus === 'shortlisted'
+                              ? 'bg-emerald-500/20 text-emerald-400'
+                              : 'bg-red-500/20 text-red-400'
+                          }`}
+                        >
+                          {inspectedSubmission.flagStatus === 'shortlisted'
+                            ? 'Selezionato'
+                            : 'Scartato'}
+                        </span>
+                      )}
+                    </div>
+
+                    <div className="w-px h-6 bg-slate-700" />
+
+                    {/* Stars */}
+                    <div className="flex gap-1">
+                      {[1, 2, 3, 4, 5].map(stars => (
+                        <button
+                          key={stars}
+                          type="button"
+                          onClick={() =>
+                            setRating(inspectedSubmission.id, stars)
+                          }
+                          className={`w-8 h-8 rounded text-sm font-bold transition-all ${
+                            inspectedSubmission.rating === stars
+                              ? 'bg-yellow-500 text-black'
+                              : 'bg-slate-700 text-white hover:bg-slate-600'
+                          }`}
+                        >
+                          {stars}
+                        </button>
+                      ))}
+                    </div>
+
+                    <div className="w-px h-6 bg-slate-700" />
+
+                    {/* Flags */}
+                    <button
+                      type="button"
+                      onClick={() =>
+                        setFlagStatus(inspectedSubmission.id, 'shortlisted')
+                      }
+                      className={`px-3 py-1.5 rounded text-sm font-medium transition-all ${
+                        inspectedSubmission.flagStatus === 'shortlisted'
+                          ? 'bg-emerald-500 text-white'
+                          : 'bg-slate-700 text-emerald-400 hover:bg-emerald-600 hover:text-white'
+                      }`}
+                    >
+                      ✓ Seleziona
+                    </button>
+                    <button
+                      type="button"
+                      onClick={() =>
+                        setFlagStatus(inspectedSubmission.id, 'rejected')
+                      }
+                      className={`px-3 py-1.5 rounded text-sm font-medium transition-all ${
+                        inspectedSubmission.flagStatus === 'rejected'
+                          ? 'bg-red-500 text-white'
+                          : 'bg-slate-700 text-red-400 hover:bg-red-600 hover:text-white'
+                      }`}
+                    >
+                      ✗ Scarta
+                    </button>
+
+                    <div className="w-px h-6 bg-slate-700" />
+
+                    {/* Placements */}
+                    {PLACEMENTS.map(p => (
+                      <button
+                        key={p.value}
+                        type="button"
+                        onClick={() =>
+                          setPlacement(inspectedSubmission.id, p.value)
+                        }
+                        className={`w-8 h-8 rounded text-sm font-bold transition-all ${
+                          inspectedSubmission.placement === p.value
+                            ? `${p.color} text-white ring-2 ring-white`
+                            : 'bg-slate-700 text-slate-300 hover:bg-slate-600'
+                        }`}
+                      >
+                        {p.label}
+                      </button>
+                    ))}
+                    {inspectedSubmission.placement && (
+                      <button
+                        type="button"
+                        onClick={() =>
+                          setPlacement(inspectedSubmission.id, null)
+                        }
+                        className="w-8 h-8 rounded text-sm bg-slate-700 text-slate-400 hover:bg-slate-600 hover:text-white"
+                      >
+                        ✕
+                      </button>
+                    )}
+                  </div>
+                </div>
+              </div>
+            )}
+
+            {/* Portfolio Modal (Mediterranean) */}
+            {inspectedPortfolio && (
+              <div
+                role="dialog"
+                aria-modal="true"
+                aria-label="Portfolio Preview"
+                className="fixed inset-0 bg-black z-50 flex flex-col"
+              >
+                {/* Single Photo Zoom Overlay */}
+                {zoomedPhoto && inspectedPortfolio && (
+                  <div className="absolute inset-0 bg-black z-60 flex flex-col">
+                    {/* Zoom header */}
+                    <div className="flex items-center justify-between p-3 bg-slate-900/90 border-b border-slate-800 shrink-0">
+                      <div className="flex items-center gap-4">
+                        <button
+                          type="button"
+                          onClick={() => {
+                            setZoomedPortfolioPhotoId(null);
+                            setZoomLevel(1);
+                            setZoomOrigin({ x: 50, y: 50 });
+                          }}
+                          className="text-slate-400 hover:text-white text-sm flex items-center gap-1"
+                        >
+                          ← Torna al portfolio
+                        </button>
+                        <div className="text-white font-medium capitalize">
+                          {zoomedPhoto.portfolioPhotoType}
+                        </div>
+                      </div>
+                      <div className="flex items-center gap-2">
+                        <span className="text-slate-400 text-xs px-2 py-1 bg-slate-800 rounded">
+                          {Math.round(zoomLevel * 100)}% — Clicca per ingrandire
+                        </span>
+                        {zoomLevel > 1 && (
+                          <button
+                            type="button"
+                            className="w-8 h-8 bg-slate-700 hover:bg-slate-600 rounded flex items-center justify-center"
+                            onClick={() => {
+                              setZoomLevel(1);
+                              setZoomOrigin({ x: 50, y: 50 });
+                            }}
+                            aria-label="Reimposta zoom"
+                          >
+                            <ZoomOut className="w-4 h-4 text-white" />
+                          </button>
+                        )}
+                        <button
+                          type="button"
+                          className="w-10 h-10 bg-red-600 hover:bg-red-500 rounded-lg flex items-center justify-center"
+                          onClick={() => {
+                            setZoomedPortfolioPhotoId(null);
+                            setZoomLevel(1);
+                            setZoomOrigin({ x: 50, y: 50 });
+                          }}
+                          aria-label="Chiudi zoom"
+                        >
+                          <X className="w-5 h-5 text-white" />
+                        </button>
+                      </div>
+                    </div>
+
+                    {/* Zoomable image */}
+                    <div className="flex-1 min-h-0 flex items-stretch relative">
+                      {/* Prev photo button */}
+                      <button
+                        type="button"
+                        onClick={() => {
+                          if (canGoPrevPhoto) {
+                            const idx = zoomedPhotoIndex - 1;
+                            const prevSub = inspectedPortfolio.submissions[idx];
+                            setZoomedPortfolioPhotoId(prevSub.id);
+                            setZoomLevel(1);
+                            setZoomOrigin({ x: 50, y: 50 });
+                          }
+                        }}
+                        disabled={!canGoPrevPhoto}
+                        className={`absolute left-2 top-1/2 -translate-y-1/2 z-10 w-12 h-12 rounded-full flex items-center justify-center text-2xl transition-all ${
+                          canGoPrevPhoto
+                            ? 'bg-white/20 hover:bg-white/30 text-white'
+                            : 'bg-white/5 text-white/30 cursor-not-allowed'
+                        }`}
+                      >
+                        ←
+                      </button>
+
+                      <div
+                        role="button"
+                        tabIndex={0}
+                        className="flex-1 overflow-auto flex items-center justify-center cursor-zoom-in p-4"
+                        onClick={e => {
+                          const img = e.currentTarget.querySelector('img');
+                          if (img) {
+                            const rect = img.getBoundingClientRect();
+                            const x =
+                              ((e.clientX - rect.left) / rect.width) * 100;
+                            const y =
+                              ((e.clientY - rect.top) / rect.height) * 100;
+                            setZoomOrigin({ x, y });
+                          }
+                          setZoomLevel(z => (z >= 4 ? 1 : z + 0.5));
+                        }}
+                        onKeyDown={e => {
+                          if (e.key === 'Enter' || e.key === ' ') {
+                            e.preventDefault();
+                            setZoomLevel(z => (z >= 4 ? 1 : z + 0.5));
+                          }
+                        }}
+                      >
+                        {zoomedImageUrl ? (
+                          <img
+                            src={zoomedImageUrl}
+                            alt={zoomedPhoto.title || 'Photo'}
+                            style={{
+                              transform: `scale(${zoomLevel})`,
+                              transformOrigin: `${zoomOrigin.x}% ${zoomOrigin.y}%`,
+                              transition: 'transform 0.2s ease-out',
+                            }}
+                            className="max-w-full max-h-full object-contain"
+                            draggable={false}
+                          />
+                        ) : (
+                          <div className="text-slate-500 text-4xl">📷</div>
+                        )}
+                      </div>
+
+                      {/* Next photo button */}
+                      <button
+                        type="button"
+                        onClick={() => {
+                          if (canGoNextPhoto) {
+                            const idx = zoomedPhotoIndex + 1;
+                            const nextSub = inspectedPortfolio.submissions[idx];
+                            setZoomedPortfolioPhotoId(nextSub.id);
+                            setZoomLevel(1);
+                            setZoomOrigin({ x: 50, y: 50 });
+                          }
+                        }}
+                        disabled={!canGoNextPhoto}
+                        className={`absolute right-2 top-1/2 -translate-y-1/2 z-10 w-12 h-12 rounded-full flex items-center justify-center text-2xl transition-all ${
+                          canGoNextPhoto
+                            ? 'bg-white/20 hover:bg-white/30 text-white'
+                            : 'bg-white/5 text-white/30 cursor-not-allowed'
+                        }`}
+                      >
+                        →
+                      </button>
+                    </div>
+
+                    {/* Photo info footer */}
+                    <div className="shrink-0 p-3 bg-slate-900/90 border-t border-slate-800 text-center">
+                      <div className="text-sm text-slate-300">
+                        {zoomedPhotoIndex + 1} /{' '}
+                        {inspectedPortfolio.submissions.length}
+                        {zoomedPhoto.title && (
+                          <span className="ml-3 text-slate-500">
+                            {zoomedPhoto.title}
+                          </span>
+                        )}
+                      </div>
+                    </div>
+                  </div>
+                )}
+
+                {/* Header */}
+                <div className="flex items-center justify-between p-3 bg-slate-900 border-b border-slate-800 shrink-0">
+                  <div className="flex items-center gap-4">
+                    <div>
+                      <div className="text-white font-medium">
+                        Portfolio Mediterranean
+                      </div>
+                      <div className="text-slate-500 text-xs">
+                        {inspectedPortfolioIndex + 1} / {portfoliosList.length}{' '}
+                        • Frecce ←→ per navigare • Clicca foto per ingrandire
+                      </div>
+                    </div>
+                  </div>
+                  <button
+                    type="button"
+                    className="w-10 h-10 bg-red-600 hover:bg-red-500 rounded-lg flex items-center justify-center"
+                    onClick={() => setInspectedPortfolioId(null)}
+                    aria-label="Chiudi"
+                  >
+                    <X className="w-5 h-5 text-white" />
+                  </button>
+                </div>
+
+                {/* Main content with nav buttons */}
+                <div className="flex-1 min-h-0 flex items-stretch relative">
+                  {/* Prev button */}
+                  <button
+                    type="button"
+                    onClick={goToPrevPortfolio}
+                    disabled={!canGoToPrevPortfolio}
+                    className={`absolute left-2 top-1/2 -translate-y-1/2 z-10 w-12 h-12 rounded-full flex items-center justify-center text-2xl transition-all ${
+                      canGoToPrevPortfolio
+                        ? 'bg-white/20 hover:bg-white/30 text-white'
+                        : 'bg-white/5 text-white/30 cursor-not-allowed'
+                    }`}
+                  >
+                    ←
+                  </button>
+
+                  {/* Portfolio images - 3 photos in a row, clickable for zoom */}
+                  <div className="flex-1 p-6 flex items-center justify-center gap-6 overflow-auto">
+                    {inspectedPortfolio.submissions.map(sub => {
+                      const imageUrl = getImageUrl(sub.r2ImageId);
+                      return (
+                        <div
+                          key={sub.id}
+                          role="button"
+                          tabIndex={0}
+                          onClick={() => setZoomedPortfolioPhotoId(sub.id)}
+                          onKeyDown={e => {
+                            if (e.key === 'Enter' || e.key === ' ') {
+                              e.preventDefault();
+                              setZoomedPortfolioPhotoId(sub.id);
+                            }
+                          }}
+                          className="flex-1 max-w-lg flex flex-col bg-slate-900 rounded-lg overflow-hidden cursor-pointer hover:ring-2 hover:ring-emerald-500/50 transition-all group"
+                        >
+                          <div className="aspect-[4/3] bg-slate-800 relative overflow-hidden">
+                            {imageUrl && !failedImages.has(sub.id) ? (
+                              <img
+                                src={imageUrl}
+                                alt={sub.title}
+                                className="w-full h-full object-contain group-hover:scale-105 transition-transform"
+                                onError={() => {
+                                  setFailedImages(prev =>
+                                    new Set(prev).add(sub.id)
+                                  );
+                                }}
+                              />
+                            ) : (
+                              <div className="w-full h-full flex items-center justify-center text-slate-500">
+                                <span className="text-4xl">📷</span>
+                              </div>
+                            )}
+                            {/* Zoom hint on hover */}
+                            <div className="absolute inset-0 bg-black/0 group-hover:bg-black/30 transition-colors flex items-center justify-center">
+                              <span className="text-white text-sm opacity-0 group-hover:opacity-100 transition-opacity bg-black/50 px-3 py-1.5 rounded-full">
+                                🔍 Clicca per zoom
+                              </span>
+                            </div>
+                          </div>
+                          <div className="p-3 text-center bg-slate-900">
+                            <span className="text-sm text-slate-300 capitalize font-medium">
+                              {sub.portfolioPhotoType}
+                            </span>
+                            {sub.title && (
+                              <p className="text-xs text-slate-500 truncate mt-1">
+                                {sub.title}
+                              </p>
+                            )}
+                          </div>
+                        </div>
+                      );
+                    })}
+                  </div>
+
+                  {/* Next button */}
+                  <button
+                    type="button"
+                    onClick={goToNextPortfolio}
+                    disabled={!canGoToNextPortfolio}
+                    className={`absolute right-2 top-1/2 -translate-y-1/2 z-10 w-12 h-12 rounded-full flex items-center justify-center text-2xl transition-all ${
+                      canGoToNextPortfolio
+                        ? 'bg-white/20 hover:bg-white/30 text-white'
+                        : 'bg-white/5 text-white/30 cursor-not-allowed'
+                    }`}
+                  >
+                    →
+                  </button>
+                </div>
+
+                {/* Bottom voting toolbar */}
+                <div className="shrink-0 border-t border-slate-800 bg-slate-900 p-3">
+                  <div className="flex items-center justify-center gap-2 flex-wrap">
+                    {/* Current status */}
+                    <div className="flex items-center gap-2">
+                      {inspectedPortfolio.submissions[0]?.placement && (
+                        <span
+                          className={`${PLACEMENTS.find(p => p.value === inspectedPortfolio.submissions[0]?.placement)?.color} px-3 py-1 rounded-full text-xs font-bold`}
+                        >
+                          {
+                            PLACEMENTS.find(
+                              p =>
+                                p.value ===
+                                inspectedPortfolio.submissions[0]?.placement
+                            )?.label
+                          }
+                        </span>
+                      )}
+                      {inspectedPortfolio.submissions[0]?.rating &&
+                        inspectedPortfolio.submissions[0].rating > 0 && (
+                          <span className="bg-yellow-500/20 text-yellow-400 px-2 py-1 rounded text-xs font-bold">
+                            ★{inspectedPortfolio.submissions[0].rating}
+                          </span>
+                        )}
+                      {inspectedPortfolio.submissions[0]?.flagStatus !==
+                        'pending' && (
+                        <span
+                          className={`px-2 py-1 rounded text-xs ${
+                            inspectedPortfolio.submissions[0]?.flagStatus ===
+                            'shortlisted'
+                              ? 'bg-emerald-500/20 text-emerald-400'
+                              : 'bg-red-500/20 text-red-400'
+                          }`}
+                        >
+                          {inspectedPortfolio.submissions[0]?.flagStatus ===
+                          'shortlisted'
+                            ? 'Selezionato'
+                            : 'Scartato'}
+                        </span>
+                      )}
+                    </div>
+
+                    <div className="w-px h-6 bg-slate-700" />
+
+                    {/* Stars */}
+                    <div className="flex gap-1">
+                      {[1, 2, 3, 4, 5].map(stars => (
+                        <button
+                          key={stars}
+                          type="button"
+                          onClick={() =>
+                            setPortfolioRating(
+                              inspectedPortfolio.portfolioId,
+                              stars
+                            )
+                          }
+                          className={`w-8 h-8 rounded text-sm font-bold transition-all ${
+                            inspectedPortfolio.submissions[0]?.rating === stars
+                              ? 'bg-yellow-500 text-black'
+                              : 'bg-slate-700 text-white hover:bg-slate-600'
+                          }`}
+                        >
+                          {stars}
+                        </button>
+                      ))}
+                    </div>
+
+                    <div className="w-px h-6 bg-slate-700" />
+
+                    {/* Flags */}
+                    <button
+                      type="button"
+                      onClick={() =>
+                        setPortfolioFlag(
+                          inspectedPortfolio.portfolioId,
+                          'shortlisted'
+                        )
+                      }
+                      className={`px-3 py-1.5 rounded text-sm font-medium transition-all ${
+                        inspectedPortfolio.submissions[0]?.flagStatus ===
+                        'shortlisted'
+                          ? 'bg-emerald-500 text-white'
+                          : 'bg-slate-700 text-emerald-400 hover:bg-emerald-600 hover:text-white'
+                      }`}
+                    >
+                      ✓ Seleziona
+                    </button>
+                    <button
+                      type="button"
+                      onClick={() =>
+                        setPortfolioFlag(
+                          inspectedPortfolio.portfolioId,
+                          'rejected'
+                        )
+                      }
+                      className={`px-3 py-1.5 rounded text-sm font-medium transition-all ${
+                        inspectedPortfolio.submissions[0]?.flagStatus ===
+                        'rejected'
+                          ? 'bg-red-500 text-white'
+                          : 'bg-slate-700 text-red-400 hover:bg-red-600 hover:text-white'
+                      }`}
+                    >
+                      ✗ Scarta
+                    </button>
+
+                    <div className="w-px h-6 bg-slate-700" />
+
+                    {/* Placements */}
+                    {PLACEMENTS.map(p => (
+                      <button
+                        key={p.value}
+                        type="button"
+                        onClick={() =>
+                          setPortfolioPlacement(
+                            inspectedPortfolio.portfolioId,
+                            p.value
+                          )
+                        }
+                        className={`w-8 h-8 rounded text-sm font-bold transition-all ${
+                          inspectedPortfolio.submissions[0]?.placement ===
+                          p.value
+                            ? `${p.color} text-white ring-2 ring-white`
+                            : 'bg-slate-700 text-slate-300 hover:bg-slate-600'
+                        }`}
+                      >
+                        {p.label}
+                      </button>
+                    ))}
+                    {inspectedPortfolio.submissions[0]?.placement && (
+                      <button
+                        type="button"
+                        onClick={() =>
+                          setPortfolioPlacement(
+                            inspectedPortfolio.portfolioId,
+                            null
+                          )
+                        }
+                        className="w-8 h-8 rounded text-sm bg-slate-700 text-slate-400 hover:bg-slate-600 hover:text-white"
+                      >
+                        ✕
+                      </button>
+                    )}
+                  </div>
                 </div>
               </div>
             )}
