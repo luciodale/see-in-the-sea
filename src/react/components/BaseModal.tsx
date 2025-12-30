@@ -68,6 +68,7 @@ export function BaseModal({
           <div className="flex items-center justify-between mb-6">
             <h2 className="text-xl font-semibold text-white">{title}</h2>
             <button
+              type="button"
               onClick={onClose}
               disabled={isLoading}
               className="text-slate-400 hover:text-white disabled:opacity-50 transition-colors cursor-pointer"

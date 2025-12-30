@@ -38,6 +38,7 @@ export function LogoutButton() {
 
       {/* Logout Button */}
       <button
+        type="button"
         onClick={handleSignOut}
         disabled={loading}
         className="flex items-center space-x-2 bg-slate-700 hover:bg-slate-600 disabled:bg-slate-600 disabled:cursor-not-allowed cursor-pointer text-white px-3 py-2 rounded-lg transition-colors duration-200 text-sm font-medium"

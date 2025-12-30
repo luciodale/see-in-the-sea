@@ -148,12 +148,14 @@ export default function EditResultModal({
       </div>
       <div className="mt-5 flex justify-end gap-2">
         <button
+          type="button"
           onClick={onClose}
           className="px-4 py-2 text-sm border border-slate-700 rounded-md hover:bg-slate-700 transition-colors cursor-pointer"
         >
           Annulla
         </button>
         <button
+          type="button"
           onClick={handleSave}
           disabled={saving}
           className="px-4 py-2 text-sm bg-emerald-600 hover:bg-emerald-500 text-white rounded-md disabled:opacity-50 transition-colors cursor-pointer"

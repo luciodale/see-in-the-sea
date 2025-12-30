@@ -67,6 +67,7 @@ export function CategoryNavigation({
 
             return (
               <button
+                type="button"
                 key={category.id}
                 onClick={() => onCategorySelect(category.id)}
                 className={`

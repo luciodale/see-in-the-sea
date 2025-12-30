@@ -157,6 +157,7 @@ export const JudgeManager = ({
       <div className="flex items-center justify-between">
         <h3 className="text-lg font-semibold text-white">Giudici</h3>
         <button
+          type="button"
           onClick={() => setShowAddForm(!showAddForm)}
           disabled={isSubmitting}
           className="px-4 py-2 bg-emerald-600 text-white text-sm rounded-md hover:bg-emerald-700 transition-colors disabled:opacity-50"
@@ -177,6 +178,7 @@ export const JudgeManager = ({
             className="w-full px-3 py-2 bg-slate-700 border border-slate-600 rounded-md text-white placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-emerald-500 disabled:opacity-50"
           />
           <button
+            type="button"
             onClick={handleAddJudge}
             disabled={isSubmitting}
             className="w-full px-4 py-2 bg-emerald-600 text-white font-medium rounded-md hover:bg-emerald-700 disabled:opacity-50"
@@ -211,6 +213,7 @@ export const JudgeManager = ({
                     className="flex-1 px-3 py-1 bg-slate-600 border border-slate-500 rounded text-white focus:outline-none focus:ring-2 focus:ring-emerald-500 disabled:opacity-50"
                   />
                   <button
+                    type="button"
                     onClick={() => handleUpdateJudge(judge.id)}
                     disabled={isSubmitting}
                     className="px-3 py-1 bg-emerald-600 text-white text-sm rounded hover:bg-emerald-700 disabled:opacity-50"
@@ -218,6 +221,7 @@ export const JudgeManager = ({
                     Salva
                   </button>
                   <button
+                    type="button"
                     onClick={cancelEditing}
                     disabled={isSubmitting}
                     className="px-3 py-1 bg-slate-600 text-white text-sm rounded hover:bg-slate-500 disabled:opacity-50"
@@ -231,6 +235,7 @@ export const JudgeManager = ({
                     {judge.fullName}
                   </span>
                   <button
+                    type="button"
                     onClick={() => startEditing(judge)}
                     disabled={isSubmitting}
                     className="text-blue-400 hover:text-blue-300 text-sm disabled:opacity-50"
@@ -238,6 +243,7 @@ export const JudgeManager = ({
                     Modifica
                   </button>
                   <button
+                    type="button"
                     onClick={() => handleDeleteJudge(judge.id)}
                     disabled={isSubmitting}
                     className="text-red-400 hover:text-red-300 text-sm disabled:opacity-50"

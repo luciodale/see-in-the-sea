@@ -224,7 +224,7 @@ export function AdminImpersonationInterface({
     return (
       <div className="flex items-center justify-center p-12">
         <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-400"></div>
-        <span className="ml-3 text-slate-300">Caricamento invia...</span>
+        <span className="ml-3 text-slate-300">Caricamento...</span>
       </div>
     );
   }
@@ -244,6 +244,7 @@ export function AdminImpersonationInterface({
             <span className="font-semibold text-white">{userEmail}</span>
           </p>
           <button
+            type="button"
             onClick={onEmailChange}
             className="px-3 py-1 bg-slate-700 hover:bg-slate-600 text-slate-300 rounded-lg text-sm transition-colors cursor-pointer"
           >

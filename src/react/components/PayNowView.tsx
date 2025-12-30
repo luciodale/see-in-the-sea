@@ -92,6 +92,7 @@ export function PayNowView() {
           )}
 
           <button
+            type="button"
             onClick={handlePayNow}
             disabled={loading}
             className="cursor-pointer w-full bg-emerald-600 hover:bg-emerald-700 disabled:bg-slate-600 disabled:cursor-not-allowed text-white font-semibold py-3 px-6 rounded-lg transition-colors duration-200 flex items-center justify-center"

@@ -161,6 +161,7 @@ function ContestManagementPage() {
                           Risultati
                         </h3>
                         <button
+                          type="button"
                           onClick={() => {
                             setShowAddSubmission(!showAddSubmission);
                             setEditingSubmission(null);
@@ -254,6 +255,7 @@ function ContestManagementPage() {
                                 )}
                                 <div className="flex gap-2 pt-2">
                                   <button
+                                    type="button"
                                     onClick={() =>
                                       handleEditSubmission(submission)
                                     }
@@ -265,6 +267,7 @@ function ContestManagementPage() {
                                     Modifica
                                   </button>
                                   <button
+                                    type="button"
                                     onClick={() =>
                                       handleDeleteSubmission(submission.id)
                                     }

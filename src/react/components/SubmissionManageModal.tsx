@@ -86,6 +86,7 @@ export function SubmissionManageModal({
         {/* Actions */}
         <div className="flex gap-3 pt-4 border-t border-slate-700">
           <button
+            type="button"
             onClick={onClose}
             disabled={isDeleting}
             className="flex-1 py-2 px-4 bg-slate-700 hover:bg-slate-600 text-white rounded-lg disabled:opacity-50 transition-colors cursor-pointer"
@@ -93,6 +94,7 @@ export function SubmissionManageModal({
             {t('action.close')}
           </button>
           <button
+            type="button"
             onClick={handleDelete}
             disabled={isDeleting || hasPaid}
             className={clsx(

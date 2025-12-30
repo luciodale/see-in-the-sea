@@ -378,7 +378,7 @@ export function AdminSubmissionsViewer({
             <div className="px-6 py-12 text-center">
               <div className="text-slate-300">
                 <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-emerald-500 mx-auto mb-4"></div>
-                <p>Caricamento invia...</p>
+                <p>Caricamento...</p>
               </div>
             </div>
           ) : filteredSubmissions.length === 0 ? (
@@ -697,7 +697,9 @@ export function AdminSubmissionsViewer({
                 Utenti Senza Foto ({usersWithoutUploads.length})
               </h3>
               <button
+                type="button"
                 onClick={() => setShowUsersModal(false)}
+                aria-label="Chiudi"
                 className="text-slate-400 hover:text-white transition-colors"
               >
                 <svg
@@ -779,6 +781,7 @@ export function AdminSubmissionsViewer({
             {/* Modal Footer */}
             <div className="px-6 py-4 border-t border-slate-700 flex justify-end">
               <button
+                type="button"
                 onClick={() => setShowUsersModal(false)}
                 className="px-4 py-2 bg-slate-800 hover:bg-slate-700 text-white rounded-md transition-colors"
               >

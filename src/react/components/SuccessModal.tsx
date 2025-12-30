@@ -65,6 +65,7 @@ export function SuccessModal({
         {/* Action */}
         <div className="flex justify-center">
           <button
+            type="button"
             onClick={onClose}
             className="px-8 py-3 bg-emerald-600 hover:bg-emerald-500 text-white rounded-lg font-medium transition-colors cursor-pointer"
           >

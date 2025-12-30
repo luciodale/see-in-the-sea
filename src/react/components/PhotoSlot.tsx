@@ -62,6 +62,7 @@ export function PhotoSlot({
       ) : (
         // Show empty slot when no image exists
         <button
+          type="button"
           onClick={hasPaid ? undefined : handleUploadClick}
           disabled={hasPaid}
           className={clsx(

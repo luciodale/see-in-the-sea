@@ -45,6 +45,7 @@ export function CategorySummary({
       {/* Upload button */}
       {canUpload && (
         <button
+          type="button"
           onClick={onUploadClick}
           className="w-full py-3 bg-emerald-600 hover:bg-emerald-500 text-white rounded-lg font-medium transition-colors cursor-pointer"
         >
