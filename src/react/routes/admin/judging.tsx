@@ -339,18 +339,17 @@ function JudgingPage() {
   );
 
   // Portfolio-level voting (for Mediterranean) - applies to all photos in the portfolio
+  // Uses submission IDs from the portfolio to update all photos
   const setPortfolioRating = useCallback(
-    (portfolioId: string, rating: number) => {
+    (submissionIds: string[], rating: number) => {
+      const idSet = new Set(submissionIds);
       setSubmissions(prev => {
-        const portfolioSubmissions = prev.filter(
-          s => s.portfolio === portfolioId
-        );
-        portfolioSubmissions.forEach(s => {
-          syncToServer(s.id, 'rating', rating);
-          syncToServer(s.id, 'flag', 'shortlisted');
+        submissionIds.forEach(id => {
+          syncToServer(id, 'rating', rating);
+          syncToServer(id, 'flag', 'shortlisted');
         });
         return prev.map(s =>
-          s.portfolio === portfolioId
+          idSet.has(s.id)
             ? { ...s, rating, flagStatus: 'shortlisted' as FlagStatus }
             : s
         );
@@ -360,16 +359,14 @@ function JudgingPage() {
   );
 
   const setPortfolioFlag = useCallback(
-    (portfolioId: string, status: FlagStatus) => {
+    (submissionIds: string[], status: FlagStatus) => {
+      const idSet = new Set(submissionIds);
       setSubmissions(prev => {
-        const portfolioSubmissions = prev.filter(
-          s => s.portfolio === portfolioId
-        );
-        portfolioSubmissions.forEach(s => {
-          syncToServer(s.id, 'flag', status);
+        submissionIds.forEach(id => {
+          syncToServer(id, 'flag', status);
         });
         return prev.map(s =>
-          s.portfolio === portfolioId ? { ...s, flagStatus: status } : s
+          idSet.has(s.id) ? { ...s, flagStatus: status } : s
         );
       });
     },
@@ -377,45 +374,36 @@ function JudgingPage() {
   );
 
   const setPortfolioPlacement = useCallback(
-    (portfolioId: string, placement: Placement) => {
+    (submissionIds: string[], placement: Placement, categoryId: string) => {
+      const idSet = new Set(submissionIds);
       setSubmissions(prev => {
-        const portfolioSubmissions = prev.filter(
-          s => s.portfolio === portfolioId
-        );
-        const categoryId = portfolioSubmissions[0]?.categoryId;
-
-        // Clear same placement from other portfolios in category
+        // Clear same placement from other submissions in category
         const isUniquePlacement =
           placement === 'first' ||
           placement === 'second' ||
           placement === 'third';
 
         if (isUniquePlacement && placement && categoryId) {
-          const otherPortfoliosWithPlacement = prev.filter(
+          // Find other submissions that have this placement
+          const otherSubmissionsWithPlacement = prev.filter(
             s =>
               s.categoryId === categoryId &&
-              s.portfolio !== portfolioId &&
+              !idSet.has(s.id) &&
               s.placement === placement
           );
-          // Get unique portfolio IDs
-          const otherPortfolioIds = [
-            ...new Set(otherPortfoliosWithPlacement.map(s => s.portfolio)),
-          ];
-          otherPortfolioIds.forEach(pid => {
-            if (pid) {
-              prev
-                .filter(s => s.portfolio === pid)
-                .forEach(s => syncToServer(s.id, 'placement', null));
-            }
+          // Clear placement from them
+          otherSubmissionsWithPlacement.forEach(s => {
+            syncToServer(s.id, 'placement', null);
           });
         }
 
-        portfolioSubmissions.forEach(s => {
-          syncToServer(s.id, 'placement', placement);
+        // Set placement on all photos in this portfolio
+        submissionIds.forEach(id => {
+          syncToServer(id, 'placement', placement);
         });
 
         return prev.map(s => {
-          if (s.portfolio === portfolioId) {
+          if (idSet.has(s.id)) {
             return { ...s, placement };
           }
           if (
@@ -941,10 +929,13 @@ function JudgingPage() {
     );
   };
 
-  // Render a Mediterranean portfolio card - lightweight version without image previews
+  // Render a Mediterranean portfolio card
+  // showImages: false = lightweight icon preview (for main grid)
+  // showImages: true = show actual images (for vincitori view)
   const renderPortfolioCard = (
     portfolioId: string,
-    portfolioSubmissions: JudgingSubmission[]
+    portfolioSubmissions: JudgingSubmission[],
+    showImages = false
   ) => {
     // Get portfolio status from first photo (they should all be the same)
     const firstPhoto = portfolioSubmissions[0];
@@ -953,6 +944,11 @@ function JudgingPage() {
     const isRejected = firstPhoto.flagStatus === 'rejected';
     const isIncomplete = portfolioSubmissions.length < PHOTO_TYPES.length;
     const photoCount = portfolioSubmissions.length;
+
+    // Create a map of photo type to submission for quick lookup
+    const photoByType = new Map(
+      portfolioSubmissions.map(s => [s.portfolioPhotoType, s])
+    );
 
     return (
       <div
@@ -978,32 +974,73 @@ function JudgingPage() {
                   : 'border-slate-800 hover:border-slate-600'
         }`}
       >
-        {/* Simple icon-based preview - no images loaded */}
-        <div className="aspect-[4/3] flex flex-col items-center justify-center gap-2 p-4">
-          <div className="text-4xl">🖼️</div>
-          <div className="flex items-center gap-1.5 text-sm">
-            <span
-              className={`font-medium ${isIncomplete ? 'text-orange-400' : 'text-slate-300'}`}
-            >
-              {photoCount}/{PHOTO_TYPES.length} foto
-            </span>
-          </div>
-          <div className="flex gap-1 text-xs text-slate-500">
-            {PHOTO_TYPES.map(type => {
-              const hasType = portfolioSubmissions.some(
-                s => s.portfolioPhotoType === type
-              );
+        {showImages ? (
+          /* Full image preview - 3 images in a row */
+          <div className="grid grid-cols-3 gap-1 p-1">
+            {PHOTO_TYPES.map(photoType => {
+              const sub = photoByType.get(photoType);
+              const imageUrl = sub ? getImageUrl(sub.r2ImageId) : null;
+              const hasFailed = sub ? failedImages.has(sub.id) : false;
+
               return (
-                <span
-                  key={type}
-                  className={`px-1.5 py-0.5 rounded ${hasType ? 'bg-slate-700 text-slate-300' : 'bg-slate-800 text-slate-600'}`}
+                <div
+                  key={photoType}
+                  className={`aspect-[4/3] relative ${sub ? 'bg-slate-800' : 'bg-slate-800/50'}`}
                 >
-                  {type.charAt(0).toUpperCase()}
-                </span>
+                  {sub && imageUrl && !hasFailed ? (
+                    <img
+                      src={imageUrl}
+                      alt={sub.title}
+                      className="w-full h-full object-cover"
+                      loading="lazy"
+                      onError={() => {
+                        setFailedImages(prev => new Set(prev).add(sub.id));
+                      }}
+                    />
+                  ) : hasFailed ? (
+                    <div className="w-full h-full flex items-center justify-center bg-red-950/50">
+                      <span className="text-xl">⚠️</span>
+                    </div>
+                  ) : (
+                    <div className="w-full h-full flex items-center justify-center text-slate-600">
+                      <span className="text-xl">🖼️</span>
+                    </div>
+                  )}
+                  <div className="absolute bottom-0.5 left-0.5 text-[9px] bg-black/70 text-slate-300 px-1 py-0.5 rounded capitalize">
+                    {photoType.charAt(0)}
+                  </div>
+                </div>
               );
             })}
           </div>
-        </div>
+        ) : (
+          /* Simple icon-based preview - no images loaded */
+          <div className="aspect-[4/3] flex flex-col items-center justify-center gap-2 p-4">
+            <div className="text-4xl">🖼️</div>
+            <div className="flex items-center gap-1.5 text-sm">
+              <span
+                className={`font-medium ${isIncomplete ? 'text-orange-400' : 'text-slate-300'}`}
+              >
+                {photoCount}/{PHOTO_TYPES.length} foto
+              </span>
+            </div>
+            <div className="flex gap-1 text-xs text-slate-500">
+              {PHOTO_TYPES.map(type => {
+                const hasType = portfolioSubmissions.some(
+                  s => s.portfolioPhotoType === type
+                );
+                return (
+                  <span
+                    key={type}
+                    className={`px-1.5 py-0.5 rounded ${hasType ? 'bg-slate-700 text-slate-300' : 'bg-slate-800 text-slate-600'}`}
+                  >
+                    {type.charAt(0).toUpperCase()}
+                  </span>
+                );
+              })}
+            </div>
+          </div>
+        )}
 
         {/* Status badges - portfolio level */}
         <div className="absolute top-2 left-2 flex gap-1.5">
@@ -1043,7 +1080,10 @@ function JudgingPage() {
                 type="button"
                 onClick={e => {
                   e.stopPropagation();
-                  setPortfolioRating(portfolioId, stars);
+                  setPortfolioRating(
+                    portfolioSubmissions.map(s => s.id),
+                    stars
+                  );
                 }}
                 className={`w-7 h-7 rounded text-sm font-bold transition-all ${
                   firstPhoto.rating === stars
@@ -1062,7 +1102,10 @@ function JudgingPage() {
               type="button"
               onClick={e => {
                 e.stopPropagation();
-                setPortfolioFlag(portfolioId, 'shortlisted');
+                setPortfolioFlag(
+                  portfolioSubmissions.map(s => s.id),
+                  'shortlisted'
+                );
               }}
               className={`w-7 h-7 rounded text-sm transition-all ${
                 firstPhoto.flagStatus === 'shortlisted'
@@ -1076,7 +1119,10 @@ function JudgingPage() {
               type="button"
               onClick={e => {
                 e.stopPropagation();
-                setPortfolioFlag(portfolioId, 'rejected');
+                setPortfolioFlag(
+                  portfolioSubmissions.map(s => s.id),
+                  'rejected'
+                );
               }}
               className={`w-7 h-7 rounded text-sm transition-all ${
                 firstPhoto.flagStatus === 'rejected'
@@ -1096,7 +1142,11 @@ function JudgingPage() {
                 type="button"
                 onClick={e => {
                   e.stopPropagation();
-                  setPortfolioPlacement(portfolioId, p.value);
+                  setPortfolioPlacement(
+                    portfolioSubmissions.map(s => s.id),
+                    p.value,
+                    firstPhoto.categoryId
+                  );
                 }}
                 className={`w-7 h-7 rounded text-sm font-bold transition-all ${
                   firstPhoto.placement === p.value
@@ -1112,7 +1162,11 @@ function JudgingPage() {
                 type="button"
                 onClick={e => {
                   e.stopPropagation();
-                  setPortfolioPlacement(portfolioId, null);
+                  setPortfolioPlacement(
+                    portfolioSubmissions.map(s => s.id),
+                    null,
+                    firstPhoto.categoryId
+                  );
                 }}
                 className="w-7 h-7 rounded text-sm bg-slate-700/80 text-slate-400 hover:bg-slate-600 hover:text-white"
               >
@@ -1339,11 +1393,11 @@ function JudgingPage() {
                         );
                         const isFirst = placement === 'first';
 
-                        // For Mediterranean, find the portfolio
+                        // For Mediterranean, find the portfolio by matching the submission
                         const winnerPortfolio =
-                          isMediterranean && winner?.portfolio
-                            ? portfoliosList.find(
-                                p => p.portfolioId === winner.portfolio
+                          isMediterranean && winner
+                            ? portfoliosList.find(p =>
+                                p.submissions.some(s => s.id === winner.id)
                               )
                             : null;
 
@@ -1373,7 +1427,8 @@ function JudgingPage() {
                                 {isMediterranean && winnerPortfolio
                                   ? renderPortfolioCard(
                                       winnerPortfolio.portfolioId,
-                                      winnerPortfolio.submissions
+                                      winnerPortfolio.submissions,
+                                      true // Show images in vincitori view
                                     )
                                   : renderSubmissionCard(winner, 'large')}
                               </div>
@@ -1400,13 +1455,11 @@ function JudgingPage() {
                             Menzioni (
                             {isMediterranean
                               ? // Count unique portfolios with runner-up
-                                [
-                                  ...new Set(
-                                    sortedSubmissions
-                                      .filter(s => s.placement === 'runner-up')
-                                      .map(s => s.portfolio)
-                                  ),
-                                ].length
+                                portfoliosList.filter(p =>
+                                  p.submissions.some(
+                                    s => s.placement === 'runner-up'
+                                  )
+                                ).length
                               : sortedSubmissions.filter(
                                   s => s.placement === 'runner-up'
                                 ).length}
@@ -1418,23 +1471,19 @@ function JudgingPage() {
                         >
                           {isMediterranean
                             ? // Render unique portfolios with runner-up
-                              [
-                                ...new Set(
-                                  sortedSubmissions
-                                    .filter(s => s.placement === 'runner-up')
-                                    .map(s => s.portfolio)
-                                ),
-                              ].map(portfolioId => {
-                                const portfolio = portfoliosList.find(
-                                  p => p.portfolioId === portfolioId
-                                );
-                                return portfolio
-                                  ? renderPortfolioCard(
-                                      portfolio.portfolioId,
-                                      portfolio.submissions
-                                    )
-                                  : null;
-                              })
+                              portfoliosList
+                                .filter(p =>
+                                  p.submissions.some(
+                                    s => s.placement === 'runner-up'
+                                  )
+                                )
+                                .map(portfolio =>
+                                  renderPortfolioCard(
+                                    portfolio.portfolioId,
+                                    portfolio.submissions,
+                                    true // Show images in vincitori view
+                                  )
+                                )
                             : sortedSubmissions
                                 .filter(s => s.placement === 'runner-up')
                                 .map(submission =>
@@ -2049,7 +2098,7 @@ function JudgingPage() {
                           type="button"
                           onClick={() =>
                             setPortfolioRating(
-                              inspectedPortfolio.portfolioId,
+                              inspectedPortfolio.submissions.map(s => s.id),
                               stars
                             )
                           }
@@ -2071,7 +2120,7 @@ function JudgingPage() {
                       type="button"
                       onClick={() =>
                         setPortfolioFlag(
-                          inspectedPortfolio.portfolioId,
+                          inspectedPortfolio.submissions.map(s => s.id),
                           'shortlisted'
                         )
                       }
@@ -2088,7 +2137,7 @@ function JudgingPage() {
                       type="button"
                       onClick={() =>
                         setPortfolioFlag(
-                          inspectedPortfolio.portfolioId,
+                          inspectedPortfolio.submissions.map(s => s.id),
                           'rejected'
                         )
                       }
@@ -2111,8 +2160,9 @@ function JudgingPage() {
                         type="button"
                         onClick={() =>
                           setPortfolioPlacement(
-                            inspectedPortfolio.portfolioId,
-                            p.value
+                            inspectedPortfolio.submissions.map(s => s.id),
+                            p.value,
+                            inspectedPortfolio.submissions[0]?.categoryId || ''
                           )
                         }
                         className={`w-8 h-8 rounded text-sm font-bold transition-all ${
@@ -2130,8 +2180,9 @@ function JudgingPage() {
                         type="button"
                         onClick={() =>
                           setPortfolioPlacement(
-                            inspectedPortfolio.portfolioId,
-                            null
+                            inspectedPortfolio.submissions.map(s => s.id),
+                            null,
+                            inspectedPortfolio.submissions[0]?.categoryId || ''
                           )
                         }
                         className="w-8 h-8 rounded text-sm bg-slate-700 text-slate-400 hover:bg-slate-600 hover:text-white"
