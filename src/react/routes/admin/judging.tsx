@@ -543,34 +543,60 @@ function JudgingPage() {
     return () => window.removeEventListener('keydown', handleKeyDown);
   });
 
-  // Group Mediterranean submissions by user, then by portfolio
+  // Group Mediterranean submissions by user + portfolio number
+  // Portfolio is identified by: anonymousUserId + portfolio (e.g., "1" or "2")
+  // Each portfolio should have exactly 3 unique photos (macro, wide-angle, free)
   const isMediterranean = activeCategory === 'mediterranean';
+
+  // Build portfolios list with composite key: anonymousUserId + portfolio
+  const portfoliosList: {
+    portfolioId: string; // Composite key: `${anonymousUserId}-${portfolio}`
+    submissions: JudgingSubmission[];
+  }[] = [];
+
+  if (isMediterranean) {
+    // Group by composite key: anonymousUserId + portfolio number
+    const portfolioMap = new Map<string, JudgingSubmission[]>();
+
+    sortedSubmissions.forEach(s => {
+      // Create composite key from user and portfolio number
+      const userKey = s.anonymousUserId || 'unknown';
+      const portfolioNum = s.portfolio || 'ungrouped';
+      const compositeKey = `${userKey}-${portfolioNum}`;
+
+      if (!portfolioMap.has(compositeKey)) {
+        portfolioMap.set(compositeKey, []);
+      }
+      const existing = portfolioMap.get(compositeKey)!;
+      // Only add if we don't already have this photo type in the portfolio
+      const hasPhotoType = existing.some(
+        e => e.portfolioPhotoType === s.portfolioPhotoType
+      );
+      if (!hasPhotoType) {
+        existing.push(s);
+      }
+    });
+
+    // Convert to list, filtering out incomplete portfolios or ungrouped
+    portfolioMap.forEach((subs, compositeKey) => {
+      if (!compositeKey.endsWith('-ungrouped') && subs.length > 0) {
+        portfoliosList.push({ portfolioId: compositeKey, submissions: subs });
+      }
+    });
+  }
+
+  // Legacy grouped structure for backwards compatibility
   const groupedByUser = isMediterranean
-    ? sortedSubmissions.reduce(
-        (acc, s) => {
-          const userKey = s.anonymousUserId || 'unknown';
+    ? portfoliosList.reduce(
+        (acc, p) => {
+          const userKey = p.submissions[0]?.anonymousUserId || 'unknown';
           if (!acc[userKey]) acc[userKey] = {};
-          const portfolioKey = s.portfolio || 'ungrouped';
-          if (!acc[userKey][portfolioKey]) acc[userKey][portfolioKey] = [];
-          acc[userKey][portfolioKey].push(s);
+          acc[userKey][p.portfolioId] = p.submissions;
           return acc;
         },
         {} as Record<string, Record<string, JudgingSubmission[]>>
       )
     : null;
-
-  // Flat list of portfolios for navigation (Mediterranean only)
-  const portfoliosList: {
-    portfolioId: string;
-    submissions: JudgingSubmission[];
-  }[] = groupedByUser
-    ? Object.values(groupedByUser).flatMap(userPortfolios =>
-        Object.entries(userPortfolios).map(([portfolioId, subs]) => ({
-          portfolioId,
-          submissions: subs,
-        }))
-      )
-    : [];
 
   // Get current inspected portfolio and navigation
   const inspectedPortfolio = inspectedPortfolioId
