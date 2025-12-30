@@ -798,10 +798,20 @@ function JudgingPage() {
                 setFailedImages(prev => new Set(prev).add(submission.id));
               }}
             />
+          ) : failedImages.has(submission.id) ? (
+            <div className="w-full h-full flex flex-col items-center justify-center bg-red-950/50 gap-2">
+              <span className="text-3xl">⚠️</span>
+              <span className="text-xs text-red-400 font-medium">
+                Errore caricamento
+              </span>
+              <span className="text-[10px] text-red-500/70">
+                #{submission.id.slice(0, 6)}
+              </span>
+            </div>
           ) : (
             <div className="w-full h-full flex flex-col items-center justify-center text-slate-500 gap-2">
-              <span className="text-4xl">📷</span>
-              <span className="text-xs">#{submission.id.slice(0, 6)}</span>
+              <span className="text-3xl">🖼️</span>
+              <span className="text-xs">Nessuna immagine</span>
             </div>
           )}
 
@@ -931,7 +941,7 @@ function JudgingPage() {
     );
   };
 
-  // Render a Mediterranean portfolio card (3 photos + portfolio-level voting)
+  // Render a Mediterranean portfolio card - lightweight version without image previews
   const renderPortfolioCard = (
     portfolioId: string,
     portfolioSubmissions: JudgingSubmission[]
@@ -942,16 +952,21 @@ function JudgingPage() {
 
     const isRejected = firstPhoto.flagStatus === 'rejected';
     const isIncomplete = portfolioSubmissions.length < PHOTO_TYPES.length;
-
-    // Create a map of photo type to submission for quick lookup
-    const photoByType = new Map(
-      portfolioSubmissions.map(s => [s.portfolioPhotoType, s])
-    );
+    const photoCount = portfolioSubmissions.length;
 
     return (
       <div
         key={portfolioId}
-        className={`relative rounded-xl overflow-hidden bg-slate-900 border-2 transition-all group ${
+        role="button"
+        tabIndex={0}
+        onClick={() => setInspectedPortfolioId(portfolioId)}
+        onKeyDown={e => {
+          if (e.key === 'Enter' || e.key === ' ') {
+            e.preventDefault();
+            setInspectedPortfolioId(portfolioId);
+          }
+        }}
+        className={`relative rounded-xl overflow-hidden bg-slate-900 border-2 transition-all cursor-pointer group ${
           isRejected
             ? 'border-red-500/50 opacity-50'
             : isIncomplete
@@ -963,77 +978,49 @@ function JudgingPage() {
                   : 'border-slate-800 hover:border-slate-600'
         }`}
       >
-        {/* Incomplete badge */}
-        {isIncomplete && (
-          <div className="absolute top-0 right-0 bg-orange-500 text-black text-[10px] font-bold px-2 py-0.5 z-10">
-            {portfolioSubmissions.length}/{PHOTO_TYPES.length}
+        {/* Simple icon-based preview - no images loaded */}
+        <div className="aspect-[4/3] flex flex-col items-center justify-center gap-2 p-4">
+          <div className="text-4xl">🖼️</div>
+          <div className="flex items-center gap-1.5 text-sm">
+            <span
+              className={`font-medium ${isIncomplete ? 'text-orange-400' : 'text-slate-300'}`}
+            >
+              {photoCount}/{PHOTO_TYPES.length} foto
+            </span>
           </div>
-        )}
-
-        {/* 3 Photos Grid - Always show all 3 slots */}
-        <div
-          role="button"
-          tabIndex={0}
-          className="grid grid-cols-3 gap-2 p-2 cursor-pointer"
-          onClick={() => setInspectedPortfolioId(portfolioId)}
-          onKeyDown={e => {
-            if (e.key === 'Enter' || e.key === ' ') {
-              e.preventDefault();
-              setInspectedPortfolioId(portfolioId);
-            }
-          }}
-        >
-          {PHOTO_TYPES.map(photoType => {
-            const sub = photoByType.get(photoType);
-            const imageUrl = sub ? getImageUrl(sub.r2ImageId) : null;
-            const hasFailed = sub ? failedImages.has(sub.id) : false;
-
-            return (
-              <div
-                key={photoType}
-                className={`aspect-square relative ${sub ? 'bg-slate-800' : 'bg-slate-800/50 border border-dashed border-slate-600'}`}
-              >
-                {sub && imageUrl && !hasFailed ? (
-                  <img
-                    src={imageUrl}
-                    alt={sub.title}
-                    className="w-full h-full object-cover"
-                    loading="lazy"
-                    onError={() => {
-                      setFailedImages(prev => new Set(prev).add(sub.id));
-                    }}
-                  />
-                ) : (
-                  <div className="w-full h-full flex items-center justify-center text-slate-500">
-                    <span className="text-2xl">📷</span>
-                  </div>
-                )}
-                <div
-                  className={`absolute bottom-1 left-1 text-[10px] px-1.5 py-0.5 rounded capitalize ${sub ? 'bg-black/70 text-slate-300' : 'bg-slate-700 text-slate-400'}`}
+          <div className="flex gap-1 text-xs text-slate-500">
+            {PHOTO_TYPES.map(type => {
+              const hasType = portfolioSubmissions.some(
+                s => s.portfolioPhotoType === type
+              );
+              return (
+                <span
+                  key={type}
+                  className={`px-1.5 py-0.5 rounded ${hasType ? 'bg-slate-700 text-slate-300' : 'bg-slate-800 text-slate-600'}`}
                 >
-                  {photoType}
-                </div>
-              </div>
-            );
-          })}
+                  {type.charAt(0).toUpperCase()}
+                </span>
+              );
+            })}
+          </div>
         </div>
 
         {/* Status badges - portfolio level */}
-        <div className="absolute top-3 left-3 flex gap-1.5">
+        <div className="absolute top-2 left-2 flex gap-1.5">
           {firstPhoto.placement && (
             <span
-              className={`${PLACEMENTS.find(p => p.value === firstPhoto.placement)?.color} w-7 h-7 rounded-full flex items-center justify-center text-xs font-bold shadow-lg`}
+              className={`${PLACEMENTS.find(p => p.value === firstPhoto.placement)?.color} w-6 h-6 rounded-full flex items-center justify-center text-xs font-bold shadow-lg`}
             >
               {PLACEMENTS.find(p => p.value === firstPhoto.placement)?.label}
             </span>
           )}
           {firstPhoto.flagStatus === 'shortlisted' && (
-            <span className="bg-emerald-500 w-7 h-7 rounded-full flex items-center justify-center text-xs shadow-lg">
+            <span className="bg-emerald-500 w-6 h-6 rounded-full flex items-center justify-center text-xs shadow-lg">
               ✓
             </span>
           )}
           {firstPhoto.flagStatus === 'rejected' && (
-            <span className="bg-red-500 w-7 h-7 rounded-full flex items-center justify-center text-xs shadow-lg">
+            <span className="bg-red-500 w-6 h-6 rounded-full flex items-center justify-center text-xs shadow-lg">
               ✗
             </span>
           )}
@@ -1041,7 +1028,7 @@ function JudgingPage() {
 
         {/* Rating badge - portfolio level */}
         {firstPhoto.rating && firstPhoto.rating > 0 && (
-          <div className="absolute top-3 right-3 bg-black/70 px-1.5 py-0.5 rounded text-xs font-bold text-yellow-400">
+          <div className="absolute top-2 right-2 bg-black/70 px-1.5 py-0.5 rounded text-xs font-bold text-yellow-400">
             ★{firstPhoto.rating}
           </div>
         )}
@@ -1391,8 +1378,8 @@ function JudgingPage() {
                                   : renderSubmissionCard(winner, 'large')}
                               </div>
                             ) : (
-                              <div className="aspect-[4/3] bg-slate-800/50 rounded-lg flex flex-col items-center justify-center text-slate-500 border-2 border-dashed border-slate-700 gap-2">
-                                <span className="text-4xl">📷</span>
+                              <div className="aspect-[4/3] bg-slate-800/50 rounded-lg flex flex-col items-center justify-center text-slate-600 border-2 border-dashed border-slate-700 gap-2">
+                                <span className="text-4xl">🏆</span>
                                 <span className="text-sm">Non assegnato</span>
                               </div>
                             )}
@@ -1842,7 +1829,12 @@ function JudgingPage() {
                             draggable={false}
                           />
                         ) : (
-                          <div className="text-slate-500 text-4xl">📷</div>
+                          <div className="flex flex-col items-center gap-3 text-center">
+                            <span className="text-5xl">⚠️</span>
+                            <span className="text-red-400 font-medium">
+                              Impossibile caricare l'immagine
+                            </span>
+                          </div>
                         )}
                       </div>
 
@@ -1953,9 +1945,19 @@ function JudgingPage() {
                                   );
                                 }}
                               />
+                            ) : failedImages.has(sub.id) ? (
+                              <div className="w-full h-full flex flex-col items-center justify-center bg-red-950/50 gap-2">
+                                <span className="text-3xl">⚠️</span>
+                                <span className="text-xs text-red-400">
+                                  Errore caricamento
+                                </span>
+                              </div>
                             ) : (
-                              <div className="w-full h-full flex items-center justify-center text-slate-500">
-                                <span className="text-4xl">📷</span>
+                              <div className="w-full h-full flex flex-col items-center justify-center text-slate-500 gap-2">
+                                <span className="text-3xl">🖼️</span>
+                                <span className="text-xs">
+                                  Nessuna immagine
+                                </span>
                               </div>
                             )}
                             {/* Zoom hint on hover */}
