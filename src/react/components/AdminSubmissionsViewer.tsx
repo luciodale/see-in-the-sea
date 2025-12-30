@@ -533,13 +533,13 @@ export function AdminSubmissionsViewer({
                         {isExpanded && (
                           <tr className="bg-slate-800/30">
                             <td colSpan={100} className="px-0 py-0">
-                              <div className="px-8 py-6 space-y-6">
+                              <div className="px-4 md:px-8 py-4 md:py-6 space-y-4 md:space-y-6">
                                 {userRow.submissions.map(submission => (
                                   <div
                                     key={submission.id}
                                     className="bg-slate-900 rounded-lg border border-slate-700 overflow-hidden"
                                   >
-                                    <div className="grid grid-cols-1 md:grid-cols-3 gap-6 p-6">
+                                    <div className="flex flex-col md:grid md:grid-cols-3 gap-4 md:gap-6 p-4 md:p-6">
                                       {/* Image Preview */}
                                       <div className="md:col-span-1">
                                         {submission.r2ImageId ? (
@@ -550,7 +550,7 @@ export function AdminSubmissionsViewer({
                                               ) || ''
                                             }
                                             alt={submission.title}
-                                            className="w-full h-auto rounded-lg border border-slate-700"
+                                            className="w-full max-h-64 md:max-h-none object-contain md:object-cover rounded-lg border border-slate-700"
                                             loading="lazy"
                                           />
                                         ) : (
@@ -563,21 +563,21 @@ export function AdminSubmissionsViewer({
                                       </div>
 
                                       {/* Submission Details */}
-                                      <div className="md:col-span-2 space-y-4">
+                                      <div className="md:col-span-2 space-y-3 md:space-y-4">
                                         {/* Title and Description */}
                                         <div>
-                                          <h3 className="text-lg font-semibold text-white mb-2">
+                                          <h3 className="text-base md:text-lg font-semibold text-white mb-1 md:mb-2">
                                             {submission.title}
                                           </h3>
                                           {submission.description && (
-                                            <p className="text-sm text-slate-300">
+                                            <p className="text-xs md:text-sm text-slate-300">
                                               {submission.description}
                                             </p>
                                           )}
                                         </div>
 
                                         {/* Metadata Grid */}
-                                        <div className="grid grid-cols-2 gap-4 text-sm">
+                                        <div className="grid grid-cols-1 md:grid-cols-2 gap-2 md:gap-4 text-xs md:text-sm">
                                           <div>
                                             <span className="text-slate-400">
                                               Categoria:
@@ -623,11 +623,11 @@ export function AdminSubmissionsViewer({
                                                 )}
                                               </>
                                             )}
-                                          <div className="col-span-2">
+                                          <div className="md:col-span-2">
                                             <span className="text-slate-400">
                                               ID:
                                             </span>
-                                            <span className="ml-2 text-slate-300 text-xs font-mono">
+                                            <span className="ml-2 text-slate-300 text-xs font-mono break-all">
                                               {submission.id}
                                             </span>
                                           </div>
@@ -645,7 +645,7 @@ export function AdminSubmissionsViewer({
                                                 '_blank'
                                               );
                                             }}
-                                            className="inline-flex items-center px-4 py-2 border border-slate-700 text-sm font-medium rounded-md text-slate-200 bg-slate-800 hover:bg-slate-700 focus:outline-none focus:ring-2 focus:ring-emerald-500 cursor-pointer transition-colors"
+                                            className="inline-flex items-center px-3 md:px-4 py-2 border border-slate-700 text-xs md:text-sm font-medium rounded-md text-slate-200 bg-slate-800 hover:bg-slate-700 focus:outline-none focus:ring-2 focus:ring-emerald-500 cursor-pointer transition-colors"
                                           >
                                             <svg
                                               className="w-4 h-4 mr-2"
