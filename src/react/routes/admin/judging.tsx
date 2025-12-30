@@ -21,7 +21,9 @@ export const Route = createFileRoute('/admin/judging')({
 });
 
 // Use R2 domain in production, API endpoint in development
-const IMAGE_BASE_URL = import.meta.env.PUBLIC_R2_DOMAIN || '/api/images';
+const IMAGE_BASE_URL = import.meta.env.PROD
+  ? 'https://images.seeintheseauw.com'
+  : '/api/images';
 
 type Placement = 'first' | 'second' | 'third' | 'runner-up' | null;
 type FlagStatus = 'pending' | 'shortlisted' | 'rejected';
