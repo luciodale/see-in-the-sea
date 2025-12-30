@@ -1,15 +1,5 @@
-import { ArrowRight } from 'lucide-react';
-import { EffectCoverflow, Pagination } from 'swiper/modules';
-import { Swiper, SwiperSlide } from 'swiper/react';
-
-import 'swiper/css';
-import 'swiper/css/effect-coverflow';
-import 'swiper/css/pagination';
-
-// Type definition for Swiper Slide to include progress property
-interface SwiperSlide extends HTMLElement {
-  progress: number;
-}
+import { ArrowRight, ChevronLeft, ChevronRight } from 'lucide-react';
+import { useEffect, useRef, useState } from 'react';
 
 interface Contest {
   id: string;
@@ -24,182 +14,139 @@ interface ContestSliderProps {
 }
 
 export function ContestSlider({ contests }: ContestSliderProps) {
+  const scrollRef = useRef<HTMLDivElement>(null);
+  const [canScrollLeft, setCanScrollLeft] = useState(false);
+  const [canScrollRight, setCanScrollRight] = useState(true);
+
+  const updateScrollButtons = () => {
+    if (!scrollRef.current) return;
+    const { scrollLeft, scrollWidth, clientWidth } = scrollRef.current;
+    setCanScrollLeft(scrollLeft > 10);
+    setCanScrollRight(scrollLeft < scrollWidth - clientWidth - 10);
+  };
+
+  useEffect(() => {
+    const el = scrollRef.current;
+    if (!el) return;
+    updateScrollButtons();
+    el.addEventListener('scroll', updateScrollButtons);
+    window.addEventListener('resize', updateScrollButtons);
+    return () => {
+      el.removeEventListener('scroll', updateScrollButtons);
+      window.removeEventListener('resize', updateScrollButtons);
+    };
+  }, []);
+
+  const scroll = (direction: 'left' | 'right') => {
+    if (!scrollRef.current) return;
+    const cardWidth = scrollRef.current.querySelector('a')?.offsetWidth || 400;
+    const gap = 24;
+    scrollRef.current.scrollBy({
+      left: direction === 'left' ? -(cardWidth + gap) : cardWidth + gap,
+      behavior: 'smooth',
+    });
+  };
+
   if (!contests || contests.length === 0) return null;
 
   return (
-    <div className="w-full h-screen py-12 relative overflow-hidden bg-gradient-to-b from-slate-900 to-gray-900">
-      <Swiper
-        effect={'coverflow'}
-        grabCursor={true}
-        centeredSlides={true}
-        slidesPerView={'auto'}
-        coverflowEffect={{
-          rotate: 0,
-          stretch: 0,
-          depth: 0,
-          modifier: 1,
-          slideShadows: false,
-        }}
-        pagination={{ clickable: true }}
-        navigation={false}
-        modules={[EffectCoverflow, Pagination]}
-        className="w-full h-full !overflow-visible contest-swiper"
-        initialSlide={0}
-        watchSlidesProgress={true}
-        speed={800}
-        breakpoints={{
-          // Mobile: Vertical orientation
-          0: {
-            direction: 'vertical',
-            coverflowEffect: {
-              stretch: 0, // Overlap vertically
-            },
-          },
-          // Tablet/Desktop: Horizontal orientation
-          768: {
-            direction: 'horizontal',
-            coverflowEffect: {
-              stretch: 0,
-            },
-          },
-        }}
-        onProgress={swiper => {
-          const slides = swiper.slides;
-          const isVertical = swiper.params.direction === 'vertical';
+    <div className="min-h-screen bg-gradient-to-b from-slate-900 via-slate-900 to-slate-950 flex flex-col">
+      {/* Header */}
+      <div className="pt-24 pb-8 px-6 text-center">
+        <h1 className="text-4xl md:text-5xl font-extralight text-white tracking-wider uppercase">
+          Past Contests
+        </h1>
+        <p className="mt-4 text-slate-400 text-lg font-light">
+          Explore winning photographs from previous editions
+        </p>
+      </div>
 
-          for (let i = 0; i < slides.length; i++) {
-            const slide = slides[i] as unknown as SwiperSlide;
-            const slideProgress = slide.progress;
-            const absProgress = Math.abs(slideProgress);
+      {/* Slider Container */}
+      <div className="flex-1 flex items-center relative">
+        {/* Left Arrow - Desktop only */}
+        <button
+          onClick={() => scroll('left')}
+          className={`hidden md:flex absolute left-4 z-10 w-12 h-12 items-center justify-center rounded-full bg-white/10 backdrop-blur-sm border border-white/20 text-white transition-all duration-300 ${
+            canScrollLeft
+              ? 'opacity-100 hover:bg-white/20 hover:scale-110'
+              : 'opacity-0 pointer-events-none'
+          }`}
+          aria-label="Previous contest"
+        >
+          <ChevronLeft className="w-6 h-6" />
+        </button>
 
-            // Scale Logic
-            const activeScale = 1 - Math.max(0, 1 - absProgress) * 0.15;
+        {/* Edge gradients - hint there's more content */}
+        <div className="absolute left-0 top-0 bottom-0 w-8 bg-gradient-to-r from-slate-900 to-transparent z-10 pointer-events-none md:hidden" />
+        <div className="absolute right-0 top-0 bottom-0 w-8 bg-gradient-to-l from-slate-900 to-transparent z-10 pointer-events-none md:hidden" />
 
-            const inner = slide.querySelector('.contest-inner') as HTMLElement;
-            if (inner) {
-              inner.style.transform = `scale(${activeScale})`;
-            }
-
-            // Image Parallax
-            const lensScale = 1 + absProgress * 0.6;
-            const parallaxAmount = slideProgress * 50;
-
-            const image = slide.querySelector('.contest-image') as HTMLElement;
-            if (image) {
-              const finalImageScale = 1.2 * lensScale * (1 + (1 - activeScale));
-              // Handle parallax direction based on orientation
-              const translate = isVertical
-                ? `translate3d(0, ${parallaxAmount}%, 0)`
-                : `translate3d(${parallaxAmount}%, 0, 0)`;
-
-              image.style.transform = `${translate} scale(${finalImageScale})`;
-            }
-
-            // Content Parallax
-            const content = slide.querySelector(
-              '.contest-content'
-            ) as HTMLElement;
-            if (content) {
-              const contentParallax = slideProgress * 20;
-              const textScale = 1 / activeScale;
-
-              const translate = isVertical
-                ? `translate3d(0, ${contentParallax}px, 0)`
-                : `translate3d(${contentParallax}px, 0, 0)`;
-
-              content.style.transform = `${translate} scale(${textScale})`;
-              content.style.opacity = `${Math.max(0, 1 - absProgress * 0.5)}`;
-            }
-          }
-        }}
-        onSetTransition={(swiper, duration) => {
-          const slides = swiper.slides;
-          for (let i = 0; i < slides.length; i++) {
-            const slide = slides[i];
-            const image = slide.querySelector('.contest-image') as HTMLElement;
-            const content = slide.querySelector(
-              '.contest-content'
-            ) as HTMLElement;
-            const inner = slide.querySelector('.contest-inner') as HTMLElement;
-
-            if (image) image.style.transitionDuration = `${duration}ms`;
-            if (content) content.style.transitionDuration = `${duration}ms`;
-            if (inner) inner.style.transitionDuration = `${duration}ms`;
-          }
-        }}
-      >
-        {contests.map(contest => (
-          <SwiperSlide
-            key={contest.id}
-            // Adjusted width/height for vertical mode
-            // Mobile: High height, full width
-            // Desktop: Fixed width, fixed/auto height
-            className="!w-full !h-[60vh] md:!w-[70vw] md:!h-[70vh] group"
-          >
+        {/* Scrollable Cards */}
+        <div
+          ref={scrollRef}
+          className="flex gap-4 overflow-x-auto snap-x snap-mandatory scroll-smooth pb-8 px-6 md:px-12 w-full scrollbar-hide"
+          style={{
+            scrollbarWidth: 'none',
+            msOverflowStyle: 'none',
+          }}
+        >
+          {contests.map(contest => (
             <a
+              key={contest.id}
               href={contest.link}
-              className="contest-inner block w-full h-full relative overflow-hidden rounded-3xl origin-center will-change-transform"
+              className="group flex-shrink-0 snap-center w-[75vw] md:w-[60vw] lg:w-[45vw] xl:w-[35vw] aspect-[4/5] md:aspect-[3/4] relative rounded-2xl overflow-hidden"
             >
-              {/* Full Slide Image Container */}
-              <div className="absolute inset-0 z-0 overflow-hidden rounded-3xl bg-slate-900">
-                {contest.winningImage ? (
-                  <div className="w-full h-full relative overflow-hidden">
-                    <img
-                      src={contest.winningImage}
-                      alt={contest.name}
-                      loading="lazy"
-                      className="contest-image w-full h-full object-cover absolute inset-0 will-change-transform origin-center"
-                    />
-                  </div>
-                ) : (
-                  <div className="w-full h-full bg-slate-800 flex items-center justify-center">
-                    <span className="text-6xl">🏆</span>
-                  </div>
-                )}
+              {/* Background Image */}
+              {contest.winningImage ? (
+                <img
+                  src={contest.winningImage}
+                  alt={contest.name}
+                  loading="lazy"
+                  className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                />
+              ) : (
+                <div className="absolute inset-0 bg-gradient-to-br from-slate-800 to-slate-900 flex items-center justify-center">
+                  <span className="text-8xl opacity-50">🏆</span>
+                </div>
+              )}
 
-                {/* Dark gradient overlay */}
-                <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/30 to-transparent z-10" />
+              {/* Gradient Overlay */}
+              <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
 
-                {/* Shine effect */}
-                <div className="absolute inset-0 pointer-events-none bg-gradient-to-tr from-white/10 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 z-30" />
-              </div>
-
-              {/* Content Overlay */}
-              <div className="contest-content absolute inset-0 z-20 flex flex-col justify-end p-6 md:p-10 text-white will-change-transform origin-bottom-left">
-                <div className="flex flex-col gap-4">
-                  <h3 className="text-4xl md:text-5xl font-extralight tracking-wide uppercase drop-shadow-2xl text-shadow-lg">
+              {/* Content */}
+              <div className="absolute inset-0 flex flex-col justify-end p-6 md:p-8">
+                <div className="transform transition-transform duration-300 group-hover:translate-y-[-4px]">
+                  <h2 className="text-3xl md:text-4xl font-light text-white tracking-wide uppercase mb-3">
                     {contest.name}
-                  </h3>
+                  </h2>
 
-                  <div className="flex items-center gap-3 text-base font-medium text-blue-200 group-hover:text-white transition-colors">
-                    <span>View Gallery</span>
-                    <ArrowRight className="w-5 h-5 transition-transform group-hover:translate-x-1" />
+                  <div className="flex items-center gap-2 text-white/80 group-hover:text-white transition-colors">
+                    <span className="text-sm font-medium tracking-wide">
+                      View Gallery
+                    </span>
+                    <ArrowRight className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1" />
                   </div>
                 </div>
               </div>
 
-              {/* Glass Border Overlay */}
-              <div className="absolute inset-0 border border-white/20 rounded-3xl pointer-events-none z-40 group-hover:border-white/40 transition-colors duration-300" />
+              {/* Subtle border */}
+              <div className="absolute inset-0 rounded-2xl border border-white/10 group-hover:border-white/25 transition-colors duration-300 pointer-events-none" />
             </a>
-          </SwiperSlide>
-        ))}
-      </Swiper>
+          ))}
+        </div>
 
-      <style>{`
-        .swiper-pagination-bullet {
-          background: rgba(255, 255, 255, 0.5);
-        }
-        .swiper-pagination-bullet-active {
-          background: #fff;
-        }
-        .text-shadow-lg {
-          text-shadow: 0 4px 8px rgba(0,0,0,0.5);
-        }
-        /* Vertical adjustments */
-        .swiper-vertical .swiper-wrapper {
-          flex-direction: column;
-        }
-      `}</style>
+        {/* Right Arrow - Desktop only */}
+        <button
+          onClick={() => scroll('right')}
+          className={`hidden md:flex absolute right-4 z-10 w-12 h-12 items-center justify-center rounded-full bg-white/10 backdrop-blur-sm border border-white/20 text-white transition-all duration-300 ${
+            canScrollRight
+              ? 'opacity-100 hover:bg-white/20 hover:scale-110'
+              : 'opacity-0 pointer-events-none'
+          }`}
+          aria-label="Next contest"
+        >
+          <ChevronRight className="w-6 h-6" />
+        </button>
+      </div>
     </div>
   );
 }
