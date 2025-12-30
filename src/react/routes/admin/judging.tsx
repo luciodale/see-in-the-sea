@@ -628,24 +628,74 @@ function JudgingPage() {
     }
   };
 
-  // Counts
-  const counts = {
-    total: categorySubmissions.length,
-    shortlisted: categorySubmissions.filter(s => s.flagStatus === 'shortlisted')
-      .length,
-    rejected: categorySubmissions.filter(s => s.flagStatus === 'rejected')
-      .length,
-    pending: categorySubmissions.filter(s => s.flagStatus === 'pending').length,
-    winners: categorySubmissions.filter(s => s.placement !== null).length,
-  };
+  // Counts - for Mediterranean, count unique portfolios instead of individual photos
+  const counts = isMediterranean
+    ? {
+        total: portfoliosList.length,
+        shortlisted: [
+          ...new Set(
+            categorySubmissions
+              .filter(s => s.flagStatus === 'shortlisted')
+              .map(s => s.portfolio)
+          ),
+        ].length,
+        rejected: [
+          ...new Set(
+            categorySubmissions
+              .filter(s => s.flagStatus === 'rejected')
+              .map(s => s.portfolio)
+          ),
+        ].length,
+        pending: [
+          ...new Set(
+            categorySubmissions
+              .filter(s => s.flagStatus === 'pending')
+              .map(s => s.portfolio)
+          ),
+        ].length,
+        winners: [
+          ...new Set(
+            categorySubmissions
+              .filter(s => s.placement !== null)
+              .map(s => s.portfolio)
+          ),
+        ].length,
+      }
+    : {
+        total: categorySubmissions.length,
+        shortlisted: categorySubmissions.filter(
+          s => s.flagStatus === 'shortlisted'
+        ).length,
+        rejected: categorySubmissions.filter(s => s.flagStatus === 'rejected')
+          .length,
+        pending: categorySubmissions.filter(s => s.flagStatus === 'pending')
+          .length,
+        winners: categorySubmissions.filter(s => s.placement !== null).length,
+      };
 
-  const placementCounts = categorySubmissions.reduce(
-    (acc, s) => {
-      if (s.placement) acc[s.placement] = (acc[s.placement] || 0) + 1;
-      return acc;
-    },
-    {} as Record<string, number>
-  );
+  // Placement counts - for Mediterranean, count unique portfolios
+  const placementCounts = isMediterranean
+    ? (['first', 'second', 'third', 'runner-up'] as const).reduce(
+        (acc, placement) => {
+          const uniquePortfolios = [
+            ...new Set(
+              categorySubmissions
+                .filter(s => s.placement === placement)
+                .map(s => s.portfolio)
+            ),
+          ];
+          acc[placement] = uniquePortfolios.length;
+          return acc;
+        },
+        {} as Record<string, number>
+      )
+    : categorySubmissions.reduce(
+        (acc, s) => {
+          if (s.placement) acc[s.placement] = (acc[s.placement] || 0) + 1;
+          return acc;
+        },
+        {} as Record<string, number>
+      );
 
   // Render submission card
   const renderSubmissionCard = (
@@ -1257,7 +1307,7 @@ function JudgingPage() {
                             </div>
                             {winner ? (
                               <div
-                                className={`${isFirst ? 'ring-2 ring-yellow-500/50' : ''} rounded-lg overflow-hidden`}
+                                className={`${isFirst && !(isMediterranean && winnerPortfolio) ? 'ring-2 ring-yellow-500/50' : ''} rounded-lg overflow-hidden`}
                               >
                                 {isMediterranean && winnerPortfolio
                                   ? renderPortfolioCard(
