@@ -2,13 +2,14 @@ import { useAuth } from '@clerk/clerk-react';
 import { useEffect, useState } from 'react';
 import type { AdminUsersResponse } from '../../pages/api/admin/users';
 import {
-  getImageApiUrl,
   getOriginalImageApiUrl,
+  getThumbnailImageApiUrl,
 } from '../../server/imageService';
 import type {
   AdminSubmission,
   AdminSubmissionsResponse,
 } from '../../types/api';
+import { LazyImage } from './LazyImage';
 
 type AdminSubmissionsViewerProps = {
   contestId: string;
@@ -543,15 +544,14 @@ export function AdminSubmissionsViewer({
                                       {/* Image Preview */}
                                       <div className="md:col-span-1">
                                         {submission.r2ImageId ? (
-                                          <img
+                                          <LazyImage
                                             src={
-                                              getImageApiUrl(
+                                              getThumbnailImageApiUrl(
                                                 submission.r2ImageId
                                               ) || ''
                                             }
                                             alt={submission.title}
-                                            className="w-full max-h-64 md:max-h-none object-contain md:object-cover rounded-lg border border-slate-700"
-                                            loading="lazy"
+                                            className="relative w-full max-h-64 md:max-h-none aspect-square md:aspect-auto"
                                           />
                                         ) : (
                                           <div className="w-full aspect-video bg-slate-800 rounded-lg flex items-center justify-center">

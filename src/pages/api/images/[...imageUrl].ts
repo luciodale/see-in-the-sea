@@ -28,8 +28,9 @@ export const GET: APIRoute = async ({ params, locals, request, url }) => {
     );
   }
 
-  // Check if original uncompressed image is requested
+  // Check query params for image variants
   const serveOriginal = url.searchParams.get('original') === 'true';
+  const serveThumbnail = url.searchParams.get('thumb') === 'true';
 
   let finalResponse: Response | null = null;
 
@@ -70,18 +71,22 @@ export const GET: APIRoute = async ({ params, locals, request, url }) => {
     // If Images service is available, use it for optimization
     else if (IMAGES) {
       try {
-        console.log('[serve-image] Transforming image with IMAGES service');
+        const imageWidth = serveThumbnail ? 400 : 1400;
+        const imageQuality = serveThumbnail ? 80 : 93;
+        console.log(
+          `[serve-image] Transforming image (${serveThumbnail ? 'thumb' : 'full'})`
+        );
 
         const imageTransformer = IMAGES.input(r2Object.body);
 
         const webOptimizedTransformer = imageTransformer
           .transform({
-            width: 1400,
+            width: imageWidth,
             fit: 'contain',
           })
           .output({
             format: 'image/webp',
-            quality: 93,
+            quality: imageQuality,
           });
 
         const transformedImage = await webOptimizedTransformer;
@@ -94,7 +99,7 @@ export const GET: APIRoute = async ({ params, locals, request, url }) => {
           headers: {
             ...Object.fromEntries(response.headers.entries()),
             'Cache-Control': 'public, max-age=31536000, immutable',
-            'X-Optimized': 'web',
+            'X-Optimized': serveThumbnail ? 'thumb' : 'web',
           },
         });
       } catch (imageError) {

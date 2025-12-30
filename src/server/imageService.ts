@@ -84,6 +84,17 @@ export function getOriginalImageApiUrl(
 }
 
 /**
+ * Generates the full API URL for serving a thumbnail (smaller, faster)
+ * Pure function - string transformation
+ */
+export function getThumbnailImageApiUrl(
+  r2ImageId: string | null | undefined
+): string | null {
+  if (!r2ImageId) return null;
+  return `/api/images/${r2ImageId}?thumb=true`;
+}
+
+/**
  * Validates if a user owns a specific submission
  * Pure function - returns ownership validation
  */
