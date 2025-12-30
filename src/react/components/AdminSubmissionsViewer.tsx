@@ -88,7 +88,7 @@ export function AdminSubmissionsViewer({
       const result: AdminSubmissionsResponse = await response.json();
 
       if (!response.ok || !result.success) {
-        throw new Error('Impossibile recuperare le invia');
+        throw new Error('Impossibile recuperare le submission');
       }
 
       setAllSubmissions(result.data || []);
@@ -97,7 +97,7 @@ export function AdminSubmissionsViewer({
       setError(
         error instanceof Error
           ? error.message
-          : 'Impossibile recuperare le invia'
+          : 'Impossibile recuperare le submission'
       );
     } finally {
       setIsLoading(false);
