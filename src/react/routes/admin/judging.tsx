@@ -1522,11 +1522,16 @@ function JudgingPage() {
                 {/* Header */}
                 <div className="flex items-center justify-between p-3 bg-slate-900 border-b border-slate-800 shrink-0">
                   <div className="flex items-center gap-4">
-                    <div>
+                    <div className="max-w-md">
                       <div className="text-white font-medium">
                         {inspectedSubmission.title}
                       </div>
-                      <div className="text-slate-500 text-xs">
+                      {inspectedSubmission.description && (
+                        <div className="text-slate-400 text-xs mt-0.5 line-clamp-2">
+                          {inspectedSubmission.description}
+                        </div>
+                      )}
+                      <div className="text-slate-500 text-xs mt-1">
                         {inspectedIndex + 1} / {sortedSubmissions.length} •{' '}
                         Frecce ←→ per navigare
                       </div>
@@ -1916,6 +1921,11 @@ function JudgingPage() {
                           </span>
                         )}
                       </div>
+                      {zoomedPhoto.description && (
+                        <div className="text-xs text-slate-400 mt-1 max-w-md mx-auto line-clamp-2">
+                          {zoomedPhoto.description}
+                        </div>
+                      )}
                     </div>
                   </div>
                 )}
