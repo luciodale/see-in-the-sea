@@ -1,7 +1,7 @@
 import type { APIRoute } from 'astro';
 import { and, eq } from 'drizzle-orm';
 import { getDb } from '../../db/index';
-import { payments } from '../../db/schema';
+import { payments, submissions } from '../../db/schema';
 import { getBackendTranslation } from '../../i18n/utils';
 import { authenticateRequest } from '../../server/authenticateRequest';
 import {
@@ -13,6 +13,7 @@ import {
 import type { UploadResponse } from '../../types/api';
 
 import {
+  deleteImageFromR2,
   generateR2ImageId,
   uploadImageWithMetadata,
 } from '../../server/imageService';
@@ -59,7 +60,6 @@ export const POST: APIRoute = async ({ request, locals }) => {
     }
 
     let userEmail = user.emailAddress || 'unknown';
-    const userId = user.id;
 
     // Step 2: Parse and validate form data
     const formData = await request.formData();
@@ -143,7 +143,7 @@ export const POST: APIRoute = async ({ request, locals }) => {
       );
     }
 
-    const { image, fileExtension } = imageValidation.data;
+    const { image } = imageValidation.data;
 
     // Step 4: Validate contest and category exist
     const [contestValidation, categoryValidation] = await Promise.all([
@@ -230,13 +230,64 @@ export const POST: APIRoute = async ({ request, locals }) => {
       );
     }
 
-    // Step 6: Generate new image ID
+    // Step 6: For Mediterranean portfolios, clean up any existing duplicate entries
+    // This prevents race conditions and duplicate entries
+    if (portfolio && portfolioPhotoType) {
+      console.log(
+        `[upload-image] Mediterranean upload: checking for existing ${portfolio}/${portfolioPhotoType}`
+      );
+
+      const existingSubmissions = await db
+        .select({ id: submissions.id, r2ImageId: submissions.r2ImageId })
+        .from(submissions)
+        .where(
+          and(
+            eq(submissions.contestId, contestId),
+            eq(submissions.categoryId, categoryId),
+            eq(submissions.userEmail, userEmail),
+            eq(submissions.portfolio, portfolio),
+            eq(submissions.portfolioPhotoType, portfolioPhotoType)
+          )
+        );
+
+      if (existingSubmissions.length > 0) {
+        console.log(
+          `[upload-image] Found ${existingSubmissions.length} existing entries, cleaning up`
+        );
+
+        for (const existing of existingSubmissions) {
+          // Delete from R2 if image exists
+          if (existing.r2ImageId) {
+            try {
+              await deleteImageFromR2(R2Bucket, existing.r2ImageId);
+              console.log(
+                `[upload-image] Deleted R2 image: ${existing.r2ImageId}`
+              );
+            } catch (err) {
+              console.warn(
+                `[upload-image] Failed to delete R2 image ${existing.r2ImageId}:`,
+                err
+              );
+              // Continue anyway - the R2 file might already be gone
+            }
+          }
+
+          // Delete from database
+          await db.delete(submissions).where(eq(submissions.id, existing.id));
+          console.log(
+            `[upload-image] Deleted existing submission: ${existing.id}`
+          );
+        }
+      }
+    }
+
+    // Step 7: Generate new image ID
     const { submissionId, r2ImageId } = generateR2ImageId(
       contestId,
       categoryId
     );
 
-    // Step 7: Execute the upload operation
+    // Step 8: Execute the upload operation
     console.log('[upload-image] Creating new submission');
 
     // Upload image to R2 with retries and store metadata in database
@@ -257,7 +308,7 @@ export const POST: APIRoute = async ({ request, locals }) => {
 
     console.log('[upload-image] Upload completed successfully');
 
-    // Step 8: Return success response
+    // Step 9: Return success response
     const response: UploadResponse = {
       success: true,
       message: getBackendTranslation('success.image-uploaded', request),
