@@ -1526,7 +1526,7 @@ function JudgingPage() {
                       <div className="text-white font-medium">
                         {inspectedSubmission.title}
                       </div>
-                      {inspectedSubmission.description && (
+                      {inspectedSubmission.description?.trim() && (
                         <div className="text-slate-400 text-xs mt-0.5 line-clamp-2">
                           {inspectedSubmission.description}
                         </div>
@@ -1921,7 +1921,7 @@ function JudgingPage() {
                           </span>
                         )}
                       </div>
-                      {zoomedPhoto.description && (
+                      {zoomedPhoto.description?.trim() && (
                         <div className="text-xs text-slate-400 mt-1 max-w-md mx-auto line-clamp-2">
                           {zoomedPhoto.description}
                         </div>
