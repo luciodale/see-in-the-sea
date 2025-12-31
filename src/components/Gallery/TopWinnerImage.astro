@@ -1,4 +1,6 @@
 ---
+import { getLangFromUrl, useTranslations } from '@/i18n';
+
 type Props = {
   categoryName: string;
   rank: string;
@@ -18,6 +20,9 @@ const {
   rank,
   rawResult,
 }: Props = Astro.props;
+
+const currentLang = getLangFromUrl(Astro.url);
+const t = useTranslations(currentLang);
 
 // Define accent color based on rank
 const getAccentStyles = (result: string) => {
@@ -85,6 +90,7 @@ const styles = getAccentStyles(rawResult);
     data-lightbox-title={title || categoryName}
     data-lightbox-author={author}
   >
+    <!-- Loading skeleton -->
     <div
       class="winner-skeleton absolute inset-0 animate-pulse bg-gradient-to-br from-slate-800 via-slate-850 to-slate-900 flex items-center justify-center"
     >
@@ -102,12 +108,43 @@ const styles = getAccentStyles(rawResult);
         ></path>
       </svg>
     </div>
+
+    <!-- Fallback state (hidden by default, shown on error) -->
+    <div
+      class="winner-fallback absolute inset-0 hidden items-center justify-center bg-gradient-to-br from-slate-800 to-slate-900"
+    >
+      <div class="flex flex-col items-center gap-2 text-gray-400">
+        <svg
+          class="w-10 h-10"
+          fill="none"
+          stroke="currentColor"
+          viewBox="0 0 24 24"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="1.5"
+            d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="1.5"
+            d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"
+          ></path>
+        </svg>
+        <span class="text-sm">{t('image.click-to-view')}</span>
+      </div>
+    </div>
+
+    <!-- Actual image -->
     <img
       class="winner-image absolute inset-0 w-full h-full object-cover opacity-0 transition-opacity duration-700"
       data-src={imageUrl}
       alt={title || categoryName}
       loading="lazy"
     />
+
+    <!-- Hover overlay -->
     <div
       class="absolute inset-0 bg-gradient-to-t from-black/30 via-transparent to-transparent pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-500"
     >
@@ -135,10 +172,9 @@ const styles = getAccentStyles(rawResult);
 </div>
 
 <script>
-  // Intersection Observer for lazy loading winner images
   const observerOptions = {
     root: null,
-    rootMargin: '200px', // Start loading 200px before visible
+    rootMargin: '200px',
     threshold: 0.01,
   };
 
@@ -150,6 +186,9 @@ const styles = getAccentStyles(rawResult);
         const skeleton = section.querySelector(
           '.winner-skeleton'
         ) as HTMLElement;
+        const fallback = section.querySelector(
+          '.winner-fallback'
+        ) as HTMLElement;
         const imageUrl = img?.dataset.src;
 
         if (img && imageUrl) {
@@ -157,22 +196,12 @@ const styles = getAccentStyles(rawResult);
           img.onload = () => {
             img.classList.remove('opacity-0');
             img.classList.add('opacity-100');
-            if (skeleton) {
-              skeleton.classList.add('hidden');
-            }
+            skeleton?.classList.add('hidden');
           };
           img.onerror = () => {
-            if (skeleton) {
-              skeleton.innerHTML = `
-                <div class="flex flex-col items-center gap-2 text-red-400">
-                  <svg class="w-12 h-12" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
-                  </svg>
-                  <span class="text-sm">Errore caricamento</span>
-                </div>
-              `;
-              skeleton.classList.remove('animate-pulse');
-            }
+            skeleton?.classList.add('hidden');
+            fallback?.classList.remove('hidden');
+            fallback?.classList.add('flex');
           };
         }
         observer.unobserve(section);
@@ -180,7 +209,6 @@ const styles = getAccentStyles(rawResult);
     });
   }, observerOptions);
 
-  // Observe all winner sections
   document.querySelectorAll('.winner-section').forEach(section => {
     imageObserver.observe(section);
   });

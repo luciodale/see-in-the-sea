@@ -342,6 +342,9 @@ export const translations = {
 
     // Collaborations
     'collaborations.title': 'Collaborations:',
+
+    // Image states
+    'image.click-to-view': 'Click to view',
   },
 
   it: {
@@ -686,6 +689,9 @@ export const translations = {
 
     // Collaborations
     'collaborations.title': 'Collaborazioni:',
+
+    // Image states
+    'image.click-to-view': 'Clicca per vedere',
   },
 } as const;
 
