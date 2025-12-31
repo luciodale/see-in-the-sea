@@ -118,7 +118,6 @@ export function ResetPasswordForm({
           )}
         </button>
       </form>
-
     </div>
   );
 }

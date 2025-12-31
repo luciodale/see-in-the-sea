@@ -2,7 +2,7 @@ import { SignedIn, SignedOut, useAuth } from '@clerk/clerk-react';
 import { createFileRoute } from '@tanstack/react-router';
 import { Check, RotateCcw, Send, Trophy, X, ZoomOut } from 'lucide-react';
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
-import { PHOTO_TYPES } from '../../../constants';
+import { IMAGES_BASE_URL, PHOTO_TYPES } from '../../../constants';
 import { CURRENT_CONTEST_CATEGORIES } from '../../../constants/categories';
 import AdminTabs from '../../components/AdminTabs';
 import { RedirectToSignIn } from '../../components/RedirectToSignIn';
@@ -11,11 +11,6 @@ import { useUserRole } from '../../hooks/useUserRole';
 export const Route = createFileRoute('/admin/judging')({
   component: JudgingPage,
 });
-
-// Use R2 domain in production, API endpoint in development
-const IMAGE_BASE_URL = import.meta.env.PROD
-  ? 'https://images.seeintheseauw.com'
-  : '/api/images';
 
 type Placement = 'first' | 'second' | 'third' | 'runner-up' | null;
 type FlagStatus = 'pending' | 'shortlisted' | 'rejected';
@@ -159,7 +154,7 @@ function JudgingPage() {
   // Get image URL
   const getImageUrl = (r2ImageId: string | null): string | null => {
     if (!r2ImageId) return null;
-    return `${IMAGE_BASE_URL}/${r2ImageId}`;
+    return `${IMAGES_BASE_URL}/${r2ImageId}`;
   };
 
   // Background sync function
@@ -898,7 +893,7 @@ function JudgingPage() {
                   }}
                   className={`w-6 h-6 rounded text-xs font-bold transition-all ${
                     submission.placement === p.value
-                      ? `${p.color} text-white ring-1 ring-white`
+                      ? `${p.color} text-white scale-110`
                       : 'bg-slate-700/80 text-slate-300 hover:bg-slate-600'
                   }`}
                 >
@@ -1150,7 +1145,7 @@ function JudgingPage() {
                 }}
                 className={`w-7 h-7 rounded text-sm font-bold transition-all ${
                   firstPhoto.placement === p.value
-                    ? `${p.color} text-white ring-1 ring-white`
+                    ? `${p.color} text-white scale-110`
                     : 'bg-slate-700/80 text-slate-300 hover:bg-slate-600'
                 }`}
               >
@@ -1734,7 +1729,7 @@ function JudgingPage() {
                         }
                         className={`w-8 h-8 rounded text-sm font-bold transition-all ${
                           inspectedSubmission.placement === p.value
-                            ? `${p.color} text-white ring-2 ring-white`
+                            ? `${p.color} text-white scale-110`
                             : 'bg-slate-700 text-slate-300 hover:bg-slate-600'
                         }`}
                       >
@@ -2168,7 +2163,7 @@ function JudgingPage() {
                         className={`w-8 h-8 rounded text-sm font-bold transition-all ${
                           inspectedPortfolio.submissions[0]?.placement ===
                           p.value
-                            ? `${p.color} text-white ring-2 ring-white`
+                            ? `${p.color} text-white scale-110`
                             : 'bg-slate-700 text-slate-300 hover:bg-slate-600'
                         }`}
                       >

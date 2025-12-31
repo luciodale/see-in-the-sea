@@ -5,7 +5,6 @@ interface Env {
   IMAGES?: ImagesBinding;
   DB?: D1Database;
   PUBLIC_CLERK_PUBLISHABLE_KEY?: string;
-  PUBLIC_R2_DOMAIN?: string; // R2 domain for images (e.g. https://images.seeintheseauw.com)
   CLERK_SECRET_KEY?: string;
   CLERK_JWT_KEY?: string;
   IMAGES_API_TOKEN?: string;

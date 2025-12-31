@@ -20,11 +20,11 @@ export default [
       'prettier/prettier': 'error',
       '@typescript-eslint/no-unused-vars': [
         'error',
-        { 
+        {
           argsIgnorePattern: '^_',
           varsIgnorePattern: '^_',
-          caughtErrorsIgnorePattern: '^_'
-        }
+          caughtErrorsIgnorePattern: '^_',
+        },
       ],
       '@typescript-eslint/no-explicit-any': 'warn',
       'jsx-a11y/alt-text': 'error',
@@ -62,4 +62,4 @@ export default [
       '*.d.ts',
     ],
   },
-]; 
+];

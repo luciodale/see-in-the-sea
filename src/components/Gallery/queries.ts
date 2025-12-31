@@ -322,3 +322,24 @@ export async function getCategoryNamesByIds(
 
   return categoryMap;
 }
+
+/**
+ * Fetches all inactive contests for navigation (id, name, year only)
+ * @param d1Database - D1Database instance
+ * @returns Array of contests for navigation
+ */
+export async function getAllContestsForNavigation(
+  d1Database: D1Database
+): Promise<Array<{ id: string; name: string; year: number }>> {
+  const db = getDb(d1Database);
+
+  return await db
+    .select({
+      id: contests.id,
+      name: contests.name,
+      year: contests.year,
+    })
+    .from(contests)
+    .where(eq(contests.status, 'inactive'))
+    .orderBy(contests.year);
+}

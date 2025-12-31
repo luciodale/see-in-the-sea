@@ -9,7 +9,7 @@ export const Route = createFileRoute('/user/login')({
 
 function Login() {
   const navigate = useNavigate();
-  
+
   // Get current language and generate language-aware redirect URL
   const lang = document.documentElement.lang as 'en' | 'it';
   const submissionsUrl = getLanguageAwareRedirectUrl('/user/submissions', lang);

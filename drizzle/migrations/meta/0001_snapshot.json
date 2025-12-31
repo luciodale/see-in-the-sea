@@ -40,9 +40,7 @@
       "indexes": {
         "categories_name_unique": {
           "name": "categories_name_unique",
-          "columns": [
-            "name"
-          ],
+          "columns": ["name"],
           "isUnique": true
         }
       },
@@ -160,12 +158,8 @@
           "name": "judges_contest_id_contests_id_fk",
           "tableFrom": "judges",
           "tableTo": "contests",
-          "columnsFrom": [
-            "contest_id"
-          ],
-          "columnsTo": [
-            "id"
-          ],
+          "columnsFrom": ["contest_id"],
+          "columnsTo": ["id"],
           "onDelete": "no action",
           "onUpdate": "no action"
         }
@@ -231,9 +225,7 @@
       "indexes": {
         "payments_stripe_session_id_unique": {
           "name": "payments_stripe_session_id_unique",
-          "columns": [
-            "stripe_session_id"
-          ],
+          "columns": ["stripe_session_id"],
           "isUnique": true
         }
       },
@@ -242,12 +234,8 @@
           "name": "payments_contest_id_contests_id_fk",
           "tableFrom": "payments",
           "tableTo": "contests",
-          "columnsFrom": [
-            "contest_id"
-          ],
-          "columnsTo": [
-            "id"
-          ],
+          "columnsFrom": ["contest_id"],
+          "columnsTo": ["id"],
           "onDelete": "no action",
           "onUpdate": "no action"
         }
@@ -309,12 +297,8 @@
           "name": "results_submission_id_submissions_id_fk",
           "tableFrom": "results",
           "tableTo": "submissions",
-          "columnsFrom": [
-            "submission_id"
-          ],
-          "columnsTo": [
-            "id"
-          ],
+          "columnsFrom": ["submission_id"],
+          "columnsTo": ["id"],
           "onDelete": "no action",
           "onUpdate": "no action"
         }
@@ -429,16 +413,12 @@
       "indexes": {
         "submissions_r2_key_unique": {
           "name": "submissions_r2_key_unique",
-          "columns": [
-            "r2_key"
-          ],
+          "columns": ["r2_key"],
           "isUnique": true
         },
         "submissions_image_url_unique": {
           "name": "submissions_image_url_unique",
-          "columns": [
-            "image_url"
-          ],
+          "columns": ["image_url"],
           "isUnique": true
         }
       },
@@ -447,12 +427,8 @@
           "name": "submissions_contest_id_contests_id_fk",
           "tableFrom": "submissions",
           "tableTo": "contests",
-          "columnsFrom": [
-            "contest_id"
-          ],
-          "columnsTo": [
-            "id"
-          ],
+          "columnsFrom": ["contest_id"],
+          "columnsTo": ["id"],
           "onDelete": "no action",
           "onUpdate": "no action"
         },
@@ -460,12 +436,8 @@
           "name": "submissions_category_id_categories_id_fk",
           "tableFrom": "submissions",
           "tableTo": "categories",
-          "columnsFrom": [
-            "category_id"
-          ],
-          "columnsTo": [
-            "id"
-          ],
+          "columnsFrom": ["category_id"],
+          "columnsTo": ["id"],
           "onDelete": "no action",
           "onUpdate": "no action"
         }

@@ -212,7 +212,6 @@ export function SignupForm({
           )}
         </button>
       </form>
-
     </div>
   );
 }

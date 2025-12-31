@@ -1,6 +1,10 @@
 import { eq } from 'drizzle-orm';
 import { nanoid } from 'nanoid';
-import { MAX_RETRY_ATTEMPTS, RETRY_BACKOFF_BASE } from '../constants';
+import {
+  IMAGES_BASE_URL,
+  MAX_RETRY_ATTEMPTS,
+  RETRY_BACKOFF_BASE,
+} from '../constants';
 import type { getDb } from '../db/index';
 import { submissions, type NewSubmission, type Submission } from '../db/index';
 
@@ -92,6 +96,18 @@ export function getThumbnailImageApiUrl(
 ): string | null {
   if (!r2ImageId) return null;
   return `/api/images/${r2ImageId}?thumb=true`;
+}
+
+/**
+ * Generates the full URL for serving original quality images
+ * Uses CDN in production, API in development
+ * Pure function - string transformation
+ */
+export function getFullQualityImageUrl(
+  r2ImageId: string | null | undefined
+): string | null {
+  if (!r2ImageId) return null;
+  return `${IMAGES_BASE_URL}/${r2ImageId}`;
 }
 
 /**

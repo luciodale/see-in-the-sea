@@ -6,10 +6,11 @@ import { SubNav } from '../components/SubNav';
 export const Route = createRootRoute({
   component: () => {
     const location = useLocation();
-    const isAuthRoute = location.pathname.includes('/user/login') || 
-                        location.pathname.includes('/user/register') ||
-                        location.pathname.includes('/user/verify') ||
-                        location.pathname.includes('/user/reset');
+    const isAuthRoute =
+      location.pathname.includes('/user/login') ||
+      location.pathname.includes('/user/register') ||
+      location.pathname.includes('/user/verify') ||
+      location.pathname.includes('/user/reset');
 
     if (isAuthRoute) {
       return (

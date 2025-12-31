@@ -33,7 +33,9 @@ export const OldContestSubmissionForm = ({
   const [firstName, setFirstName] = useState(initialData?.firstName || '');
   const [lastName, setLastName] = useState(initialData?.lastName || '');
   const [title, setTitle] = useState(initialData?.title || '');
-  const [description, setDescription] = useState(initialData?.description || '');
+  const [description, setDescription] = useState(
+    initialData?.description || ''
+  );
   const [resultPlacement, setResultPlacement] = useState(
     initialData?.resultPlacement || 'first'
   );
@@ -282,4 +284,3 @@ export const OldContestSubmissionForm = ({
     </form>
   );
 };
-

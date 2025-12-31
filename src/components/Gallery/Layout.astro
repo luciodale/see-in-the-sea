@@ -3,9 +3,179 @@
 ---
 
 <div
-  class="min-h-screen w-full bg-gradient-to-b from-slate-900 to-gray-900 relative z-0"
+  class="min-h-screen w-full bg-gradient-to-b from-slate-950 via-slate-900 to-slate-950 relative z-0"
 >
-  <div class="max-w-6xl mx-auto py-16 px-6">
+  <div class="absolute inset-0 overflow-hidden pointer-events-none">
+    <div
+      class="absolute top-0 left-1/4 w-96 h-96 bg-cyan-500/5 rounded-full blur-3xl"
+    >
+    </div>
+    <div
+      class="absolute bottom-1/4 right-1/4 w-96 h-96 bg-blue-500/5 rounded-full blur-3xl"
+    >
+    </div>
+  </div>
+
+  <div
+    class="relative max-w-6xl mx-auto py-12 sm:py-16 md:py-20 px-4 sm:px-6 lg:px-8"
+  >
     <slot />
   </div>
 </div>
+
+<!-- Lightbox Modal -->
+<div
+  id="lightbox-modal"
+  class="fixed inset-0 z-50 hidden"
+  role="dialog"
+  aria-modal="true"
+>
+  <div
+    id="lightbox-backdrop"
+    class="absolute inset-0 bg-black/95 backdrop-blur-sm"
+  >
+  </div>
+
+  <div class="absolute inset-0 flex items-center justify-center p-4 sm:p-8">
+    <button
+      id="lightbox-close"
+      class="absolute top-4 right-4 z-10 p-2 rounded-full bg-white/10 hover:bg-white/20 transition-colors"
+      aria-label="Chiudi"
+    >
+      <svg
+        class="w-6 h-6 text-white"
+        fill="none"
+        stroke="currentColor"
+        viewBox="0 0 24 24"
+      >
+        <path
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          stroke-width="2"
+          d="M6 18L18 6M6 6l12 12"></path>
+      </svg>
+    </button>
+
+    <div
+      class="relative max-w-full max-h-full flex flex-col items-center gap-4"
+    >
+      <div
+        id="lightbox-loader"
+        class="absolute inset-0 flex items-center justify-center"
+      >
+        <div
+          class="w-10 h-10 border-2 border-white/20 border-t-white rounded-full animate-spin"
+        >
+        </div>
+      </div>
+
+      <img
+        id="lightbox-image"
+        class="max-w-full max-h-[80vh] object-contain rounded-lg shadow-2xl opacity-0 transition-opacity duration-300"
+        alt=""
+      />
+
+      <div
+        id="lightbox-info"
+        class="text-center opacity-0 transition-opacity duration-300"
+      >
+        <p id="lightbox-author" class="text-white font-light text-lg"></p>
+        <p id="lightbox-title" class="text-gray-400 text-sm italic mt-1"></p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  const modal = document.getElementById('lightbox-modal');
+  const backdrop = document.getElementById('lightbox-backdrop');
+  const closeBtn = document.getElementById('lightbox-close');
+  const image = document.getElementById('lightbox-image') as HTMLImageElement;
+  const loader = document.getElementById('lightbox-loader');
+  const info = document.getElementById('lightbox-info');
+  const authorEl = document.getElementById('lightbox-author');
+  const titleEl = document.getElementById('lightbox-title');
+
+  function openLightbox(src: string, title: string, author: string) {
+    if (!modal || !image || !loader || !info || !authorEl || !titleEl) return;
+
+    // Reset state
+    image.classList.remove('opacity-100');
+    image.classList.add('opacity-0');
+    info.classList.remove('opacity-100');
+    info.classList.add('opacity-0');
+    loader?.classList.remove('hidden');
+
+    // Set info
+    authorEl.textContent = author;
+    titleEl.textContent = title;
+    if (!title || title === 'Runner up') {
+      titleEl.classList.add('hidden');
+    } else {
+      titleEl.classList.remove('hidden');
+    }
+
+    // Show modal
+    modal.classList.remove('hidden');
+    document.body.style.overflow = 'hidden';
+
+    // Load image
+    image.src = src;
+    image.alt = title;
+
+    image.onload = () => {
+      loader?.classList.add('hidden');
+      image.classList.remove('opacity-0');
+      image.classList.add('opacity-100');
+      info.classList.remove('opacity-0');
+      info.classList.add('opacity-100');
+    };
+
+    image.onerror = () => {
+      loader?.classList.add('hidden');
+      image.src = '';
+      authorEl.textContent = 'Errore caricamento immagine';
+      titleEl.textContent = '';
+      info.classList.remove('opacity-0');
+      info.classList.add('opacity-100');
+    };
+  }
+
+  function closeLightbox() {
+    if (!modal || !image) return;
+    modal.classList.add('hidden');
+    document.body.style.overflow = '';
+    image.src = '';
+  }
+
+  // Event listeners for triggers
+  document.querySelectorAll('[data-lightbox-trigger]').forEach(trigger => {
+    trigger.addEventListener('click', () => {
+      const src = trigger.getAttribute('data-lightbox-src');
+      const title = trigger.getAttribute('data-lightbox-title') || '';
+      const author = trigger.getAttribute('data-lightbox-author') || '';
+      if (src) openLightbox(src, title, author);
+    });
+
+    trigger.addEventListener('keydown', (e: Event) => {
+      const keyEvent = e as KeyboardEvent;
+      if (keyEvent.key === 'Enter' || keyEvent.key === ' ') {
+        keyEvent.preventDefault();
+        const src = trigger.getAttribute('data-lightbox-src');
+        const title = trigger.getAttribute('data-lightbox-title') || '';
+        const author = trigger.getAttribute('data-lightbox-author') || '';
+        if (src) openLightbox(src, title, author);
+      }
+    });
+  });
+
+  // Close handlers
+  closeBtn?.addEventListener('click', closeLightbox);
+  backdrop?.addEventListener('click', closeLightbox);
+
+  document.addEventListener('keydown', e => {
+    if (e.key === 'Escape' && modal && !modal.classList.contains('hidden')) {
+      closeLightbox();
+    }
+  });
+</script>

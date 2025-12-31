@@ -165,6 +165,9 @@ export const translations = {
     'contests.description': 'Explore the winners of the past contests',
     'contests.no-contests': 'No Contests Available',
     'contests.check-back': 'Check back soon for upcoming competitions!',
+    'contests.no-winners': 'No Winners Yet',
+    'contests.no-winners-desc':
+      'This contest may not have any results published yet.',
 
     // About page
     'about.title': 'About Us',
@@ -501,6 +504,9 @@ export const translations = {
     'contests.description': "Esplora l'albo d'oro dei contest",
     'contests.no-contests': 'Nessun Concorso Disponibile',
     'contests.check-back': 'Torna presto per le prossime competizioni!',
+    'contests.no-winners': 'Nessun Vincitore',
+    'contests.no-winners-desc':
+      'I risultati di questo concorso non sono ancora stati pubblicati.',
 
     // About page
     'about.title': 'Chi Siamo',

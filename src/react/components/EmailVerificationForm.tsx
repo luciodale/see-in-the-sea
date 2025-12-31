@@ -108,7 +108,6 @@ export function EmailVerificationForm({
           )}
         </button>
       </form>
-
     </div>
   );
 }

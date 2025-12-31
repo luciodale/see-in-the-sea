@@ -16,7 +16,10 @@ export const GET: APIRoute = async ({ request, locals, url }) => {
 
   if (!D1Database) {
     return new Response(
-      JSON.stringify({ success: false, message: getBackendTranslation('error.database-unavailable', request) }),
+      JSON.stringify({
+        success: false,
+        message: getBackendTranslation('error.database-unavailable', request),
+      }),
       { status: 500 }
     );
   }
@@ -33,7 +36,10 @@ export const GET: APIRoute = async ({ request, locals, url }) => {
     const contestId = url.searchParams.get('contestId');
     if (!contestId) {
       return new Response(
-        JSON.stringify({ success: false, message: getBackendTranslation('error.contest-id-required', request) }),
+        JSON.stringify({
+          success: false,
+          message: getBackendTranslation('error.contest-id-required', request),
+        }),
         { status: 400 }
       );
     }

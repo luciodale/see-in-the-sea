@@ -1,71 +1,187 @@
 ---
-import { getLangFromUrl, useTranslations } from '@/i18n';
-import { getRankColorClass } from '@/utils/rankUtils';
-import BaseImage from './BaseImage.astro';
-
 type Props = {
   categoryName: string;
   rank: string;
   rawResult: string; // 'first', 'second', 'third'
   imageUrl: string;
+  fullImageUrl: string; // Direct R2 URL for full quality in lightbox
   title: string;
   author: string;
 };
 
-const { imageUrl, title, author, categoryName, rank, rawResult }: Props =
-  Astro.props;
-const currentLang = getLangFromUrl(Astro.url);
-const t = useTranslations(currentLang);
+const {
+  imageUrl,
+  fullImageUrl,
+  title,
+  author,
+  categoryName,
+  rank,
+  rawResult,
+}: Props = Astro.props;
 
-const rankColorClass = getRankColorClass(rawResult);
-
-// Define glass background based on rank
-const getGlassBackground = (result: string) => {
+// Define accent color based on rank
+const getAccentStyles = (result: string) => {
   switch (result) {
     case 'first':
-      return 'backdrop-blur-lg bg-gradient-to-br from-amber-500/15 via-yellow-500/10 to-transparent border-amber-400/30';
+      return {
+        border: 'border-amber-400/30',
+        badge: 'bg-gradient-to-r from-amber-500 to-yellow-500',
+      };
     case 'second':
-      return 'backdrop-blur-lg bg-gradient-to-br from-gray-400/15 via-slate-400/10 to-transparent border-gray-400/30';
+      return {
+        border: 'border-slate-400/30',
+        badge: 'bg-gradient-to-r from-slate-400 to-gray-400',
+      };
     case 'third':
-      return 'backdrop-blur-lg bg-gradient-to-br from-orange-700/15 via-amber-700/10 to-transparent border-orange-600/30';
+      return {
+        border: 'border-orange-600/30',
+        badge: 'bg-gradient-to-r from-orange-600 to-amber-600',
+      };
     default:
-      return 'backdrop-blur-lg bg-gradient-to-br from-white/10 via-blue-500/5 to-transparent border-white/20';
+      return {
+        border: 'border-cyan-500/30',
+        badge: 'bg-gradient-to-r from-cyan-500 to-blue-500',
+      };
   }
 };
 
-const glassBackground = getGlassBackground(rawResult);
+const styles = getAccentStyles(rawResult);
 ---
 
-<div class="space-y-6 md:space-y-8">
-  <!-- Glass Header Card -->
-  <div class={`${glassBackground} rounded-2xl p-6 md:p-8 shadow-2xl`}>
-    <h2 class="flex flex-col md:flex-row md:gap-10 gap-4 text-pretty justify-between items-baseline uppercase">
-      <div class="space-y-1">
-        <p class="text-2xl md:text-3xl font-extralight text-white tracking-wider drop-shadow-lg">
-          {categoryName}
-        </p>
-        <p class={`text-xl md:text-2xl font-thin italic ${rankColorClass} drop-shadow-md`}>
-          {rank}
-        </p>
-      </div>
-      <div class="space-y-1 md:text-right">
-        <p class="text-2xl md:text-3xl font-thin text-gray-100 tracking-wide">
-          {author}
-        </p>
-        <p class="text-xl md:text-2xl font-thin italic text-gray-300">
-          {title}
-        </p>
-      </div>
-    </h2>
+<div class="winner-section group" data-image-url={imageUrl}>
+  <div
+    class="flex flex-col sm:flex-row sm:items-end justify-between gap-3 mb-4"
+  >
+    <div class="space-y-1.5">
+      <span
+        class={`inline-block px-2.5 py-1 text-[10px] font-semibold uppercase tracking-widest ${styles.badge} text-white rounded-full shadow-lg`}
+      >
+        {rank}
+      </span>
+      <h2
+        class="text-xl sm:text-2xl md:text-3xl font-light text-white tracking-wide"
+      >
+        {categoryName}
+      </h2>
+    </div>
+    <div class="sm:text-right space-y-0.5">
+      <p class="text-base sm:text-lg font-light text-white/90">{author}</p>
+      {
+        title && (
+          <p class="text-sm sm:text-base font-light italic text-gray-400">
+            {title}
+          </p>
+        )
+      }
+    </div>
   </div>
 
-  <!-- Image Container -->
-  <div class="relative rounded-3xl overflow-hidden shadow-2xl">
-    <BaseImage
-      imageUrl={imageUrl}
-      title={title}
-      author={author}
-      showInfo={false}
+  <div
+    class={`relative aspect-[16/10] rounded-2xl overflow-hidden shadow-xl border ${styles.border} bg-slate-900 cursor-pointer outline-none focus:outline-none`}
+    role="button"
+    tabindex="0"
+    data-lightbox-trigger
+    data-lightbox-src={fullImageUrl}
+    data-lightbox-title={title || categoryName}
+    data-lightbox-author={author}
+  >
+    <div
+      class="winner-skeleton absolute inset-0 animate-pulse bg-gradient-to-br from-slate-800 via-slate-850 to-slate-900 flex items-center justify-center"
+    >
+      <svg
+        class="w-16 h-16 text-slate-700"
+        fill="none"
+        stroke="currentColor"
+        viewBox="0 0 24 24"
+      >
+        <path
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          stroke-width="1"
+          d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"
+        ></path>
+      </svg>
+    </div>
+    <img
+      class="winner-image absolute inset-0 w-full h-full object-cover opacity-0 transition-opacity duration-700"
+      data-src={imageUrl}
+      alt={title || categoryName}
+      loading="lazy"
     />
+    <div
+      class="absolute inset-0 bg-gradient-to-t from-black/30 via-transparent to-transparent pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-500"
+    >
+    </div>
+    <div
+      class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+    >
+      <div class="bg-black/50 backdrop-blur-sm rounded-full p-3">
+        <svg
+          class="w-6 h-6 text-white"
+          fill="none"
+          stroke="currentColor"
+          viewBox="0 0 24 24"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v3m0 0v3m0-3h3m-3 0H7"
+          ></path>
+        </svg>
+      </div>
+    </div>
   </div>
 </div>
+
+<script>
+  // Intersection Observer for lazy loading winner images
+  const observerOptions = {
+    root: null,
+    rootMargin: '200px', // Start loading 200px before visible
+    threshold: 0.01,
+  };
+
+  const imageObserver = new IntersectionObserver((entries, observer) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        const section = entry.target as HTMLElement;
+        const img = section.querySelector('.winner-image') as HTMLImageElement;
+        const skeleton = section.querySelector(
+          '.winner-skeleton'
+        ) as HTMLElement;
+        const imageUrl = img?.dataset.src;
+
+        if (img && imageUrl) {
+          img.src = imageUrl;
+          img.onload = () => {
+            img.classList.remove('opacity-0');
+            img.classList.add('opacity-100');
+            if (skeleton) {
+              skeleton.classList.add('hidden');
+            }
+          };
+          img.onerror = () => {
+            if (skeleton) {
+              skeleton.innerHTML = `
+                <div class="flex flex-col items-center gap-2 text-red-400">
+                  <svg class="w-12 h-12" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
+                  </svg>
+                  <span class="text-sm">Errore caricamento</span>
+                </div>
+              `;
+              skeleton.classList.remove('animate-pulse');
+            }
+          };
+        }
+        observer.unobserve(section);
+      }
+    });
+  }, observerOptions);
+
+  // Observe all winner sections
+  document.querySelectorAll('.winner-section').forEach(section => {
+    imageObserver.observe(section);
+  });
+</script>
