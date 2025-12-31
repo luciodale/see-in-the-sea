@@ -66,6 +66,7 @@ function JudgingPage() {
   // Zoom state for inspect modal
   const [zoomLevel, setZoomLevel] = useState(1);
   const [zoomOrigin, setZoomOrigin] = useState({ x: 50, y: 50 }); // percentage
+  const [descriptionExpanded, setDescriptionExpanded] = useState(false);
   const imageContainerRef = useRef<HTMLDivElement>(null);
 
   // Sync status
@@ -458,6 +459,7 @@ function JudgingPage() {
       setInspectedSubmissionId(sortedSubmissions[inspectedIndex - 1].id);
       setZoomLevel(1);
       setZoomOrigin({ x: 50, y: 50 });
+      setDescriptionExpanded(false);
     }
   };
 
@@ -466,6 +468,7 @@ function JudgingPage() {
       setInspectedSubmissionId(sortedSubmissions[inspectedIndex + 1].id);
       setZoomLevel(1);
       setZoomOrigin({ x: 50, y: 50 });
+      setDescriptionExpanded(false);
     }
   };
 
@@ -1527,9 +1530,19 @@ function JudgingPage() {
                         {inspectedSubmission.title}
                       </div>
                       {inspectedSubmission.description?.trim() && (
-                        <div className="text-slate-400 text-xs mt-0.5 line-clamp-2">
+                        <button
+                          type="button"
+                          onClick={() =>
+                            setDescriptionExpanded(!descriptionExpanded)
+                          }
+                          className={`text-slate-400 text-xs mt-0.5 text-left hover:text-slate-300 transition-colors ${descriptionExpanded ? '' : 'line-clamp-2'}`}
+                        >
                           {inspectedSubmission.description}
-                        </div>
+                          {!descriptionExpanded &&
+                            inspectedSubmission.description.length > 100 && (
+                              <span className="text-cyan-400 ml-1">...</span>
+                            )}
+                        </button>
                       )}
                       <div className="text-slate-500 text-xs mt-1">
                         {inspectedIndex + 1} / {sortedSubmissions.length} •{' '}
@@ -1922,9 +1935,19 @@ function JudgingPage() {
                         )}
                       </div>
                       {zoomedPhoto.description?.trim() && (
-                        <div className="text-xs text-slate-400 mt-1 max-w-md mx-auto line-clamp-2">
+                        <button
+                          type="button"
+                          onClick={() =>
+                            setDescriptionExpanded(!descriptionExpanded)
+                          }
+                          className={`text-xs text-slate-400 mt-1 max-w-md mx-auto hover:text-slate-300 transition-colors ${descriptionExpanded ? '' : 'line-clamp-2'}`}
+                        >
                           {zoomedPhoto.description}
-                        </div>
+                          {!descriptionExpanded &&
+                            zoomedPhoto.description.length > 100 && (
+                              <span className="text-cyan-400 ml-1">...</span>
+                            )}
+                        </button>
                       )}
                     </div>
                   </div>
