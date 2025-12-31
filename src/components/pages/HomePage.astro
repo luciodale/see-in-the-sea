@@ -2,11 +2,10 @@
 import AppWrapper from '@/components/AppWrapper.astro';
 import HeroSegment from '@/components/HeroSegment.astro';
 import { Navbar } from '@/components/Navbar/Navbar';
-import Patrocini from '@/components/Patrocini.astro';
 import SponsorsBanner from '@/components/SponsorsBanner.astro';
 import { getLocalizedPath, useTranslations, type Language } from '@/i18n';
-import Collaborations from '../Collaborations.astro';
 import Layout from '../Gallery/Layout.astro';
+import PartnersSection from '../PartnersSection.astro';
 
 interface Props {
   lang: Language;
@@ -30,13 +29,15 @@ const { PUBLIC_CLERK_PUBLISHABLE_KEY } = Astro.locals.runtime.env;
     lang={lang}
     clerkPublicKey={PUBLIC_CLERK_PUBLISHABLE_KEY}
   />
+
+  <!-- Sponsors Marquee -->
   <div class="relative z-0">
-    <Patrocini lang={lang} />
     <SponsorsBanner />
-    <Collaborations lang={lang} />
+    <PartnersSection lang={lang} />
   </div>
+
   <Layout>
-    <div class="flex flex-col gap-32">
+    <div class="flex flex-col gap-24 lg:gap-32">
       <!-- Who We Are -->
       <HeroSegment
         title={t('home.who-we-are.title')}

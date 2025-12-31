@@ -1,0 +1,42 @@
+---
+import { useTranslations, type Language } from '@/i18n';
+
+interface Props {
+  lang: Language;
+}
+
+const { lang } = Astro.props as Props;
+const t = useTranslations(lang);
+
+const allPartners = [
+  // Patrocini
+  { src: '/images/patrocini/one-ocean-young-logo.svg', alt: 'One Ocean Young' },
+  { src: '/images/patrocini/ortona-logo.png', alt: 'Comune di Ortona' },
+  { src: '/images/patrocini/arpa-abruzzo-logo.svg', alt: 'ARPA Abruzzo' },
+  // Collaborations
+  { src: '/images/collabs/zeropixel-logo.png', alt: 'Zeropixel' },
+  { src: '/images/collabs/scubaportal-logo.png', alt: 'Scubaportal' },
+];
+
+const label = lang === 'it' ? 'Patrocini e Collaborazioni' : 'Partners & Collaborations';
+---
+
+<div class="bg-gradient-to-b from-gray-900 to-slate-950 py-5 px-4">
+  <div class="max-w-4xl mx-auto">
+    <p class="text-center text-[10px] text-gray-400 uppercase tracking-widest mb-4">
+      {label}
+    </p>
+    <div class="flex items-center justify-center gap-6 sm:gap-8 flex-wrap">
+      {
+        allPartners.map(p => (
+          <img
+            src={p.src}
+            alt={p.alt}
+            loading="lazy"
+            class="h-8 sm:h-10 w-auto opacity-75 hover:opacity-100 transition-opacity"
+          />
+        ))
+      }
+    </div>
+  </div>
+</div>

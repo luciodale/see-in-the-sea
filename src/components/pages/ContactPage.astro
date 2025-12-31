@@ -12,6 +12,33 @@ interface Props {
 const { lang } = Astro.props;
 const t = useTranslations(lang);
 const heading = lang === 'it' ? 'Contatti' : 'Contact Us';
+
+const contacts = [
+  {
+    role: t('contact.president'),
+    name: 'Paolo De Iure',
+    phone: '339 657 7950',
+  },
+  {
+    role: t('contact.technical-director'),
+    name: 'Giuseppe Pignataro',
+    phone: '328 593 4373',
+  },
+  {
+    role: t('contact.administrative-secretary'),
+    name: 'Gabriele Di Credico',
+    phone: '347 888 9007',
+  },
+  {
+    role: t('contact.administrative-secretary'),
+    name: 'Fabrizio Pompilio',
+    phone: '390 391 9121',
+  },
+  {
+    role: t('contact.web-master'),
+    name: "Lucio D'Alessandro",
+  },
+];
 ---
 
 <AppWrapper
@@ -21,91 +48,69 @@ const heading = lang === 'it' ? 'Contatti' : 'Contact Us';
 >
   <NavbarHeaderStandalone lang={lang} />
   <Layout>
-    <div class="max-w-4xl mx-auto text-slate-200 space-y-12">
-      <div class="text-center">
+    <div class="max-w-5xl mx-auto">
+      <!-- Header -->
+      <div class="text-center mb-16">
         <h1
-          class="text-5xl sm:text-6xl font-extralight text-gray-50 uppercase tracking-wider leading-tight"
+          class="text-3xl sm:text-4xl font-light text-white uppercase tracking-[0.15em] mb-6"
         >
           {heading}
         </h1>
+        <div
+          class="w-16 h-px bg-gradient-to-r from-transparent via-cyan-500/50 to-transparent mx-auto"
+        >
+        </div>
       </div>
 
-      <!-- Organization Info -->
-      <div class="space-y-6">
-        <div class="text-center">
-          <h2 class="text-2xl font-light text-gray-100 mb-2">
+      <!-- Organization Info Card -->
+      <div class="text-center mb-12">
+        <div class="inline-block">
+          <h2 class="text-xl font-light text-white/90 tracking-wide mb-3">
             {t('contact.organization')}
           </h2>
-          <p class="text-lg font-medium text-gray-300">
-            {t('contact.address')}:
-          </p>
-          <p class="text-gray-300 leading-relaxed">
+          <p class="text-gray-400 text-sm leading-relaxed mb-4">
             {t('contact.address-details')}
           </p>
-          <div class="mt-4">
-            <EmailLink variant="large" showLabel={true} />
-          </div>
-        </div>
-
-        <!-- President -->
-        <div class="bg-slate-800/40 rounded-lg p-6 border border-slate-700/50">
-          <h3 class="text-xl font-semibold text-gray-100 mb-2">
-            {t('contact.president')}
-          </h3>
-          <p class="text-lg text-gray-200 mb-1 italic font-medium">
-            Paolo De Iure
-          </p>
-          <p class="text-gray-300">3396577950</p>
-        </div>
-
-        <!-- Technical Director -->
-        <div class="bg-slate-800/40 rounded-lg p-6 border border-slate-700/50">
-          <h3 class="text-xl font-semibold text-gray-100 mb-2">
-            {t('contact.technical-director')}
-          </h3>
-          <p class="text-lg text-gray-200 mb-1 italic font-medium">
-            Giuseppe Pignataro
-          </p>
-          <p class="text-gray-300">3285934373</p>
-        </div>
-
-        <!-- Administrative Secretary -->
-        <div class="bg-slate-800/40 rounded-lg p-6 border border-slate-700/50">
-          <h3 class="text-xl font-semibold text-gray-100 mb-4">
-            {t('contact.administrative-secretary')}
-          </h3>
-          <div class="space-y-4">
-            <div>
-              <p class="text-lg text-gray-200 mb-1 italic font-medium">
-                Gabriele Di Credico
-              </p>
-              <p class="text-gray-300">3478889007</p>
-            </div>
-            <div>
-              <p class="text-lg text-gray-200 mb-1 italic font-medium">
-                Fabrizio Pompilio
-              </p>
-              <p class="text-gray-300">3903919121</p>
-            </div>
-          </div>
-        </div>
-
-        <div class="bg-slate-800/40 rounded-lg p-6 border border-slate-700/50">
-          <h3 class="text-xl font-semibold text-gray-100 mb-2">
-            {t('contact.web-master')}
-          </h3>
-          <p class="text-lg text-gray-200 mb-1 italic font-medium">
-            Lucio D'Alessandro
-          </p>
+          <EmailLink variant="large" showLabel={true} />
         </div>
       </div>
 
-      <div class="rounded-lg overflow-hidden border border-slate-700">
-        <iframe
-          title="Google Map"
-          style="width:100%;min-height:400px"
-          src="https://www.google.com/maps?q=ortona%20sub&output=embed&hl=it-IT&z=12"
-        ></iframe>
+      <!-- Contact Cards Grid -->
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 mb-16">
+        {
+          contacts.map(contact => (
+            <div class="group relative backdrop-blur-sm bg-white/[0.03] border border-white/10 rounded-lg p-6 hover:border-cyan-500/30 transition-colors duration-300">
+              <p class="text-xs text-cyan-400/80 uppercase tracking-wider mb-2">
+                {contact.role}
+              </p>
+              <p class="text-white font-light text-lg mb-1">{contact.name}</p>
+              {contact.phone && (
+                <a
+                  href={`tel:+39${contact.phone.replace(/\s/g, '')}`}
+                  class="text-gray-400 text-sm hover:text-cyan-400 transition-colors"
+                >
+                  +39 {contact.phone}
+                </a>
+              )}
+            </div>
+          ))
+        }
+      </div>
+
+      <!-- Map Section -->
+      <div class="relative">
+        <div class="text-center mb-6">
+          <p class="text-sm text-gray-500 uppercase tracking-wider">
+            {lang === 'it' ? 'Dove Siamo' : 'Find Us'}
+          </p>
+        </div>
+        <div class="rounded-xl overflow-hidden border border-white/10">
+          <iframe
+            title="Google Map"
+            style="width:100%;height:350px"
+            src="https://www.google.com/maps?q=ortona%20sub&output=embed&hl=it-IT&z=12"
+          ></iframe>
+        </div>
       </div>
     </div>
   </Layout>
