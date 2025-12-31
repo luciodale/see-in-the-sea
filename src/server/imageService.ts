@@ -77,17 +77,6 @@ export function getImageApiUrl(
 }
 
 /**
- * Generates the full API URL for serving an original uncompressed image
- * Pure function - string transformation
- */
-export function getOriginalImageApiUrl(
-  r2ImageId: string | null | undefined
-): string | null {
-  if (!r2ImageId) return null;
-  return `/api/images/${r2ImageId}?original=true`;
-}
-
-/**
  * Generates the full API URL for serving a thumbnail (smaller, faster)
  * Pure function - string transformation
  */
@@ -107,7 +96,7 @@ export function getFullQualityImageUrl(
   r2ImageId: string | null | undefined
 ): string | null {
   if (!r2ImageId) return null;
-  return `${IMAGES_BASE_URL}/${r2ImageId}`;
+  return `${IMAGES_BASE_URL}/${r2ImageId}?original=true`;
 }
 
 /**

@@ -2,7 +2,7 @@ import { useAuth } from '@clerk/clerk-react';
 import { useEffect, useState } from 'react';
 import type { AdminUsersResponse } from '../../pages/api/admin/users';
 import {
-  getOriginalImageApiUrl,
+  getFullQualityImageUrl,
   getThumbnailImageApiUrl,
 } from '../../server/imageService';
 import type {
@@ -639,7 +639,7 @@ export function AdminSubmissionsViewer({
                                             onClick={e => {
                                               e.stopPropagation();
                                               window.open(
-                                                getOriginalImageApiUrl(
+                                                getFullQualityImageUrl(
                                                   submission.r2ImageId
                                                 ) || '',
                                                 '_blank'
