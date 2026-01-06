@@ -1,70 +1,361 @@
 #!/usr/bin/env bun
-import { execSync } from 'child_process';
-import { existsSync, mkdirSync, writeFileSync } from 'fs';
-import { join } from 'path';
-import { getImageApiUrl } from '../src/server/imageService';
+import { spawn } from 'child_process';
+import { existsSync, mkdirSync, renameSync, rmSync, writeFileSync } from 'fs';
+import { dirname, join } from 'path';
+import sharp from 'sharp';
 
-const isRemote = process.argv.includes('--remote');
-const mode = isRemote ? 'remote' : 'local';
+// --- CONFIGURATION ---
+const CONCURRENCY_LIMIT = 5;
 const DB_NAME = 'see-in-the-sea-db';
+const R2_BUCKET = 'see-in-the-sea-images';
 
-async function runQuery(sql: string) {
-  // Use the --command flag to send the SQL directly.
-  // We use --json to get a clean, predictable object back.
-  const command = `bunx wrangler d1 execute ${DB_NAME} --${mode} --command="${sql.replace(/"/g, '\\"')}" --json`;
+// --- ARGS & PATHS ---
+const args = new Set(process.argv.slice(2));
+const mode = args.has('--remote') ? 'remote' : 'local';
+const shouldOverride = args.has('--override');
 
-  const rawOutput = execSync(command, { encoding: 'utf8' });
-  const result = JSON.parse(rawOutput);
+const ROOT = process.cwd();
+const TEMP_DIR = join(ROOT, '.temp-images');
+const PUBLIC_IMG_DIR = join(ROOT, 'public', 'images', 'contests');
+const DATA_DIR = join(ROOT, 'src', 'data');
+const OUT_FILE = join(DATA_DIR, 'past-contests.ts');
 
-  // Wrangler returns an array of result objects (one for each statement)
-  return result[0]?.results || [];
+// --- INTERNAL SCRIPT TYPES ---
+
+// 1. Strict Typed Raw DB Rows
+interface RawRow {
+  contest_id: string;
+  contest_name: string;
+  contest_description: string | null;
+  contest_year: number;
+  category_id: string;
+  category_name: string;
+  result_id: string;
+  result_placement: string;
+  first_name: string | null;
+  last_name: string | null;
+  submission_id: string;
+  submission_title: string;
+  submission_description: string | null;
+  r2_image_id: string | null;
 }
 
-async function main() {
-  console.log(`📊 Exporting contests from D1 (${mode})...`);
+interface RawJudgeRow {
+  id: string;
+  contest_id: string;
+  full_name: string;
+}
 
-  // ONE QUERY to get everything: Inactive contests + their first-place image IDs
-  // This replaces the N+1 query problem in your original script
-  const megaQuery = `
+// 2. Output Data Structure (Internal Working Types)
+type Placement = 'first' | 'second' | 'third' | 'runner-up';
+
+interface Judge {
+  id: string;
+  fullName: string;
+}
+
+interface Photographer {
+  firstName: string | null;
+  lastName: string | null;
+}
+
+interface Entry {
+  id: string;
+  title: string;
+  description: string | null;
+  placement: Placement;
+  photographer: Photographer;
+  image: string | null;
+  imageR2Id: string | null; // <--- NEW
+}
+
+interface Category {
+  id: string;
+  name: string;
+  winnerImage: string | null;
+  winnerImageR2Id: string | null; // <--- NEW
+  entries: Entry[];
+}
+
+interface Contest {
+  id: string;
+  year: number;
+  name: string;
+  description: string | null;
+  indexImage: string | null;
+  judges: Judge[];
+  categories: Category[];
+}
+
+// --- HELPER: ROBUST EXEC ---
+function robustExec(command: string): Promise<string> {
+  return new Promise((resolve, reject) => {
+    const proc = spawn(command, { shell: true });
+    let stdout = '';
+    let stderr = '';
+    proc.stdout.on('data', d => (stdout += d));
+    proc.stderr.on('data', d => (stderr += d));
+    proc.on('close', code => {
+      if (code === 0) resolve(stdout.trim());
+      else reject(new Error(`Command failed: ${command}\nStderr: ${stderr}`));
+    });
+  });
+}
+
+const PLACEMENT_SCORE: Record<string, number> = {
+  first: 4,
+  second: 3,
+  third: 2,
+  'runner-up': 1,
+};
+
+// --- MAIN ---
+async function main() {
+  console.log(`🚀 Starting Content Sync (${mode})...`);
+  const start = Date.now();
+
+  // 1. Create Directories
+  [TEMP_DIR, PUBLIC_IMG_DIR, DATA_DIR].forEach(d => {
+    if (!existsSync(d)) mkdirSync(d, { recursive: true });
+  });
+
+  // 2. Fetch DB Data (Main Content)
+  const mainSql = `
     SELECT 
-      c.id, c.name, c.description, c.year,
-      (
-        SELECT s.r2_image_id 
-        FROM results r 
-        JOIN submissions s ON r.submission_id = s.id 
-        WHERE s.contest_id = c.id AND r.result = 'first' 
-        LIMIT 1
-      ) as winning_image_id
+      c.id as contest_id, c.name as contest_name, c.description as contest_description, c.year as contest_year,
+      cat.id as category_id, cat.name as category_name,
+      r.id as result_id, r.result as result_placement, r.first_name, r.last_name,
+      s.id as submission_id, s.title as submission_title, s.description as submission_description, s.r2_image_id
     FROM contests c
+    INNER JOIN submissions s ON s.contest_id = c.id
+    INNER JOIN results r ON r.submission_id = s.id
+    INNER JOIN categories cat ON cat.id = s.category_id
     WHERE c.status = 'inactive'
-    ORDER BY c.year DESC
   `;
 
-  try {
-    const rows = await runQuery(megaQuery);
+  console.log(`📊 Querying main content...`);
+  const mainRaw = await robustExec(
+    `bunx wrangler d1 execute ${DB_NAME} --${mode} --command="${mainSql.replace(/"/g, '\\"')}" --json`
+  );
+  const rows = (JSON.parse(mainRaw)[0]?.results || []) as RawRow[];
 
-    const data = rows.map(row => ({
-      id: row.id,
-      name: row.name,
-      description: row.description,
-      year: row.year,
-      winningImage: getImageApiUrl(row.winning_image_id) || undefined,
-    }));
+  // 3. Fetch DB Data (Judges)
+  const judgesSql = `SELECT id, contest_id, full_name FROM judges`;
 
-    // Save output
-    const dataDir = join(process.cwd(), 'src', 'data');
-    if (!existsSync(dataDir)) mkdirSync(dataDir, { recursive: true });
+  console.log(`⚖️  Querying judges...`);
+  const judgesRaw = await robustExec(
+    `bunx wrangler d1 execute ${DB_NAME} --${mode} --command="${judgesSql.replace(/"/g, '\\"')}" --json`
+  );
+  const judgeRows = (JSON.parse(judgesRaw)[0]?.results || []) as RawJudgeRow[];
 
-    writeFileSync(
-      join(dataDir, 'past-contests.json'),
-      JSON.stringify(data, null, 2)
-    );
-
-    console.log(`✅ Exported ${data.length} contests.`);
-  } catch (error) {
-    console.error('❌ Export failed:', error);
-    process.exit(1);
+  if (!rows.length) {
+    console.log('⚠️ No results found.');
+    return;
   }
+
+  // 4. Process Images
+  const uniqueImages = new Map<string, RawRow>();
+  rows.forEach(r => {
+    if (r.r2_image_id) uniqueImages.set(r.r2_image_id, r);
+  });
+
+  console.log(`🖼️  Processing ${uniqueImages.size} images...`);
+
+  const imageMap = new Map<string, string>(); // R2_ID -> Local Path
+
+  const tasks = Array.from(uniqueImages.entries()).map(
+    ([r2Id, row]) =>
+      async () => {
+        const cleanR2Id = r2Id.trim();
+        const relativePath = `/images/contests/${row.contest_year}/${row.submission_id}.webp`;
+        const localFullPath = join(
+          PUBLIC_IMG_DIR,
+          row.contest_year.toString(),
+          `${row.submission_id}.webp`
+        );
+
+        if (existsSync(localFullPath) && !shouldOverride) {
+          return { id: cleanR2Id, path: relativePath };
+        }
+
+        const tempFile = join(TEMP_DIR, `${row.submission_id}.tmp`);
+        const targetDir = dirname(localFullPath);
+        if (!existsSync(targetDir)) mkdirSync(targetDir, { recursive: true });
+
+        try {
+          await robustExec(
+            `bunx wrangler r2 object get "${R2_BUCKET}/${cleanR2Id}" --remote --file "${tempFile}"`
+          );
+          await sharp(tempFile)
+            .resize(1400, null, { fit: 'inside', withoutEnlargement: true })
+            .webp({ quality: 90 })
+            .toFile(localFullPath);
+
+          process.stdout.write('.');
+          return { id: cleanR2Id, path: relativePath };
+        } catch (_e) {
+          console.error(`\n❌ Failed ID: "${cleanR2Id}"`);
+          return null;
+        } finally {
+          if (existsSync(tempFile)) rmSync(tempFile);
+        }
+      }
+  );
+
+  for (let i = 0; i < tasks.length; i += CONCURRENCY_LIMIT) {
+    const chunk = tasks.slice(i, i + CONCURRENCY_LIMIT);
+    const results = await Promise.all(chunk.map(t => t()));
+    results.forEach(res => {
+      if (res) imageMap.set(res.id, res.path);
+    });
+  }
+
+  console.log('\n✅ Images processed.');
+
+  // 5. Structure Data
+  console.log('🏗️  Structuring Data...');
+  const contestsMap = new Map<string, Contest>();
+
+  // A. Build Contest Skeleton
+  for (const row of rows) {
+    if (!contestsMap.has(row.contest_id)) {
+      contestsMap.set(row.contest_id, {
+        id: row.contest_id,
+        year: row.contest_year,
+        name: row.contest_name,
+        description: row.contest_description,
+        indexImage: null,
+        judges: [],
+        categories: [],
+      });
+    }
+    const contest = contestsMap.get(row.contest_id)!;
+
+    let category = contest.categories.find(c => c.id === row.category_id);
+    if (!category) {
+      category = {
+        id: row.category_id,
+        name: row.category_name,
+        winnerImage: null,
+        winnerImageR2Id: null, // <--- Init
+        entries: [],
+      };
+      contest.categories.push(category);
+    }
+
+    const cleanR2Id = row.r2_image_id ? row.r2_image_id.trim() : null;
+    const finalImage = cleanR2Id ? imageMap.get(cleanR2Id) || null : null;
+
+    category.entries.push({
+      id: row.submission_id,
+      title: row.submission_title,
+      description: row.submission_description,
+      placement: row.result_placement as Placement,
+      photographer: { firstName: row.first_name, lastName: row.last_name },
+      image: finalImage,
+      imageR2Id: cleanR2Id, // <--- Store ID
+    });
+  }
+
+  // B. Attach Judges
+  for (const jRow of judgeRows) {
+    const contest = contestsMap.get(jRow.contest_id);
+    if (contest) {
+      contest.judges.push({
+        id: jRow.id,
+        fullName: jRow.full_name,
+      });
+    }
+  }
+
+  // 6. Post-Processing
+  const finalOutput = Array.from(contestsMap.values())
+    .map(contest => {
+      contest.categories.sort((a, b) => a.name.localeCompare(b.name));
+
+      contest.categories.forEach(cat => {
+        cat.entries.sort((a, b) => {
+          const scoreA = PLACEMENT_SCORE[a.placement] || 0;
+          const scoreB = PLACEMENT_SCORE[b.placement] || 0;
+          return scoreB - scoreA;
+        });
+
+        // Winner Image Logic
+        if (cat.entries.length > 0) {
+          // We assume the first sorted entry is the winner
+          cat.winnerImage = cat.entries[0].image;
+          cat.winnerImageR2Id = cat.entries[0].imageR2Id; // <--- Promote ID
+        }
+      });
+
+      const heroCat = contest.categories.find(c => c.winnerImage);
+      if (heroCat) contest.indexImage = heroCat.winnerImage;
+
+      return contest;
+    })
+    .sort((a, b) => b.year - a.year);
+
+  // 7. Save as TS (Using exact requested types)
+  // Note: I added | null to images to be safe for TS strictness if data is missing
+  const tsContent = `// Auto-generated by scripts/sync-content.ts
+// Do not edit manually
+
+export interface Judge {
+  id: string;
+  fullName: string;
 }
 
-main();
+export interface Photographer {
+  firstName: string | null;
+  lastName: string | null;
+}
+
+export interface Entry {
+  id: string;
+  title: string;
+  description: string | null;
+  placement: 'first' | 'second' | 'third' | 'runner-up';
+  photographer: Photographer;
+  image: string;
+  imageR2Id: string;
+}
+
+export interface Category {
+  id: string;
+  name: string;
+  winnerImage: string;
+  winnerImageR2Id: string;
+  entries: Entry[];
+}
+
+export interface Contest {
+  id: string;
+  year: number;
+  name: string;
+  description: string | null;
+  indexImage: string;
+  judges: Judge[];
+  categories: Category[];
+}
+
+export const pastContestsData: Contest[] = ${JSON.stringify(finalOutput, null, 2)};
+`;
+
+  const tempTs = `${OUT_FILE}.tmp`;
+  writeFileSync(tempTs, tsContent);
+  renameSync(tempTs, OUT_FILE);
+
+  if (existsSync(TEMP_DIR)) rmSync(TEMP_DIR, { recursive: true, force: true });
+
+  const duration = ((Date.now() - start) / 1000).toFixed(2);
+  console.log(
+    `✨ Sync Complete: ${finalOutput.length} contests, ${imageMap.size} images.`
+  );
+  console.log(`⏱️  Time: ${duration}s`);
+  console.log(`📂 Saved to: ${OUT_FILE}`);
+}
+
+main().catch(e => {
+  console.error('FATAL:', e);
+  process.exit(1);
+});

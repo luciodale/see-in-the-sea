@@ -14,7 +14,4 @@ export const PHOTO_TYPES = ['macro', 'wide-angle', 'free'] as const;
 export const MAX_RETRY_ATTEMPTS = 3;
 export const RETRY_BACKOFF_BASE = 1000; // 1 second
 
-// Image base URL - CDN in production, API in development
-export const IMAGES_BASE_URL = import.meta.env.PROD
-  ? 'https://images.seeintheseauw.com'
-  : '/api/images';
+export const IMAGES_BASE_URL = 'https://images.seeintheseauw.com';

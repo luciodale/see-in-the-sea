@@ -638,6 +638,10 @@ export function AdminSubmissionsViewer({
                                           <button
                                             onClick={e => {
                                               e.stopPropagation();
+                                              if (!submission.r2ImageId) {
+                                                alert('No image ID found');
+                                                return;
+                                              }
                                               window.open(
                                                 getFullQualityImageUrl(
                                                   submission.r2ImageId

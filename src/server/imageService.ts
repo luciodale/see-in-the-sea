@@ -92,11 +92,8 @@ export function getThumbnailImageApiUrl(
  * Uses CDN in production, API in development
  * Pure function - string transformation
  */
-export function getFullQualityImageUrl(
-  r2ImageId: string | null | undefined
-): string | null {
-  if (!r2ImageId) return null;
-  return `${IMAGES_BASE_URL}/${r2ImageId}?original=true`;
+export function getFullQualityImageUrl(r2ImageId: string) {
+  return `${IMAGES_BASE_URL}/${r2ImageId}`;
 }
 
 /**

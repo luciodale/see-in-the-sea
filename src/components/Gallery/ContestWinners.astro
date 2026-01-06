@@ -1,72 +1,56 @@
 ---
+import type { Contest } from '@/data/past-contests';
 import {
   getCategoryName,
   getLangFromUrl,
   getResultName,
   useTranslations,
 } from '@/i18n';
-import { getFullQualityImageUrl, getImageApiUrl } from '@/server/imageService';
+import { getFullQualityImageUrl } from '../../server/imageService';
 import GalleryInfo from './GalleryInfo.astro';
-import {
-  getCategoryNamesByIds,
-  getContestTitleByContestId,
-  getFirstPlaceWinnersByContestId,
-} from './queries';
 import TopWinnerImage from './TopWinnerImage.astro';
 
 type Props = {
   contestId: string;
+  contestData: Contest;
 };
 
-const { contestId } = Astro.props;
+const { contestId, contestData } = Astro.props;
 const currentLang = getLangFromUrl(Astro.url);
 const t = useTranslations(currentLang);
 
-if (!Astro.locals.runtime.env.DB) {
-  throw new Error('DB is not available');
-}
-
-// Fetch only first place winners for the specified contest across all categories
-const firstPlaceWinners = await getFirstPlaceWinnersByContestId(
-  Astro.locals.runtime.env.DB,
-  contestId
-);
-
-const contestTitleFormatted = await getContestTitleByContestId(
-  Astro.locals.runtime.env.DB,
-  contestId
-);
-
-// Get category names
-const categoryIds = [...new Set(firstPlaceWinners.map(w => w.categoryId))];
-const categoryMap = await getCategoryNamesByIds(
-  Astro.locals.runtime.env.DB,
-  categoryIds
+// Get first place winners from contestData
+const firstPlaceWinners = contestData.categories.flatMap(category =>
+  category.entries
+    .filter(entry => entry.placement === 'first')
+    .map(entry => ({
+      entry,
+      category,
+    }))
 );
 
 // Process images - filter out winners without valid images
 const processedImages = firstPlaceWinners
-  .map(result => {
-    const categoryName =
-      categoryMap.get(result.categoryId) || result.categoryId;
+  .map(({ entry, category }) => {
     const translatedCategoryName = getCategoryName(
-      result.categoryId,
-      categoryName,
+      category.id,
+      category.name,
       currentLang
     );
 
-    const imageUrl = getImageApiUrl(result.r2ImageId);
-    const fullImageUrl = getFullQualityImageUrl(result.r2ImageId);
+    const imageUrl = entry.image;
+    const fullImageUrl = getFullQualityImageUrl(entry.imageR2Id);
 
     return {
-      ...result,
       imageUrl,
       fullImageUrl,
       categoryName: translatedCategoryName,
+      title: entry.title,
       author:
-        result.firstName && result.lastName
-          ? `${result.firstName} ${result.lastName}`
+        entry.photographer.firstName && entry.photographer.lastName
+          ? `${entry.photographer.firstName} ${entry.photographer.lastName}`
           : t('author.anonymous'),
+      result: entry.placement,
     };
   })
   .filter(
@@ -75,7 +59,11 @@ const processedImages = firstPlaceWinners
   );
 ---
 
-<GalleryInfo contestTitle={contestTitleFormatted} contestId={contestId} />
+<GalleryInfo
+  contestTitle={contestData.name}
+  contestId={contestId}
+  contestData={contestData}
+/>
 
 <div class="mt-10 sm:mt-12">
   {

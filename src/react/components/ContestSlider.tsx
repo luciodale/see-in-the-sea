@@ -1,16 +1,13 @@
+import { type Contest } from '@/data/past-contests';
 import { ArrowRight, ChevronLeft, ChevronRight } from 'lucide-react';
 import { useEffect, useRef, useState } from 'react';
 
-interface Contest {
-  id: string;
-  name: string;
-  description: string | null;
-  winningImage?: string;
+type ContestAndLink = {
   link: string;
-}
+} & Contest;
 
 interface ContestSliderProps {
-  contests: Contest[];
+  contests: ContestAndLink[];
 }
 
 export function ContestSlider({ contests }: ContestSliderProps) {
@@ -96,9 +93,9 @@ export function ContestSlider({ contests }: ContestSliderProps) {
               className="group flex-shrink-0 snap-center w-[75vw] md:w-[60vw] lg:w-[45vw] xl:w-[35vw] aspect-[4/5] md:aspect-[3/4] relative rounded-2xl overflow-hidden"
             >
               {/* Background Image */}
-              {contest.winningImage ? (
+              {contest.indexImage ? (
                 <img
-                  src={contest.winningImage}
+                  src={contest.indexImage}
                   alt={contest.name}
                   loading="lazy"
                   className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"

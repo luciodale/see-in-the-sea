@@ -1,6 +1,6 @@
 ---
 import AppWrapper from '@/components/AppWrapper.astro';
-import pastContestsData from '@/data/past-contests.json';
+import { pastContestsData } from '@/data/past-contests';
 import { getLocalizedPath, useTranslations, type Language } from '@/i18n';
 import { ContestSlider } from '@/react/components/ContestSlider';
 import { NavbarHeaderWithI18n } from '../Navbar/NavbarHeaderWithI18n';
@@ -12,16 +12,7 @@ interface Props {
 const { lang } = Astro.props;
 const t = useTranslations(lang);
 
-// Use pre-generated data from JSON file
-const allContests = pastContestsData as Array<{
-  id: string;
-  name: string;
-  description: string | null;
-  year: number;
-  winningImage?: string;
-}>;
-
-const contestsWithLinks = allContests.map(c => ({
+const contestsWithLinks = pastContestsData.map(c => ({
   ...c,
   link: getLocalizedPath(`/contest/${c.id}`, lang),
 }));

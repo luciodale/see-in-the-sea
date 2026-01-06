@@ -5,34 +5,30 @@ import {
   getLocalizedPath,
   useTranslations,
 } from '@/i18n';
-import {
-  getAllContestsForNavigation,
-  getCategoriesByContestId,
-  getJudgesByContestId,
-} from './queries';
+import { pastContestsData, type Contest } from '@/data/past-contests';
 
 type Props = {
   contestTitle: string;
   contestId: string;
   activeCategoryId?: string;
+  contestData: Contest;
 };
 
-const { contestTitle, contestId, activeCategoryId } = Astro.props;
+const { contestTitle, contestId, activeCategoryId, contestData } = Astro.props;
 const currentLang = getLangFromUrl(Astro.url);
 const t = useTranslations(currentLang);
 
-if (!Astro.locals.runtime.env.DB) {
-  throw new Error('DB is not available');
-}
+// Get judges from contestData
+const contestJudges = contestData.judges;
+const contestCategories = contestData.categories.map(c => ({
+  id: c.id,
+  name: c.name,
+}));
 
-const [contestJudges, contestCategories, allContests] = await Promise.all([
-  getJudgesByContestId(Astro.locals.runtime.env.DB, contestId),
-  getCategoriesByContestId(Astro.locals.runtime.env.DB, contestId),
-  getAllContestsForNavigation(Astro.locals.runtime.env.DB),
-]);
-
-// Sort contests by year descending for navigation
-const sortedContests = allContests.sort((a, b) => b.year - a.year);
+// Get navigation data from pastContestsData
+const sortedContests = pastContestsData
+  .map(c => ({ id: c.id, name: c.name, year: c.year }))
+  .sort((a, b) => b.year - a.year);
 const currentIndex = sortedContests.findIndex(c => c.id === contestId);
 const prevContest =
   currentIndex < sortedContests.length - 1
