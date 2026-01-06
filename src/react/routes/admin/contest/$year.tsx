@@ -4,7 +4,7 @@ import { OldContestSubmissionForm } from '@/react/components/OldContestSubmissio
 import { RedirectToSignIn } from '@/react/components/RedirectToSignIn';
 import { useContestManagement } from '@/react/hooks/useContestManagement';
 import { useUserRole } from '@/react/hooks/useUserRole';
-import { getImageApiUrl } from '@/server/imageService';
+import { getFullQualityImageUrl } from '@/server/imageService';
 import type { DeleteSubmissionResponse } from '@/types/api';
 import { SignedIn, SignedOut, useAuth } from '@clerk/clerk-react';
 import { createFileRoute } from '@tanstack/react-router';
@@ -221,7 +221,11 @@ function ContestManagementPage() {
                                 <div className="aspect-video bg-slate-600 overflow-hidden">
                                   <img
                                     src={
-                                      getImageApiUrl(submission.r2ImageId) || ''
+                                      submission.r2ImageId
+                                        ? getFullQualityImageUrl(
+                                            submission.r2ImageId
+                                          )
+                                        : ''
                                     }
                                     alt={submission.title}
                                     loading="lazy"

@@ -1,10 +1,7 @@
 import { useAuth } from '@clerk/clerk-react';
 import { useEffect, useState } from 'react';
 import type { AdminUsersResponse } from '../../pages/api/admin/users';
-import {
-  getFullQualityImageUrl,
-  getThumbnailImageApiUrl,
-} from '../../server/imageService';
+import { getFullQualityImageUrl } from '../../server/imageService';
 import type {
   AdminSubmission,
   AdminSubmissionsResponse,
@@ -546,7 +543,7 @@ export function AdminSubmissionsViewer({
                                         {submission.r2ImageId ? (
                                           <LazyImage
                                             src={
-                                              getThumbnailImageApiUrl(
+                                              getFullQualityImageUrl(
                                                 submission.r2ImageId
                                               ) || ''
                                             }

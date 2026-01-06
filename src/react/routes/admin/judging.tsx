@@ -2,11 +2,12 @@ import { SignedIn, SignedOut, useAuth } from '@clerk/clerk-react';
 import { createFileRoute } from '@tanstack/react-router';
 import { Check, RotateCcw, Send, Trophy, X, ZoomOut } from 'lucide-react';
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
-import { IMAGES_BASE_URL, PHOTO_TYPES } from '../../../constants';
+import { PHOTO_TYPES } from '../../../constants';
 import { CURRENT_CONTEST_CATEGORIES } from '../../../constants/categories';
 import AdminTabs from '../../components/AdminTabs';
 import { RedirectToSignIn } from '../../components/RedirectToSignIn';
 import { useUserRole } from '../../hooks/useUserRole';
+import { getImageUrl } from '../../utils/imageUtils';
 
 export const Route = createFileRoute('/admin/judging')({
   component: JudgingPage,
@@ -151,12 +152,6 @@ function JudgingPage() {
       document.body.style.overflow = '';
     };
   }, [inspectedSubmissionId, inspectedPortfolioId]);
-
-  // Get image URL
-  const getImageUrl = (r2ImageId: string | null): string | null => {
-    if (!r2ImageId) return null;
-    return `${IMAGES_BASE_URL}/${r2ImageId}`;
-  };
 
   // Background sync function
   const syncToServer = useCallback(
@@ -620,7 +615,7 @@ function JudgingPage() {
           s => s.id === zoomedPortfolioPhotoId
         )
       : -1;
-  const zoomedImageUrl = zoomedPhoto
+  const zoomedImageUrl = zoomedPhoto?.r2ImageId
     ? getImageUrl(zoomedPhoto.r2ImageId)
     : null;
   const canGoPrevPhoto = zoomedPhotoIndex > 0;
@@ -739,7 +734,9 @@ function JudgingPage() {
     submission: JudgingSubmission,
     size: 'normal' | 'large' = 'normal'
   ) => {
-    const imageUrl = getImageUrl(submission.r2ImageId);
+    const imageUrl = submission.r2ImageId
+      ? getImageUrl(submission.r2ImageId)
+      : null;
     const isRejected = submission.flagStatus === 'rejected';
 
     return (
@@ -977,7 +974,9 @@ function JudgingPage() {
           <div className="grid grid-cols-3 gap-1 p-1">
             {PHOTO_TYPES.map(photoType => {
               const sub = photoByType.get(photoType);
-              const imageUrl = sub ? getImageUrl(sub.r2ImageId) : null;
+              const imageUrl = sub?.r2ImageId
+                ? getImageUrl(sub.r2ImageId)
+                : null;
               const hasFailed = sub ? failedImages.has(sub.id) : false;
 
               return (
@@ -1619,7 +1618,11 @@ function JudgingPage() {
                     }}
                   >
                     <img
-                      src={getImageUrl(inspectedSubmission.r2ImageId) || ''}
+                      src={
+                        inspectedSubmission.r2ImageId
+                          ? getImageUrl(inspectedSubmission.r2ImageId)
+                          : ''
+                      }
                       alt={inspectedSubmission.title}
                       style={{
                         transform: `scale(${zoomLevel})`,
@@ -1995,7 +1998,9 @@ function JudgingPage() {
                   {/* Portfolio images - 3 photos in a row, clickable for zoom */}
                   <div className="flex-1 p-6 flex items-center justify-center gap-6 overflow-auto">
                     {inspectedPortfolio.submissions.map(sub => {
-                      const imageUrl = getImageUrl(sub.r2ImageId);
+                      const imageUrl = sub.r2ImageId
+                        ? getImageUrl(sub.r2ImageId)
+                        : null;
                       return (
                         <div
                           key={sub.id}

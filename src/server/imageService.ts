@@ -66,28 +66,6 @@ export function generateR2ImageId(
 }
 
 /**
- * Generates the full API URL for serving an image (compressed/optimized)
- * Pure function - string transformation
- */
-export function getImageApiUrl(
-  r2ImageId: string | null | undefined
-): string | null {
-  if (!r2ImageId) return null;
-  return `/api/images/${r2ImageId}`;
-}
-
-/**
- * Generates the full API URL for serving a thumbnail (smaller, faster)
- * Pure function - string transformation
- */
-export function getThumbnailImageApiUrl(
-  r2ImageId: string | null | undefined
-): string | null {
-  if (!r2ImageId) return null;
-  return `/api/images/${r2ImageId}?thumb=true`;
-}
-
-/**
  * Generates the full URL for serving original quality images
  * Uses CDN in production, API in development
  * Pure function - string transformation

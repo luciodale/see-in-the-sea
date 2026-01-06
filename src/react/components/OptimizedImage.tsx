@@ -6,7 +6,6 @@ interface OptimizedImageProps {
   alt: string;
   className?: string;
   loading?: 'lazy' | 'eager';
-  onClick?: () => void;
 }
 
 export const OptimizedImage = memo(function OptimizedImage({
@@ -14,7 +13,6 @@ export const OptimizedImage = memo(function OptimizedImage({
   alt,
   className,
   loading = 'lazy',
-  onClick,
 }: OptimizedImageProps) {
   const imageUrl = useMemo(() => {
     return r2ImageId ? getImageUrl(r2ImageId) : null;
@@ -26,7 +24,6 @@ export const OptimizedImage = memo(function OptimizedImage({
       alt={alt}
       className={className}
       loading={loading}
-      onClick={onClick}
     />
   );
 });
