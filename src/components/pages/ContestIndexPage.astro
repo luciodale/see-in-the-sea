@@ -28,8 +28,6 @@ const contestsWithLinks = allContests.map(c => ({
 
 const PUBLIC_CLERK_PUBLISHABLE_KEY = import.meta.env
   .PUBLIC_CLERK_PUBLISHABLE_KEY;
-
-console.log('CLERK PUBLIC KEY', PUBLIC_CLERK_PUBLISHABLE_KEY);
 ---
 
 <AppWrapper
@@ -47,24 +45,24 @@ console.log('CLERK PUBLIC KEY', PUBLIC_CLERK_PUBLISHABLE_KEY);
       standalone={true}
     />
   </div>
-</AppWrapper>
-<!-- Contest Slider with Liquid Glass Background -->
-<div class="w-full">
-  {
-    contestsWithLinks.length > 0 ? (
-      <ContestSlider client:load contests={contestsWithLinks} />
-    ) : (
-      <div class="min-h-screen w-full bg-gradient-to-b from-slate-900 to-gray-900 flex items-center justify-center">
-        <div class="col-span-full text-center py-16">
-          <div class="backdrop-blur-xl bg-gradient-to-br from-white/10 via-blue-500/5 to-transparent rounded-3xl border border-white/20 p-12 shadow-2xl max-w-lg mx-auto">
-            <div class="text-6xl mb-6">🏆</div>
-            <h3 class="text-3xl font-light text-white mb-4 tracking-wide">
-              {t('contests.no-contests')}
-            </h3>
-            <p class="text-gray-300 text-lg">{t('contests.check-back')}</p>
+  <!-- Contest Slider with Liquid Glass Background -->
+  <div class="w-full">
+    {
+      contestsWithLinks.length > 0 ? (
+        <ContestSlider client:load contests={contestsWithLinks} />
+      ) : (
+        <div class="min-h-screen w-full bg-gradient-to-b from-slate-900 to-gray-900 flex items-center justify-center">
+          <div class="col-span-full text-center py-16">
+            <div class="backdrop-blur-xl bg-gradient-to-br from-white/10 via-blue-500/5 to-transparent rounded-3xl border border-white/20 p-12 shadow-2xl max-w-lg mx-auto">
+              <div class="text-6xl mb-6">🏆</div>
+              <h3 class="text-3xl font-light text-white mb-4 tracking-wide">
+                {t('contests.no-contests')}
+              </h3>
+              <p class="text-gray-300 text-lg">{t('contests.check-back')}</p>
+            </div>
           </div>
         </div>
-      </div>
-    )
-  }
-</div>
+      )
+    }
+  </div>
+</AppWrapper>
