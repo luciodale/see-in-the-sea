@@ -1,0 +1,107 @@
+[
+  {
+    "id": "uw-2024",
+    "name": "UW Contest 2024",
+    "description": "Annual underwater photography competition celebrating the beauty and diversity of marine life",
+    "year": 2024,
+    "winningImage": "/api/images/uw-2024/wide-angle/J2tv_0zBzFe6jBsYsBX34"
+  },
+  {
+    "id": "uw-2019",
+    "name": "UW Contest 2019",
+    "description": "Annual underwater photography competition celebrating the beauty and diversity of marine life",
+    "year": 2019,
+    "winningImage": "/api/images/uw-2019/wide-angle/3H-BlySO0TMarMRhuPCda"
+  },
+  {
+    "id": "uw-2018",
+    "name": "UW Contest 2018",
+    "description": "Annual underwater photography competition celebrating the beauty and diversity of marine life",
+    "year": 2018,
+    "winningImage": "/api/images/uw-2018/compact/0F14dvZm-WjjbMgD822EC"
+  },
+  {
+    "id": "uw-2017",
+    "name": "UW Contest 2017",
+    "description": "Annual underwater photography competition celebrating the beauty and diversity of marine life",
+    "year": 2017,
+    "winningImage": "/api/images/uw-2017/compact/hPSLlD-Y0wAO8n5pqs_5I"
+  },
+  {
+    "id": "uw-2016",
+    "name": "UW Contest 2016",
+    "description": "Annual underwater photography competition celebrating the beauty and diversity of marine life",
+    "year": 2016,
+    "winningImage": "/api/images/uw-2016/compact/8hGGW1e7gqv0bhBCGeLaA"
+  },
+  {
+    "id": "uw-2015",
+    "name": "UW Contest 2015",
+    "description": "Annual underwater photography competition celebrating the beauty and diversity of marine life",
+    "year": 2015,
+    "winningImage": "/api/images/uw-2015/fresh-waters/oBHY-HSjxfv9Roi0z_fIF"
+  },
+  {
+    "id": "uw-2014",
+    "name": "UW Contest 2014",
+    "description": "Annual underwater photography competition celebrating the beauty and diversity of marine life",
+    "year": 2014,
+    "winningImage": "/api/images/uw-2014/fresh-waters/YToOpPSk_NIMgXrj2vFOA"
+  },
+  {
+    "id": "uw-2013",
+    "name": "UW Contest 2013",
+    "description": "Annual underwater photography competition celebrating the beauty and diversity of marine life",
+    "year": 2013,
+    "winningImage": "/api/images/uw-2013/art-in-the-water/PMpRCgfg8vcrNY_-jcYM5"
+  },
+  {
+    "id": "uw-2012",
+    "name": "UW Contest 2012",
+    "description": "Annual underwater photography competition celebrating the beauty and diversity of marine life",
+    "year": 2012,
+    "winningImage": "/api/images/rT2jAmeG3dOzwgq42z3In"
+  },
+  {
+    "id": "uw-2011",
+    "name": "UW Contest 2011",
+    "description": "Annual underwater photography competition celebrating the beauty and diversity of marine life",
+    "year": 2011,
+    "winningImage": "/api/images/1Dp4NqOeQnTaJQGRgz6XR"
+  },
+  {
+    "id": "uw-2010",
+    "name": "UW Contest 2010",
+    "description": "Annual underwater photography competition celebrating the beauty and diversity of marine life",
+    "year": 2010,
+    "winningImage": "/api/images/BhVweMYT5pMaRjhnjNjaq"
+  },
+  {
+    "id": "uw-2009",
+    "name": "UW Contest 2009",
+    "description": "Annual underwater photography competition celebrating the beauty and diversity of marine life",
+    "year": 2009,
+    "winningImage": "/api/images/uw-2009/environment/V2mcO9xEXrptVXg9wgGxJ"
+  },
+  {
+    "id": "uw-2008",
+    "name": "UW Contest 2008",
+    "description": "Annual underwater photography competition celebrating the beauty and diversity of marine life",
+    "year": 2008,
+    "winningImage": "/api/images/O7J0hq59HPZfvfup9UbXC"
+  },
+  {
+    "id": "uw-2007",
+    "name": "UW Contest 2007",
+    "description": "Annual underwater photography competition celebrating the beauty and diversity of marine life",
+    "year": 2007,
+    "winningImage": "/api/images/xaplETs6-xgpUcb35FQAi"
+  },
+  {
+    "id": "uw-2006",
+    "name": "UW Contest 2006",
+    "description": "Annual underwater photography competition celebrating the beauty and diversity of marine life",
+    "year": 2006,
+    "winningImage": "/api/images/0Dgj052-EWA6sQe7z1PTv"
+  }
+]

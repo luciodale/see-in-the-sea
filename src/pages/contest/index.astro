@@ -1,8 +1,9 @@
 ---
-import ContestIndexPage from '@/components/pages/ContestIndexPage.astro';
-import { getLangFromUrl } from '@/i18n';
+export const prerender = true;
 
-const currentLang = getLangFromUrl(Astro.url);
+import ContestIndexPage from '@/components/pages/ContestIndexPage.astro';
+
+const currentLang = 'en';
 ---
 
 <ContestIndexPage lang={currentLang} />

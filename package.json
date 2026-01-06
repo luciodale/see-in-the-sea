@@ -64,6 +64,7 @@
   },
   "scripts": {
     "astro": "astro",
+    "export:contests": "bun scripts/export-past-contests.ts --remote",
     "build": "astro build",
     "cf-typegen": "wrangler types",
     "check": "astro build && tsc && wrangler deploy --dry-run",
