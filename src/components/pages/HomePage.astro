@@ -15,7 +15,8 @@ interface Props {
 const { lang, alternates = [] } = Astro.props as Props;
 const t = useTranslations(lang);
 
-const { PUBLIC_CLERK_PUBLISHABLE_KEY } = Astro.locals.runtime.env;
+const PUBLIC_CLERK_PUBLISHABLE_KEY = import.meta.env
+  .PUBLIC_CLERK_PUBLISHABLE_KEY;
 ---
 
 <AppWrapper

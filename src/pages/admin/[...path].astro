@@ -4,7 +4,8 @@ import { SITE_DESCRIPTION, SITE_TITLE } from '@/consts';
 import { App } from '@/react/App';
 export const prerender = false;
 
-const { PUBLIC_CLERK_PUBLISHABLE_KEY } = Astro.locals.runtime.env;
+const PUBLIC_CLERK_PUBLISHABLE_KEY = import.meta.env
+  .PUBLIC_CLERK_PUBLISHABLE_KEY;
 ---
 
 <AppWrapper lang="en" title={SITE_TITLE} description={SITE_DESCRIPTION}>
