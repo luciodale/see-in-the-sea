@@ -166,6 +166,7 @@ export const translations = {
     'contests.slider.title': 'Past Contests',
     'contests.slider.description':
       'Explore winning photographs from previous editions',
+    'contests.slider.view-gallery': 'View Gallery',
     'contests.no-contests': 'No Contests Available',
     'contests.check-back': 'Check back soon for upcoming competitions!',
     'contests.no-winners': 'No Winners Yet',
@@ -511,6 +512,7 @@ export const translations = {
     'contests.slider.title': 'Edizioni Precedenti',
     'contests.slider.description':
       'Esplora le fotografie vincitrici delle edizioni precedenti',
+    'contests.slider.view-gallery': 'Vedi Galleria',
     'contests.no-contests': 'Nessun Concorso Disponibile',
     'contests.check-back': 'Torna presto per le prossime competizioni!',
     'contests.no-winners': 'Nessun Vincitore',

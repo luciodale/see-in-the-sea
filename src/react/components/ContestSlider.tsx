@@ -121,7 +121,7 @@ export function ContestSlider({ contests, lang }: ContestSliderProps) {
 
                   <div className="flex items-center gap-2 text-white/80 group-hover:text-white transition-colors">
                     <span className="text-sm font-medium tracking-wide">
-                      View Gallery
+                      {t('contests.slider.view-gallery')}
                     </span>
                     <ArrowRight className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1" />
                   </div>
