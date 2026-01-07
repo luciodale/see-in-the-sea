@@ -1,7 +1,7 @@
 import { type Contest } from '@/data/past-contests';
+import { useTranslations, type Language } from '@/i18n';
 import { ArrowRight, ChevronLeft, ChevronRight } from 'lucide-react';
 import { useEffect, useRef, useState } from 'react';
-import { useI18n } from '../../i18n/react';
 
 type ContestAndLink = {
   link: string;
@@ -9,10 +9,11 @@ type ContestAndLink = {
 
 interface ContestSliderProps {
   contests: ContestAndLink[];
+  lang: Language;
 }
 
-export function ContestSlider({ contests }: ContestSliderProps) {
-  const { t } = useI18n();
+export function ContestSlider({ contests, lang }: ContestSliderProps) {
+  const t = useTranslations(lang);
   const scrollRef = useRef<HTMLDivElement>(null);
   const [canScrollLeft, setCanScrollLeft] = useState(false);
   const [canScrollRight, setCanScrollRight] = useState(true);

@@ -40,7 +40,7 @@ const PUBLIC_CLERK_PUBLISHABLE_KEY = import.meta.env
   <div class="w-full">
     {
       contestsWithLinks.length > 0 ? (
-        <ContestSlider client:load contests={contestsWithLinks} />
+        <ContestSlider client:load contests={contestsWithLinks} lang={lang} />
       ) : (
         <div class="min-h-screen w-full bg-gradient-to-b from-slate-900 to-gray-900 flex items-center justify-center">
           <div class="col-span-full text-center py-16">
