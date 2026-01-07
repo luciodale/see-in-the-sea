@@ -163,6 +163,9 @@ export const translations = {
     // Contests page
     'contests.title': 'Contest Years',
     'contests.description': 'Explore the winners of the past contests',
+    'contests.slider.title': 'Past Contests',
+    'contests.slider.description':
+      'Explore winning photographs from previous editions',
     'contests.no-contests': 'No Contests Available',
     'contests.check-back': 'Check back soon for upcoming competitions!',
     'contests.no-winners': 'No Winners Yet',
@@ -505,6 +508,9 @@ export const translations = {
     // Contests page
     'contests.title': 'Edizioni Precedenti',
     'contests.description': "Esplora l'albo d'oro dei contest",
+    'contests.slider.title': 'Edizioni Precedenti',
+    'contests.slider.description':
+      'Esplora le fotografie vincitrici delle edizioni precedenti',
     'contests.no-contests': 'Nessun Concorso Disponibile',
     'contests.check-back': 'Torna presto per le prossime competizioni!',
     'contests.no-winners': 'Nessun Vincitore',

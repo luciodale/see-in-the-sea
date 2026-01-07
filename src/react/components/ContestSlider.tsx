@@ -1,6 +1,7 @@
 import { type Contest } from '@/data/past-contests';
 import { ArrowRight, ChevronLeft, ChevronRight } from 'lucide-react';
 import { useEffect, useRef, useState } from 'react';
+import { useI18n } from '../../i18n/react';
 
 type ContestAndLink = {
   link: string;
@@ -11,6 +12,7 @@ interface ContestSliderProps {
 }
 
 export function ContestSlider({ contests }: ContestSliderProps) {
+  const { t } = useI18n();
   const scrollRef = useRef<HTMLDivElement>(null);
   const [canScrollLeft, setCanScrollLeft] = useState(false);
   const [canScrollRight, setCanScrollRight] = useState(true);
@@ -51,10 +53,10 @@ export function ContestSlider({ contests }: ContestSliderProps) {
       {/* Header */}
       <div className="pt-24 pb-8 px-6 text-center">
         <h1 className="text-4xl md:text-5xl font-extralight text-white tracking-wider uppercase">
-          Past Contests
+          {t('contests.slider.title')}
         </h1>
         <p className="mt-4 text-slate-400 text-lg font-light">
-          Explore winning photographs from previous editions
+          {t('contests.slider.description')}
         </p>
       </div>
 
