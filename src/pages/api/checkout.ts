@@ -12,6 +12,8 @@ import { authenticateRequest } from '../../server/authenticateRequest';
 import type { CheckoutResponse } from '../../types/api';
 // Stripe test key should be stored in environment variables
 
+export const prerender = false;
+
 const PRICE_ID_PROD_20 = 'price_1SA7Q80GkfoIDCTPaiqKExvB';
 const PRICE_ID_PROD_30 = 'price_1SA7QP0GkfoIDCTPQgyBnXsS';
 
