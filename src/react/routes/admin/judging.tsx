@@ -1464,7 +1464,7 @@ function JudgingPage() {
                           </span>
                         </h3>
                         <div
-                          className={`grid ${isMediterranean ? 'grid-cols-1 md:grid-cols-2' : 'grid-cols-2 md:grid-cols-4'} gap-4`}
+                          className={`grid ${isMediterranean ? 'grid-cols-1' : 'grid-cols-2 md:grid-cols-4'} gap-4`}
                         >
                           {isMediterranean
                             ? // Render unique portfolios with runner-up
@@ -1491,18 +1491,36 @@ function JudgingPage() {
                     )}
                   </div>
                 ) : isMediterranean && groupedByUser ? (
-                  <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                    {Object.entries(groupedByUser).flatMap(
-                      ([_userId, portfolios]) =>
-                        Object.entries(portfolios).map(
-                          ([portfolioId, portfolioSubmissions]) =>
-                            renderPortfolioCard(
-                              portfolioId,
-                              portfolioSubmissions
-                            )
-                        )
-                    )}
-                  </div>
+                  filterStatus === 'shortlisted' ? (
+                    // Full-width cards with images for Selezionati
+                    <div className="grid grid-cols-1 gap-6">
+                      {Object.entries(groupedByUser).flatMap(
+                        ([_userId, portfolios]) =>
+                          Object.entries(portfolios).map(
+                            ([portfolioId, portfolioSubmissions]) =>
+                              renderPortfolioCard(
+                                portfolioId,
+                                portfolioSubmissions,
+                                true // Show images for Selezionati
+                              )
+                          )
+                      )}
+                    </div>
+                  ) : (
+                    // Compact preview for Tutti/In Attesa/Scartati
+                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                      {Object.entries(groupedByUser).flatMap(
+                        ([_userId, portfolios]) =>
+                          Object.entries(portfolios).map(
+                            ([portfolioId, portfolioSubmissions]) =>
+                              renderPortfolioCard(
+                                portfolioId,
+                                portfolioSubmissions
+                              )
+                          )
+                      )}
+                    </div>
+                  )
                 ) : (
                   <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
                     {sortedSubmissions.map(submission =>
