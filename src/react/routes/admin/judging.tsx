@@ -646,39 +646,44 @@ function JudgingPage() {
     }
   };
 
+  // Helper to get unique portfolio composite keys from submissions
+  const getUniquePortfolioKeys = useCallback(
+    (submissions: JudgingSubmission[]) => {
+      return [
+        ...new Set(
+          submissions
+            .filter(s => s.portfolio && s.portfolio !== 'ungrouped')
+            .map(s => `${s.anonymousUserId || 'unknown'}-${s.portfolio}`)
+        ),
+      ];
+    },
+    []
+  );
+
   // Counts - for Mediterranean, count unique portfolios instead of individual photos
   const counts = useMemo(() => {
     if (isMediterranean) {
+      // For Mediterranean, use composite keys to identify unique portfolios
+      const allPortfolioKeys = getUniquePortfolioKeys(categorySubmissions);
+      const shortlistedKeys = getUniquePortfolioKeys(
+        categorySubmissions.filter(s => s.flagStatus === 'shortlisted')
+      );
+      const rejectedKeys = getUniquePortfolioKeys(
+        categorySubmissions.filter(s => s.flagStatus === 'rejected')
+      );
+      const pendingKeys = getUniquePortfolioKeys(
+        categorySubmissions.filter(s => s.flagStatus === 'pending')
+      );
+      const winnersKeys = getUniquePortfolioKeys(
+        categorySubmissions.filter(s => s.placement !== null)
+      );
+
       return {
-        total: portfoliosList.length,
-        shortlisted: [
-          ...new Set(
-            categorySubmissions
-              .filter(s => s.flagStatus === 'shortlisted')
-              .map(s => s.portfolio)
-          ),
-        ].length,
-        rejected: [
-          ...new Set(
-            categorySubmissions
-              .filter(s => s.flagStatus === 'rejected')
-              .map(s => s.portfolio)
-          ),
-        ].length,
-        pending: [
-          ...new Set(
-            categorySubmissions
-              .filter(s => s.flagStatus === 'pending')
-              .map(s => s.portfolio)
-          ),
-        ].length,
-        winners: [
-          ...new Set(
-            categorySubmissions
-              .filter(s => s.placement !== null)
-              .map(s => s.portfolio)
-          ),
-        ].length,
+        total: allPortfolioKeys.length,
+        shortlisted: shortlistedKeys.length,
+        rejected: rejectedKeys.length,
+        pending: pendingKeys.length,
+        winners: winnersKeys.length,
       };
     }
     const shortlisted = categorySubmissions.filter(
@@ -700,21 +705,17 @@ function JudgingPage() {
       pending,
       winners,
     };
-  }, [isMediterranean, portfoliosList.length, categorySubmissions]);
+  }, [isMediterranean, categorySubmissions, getUniquePortfolioKeys]);
 
   // Placement counts - for Mediterranean, count unique portfolios
   const placementCounts = useMemo(() => {
     if (isMediterranean) {
       return (['first', 'second', 'third', 'runner-up'] as const).reduce(
         (acc, placement) => {
-          const uniquePortfolios = [
-            ...new Set(
-              categorySubmissions
-                .filter(s => s.placement === placement)
-                .map(s => s.portfolio)
-            ),
-          ];
-          acc[placement] = uniquePortfolios.length;
+          const uniquePortfolioKeys = getUniquePortfolioKeys(
+            categorySubmissions.filter(s => s.placement === placement)
+          );
+          acc[placement] = uniquePortfolioKeys.length;
           return acc;
         },
         {} as Record<string, number>
@@ -727,7 +728,7 @@ function JudgingPage() {
       },
       {} as Record<string, number>
     );
-  }, [isMediterranean, categorySubmissions]);
+  }, [isMediterranean, categorySubmissions, getUniquePortfolioKeys]);
 
   // Render submission card
   const renderSubmissionCard = (
