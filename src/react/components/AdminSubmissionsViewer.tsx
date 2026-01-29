@@ -214,6 +214,49 @@ export function AdminSubmissionsViewer({
     return `€${(cents / 100).toFixed(2)}`;
   };
 
+  const exportToCsv = () => {
+    const headers = [
+      'Nome',
+      'Cognome',
+      'Email',
+      'Pagamento',
+      'Registrato',
+      'Ultima Attività',
+      '# Foto',
+      'Importo Pagato',
+    ];
+
+    const rows = userRows.map(userRow => [
+      userRow.firstName || '',
+      userRow.lastName || '',
+      userRow.userEmail,
+      userRow.hasPaid ? 'Pagato' : 'Non Pagato',
+      userRow.userCreatedAt || '',
+      userRow.userLastActiveAt || '',
+      userRow.submissionCount.toString(),
+      userPayments[userRow.userEmail]
+        ? (userPayments[userRow.userEmail] / 100).toFixed(2)
+        : '',
+    ]);
+
+    const csvContent = [
+      headers.join(';'),
+      ...rows.map(row =>
+        row.map(cell => `"${cell.replace(/"/g, '""')}"`).join(';')
+      ),
+    ].join('\n');
+
+    const blob = new Blob(['\uFEFF' + csvContent], {
+      type: 'text/csv;charset=utf-8;',
+    });
+    const url = URL.createObjectURL(blob);
+    const link = document.createElement('a');
+    link.href = url;
+    link.download = `concorso-corrente-${new Date().toISOString().split('T')[0]}.csv`;
+    link.click();
+    URL.revokeObjectURL(url);
+  };
+
   return (
     <>
       <div className="bg-slate-900 border border-slate-700 rounded-lg">
@@ -229,6 +272,26 @@ export function AdminSubmissionsViewer({
                 {allSubmissions.length} totali)
               </p>
             </div>
+            <button
+              type="button"
+              onClick={exportToCsv}
+              className="inline-flex items-center px-4 py-2 border border-slate-600 text-sm font-medium rounded-md text-slate-200 bg-slate-800 hover:bg-slate-700 focus:outline-none focus:ring-2 focus:ring-emerald-500 transition-colors"
+            >
+              <svg
+                className="w-4 h-4 mr-2"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"
+                />
+              </svg>
+              Esporta CSV
+            </button>
           </div>
         </div>
 
