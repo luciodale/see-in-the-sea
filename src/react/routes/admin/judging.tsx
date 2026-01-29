@@ -1377,119 +1377,129 @@ function JudgingPage() {
                     )}
                   </div>
                 ) : filterStatus === 'winners' ? (
-                  /* Winners Preview - Elegant podium layout */
-                  <div className="space-y-8">
-                    {/* Podium - 1st, 2nd, 3rd */}
-                    <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-                      {['second', 'first', 'third'].map(placement => {
-                        const winner = sortedSubmissions.find(
-                          s => s.placement === placement
-                        );
-                        const placementInfo = PLACEMENTS.find(
-                          p => p.value === placement
-                        );
-                        const isFirst = placement === 'first';
+                  isMediterranean ? (
+                    /* Mediterranean Winners - Single column ordered layout */
+                    <div className="grid grid-cols-1 gap-6">
+                      {['first', 'second', 'third', 'runner-up'].map(
+                        placement => {
+                          const placementInfo = PLACEMENTS.find(
+                            p => p.value === placement
+                          );
+                          const placementPortfolios = portfoliosList.filter(p =>
+                            p.submissions.some(s => s.placement === placement)
+                          );
 
-                        // For Mediterranean, find the portfolio by matching the submission
-                        const winnerPortfolio =
-                          isMediterranean && winner
-                            ? portfoliosList.find(p =>
-                                p.submissions.some(s => s.id === winner.id)
-                              )
-                            : null;
+                          if (placementPortfolios.length === 0) return null;
 
-                        return (
-                          <div
-                            key={placement}
-                            className={`${isFirst ? 'md:-mt-4 md:order-2' : placement === 'second' ? 'md:order-1' : 'md:order-3'}`}
-                          >
-                            <div
-                              className={`text-center mb-3 ${isFirst ? 'text-2xl' : 'text-lg'}`}
-                            >
-                              <span
-                                className={`${placementInfo?.color} inline-flex items-center justify-center ${isFirst ? 'w-14 h-14 text-xl' : 'w-10 h-10 text-sm'} rounded-full font-bold shadow-lg`}
-                              >
-                                {placementInfo?.label}
-                              </span>
-                              <p className="text-slate-300 mt-2 font-medium">
-                                {placement === 'first' && '🥇 1° Posto'}
-                                {placement === 'second' && '🥈 2° Posto'}
-                                {placement === 'third' && '🥉 3° Posto'}
-                              </p>
-                            </div>
-                            {winner ? (
-                              <div
-                                className={`${isFirst && !(isMediterranean && winnerPortfolio) ? 'ring-2 ring-yellow-500/50' : ''} rounded-lg overflow-hidden`}
-                              >
-                                {isMediterranean && winnerPortfolio
-                                  ? renderPortfolioCard(
-                                      winnerPortfolio.portfolioId,
-                                      winnerPortfolio.submissions,
-                                      true // Show images in vincitori view
-                                    )
-                                  : renderSubmissionCard(winner, 'large')}
-                              </div>
-                            ) : (
-                              <div className="aspect-[4/3] bg-slate-800/50 rounded-lg flex flex-col items-center justify-center text-slate-600 border-2 border-dashed border-slate-700 gap-2">
-                                <span className="text-4xl">🏆</span>
-                                <span className="text-sm">Non assegnato</span>
-                              </div>
-                            )}
-                          </div>
-                        );
-                      })}
-                    </div>
-
-                    {/* Runner-ups */}
-                    {sortedSubmissions.filter(s => s.placement === 'runner-up')
-                      .length > 0 && (
-                      <div className="mt-8 pt-8 border-t border-slate-800">
-                        <h3 className="text-lg font-medium mb-4 flex items-center gap-2">
-                          <span className="bg-blue-500 w-8 h-8 rounded-full flex items-center justify-center text-sm font-bold">
-                            M
-                          </span>
-                          <span className="text-slate-300">
-                            Menzioni (
-                            {isMediterranean
-                              ? // Count unique portfolios with runner-up
-                                portfoliosList.filter(p =>
-                                  p.submissions.some(
-                                    s => s.placement === 'runner-up'
-                                  )
-                                ).length
-                              : sortedSubmissions.filter(
-                                  s => s.placement === 'runner-up'
-                                ).length}
-                            )
-                          </span>
-                        </h3>
-                        <div
-                          className={`grid ${isMediterranean ? 'grid-cols-1' : 'grid-cols-2 md:grid-cols-4'} gap-4`}
-                        >
-                          {isMediterranean
-                            ? // Render unique portfolios with runner-up
-                              portfoliosList
-                                .filter(p =>
-                                  p.submissions.some(
-                                    s => s.placement === 'runner-up'
-                                  )
-                                )
-                                .map(portfolio =>
+                          return (
+                            <div key={placement} className="space-y-6">
+                              <h3 className="text-lg font-medium flex items-center gap-2">
+                                <span
+                                  className={`${placementInfo?.color} w-8 h-8 rounded-full flex items-center justify-center text-sm font-bold`}
+                                >
+                                  {placementInfo?.label}
+                                </span>
+                                <span className="text-slate-300">
+                                  {placement === 'first' && '🥇 1° Posto'}
+                                  {placement === 'second' && '🥈 2° Posto'}
+                                  {placement === 'third' && '🥉 3° Posto'}
+                                  {placement === 'runner-up' &&
+                                    `Menzioni (${placementPortfolios.length})`}
+                                </span>
+                              </h3>
+                              <div className="grid grid-cols-1 gap-6">
+                                {placementPortfolios.map(portfolio =>
                                   renderPortfolioCard(
                                     portfolio.portfolioId,
                                     portfolio.submissions,
                                     true // Show images in vincitori view
                                   )
-                                )
-                            : sortedSubmissions
-                                .filter(s => s.placement === 'runner-up')
-                                .map(submission =>
-                                  renderSubmissionCard(submission, 'normal')
                                 )}
-                        </div>
+                              </div>
+                            </div>
+                          );
+                        }
+                      )}
+                    </div>
+                  ) : (
+                    /* Non-Mediterranean Winners - Elegant podium layout */
+                    <div className="space-y-8">
+                      {/* Podium - 1st, 2nd, 3rd */}
+                      <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                        {['second', 'first', 'third'].map(placement => {
+                          const winner = sortedSubmissions.find(
+                            s => s.placement === placement
+                          );
+                          const placementInfo = PLACEMENTS.find(
+                            p => p.value === placement
+                          );
+                          const isFirst = placement === 'first';
+
+                          return (
+                            <div
+                              key={placement}
+                              className={`${isFirst ? 'md:-mt-4 md:order-2' : placement === 'second' ? 'md:order-1' : 'md:order-3'}`}
+                            >
+                              <div
+                                className={`text-center mb-3 ${isFirst ? 'text-2xl' : 'text-lg'}`}
+                              >
+                                <span
+                                  className={`${placementInfo?.color} inline-flex items-center justify-center ${isFirst ? 'w-14 h-14 text-xl' : 'w-10 h-10 text-sm'} rounded-full font-bold shadow-lg`}
+                                >
+                                  {placementInfo?.label}
+                                </span>
+                                <p className="text-slate-300 mt-2 font-medium">
+                                  {placement === 'first' && '🥇 1° Posto'}
+                                  {placement === 'second' && '🥈 2° Posto'}
+                                  {placement === 'third' && '🥉 3° Posto'}
+                                </p>
+                              </div>
+                              {winner ? (
+                                <div
+                                  className={`${isFirst ? 'ring-2 ring-yellow-500/50' : ''} rounded-lg overflow-hidden`}
+                                >
+                                  {renderSubmissionCard(winner, 'large')}
+                                </div>
+                              ) : (
+                                <div className="aspect-[4/3] bg-slate-800/50 rounded-lg flex flex-col items-center justify-center text-slate-600 border-2 border-dashed border-slate-700 gap-2">
+                                  <span className="text-4xl">🏆</span>
+                                  <span className="text-sm">Non assegnato</span>
+                                </div>
+                              )}
+                            </div>
+                          );
+                        })}
                       </div>
-                    )}
-                  </div>
+
+                      {/* Runner-ups */}
+                      {sortedSubmissions.filter(s => s.placement === 'runner-up')
+                        .length > 0 && (
+                        <div className="mt-8 pt-8 border-t border-slate-800">
+                          <h3 className="text-lg font-medium mb-4 flex items-center gap-2">
+                            <span className="bg-blue-500 w-8 h-8 rounded-full flex items-center justify-center text-sm font-bold">
+                              M
+                            </span>
+                            <span className="text-slate-300">
+                              Menzioni (
+                              {
+                                sortedSubmissions.filter(
+                                  s => s.placement === 'runner-up'
+                                ).length
+                              }
+                              )
+                            </span>
+                          </h3>
+                          <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+                            {sortedSubmissions
+                              .filter(s => s.placement === 'runner-up')
+                              .map(submission =>
+                                renderSubmissionCard(submission, 'normal')
+                              )}
+                          </div>
+                        </div>
+                      )}
+                    </div>
+                  )
                 ) : isMediterranean && groupedByUser ? (
                   filterStatus === 'shortlisted' ? (
                     // Full-width cards with images for Selezionati
