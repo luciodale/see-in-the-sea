@@ -2,9 +2,9 @@ import type { APIRoute } from 'astro';
 import { and, eq, inArray, isNotNull } from 'drizzle-orm';
 import { nanoid } from 'nanoid';
 import {
-  contests,
   getDb,
   judgingFlags,
+  payments,
   results,
   submissions,
 } from '../../../db/index';
@@ -141,6 +141,7 @@ export const GET: APIRoute = async ({ request, locals, url }) => {
 
   try {
     // Get all submissions with judging flags and final results
+    // Only include submissions from users who have paid the participation fee
     const submissionsData = await db
       .select({
         id: submissions.id,
@@ -158,6 +159,13 @@ export const GET: APIRoute = async ({ request, locals, url }) => {
         resultId: results.id,
       })
       .from(submissions)
+      .innerJoin(
+        payments,
+        and(
+          eq(submissions.userEmail, payments.userEmail),
+          eq(submissions.contestId, payments.contestId)
+        )
+      )
       .leftJoin(judgingFlags, eq(submissions.id, judgingFlags.submissionId))
       .leftJoin(results, eq(submissions.id, results.submissionId))
       .where(eq(submissions.contestId, contestId))
