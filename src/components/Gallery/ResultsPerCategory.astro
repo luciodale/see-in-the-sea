@@ -1,14 +1,16 @@
 ---
-import type { Contest } from '@/data/past-contests';
+import type { Contest, Entry } from '@/data/past-contests';
 import {
   getCategoryName,
   getLangFromUrl,
   getResultName,
   useTranslations,
 } from '@/i18n';
+import { MEDITERRANEAN_CATEGORY_ID } from '../../constants';
 import { getFullQualityImageUrl } from '../../server/imageService';
 import GalleryInfo from './GalleryInfo.astro';
 import Layout from './Layout.astro';
+import MediterraneanPortfolioWinner from './MediterraneanPortfolioWinner.astro';
 import RunnerUpImages from './RunnerUpImages.astro';
 import TopWinnerImage from './TopWinnerImage.astro';
 
@@ -28,37 +30,82 @@ if (!category) {
   throw new Error(`Category ${categoryId} not found in contest ${contestId}`);
 }
 
-// Get entries for this category, sorted by placement
+const isMediterranean = categoryId === MEDITERRANEAN_CATEGORY_ID;
+const translatedCategoryName = getCategoryName(
+  category.id,
+  category.name,
+  currentLang
+);
+
+const getAuthorName = (entry: Entry) =>
+  entry.photographer.firstName && entry.photographer.lastName
+    ? `${entry.photographer.firstName} ${entry.photographer.lastName}`
+    : t('author.anonymous');
+
+const getPhotographerKey = (entry: Entry) =>
+  `${entry.photographer.firstName}-${entry.photographer.lastName}`;
+
+// Group Mediterranean entries by placement + photographer
+const groupByPhotographer = (
+  entries: Entry[],
+  placement: Entry['placement']
+) => {
+  const filtered = entries.filter(e => e.placement === placement);
+  const groups = new Map<string, Entry[]>();
+
+  filtered.forEach(entry => {
+    const key = getPhotographerKey(entry);
+    if (!groups.has(key)) groups.set(key, []);
+    groups.get(key)!.push(entry);
+  });
+
+  return Array.from(groups.values()).map(groupEntries => ({
+    categoryName: translatedCategoryName,
+    author: getAuthorName(groupEntries[0]),
+    result: placement,
+    images: groupEntries
+      .map(entry => ({
+        imageUrl: entry.image,
+        fullImageUrl: getFullQualityImageUrl(entry.imageR2Id),
+        title: entry.title,
+      }))
+      .filter(
+        (img): img is typeof img & { imageUrl: string; fullImageUrl: string } =>
+          img.imageUrl !== null && img.fullImageUrl !== null
+      ),
+  }));
+};
+
+// Mediterranean portfolios grouped by placement
+const mediterraneanFirst = isMediterranean
+  ? groupByPhotographer(category.entries, 'first')
+  : [];
+const mediterraneanSecond = isMediterranean
+  ? groupByPhotographer(category.entries, 'second')
+  : [];
+const mediterraneanThird = isMediterranean
+  ? groupByPhotographer(category.entries, 'third')
+  : [];
+const mediterraneanRunnerUps = isMediterranean
+  ? groupByPhotographer(category.entries, 'runner-up')
+  : [];
+
+// Regular category processing (non-Mediterranean)
 const sortedEntries = [...category.entries].sort((a, b) => {
   const order = { first: 1, second: 2, third: 3, 'runner-up': 4 };
   return order[a.placement] - order[b.placement];
 });
 
-// Process images - filter out entries without valid images
-const processedImages = sortedEntries.map(entry => {
-  const translatedCategoryName = getCategoryName(
-    category.id,
-    category.name,
-    currentLang
-  );
+const processedImages = sortedEntries.map(entry => ({
+  result: entry.placement,
+  imageUrl: entry.image,
+  fullImageUrl: getFullQualityImageUrl(entry.imageR2Id),
+  categoryName: translatedCategoryName,
+  title: entry.title,
+  author: getAuthorName(entry),
+}));
 
-  const imageUrl = entry.image;
-  const fullImageUrl = getFullQualityImageUrl(entry.imageR2Id);
-
-  return {
-    result: entry.placement,
-    imageUrl,
-    fullImageUrl,
-    categoryName: translatedCategoryName,
-    title: entry.title,
-    author:
-      entry.photographer.firstName && entry.photographer.lastName
-        ? `${entry.photographer.firstName} ${entry.photographer.lastName}`
-        : t('author.anonymous'),
-  };
-});
-
-// Find winners by their actual result, not array position
+// Find winners by their actual result (for regular categories)
 const firstPlace = processedImages.find(r => r.result === 'first');
 const secondPlace = processedImages.find(r => r.result === 'second');
 const thirdPlace = processedImages.find(r => r.result === 'third');
@@ -76,48 +123,89 @@ const runnerUps = processedImages.filter(r => r.result === 'runner-up');
   <!-- Winners Section -->
   <div class="mt-10 sm:mt-12 space-y-12 sm:space-y-16">
     {
-      firstPlace && (
-        <TopWinnerImage
-          categoryName={firstPlace.categoryName}
-          rank={getResultName('First Place', currentLang)}
-          rawResult={firstPlace.result}
-          imageUrl={firstPlace.imageUrl}
-          fullImageUrl={firstPlace.fullImageUrl}
-          title={firstPlace.title}
-          author={firstPlace.author}
-        />
+      isMediterranean ? (
+        <>
+          {mediterraneanFirst.map(portfolio => (
+            <MediterraneanPortfolioWinner
+              categoryName={portfolio.categoryName}
+              rank={getResultName('First Place', currentLang)}
+              rawResult={portfolio.result}
+              author={portfolio.author}
+              images={portfolio.images}
+            />
+          ))}
+
+          {mediterraneanSecond.map(portfolio => (
+            <MediterraneanPortfolioWinner
+              categoryName={portfolio.categoryName}
+              rank={getResultName('Second Place', currentLang)}
+              rawResult={portfolio.result}
+              author={portfolio.author}
+              images={portfolio.images}
+            />
+          ))}
+
+          {mediterraneanThird.map(portfolio => (
+            <MediterraneanPortfolioWinner
+              categoryName={portfolio.categoryName}
+              rank={getResultName('Third Place', currentLang)}
+              rawResult={portfolio.result}
+              author={portfolio.author}
+              images={portfolio.images}
+            />
+          ))}
+
+          {mediterraneanRunnerUps.map(portfolio => (
+            <MediterraneanPortfolioWinner
+              categoryName={portfolio.categoryName}
+              rank={getResultName('Runner Ups', currentLang)}
+              rawResult={portfolio.result}
+              author={portfolio.author}
+              images={portfolio.images}
+            />
+          ))}
+        </>
+      ) : (
+        <>
+          {firstPlace && (
+            <TopWinnerImage
+              categoryName={firstPlace.categoryName}
+              rank={getResultName('First Place', currentLang)}
+              rawResult={firstPlace.result}
+              imageUrl={firstPlace.imageUrl}
+              fullImageUrl={firstPlace.fullImageUrl}
+              title={firstPlace.title}
+              author={firstPlace.author}
+            />
+          )}
+
+          {secondPlace && (
+            <TopWinnerImage
+              categoryName={secondPlace.categoryName}
+              rank={getResultName('Second Place', currentLang)}
+              rawResult={secondPlace.result}
+              imageUrl={secondPlace.imageUrl}
+              fullImageUrl={secondPlace.fullImageUrl}
+              title={secondPlace.title}
+              author={secondPlace.author}
+            />
+          )}
+
+          {thirdPlace && (
+            <TopWinnerImage
+              categoryName={thirdPlace.categoryName}
+              rank={getResultName('Third Place', currentLang)}
+              rawResult={thirdPlace.result}
+              imageUrl={thirdPlace.imageUrl}
+              fullImageUrl={thirdPlace.fullImageUrl}
+              title={thirdPlace.title}
+              author={thirdPlace.author}
+            />
+          )}
+
+          <RunnerUpImages runnerUps={runnerUps} />
+        </>
       )
     }
-
-    {
-      secondPlace && (
-        <TopWinnerImage
-          categoryName={secondPlace.categoryName}
-          rank={getResultName('Second Place', currentLang)}
-          rawResult={secondPlace.result}
-          imageUrl={secondPlace.imageUrl}
-          fullImageUrl={secondPlace.fullImageUrl}
-          title={secondPlace.title}
-          author={secondPlace.author}
-        />
-      )
-    }
-
-    {
-      thirdPlace && (
-        <TopWinnerImage
-          categoryName={thirdPlace.categoryName}
-          rank={getResultName('Third Place', currentLang)}
-          rawResult={thirdPlace.result}
-          imageUrl={thirdPlace.imageUrl}
-          fullImageUrl={thirdPlace.fullImageUrl}
-          title={thirdPlace.title}
-          author={thirdPlace.author}
-        />
-      )
-    }
-
-    <!-- Runner Ups -->
-    <RunnerUpImages runnerUps={runnerUps} />
   </div>
 </Layout>

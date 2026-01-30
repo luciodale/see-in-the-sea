@@ -1,13 +1,15 @@
 ---
-import type { Contest } from '@/data/past-contests';
+import type { Contest, Entry } from '@/data/past-contests';
 import {
   getCategoryName,
   getLangFromUrl,
   getResultName,
   useTranslations,
 } from '@/i18n';
+import { MEDITERRANEAN_CATEGORY_ID } from '../../constants';
 import { getFullQualityImageUrl } from '../../server/imageService';
 import GalleryInfo from './GalleryInfo.astro';
+import MediterraneanPortfolioWinner from './MediterraneanPortfolioWinner.astro';
 import TopWinnerImage from './TopWinnerImage.astro';
 
 type Props = {
@@ -19,44 +21,83 @@ const { contestId, contestData } = Astro.props;
 const currentLang = getLangFromUrl(Astro.url);
 const t = useTranslations(currentLang);
 
-// Get first place winners from contestData
-const firstPlaceWinners = contestData.categories.flatMap(category =>
-  category.entries
-    .filter(entry => entry.placement === 'first')
-    .map(entry => ({
-      entry,
-      category,
-    }))
+const getAuthorName = (entry: Entry) =>
+  entry.photographer.firstName && entry.photographer.lastName
+    ? `${entry.photographer.firstName} ${entry.photographer.lastName}`
+    : t('author.anonymous');
+
+const getPhotographerKey = (entry: Entry) =>
+  `${entry.photographer.firstName}-${entry.photographer.lastName}`;
+
+// Separate Mediterranean from other categories
+const mediterraneanCategory = contestData.categories.find(
+  c => c.id === MEDITERRANEAN_CATEGORY_ID
+);
+const otherCategories = contestData.categories.filter(
+  c => c.id !== MEDITERRANEAN_CATEGORY_ID
 );
 
-// Process images - filter out winners without valid images
-const processedImages = firstPlaceWinners
-  .map(({ entry, category }) => {
-    const translatedCategoryName = getCategoryName(
-      category.id,
-      category.name,
+// Process Mediterranean first-place portfolios (grouped by photographer)
+const mediterraneanPortfolios = (() => {
+  if (!mediterraneanCategory) return [];
+
+  const firstPlaceEntries = mediterraneanCategory.entries.filter(
+    e => e.placement === 'first'
+  );
+  const groups = new Map<string, Entry[]>();
+
+  firstPlaceEntries.forEach(entry => {
+    const key = getPhotographerKey(entry);
+    if (!groups.has(key)) groups.set(key, []);
+    groups.get(key)!.push(entry);
+  });
+
+  return Array.from(groups.values()).map(entries => ({
+    categoryName: getCategoryName(
+      mediterraneanCategory.id,
+      mediterraneanCategory.name,
       currentLang
-    );
+    ),
+    author: getAuthorName(entries[0]),
+    result: 'first' as const,
+    images: entries
+      .map(entry => ({
+        imageUrl: entry.image,
+        fullImageUrl: getFullQualityImageUrl(entry.imageR2Id),
+        title: entry.title,
+      }))
+      .filter(
+        (img): img is typeof img & { imageUrl: string; fullImageUrl: string } =>
+          img.imageUrl !== null && img.fullImageUrl !== null
+      ),
+  }));
+})();
 
-    const imageUrl = entry.image;
-    const fullImageUrl = getFullQualityImageUrl(entry.imageR2Id);
-
-    return {
-      imageUrl,
-      fullImageUrl,
-      categoryName: translatedCategoryName,
-      title: entry.title,
-      author:
-        entry.photographer.firstName && entry.photographer.lastName
-          ? `${entry.photographer.firstName} ${entry.photographer.lastName}`
-          : t('author.anonymous'),
-      result: entry.placement,
-    };
-  })
+// Process regular first-place winners
+const regularWinners = otherCategories
+  .flatMap(category =>
+    category.entries
+      .filter(entry => entry.placement === 'first')
+      .map(entry => ({
+        entry,
+        category,
+      }))
+  )
+  .map(({ entry, category }) => ({
+    imageUrl: entry.image,
+    fullImageUrl: getFullQualityImageUrl(entry.imageR2Id),
+    categoryName: getCategoryName(category.id, category.name, currentLang),
+    title: entry.title,
+    author: getAuthorName(entry),
+    result: entry.placement,
+  }))
   .filter(
     (w): w is typeof w & { imageUrl: string; fullImageUrl: string } =>
       w.imageUrl !== null && w.fullImageUrl !== null
   );
+
+const hasWinners =
+  regularWinners.length > 0 || mediterraneanPortfolios.length > 0;
 ---
 
 <GalleryInfo
@@ -67,12 +108,26 @@ const processedImages = firstPlaceWinners
 
 <div class="mt-10 sm:mt-12">
   {
-    processedImages.length > 0 ? (
+    hasWinners ? (
       <div class="space-y-12 sm:space-y-16 md:space-y-20">
-        {processedImages.map((winner, index) => (
+        {mediterraneanPortfolios.map((portfolio, index) => (
           <div
             class="winner-entry"
             style={`animation-delay: ${index * 100}ms;`}
+          >
+            <MediterraneanPortfolioWinner
+              categoryName={portfolio.categoryName}
+              rank={getResultName('First Place', currentLang)}
+              rawResult={portfolio.result}
+              author={portfolio.author}
+              images={portfolio.images}
+            />
+          </div>
+        ))}
+        {regularWinners.map((winner, index) => (
+          <div
+            class="winner-entry"
+            style={`animation-delay: ${(mediterraneanPortfolios.length + index) * 100}ms;`}
           >
             <TopWinnerImage
               categoryName={winner.categoryName}

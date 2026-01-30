@@ -5,6 +5,9 @@ export const REDIRECT_URL = '/user/submissions';
 export const DEFAULT_MAX_SUBMISSIONS_PER_CATEGORY = 2;
 export const MEDITERRANEAN_MAX_SUBMISSIONS = 6; // 2 portfolios × 3 photos each
 
+// Category IDs
+export const MEDITERRANEAN_CATEGORY_ID = 'mediterranean';
+
 // Portfolio configuration
 export const PORTFOLIOS_PER_MEDITERRANEAN = 2;
 export const PHOTOS_PER_PORTFOLIO = 3;
