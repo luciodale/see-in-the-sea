@@ -130,7 +130,6 @@ async function main() {
     INNER JOIN submissions s ON s.contest_id = c.id
     INNER JOIN results r ON r.submission_id = s.id
     INNER JOIN categories cat ON cat.id = s.category_id
-    WHERE c.status = 'inactive'
   `;
 
   console.log(`📊 Querying main content...`);
