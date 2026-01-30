@@ -5,15 +5,8 @@
     {
       "idx": 0,
       "version": "6",
-      "when": 1758540265167,
+      "when": 1769786080955,
       "tag": "0000_initial_schema",
-      "breakpoints": true
-    },
-    {
-      "idx": 1,
-      "version": "6",
-      "when": 1759057964276,
-      "tag": "0001_payments",
       "breakpoints": true
     }
   ]

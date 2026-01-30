@@ -226,6 +226,21 @@ export type CreateJudgeResponse = ApiResponse<CreateJudgeData>;
 export type UpdateJudgeResponse = ApiResponse<object>;
 export type DeleteJudgeResponse = ApiResponse<object>;
 
+// Admin Winners Preview (from judging_flags, not results)
+export type WinnersPreviewRow = {
+  categoryId: string;
+  categoryName: string;
+  placement: 'first' | 'second' | 'third' | 'runner-up';
+  userEmail: string;
+  firstName: string | undefined;
+  lastName: string | undefined;
+  submissionId: string;
+  title: string;
+  r2ImageId: string | null;
+};
+
+export type WinnersPreviewResponse = ApiResponse<WinnersPreviewRow[]>;
+
 // Checkout API Types
 export type CheckoutResponse = {
   success: boolean;

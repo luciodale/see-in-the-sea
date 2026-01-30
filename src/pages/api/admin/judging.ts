@@ -1,7 +1,13 @@
 import type { APIRoute } from 'astro';
-import { and, eq, isNotNull } from 'drizzle-orm';
+import { and, eq, inArray, isNotNull } from 'drizzle-orm';
 import { nanoid } from 'nanoid';
-import { getDb, judgingFlags, results, submissions } from '../../../db/index';
+import {
+  contests,
+  getDb,
+  judgingFlags,
+  results,
+  submissions,
+} from '../../../db/index';
 import { authenticateAdmin } from '../../../server/authenticateRequest';
 
 export const prerender = false;
@@ -370,7 +376,9 @@ export const POST: APIRoute = async ({ request, locals }) => {
     }
   }
 
-  // Handle submit-results action (copy placements to results table)
+  // Handle submit-results action (copy placements to results table).
+  // Does NOT clear judging_flags; only Azzera (reset-judging) does that.
+  // Deletes all results for the contest's year, then inserts from judging_flags for this contest.
   if (body.action === 'submit-results') {
     const { contestId } = body;
 
@@ -382,7 +390,39 @@ export const POST: APIRoute = async ({ request, locals }) => {
     }
 
     try {
-      // Get all judging flags with placements for this contest
+      // Resolve contest year for this contest
+      const contestRows = await db
+        .select({ year: contests.year })
+        .from(contests)
+        .where(eq(contests.id, contestId))
+        .limit(1);
+
+      if (contestRows.length === 0) {
+        return new Response(
+          JSON.stringify({ success: false, message: 'Contest not found' }),
+          { status: 404 }
+        );
+      }
+
+      const contestYear = contestRows[0].year;
+
+      // All submission IDs that belong to any contest with this year
+      const submissionsInYear = await db
+        .select({ id: submissions.id })
+        .from(submissions)
+        .innerJoin(contests, eq(submissions.contestId, contests.id))
+        .where(eq(contests.year, contestYear));
+
+      const submissionIdsInYear = submissionsInYear.map(s => s.id);
+
+      // Remove all results for that year (batch delete)
+      if (submissionIdsInYear.length > 0) {
+        await db
+          .delete(results)
+          .where(inArray(results.submissionId, submissionIdsInYear));
+      }
+
+      // Get judging flags with placements for this contest only
       const flagsWithPlacements = await db
         .select({
           submissionId: judgingFlags.submissionId,
@@ -397,18 +437,7 @@ export const POST: APIRoute = async ({ request, locals }) => {
           )
         );
 
-      // Clear existing results for this contest
-      const contestSubmissions = await db
-        .select({ id: submissions.id })
-        .from(submissions)
-        .where(eq(submissions.contestId, contestId));
-
-      const submissionIds = contestSubmissions.map(s => s.id);
-      for (const subId of submissionIds) {
-        await db.delete(results).where(eq(results.submissionId, subId));
-      }
-
-      // Insert new results
+      // Insert new results from judging_flags (judging_flags are left unchanged)
       for (const flag of flagsWithPlacements) {
         if (flag.placement) {
           await db.insert(results).values({

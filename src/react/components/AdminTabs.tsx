@@ -19,6 +19,13 @@ export default function AdminTabs() {
           🏆 Judging
         </Link>
         <Link
+          to="/admin/winners"
+          className="px-2 py-1 text-slate-300 hover:text-white cursor-pointer"
+          activeProps={{ className: 'text-emerald-400 font-semibold' }}
+        >
+          Vincitori
+        </Link>
+        <Link
           to="/admin/manual-entry"
           className="px-2 py-1 text-slate-300 hover:text-white cursor-pointer"
           activeProps={{ className: 'text-emerald-400 font-semibold' }}

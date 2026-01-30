@@ -25,25 +25,28 @@ CREATE TABLE `judges` (
 	FOREIGN KEY (`contest_id`) REFERENCES `contests`(`id`) ON UPDATE no action ON DELETE no action
 );
 --> statement-breakpoint
+CREATE TABLE `judging_flags` (
+	`id` text PRIMARY KEY NOT NULL,
+	`submission_id` text NOT NULL,
+	`status` text DEFAULT 'pending' NOT NULL,
+	`rating` integer,
+	`placement` text,
+	`updated_at` text DEFAULT CURRENT_TIMESTAMP,
+	FOREIGN KEY (`submission_id`) REFERENCES `submissions`(`id`) ON UPDATE no action ON DELETE no action
+);
+--> statement-breakpoint
 CREATE TABLE `payments` (
 	`id` text PRIMARY KEY NOT NULL,
 	`contest_id` text NOT NULL,
 	`user_email` text NOT NULL,
-	`stripe_session_id` text NOT NULL,
-	`stripe_payment_intent_id` text,
 	`amount` integer NOT NULL,
 	`currency` text DEFAULT 'eur' NOT NULL,
-	`status` text DEFAULT 'pending' NOT NULL,
-	`category_count` integer NOT NULL,
-	`metadata` text,
-	`paid_at` text,
-	`created_at` text DEFAULT CURRENT_TIMESTAMP,
-	`updated_at` text DEFAULT CURRENT_TIMESTAMP,
+	`stripe_session_id` text NOT NULL,
+	`paid_at` text NOT NULL,
 	FOREIGN KEY (`contest_id`) REFERENCES `contests`(`id`) ON UPDATE no action ON DELETE no action
 );
 --> statement-breakpoint
 CREATE UNIQUE INDEX `payments_stripe_session_id_unique` ON `payments` (`stripe_session_id`);--> statement-breakpoint
-CREATE UNIQUE INDEX `payments_stripe_payment_intent_id_unique` ON `payments` (`stripe_payment_intent_id`);--> statement-breakpoint
 CREATE TABLE `results` (
 	`id` text PRIMARY KEY NOT NULL,
 	`submission_id` text NOT NULL,
@@ -61,8 +64,7 @@ CREATE TABLE `submissions` (
 	`user_email` text NOT NULL,
 	`title` text NOT NULL,
 	`description` text,
-	`r2_key` text NOT NULL,
-	`image_url` text,
+	`r2_image_id` text,
 	`original_filename` text,
 	`file_size` integer,
 	`content_type` text,
@@ -72,6 +74,3 @@ CREATE TABLE `submissions` (
 	FOREIGN KEY (`contest_id`) REFERENCES `contests`(`id`) ON UPDATE no action ON DELETE no action,
 	FOREIGN KEY (`category_id`) REFERENCES `categories`(`id`) ON UPDATE no action ON DELETE no action
 );
---> statement-breakpoint
-CREATE UNIQUE INDEX `submissions_r2_key_unique` ON `submissions` (`r2_key`);--> statement-breakpoint
-CREATE UNIQUE INDEX `submissions_image_url_unique` ON `submissions` (`image_url`);
