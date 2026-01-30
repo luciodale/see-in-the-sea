@@ -129,9 +129,13 @@ export function AllWinnersViewer({ contestId }: AllWinnersViewerProps) {
                 );
                 if (placementRows.length === 0) return null;
                 const style = PLACEMENT_STYLE[placement];
+                const isMediterranean = categoryId === 'mediterranean';
                 return (
-                  <div key={placement}>
-                    <h3 className="text-sm font-medium text-slate-400 mb-3 flex items-center gap-2">
+                  <div
+                    key={placement}
+                    className={isMediterranean ? '' : 'max-w-2xl mx-auto'}
+                  >
+                    <h3 className="text-sm font-medium text-slate-400 mb-3 flex items-center justify-center gap-2">
                       <span
                         className={`${style.color} w-7 h-7 rounded-full flex items-center justify-center text-xs font-bold`}
                       >
@@ -143,7 +147,13 @@ export function AllWinnersViewer({ contestId }: AllWinnersViewerProps) {
                       {placement === 'runner-up' &&
                         `Menzioni (${placementRows.length})`}
                     </h3>
-                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
+                    <div
+                      className={
+                        isMediterranean
+                          ? 'grid gap-4 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4'
+                          : 'space-y-4'
+                      }
+                    >
                       {placementRows.map(row => (
                         <div
                           key={row.submissionId}
