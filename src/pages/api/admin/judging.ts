@@ -390,36 +390,19 @@ export const POST: APIRoute = async ({ request, locals }) => {
     }
 
     try {
-      // Resolve contest year for this contest
-      const contestRows = await db
-        .select({ year: contests.year })
-        .from(contests)
-        .where(eq(contests.id, contestId))
-        .limit(1);
-
-      if (contestRows.length === 0) {
-        return new Response(
-          JSON.stringify({ success: false, message: 'Contest not found' }),
-          { status: 404 }
-        );
-      }
-
-      const contestYear = contestRows[0].year;
-
-      // All submission IDs that belong to any contest with this year
-      const submissionsInYear = await db
+      // Get submission IDs for this contest only
+      const contestSubmissions = await db
         .select({ id: submissions.id })
         .from(submissions)
-        .innerJoin(contests, eq(submissions.contestId, contests.id))
-        .where(eq(contests.year, contestYear));
+        .where(eq(submissions.contestId, contestId));
 
-      const submissionIdsInYear = submissionsInYear.map(s => s.id);
+      const submissionIds = contestSubmissions.map(s => s.id);
 
-      // Remove all results for that year (batch delete)
-      if (submissionIdsInYear.length > 0) {
-        await db
-          .delete(results)
-          .where(inArray(results.submissionId, submissionIdsInYear));
+      // Remove results for this contest's submissions (batch delete due to D1 param limits)
+      const BATCH_SIZE = 50;
+      for (let i = 0; i < submissionIds.length; i += BATCH_SIZE) {
+        const chunk = submissionIds.slice(i, i + BATCH_SIZE);
+        await db.delete(results).where(inArray(results.submissionId, chunk));
       }
 
       // Get judging flags with placements for this contest only
