@@ -50,6 +50,39 @@ type JudgingRequest =
   | SubmitResultsRequest
   | ResetJudgingRequest;
 
+type ClerkUser = {
+  id: string;
+  first_name?: string;
+  last_name?: string;
+  email_addresses?: Array<{ email_address: string }>;
+};
+
+async function fetchAllClerkUsers(
+  bearerToken: string
+): Promise<Map<string, ClerkUser>> {
+  const usersMap = new Map<string, ClerkUser>();
+  try {
+    const response = await fetch('https://api.clerk.com/v1/users?limit=500', {
+      headers: {
+        Authorization: `Bearer ${bearerToken}`,
+        'Content-Type': 'application/json',
+      },
+    });
+    if (!response.ok) return usersMap;
+    const users: ClerkUser[] = await response.json();
+    for (const user of users) {
+      if (user.email_addresses) {
+        for (const emailObj of user.email_addresses) {
+          usersMap.set(emailObj.email_address, user);
+        }
+      }
+    }
+  } catch (error) {
+    console.error('[judging] Error fetching Clerk users:', error);
+  }
+  return usersMap;
+}
+
 type JudgingSubmission = {
   id: string;
   title: string;
@@ -381,6 +414,7 @@ export const POST: APIRoute = async ({ request, locals }) => {
   // Deletes all results for the contest's year, then inserts from judging_flags for this contest.
   if (body.action === 'submit-results') {
     const { contestId } = body;
+    const clerkSecretKey = locals.runtime.env.CLERK_SECRET_KEY;
 
     if (!contestId) {
       return new Response(
@@ -405,11 +439,12 @@ export const POST: APIRoute = async ({ request, locals }) => {
         await db.delete(results).where(inArray(results.submissionId, chunk));
       }
 
-      // Get judging flags with placements for this contest only
+      // Get judging flags with placements for this contest only (include userEmail for Clerk lookup)
       const flagsWithPlacements = await db
         .select({
           submissionId: judgingFlags.submissionId,
           placement: judgingFlags.placement,
+          userEmail: submissions.userEmail,
         })
         .from(judgingFlags)
         .innerJoin(submissions, eq(judgingFlags.submissionId, submissions.id))
@@ -420,13 +455,22 @@ export const POST: APIRoute = async ({ request, locals }) => {
           )
         );
 
+      // Fetch Clerk users to get first/last names
+      let clerkUsersMap = new Map<string, ClerkUser>();
+      if (clerkSecretKey) {
+        clerkUsersMap = await fetchAllClerkUsers(clerkSecretKey);
+      }
+
       // Insert new results from judging_flags (judging_flags are left unchanged)
       for (const flag of flagsWithPlacements) {
         if (flag.placement) {
+          const clerkUser = clerkUsersMap.get(flag.userEmail);
           await db.insert(results).values({
             id: nanoid(),
             submissionId: flag.submissionId,
             result: flag.placement,
+            firstName: clerkUser?.first_name || null,
+            lastName: clerkUser?.last_name || null,
           });
         }
       }
