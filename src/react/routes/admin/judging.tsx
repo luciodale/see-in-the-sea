@@ -1,6 +1,14 @@
 import { SignedIn, SignedOut, useAuth } from '@clerk/clerk-react';
 import { createFileRoute } from '@tanstack/react-router';
-import { Check, GripVertical, RotateCcw, Send, Trophy, X, ZoomOut } from 'lucide-react';
+import {
+  Check,
+  GripVertical,
+  RotateCcw,
+  Send,
+  Trophy,
+  X,
+  ZoomOut,
+} from 'lucide-react';
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { PHOTO_TYPES } from '../../../constants';
 import { CURRENT_CONTEST_CATEGORIES } from '../../../constants/categories';
@@ -903,7 +911,7 @@ function JudgingPage() {
         <div
           role="button"
           tabIndex={0}
-          className={`${size === 'large' ? 'aspect-[4/3]' : 'aspect-square'} bg-slate-800 relative cursor-pointer`}
+          className={`${size === 'large' ? 'aspect-[4/3]' : 'aspect-square'} bg-neutral-600 relative cursor-pointer`}
           onClick={() => {
             if (imageUrl) {
               setInspectedSubmissionId(submission.id);
@@ -1129,7 +1137,7 @@ function JudgingPage() {
               return (
                 <div
                   key={photoType}
-                  className={`aspect-[4/3] relative ${sub ? 'bg-slate-800' : 'bg-slate-800/50'}`}
+                  className={`aspect-[4/3] relative ${sub ? 'bg-neutral-600' : 'bg-neutral-600/50'}`}
                 >
                   {sub && imageUrl && !hasFailed ? (
                     <img
@@ -1619,8 +1627,9 @@ function JudgingPage() {
                       </div>
 
                       {/* Runner-ups */}
-                      {sortedSubmissions.filter(s => s.placement === 'runner-up')
-                        .length > 0 && (
+                      {sortedSubmissions.filter(
+                        s => s.placement === 'runner-up'
+                      ).length > 0 && (
                         <div className="mt-8 pt-8 border-t border-slate-800">
                           <h3 className="text-lg font-medium mb-4 flex items-center gap-2">
                             <span className="bg-blue-500 w-8 h-8 rounded-full flex items-center justify-center text-sm font-bold">
@@ -1845,7 +1854,7 @@ function JudgingPage() {
                     ref={imageContainerRef}
                     role="button"
                     tabIndex={0}
-                    className="flex-1 overflow-auto flex items-center justify-center cursor-zoom-in p-4"
+                    className="flex-1 bg-neutral-600 overflow-auto flex items-center justify-center cursor-zoom-in p-4"
                     onClick={e => {
                       const img = e.currentTarget.querySelector('img');
                       if (img) {
@@ -2107,7 +2116,7 @@ function JudgingPage() {
                       <div
                         role="button"
                         tabIndex={0}
-                        className="flex-1 overflow-auto flex items-center justify-center cursor-zoom-in p-4"
+                        className="flex-1 bg-neutral-600 overflow-auto flex items-center justify-center cursor-zoom-in p-4"
                         onClick={e => {
                           const img = e.currentTarget.querySelector('img');
                           if (img) {
@@ -2261,7 +2270,7 @@ function JudgingPage() {
                           }}
                           className="flex-1 max-w-lg flex flex-col bg-slate-900 rounded-lg overflow-hidden cursor-pointer hover:ring-2 hover:ring-emerald-500/50 transition-all group"
                         >
-                          <div className="aspect-[4/3] bg-slate-800 relative overflow-hidden">
+                          <div className="aspect-[4/3] bg-neutral-600 relative overflow-hidden">
                             {imageUrl && !failedImages.has(sub.id) ? (
                               <img
                                 src={imageUrl}
