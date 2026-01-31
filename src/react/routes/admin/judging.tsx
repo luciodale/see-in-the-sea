@@ -1774,7 +1774,7 @@ function JudgingPage() {
                 role="dialog"
                 aria-modal="true"
                 aria-label={inspectedSubmission.title}
-                className="fixed inset-0 bg-black z-50 flex flex-col"
+                className="fixed inset-0 bg-neutral-700 z-50 flex flex-col"
               >
                 {/* Header */}
                 <div className="flex items-center justify-between p-3 bg-slate-900 border-b border-slate-800 shrink-0">
@@ -2034,11 +2034,11 @@ function JudgingPage() {
                 role="dialog"
                 aria-modal="true"
                 aria-label="Portfolio Preview"
-                className="fixed inset-0 bg-black z-50 flex flex-col"
+                className="fixed inset-0 bg-neutral-700 z-50 flex flex-col"
               >
                 {/* Single Photo Zoom Overlay */}
                 {zoomedPhoto && inspectedPortfolio && (
-                  <div className="absolute inset-0 bg-black z-60 flex flex-col">
+                  <div className="absolute inset-0 bg-neutral-700 z-60 flex flex-col">
                     {/* Zoom header */}
                     <div className="flex items-center justify-between p-3 bg-slate-900/90 border-b border-slate-800 shrink-0">
                       <div className="flex items-center gap-4">
