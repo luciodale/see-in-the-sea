@@ -1,6 +1,6 @@
 import { SignedIn, SignedOut, useAuth } from '@clerk/clerk-react';
 import { createFileRoute } from '@tanstack/react-router';
-import { Check, RotateCcw, Send, Trophy, X, ZoomOut } from 'lucide-react';
+import { Check, GripVertical, RotateCcw, Send, Trophy, X, ZoomOut } from 'lucide-react';
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { PHOTO_TYPES } from '../../../constants';
 import { CURRENT_CONTEST_CATEGORIES } from '../../../constants/categories';
@@ -8,6 +8,115 @@ import AdminTabs from '../../components/AdminTabs';
 import { RedirectToSignIn } from '../../components/RedirectToSignIn';
 import { useUserRole } from '../../hooks/useUserRole';
 import { getImageUrl } from '../../utils/imageUtils';
+
+// Hook for localStorage-based ordering (fault tolerant)
+function useLocalStorageOrder<T extends { id: string }>(
+  key: string,
+  items: T[]
+): {
+  orderedItems: T[];
+  handleDragStart: (e: React.DragEvent, id: string) => void;
+  handleDragOver: (e: React.DragEvent) => void;
+  handleDrop: (e: React.DragEvent, targetId: string) => void;
+  handleDragEnd: () => void;
+  draggedId: string | null;
+  resetOrder: () => void;
+} {
+  const [orderMap, setOrderMap] = useState<Record<string, number>>({});
+  const [draggedId, setDraggedId] = useState<string | null>(null);
+
+  // Load order from localStorage on mount/key change
+  useEffect(() => {
+    try {
+      const stored = localStorage.getItem(key);
+      if (stored) {
+        setOrderMap(JSON.parse(stored));
+      }
+    } catch {
+      // Fail silently - fault tolerant
+    }
+  }, [key]);
+
+  // Compute ordered items
+  const orderedItems = useMemo(() => {
+    if (Object.keys(orderMap).length === 0) return items;
+
+    return [...items].sort((a, b) => {
+      const orderA = orderMap[a.id] ?? Infinity;
+      const orderB = orderMap[b.id] ?? Infinity;
+      if (orderA === Infinity && orderB === Infinity) return 0;
+      return orderA - orderB;
+    });
+  }, [items, orderMap]);
+
+  const handleDragStart = useCallback((e: React.DragEvent, id: string) => {
+    setDraggedId(id);
+    e.dataTransfer.effectAllowed = 'move';
+    e.dataTransfer.setData('text/plain', id);
+  }, []);
+
+  const handleDragOver = useCallback((e: React.DragEvent) => {
+    e.preventDefault();
+    e.dataTransfer.dropEffect = 'move';
+  }, []);
+
+  const handleDrop = useCallback(
+    (e: React.DragEvent, targetId: string) => {
+      e.preventDefault();
+      const sourceId = e.dataTransfer.getData('text/plain');
+      if (!sourceId || sourceId === targetId) return;
+
+      // Find current positions
+      const sourceIdx = orderedItems.findIndex(i => i.id === sourceId);
+      const targetIdx = orderedItems.findIndex(i => i.id === targetId);
+      if (sourceIdx === -1 || targetIdx === -1) return;
+
+      // Reorder: move source to target position
+      const newOrder = [...orderedItems];
+      const [removed] = newOrder.splice(sourceIdx, 1);
+      newOrder.splice(targetIdx, 0, removed);
+
+      // Create new order map
+      const newOrderMap: Record<string, number> = {};
+      newOrder.forEach((item, idx) => {
+        newOrderMap[item.id] = idx;
+      });
+
+      setOrderMap(newOrderMap);
+
+      // Persist to localStorage (fault tolerant)
+      try {
+        localStorage.setItem(key, JSON.stringify(newOrderMap));
+      } catch {
+        // Fail silently
+      }
+    },
+    [orderedItems, key]
+  );
+
+  const handleDragEnd = useCallback(() => {
+    setDraggedId(null);
+  }, []);
+
+  const resetOrder = useCallback(() => {
+    setOrderMap({});
+    try {
+      localStorage.removeItem(key);
+    } catch {
+      // Fail silently
+    }
+  }, [key]);
+
+  return {
+    orderedItems,
+    handleDragStart,
+    handleDragOver,
+    handleDrop,
+    handleDragEnd,
+    draggedId,
+    resetOrder,
+  };
+}
 
 export const Route = createFileRoute('/admin/judging')({
   component: JudgingPage,
@@ -729,6 +838,43 @@ function JudgingPage() {
       {} as Record<string, number>
     );
   }, [isMediterranean, categorySubmissions, getUniquePortfolioKeys]);
+
+  // Shortlisted items for reordering
+  const shortlistedSubmissions = useMemo(
+    () => categorySubmissions.filter(s => s.flagStatus === 'shortlisted'),
+    [categorySubmissions]
+  );
+
+  const shortlistedPortfolios = useMemo(
+    () =>
+      portfoliosList
+        .filter(p => p.submissions[0]?.flagStatus === 'shortlisted')
+        .map(p => ({ id: p.portfolioId, ...p })),
+    [portfoliosList]
+  );
+
+  // Drag-and-drop reordering for shortlisted items
+  const shortlistedOrderKey = `judging-shortlist-order-${activeCategory}`;
+  const {
+    orderedItems: orderedShortlistedSubmissions,
+    handleDragStart: handleSubmissionDragStart,
+    handleDragOver: handleSubmissionDragOver,
+    handleDrop: handleSubmissionDrop,
+    handleDragEnd: handleSubmissionDragEnd,
+    draggedId: draggedSubmissionId,
+    resetOrder: resetSubmissionOrder,
+  } = useLocalStorageOrder(shortlistedOrderKey, shortlistedSubmissions);
+
+  const portfolioOrderKey = `judging-portfolio-order-${activeCategory}`;
+  const {
+    orderedItems: orderedShortlistedPortfolios,
+    handleDragStart: handlePortfolioDragStart,
+    handleDragOver: handlePortfolioDragOver,
+    handleDrop: handlePortfolioDrop,
+    handleDragEnd: handlePortfolioDragEnd,
+    draggedId: draggedPortfolioId,
+    resetOrder: resetPortfolioOrder,
+  } = useLocalStorageOrder(portfolioOrderKey, shortlistedPortfolios);
 
   // Render submission card
   const renderSubmissionCard = (
@@ -1503,19 +1649,49 @@ function JudgingPage() {
                   )
                 ) : isMediterranean && groupedByUser ? (
                   filterStatus === 'shortlisted' ? (
-                    // Full-width cards with images for Selezionati
-                    <div className="grid grid-cols-1 gap-6">
-                      {Object.entries(groupedByUser).flatMap(
-                        ([_userId, portfolios]) =>
-                          Object.entries(portfolios).map(
-                            ([portfolioId, portfolioSubmissions]) =>
-                              renderPortfolioCard(
-                                portfolioId,
-                                portfolioSubmissions,
-                                true // Show images for Selezionati
-                              )
-                          )
-                      )}
+                    // Full-width cards with images for Selezionati - draggable
+                    <div className="space-y-2">
+                      <div className="flex items-center justify-between mb-4">
+                        <p className="text-xs text-slate-500">
+                          <GripVertical className="w-3 h-3 inline mr-1" />
+                          Trascina per riordinare
+                        </p>
+                        <button
+                          type="button"
+                          onClick={resetPortfolioOrder}
+                          className="text-xs text-slate-400 hover:text-white transition-colors"
+                        >
+                          Ripristina ordine
+                        </button>
+                      </div>
+                      <div className="grid grid-cols-1 gap-4">
+                        {orderedShortlistedPortfolios.map(portfolio => (
+                          <div
+                            key={portfolio.portfolioId}
+                            draggable
+                            onDragStart={e =>
+                              handlePortfolioDragStart(e, portfolio.id)
+                            }
+                            onDragOver={handlePortfolioDragOver}
+                            onDrop={e => handlePortfolioDrop(e, portfolio.id)}
+                            onDragEnd={handlePortfolioDragEnd}
+                            className={`relative transition-all ${
+                              draggedPortfolioId === portfolio.id
+                                ? 'opacity-50 scale-[0.98]'
+                                : ''
+                            }`}
+                          >
+                            <div className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-full pr-2 cursor-grab active:cursor-grabbing z-10">
+                              <GripVertical className="w-5 h-5 text-slate-500 hover:text-white transition-colors" />
+                            </div>
+                            {renderPortfolioCard(
+                              portfolio.portfolioId,
+                              portfolio.submissions,
+                              true // Show images for Selezionati
+                            )}
+                          </div>
+                        ))}
+                      </div>
                     </div>
                   ) : (
                     // Compact preview for Tutti/In Attesa/Scartati
@@ -1532,6 +1708,47 @@ function JudgingPage() {
                       )}
                     </div>
                   )
+                ) : filterStatus === 'shortlisted' ? (
+                  // Non-Mediterranean shortlisted - draggable
+                  <div className="space-y-2">
+                    <div className="flex items-center justify-between mb-4">
+                      <p className="text-xs text-slate-500">
+                        <GripVertical className="w-3 h-3 inline mr-1" />
+                        Trascina per riordinare
+                      </p>
+                      <button
+                        type="button"
+                        onClick={resetSubmissionOrder}
+                        className="text-xs text-slate-400 hover:text-white transition-colors"
+                      >
+                        Ripristina ordine
+                      </button>
+                    </div>
+                    <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+                      {orderedShortlistedSubmissions.map(submission => (
+                        <div
+                          key={submission.id}
+                          draggable
+                          onDragStart={e =>
+                            handleSubmissionDragStart(e, submission.id)
+                          }
+                          onDragOver={handleSubmissionDragOver}
+                          onDrop={e => handleSubmissionDrop(e, submission.id)}
+                          onDragEnd={handleSubmissionDragEnd}
+                          className={`relative transition-all ${
+                            draggedSubmissionId === submission.id
+                              ? 'opacity-50 scale-95'
+                              : ''
+                          }`}
+                        >
+                          <div className="absolute -top-1 left-1/2 -translate-x-1/2 -translate-y-full pb-1 cursor-grab active:cursor-grabbing z-10 opacity-0 hover:opacity-100 transition-opacity">
+                            <GripVertical className="w-4 h-4 text-slate-400 rotate-90" />
+                          </div>
+                          {renderSubmissionCard(submission, 'large')}
+                        </div>
+                      ))}
+                    </div>
+                  </div>
                 ) : (
                   <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
                     {sortedSubmissions.map(submission =>
