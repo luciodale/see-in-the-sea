@@ -41,6 +41,431 @@ export interface Contest {
 
 export const pastContestsData: Contest[] = [
   {
+    id: 'uw-2025',
+    year: 2025,
+    name: 'UW Contest 2025',
+    description:
+      'Annual underwater photography competition celebrating the beauty and diversity of marine life',
+    indexImage: '/images/contests/2025/AyNJL5aPY2mqvE7Hlut_m.webp',
+    judges: [
+      {
+        id: 'TA4YMn4PQGEhT11vs5Ztg',
+        fullName: 'Pietro Formis',
+      },
+      {
+        id: 'BA4YMn4PQGEhT11vs5Ztg',
+        fullName: 'Pasquale Vassallo',
+      },
+      {
+        id: 'CA4YMn4PQGEhT11vs5Ztg',
+        fullName: 'Domy Tripodi',
+      },
+    ],
+    categories: [
+      {
+        id: 'black-and-white',
+        name: 'Black & White',
+        winnerImage: '/images/contests/2025/HqAtLmm_WZNcaqdqS-qvY.webp',
+        winnerImageR2Id: 'uw-2025/black-and-white/HqAtLmm_WZNcaqdqS-qvY',
+        entries: [
+          {
+            id: 'HqAtLmm_WZNcaqdqS-qvY',
+            title: 'Incontro giocoso',
+            description:
+              'Una femmina adulta di megattera si avvicina con calma, mostrando un comportamento curioso e vivace. Era accompagnata da un maschio adulto, probabilmente in un rituale di corteggiamento, e ha mostrato un interesse reale verso di me, restandomi intorno per più di un’ora. Ho scattato questa foto nell’agosto 2025 nelle acque di Vava’u, a Tonga, dove molte megattere arrivano durante l’inverno australe per accoppiarsi e partorire. Dopo diverse settimane in mare, questo è stato l’unico momento in cui una balena si è mostrata così curiosa e interattiva.',
+            placement: 'first',
+            photographer: {
+              firstName: 'Marco',
+              lastName: 'Domenicucci',
+            },
+            image: '/images/contests/2025/HqAtLmm_WZNcaqdqS-qvY.webp',
+            imageR2Id: 'uw-2025/black-and-white/HqAtLmm_WZNcaqdqS-qvY',
+          },
+          {
+            id: 'dxnP7pmJwuhi58qDvkDc0',
+            title: 'Ctenoforo',
+            description: '',
+            placement: 'second',
+            photographer: {
+              firstName: 'Alessandro',
+              lastName: 'Grasso',
+            },
+            image: '/images/contests/2025/dxnP7pmJwuhi58qDvkDc0.webp',
+            imageR2Id: 'uw-2025/black-and-white/dxnP7pmJwuhi58qDvkDc0',
+          },
+          {
+            id: 'hrnLz6cso33mNyOHMqTfE',
+            title: 'Face a Face',
+            description: '',
+            placement: 'third',
+            photographer: {
+              firstName: 'Yves',
+              lastName: 'Guenot',
+            },
+            image: '/images/contests/2025/hrnLz6cso33mNyOHMqTfE.webp',
+            imageR2Id: 'uw-2025/black-and-white/hrnLz6cso33mNyOHMqTfE',
+          },
+          {
+            id: 'ryO0Bbh9iNDkolLUroFIS',
+            title: 'La spigolosa bellezza di un solitario',
+            description: '',
+            placement: 'runner-up',
+            photographer: {
+              firstName: 'Umberto',
+              lastName: 'Raganato',
+            },
+            image: '/images/contests/2025/ryO0Bbh9iNDkolLUroFIS.webp',
+            imageR2Id: 'uw-2025/black-and-white/ryO0Bbh9iNDkolLUroFIS',
+          },
+          {
+            id: 'rnqpiHihDxDM0J84-aR0e',
+            title: 'Marine Texture',
+            description: '',
+            placement: 'runner-up',
+            photographer: {
+              firstName: 'Alessandro',
+              lastName: 'Grasso',
+            },
+            image: '/images/contests/2025/rnqpiHihDxDM0J84-aR0e.webp',
+            imageR2Id: 'uw-2025/black-and-white/rnqpiHihDxDM0J84-aR0e',
+          },
+        ],
+      },
+      {
+        id: 'macro',
+        name: 'Macro',
+        winnerImage: '/images/contests/2025/AyNJL5aPY2mqvE7Hlut_m.webp',
+        winnerImageR2Id: 'uw-2025/macro/AyNJL5aPY2mqvE7Hlut_m',
+        entries: [
+          {
+            id: 'AyNJL5aPY2mqvE7Hlut_m',
+            title: 'A pancia piena',
+            description: '',
+            placement: 'first',
+            photographer: {
+              firstName: 'Umberto',
+              lastName: 'Raganato',
+            },
+            image: '/images/contests/2025/AyNJL5aPY2mqvE7Hlut_m.webp',
+            imageR2Id: 'uw-2025/macro/AyNJL5aPY2mqvE7Hlut_m',
+          },
+          {
+            id: 'jDKeqtHMCjuD-zY3nyyK_',
+            title: 'Contorni di luce',
+            description:
+              'Un Hairy frogfish ripreso con due snoot, che hanno permesso di isolare il soggetto e di esaltarne la complessa morfologia. Uno snoot in backlight e uno concentrato sul suo occhio.',
+            placement: 'second',
+            photographer: {
+              firstName: 'Giancarlo',
+              lastName: 'Mazarese',
+            },
+            image: '/images/contests/2025/jDKeqtHMCjuD-zY3nyyK_.webp',
+            imageR2Id: 'uw-2025/macro/jDKeqtHMCjuD-zY3nyyK_',
+          },
+          {
+            id: 'Bq0pvZY2C2ZGuG2d-Zb1J',
+            title: 'Piercing',
+            description:
+              'A Platax tieira , caught in the hook of a fishing line, is still surviving under a pier.',
+            placement: 'third',
+            photographer: {
+              firstName: 'Renata ',
+              lastName: 'Romeo',
+            },
+            image: '/images/contests/2025/Bq0pvZY2C2ZGuG2d-Zb1J.webp',
+            imageR2Id: 'uw-2025/macro/Bq0pvZY2C2ZGuG2d-Zb1J',
+          },
+          {
+            id: '5C0Jgo1UFYUD7L0cZa94b',
+            title: 'Orango on fire',
+            description: '',
+            placement: 'runner-up',
+            photographer: {
+              firstName: 'Alessandra',
+              lastName: 'Turchi',
+            },
+            image: '/images/contests/2025/5C0Jgo1UFYUD7L0cZa94b.webp',
+            imageR2Id: 'uw-2025/macro/5C0Jgo1UFYUD7L0cZa94b',
+          },
+          {
+            id: 'GAKXCowui1Q4L4A_dZH6j',
+            title: 'Il cerchio della Vita',
+            description: '',
+            placement: 'runner-up',
+            photographer: {
+              firstName: 'Andrea',
+              lastName: 'Montesi',
+            },
+            image: '/images/contests/2025/GAKXCowui1Q4L4A_dZH6j.webp',
+            imageR2Id: 'uw-2025/macro/GAKXCowui1Q4L4A_dZH6j',
+          },
+        ],
+      },
+      {
+        id: 'mediterranean',
+        name: 'Mediterranean Portfolio',
+        winnerImage: '/images/contests/2025/OjpWUXDW8vqCMx-Pmdlwi.webp',
+        winnerImageR2Id: 'uw-2025/mediterranean/OjpWUXDW8vqCMx-Pmdlwi',
+        entries: [
+          {
+            id: 'OjpWUXDW8vqCMx-Pmdlwi',
+            title: 'FOREVER',
+            description: '',
+            placement: 'first',
+            photographer: {
+              firstName: 'Domenico',
+              lastName: 'Roscigno',
+            },
+            image: '/images/contests/2025/OjpWUXDW8vqCMx-Pmdlwi.webp',
+            imageR2Id: 'uw-2025/mediterranean/OjpWUXDW8vqCMx-Pmdlwi',
+          },
+          {
+            id: 'GSyDfXQ6BaGI4YDZkCavI',
+            title: 'ANGRY',
+            description: '',
+            placement: 'first',
+            photographer: {
+              firstName: 'Domenico',
+              lastName: 'Roscigno',
+            },
+            image: '/images/contests/2025/GSyDfXQ6BaGI4YDZkCavI.webp',
+            imageR2Id: 'uw-2025/mediterranean/GSyDfXQ6BaGI4YDZkCavI',
+          },
+          {
+            id: 'Xs0fF1WIYvVeqTgiGQkXA',
+            title: 'PRIMORDIAL BROTH',
+            description: '',
+            placement: 'first',
+            photographer: {
+              firstName: 'Domenico',
+              lastName: 'Roscigno',
+            },
+            image: '/images/contests/2025/Xs0fF1WIYvVeqTgiGQkXA.webp',
+            imageR2Id: 'uw-2025/mediterranean/Xs0fF1WIYvVeqTgiGQkXA',
+          },
+          {
+            id: '8t0rHKWGb5r-kGPRsXwO5',
+            title: 'Sepiola',
+            description: '',
+            placement: 'second',
+            photographer: {
+              firstName: 'Francesco',
+              lastName: 'Visintin',
+            },
+            image: '/images/contests/2025/8t0rHKWGb5r-kGPRsXwO5.webp',
+            imageR2Id: 'uw-2025/mediterranean/8t0rHKWGb5r-kGPRsXwO5',
+          },
+          {
+            id: 'ihU4DBr1pNp9paPSHn0sm',
+            title:
+              'Love is blind—and apparently deaf to danger. While the cuttlefish flaunt their stripes in a passionate display, the crabs goes unnoticed and the trap behind them waits patiently. Forte dei Marmi (Italy) 2025',
+            description:
+              'Love is blind, and apparently deaf to danger. While the cuttlefish flaunt their stripes in a passionate display, the crabs goes unnoticed and the trap behind them waits patiently. Forte dei Marmi (Italy) 2025',
+            placement: 'second',
+            photographer: {
+              firstName: 'Francesco',
+              lastName: 'Visintin',
+            },
+            image: '/images/contests/2025/ihU4DBr1pNp9paPSHn0sm.webp',
+            imageR2Id: 'uw-2025/mediterranean/ihU4DBr1pNp9paPSHn0sm',
+          },
+          {
+            id: 'Z4BBuzaR6xqBmdvS4Tlog',
+            title: 'the octopus and the sea bream',
+            description: '',
+            placement: 'second',
+            photographer: {
+              firstName: 'Francesco',
+              lastName: 'Visintin',
+            },
+            image: '/images/contests/2025/Z4BBuzaR6xqBmdvS4Tlog.webp',
+            imageR2Id: 'uw-2025/mediterranean/Z4BBuzaR6xqBmdvS4Tlog',
+          },
+          {
+            id: 'vMAN1zWQkOijUie96K5i9',
+            title: 'Guarding the Next Generation',
+            description:
+              'The image shows a Lepadogaster candolii, a clingfish native to the Mediterranean and surrounding waters, actively guarding its egg clutch. The small dots with visible eyes are developing embryos within adhesive capsules attached to the surface.\r\n\r\nThis fish uses its specialised ventral disc to firmly cling to rocks and substrates, allowing it to protect the eggs in dynamic marine environments. Parental care includes constant ventilation of the eggs to ensure oxygenation and protect them from predators and sediment—behaviours crucial for the offspring’s survival.\r\n\r\nThis scene illustrates the reproductive strategy and parental behaviour of Lepadogaster candolii, highlighting the importance of care during early life stages in coastal marine ecosystems.',
+            placement: 'third',
+            photographer: {
+              firstName: 'Marc',
+              lastName: 'Casanovas ',
+            },
+            image: '/images/contests/2025/vMAN1zWQkOijUie96K5i9.webp',
+            imageR2Id: 'uw-2025/mediterranean/vMAN1zWQkOijUie96K5i9',
+          },
+          {
+            id: 'toZsZS8iWVQS5i9yp7DAW',
+            title: 'Lophius',
+            description:
+              'The Mediterranean monkfish (Lophius piscatorius) inhabits both the Mediterranean Sea and the Atlantic Ocean. However, this specimen stood out as the largest I have had the opportunity to photograph in recent years, measuring almost a metre and a half in length. Its formidable size and unusual appearance make it one of the most remarkable predators in these waters.',
+            placement: 'third',
+            photographer: {
+              firstName: 'Marc',
+              lastName: 'Casanovas ',
+            },
+            image: '/images/contests/2025/toZsZS8iWVQS5i9yp7DAW.webp',
+            imageR2Id: 'uw-2025/mediterranean/toZsZS8iWVQS5i9yp7DAW',
+          },
+          {
+            id: 'z0zWrTXxd768IfVRRK0Xh',
+            title: 'Nesting syndrome',
+            description:
+              'Nests play a crucial role in the reproductive biology of Symphodus cinereus. This species constructs its nests on the seabed, typically in areas with sandy or gravelly substrates, often in close proximity to seagrass meadows. The male attracts females to his nest, and following egg deposition, he assumes responsibility for their protection and care.',
+            placement: 'third',
+            photographer: {
+              firstName: 'Marc',
+              lastName: 'Casanovas ',
+            },
+            image: '/images/contests/2025/z0zWrTXxd768IfVRRK0Xh.webp',
+            imageR2Id: 'uw-2025/mediterranean/z0zWrTXxd768IfVRRK0Xh',
+          },
+          {
+            id: 'prDmbrdnuBfmZg2pa8kAm',
+            title: 'Bavose',
+            description: '',
+            placement: 'runner-up',
+            photographer: {
+              firstName: 'Alessandro',
+              lastName: 'Grasso',
+            },
+            image: '/images/contests/2025/prDmbrdnuBfmZg2pa8kAm.webp',
+            imageR2Id: 'uw-2025/mediterranean/prDmbrdnuBfmZg2pa8kAm',
+          },
+          {
+            id: '-3BcSVDpZO2WN2tYVDxXU',
+            title: 'Velelle',
+            description: '',
+            placement: 'runner-up',
+            photographer: {
+              firstName: 'Alessandro',
+              lastName: 'Grasso',
+            },
+            image: '/images/contests/2025/-3BcSVDpZO2WN2tYVDxXU.webp',
+            imageR2Id: 'uw-2025/mediterranean/-3BcSVDpZO2WN2tYVDxXU',
+          },
+          {
+            id: '1_ejaLRybeNB2D3zCBcQz',
+            title: 'Gorgonie',
+            description: '',
+            placement: 'runner-up',
+            photographer: {
+              firstName: 'Alessandro',
+              lastName: 'Grasso',
+            },
+            image: '/images/contests/2025/1_ejaLRybeNB2D3zCBcQz.webp',
+            imageR2Id: 'uw-2025/mediterranean/1_ejaLRybeNB2D3zCBcQz',
+          },
+          {
+            id: 'nJW3yMxvKdo_hITbyT1yh',
+            title: 'HEADACHE',
+            description: '',
+            placement: 'runner-up',
+            photographer: {
+              firstName: 'Domenico',
+              lastName: 'Roscigno',
+            },
+            image: '/images/contests/2025/nJW3yMxvKdo_hITbyT1yh.webp',
+            imageR2Id: 'uw-2025/mediterranean/nJW3yMxvKdo_hITbyT1yh',
+          },
+          {
+            id: 'DjIWUtw7qmY4zSmS64fmS',
+            title: 'TAKEN',
+            description: '',
+            placement: 'runner-up',
+            photographer: {
+              firstName: 'Domenico',
+              lastName: 'Roscigno',
+            },
+            image: '/images/contests/2025/DjIWUtw7qmY4zSmS64fmS.webp',
+            imageR2Id: 'uw-2025/mediterranean/DjIWUtw7qmY4zSmS64fmS',
+          },
+          {
+            id: '2kYwGl96GTWK4xFvvoGml',
+            title: 'CLOSE ENCOUNTER',
+            description: '',
+            placement: 'runner-up',
+            photographer: {
+              firstName: 'Domenico',
+              lastName: 'Roscigno',
+            },
+            image: '/images/contests/2025/2kYwGl96GTWK4xFvvoGml.webp',
+            imageR2Id: 'uw-2025/mediterranean/2kYwGl96GTWK4xFvvoGml',
+          },
+        ],
+      },
+      {
+        id: 'wide-angle',
+        name: 'Wide Angle',
+        winnerImage: '/images/contests/2025/M3UuRRotHaiyAhx09RExR.webp',
+        winnerImageR2Id: 'uw-2025/wide-angle/M3UuRRotHaiyAhx09RExR',
+        entries: [
+          {
+            id: 'M3UuRRotHaiyAhx09RExR',
+            title: '.... che scatto!!',
+            description: 'Raja....',
+            placement: 'first',
+            photographer: {
+              firstName: 'Marco',
+              lastName: 'Giuliano ',
+            },
+            image: '/images/contests/2025/M3UuRRotHaiyAhx09RExR.webp',
+            imageR2Id: 'uw-2025/wide-angle/M3UuRRotHaiyAhx09RExR',
+          },
+          {
+            id: 'QP9TPG9VXi1eEWlu2ynBA',
+            title: "L'opportunista",
+            description: '',
+            placement: 'second',
+            photographer: {
+              firstName: 'Marco',
+              lastName: 'Gargiulo',
+            },
+            image: '/images/contests/2025/QP9TPG9VXi1eEWlu2ynBA.webp',
+            imageR2Id: 'uw-2025/wide-angle/QP9TPG9VXi1eEWlu2ynBA',
+          },
+          {
+            id: 'GLZCG4LSGQ0os0PuAy2P3',
+            title: 'Alien World',
+            description: '',
+            placement: 'third',
+            photographer: {
+              firstName: 'Enrico ',
+              lastName: 'Pompei',
+            },
+            image: '/images/contests/2025/GLZCG4LSGQ0os0PuAy2P3.webp',
+            imageR2Id: 'uw-2025/wide-angle/GLZCG4LSGQ0os0PuAy2P3',
+          },
+          {
+            id: 'xzjCtEnyKe4IgYJcsb15E',
+            title: 'YELLOW JELLYFISH',
+            description:
+              'Nella foto migliaia di meduse intrappolate in una laguna dove si trovano sole, protette dalla conformazione geografica della laguna la quale le intrappola e le protegge dagli altri esseri viventi. Ci troviamo a RAJA AMPAT in Indonesia..!',
+            placement: 'runner-up',
+            photographer: {
+              firstName: 'alessandro',
+              lastName: 'giannaccini',
+            },
+            image: '/images/contests/2025/xzjCtEnyKe4IgYJcsb15E.webp',
+            imageR2Id: 'uw-2025/wide-angle/xzjCtEnyKe4IgYJcsb15E',
+          },
+          {
+            id: '9GpV6AbRzIRKbV00Jcxf8',
+            title: 'Sea snake',
+            description: 'Sea snake shedding its skin',
+            placement: 'runner-up',
+            photographer: {
+              firstName: 'Galice',
+              lastName: 'Hoarau',
+            },
+            image: '/images/contests/2025/9GpV6AbRzIRKbV00Jcxf8.webp',
+            imageR2Id: 'uw-2025/wide-angle/9GpV6AbRzIRKbV00Jcxf8',
+          },
+        ],
+      },
+    ],
+  },
+  {
     id: 'uw-2024',
     year: 2024,
     name: 'UW Contest 2024',
