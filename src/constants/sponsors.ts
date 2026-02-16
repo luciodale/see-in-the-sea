@@ -28,6 +28,9 @@ export const sponsorsMeta = {
   puntoNave: { website: 'https://www.puntonavemarineservice.com/' },
   isotta: { website: 'https://www.isotecnic.it/' },
   htc: { website: 'https://htcinfissi.it/' },
+  fotoDiego: { website: 'https://www.academy.fotodiego.com/' },
+  terzini: { website: 'https://cantinaterzini.it/' },
+  goldengas: {},
 } as const;
 
 export const sponsorAlbatrosMain = {
@@ -75,8 +78,11 @@ export const sponsors: Sponsor[] = [
     website: sponsorsMeta.easyDive.website,
   },
   {
-    logo: '/images/sponsors/ciampoli-logo.svg',
+    logo: '/images/sponsors/puntonave.png',
+    website: sponsorsMeta.puntoNave.website,
+    width: 'w-2xl',
   },
+
   {
     logo: '/images/sponsors/pgs-logo.webp',
     website: sponsorsMeta.pgs.website,
@@ -96,7 +102,20 @@ export const sponsors: Sponsor[] = [
     width: 'w-2xl',
   },
   {
-    logo: '/images/sponsors/puntonave.webp',
-    website: sponsorsMeta.puntoNave.website,
+    logo: '/images/sponsors/ciampoli-logo.svg',
+  },
+  {
+    logo: '/images/sponsors-banner/foto-diego.png',
+    website: sponsorsMeta.fotoDiego.website,
+    width: 'w-xl',
+  },
+  {
+    logo: '/images/sponsors-banner/terzini.png',
+    website: sponsorsMeta.terzini.website,
+    width: 'w-xl',
+  },
+  {
+    logo: '/images/sponsors-banner/goldengas.png',
+    width: 'w-xl',
   },
 ];
