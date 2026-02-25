@@ -31,6 +31,7 @@ export const sponsorsMeta = {
   fotoDiego: { website: 'https://www.academy.fotodiego.com/' },
   terzini: { website: 'https://cantinaterzini.it/' },
   goldengas: {},
+  subMonteConero: { website: 'https://www.centrosubmonteconero.com/' },
 } as const;
 
 export const sponsorAlbatrosMain = {
@@ -116,6 +117,11 @@ export const sponsors: Sponsor[] = [
   },
   {
     logo: '/images/sponsors-banner/goldengas.png',
+    width: 'w-xl',
+  },
+  {
+    logo: '/images/sponsors/sub-monte-conero.png',
+    website: sponsorsMeta.subMonteConero.website,
     width: 'w-xl',
   },
 ];
