@@ -32,6 +32,8 @@ export const sponsorsMeta = {
   terzini: { website: 'https://cantinaterzini.it/' },
   goldengas: {},
   subMonteConero: { website: 'https://www.centrosubmonteconero.com/' },
+  fincarellaDivingClub: {},
+  sanTommaso: {},
 } as const;
 
 export const sponsorAlbatrosMain = {
@@ -124,4 +126,6 @@ export const sponsors: Sponsor[] = [
     website: sponsorsMeta.subMonteConero.website,
     width: 'w-xl',
   },
+  { logo: '/images/sponsors-banner/ficarella-diving-club.png' },
+  { logo: '/images/sponsors-banner/san-tommaso.png' },
 ];
