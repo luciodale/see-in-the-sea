@@ -128,4 +128,5 @@ export const sponsors: Sponsor[] = [
   },
   { logo: '/images/sponsors-banner/ficarella-diving-club.png' },
   { logo: '/images/sponsors-banner/san-tommaso.png' },
+  { logo: '/images/sponsors/icp-logo.jpg', width: 'w-xl' },
 ];

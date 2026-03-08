@@ -64,73 +64,53 @@ const sponsorsBanner: Sponsor[] = [
   },
   { logo: '/images/sponsors-banner/ficarella-diving-club.png' },
   { logo: '/images/sponsors-banner/san-tommaso.png' },
+  { logo: '/images/sponsors-banner/icp-logo.png' },
 ];
 ---
 
 <div class="backdrop-blur-sm bg-white/70 py-6 overflow-hidden">
   <div class="marquee">
-    <ul class="flex items-center gap-8 pr-8">
-      {
-        sponsorsBanner.map(s => (
-          <li class="w-40 md:w-48">
-            {s.website ? (
-              <a
-                href={s.website}
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label={s.website ?? 'Sponsor'}
-                class="block"
-              >
-                <img
-                  src={s.logo}
-                  alt={'Sponsor logo'}
-                  class="w-auto opacity-80 hover:opacity-100 transition-opacity"
-                  loading="lazy"
-                />
-              </a>
-            ) : (
+    {
+      [false, true].map((duplicate) => (
+        <ul
+          class="flex items-center gap-8 pr-8"
+          aria-hidden={duplicate ? "true" : undefined}
+        >
+          {sponsorsBanner.map((s) => {
+            const img = (
               <img
                 src={s.logo}
-                alt={'Sponsor logo'}
-                class="w-auto opacity-80"
-                loading="lazy"
+                alt="Sponsor logo"
+                class:list={[
+                  "h-12 md:h-16 w-auto object-contain",
+                  s.website
+                    ? "opacity-80 hover:opacity-100 transition-opacity"
+                    : "opacity-80",
+                ]}
               />
-            )}
-          </li>
-        ))
-      }
-    </ul>
-    <ul class="flex items-center gap-8 pr-8" aria-hidden="true">
-      {
-        sponsorsBanner.map(s => (
-          <li class="w-40 md:w-48">
-            {s.website ? (
-              <a
-                href={s.website}
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label={s.website ?? 'Sponsor'}
-                class="block"
-              >
-                <img
-                  src={s.logo}
-                  alt={'Sponsor logo'}
-                  class="w-auto opacity-80 hover:opacity-100 transition-opacity"
-                  loading="lazy"
-                />
-              </a>
-            ) : (
-              <img
-                src={s.logo}
-                alt={'Sponsor logo'}
-                class="w-auto opacity-80"
-                loading="lazy"
-              />
-            )}
-          </li>
-        ))
-      }
-    </ul>
+            );
+
+            return (
+              <li class="shrink-0">
+                {s.website ? (
+                  <a
+                    href={s.website}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label="Sponsor"
+                    class="block"
+                  >
+                    {img}
+                  </a>
+                ) : (
+                  img
+                )}
+              </li>
+            );
+          })}
+        </ul>
+      ))
+    }
   </div>
 </div>
 
@@ -141,9 +121,7 @@ const sponsorsBanner: Sponsor[] = [
     animation: sitS_marquee 20s linear infinite;
     will-change: transform;
     transform: translate3d(0, 0, 0);
-    -webkit-transform: translate3d(0, 0, 0);
     backface-visibility: hidden;
-    -webkit-backface-visibility: hidden;
   }
   .marquee > ul {
     flex: none;
@@ -151,7 +129,6 @@ const sponsorsBanner: Sponsor[] = [
   .marquee:hover {
     animation-play-state: paused;
   }
-  /* Faster on mobile */
   @media (max-width: 640px) {
     .marquee {
       animation-duration: 10s;
