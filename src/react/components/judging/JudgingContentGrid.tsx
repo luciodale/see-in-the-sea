@@ -13,7 +13,7 @@ import {
   verticalListSortingStrategy,
 } from '@dnd-kit/sortable';
 import { Trophy } from 'lucide-react';
-import { useCallback, useState } from 'react';
+import { useCallback, useMemo, useState } from 'react';
 import type {
   FlagStatus,
   FilterStatus,
@@ -25,6 +25,7 @@ import { PLACEMENTS } from '../../types/judging';
 import { PortfolioCard } from './PortfolioCard';
 import { SortableItem } from './SortableItem';
 import { SubmissionCard } from './SubmissionCard';
+import { VirtualizedGrid } from './VirtualizedGrid';
 
 type JudgingContentGridProps = {
   columns: number;
@@ -371,24 +372,15 @@ export function JudgingContentGrid({
       );
     }
 
-    // Default Mediterranean grid
+    // Default Mediterranean grid (virtualized)
     return (
-      <div className="grid gap-6" style={gridStyle(columns)}>
-        {Object.entries(groupedByUser).flatMap(([_userId, portfolios]) =>
-          Object.entries(portfolios).map(
-            ([portfolioId, portfolioSubmissions]) => (
-              <PortfolioCard
-                key={portfolioId}
-                portfolioId={portfolioId}
-                submissions={portfolioSubmissions}
-                onInspect={onInspectPortfolio}
-                onFlag={onPortfolioFlag}
-                onPlace={onPortfolioPlace}
-              />
-            )
-          )
-        )}
-      </div>
+      <MediterraneanDefaultGrid
+        groupedByUser={groupedByUser}
+        columns={columns}
+        onInspectPortfolio={onInspectPortfolio}
+        onPortfolioFlag={onPortfolioFlag}
+        onPortfolioPlace={onPortfolioPlace}
+      />
     );
   }
 
@@ -448,19 +440,88 @@ export function JudgingContentGrid({
     );
   }
 
-  // Default grid
+  // Default grid (virtualized)
   return (
-    <div className="grid gap-4" style={gridStyle(columns)}>
-      {sortedSubmissions.map(submission => (
+    <VirtualizedGrid
+      key={`submissions-${columns}`}
+      items={sortedSubmissions}
+      columns={columns}
+      gap={16}
+      estimateRowHeight={300}
+      getKey={getSubmissionKey}
+      renderItem={submission => (
         <SubmissionCard
-          key={submission.id}
           submission={submission}
           size="large"
           onInspect={onInspectSubmission}
           onFlag={onFlag}
           onPlace={onPlace}
         />
-      ))}
-    </div>
+      )}
+    />
+  );
+}
+
+function getSubmissionKey(s: JudgingSubmission) {
+  return s.id;
+}
+
+type FlatPortfolio = {
+  portfolioId: string;
+  submissions: JudgingSubmission[];
+};
+
+function getPortfolioKey(p: FlatPortfolio) {
+  return p.portfolioId;
+}
+
+function MediterraneanDefaultGrid({
+  groupedByUser,
+  columns,
+  onInspectPortfolio,
+  onPortfolioFlag,
+  onPortfolioPlace,
+}: {
+  groupedByUser: Record<string, Record<string, JudgingSubmission[]>>;
+  columns: number;
+  onInspectPortfolio: (id: string) => void;
+  onPortfolioFlag: (submissionIds: string[], status: FlagStatus) => void;
+  onPortfolioPlace: (
+    submissionIds: string[],
+    placement: Placement,
+    categoryId: string
+  ) => void;
+}) {
+  const flatPortfolios = useMemo(
+    () =>
+      Object.entries(groupedByUser).flatMap(([_userId, portfolios]) =>
+        Object.entries(portfolios).map(
+          ([portfolioId, portfolioSubmissions]) => ({
+            portfolioId,
+            submissions: portfolioSubmissions,
+          })
+        )
+      ),
+    [groupedByUser]
+  );
+
+  return (
+    <VirtualizedGrid
+      key={`portfolios-${columns}`}
+      items={flatPortfolios}
+      columns={columns}
+      gap={24}
+      estimateRowHeight={350}
+      getKey={getPortfolioKey}
+      renderItem={portfolio => (
+        <PortfolioCard
+          portfolioId={portfolio.portfolioId}
+          submissions={portfolio.submissions}
+          onInspect={onInspectPortfolio}
+          onFlag={onPortfolioFlag}
+          onPlace={onPortfolioPlace}
+        />
+      )}
+    />
   );
 }

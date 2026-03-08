@@ -2,14 +2,15 @@ import { SignedIn, SignedOut } from '@clerk/clerk-react';
 import { createFileRoute } from '@tanstack/react-router';
 import { useCallback, useState } from 'react';
 import { CURRENT_CONTEST_CATEGORIES } from '../../../constants/categories';
+import { validateAdminSearch } from '../../adminSearchSchema';
 import { AdminAccessDenied } from '../../components/admin/AdminAccessDenied';
 import { AdminPageLoader } from '../../components/admin/AdminPageLoader';
 import AdminTabs from '../../components/AdminTabs';
-import { RedirectToSignIn } from '../../components/RedirectToSignIn';
 import { JudgingCategoryTabs } from '../../components/judging/JudgingCategoryTabs';
 import { JudgingContentGrid } from '../../components/judging/JudgingContentGrid';
 import { PortfolioInspectModal } from '../../components/judging/PortfolioInspectModal';
 import { SubmissionInspectModal } from '../../components/judging/SubmissionInspectModal';
+import { RedirectToSignIn } from '../../components/RedirectToSignIn';
 import { useAdminContestId } from '../../hooks/useAdminContestId';
 import { useImageResize } from '../../hooks/useImageResize';
 import { useImageZoom } from '../../hooks/useImageZoom';
@@ -20,7 +21,6 @@ import { useJudgingSubmissions } from '../../hooks/useJudgingSubmissions';
 import { useLocalStorageOrder } from '../../hooks/useLocalStorageOrder';
 import { useUserRole } from '../../hooks/useUserRole';
 import type { FilterStatus } from '../../types/judging';
-import { validateAdminSearch } from '../../adminSearchSchema';
 
 export const Route = createFileRoute('/admin/judging')({
   component: JudgingPage,
@@ -152,7 +152,7 @@ function JudgingPage() {
     <>
       <SignedIn>
         {isAdmin ? (
-          <div className="bg-slate-950 text-white">
+          <div className="text-white">
             <AdminTabs
               contests={contests}
               selectedContestId={contestId}

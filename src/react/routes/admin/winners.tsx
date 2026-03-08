@@ -4,8 +4,8 @@ import { useCallback } from 'react';
 import { validateAdminSearch } from '../../adminSearchSchema';
 import { AdminAccessDenied } from '../../components/admin/AdminAccessDenied';
 import { AdminPageLoader } from '../../components/admin/AdminPageLoader';
-import { AllWinnersViewer } from '../../components/AllWinnersViewer';
 import AdminTabs from '../../components/AdminTabs';
+import { AllWinnersViewer } from '../../components/AllWinnersViewer';
 import { RedirectToSignIn } from '../../components/RedirectToSignIn';
 import { useAdminContestId } from '../../hooks/useAdminContestId';
 import { useUserRole } from '../../hooks/useUserRole';
@@ -40,7 +40,7 @@ function WinnersPage() {
     <>
       <SignedIn>
         {isAdmin ? (
-          <div className="bg-slate-950 text-white">
+          <div className="text-white">
             <AdminTabs
               contests={contests}
               selectedContestId={contestId}

@@ -6,7 +6,6 @@ import type {
   AdminSubmission,
   AdminSubmissionsResponse,
 } from '../../types/api';
-import { LazyImage } from './LazyImage';
 
 type AdminSubmissionsViewerProps = {
   contestId: string;
@@ -191,9 +190,20 @@ export function AdminSubmissionsViewer({
     };
   });
 
-  // Calculate aggregate statistics
-  const usersWhoSubmitted = Object.keys(groupedByUser).length;
-  const usersWhoPaid = Object.values(groupedByUser).filter(
+  // Calculate aggregate statistics from allSubmissions (not affected by search filter)
+  const allGroupedByUser = allSubmissions.reduce(
+    (groups, submission) => {
+      const userEmail = submission.userEmail;
+      if (!groups[userEmail]) {
+        groups[userEmail] = [];
+      }
+      groups[userEmail].push(submission);
+      return groups;
+    },
+    {} as Record<string, AdminSubmission[]>
+  );
+  const usersWhoSubmitted = Object.keys(allGroupedByUser).length;
+  const usersWhoPaid = Object.values(allGroupedByUser).filter(
     submissions => submissions[0].hasPaid
   ).length;
 
@@ -604,14 +614,15 @@ export function AdminSubmissionsViewer({
                                       {/* Image Preview */}
                                       <div className="md:col-span-1">
                                         {submission.r2ImageId ? (
-                                          <LazyImage
+                                          <img
                                             src={
                                               getFullQualityImageUrl(
                                                 submission.r2ImageId
                                               ) || ''
                                             }
                                             alt={submission.title}
-                                            className="relative w-full max-h-64 md:max-h-none aspect-square md:aspect-auto"
+                                            loading="lazy"
+                                            className="w-full max-h-64 md:max-h-none aspect-square md:aspect-auto object-contain md:object-cover rounded-lg border border-slate-700"
                                           />
                                         ) : (
                                           <div className="w-full aspect-video bg-slate-800 rounded-lg flex items-center justify-center">

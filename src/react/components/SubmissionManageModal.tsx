@@ -2,8 +2,8 @@ import clsx from 'clsx';
 import { useState } from 'react';
 import { useI18n } from '../../i18n/react';
 import type { UISubmission } from '../../types/ui';
+import { getImageUrl } from '../utils/imageUtils';
 import { BaseModal } from './BaseModal';
-import { OptimizedImage } from './OptimizedImage';
 
 interface SubmissionManageModalProps {
   submission: UISubmission | null;
@@ -55,11 +55,10 @@ export function SubmissionManageModal({
       <div className="space-y-6">
         {/* Image */}
         <div className="w-full bg-slate-900 rounded-lg overflow-hidden">
-          <OptimizedImage
-            r2ImageId={submission.r2ImageId}
+          <img
+            src={submission.r2ImageId ? getImageUrl(submission.r2ImageId) : ''}
             alt={submission.title}
             className="w-full h-auto max-h-96 object-contain"
-            loading="eager"
           />
         </div>
 
