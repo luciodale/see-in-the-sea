@@ -1,9 +1,17 @@
 import { useAuth } from '@clerk/clerk-react';
 import JSZip from 'jszip';
 import { useCallback, useRef, useState } from 'react';
-import type { SubmissionWithResult } from '../../types/api';
 
 const CONCURRENCY = 10;
+
+export type DownloadItem = {
+  r2ImageId: string | null;
+  categoryId: string;
+  firstName?: string | null;
+  lastName?: string | null;
+  placement?: string | null;
+  originalFilename?: string | null;
+};
 
 type DownloadStatus = 'idle' | 'downloading' | 'zipping' | 'complete' | 'error';
 
@@ -104,9 +112,9 @@ export function useContestDownload() {
   const abortRef = useRef<AbortController | null>(null);
 
   const downloadContest = useCallback(
-    async (contestYear: number, submissions: SubmissionWithResult[]) => {
-      const downloadable = submissions.filter(
-        (s): s is SubmissionWithResult & { r2ImageId: string } => !!s.r2ImageId
+    async (contestYear: number, items: DownloadItem[]) => {
+      const downloadable = items.filter(
+        (s): s is DownloadItem & { r2ImageId: string } => !!s.r2ImageId
       );
 
       if (downloadable.length === 0) {
@@ -137,10 +145,10 @@ export function useContestDownload() {
         const base = buildFilename({
           contestYear,
           categoryId: sub.categoryId,
-          placement: sub.result?.result ?? null,
-          firstName: sub.result?.firstName ?? null,
-          lastName: sub.result?.lastName ?? null,
-          originalFilename: sub.originalFilename,
+          placement: sub.placement ?? null,
+          firstName: sub.firstName ?? null,
+          lastName: sub.lastName ?? null,
+          originalFilename: sub.originalFilename ?? null,
         });
         return deduplicateFilename(base, seenFilenames);
       });
