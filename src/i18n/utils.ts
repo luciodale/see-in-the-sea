@@ -47,6 +47,24 @@ export function getLocalizedPath(
 }
 
 /**
+ * Generate hreflang alternates from the current URL.
+ * Strips any existing locale prefix, then builds both /en and /it variants.
+ */
+export function getAlternates(url: URL) {
+  const pathname = url.pathname;
+  const basePath = pathname.startsWith('/it/')
+    ? pathname.slice(3)
+    : pathname === '/it'
+      ? '/'
+      : pathname;
+
+  return [
+    { hrefLang: 'it', href: new URL(`/it${basePath === '/' ? '' : basePath}`, url).toString() },
+    { hrefLang: 'x-default', href: new URL(basePath, url).toString() },
+  ];
+}
+
+/**
  * Check if a language is supported
  */
 export function isValidLanguage(lang: string): lang is Language {

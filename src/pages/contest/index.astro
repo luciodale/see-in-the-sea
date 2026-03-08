@@ -2,8 +2,9 @@
 export const prerender = true;
 
 import ContestIndexPage from '@/components/pages/ContestIndexPage.astro';
+import type { Language } from '@/i18n';
 
-const currentLang = 'en';
+const currentLang = (Astro.currentLocale ?? 'en') as Language;
 ---
 
 <ContestIndexPage lang={currentLang} />

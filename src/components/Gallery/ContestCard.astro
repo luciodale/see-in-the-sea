@@ -1,6 +1,6 @@
 ---
 import { Picture } from 'astro:assets';
-import { getLangFromUrl, getLocalizedPath } from '../../i18n';
+import { getLocalizedPath, type Language } from '../../i18n';
 
 type Props = {
   contest: {
@@ -12,7 +12,7 @@ type Props = {
 };
 
 const { contest } = Astro.props;
-const currentLang = getLangFromUrl(Astro.url);
+const currentLang = (Astro.currentLocale ?? 'en') as Language;
 ---
 
 <a

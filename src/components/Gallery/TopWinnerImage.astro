@@ -1,5 +1,5 @@
 ---
-import { getLangFromUrl, useTranslations } from '@/i18n';
+import { useTranslations, type Language } from '@/i18n';
 
 type Props = {
   categoryName: string;
@@ -21,7 +21,7 @@ const {
   rawResult,
 }: Props = Astro.props;
 
-const currentLang = getLangFromUrl(Astro.url);
+const currentLang = (Astro.currentLocale ?? 'en') as Language;
 const t = useTranslations(currentLang);
 
 // Define accent color based on rank

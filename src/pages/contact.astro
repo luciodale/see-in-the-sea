@@ -1,5 +1,8 @@
 ---
 import ContactPage from '@/components/pages/ContactPage.astro';
+import type { Language } from '@/i18n';
+
+const currentLang = (Astro.currentLocale ?? 'en') as Language;
 ---
 
-<ContactPage lang="en" />
+<ContactPage lang={currentLang} />

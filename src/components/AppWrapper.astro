@@ -2,7 +2,6 @@
 // src/layouts/AppWrapper.astro
 import AppHead from '../components/AppHead.astro';
 import Footer from '../components/Footer.astro';
-import { getLangFromUrl } from '../i18n';
 
 interface Props {
   // SEO Props
@@ -29,7 +28,7 @@ const {
 
 // For Open Graph URL, use the current page's URL
 const currentUrl = Astro.url.href;
-const currentLang = (lang || getLangFromUrl(Astro.url)) as 'en' | 'it';
+const currentLang = (lang || Astro.currentLocale || 'en') as 'en' | 'it';
 ---
 
 <!doctype html>

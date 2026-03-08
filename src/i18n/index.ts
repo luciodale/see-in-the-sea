@@ -7,6 +7,7 @@ export {
   type TranslationKey,
 } from './translations';
 export {
+  getAlternates,
   getCategoryName,
   getLangFromUrl,
   getLocalizedPath,

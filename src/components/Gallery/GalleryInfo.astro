@@ -1,9 +1,9 @@
 ---
 import {
   getCategoryName,
-  getLangFromUrl,
   getLocalizedPath,
   useTranslations,
+  type Language,
 } from '@/i18n';
 import { pastContestsData, type Contest } from '@/data/past-contests';
 
@@ -15,7 +15,7 @@ type Props = {
 };
 
 const { contestTitle, contestId, activeCategoryId, contestData } = Astro.props;
-const currentLang = getLangFromUrl(Astro.url);
+const currentLang = (Astro.currentLocale ?? 'en') as Language;
 const t = useTranslations(currentLang);
 
 // Get judges from contestData

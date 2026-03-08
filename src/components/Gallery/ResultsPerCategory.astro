@@ -2,9 +2,9 @@
 import type { Contest, Entry } from '@/data/past-contests';
 import {
   getCategoryName,
-  getLangFromUrl,
   getResultName,
   useTranslations,
+  type Language,
 } from '@/i18n';
 import { MEDITERRANEAN_CATEGORY_ID } from '../../constants';
 import { getFullQualityImageUrl } from '../../server/imageService';
@@ -21,7 +21,7 @@ type Props = {
 };
 
 const { contestId, categoryId, contestData }: Props = Astro.props;
-const currentLang = getLangFromUrl(Astro.url);
+const currentLang = (Astro.currentLocale ?? 'en') as Language;
 const t = useTranslations(currentLang);
 
 // Get category from contestData

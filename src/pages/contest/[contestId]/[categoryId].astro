@@ -2,26 +2,34 @@
 export const prerender = true;
 import ContestCategoryPage from '@/components/pages/ContestCategoryPage.astro';
 import { pastContestsData } from '@/data/past-contests';
-import { getLocalizedPath } from '@/i18n';
-
-const { contestId, categoryId } = Astro.params;
-const currentLang = 'en';
-
-if (!contestId || !categoryId) {
-  return Astro.redirect(getLocalizedPath('404', currentLang));
-}
+import { getLocalizedPath, type Language } from '@/i18n';
 
 export function getStaticPaths() {
   return pastContestsData.flatMap(contest =>
     contest.categories.map(category => ({
-      params: { contestId: contest.id, categoryId: category.id },
-      props: { contestData: contest },
+      // Both casings needed: Astro uses camelCase for the English route
+      // but lowercases directory params for the Italian fallback route
+      params: {
+        contestId: contest.id,
+        contestid: contest.id,
+        categoryId: category.id,
+        categoryid: category.id,
+      },
+      props: {
+        contestData: contest,
+        contestId: contest.id,
+        categoryId: category.id,
+      },
     }))
   );
 }
 
-// Access the data passed via props
-const { contestData } = Astro.props;
+const { contestData, contestId, categoryId } = Astro.props;
+const currentLang = (Astro.currentLocale ?? 'en') as Language;
+
+if (!contestId || !categoryId) {
+  return Astro.redirect(getLocalizedPath('404', currentLang));
+}
 ---
 
 <ContestCategoryPage

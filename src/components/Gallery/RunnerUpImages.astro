@@ -1,5 +1,5 @@
 ---
-import { getLangFromUrl, getResultName, useTranslations } from '@/i18n';
+import { getResultName, useTranslations, type Language } from '@/i18n';
 
 type Props = {
   runnerUps: {
@@ -13,7 +13,7 @@ type Props = {
 };
 
 const { runnerUps }: Props = Astro.props;
-const currentLang = getLangFromUrl(Astro.url);
+const currentLang = (Astro.currentLocale ?? 'en') as Language;
 const t = useTranslations(currentLang);
 const clickToViewText = t('image.click-to-view');
 ---

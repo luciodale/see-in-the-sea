@@ -226,7 +226,7 @@ export const translations = {
     'contact.president': 'President Ortona Sub',
     'contact.technical-director': 'Technical Director',
     'contact.administrative-secretary': 'Administrative Secretary',
-    'contact.web-master': 'Web Master',
+    'contact.web-master': 'Systems Architect',
 
     // Authentication
     'auth.choice.title': 'Welcome to See in the Sea',
@@ -573,7 +573,7 @@ export const translations = {
     'contact.president': 'Presidente Ortona Sub',
     'contact.technical-director': 'Direttore Tecnico',
     'contact.administrative-secretary': 'Segreteria Amministrativa',
-    'contact.web-master': 'Web Master',
+    'contact.web-master': 'Systems Architect',
 
     // Authentication
     'auth.choice.title': 'Benvenuti a See in the Sea',

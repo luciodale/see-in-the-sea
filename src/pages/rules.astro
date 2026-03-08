@@ -1,32 +1,29 @@
 ---
-import RulesContent from '@/articles/rules.md';
 import AppWrapper from '@/components/AppWrapper.astro';
 import Layout from '@/components/Gallery/Layout.astro';
 import NavbarHeaderStandalone from '@/components/Navbar/NavbarHeaderStandalone.astro';
 import RulesActions from '@/components/RulesActions.astro';
-import { useTranslations, type Language } from '@/i18n';
+import { getAlternates, useTranslations, type Language } from '@/i18n';
 
-interface Props {
-  lang: Language;
-}
+const currentLang = (Astro.currentLocale ?? 'en') as Language;
+const alternates = getAlternates(Astro.url);
+const t = useTranslations(currentLang);
 
-const currentLang = Astro.locals.lang || 'en';
-const alternates = [
-  { hrefLang: 'it', href: new URL('/it/rules', Astro.url).toString() },
-  { hrefLang: 'x-default', href: Astro.url.href },
-];
-const t = useTranslations(currentLang as Language);
+const RulesContent =
+  currentLang === 'it'
+    ? (await import('@/articles/rules.it.md')).default
+    : (await import('@/articles/rules.md')).default;
 ---
 
 <AppWrapper
   title={t('site.title')}
   description={t('site.description')}
-  lang={currentLang as Language}
+  lang={currentLang}
   alternates={alternates}
 >
-  <NavbarHeaderStandalone lang={currentLang as Language} />
+  <NavbarHeaderStandalone lang={currentLang} />
   <Layout>
-    <RulesActions lang={currentLang as Language} />
+    <RulesActions lang={currentLang} />
     <div class="prose prose-invert max-w-none prose-p:text-xl">
       <RulesContent />
     </div>

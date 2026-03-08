@@ -2,24 +2,22 @@
 export const prerender = true;
 import ContestDetailPage from '@/components/pages/ContestDetailPage.astro';
 import { pastContestsData } from '@/data/past-contests';
-import { getLocalizedPath } from '@/i18n';
+import { getLocalizedPath, type Language } from '@/i18n';
 
-const { contestId } = Astro.params;
-const currentLang = 'en';
+export function getStaticPaths() {
+  return pastContestsData.map(contest => ({
+    // Both casings needed: Astro lowercases params for i18n fallback routes
+    params: { contestId: contest.id, contestid: contest.id },
+    props: { contestData: contest, contestId: contest.id },
+  }));
+}
+
+const { contestData, contestId } = Astro.props;
+const currentLang = (Astro.currentLocale ?? 'en') as Language;
 
 if (!contestId) {
   return Astro.redirect(getLocalizedPath('404', currentLang));
 }
-
-export function getStaticPaths() {
-  return pastContestsData.map(contest => ({
-    params: { contestId: contest.id },
-    props: { contestData: contest },
-  }));
-}
-
-// Access the data passed via props
-const { contestData } = Astro.props;
 ---
 
 <ContestDetailPage
