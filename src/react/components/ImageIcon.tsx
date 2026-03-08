@@ -17,6 +17,7 @@ export function ImageIcon({
       >
         <div className="text-center">
           <svg
+            aria-hidden="true"
             className="w-6 h-6 text-slate-400 mx-auto mb-1"
             fill="none"
             stroke="currentColor"
@@ -44,6 +45,7 @@ export function ImageIcon({
     >
       <div className="text-center">
         <svg
+          aria-hidden="true"
           className="w-8 h-8 text-emerald-400 mx-auto mb-1"
           fill="none"
           stroke="currentColor"

@@ -37,9 +37,7 @@ export function SortableItem({
         {...attributes}
         {...listeners}
         className={`absolute z-10 cursor-grab active:cursor-grabbing ${
-          layout === 'vertical'
-            ? 'right-2 top-2'
-            : 'right-1.5 top-1.5'
+          layout === 'vertical' ? 'right-2 top-2' : 'right-1.5 top-1.5'
         }`}
       >
         <div className="bg-slate-800/80 backdrop-blur-sm rounded p-1 hover:bg-slate-700 transition-colors">

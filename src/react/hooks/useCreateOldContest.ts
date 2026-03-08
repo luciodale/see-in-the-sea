@@ -48,8 +48,8 @@ export const useCreateOldContest = () => {
     setSuccess(false);
 
     // Client-side validation
-    const yearNum = parseInt(year);
-    if (!year || isNaN(yearNum)) {
+    const yearNum = parseInt(year, 10);
+    if (!year || Number.isNaN(yearNum)) {
       setError('Inserisci un anno valido');
       return;
     }

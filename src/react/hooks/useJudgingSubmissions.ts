@@ -122,7 +122,7 @@ export function useJudgingSubmissions({
     if (contestId) {
       fetchSubmissions();
     }
-  }, [contestId, activeCategory, fetchSubmissions]);
+  }, [contestId, fetchSubmissions]);
 
   const setPlacement = useCallback(
     (submissionId: string, placement: Placement) => {

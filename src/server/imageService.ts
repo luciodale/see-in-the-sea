@@ -6,7 +6,7 @@ import {
   RETRY_BACKOFF_BASE,
 } from '../constants';
 import type { getDb } from '../db/index';
-import { submissions, type NewSubmission, type Submission } from '../db/index';
+import { type NewSubmission, type Submission, submissions } from '../db/index';
 
 // Type definitions for better type safety and reusability
 export type ImageUploadMetadata = {
@@ -186,7 +186,7 @@ export async function storeImageInR2WithRetry(
       }
 
       // Wait before retrying (exponential backoff: 1s, 2s, 4s)
-      const waitTime = Math.pow(2, attempt - 1) * RETRY_BACKOFF_BASE;
+      const waitTime = 2 ** (attempt - 1) * RETRY_BACKOFF_BASE;
       console.log(
         `[storeImageInR2WithRetry] Waiting ${waitTime}ms before retry...`
       );

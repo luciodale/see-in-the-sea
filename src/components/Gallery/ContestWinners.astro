@@ -3,8 +3,8 @@ import type { Contest, Entry } from '@/data/past-contests';
 import {
   getCategoryName,
   getResultName,
-  useTranslations,
   type Language,
+  useTranslations,
 } from '@/i18n';
 import { MEDITERRANEAN_CATEGORY_ID } from '../../constants';
 import { getFullQualityImageUrl } from '../../server/imageService';
@@ -49,7 +49,7 @@ const mediterraneanPortfolios = (() => {
   firstPlaceEntries.forEach(entry => {
     const key = getPhotographerKey(entry);
     if (!groups.has(key)) groups.set(key, []);
-    groups.get(key)!.push(entry);
+    groups.get(key)?.push(entry);
   });
 
   return Array.from(groups.values()).map(entries => ({

@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import { DEFAULT_MAX_SUBMISSIONS_PER_CATEGORY } from '../../constants';
 import { CURRENT_CONTEST_CATEGORIES } from '../../constants/categories';
 import { useI18n } from '../../i18n/react';
@@ -59,18 +59,7 @@ export function AdminImpersonationInterface({
     useState<UISubmission | null>(null);
   const [isManageModalOpen, setIsManageModalOpen] = useState(false);
 
-  useEffect(() => {
-    void initialize();
-  }, [userEmail]);
-
-  // Set first category as active when categories are loaded
-  useEffect(() => {
-    if (categories.length > 0 && !activeCategoryId) {
-      setActiveCategoryId(categories[0].id);
-    }
-  }, [categories, activeCategoryId]);
-
-  async function initialize() {
+  const initialize = useCallback(async () => {
     try {
       setLoading(true);
       setError(null);
@@ -139,7 +128,18 @@ export function AdminImpersonationInterface({
     } finally {
       setLoading(false);
     }
-  }
+  }, [userEmail]);
+
+  useEffect(() => {
+    void initialize();
+  }, [initialize]);
+
+  // Set first category as active when categories are loaded
+  useEffect(() => {
+    if (categories.length > 0 && !activeCategoryId) {
+      setActiveCategoryId(categories[0].id);
+    }
+  }, [categories, activeCategoryId]);
 
   function handleCategorySelect(categoryId: string) {
     setActiveCategoryId(categoryId);
@@ -151,7 +151,7 @@ export function AdminImpersonationInterface({
     setUploadModalOpen(true);
   }
 
-  function handleSubmissionClick(submission: CategoryState['submissions'][0]) {
+  function _handleSubmissionClick(submission: CategoryState['submissions'][0]) {
     setSelectedSubmission(submission);
   }
 
@@ -182,7 +182,7 @@ export function AdminImpersonationInterface({
     setDialogOpen(true);
   }
 
-  function handleUploadError(error: string) {
+  function handleUploadError(_error: string) {
     // Error is now handled in the UploadModal component
   }
 
@@ -279,26 +279,24 @@ export function AdminImpersonationInterface({
       )}
 
       {/* Active Category Summary */}
-      {!noActiveContest && activeCategory && (
-        <>
-          {activeCategory.id === 'mediterranean' ? (
-            <MediterraneanPortfolioManager
-              submissions={activeCategory.submissions}
-              onUploadClick={handleUploadClick}
-              onManageSubmission={handleManageSubmission}
-            />
-          ) : (
-            <CategorySummary
-              categoryId={activeCategory.id}
-              submissions={activeCategory.submissions}
-              maxSubmissionsPerCategory={activeCategory.maxSubmissions}
-              contestStatus={contestStatus}
-              onUploadClick={() => handleUploadClick()}
-              onManageSubmission={handleManageSubmission}
-            />
-          )}
-        </>
-      )}
+      {!noActiveContest &&
+        activeCategory &&
+        (activeCategory.id === 'mediterranean' ? (
+          <MediterraneanPortfolioManager
+            submissions={activeCategory.submissions}
+            onUploadClick={handleUploadClick}
+            onManageSubmission={handleManageSubmission}
+          />
+        ) : (
+          <CategorySummary
+            categoryId={activeCategory.id}
+            submissions={activeCategory.submissions}
+            maxSubmissionsPerCategory={activeCategory.maxSubmissions}
+            contestStatus={contestStatus}
+            onUploadClick={() => handleUploadClick()}
+            onManageSubmission={handleManageSubmission}
+          />
+        ))}
 
       {/* Upload Modal */}
       {activeCategory && contestId && (

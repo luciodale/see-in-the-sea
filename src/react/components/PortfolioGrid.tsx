@@ -81,6 +81,7 @@ export function PortfolioGrid({
         <div className="flex items-center justify-center gap-2">
           {status.isComplete && (
             <svg
+              aria-hidden="true"
               className="w-4 h-4 text-emerald-400"
               fill="currentColor"
               viewBox="0 0 20 20"

@@ -1,22 +1,22 @@
+import type { DragEndEvent, DragStartEvent } from '@dnd-kit/core';
 import {
+  closestCenter,
   DndContext,
   DragOverlay,
   PointerSensor,
-  closestCenter,
   useSensor,
   useSensors,
 } from '@dnd-kit/core';
-import type { DragEndEvent, DragStartEvent } from '@dnd-kit/core';
 import {
-  SortableContext,
   rectSortingStrategy,
+  SortableContext,
   verticalListSortingStrategy,
 } from '@dnd-kit/sortable';
 import { Trophy } from 'lucide-react';
 import { useCallback, useMemo, useState } from 'react';
 import type {
-  FlagStatus,
   FilterStatus,
+  FlagStatus,
   JudgingSubmission,
   Placement,
   PortfolioGroup,

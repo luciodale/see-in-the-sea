@@ -3,7 +3,7 @@ import AppWrapper from '@/components/AppWrapper.astro';
 import Layout from '@/components/Gallery/Layout.astro';
 import NavbarHeaderStandalone from '@/components/Navbar/NavbarHeaderStandalone.astro';
 import RulesActions from '@/components/RulesActions.astro';
-import { getAlternates, useTranslations, type Language } from '@/i18n';
+import { getAlternates, type Language, useTranslations } from '@/i18n';
 
 const currentLang = (Astro.currentLocale ?? 'en') as Language;
 const alternates = getAlternates(Astro.url);

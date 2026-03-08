@@ -1,5 +1,5 @@
 import { CheckCircleIcon } from '@heroicons/react/24/solid';
-import { Link, createFileRoute } from '@tanstack/react-router';
+import { createFileRoute, Link } from '@tanstack/react-router';
 import { useI18n } from '../../../../i18n/react';
 import { getLocalizedPath } from '../../../../i18n/utils';
 

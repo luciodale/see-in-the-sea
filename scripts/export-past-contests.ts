@@ -1,7 +1,13 @@
 #!/usr/bin/env bun
-import { spawn } from 'child_process';
-import { existsSync, mkdirSync, renameSync, rmSync, writeFileSync } from 'fs';
-import { dirname, join } from 'path';
+import { spawn } from 'node:child_process';
+import {
+  existsSync,
+  mkdirSync,
+  renameSync,
+  rmSync,
+  writeFileSync,
+} from 'node:fs';
+import { dirname, join } from 'node:path';
 import sharp from 'sharp';
 
 // --- CONFIGURATION ---
@@ -228,7 +234,8 @@ async function main() {
         categories: [],
       });
     }
-    const contest = contestsMap.get(row.contest_id)!;
+    const contest = contestsMap.get(row.contest_id);
+    if (!contest) continue;
 
     let category = contest.categories.find(c => c.id === row.category_id);
     if (!category) {

@@ -30,7 +30,7 @@ const websiteLd = {
   '@type': 'WebSite',
   name: siteName,
   url: canonicalUrl,
-  inLanguage: (locale && locale.split('_')[0]) || 'en',
+  inLanguage: locale?.split('_')[0] || 'en',
 };
 
 const organizationLd = {

@@ -82,13 +82,27 @@ export const POST: APIRoute = async ({ request, locals }) => {
       );
     }
 
+    const userEmail = user.emailAddress ?? '';
+    if (!userEmail) {
+      return new Response(
+        JSON.stringify({
+          success: false,
+          message: getBackendTranslation('error.internal-server', request),
+        } as CheckoutResponse),
+        {
+          status: 400,
+          headers: { 'Content-Type': 'application/json' },
+        }
+      );
+    }
+
     // Query user submissions to determine pricing
     const userSubmissions = await db
       .select({ categoryId: submissions.categoryId })
       .from(submissions)
       .where(
         and(
-          eq(submissions.userEmail, user.emailAddress!),
+          eq(submissions.userEmail, userEmail),
           eq(submissions.contestId, activeContest[0].id)
         )
       );
@@ -127,10 +141,10 @@ export const POST: APIRoute = async ({ request, locals }) => {
       mode: 'payment',
       success_url: `${DOMAIN}${getLocalizedPath('user/payment/success', lang)}`,
       cancel_url: `${DOMAIN}${getLocalizedPath('user/payment/cancel', lang)}`,
-      customer_email: user.emailAddress!,
+      customer_email: userEmail,
       metadata: {
         contestId: activeContest[0].id,
-        userEmail: user.emailAddress!,
+        userEmail: userEmail,
         categoryCount: categoryCount.toString(),
       },
     });

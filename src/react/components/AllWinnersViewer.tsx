@@ -1,6 +1,9 @@
 import { useAuth } from '@clerk/clerk-react';
 import { useCallback, useEffect, useMemo, useState } from 'react';
-import type { WinnersPreviewRow, WinnersPreviewResponse } from '../../types/api';
+import type {
+  WinnersPreviewResponse,
+  WinnersPreviewRow,
+} from '../../types/api';
 import { getImageUrl } from '../utils/imageUtils';
 
 type AllWinnersViewerProps = {
@@ -81,7 +84,9 @@ export function AllWinnersViewer({ contestId }: AllWinnersViewerProps) {
   const categoryOrder = useMemo(() => {
     const ids = [...new Set(rows.map(r => r.categoryId))];
     const byName = new Map(rows.map(r => [r.categoryId, r.categoryName]));
-    ids.sort((a, b) => (byName.get(a) ?? '').localeCompare(byName.get(b) ?? ''));
+    ids.sort((a, b) =>
+      (byName.get(a) ?? '').localeCompare(byName.get(b) ?? '')
+    );
     return ids;
   }, [rows]);
 

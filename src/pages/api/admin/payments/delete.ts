@@ -1,7 +1,7 @@
 import type { APIRoute } from 'astro';
+import { eq } from 'drizzle-orm';
 import { getDb } from '../../../../db/index';
 import { payments } from '../../../../db/schema';
-import { eq } from 'drizzle-orm';
 import { authenticateAdmin } from '../../../../server/authenticateRequest';
 
 export const prerender = false;

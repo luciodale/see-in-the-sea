@@ -1,6 +1,6 @@
-import type { Category } from '@/db/schema';
 import { useAuth } from '@clerk/clerk-react';
 import { useEffect, useState } from 'react';
+import type { Category } from '@/db/schema';
 
 interface OldContestSubmissionFormProps {
   contestId: string;
@@ -136,7 +136,10 @@ export const OldContestSubmissionForm = ({
     <form onSubmit={handleSubmit} className="space-y-4">
       {/* Category Dropdown */}
       <div>
-        <label className="block text-sm font-medium text-slate-200 mb-1">
+        <label
+          htmlFor="old-contest-category"
+          className="block text-sm font-medium text-slate-200 mb-1"
+        >
           Categoria *
         </label>
         {isLoadingCategories ? (
@@ -149,6 +152,7 @@ export const OldContestSubmissionForm = ({
           </div>
         ) : (
           <select
+            id="old-contest-category"
             value={categoryId}
             onChange={e => setCategoryId(e.target.value)}
             disabled={isSubmitting}
@@ -165,10 +169,14 @@ export const OldContestSubmissionForm = ({
 
       {/* First Name */}
       <div>
-        <label className="block text-sm font-medium text-slate-200 mb-1">
+        <label
+          htmlFor="old-contest-firstName"
+          className="block text-sm font-medium text-slate-200 mb-1"
+        >
           Nome *
         </label>
         <input
+          id="old-contest-firstName"
           type="text"
           value={firstName}
           onChange={e => setFirstName(e.target.value)}
@@ -179,10 +187,14 @@ export const OldContestSubmissionForm = ({
 
       {/* Last Name */}
       <div>
-        <label className="block text-sm font-medium text-slate-200 mb-1">
+        <label
+          htmlFor="old-contest-lastName"
+          className="block text-sm font-medium text-slate-200 mb-1"
+        >
           Cognome *
         </label>
         <input
+          id="old-contest-lastName"
           type="text"
           value={lastName}
           onChange={e => setLastName(e.target.value)}
@@ -193,10 +205,14 @@ export const OldContestSubmissionForm = ({
 
       {/* Title */}
       <div>
-        <label className="block text-sm font-medium text-slate-200 mb-1">
+        <label
+          htmlFor="old-contest-title"
+          className="block text-sm font-medium text-slate-200 mb-1"
+        >
           Titolo *
         </label>
         <input
+          id="old-contest-title"
           type="text"
           value={title}
           onChange={e => setTitle(e.target.value)}
@@ -207,10 +223,14 @@ export const OldContestSubmissionForm = ({
 
       {/* Description */}
       <div>
-        <label className="block text-sm font-medium text-slate-200 mb-1">
+        <label
+          htmlFor="old-contest-description"
+          className="block text-sm font-medium text-slate-200 mb-1"
+        >
           Descrizione
         </label>
         <textarea
+          id="old-contest-description"
           value={description}
           onChange={e => setDescription(e.target.value)}
           disabled={isSubmitting}
@@ -221,10 +241,14 @@ export const OldContestSubmissionForm = ({
 
       {/* Result Placement */}
       <div>
-        <label className="block text-sm font-medium text-slate-200 mb-1">
+        <label
+          htmlFor="old-contest-placement"
+          className="block text-sm font-medium text-slate-200 mb-1"
+        >
           Piazzamento *
         </label>
         <select
+          id="old-contest-placement"
           value={resultPlacement}
           onChange={e => setResultPlacement(e.target.value)}
           disabled={isSubmitting}
@@ -239,10 +263,14 @@ export const OldContestSubmissionForm = ({
 
       {/* Image Upload */}
       <div>
-        <label className="block text-sm font-medium text-slate-200 mb-1">
+        <label
+          htmlFor="old-contest-image"
+          className="block text-sm font-medium text-slate-200 mb-1"
+        >
           Immagine {!isEdit && '*'}
         </label>
         <input
+          id="old-contest-image"
           type="file"
           accept="image/*"
           onChange={e => setImageFile(e.target.files?.[0] || null)}

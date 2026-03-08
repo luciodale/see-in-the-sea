@@ -72,7 +72,7 @@ export const pastContestsData: Contest[] = [
             id: 'HqAtLmm_WZNcaqdqS-qvY',
             title: 'Incontro giocoso',
             description:
-              'Una femmina adulta di megattera si avvicina con calma, mostrando un comportamento curioso e vivace. Era accompagnata da un maschio adulto, probabilmente in un rituale di corteggiamento, e ha mostrato un interesse reale verso di me, restandomi intorno per più di un’ora. Ho scattato questa foto nell’agosto 2025 nelle acque di Vava’u, a Tonga, dove molte megattere arrivano durante l’inverno australe per accoppiarsi e partorire. Dopo diverse settimane in mare, questo è stato l’unico momento in cui una balena si è mostrata così curiosa e interattiva.',
+              'Una femmina adulta di megattera si avvicina con calma, mostrando un comportamento curioso e vivace. Era accompagnata da un maschio adulto, probabilmente in un rituale di corteggiamento, e ha mostrato un interesse reale verso di me, restandomi intorno per più di un’ora.Ho scattato questa foto nell’agosto 2025 nelle acque di Vava’u, a Tonga, dove molte megattere arrivano durante l’inverno australe per accoppiarsi e partorire. Dopo diverse settimane in mare, questo è stato l’unico momento in cui una balena si è mostrata così curiosa e interattiva.',
             placement: 'first',
             photographer: {
               firstName: 'Marco',

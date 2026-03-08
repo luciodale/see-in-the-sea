@@ -1,6 +1,6 @@
-import { Layout } from '@/react/admin-components/Layout';
 import { SignedIn, SignedOut } from '@clerk/clerk-react';
 import { createFileRoute, Outlet } from '@tanstack/react-router';
+import { Layout } from '@/react/admin-components/Layout';
 import { RedirectToSignIn } from '../../components/RedirectToSignIn';
 
 export const Route = createFileRoute('/user/')({

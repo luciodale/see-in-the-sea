@@ -18,6 +18,7 @@ export function AuthChoice({ onModeSelect }: AuthChoiceProps) {
       {/* Header */}
       <div className="text-center mb-8 relative">
         <button
+          type="button"
           onClick={() => window.history.back()}
           className="absolute -top-2 -left-2 p-2 text-gray-300 hover:text-white transition-colors hover:bg-white/10 rounded-lg cursor-pointer"
         >
@@ -25,6 +26,7 @@ export function AuthChoice({ onModeSelect }: AuthChoiceProps) {
         </button>
         <div className="w-20 h-20 bg-gradient-to-br from-cyan-500 to-blue-600 rounded-full flex items-center justify-center mx-auto mb-6 shadow-lg shadow-cyan-500/30">
           <svg
+            aria-hidden="true"
             className="w-10 h-10 text-white"
             fill="none"
             stroke="currentColor"
@@ -54,6 +56,7 @@ export function AuthChoice({ onModeSelect }: AuthChoiceProps) {
       <div className="space-y-3">
         {/* Sign Up Button */}
         <button
+          type="button"
           onClick={() => onModeSelect('signup')}
           className="w-full bg-white/10 hover:bg-white/15 text-white font-medium py-4 px-6 rounded-xl transition-all duration-200 flex items-center justify-center group cursor-pointer border border-white/20 hover:border-white/30"
         >
@@ -75,6 +78,7 @@ export function AuthChoice({ onModeSelect }: AuthChoiceProps) {
 
         {/* Sign In Button */}
         <button
+          type="button"
           onClick={() => onModeSelect('login')}
           className="w-full bg-white/5 hover:bg-white/10 text-white font-medium py-4 px-6 rounded-xl transition-all duration-200 flex items-center justify-center group border border-white/10 hover:border-white/20 cursor-pointer"
         >

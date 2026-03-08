@@ -32,7 +32,7 @@ export function PayNowView() {
       } else {
         setError(data.message || 'Failed to create checkout session');
       }
-    } catch (err) {
+    } catch (_err) {
       setError('Network error. Please try again.');
     } finally {
       setLoading(false);

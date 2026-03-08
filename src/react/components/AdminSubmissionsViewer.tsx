@@ -1,5 +1,5 @@
 import { useAuth } from '@clerk/clerk-react';
-import { useEffect, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import type { AdminUsersResponse } from '../../pages/api/admin/users';
 import { getFullQualityImageUrl } from '../../server/imageService';
 import type {
@@ -62,7 +62,7 @@ export function AdminSubmissionsViewer({
   };
 
   // Fetch all submissions for the contest (no server-side filtering)
-  const fetchAllSubmissions = async () => {
+  const fetchAllSubmissions = useCallback(async () => {
     try {
       setIsLoading(true);
       setError(null);
@@ -99,7 +99,7 @@ export function AdminSubmissionsViewer({
     } finally {
       setIsLoading(false);
     }
-  };
+  }, [getToken, contestId]);
 
   // Client-side filtering
   useEffect(() => {
@@ -122,7 +122,7 @@ export function AdminSubmissionsViewer({
   }, [allSubmissions, filters]);
 
   // Fetch users data from Clerk
-  const fetchUsersData = async () => {
+  const fetchUsersData = useCallback(async () => {
     try {
       setIsLoadingUsers(true);
 
@@ -151,12 +151,12 @@ export function AdminSubmissionsViewer({
     } finally {
       setIsLoadingUsers(false);
     }
-  };
+  }, [getToken, contestId]);
 
   useEffect(() => {
     fetchAllSubmissions();
     fetchUsersData();
-  }, [contestId]);
+  }, [fetchAllSubmissions, fetchUsersData]);
 
   const handleSearchChange = (value: string) => {
     setFilters({ search: value });
@@ -256,7 +256,7 @@ export function AdminSubmissionsViewer({
       ),
     ].join('\n');
 
-    const blob = new Blob(['\uFEFF' + csvContent], {
+    const blob = new Blob([`\uFEFF${csvContent}`], {
       type: 'text/csv;charset=utf-8;',
     });
     const url = URL.createObjectURL(blob);
@@ -288,6 +288,7 @@ export function AdminSubmissionsViewer({
               className="inline-flex items-center px-4 py-2 border border-slate-600 text-sm font-medium rounded-md text-slate-200 bg-slate-800 hover:bg-slate-700 focus:outline-none focus:ring-2 focus:ring-emerald-500 transition-colors"
             >
               <svg
+                aria-hidden="true"
                 className="w-4 h-4 mr-2"
                 fill="none"
                 stroke="currentColor"
@@ -320,6 +321,7 @@ export function AdminSubmissionsViewer({
                   </p>
                   {!isLoadingUsers && usersWithoutUploads.length > 0 && (
                     <button
+                      type="button"
                       onClick={() => setShowUsersModal(true)}
                       className="mt-2 text-xs text-blue-400 hover:text-blue-300 underline"
                     >
@@ -329,6 +331,7 @@ export function AdminSubmissionsViewer({
                 </div>
                 <div className="bg-blue-900/40 rounded-full p-3">
                   <svg
+                    aria-hidden="true"
                     className="w-6 h-6 text-blue-300"
                     fill="none"
                     stroke="currentColor"
@@ -363,6 +366,7 @@ export function AdminSubmissionsViewer({
                 </div>
                 <div className="bg-emerald-900/40 rounded-full p-3">
                   <svg
+                    aria-hidden="true"
                     className="w-6 h-6 text-emerald-300"
                     fill="none"
                     stroke="currentColor"
@@ -398,6 +402,7 @@ export function AdminSubmissionsViewer({
                 </div>
                 <div className="bg-green-900/40 rounded-full p-3">
                   <svg
+                    aria-hidden="true"
                     className="w-6 h-6 text-green-300"
                     fill="none"
                     stroke="currentColor"
@@ -456,6 +461,7 @@ export function AdminSubmissionsViewer({
             <div className="px-6 py-12 text-center">
               <div className="text-slate-400">
                 <svg
+                  aria-hidden="true"
                   className="mx-auto h-12 w-12 text-slate-500 mb-4"
                   fill="none"
                   stroke="currentColor"
@@ -521,6 +527,7 @@ export function AdminSubmissionsViewer({
                           {/* Expand/Collapse Icon */}
                           <td className="px-6 py-4 whitespace-nowrap">
                             <svg
+                              aria-hidden="true"
                               className={`w-5 h-5 text-slate-400 transition-transform ${isExpanded ? 'rotate-90' : ''}`}
                               fill="none"
                               stroke="currentColor"
@@ -707,6 +714,7 @@ export function AdminSubmissionsViewer({
                                         {/* Action Button */}
                                         <div className="pt-2">
                                           <button
+                                            type="button"
                                             onClick={e => {
                                               e.stopPropagation();
                                               if (!submission.r2ImageId) {
@@ -723,6 +731,7 @@ export function AdminSubmissionsViewer({
                                             className="inline-flex items-center px-3 md:px-4 py-2 border border-slate-700 text-xs md:text-sm font-medium rounded-md text-slate-200 bg-slate-800 hover:bg-slate-700 focus:outline-none focus:ring-2 focus:ring-emerald-500 cursor-pointer transition-colors"
                                           >
                                             <svg
+                                              aria-hidden="true"
                                               className="w-4 h-4 mr-2"
                                               fill="none"
                                               stroke="currentColor"
@@ -778,6 +787,7 @@ export function AdminSubmissionsViewer({
                 className="text-slate-400 hover:text-white transition-colors"
               >
                 <svg
+                  aria-hidden="true"
                   className="w-6 h-6"
                   fill="none"
                   stroke="currentColor"

@@ -30,6 +30,7 @@ export function ResetPasswordForm({
       {/* Header */}
       <div className="text-center mb-8 relative">
         <button
+          type="button"
           onClick={onBack}
           className="absolute -top-2 -left-2 p-2 text-gray-300 hover:text-white transition-colors cursor-pointer hover:bg-white/10 rounded-lg"
           disabled={loading}
@@ -39,6 +40,7 @@ export function ResetPasswordForm({
 
         <div className="w-16 h-16 bg-gradient-to-br from-purple-500 to-blue-600 rounded-full flex items-center justify-center mx-auto mb-4 shadow-lg shadow-purple-500/30">
           <svg
+            aria-hidden="true"
             className="w-8 h-8 text-white"
             fill="none"
             stroke="currentColor"

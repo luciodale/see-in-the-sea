@@ -1,7 +1,7 @@
-import { REDIRECT_URL } from '@/constants.ts';
 import { ClerkProvider } from '@clerk/clerk-react';
 import { createRouter, RouterProvider } from '@tanstack/react-router';
 import { StrictMode } from 'react';
+import { REDIRECT_URL } from '@/constants.ts';
 import { I18nProvider } from '../i18n/react.tsx';
 import {
   getLanguageAwareRedirectUrl,

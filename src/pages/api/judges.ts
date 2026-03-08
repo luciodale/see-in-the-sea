@@ -2,8 +2,8 @@ import type { APIRoute } from 'astro';
 import { eq } from 'drizzle-orm';
 import { getDb } from '../../db/index';
 import { judges } from '../../db/schema';
-import { authenticateRequest } from '../../server/authenticateRequest';
 import { getBackendTranslation } from '../../i18n/utils';
+import { authenticateRequest } from '../../server/authenticateRequest';
 
 export const prerender = false;
 

@@ -1,12 +1,12 @@
 import {
-  backendTranslations,
   type BackendTranslationKey,
+  backendTranslations,
 } from './backend-translations';
 import {
   defaultLang,
-  translations,
   type Language,
   type TranslationKey,
+  translations,
 } from './translations';
 
 /**
@@ -59,7 +59,10 @@ export function getAlternates(url: URL) {
       : pathname;
 
   return [
-    { hrefLang: 'it', href: new URL(`/it${basePath === '/' ? '' : basePath}`, url).toString() },
+    {
+      hrefLang: 'it',
+      href: new URL(`/it${basePath === '/' ? '' : basePath}`, url).toString(),
+    },
     { hrefLang: 'x-default', href: new URL(basePath, url).toString() },
   ];
 }
@@ -169,7 +172,7 @@ export function getBackendTranslation(
   // Try to detect language from request if provided
   if (request) {
     const referer = request.headers.get('referer');
-    if (referer && referer.includes('/it/')) {
+    if (referer?.includes('/it/')) {
       lang = 'it';
     }
   }

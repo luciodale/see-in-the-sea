@@ -1,6 +1,6 @@
-import { useI18n } from '@/i18n/react';
 import { ChevronDownIcon } from '@heroicons/react/24/outline';
 import { useState } from 'react';
+import { useI18n } from '@/i18n/react';
 
 export function LanguageSwitcherReact() {
   const { lang } = useI18n();
@@ -48,6 +48,7 @@ export function LanguageSwitcherReact() {
         <>
           {/* Backdrop */}
           <button
+            type="button"
             className="fixed inset-0 z-10 cursor-pointer"
             onClick={() => setIsOpen(false)}
           />
@@ -71,6 +72,7 @@ export function LanguageSwitcherReact() {
                     <span className="flag">{language.flag}</span>
                     {language.code === lang && (
                       <svg
+                        aria-hidden="true"
                         className="w-4 h-4 ml-auto text-indigo-200"
                         fill="currentColor"
                         viewBox="0 0 20 20"

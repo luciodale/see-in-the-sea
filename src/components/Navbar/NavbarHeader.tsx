@@ -1,8 +1,3 @@
-import { getNavigationItems } from '@/config/navigation';
-import { getLocalizedPath } from '@/i18n';
-import { useI18n } from '@/i18n/react';
-import { getLanguageAwareSignOutUrl } from '@/i18n/utils';
-import { useUserRole } from '@/react/hooks/useUserRole';
 import { SignedIn, SignedOut, useClerk, useUser } from '@clerk/clerk-react';
 import {
   Dialog,
@@ -19,6 +14,11 @@ import {
   XMarkIcon,
 } from '@heroicons/react/24/outline';
 import { useState } from 'react';
+import { getNavigationItems } from '@/config/navigation';
+import { getLocalizedPath } from '@/i18n';
+import { useI18n } from '@/i18n/react';
+import { getLanguageAwareSignOutUrl } from '@/i18n/utils';
+import { useUserRole } from '@/react/hooks/useUserRole';
 import { LanguageSwitcherReact } from '../LanguageSwitcherReact';
 
 const logoPath = '/images/ortona-sub-logo.svg';
@@ -122,9 +122,7 @@ export function NavbarHeader({ standalone = false }: { standalone?: boolean }) {
   }
 
   return (
-    <header
-      className={`${!standalone ? 'absolute' : ''} inset-x-0 top-0 z-50`}
-    >
+    <header className={`${!standalone ? 'absolute' : ''} inset-x-0 top-0 z-50`}>
       <nav
         aria-label="Global"
         className="mx-auto max-w-screen-2xl flex items-center justify-between p-4 lg:px-6 xl:px-8"

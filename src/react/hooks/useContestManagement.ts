@@ -1,5 +1,5 @@
 import { useAuth } from '@clerk/clerk-react';
-import { useEffect, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import type {
   ContestDetailsData,
   ContestDetailsResponse,
@@ -11,7 +11,7 @@ export const useContestManagement = (year: number) => {
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
-  const fetchContestData = async () => {
+  const fetchContestData = useCallback(async () => {
     try {
       setIsLoading(true);
       setError(null);
@@ -42,11 +42,11 @@ export const useContestManagement = (year: number) => {
     } finally {
       setIsLoading(false);
     }
-  };
+  }, [getToken, year]);
 
   useEffect(() => {
     fetchContestData();
-  }, [year]);
+  }, [fetchContestData]);
 
   const refreshData = () => {
     fetchContestData();

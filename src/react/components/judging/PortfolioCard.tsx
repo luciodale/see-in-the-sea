@@ -33,6 +33,19 @@ export const PortfolioCard = memo(function PortfolioCard({
   const [failedIds, setFailedIds] = useState<Set<string>>(new Set());
 
   const firstPhoto = portfolioSubmissions[0];
+  const submissionIds = portfolioSubmissions.map(s => s.id);
+
+  const handleFlag = useCallback(
+    (status: FlagStatus) => onFlag(submissionIds, status),
+    [onFlag, submissionIds]
+  );
+
+  const handlePlace = useCallback(
+    (placement: Placement) =>
+      onPlace(submissionIds, placement, firstPhoto?.categoryId ?? ''),
+    [onPlace, submissionIds, firstPhoto?.categoryId]
+  );
+
   if (!firstPhoto) return null;
 
   const isRejected = firstPhoto.flagStatus === 'rejected';
@@ -41,7 +54,6 @@ export const PortfolioCard = memo(function PortfolioCard({
   const photoByType = new Map(
     portfolioSubmissions.map(s => [s.portfolioPhotoType, s])
   );
-  const submissionIds = portfolioSubmissions.map(s => s.id);
 
   const handleClick = () => onInspect(portfolioId);
   const handleKeyDown = (e: React.KeyboardEvent) => {
@@ -51,18 +63,8 @@ export const PortfolioCard = memo(function PortfolioCard({
     }
   };
 
-  const handleFlag = useCallback(
-    (status: FlagStatus) => onFlag(submissionIds, status),
-    [onFlag, submissionIds]
-  );
-
-  const handlePlace = useCallback(
-    (placement: Placement) =>
-      onPlace(submissionIds, placement, firstPhoto.categoryId),
-    [onPlace, submissionIds, firstPhoto.categoryId]
-  );
-
   return (
+    // biome-ignore lint/a11y/useSemanticElements: card acts as button with complex inner content
     <div
       role="button"
       tabIndex={0}

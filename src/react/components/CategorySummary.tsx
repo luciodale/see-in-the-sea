@@ -72,6 +72,7 @@ export function CategorySummary({
         <div className="bg-gradient-to-r from-emerald-900/40 to-emerald-800/30 border border-emerald-600/50 text-emerald-100 rounded-xl p-5 text-center shadow-lg shadow-emerald-900/20">
           <div className="flex items-center justify-center gap-2 mb-2">
             <svg
+              aria-hidden="true"
               className="w-5 h-5 text-emerald-400"
               fill="currentColor"
               viewBox="0 0 20 20"
@@ -107,6 +108,7 @@ export function CategorySummary({
               <div className="flex items-center gap-2 mb-3 p-2 bg-emerald-900/20 border border-emerald-700/50 rounded-md">
                 <div className="flex-shrink-0">
                   <svg
+                    aria-hidden="true"
                     className="w-5 h-5 text-emerald-400"
                     fill="currentColor"
                     viewBox="0 0 20 20"

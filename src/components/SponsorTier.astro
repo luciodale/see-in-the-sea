@@ -8,13 +8,13 @@ interface Props {
 
 const { sponsors, tier } = Astro.props as Props;
 
-const getTierStyles = (tier: Sponsor['tier']) => {
+const getTierStyles = (_tier: Sponsor['tier']) => {
   // All tiers use the same styling, only ordering matters
   return {
     border: 'border-gray-400/30',
     bg: 'bg-gradient-to-br from-gray-800/20 to-gray-700/20',
     scale: 'scale-100',
-    shadow: 'shadow-md'
+    shadow: 'shadow-md',
   };
 };
 

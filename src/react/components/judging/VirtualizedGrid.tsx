@@ -1,5 +1,5 @@
 import { useWindowVirtualizer } from '@tanstack/react-virtual';
-import { useEffect, useMemo, useRef, type ReactNode } from 'react';
+import { type ReactNode, useEffect, useMemo, useRef } from 'react';
 
 type VirtualizedGridProps<T> = {
   items: T[];
@@ -38,7 +38,7 @@ export function VirtualizedGrid<T>({
   // Re-measure all rows when columns change (card heights change with width)
   useEffect(() => {
     virtualizer.measure();
-  }, [columns, virtualizer]);
+  }, [virtualizer]);
 
   const virtualRows = virtualizer.getVirtualItems();
 

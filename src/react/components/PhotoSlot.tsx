@@ -1,5 +1,5 @@
 import clsx from 'clsx';
-import { PHOTO_TYPES } from '../../constants';
+import type { PHOTO_TYPES } from '../../constants';
 import { useI18n } from '../../i18n/react';
 import type { UISubmission } from '../../types/ui';
 import { ImageIcon } from './ImageIcon';

@@ -27,7 +27,7 @@ export function UploadModal({
   portfolio,
   portfolioPhotoType,
   onUploadSuccess,
-  onUploadError,
+  onUploadError: _onUploadError,
   isAdminUpload = false,
   adminUserEmail,
 }: UploadModalProps) {
@@ -228,10 +228,14 @@ export function UploadModal({
 
         {/* Title */}
         <div>
-          <label className="block text-sm font-medium text-slate-300 mb-2">
+          <label
+            htmlFor="upload-title"
+            className="block text-sm font-medium text-slate-300 mb-2"
+          >
             {t('form.title')} *
           </label>
           <input
+            id="upload-title"
             type="text"
             value={title}
             onChange={e => setTitle(e.target.value)}
@@ -243,10 +247,14 @@ export function UploadModal({
 
         {/* Description */}
         <div>
-          <label className="block text-sm font-medium text-slate-300 mb-2">
+          <label
+            htmlFor="upload-description"
+            className="block text-sm font-medium text-slate-300 mb-2"
+          >
             {t('form.description-optional')}
           </label>
           <textarea
+            id="upload-description"
             value={description}
             onChange={e => setDescription(e.target.value)}
             disabled={isUploading}
@@ -265,6 +273,7 @@ export function UploadModal({
       {/* Actions */}
       <div className="flex gap-3 mt-6">
         <button
+          type="button"
           onClick={handleClose}
           disabled={isUploading}
           className="flex-1 py-2 px-4 bg-slate-700 hover:bg-slate-600 text-white rounded-lg disabled:opacity-50 cursor-pointer"
@@ -272,6 +281,7 @@ export function UploadModal({
           {t('action.cancel')}
         </button>
         <button
+          type="button"
           onClick={handleUpload}
           disabled={
             !selectedFile ||

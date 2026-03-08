@@ -88,6 +88,7 @@ export function PortfolioInspectModal({
       {zoomedPhoto && (
         <div className="absolute inset-0 bg-neutral-700 z-60">
           {/* Full-screen image */}
+          {/* biome-ignore lint/a11y/useSemanticElements: interactive zoom overlay with complex content */}
           <div
             role="button"
             tabIndex={0}
@@ -149,6 +150,7 @@ export function PortfolioInspectModal({
           </button>
 
           {/* Header — absolute, show on hover */}
+          {/* biome-ignore lint/a11y/noStaticElementInteractions: hover zone for showing/hiding chrome UI */}
           <div
             className="absolute top-0 inset-x-0 z-30"
             onMouseEnter={() => setChromeVisible(true)}
@@ -203,6 +205,7 @@ export function PortfolioInspectModal({
           </div>
 
           {/* Footer — absolute, show on hover */}
+          {/* biome-ignore lint/a11y/noStaticElementInteractions: hover zone for showing/hiding chrome UI */}
           <div
             className="absolute bottom-0 inset-x-0 z-30"
             onMouseEnter={() => setChromeVisible(true)}
@@ -289,6 +292,7 @@ export function PortfolioInspectModal({
             const imageUrl = sub.r2ImageId ? getImageUrl(sub.r2ImageId) : null;
             const hasFailed = failedIds.has(sub.id);
             return (
+              // biome-ignore lint/a11y/useSemanticElements: card acts as button with complex inner content
               <div
                 key={sub.id}
                 role="button"

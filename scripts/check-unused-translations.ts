@@ -1,12 +1,10 @@
 #!/usr/bin/env bun
 
-import { readFileSync, readdirSync, statSync } from 'fs';
-import { extname, join } from 'path';
+import { readdirSync, readFileSync, statSync } from 'node:fs';
+import { extname, join } from 'node:path';
 
 // Import the translations to get all keys
 import { defaultLang, translations } from '../src/i18n/translations';
-
-type TranslationKey = keyof (typeof translations)[typeof defaultLang];
 
 interface UsageResult {
   key: string;
@@ -76,13 +74,13 @@ class TranslationAnalyzer {
       const escapedKey = key.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
       const patterns = [
         // Direct key usage in quotes
-        new RegExp('[\'"]' + escapedKey + '[\'"]', 'g'),
+        new RegExp(`['"]${escapedKey}['"]`, 'g'),
         // Key usage in template literals
-        new RegExp('`[^`]*' + escapedKey + '[^`]*`', 'g'),
+        new RegExp(`\`[^\`]*${escapedKey}[^\`]*\``, 'g'),
         // Key usage in object property access
-        new RegExp('\\[[\'"]' + escapedKey + '[\'"]\\]', 'g'),
+        new RegExp(`\\[['"]${escapedKey}['"]\\]`, 'g'),
         // Key usage in function calls
-        new RegExp('\\([\'"]' + escapedKey + '[\'"]\\)', 'g'),
+        new RegExp(`\\(['"]${escapedKey}['"]\\)`, 'g'),
       ];
 
       let count = 0;
@@ -143,7 +141,7 @@ class TranslationAnalyzer {
     const usedKeys = this.usageResults.filter(r => r.used);
     const unusedKeys = this.usageResults.filter(r => !r.used);
 
-    console.log('\n' + '='.repeat(60));
+    console.log(`\n${'='.repeat(60)}`);
     console.log('TRANSLATION USAGE REPORT');
     console.log('='.repeat(60));
 
@@ -152,7 +150,7 @@ class TranslationAnalyzer {
     console.log(`Unused keys: ${unusedKeys.length}`);
 
     if (unusedKeys.length > 0) {
-      console.log('\n' + '-'.repeat(40));
+      console.log(`\n${'-'.repeat(40)}`);
       console.log('UNUSED TRANSLATION KEYS:');
       console.log('-'.repeat(40));
 
@@ -160,7 +158,7 @@ class TranslationAnalyzer {
         console.log(`  • ${result.key}`);
       }
 
-      console.log('\n' + '-'.repeat(40));
+      console.log(`\n${'-'.repeat(40)}`);
       console.log('RECOMMENDATION:');
       console.log('-'.repeat(40));
       console.log(
@@ -173,7 +171,7 @@ class TranslationAnalyzer {
 
     // Show some usage statistics
     if (usedKeys.length > 0) {
-      console.log('\n' + '-'.repeat(40));
+      console.log(`\n${'-'.repeat(40)}`);
       console.log('MOST USED KEYS:');
       console.log('-'.repeat(40));
 
@@ -192,7 +190,7 @@ class TranslationAnalyzer {
 
     if (unusedKeys.length > 0) {
       const unusedKeysList = unusedKeys.map(r => r.key).join('\n');
-      console.log('\n' + '='.repeat(60));
+      console.log(`\n${'='.repeat(60)}`);
       console.log('UNUSED KEYS LIST (for easy removal):');
       console.log('='.repeat(60));
       console.log(unusedKeysList);

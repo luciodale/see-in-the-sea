@@ -10,19 +10,17 @@ import {
   validateActiveCategory,
   validateActiveContest,
 } from '../../server/contestService';
-import type { UploadResponse } from '../../types/api';
-
 import {
   deleteImageFromR2,
   generateR2ImageId,
   uploadImageWithMetadata,
 } from '../../server/imageService';
-
 import {
   validateImageFile,
   validateSubmissionAction,
   validateUploadFormData,
 } from '../../server/validationService';
+import type { UploadResponse } from '../../types/api';
 
 export const prerender = false;
 

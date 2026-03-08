@@ -75,6 +75,7 @@ export function BaseModal({
               aria-label={t('action.close')}
             >
               <svg
+                aria-hidden="true"
                 className="w-6 h-6"
                 fill="none"
                 stroke="currentColor"

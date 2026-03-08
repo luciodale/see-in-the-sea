@@ -22,6 +22,7 @@ export function SuccessModal({
     if (variant === 'success') {
       return (
         <svg
+          aria-hidden="true"
           className="w-12 h-12 text-emerald-500"
           fill="none"
           stroke="currentColor"
@@ -38,6 +39,7 @@ export function SuccessModal({
     }
     return (
       <svg
+        aria-hidden="true"
         className="w-12 h-12 text-blue-500"
         fill="none"
         stroke="currentColor"

@@ -1,4 +1,4 @@
-import { createClerkClient, type ClerkClient } from '@clerk/backend';
+import { type ClerkClient, createClerkClient } from '@clerk/backend';
 import { decodeJwt } from '@clerk/backend/jwt';
 
 export type TUserPublicMetadata = {

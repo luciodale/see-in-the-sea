@@ -102,8 +102,8 @@ export const GET: APIRoute = async ({ request, locals }) => {
     const categoryId = url.searchParams.get('categoryId');
     const userEmail = url.searchParams.get('userEmail');
     const search = url.searchParams.get('search');
-    const limit = parseInt(url.searchParams.get('limit') || '50');
-    const offset = parseInt(url.searchParams.get('offset') || '0');
+    const limit = parseInt(url.searchParams.get('limit') || '50', 10);
+    const offset = parseInt(url.searchParams.get('offset') || '0', 10);
 
     // Require contestId
     if (!contestId) {

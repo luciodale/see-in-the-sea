@@ -65,6 +65,7 @@ export const SubmissionCard = memo(function SubmissionCard({
               : 'border-slate-800 hover:border-slate-600'
       }`}
     >
+      {/* biome-ignore lint/a11y/useSemanticElements: card acts as button with complex inner content */}
       <div
         role="button"
         tabIndex={0}

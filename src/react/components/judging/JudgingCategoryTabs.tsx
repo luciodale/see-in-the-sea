@@ -173,7 +173,7 @@ export function JudgingCategoryTabs({
                     {p.label}
                   </span>
                   <span className="text-slate-300">
-                    {placementCounts[p.value!] || 0}
+                    {(p.value ? placementCounts[p.value] : 0) || 0}
                   </span>
                 </span>
               ))}

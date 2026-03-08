@@ -1,10 +1,10 @@
 // Main i18n exports for easy importing
 export {
   defaultLang,
-  languages,
-  translations,
   type Language,
+  languages,
   type TranslationKey,
+  translations,
 } from './translations';
 export {
   getAlternates,

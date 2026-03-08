@@ -1,6 +1,6 @@
 import { and, count, eq } from 'drizzle-orm';
 import type { Category, Contest, Submission } from '../db/index';
-import { categories, contests, getDb, submissions } from '../db/index';
+import { categories, contests, type getDb, submissions } from '../db/index';
 
 // Submission limits
 const DEFAULT_MAX_SUBMISSIONS_PER_CATEGORY = 2;

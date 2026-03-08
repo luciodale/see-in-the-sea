@@ -55,6 +55,7 @@ export function SubmissionInspectModal({
       className="fixed inset-0 bg-neutral-700 z-50"
     >
       {/* Full-screen image */}
+      {/* biome-ignore lint/a11y/useSemanticElements: interactive zoom overlay with complex content */}
       <div
         role="button"
         tabIndex={0}
@@ -109,6 +110,7 @@ export function SubmissionInspectModal({
       </button>
 
       {/* Header — absolute, show on hover */}
+      {/* biome-ignore lint/a11y/noStaticElementInteractions: hover zone for showing/hiding chrome UI */}
       <div
         className="absolute top-0 inset-x-0 z-30"
         onMouseEnter={() => setChromeVisible(true)}
@@ -171,6 +173,7 @@ export function SubmissionInspectModal({
       </div>
 
       {/* Bottom voting toolbar — absolute, show on hover */}
+      {/* biome-ignore lint/a11y/noStaticElementInteractions: hover zone for showing/hiding chrome UI */}
       <div
         className="absolute bottom-0 inset-x-0 z-30"
         onMouseEnter={() => setChromeVisible(true)}

@@ -1,16 +1,17 @@
+import { SignedIn, SignedOut, useAuth } from '@clerk/clerk-react';
+import { createFileRoute } from '@tanstack/react-router';
+import { useRef, useState } from 'react';
+import AdminTabs from '@/react/components/AdminTabs';
 import { AdminAccessDenied } from '@/react/components/admin/AdminAccessDenied';
 import { AdminPageLoader } from '@/react/components/admin/AdminPageLoader';
-import AdminTabs from '@/react/components/AdminTabs';
 import { JudgeManager } from '@/react/components/JudgeManager';
 import { OldContestSubmissionForm } from '@/react/components/OldContestSubmissionForm';
 import { RedirectToSignIn } from '@/react/components/RedirectToSignIn';
+import { useContestDownload } from '@/react/hooks/useContestDownload';
 import { useContestManagement } from '@/react/hooks/useContestManagement';
 import { useUserRole } from '@/react/hooks/useUserRole';
 import { getFullQualityImageUrl } from '@/server/imageService';
 import type { DeleteSubmissionResponse } from '@/types/api';
-import { SignedIn, SignedOut, useAuth } from '@clerk/clerk-react';
-import { createFileRoute } from '@tanstack/react-router';
-import { useRef, useState } from 'react';
 
 export const Route = createFileRoute('/admin/contest/$year')({
   component: ContestManagementPage,
@@ -18,7 +19,7 @@ export const Route = createFileRoute('/admin/contest/$year')({
 
 function ContestManagementPage() {
   const { year } = Route.useParams();
-  const yearNum = parseInt(year);
+  const yearNum = parseInt(year, 10);
   const { getToken } = useAuth();
   const { isAdmin, isLoaded, role } = useUserRole();
   const { data, isLoading, error, refreshData } = useContestManagement(yearNum);
@@ -37,6 +38,7 @@ function ContestManagementPage() {
   const [deletingSubmissionId, setDeletingSubmissionId] = useState<
     string | null
   >(null);
+  const download = useContestDownload();
 
   // Ref for the form container to scroll to
   const formContainerRef = useRef<HTMLDivElement>(null);
@@ -122,13 +124,81 @@ function ContestManagementPage() {
 
             <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
               <div className="space-y-6">
-                <div>
-                  <h2 className="text-lg font-semibold text-white">
-                    Gestione Concorso {year}
-                  </h2>
-                  <p className="mt-0.5 text-sm text-slate-400">
-                    {data?.contest.name || `UW Contest ${year}`}
-                  </p>
+                <div className="flex items-start justify-between">
+                  <div>
+                    <h2 className="text-lg font-semibold text-white">
+                      Gestione Concorso {year}
+                    </h2>
+                    <p className="mt-0.5 text-sm text-slate-400">
+                      {data?.contest.name || `UW Contest ${year}`}
+                    </p>
+                  </div>
+                  {data && data.submissions.length > 0 && (
+                    <div className="flex flex-col items-end gap-2">
+                      {(download.status === 'downloading' ||
+                        download.status === 'zipping') && (
+                        <div className="flex items-center gap-3 w-64">
+                          <div className="flex-1 h-2 bg-slate-700 rounded-full overflow-hidden">
+                            <div
+                              className="h-full bg-blue-500 rounded-full transition-all duration-200"
+                              style={{
+                                width: `${download.total > 0 ? (download.downloaded / download.total) * 100 : 0}%`,
+                              }}
+                            />
+                          </div>
+                          <span className="text-xs text-slate-400 tabular-nums whitespace-nowrap">
+                            {download.status === 'zipping'
+                              ? 'Zip...'
+                              : `${download.downloaded}/${download.total}`}
+                          </span>
+                        </div>
+                      )}
+                      {download.status === 'error' && (
+                        <span className="text-xs text-red-400">
+                          {download.error}
+                        </span>
+                      )}
+                      {download.status === 'complete' && (
+                        <span className="text-xs text-emerald-400">
+                          Completato
+                          {download.failed > 0 &&
+                            ` (${download.failed} errori)`}
+                        </span>
+                      )}
+                      <div className="flex gap-2">
+                        {(download.status === 'downloading' ||
+                          download.status === 'zipping') && (
+                          <button
+                            type="button"
+                            onClick={download.cancel}
+                            className="px-3 py-1.5 text-sm bg-slate-600 text-white rounded-md hover:bg-slate-500 transition-colors"
+                          >
+                            Annulla
+                          </button>
+                        )}
+                        <button
+                          type="button"
+                          disabled={
+                            download.status === 'downloading' ||
+                            download.status === 'zipping'
+                          }
+                          onClick={() =>
+                            download.downloadContest(
+                              data.contest.year,
+                              data.submissions
+                            )
+                          }
+                          className="px-3 py-1.5 text-sm bg-blue-600 text-white rounded-md hover:bg-blue-700 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+                        >
+                          {download.status === 'downloading'
+                            ? 'Scaricando...'
+                            : download.status === 'zipping'
+                              ? 'Creazione zip...'
+                              : 'Scarica Immagini'}
+                        </button>
+                      </div>
+                    </div>
+                  )}
                 </div>
 
                 {error ? (

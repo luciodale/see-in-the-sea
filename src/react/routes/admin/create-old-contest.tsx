@@ -1,8 +1,8 @@
 import { SignedIn, SignedOut } from '@clerk/clerk-react';
 import { createFileRoute, useNavigate } from '@tanstack/react-router';
+import AdminTabs from '../../components/AdminTabs';
 import { AdminAccessDenied } from '../../components/admin/AdminAccessDenied';
 import { AdminPageLoader } from '../../components/admin/AdminPageLoader';
-import AdminTabs from '../../components/AdminTabs';
 import { RedirectToSignIn } from '../../components/RedirectToSignIn';
 import { useCreateOldContest } from '../../hooks/useCreateOldContest';
 import { useUserRole } from '../../hooks/useUserRole';
@@ -130,11 +130,13 @@ function AdminCreateOldContest() {
                     </div>
 
                     <div>
+                      {/* biome-ignore lint/a11y/noLabelWithoutControl: label wraps a dynamic list of inputs */}
                       <label className="block text-sm font-medium text-slate-200 mb-2">
                         Giudici (Opzionale)
                       </label>
                       <div className="space-y-2">
                         {judgeNames.map((name, index) => (
+                          // biome-ignore lint/suspicious/noArrayIndexKey: judge list uses index-based operations
                           <div key={index} className="flex gap-2">
                             <input
                               type="text"
@@ -216,6 +218,7 @@ function AdminCreateOldContest() {
                         {isCreating ? (
                           <span className="flex items-center justify-center">
                             <svg
+                              aria-hidden="true"
                               className="animate-spin -ml-1 mr-2 h-4 w-4 text-white"
                               xmlns="http://www.w3.org/2000/svg"
                               fill="none"

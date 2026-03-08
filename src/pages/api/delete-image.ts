@@ -56,7 +56,9 @@ export const DELETE: APIRoute = async ({ request, locals }) => {
     }
 
     // Verify ownership of submission (unless admin delete)
-    let submission;
+    let submission:
+      | { id: string; r2ImageId: string | null; contestId?: string }
+      | undefined;
     if (adminDelete) {
       // Verify admin role
       if (!isAdminRole()) {
@@ -132,12 +134,14 @@ export const DELETE: APIRoute = async ({ request, locals }) => {
       }
 
       // Check if user has paid for this contest
+      // contestId is always present in this branch (regular user query includes it)
+      const contestIdValue = submission.contestId ?? '';
       const payment = await db
         .select()
         .from(payments)
         .where(
           and(
-            eq(payments.contestId, submission.contestId),
+            eq(payments.contestId, contestIdValue),
             eq(payments.userEmail, user.emailAddress || '')
           )
         )

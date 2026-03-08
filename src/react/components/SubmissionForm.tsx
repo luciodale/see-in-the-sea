@@ -100,10 +100,14 @@ export const OldContestSubmissionForm = ({
     <form onSubmit={handleSubmit} className="space-y-4">
       {/* Category Name */}
       <div>
-        <label className="block text-sm font-medium text-slate-200 mb-1">
+        <label
+          htmlFor="sub-form-category"
+          className="block text-sm font-medium text-slate-200 mb-1"
+        >
           Categoria *
         </label>
         <input
+          id="sub-form-category"
           type="text"
           value={categoryName}
           onChange={e => setCategoryName(e.target.value)}
@@ -115,10 +119,14 @@ export const OldContestSubmissionForm = ({
 
       {/* First Name */}
       <div>
-        <label className="block text-sm font-medium text-slate-200 mb-1">
+        <label
+          htmlFor="sub-form-firstName"
+          className="block text-sm font-medium text-slate-200 mb-1"
+        >
           Nome *
         </label>
         <input
+          id="sub-form-firstName"
           type="text"
           value={firstName}
           onChange={e => setFirstName(e.target.value)}
@@ -129,10 +137,14 @@ export const OldContestSubmissionForm = ({
 
       {/* Last Name */}
       <div>
-        <label className="block text-sm font-medium text-slate-200 mb-1">
+        <label
+          htmlFor="sub-form-lastName"
+          className="block text-sm font-medium text-slate-200 mb-1"
+        >
           Cognome *
         </label>
         <input
+          id="sub-form-lastName"
           type="text"
           value={lastName}
           onChange={e => setLastName(e.target.value)}
@@ -143,10 +155,14 @@ export const OldContestSubmissionForm = ({
 
       {/* Title */}
       <div>
-        <label className="block text-sm font-medium text-slate-200 mb-1">
+        <label
+          htmlFor="sub-form-title"
+          className="block text-sm font-medium text-slate-200 mb-1"
+        >
           Titolo *
         </label>
         <input
+          id="sub-form-title"
           type="text"
           value={title}
           onChange={e => setTitle(e.target.value)}
@@ -157,10 +173,14 @@ export const OldContestSubmissionForm = ({
 
       {/* Description */}
       <div>
-        <label className="block text-sm font-medium text-slate-200 mb-1">
+        <label
+          htmlFor="sub-form-description"
+          className="block text-sm font-medium text-slate-200 mb-1"
+        >
           Descrizione
         </label>
         <textarea
+          id="sub-form-description"
           value={description}
           onChange={e => setDescription(e.target.value)}
           disabled={isSubmitting}
@@ -171,10 +191,14 @@ export const OldContestSubmissionForm = ({
 
       {/* Result Placement */}
       <div>
-        <label className="block text-sm font-medium text-slate-200 mb-1">
+        <label
+          htmlFor="sub-form-placement"
+          className="block text-sm font-medium text-slate-200 mb-1"
+        >
           Piazzamento *
         </label>
         <select
+          id="sub-form-placement"
           value={resultPlacement}
           onChange={e => setResultPlacement(e.target.value)}
           disabled={isSubmitting}
@@ -189,10 +213,14 @@ export const OldContestSubmissionForm = ({
 
       {/* Image Upload */}
       <div>
-        <label className="block text-sm font-medium text-slate-200 mb-1">
+        <label
+          htmlFor="sub-form-image"
+          className="block text-sm font-medium text-slate-200 mb-1"
+        >
           Immagine {!isEdit && '*'}
         </label>
         <input
+          id="sub-form-image"
           type="file"
           accept="image/*"
           onChange={e => setImageFile(e.target.files?.[0] || null)}

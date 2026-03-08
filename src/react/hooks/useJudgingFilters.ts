@@ -83,7 +83,8 @@ export function useJudgingFilters({
       if (!portfolioMap.has(compositeKey)) {
         portfolioMap.set(compositeKey, []);
       }
-      const existing = portfolioMap.get(compositeKey)!;
+      const existing = portfolioMap.get(compositeKey);
+      if (!existing) return;
       const hasPhotoType = existing.some(
         e => e.portfolioPhotoType === s.portfolioPhotoType
       );

@@ -1,11 +1,7 @@
 import type { APIRoute } from 'astro';
 import { and, eq, isNotNull } from 'drizzle-orm';
 import { getDb } from '../../../db/index';
-import {
-  categories,
-  judgingFlags,
-  submissions,
-} from '../../../db/schema';
+import { categories, judgingFlags, submissions } from '../../../db/schema';
 import { authenticateAdmin } from '../../../server/authenticateRequest';
 import type { WinnersPreviewRow } from '../../../types/api';
 
@@ -97,7 +93,8 @@ export const GET: APIRoute = async ({ request, locals, url }) => {
     const placementValues = ['first', 'second', 'third', 'runner-up'] as const;
     const typedRows = rows.filter(
       (r): r is typeof r & { placement: PlacementType } =>
-        r.placement !== null && placementValues.includes(r.placement as PlacementType)
+        r.placement !== null &&
+        placementValues.includes(r.placement as PlacementType)
     );
 
     let clerkUsersMap = new Map<string, ClerkUser>();
@@ -120,10 +117,10 @@ export const GET: APIRoute = async ({ request, locals, url }) => {
       };
     });
 
-    return new Response(
-      JSON.stringify({ success: true, data: enriched }),
-      { status: 200, headers: { 'Content-Type': 'application/json' } }
-    );
+    return new Response(JSON.stringify({ success: true, data: enriched }), {
+      status: 200,
+      headers: { 'Content-Type': 'application/json' },
+    });
   } catch (error) {
     console.error('[winners-preview] Error:', error);
     return new Response(

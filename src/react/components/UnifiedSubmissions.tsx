@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import { DEFAULT_MAX_SUBMISSIONS_PER_CATEGORY } from '../../constants';
 import { CURRENT_CONTEST_CATEGORIES } from '../../constants/categories';
 import { useI18n } from '../../i18n/react';
@@ -54,20 +54,9 @@ export function UnifiedSubmissions() {
   const [isManageModalOpen, setIsManageModalOpen] = useState(false);
 
   // Payment status
-  const { hasPaid, loading: paymentLoading } = usePaymentStatus(contestId);
+  const { hasPaid } = usePaymentStatus(contestId);
 
-  useEffect(() => {
-    initialize();
-  }, []);
-
-  // Set first category as active when categories are loaded
-  useEffect(() => {
-    if (categories.length > 0 && !activeCategoryId) {
-      setActiveCategoryId(categories[0].id);
-    }
-  }, [categories, activeCategoryId]);
-
-  async function initialize() {
+  const initialize = useCallback(async () => {
     try {
       setLoading(true);
       setError(null);
@@ -134,7 +123,18 @@ export function UnifiedSubmissions() {
     } finally {
       setLoading(false);
     }
-  }
+  }, []);
+
+  useEffect(() => {
+    initialize();
+  }, [initialize]);
+
+  // Set first category as active when categories are loaded
+  useEffect(() => {
+    if (categories.length > 0 && !activeCategoryId) {
+      setActiveCategoryId(categories[0].id);
+    }
+  }, [categories, activeCategoryId]);
 
   function handleCategorySelect(categoryId: string) {
     setActiveCategoryId(categoryId);
@@ -149,7 +149,7 @@ export function UnifiedSubmissions() {
     setUploadModalOpen(true);
   }
 
-  function handleSubmissionClick(submission: CategoryState['submissions'][0]) {
+  function _handleSubmissionClick(submission: CategoryState['submissions'][0]) {
     setSelectedSubmission(submission);
   }
 
@@ -180,7 +180,7 @@ export function UnifiedSubmissions() {
     setDialogOpen(true);
   }
 
-  function handleUploadError(error: string) {
+  function handleUploadError(_error: string) {
     // Error is now handled in the UploadModal component
   }
 
@@ -240,14 +240,13 @@ export function UnifiedSubmissions() {
     cat => cat.submissions.length > 0
   );
   const hasSubmissions = categoriesWithSubmissions.length > 0;
-  const categoryCount = categoriesWithSubmissions.length;
 
   return (
     <div className="space-y-6">
       {/* Header with judges */}
       <div className="text-center">
         <h1 className="text-3xl font-bold text-white">
-          UW 2025 Contest{': '}
+          UW 2026 Contest{': '}
           {t('nav.submissions')}
         </h1>
         {!noActiveContest && (
@@ -285,28 +284,26 @@ export function UnifiedSubmissions() {
       {hasPaid && <PaymentSuccessBanner />}
 
       {/* Active Category Summary */}
-      {!noActiveContest && activeCategory && (
-        <>
-          {activeCategory.id === 'mediterranean' ? (
-            <MediterraneanPortfolioManager
-              submissions={activeCategory.submissions}
-              hasPaid={hasPaid}
-              onUploadClick={handleUploadClick}
-              onManageSubmission={handleManageSubmission}
-            />
-          ) : (
-            <CategorySummary
-              categoryId={activeCategory.id}
-              submissions={activeCategory.submissions}
-              maxSubmissionsPerCategory={activeCategory.maxSubmissions}
-              contestStatus={contestStatus}
-              hasPaid={hasPaid}
-              onUploadClick={() => handleUploadClick()}
-              onManageSubmission={handleManageSubmission}
-            />
-          )}
-        </>
-      )}
+      {!noActiveContest &&
+        activeCategory &&
+        (activeCategory.id === 'mediterranean' ? (
+          <MediterraneanPortfolioManager
+            submissions={activeCategory.submissions}
+            hasPaid={hasPaid}
+            onUploadClick={handleUploadClick}
+            onManageSubmission={handleManageSubmission}
+          />
+        ) : (
+          <CategorySummary
+            categoryId={activeCategory.id}
+            submissions={activeCategory.submissions}
+            maxSubmissionsPerCategory={activeCategory.maxSubmissions}
+            contestStatus={contestStatus}
+            hasPaid={hasPaid}
+            onUploadClick={() => handleUploadClick()}
+            onManageSubmission={handleManageSubmission}
+          />
+        ))}
 
       {/* Upload Modal */}
       {activeCategory && contestId && (
