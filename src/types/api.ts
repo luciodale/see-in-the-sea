@@ -241,6 +241,16 @@ export type WinnersPreviewRow = {
 
 export type WinnersPreviewResponse = ApiResponse<WinnersPreviewRow[]>;
 
+// Admin All Contests (for contest selector dropdown)
+export type ContestSummary = {
+  id: string;
+  name: string;
+  year: number;
+  status: 'active' | 'inactive' | 'assessment';
+};
+
+export type AllContestsResponse = ApiResponse<ContestSummary[]>;
+
 // Checkout API Types
 export type CheckoutResponse = {
   success: boolean;

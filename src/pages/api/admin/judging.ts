@@ -520,11 +520,15 @@ export const POST: APIRoute = async ({ request, locals }) => {
         .from(submissions)
         .where(eq(submissions.contestId, contestId));
 
-      // Delete judging flags for all submissions
-      for (const sub of contestSubmissions) {
+      const submissionIds = contestSubmissions.map(s => s.id);
+
+      // Delete judging flags in batches (D1 has parameter limits)
+      const BATCH_SIZE = 50;
+      for (let i = 0; i < submissionIds.length; i += BATCH_SIZE) {
+        const chunk = submissionIds.slice(i, i + BATCH_SIZE);
         await db
           .delete(judgingFlags)
-          .where(eq(judgingFlags.submissionId, sub.id));
+          .where(inArray(judgingFlags.submissionId, chunk));
       }
 
       return new Response(

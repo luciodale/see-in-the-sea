@@ -1,5 +1,7 @@
 import { SignedIn, SignedOut } from '@clerk/clerk-react';
 import { createFileRoute, useNavigate } from '@tanstack/react-router';
+import { AdminAccessDenied } from '../../components/admin/AdminAccessDenied';
+import { AdminPageLoader } from '../../components/admin/AdminPageLoader';
 import AdminTabs from '../../components/AdminTabs';
 import { RedirectToSignIn } from '../../components/RedirectToSignIn';
 import { useCreateOldContest } from '../../hooks/useCreateOldContest';
@@ -29,40 +31,31 @@ function AdminCreateOldContest() {
   } = useCreateOldContest();
 
   if (!isLoaded) {
-    return (
-      <div className="min-h-screen bg-slate-900 flex items-center justify-center text-slate-200">
-        <div className="text-center">
-          <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-emerald-500 mx-auto"></div>
-          <p className="mt-2">Caricamento...</p>
-        </div>
-      </div>
-    );
+    return <AdminPageLoader />;
   }
 
   return (
     <>
       <SignedIn>
         {isAdmin ? (
-          <div className="min-h-screen bg-slate-900 text-slate-100">
+          <div className="text-slate-100">
             <AdminTabs />
 
-            <main className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
-              <div className="space-y-8">
-                {/* Page Header */}
+            <main className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
+              <div className="space-y-6">
                 <div>
-                  <h2 className="text-2xl font-bold text-white">
+                  <h2 className="text-lg font-semibold text-white">
                     Gestisci Concorso Passato
                   </h2>
-                  <p className="mt-1 text-slate-300">
+                  <p className="mt-0.5 text-sm text-slate-400">
                     Aggiungi un concorso per un anno precedente al sistema.
                   </p>
                 </div>
 
-                {/* Existing Years Info */}
                 {isLoadingYears ? (
                   <div className="bg-slate-800 rounded-lg border border-slate-700 p-4">
                     <div className="flex items-center justify-center">
-                      <div className="animate-spin rounded-full h-5 w-5 border-b-2 border-emerald-500 mr-2"></div>
+                      <div className="animate-spin rounded-full h-5 w-5 border-b-2 border-emerald-500 mr-2" />
                       <span className="text-slate-300 text-sm">
                         Caricamento anni esistenti...
                       </span>
@@ -106,7 +99,6 @@ function AdminCreateOldContest() {
                   </div>
                 ) : null}
 
-                {/* Form Card */}
                 <div className="bg-slate-800 rounded-lg border border-slate-700 p-6">
                   <form
                     onSubmit={e => {
@@ -115,7 +107,6 @@ function AdminCreateOldContest() {
                     }}
                     className="space-y-6"
                   >
-                    {/* Year Input */}
                     <div>
                       <label
                         htmlFor="year"
@@ -138,7 +129,6 @@ function AdminCreateOldContest() {
                       </p>
                     </div>
 
-                    {/* Judges Input */}
                     <div>
                       <label className="block text-sm font-medium text-slate-200 mb-2">
                         Giudici (Opzionale)
@@ -179,12 +169,13 @@ function AdminCreateOldContest() {
                       </button>
                     </div>
 
-                    {/* Error Message */}
                     {error && (
                       <div className="bg-red-900/40 border border-red-700 rounded-md p-4">
                         <div className="flex items-start">
                           <div className="flex-shrink-0">
-                            <span className="text-red-400 text-xl">⚠️</span>
+                            <span className="text-red-400 text-xl">
+                              &#9888;&#65039;
+                            </span>
                           </div>
                           <div className="ml-3">
                             <h3 className="text-sm font-medium text-red-200">
@@ -196,12 +187,13 @@ function AdminCreateOldContest() {
                       </div>
                     )}
 
-                    {/* Success Message */}
                     {success && (
                       <div className="bg-emerald-900/40 border border-emerald-700 rounded-md p-4">
                         <div className="flex items-start">
                           <div className="flex-shrink-0">
-                            <span className="text-emerald-400 text-xl">✓</span>
+                            <span className="text-emerald-400 text-xl">
+                              &#10003;
+                            </span>
                           </div>
                           <div className="ml-3">
                             <h3 className="text-sm font-medium text-emerald-200">
@@ -215,7 +207,6 @@ function AdminCreateOldContest() {
                       </div>
                     )}
 
-                    {/* Action Buttons */}
                     <div className="flex gap-3 pt-2">
                       <button
                         type="submit"
@@ -237,12 +228,12 @@ function AdminCreateOldContest() {
                                 r="10"
                                 stroke="currentColor"
                                 strokeWidth="4"
-                              ></circle>
+                              />
                               <path
                                 className="opacity-75"
                                 fill="currentColor"
                                 d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
-                              ></path>
+                              />
                             </svg>
                             Creazione in corso...
                           </span>
@@ -267,22 +258,7 @@ function AdminCreateOldContest() {
             </main>
           </div>
         ) : (
-          <div className="min-h-screen flex items-center justify-center bg-slate-900">
-            <div className="max-w-md w-full bg-slate-800 rounded-lg shadow-md p-6 text-center">
-              <div className="text-red-500 text-6xl mb-4">🚫</div>
-              <h2 className="text-2xl font-bold text-white mb-2">
-                Accesso Negato
-              </h2>
-              <p className="text-slate-300 mb-4">
-                Hai bisogno di privilegi amministrativi per accedere a questa
-                area.
-              </p>
-              <p className="text-sm text-slate-400 mb-6">
-                Il tuo ruolo attuale:{' '}
-                <span className="font-semibold">{role || 'user'}</span>
-              </p>
-            </div>
-          </div>
+          <AdminAccessDenied role={role} />
         )}
       </SignedIn>
 

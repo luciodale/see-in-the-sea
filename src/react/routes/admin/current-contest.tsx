@@ -1,124 +1,75 @@
-import type { ContestsResponse } from '@/types/api';
 import { SignedIn, SignedOut } from '@clerk/clerk-react';
 import { createFileRoute } from '@tanstack/react-router';
-import { useEffect, useState } from 'react';
+import { useCallback } from 'react';
+import { validateAdminSearch } from '../../adminSearchSchema';
+import { AdminAccessDenied } from '../../components/admin/AdminAccessDenied';
+import { AdminPageLoader } from '../../components/admin/AdminPageLoader';
 import { AdminSubmissionsViewer } from '../../components/AdminSubmissionsViewer';
 import AdminTabs from '../../components/AdminTabs';
 import { RedirectToSignIn } from '../../components/RedirectToSignIn';
+import { useAdminContestId } from '../../hooks/useAdminContestId';
 import { useUserRole } from '../../hooks/useUserRole';
 
 export const Route = createFileRoute('/admin/current-contest')({
   component: AdminCurrentContest,
+  validateSearch: validateAdminSearch,
 });
 
 function AdminCurrentContest() {
   const { isAdmin, isLoaded, role } = useUserRole();
-  const [activeContestId, setActiveContestId] = useState<string | null>(null);
-  const [isLoadingContest, setIsLoadingContest] = useState(true);
-  const [contestError, setContestError] = useState<string | null>(null);
+  const searchParams = Route.useSearch();
+  const navigate = Route.useNavigate();
 
-  // Fetch the active contest ID
-  useEffect(() => {
-    const fetchActiveContest = async () => {
-      try {
-        setIsLoadingContest(true);
-        setContestError(null);
+  const navigateToContest = useCallback(
+    (id: string) => {
+      navigate({ search: { contestId: id }, replace: true });
+    },
+    [navigate]
+  );
 
-        const response = await fetch('/api/contests');
-        const result: ContestsResponse = await response.json();
+  const { contestId, contests, loading, setContestId } = useAdminContestId(
+    searchParams,
+    navigateToContest
+  );
 
-        if (!response.ok || !result.success || !result.data?.contest) {
-          setContestError('Nessun concorso attivo trovato');
-          return;
-        }
-
-        setActiveContestId(result.data.contest.id);
-      } catch (error) {
-        console.error('Error fetching active contest:', error);
-        setContestError('Impossibile recuperare il concorso attivo');
-      } finally {
-        setIsLoadingContest(false);
-      }
-    };
-
-    fetchActiveContest();
-  }, []);
-
-  if (!isLoaded || isLoadingContest) {
-    return (
-      <div className="min-h-screen bg-slate-900 flex items-center justify-center text-slate-200">
-        <div className="text-center">
-          <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-emerald-500 mx-auto"></div>
-          <p className="mt-2">Caricamento...</p>
-        </div>
-      </div>
-    );
+  if (!isLoaded || loading) {
+    return <AdminPageLoader />;
   }
 
   return (
     <>
       <SignedIn>
         {isAdmin ? (
-          <div className="min-h-screen bg-slate-900 text-slate-100">
-            <AdminTabs />
-            <div className="w-full px-4 sm:px-6 lg:px-8 py-6">
-              <div className="space-y-6">
-                {contestError ? (
-                  <div className="bg-red-900/40 border border-red-800 text-red-200 rounded-lg p-6 text-center">
-                    <div className="text-red-400 text-4xl mb-2">❌</div>
-                    <h2 className="text-xl font-bold mb-2">Errore Concorso</h2>
-                    <p>{contestError}</p>
-                  </div>
-                ) : activeContestId ? (
-                  <div className="w-screen relative left-1/2 right-1/2 -ml-[50vw] -mr-[50vw] px-4 sm:px-6 lg:px-8">
-                    <AdminSubmissionsViewer contestId={activeContestId} />
-                  </div>
-                ) : (
-                  <div className="bg-slate-800 border border-slate-700 text-slate-200 rounded-lg p-6 text-center">
-                    <div className="text-slate-400 text-4xl mb-2">🏆</div>
-                    <h2 className="text-xl font-bold mb-2">
-                      Nessun Concorso Attivo
-                    </h2>
-                    <p>Non c'è attualmente un concorso attivo.</p>
-                  </div>
-                )}
-              </div>
+          <div className="text-slate-100">
+            <AdminTabs
+              contests={contests}
+              selectedContestId={contestId}
+              onContestChange={setContestId}
+            />
+            <div className="w-full px-4 sm:px-6 lg:px-8 py-4">
+              {contestId ? (
+                <div className="w-screen relative left-1/2 right-1/2 -ml-[50vw] -mr-[50vw] px-4 sm:px-6 lg:px-8">
+                  <AdminSubmissionsViewer contestId={contestId} />
+                </div>
+              ) : (
+                <div className="bg-slate-800 border border-slate-700 text-slate-200 rounded-lg p-6 text-center">
+                  <h2 className="text-lg font-semibold mb-1">
+                    Nessun Concorso Trovato
+                  </h2>
+                  <p className="text-sm text-slate-400">
+                    Non ci sono concorsi disponibili.
+                  </p>
+                </div>
+              )}
             </div>
           </div>
         ) : (
-          <div className="min-h-screen flex items-center justify-center bg-slate-900">
-            <div className="max-w-md w-full bg-slate-900 border border-slate-700 rounded-lg p-6 text-center text-slate-100">
-              <div className="text-red-400 text-6xl mb-4">🚫</div>
-              <h2 className="text-2xl font-bold text-white mb-2">
-                Accesso Negato
-              </h2>
-              <p className="text-slate-400 mb-4">
-                Hai bisogno di privilegi amministrativi per accedere a questa
-                area.
-              </p>
-              <p className="text-sm text-slate-400 mb-6">
-                Il tuo ruolo attuale:{' '}
-                <span className="font-semibold text-white">
-                  {role || 'user'}
-                </span>
-              </p>
-            </div>
-          </div>
+          <AdminAccessDenied role={role} />
         )}
       </SignedIn>
 
       <SignedOut>
-        <div className="min-h-screen flex items-center justify-center bg-slate-900">
-          <div className="max-w-md w-full bg-slate-900 border border-slate-700 rounded-lg p-6 text-center text-slate-100">
-            <h2 className="text-2xl font-bold text-white mb-4">
-              Login Amministratore Richiesto
-            </h2>
-            <p className="text-slate-400 mb-6">
-              Effettua l'accesso per accedere al pannello amministratore.
-            </p>
-            <RedirectToSignIn />
-          </div>
-        </div>
+        <RedirectToSignIn />
       </SignedOut>
     </>
   );

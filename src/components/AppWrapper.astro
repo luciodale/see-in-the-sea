@@ -48,7 +48,9 @@ const currentLang = (lang || getLangFromUrl(Astro.url)) as 'en' | 'it';
     />
   </head>
   <body class={bodyClass}>
-    <slot />
+    <div class="flex-1">
+      <slot />
+    </div>
     <Footer lang={currentLang} />
   </body>
 </html>

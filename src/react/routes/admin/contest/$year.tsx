@@ -1,3 +1,5 @@
+import { AdminAccessDenied } from '@/react/components/admin/AdminAccessDenied';
+import { AdminPageLoader } from '@/react/components/admin/AdminPageLoader';
 import AdminTabs from '@/react/components/AdminTabs';
 import { JudgeManager } from '@/react/components/JudgeManager';
 import { OldContestSubmissionForm } from '@/react/components/OldContestSubmissionForm';
@@ -108,31 +110,23 @@ function ContestManagementPage() {
   };
 
   if (!isLoaded || isLoading) {
-    return (
-      <div className="min-h-screen bg-slate-900 flex items-center justify-center text-slate-200">
-        <div className="text-center">
-          <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-emerald-500 mx-auto"></div>
-          <p className="mt-2">Caricamento...</p>
-        </div>
-      </div>
-    );
+    return <AdminPageLoader />;
   }
 
   return (
     <>
       <SignedIn>
         {isAdmin ? (
-          <div className="min-h-screen bg-slate-900 text-slate-100">
+          <div className="text-slate-100">
             <AdminTabs />
 
-            <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
-              <div className="space-y-8">
-                {/* Header */}
+            <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
+              <div className="space-y-6">
                 <div>
-                  <h2 className="text-2xl font-bold text-white">
+                  <h2 className="text-lg font-semibold text-white">
                     Gestione Concorso {year}
                   </h2>
-                  <p className="mt-1 text-slate-300">
+                  <p className="mt-0.5 text-sm text-slate-400">
                     {data?.contest.name || `UW Contest ${year}`}
                   </p>
                 </div>
@@ -301,22 +295,7 @@ function ContestManagementPage() {
             </main>
           </div>
         ) : (
-          <div className="min-h-screen flex items-center justify-center bg-slate-900">
-            <div className="max-w-md w-full bg-slate-800 rounded-lg shadow-md p-6 text-center">
-              <div className="text-red-500 text-6xl mb-4">🚫</div>
-              <h2 className="text-2xl font-bold text-white mb-2">
-                Accesso Negato
-              </h2>
-              <p className="text-slate-300 mb-4">
-                Hai bisogno di privilegi amministrativi per accedere a questa
-                area.
-              </p>
-              <p className="text-sm text-slate-400 mb-6">
-                Il tuo ruolo attuale:{' '}
-                <span className="font-semibold">{role || 'user'}</span>
-              </p>
-            </div>
-          </div>
+          <AdminAccessDenied role={role} />
         )}
       </SignedIn>
 

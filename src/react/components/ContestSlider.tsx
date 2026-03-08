@@ -1,16 +1,16 @@
 import { type Contest } from '@/data/past-contests';
-import { useTranslations, type Language } from '@/i18n';
+import { type Language, useTranslations } from '@/i18n';
 import { ArrowRight, ChevronLeft, ChevronRight } from 'lucide-react';
-import { useEffect, useRef, useState } from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
 
 type ContestAndLink = {
   link: string;
 } & Contest;
 
-interface ContestSliderProps {
+type ContestSliderProps = {
   contests: ContestAndLink[];
   lang: Language;
-}
+};
 
 export function ContestSlider({ contests, lang }: ContestSliderProps) {
   const t = useTranslations(lang);
@@ -18,12 +18,12 @@ export function ContestSlider({ contests, lang }: ContestSliderProps) {
   const [canScrollLeft, setCanScrollLeft] = useState(false);
   const [canScrollRight, setCanScrollRight] = useState(true);
 
-  const updateScrollButtons = () => {
+  const updateScrollButtons = useCallback(() => {
     if (!scrollRef.current) return;
     const { scrollLeft, scrollWidth, clientWidth } = scrollRef.current;
     setCanScrollLeft(scrollLeft > 10);
     setCanScrollRight(scrollLeft < scrollWidth - clientWidth - 10);
-  };
+  }, []);
 
   useEffect(() => {
     const el = scrollRef.current;
@@ -35,7 +35,7 @@ export function ContestSlider({ contests, lang }: ContestSliderProps) {
       el.removeEventListener('scroll', updateScrollButtons);
       window.removeEventListener('resize', updateScrollButtons);
     };
-  }, []);
+  }, [updateScrollButtons]);
 
   const scroll = (direction: 'left' | 'right') => {
     if (!scrollRef.current) return;
@@ -51,20 +51,11 @@ export function ContestSlider({ contests, lang }: ContestSliderProps) {
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-slate-900 via-slate-900 to-slate-950 flex flex-col">
-      {/* Header */}
-      <div className="pt-24 pb-8 px-6 text-center">
-        <h1 className="text-4xl md:text-5xl font-extralight text-white tracking-wider uppercase">
-          {t('contests.slider.title')}
-        </h1>
-        <p className="mt-4 text-slate-400 text-lg font-light">
-          {t('contests.slider.description')}
-        </p>
-      </div>
-
       {/* Slider Container */}
       <div className="flex-1 flex items-center relative">
         {/* Left Arrow - Desktop only */}
         <button
+          type="button"
           onClick={() => scroll('left')}
           className={`hidden md:flex absolute left-4 z-10 w-12 h-12 items-center justify-center rounded-full bg-white/10 backdrop-blur-sm border border-white/20 text-white transition-all duration-300 ${
             canScrollLeft
@@ -105,7 +96,7 @@ export function ContestSlider({ contests, lang }: ContestSliderProps) {
                 />
               ) : (
                 <div className="absolute inset-0 bg-gradient-to-br from-slate-800 to-slate-900 flex items-center justify-center">
-                  <span className="text-8xl opacity-50">🏆</span>
+                  <span className="text-8xl opacity-50">&#127942;</span>
                 </div>
               )}
 
@@ -136,6 +127,7 @@ export function ContestSlider({ contests, lang }: ContestSliderProps) {
 
         {/* Right Arrow - Desktop only */}
         <button
+          type="button"
           onClick={() => scroll('right')}
           className={`hidden md:flex absolute right-4 z-10 w-12 h-12 items-center justify-center rounded-full bg-white/10 backdrop-blur-sm border border-white/20 text-white transition-all duration-300 ${
             canScrollRight

@@ -1,17 +1,17 @@
 #!/usr/bin/env bun
 
 /**
- * SEED TEST SUBMISSIONS WITH REAL IMAGES (LOCAL ONLY)
- * ====================================================
- * Downloads placeholder images from picsum.photos, uploads to local R2,
- * and seeds the local D1 database.
+ * SEED TEST SUBMISSIONS WITH LOCAL IMAGES (LOCAL ONLY)
+ * =====================================================
+ * Uses static images from public/images/contests/ to seed the local D1
+ * database and local R2 bucket for testing the judging panel.
  *
  * Usage:
  *   bun run scripts/seed-test-submissions.ts
  */
 
 import { execSync } from 'child_process';
-import { existsSync, mkdirSync, writeFileSync } from 'fs';
+import { existsSync, readdirSync, statSync, writeFileSync } from 'fs';
 import { nanoid } from 'nanoid';
 import { join } from 'path';
 
@@ -22,13 +22,14 @@ import {
 } from '../src/constants';
 import { CURRENT_CONTEST_CATEGORIES } from '../src/constants/categories';
 
-console.log('🌱 Seeding test submissions with real images (LOCAL only)...\n');
+console.log(
+  '🌱 Seeding test submissions with local images (LOCAL only)...\n'
+);
 
-// Use the same categories as the app
 const CATEGORIES = CURRENT_CONTEST_CATEGORIES.map(c => c.id);
-const SUBMISSIONS_PER_CATEGORY = 8;
-const TEMP_IMAGES_DIR = join(process.cwd(), '.temp-test-images');
+const SUBMISSIONS_PER_CATEGORY = 6;
 const CONTEST_ID = 'uw-2025';
+const IMAGES_DIR = join(process.cwd(), 'public', 'images', 'contests');
 
 function escapeSqlString(str: string): string {
   return str.replace(/'/g, "''");
@@ -81,41 +82,42 @@ type Submission = {
   portfolioPhotoType?: string;
 };
 
-async function downloadImage(
-  imageIndex: number,
-  filename: string
-): Promise<boolean> {
-  const url = `https://picsum.photos/seed/${imageIndex + 100}/800/800`;
-  const filepath = join(TEMP_IMAGES_DIR, filename);
-
-  if (existsSync(filepath)) {
-    console.log(`   ⏭️  ${filename} already exists, skipping download`);
-    return true;
+/** Collect all image files from public/images/contests/ subdirectories */
+function collectLocalImages(): string[] {
+  const images: string[] = [];
+  if (!existsSync(IMAGES_DIR)) {
+    console.error(`❌ Images directory not found: ${IMAGES_DIR}`);
+    process.exit(1);
   }
 
-  try {
-    const response = await fetch(url, { redirect: 'follow' });
-    if (!response.ok) {
-      console.log(
-        `   ❌ Failed to download image ${imageIndex}: ${response.status}`
-      );
-      return false;
+  const years = readdirSync(IMAGES_DIR).filter(d =>
+    statSync(join(IMAGES_DIR, d)).isDirectory()
+  );
+
+  for (const year of years.sort().reverse()) {
+    const yearDir = join(IMAGES_DIR, year);
+    const files = readdirSync(yearDir).filter(f =>
+      /\.(webp|jpg|jpeg|png)$/i.test(f)
+    );
+    for (const f of files) {
+      images.push(join(yearDir, f));
     }
-
-    const buffer = await response.arrayBuffer();
-    writeFileSync(filepath, Buffer.from(buffer));
-    console.log(`   ✅ Downloaded ${filename}`);
-    return true;
-  } catch (error) {
-    console.log(`   ❌ Error downloading image ${imageIndex}: ${error}`);
-    return false;
   }
+
+  return images;
+}
+
+function contentTypeForFile(filepath: string): string {
+  if (filepath.endsWith('.webp')) return 'image/webp';
+  if (filepath.endsWith('.png')) return 'image/png';
+  return 'image/jpeg';
 }
 
 function uploadToR2(localPath: string, r2Key: string): boolean {
+  const ct = contentTypeForFile(localPath);
   try {
     execSync(
-      `bunx wrangler r2 object put see-in-the-sea-images/${r2Key} --file="${localPath}" --local --content-type="image/jpeg"`,
+      `bunx wrangler r2 object put see-in-the-sea-images/${r2Key} --file="${localPath}" --local --content-type="${ct}"`,
       { stdio: 'pipe' }
     );
     return true;
@@ -125,136 +127,106 @@ function uploadToR2(localPath: string, r2Key: string): boolean {
   }
 }
 
-async function main() {
-  // Create temp images directory
-  if (!existsSync(TEMP_IMAGES_DIR)) {
-    mkdirSync(TEMP_IMAGES_DIR, { recursive: true });
-    console.log(`📁 Created temp directory: ${TEMP_IMAGES_DIR}\n`);
+function main() {
+  const localImages = collectLocalImages();
+  console.log(`📂 Found ${localImages.length} local images\n`);
+
+  if (localImages.length < 30) {
+    console.error(
+      '❌ Need at least 30 images to seed all categories. Found:',
+      localImages.length
+    );
+    process.exit(1);
   }
 
-  // Calculate total images needed
-  // Regular categories: 8 per category
-  // Mediterranean: 2 portfolios × 3 photos × 2 users = 12
-  const regularCategories = CATEGORIES.filter(c => c !== 'mediterranean');
-  const totalRegularImages =
-    regularCategories.length * SUBMISSIONS_PER_CATEGORY;
-  const totalMediterraneanImages =
-    PORTFOLIOS_PER_MEDITERRANEAN * PHOTOS_PER_PORTFOLIO * 2; // 2 users
-  const totalImages = totalRegularImages + totalMediterraneanImages;
-
-  // Download images
-  console.log('📥 Downloading images from picsum.photos...');
-  for (let i = 0; i < totalImages; i++) {
-    const filename = `test-${i + 1}.jpg`;
-    await downloadImage(i, filename);
-    await new Promise(resolve => setTimeout(resolve, 100));
-  }
-
-  console.log(`\n✅ Images downloaded\n`);
-
-  // Generate submissions and upload to R2
-  console.log(
-    '📤 Uploading images to local R2 and generating database records...'
-  );
   const submissions: Submission[] = [];
-  let imageIndex = 0;
+  const userEmails = new Set<string>();
+  let imgIdx = 0;
+
+  function nextImage(): string {
+    const img = localImages[imgIdx % localImages.length];
+    imgIdx++;
+    return img;
+  }
 
   // Regular categories
+  const regularCategories = CATEGORIES.filter(c => c !== 'mediterranean');
   for (const category of regularCategories) {
-    console.log(`\n   📂 Category: ${category}`);
+    console.log(`📂 Category: ${category}`);
     for (let i = 0; i < SUBMISSIONS_PER_CATEGORY; i++) {
       const id = nanoid();
-      const title = TITLES[imageIndex % TITLES.length];
-      const localFile = join(TEMP_IMAGES_DIR, `test-${imageIndex + 1}.jpg`);
+      const title = TITLES[imgIdx % TITLES.length];
+      const localFile = nextImage();
       const r2Key = `${CONTEST_ID}/${category}/${id}`;
-      const userEmail = `testuser${(i % 8) + 1}@example.com`;
+      const userEmail = `testuser${(i % 4) + 1}@example.com`;
+      userEmails.add(userEmail);
 
-      if (existsSync(localFile)) {
-        const success = uploadToR2(localFile, r2Key);
-        if (success) {
-          console.log(`      ✅ Uploaded: ${r2Key}`);
-          submissions.push({
-            id,
-            category,
-            r2Key,
-            title,
-            description: `Una bellissima foto di ${title.toLowerCase()}`,
-            email: userEmail,
-            localFile,
-          });
-        }
+      const success = uploadToR2(localFile, r2Key);
+      if (success) {
+        console.log(`   ✅ ${title}`);
+        submissions.push({
+          id,
+          category,
+          r2Key,
+          title,
+          description: `Una bellissima foto di ${title.toLowerCase()}`,
+          email: userEmail,
+          localFile,
+        });
       }
-      imageIndex++;
     }
   }
 
-  // Mediterranean category - with portfolios
-  // Each user has PORTFOLIOS_PER_MEDITERRANEAN portfolios, each with PHOTOS_PER_PORTFOLIO photos
-  // Portfolio is identified by: userEmail + portfolio number (1 or 2)
-  console.log(`\n   📂 Category: mediterranean (with portfolios)`);
+  // Mediterranean category with portfolios
+  console.log(`\n📂 Category: mediterranean (portfolios)`);
   const medUsers = ['testuser1@example.com', 'testuser2@example.com'];
 
   for (const userEmail of medUsers) {
+    userEmails.add(userEmail);
     for (
       let portfolioNum = 1;
       portfolioNum <= PORTFOLIOS_PER_MEDITERRANEAN;
       portfolioNum++
     ) {
-      // Portfolio ID is just the number - combined with userEmail it's unique
       const portfolioId = String(portfolioNum);
-      console.log(`      📁 User: ${userEmail}, Portfolio ${portfolioId}`);
+      console.log(`   📁 ${userEmail} / Portfolio ${portfolioId}`);
 
       for (const photoType of PHOTO_TYPES) {
         const id = nanoid();
         const title = `Mediterranean ${photoType} - Portfolio ${portfolioNum}`;
-        const localFile = join(TEMP_IMAGES_DIR, `test-${imageIndex + 1}.jpg`);
+        const localFile = nextImage();
         const r2Key = `${CONTEST_ID}/mediterranean/${id}`;
 
-        // Intentionally skip some photos for testuser2's portfolio 2 to test incomplete data
-        const isIncompletePortfolio =
-          userEmail === 'testuser2@example.com' &&
-          portfolioNum === 2 &&
-          photoType !== 'macro'; // Only keep 'macro', skip 'wide-angle' and 'free'
-
-        if (isIncompletePortfolio) {
-          console.log(
-            `         ⏭️  SKIPPED ${photoType} (testing incomplete portfolio)`
-          );
-          imageIndex++;
-          continue;
+        const success = uploadToR2(localFile, r2Key);
+        if (success) {
+          console.log(`      ✅ ${photoType}`);
+          submissions.push({
+            id,
+            category: 'mediterranean',
+            r2Key,
+            title,
+            description: `Foto ${photoType} del portfolio ${portfolioNum}`,
+            email: userEmail,
+            localFile,
+            portfolio: portfolioId,
+            portfolioPhotoType: photoType,
+          });
         }
-
-        if (existsSync(localFile)) {
-          const success = uploadToR2(localFile, r2Key);
-          if (success) {
-            console.log(`         ✅ ${photoType}: ${r2Key}`);
-            submissions.push({
-              id,
-              category: 'mediterranean',
-              r2Key,
-              title,
-              description: `Foto ${photoType} del portfolio ${portfolioNum}`,
-              email: userEmail,
-              localFile,
-              portfolio: portfolioId, // "1" or "2" - combined with userEmail is unique
-              portfolioPhotoType: photoType,
-            });
-          }
-        }
-        imageIndex++;
       }
     }
   }
 
-  // Generate SQL
-  console.log('\n\n📝 Generating SQL...');
-  const sqlStatements = submissions.map(sub => {
+  // Generate SQL for submissions
+  console.log('\n📝 Generating SQL...');
+  const sqlStatements: string[] = [];
+
+  for (const sub of submissions) {
     const portfolioVal = sub.portfolio ? `'${sub.portfolio}'` : 'NULL';
     const photoTypeVal = sub.portfolioPhotoType
       ? `'${sub.portfolioPhotoType}'`
       : 'NULL';
 
-    return `INSERT OR IGNORE INTO submissions (
+    sqlStatements.push(`INSERT OR IGNORE INTO submissions (
     id, contest_id, category_id, user_email, title, description, r2_image_id, r2_key, original_filename, file_size, content_type, portfolio, portfolio_photo_type
   ) VALUES (
     '${sub.id}',
@@ -267,13 +239,32 @@ async function main() {
     '${sub.r2Key}',
     'test-image.jpg',
     1024000,
-    'image/jpeg',
+    'image/webp',
     ${portfolioVal},
     ${photoTypeVal}
-  );`;
-  });
+  );`);
+  }
 
-  const sql = `-- Test submissions for local R2 (LOCAL ONLY)
+  // Generate payment records so the judging API inner-join works
+  for (const email of userEmails) {
+    const paymentId = nanoid();
+    const stripeSessionId = `cs_test_${nanoid()}`;
+    sqlStatements.push(`INSERT OR IGNORE INTO payments (
+    id, contest_id, user_email, amount, currency, stripe_session_id, status, category_count, paid_at
+  ) VALUES (
+    '${paymentId}',
+    '${CONTEST_ID}',
+    '${email}',
+    5000,
+    'eur',
+    '${stripeSessionId}',
+    'paid',
+    4,
+    '${new Date().toISOString()}'
+  );`);
+  }
+
+  const sql = `-- Test submissions + payments for local judging (LOCAL ONLY)
 -- Generated at ${new Date().toISOString()}
 
 ${sqlStatements.join('\n\n')}
@@ -282,48 +273,31 @@ ${sqlStatements.join('\n\n')}
   const tempSqlFile = join(process.cwd(), 'temp-test-submissions.sql');
   writeFileSync(tempSqlFile, sql);
 
-  // Execute LOCAL ONLY
+  // Execute against local D1
   try {
-    // Clear related tables first (foreign key constraints)
-    console.log('\n🗑️  Clearing old judging flags...');
+    console.log('\n🗑️  Clearing old test data...');
     execSync(
       `bunx wrangler d1 execute see-in-the-sea-db --local --command="DELETE FROM judging_flags WHERE submission_id IN (SELECT id FROM submissions WHERE contest_id='${CONTEST_ID}' AND user_email LIKE 'testuser%@example.com');"`,
       { stdio: 'pipe' }
     );
-
-    console.log('🗑️  Clearing old results...');
     execSync(
       `bunx wrangler d1 execute see-in-the-sea-db --local --command="DELETE FROM results WHERE submission_id IN (SELECT id FROM submissions WHERE contest_id='${CONTEST_ID}' AND user_email LIKE 'testuser%@example.com');"`,
       { stdio: 'pipe' }
     );
-
-    console.log('🗑️  Clearing old test submissions...');
     execSync(
       `bunx wrangler d1 execute see-in-the-sea-db --local --command="DELETE FROM submissions WHERE contest_id='${CONTEST_ID}' AND user_email LIKE 'testuser%@example.com';"`,
-      { stdio: 'inherit' }
+      { stdio: 'pipe' }
+    );
+    execSync(
+      `bunx wrangler d1 execute see-in-the-sea-db --local --command="DELETE FROM payments WHERE contest_id='${CONTEST_ID}' AND user_email LIKE 'testuser%@example.com';"`,
+      { stdio: 'pipe' }
     );
 
-    console.log('\n🚀 Inserting test submissions into LOCAL database...');
+    console.log('🚀 Inserting test data into LOCAL database...');
     execSync(
       `bunx wrangler d1 execute see-in-the-sea-db --local --file="${tempSqlFile}"`,
       { stdio: 'inherit' }
     );
-
-    console.log('\n🔧 Ensuring judging_flags table exists...');
-    const migrationPath = join(
-      process.cwd(),
-      'drizzle',
-      'migrations',
-      '0003_judging_flags.sql'
-    );
-    try {
-      execSync(
-        `bunx wrangler d1 execute see-in-the-sea-db --local --file="${migrationPath}"`,
-        { stdio: 'pipe' }
-      );
-    } catch {
-      // Table might already exist
-    }
 
     console.log('\n✅ Done!');
     console.log(`\n📊 Summary:`);
@@ -332,16 +306,14 @@ ${sqlStatements.join('\n\n')}
       `   Mediterranean portfolios: ${PORTFOLIOS_PER_MEDITERRANEAN * medUsers.length}`
     );
     console.log(`   Total submissions: ${submissions.length}`);
+    console.log(`   Payment records: ${userEmails.size}`);
     console.log(`   Images uploaded to: local R2 bucket`);
   } catch (error) {
     console.error('❌ Failed:', error);
     process.exit(1);
   }
 
-  console.log('\n🎉 Visit /admin/judging or /admin/current-contest to test!');
+  console.log('\n🎉 Visit /admin/judging to test!');
 }
 
-main().catch(error => {
-  console.error('❌ Script failed:', error);
-  process.exit(1);
-});
+main();
