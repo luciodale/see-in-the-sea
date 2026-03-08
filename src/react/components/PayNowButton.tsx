@@ -1,6 +1,8 @@
 import { CreditCardIcon } from '@heroicons/react/24/outline';
 import { Link } from '@tanstack/react-router';
 import { useI18n } from '../../i18n/react';
+import { buttonVariants } from './ui/Button';
+import { cn } from './ui/cn';
 
 export function PayNowButton() {
   const { t } = useI18n();
@@ -8,7 +10,10 @@ export function PayNowButton() {
   return (
     <Link
       to="/user/payment"
-      className="flex items-center gap-2 px-4 py-2 bg-emerald-600 hover:bg-emerald-700 text-white rounded-lg font-medium transition-colors cursor-pointer"
+      className={cn(
+        buttonVariants({ variant: 'primary', size: 'md' }),
+        'gap-2'
+      )}
     >
       <CreditCardIcon className="w-5 h-5" />
       {t('payment.pay-now')}

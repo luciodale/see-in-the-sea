@@ -1,17 +1,17 @@
-import clsx from 'clsx';
 import { useState } from 'react';
 import { useI18n } from '../../i18n/react';
 import type { UISubmission } from '../../types/ui';
 import { getImageUrl } from '../utils/imageUtils';
 import { BaseModal } from './BaseModal';
+import { Button } from './ui/Button';
 
-interface SubmissionManageModalProps {
+type SubmissionManageModalProps = {
   submission: UISubmission | null;
   isOpen: boolean;
   hasPaid?: boolean;
   onClose: () => void;
   onDelete: (submissionId: string) => void;
-}
+};
 
 export function SubmissionManageModal({
   submission,
@@ -84,30 +84,23 @@ export function SubmissionManageModal({
 
         {/* Actions */}
         <div className="flex gap-3 pt-4 border-t border-slate-700">
-          <button
-            type="button"
+          <Button
+            variant="secondary"
+            fullWidth
             onClick={onClose}
             disabled={isDeleting}
-            className="flex-1 py-2 px-4 bg-slate-700 hover:bg-slate-600 text-white rounded-lg disabled:opacity-50 transition-colors cursor-pointer"
           >
             {t('action.close')}
-          </button>
-          <button
-            type="button"
+          </Button>
+          <Button
+            variant="danger"
+            fullWidth
             onClick={handleDelete}
+            loading={isDeleting}
             disabled={isDeleting || hasPaid}
-            className={clsx(
-              'flex-1 py-2 px-4 text-white rounded-lg transition-colors flex items-center justify-center gap-2',
-              isDeleting || hasPaid
-                ? 'bg-slate-600 cursor-not-allowed opacity-50'
-                : 'bg-red-600 hover:bg-red-500 cursor-pointer'
-            )}
           >
-            {isDeleting && (
-              <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-white"></div>
-            )}
             {isDeleting ? t('state.deleting') : t('action.delete')}
-          </button>
+          </Button>
         </div>
       </div>
     </BaseModal>

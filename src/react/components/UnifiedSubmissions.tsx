@@ -7,8 +7,11 @@ import type { UICategory, UISubmission } from '../../types/ui';
 import { usePaymentStatus } from '../hooks/usePaymentStatus';
 import { CategoryNavigation } from './CategoryNavigation';
 import { CategorySummary } from './CategorySummary';
-import JudgesBar from './JudgesBar';
+import { ContestCountdown } from './ContestCountdown';
+import { FlexibilityInfoPanel } from './FlexibilityInfoPanel';
+import { JudgesBar } from './JudgesBar';
 import { MediterraneanPortfolioManager } from './MediterraneanPortfolioManager';
+import { PaymentBanner } from './PaymentBanner';
 import { PaymentSuccessBanner } from './PaymentSuccessBanner';
 import { SubmissionManageModal } from './SubmissionManageModal';
 import { SuccessModal } from './SuccessModal';
@@ -21,6 +24,7 @@ export function UnifiedSubmissions() {
 
   // Core state
   const [contestId, setContestId] = useState<string | null>(null);
+  const [contestYear, setContestYear] = useState<number | null>(null);
   const [judges, setJudges] = useState<string[]>([]);
   const [contestStatus, setContestStatus] = useState<
     'active' | 'inactive' | 'assessment'
@@ -74,9 +78,14 @@ export function UnifiedSubmissions() {
         return;
       }
 
-      const { id: activeContestId, status } = submissionsData.data.contest;
+      const {
+        id: activeContestId,
+        status,
+        year,
+      } = submissionsData.data.contest;
       setContestStatus(status ?? 'inactive');
       setContestId(activeContestId);
+      setContestYear(year);
 
       // Map existing submissions into the current contest categories by matching names or ids
       const existing = submissionsData.data.categories ?? [];
@@ -147,10 +156,6 @@ export function UnifiedSubmissions() {
     setUploadPortfolio(portfolio);
     setUploadPortfolioPhotoType(portfolioPhotoType);
     setUploadModalOpen(true);
-  }
-
-  function _handleSubmissionClick(submission: CategoryState['submissions'][0]) {
-    setSelectedSubmission(submission);
   }
 
   function handleUploadSuccess(data: UploadResponse['data']) {
@@ -227,7 +232,7 @@ export function UnifiedSubmissions() {
   if (loading) {
     return (
       <div className="flex items-center justify-center p-12">
-        <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-400"></div>
+        <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-400" />
         <span className="ml-3 text-slate-300">{t('submissions.loading')}</span>
       </div>
     );
@@ -242,8 +247,8 @@ export function UnifiedSubmissions() {
   const hasSubmissions = categoriesWithSubmissions.length > 0;
 
   return (
-    <div className="space-y-6">
-      {/* Header with judges */}
+    <div className="max-w-5xl mx-auto space-y-8">
+      {/* Header with judges + countdown */}
       <div className="text-center">
         <h1 className="text-3xl font-bold text-white">
           UW 2026 Contest{': '}
@@ -251,6 +256,11 @@ export function UnifiedSubmissions() {
         </h1>
         {!noActiveContest && (
           <JudgesBar judges={judges} label={t('submissions.jury')} />
+        )}
+        {!noActiveContest && (
+          <div className="mt-2">
+            <ContestCountdown year={contestYear} />
+          </div>
         )}
       </div>
 
@@ -267,18 +277,22 @@ export function UnifiedSubmissions() {
         </div>
       )}
 
+      {/* Flexibility Info Panel - only before payment */}
+      {!noActiveContest && !hasPaid && contestId && (
+        <FlexibilityInfoPanel contestId={contestId} />
+      )}
+
       {/* Category Navigation */}
       {!noActiveContest && categories.length > 0 && (
-        <div className="space-y-4">
-          <CategoryNavigation
-            categories={categories}
-            activeCategoryId={activeCategoryId}
-            onCategorySelect={handleCategorySelect}
-            hasSubmissions={hasSubmissions}
-            hasPaid={hasPaid}
-          />
-        </div>
+        <CategoryNavigation
+          categories={categories}
+          activeCategoryId={activeCategoryId}
+          onCategorySelect={handleCategorySelect}
+        />
       )}
+
+      {/* Payment Banner - show if user has submissions and hasn't paid */}
+      {!noActiveContest && hasSubmissions && !hasPaid && <PaymentBanner />}
 
       {/* Payment Success Banner - show if user has paid */}
       {hasPaid && <PaymentSuccessBanner />}

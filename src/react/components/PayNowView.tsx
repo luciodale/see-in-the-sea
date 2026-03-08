@@ -6,6 +6,8 @@ import { Link } from '@tanstack/react-router';
 import { useState } from 'react';
 import { useI18n } from '../../i18n/react';
 import type { CheckoutResponse } from '../../types/api';
+import { Button } from './ui/Button';
+import { Card } from './ui/Card';
 
 export function PayNowView() {
   const { t } = useI18n();
@@ -55,7 +57,7 @@ export function PayNowView() {
       </div>
 
       {/* Warning Card */}
-      <div className="bg-amber-900/20 border border-amber-700 rounded-xl p-6">
+      <Card variant="warning">
         <div className="flex items-start gap-4">
           <ExclamationTriangleIcon className="w-8 h-8 text-amber-400 flex-shrink-0 mt-1" />
           <div className="space-y-3">
@@ -67,10 +69,10 @@ export function PayNowView() {
             </p>
           </div>
         </div>
-      </div>
+      </Card>
 
       {/* Payment Card */}
-      <div className="bg-gradient-to-r from-emerald-900/50 to-blue-900/50 border border-emerald-700/50 rounded-lg p-6">
+      <Card variant="success" className="rounded-lg">
         <div className="text-center">
           <div className="flex items-center justify-center mb-4">
             <CreditCardIcon className="h-8 w-8 text-emerald-400 mr-3" />
@@ -91,26 +93,24 @@ export function PayNowView() {
             </div>
           )}
 
-          <button
-            type="button"
+          <Button
+            variant="primary"
+            size="lg"
+            fullWidth
             onClick={handlePayNow}
-            disabled={loading}
-            className="cursor-pointer w-full bg-emerald-600 hover:bg-emerald-700 disabled:bg-slate-600 disabled:cursor-not-allowed text-white font-semibold py-3 px-6 rounded-lg transition-colors duration-200 flex items-center justify-center"
+            loading={loading}
           >
             {loading ? (
-              <>
-                <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-white mr-2"></div>
-                {t('payment.processing')}
-              </>
+              t('payment.processing')
             ) : (
               <>
-                <CreditCardIcon className="h-5 w-5 mr-2" />
+                <CreditCardIcon className="h-5 w-5" />
                 {t('payment.pay-now')}
               </>
             )}
-          </button>
+          </Button>
         </div>
-      </div>
+      </Card>
     </div>
   );
 }

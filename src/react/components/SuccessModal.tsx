@@ -1,13 +1,14 @@
 import { useI18n } from '../../i18n/react';
 import { BaseModal } from './BaseModal';
+import { Button } from './ui/Button';
 
-interface SuccessModalProps {
+type SuccessModalProps = {
   isOpen: boolean;
   onClose: () => void;
   title: string;
   message: string;
   variant?: 'success' | 'info';
-}
+};
 
 export function SuccessModal({
   isOpen,
@@ -66,13 +67,9 @@ export function SuccessModal({
 
         {/* Action */}
         <div className="flex justify-center">
-          <button
-            type="button"
-            onClick={onClose}
-            className="px-8 py-3 bg-emerald-600 hover:bg-emerald-500 text-white rounded-lg font-medium transition-colors cursor-pointer"
-          >
+          <Button variant="primary" size="lg" onClick={onClose}>
             {t('dialog.ok')}
-          </button>
+          </Button>
         </div>
       </div>
     </BaseModal>

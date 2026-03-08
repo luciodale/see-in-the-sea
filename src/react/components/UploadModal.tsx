@@ -5,6 +5,7 @@ import { useI18n } from '../../i18n/react';
 import { ACCEPTED_IMAGE_TYPES } from '../../server/utils';
 import type { UploadResponse } from '../../types/api';
 import { BaseModal } from './BaseModal';
+import { Button } from './ui/Button';
 
 type UploadModalProps = {
   isOpen: boolean;
@@ -186,14 +187,16 @@ export function UploadModal({
             className="hidden"
             onChange={e => handleFileChange(e.target.files?.[0] || null)}
           />
-          <button
-            type="button"
+          <Button
+            variant="secondary"
+            fullWidth
+            size="lg"
             onClick={() => fileInputRef.current?.click()}
             disabled={isUploading}
-            className="w-full py-3 px-4 bg-slate-700 hover:bg-slate-600 text-white rounded-lg border border-slate-600 disabled:opacity-50 cursor-pointer"
+            className="border border-slate-600"
           >
             {selectedFile ? selectedFile.name : t('form.choose-file')}
-          </button>
+          </Button>
         </div>
 
         {/* Preview */}
@@ -272,30 +275,28 @@ export function UploadModal({
 
       {/* Actions */}
       <div className="flex gap-3 mt-6">
-        <button
-          type="button"
+        <Button
+          variant="secondary"
+          fullWidth
           onClick={handleClose}
           disabled={isUploading}
-          className="flex-1 py-2 px-4 bg-slate-700 hover:bg-slate-600 text-white rounded-lg disabled:opacity-50 cursor-pointer"
         >
           {t('action.cancel')}
-        </button>
-        <button
-          type="button"
+        </Button>
+        <Button
+          variant="primary"
+          fullWidth
           onClick={handleUpload}
+          loading={isUploading}
           disabled={
             !selectedFile ||
             !title.trim() ||
             isUploading ||
-            (selectedFile && selectedFile.size > MAX_IMAGE_SIZE)
+            (selectedFile !== null && selectedFile.size > MAX_IMAGE_SIZE)
           }
-          className="flex-1 py-2 px-4 bg-emerald-600 hover:bg-emerald-500 text-white rounded-lg disabled:opacity-50 flex items-center justify-center gap-2 cursor-pointer"
         >
-          {isUploading && (
-            <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-white"></div>
-          )}
           {isUploading ? t('state.uploading') : t('action.upload')}
-        </button>
+        </Button>
       </div>
     </BaseModal>
   );

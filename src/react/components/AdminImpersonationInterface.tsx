@@ -6,7 +6,7 @@ import type { SubmissionsResponse, UploadResponse } from '../../types/api';
 import type { UICategory, UISubmission } from '../../types/ui';
 import { CategoryNavigation } from './CategoryNavigation';
 import { CategorySummary } from './CategorySummary';
-import JudgesBar from './JudgesBar';
+import { JudgesBar } from './JudgesBar';
 import { MediterraneanPortfolioManager } from './MediterraneanPortfolioManager';
 import { SubmissionManageModal } from './SubmissionManageModal';
 import { SuccessModal } from './SuccessModal';

@@ -6,6 +6,7 @@ import {
 import { useI18n } from '../../i18n/react';
 import type { UISubmission } from '../../types/ui';
 import { PortfolioGrid } from './PortfolioGrid';
+import { Card } from './ui/Card';
 
 type MediterraneanPortfolioManagerProps = {
   submissions: UISubmission[];
@@ -43,7 +44,7 @@ export const MediterraneanPortfolioManager = memo(
         </div>
 
         {/* Instructions */}
-        <div className="bg-slate-800 border border-slate-700 rounded-lg p-4">
+        <Card className="p-4">
           <p className="text-sm text-slate-300">
             <strong>{t('mediterranean.instructions.title')}</strong>{' '}
             {t('mediterranean.instructions.content')}{' '}
@@ -52,7 +53,7 @@ export const MediterraneanPortfolioManager = memo(
             {MEDITERRANEAN_MAX_SUBMISSIONS}{' '}
             {t('mediterranean.instructions.photos-total')}).
           </p>
-        </div>
+        </Card>
       </div>
     );
   }

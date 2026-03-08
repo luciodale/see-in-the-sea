@@ -347,6 +347,24 @@ export const translations = {
     // Collaborations
     'collaborations.title': 'Collaborations:',
 
+    // Countdown
+    'countdown.closing-in': 'Contest closes in',
+    'countdown.days': 'Days',
+    'countdown.hours': 'Hours',
+    'countdown.minutes': 'Minutes',
+    'countdown.seconds': 'Seconds',
+    'countdown.closed': 'Submissions are closed',
+
+    // Flexibility info panel
+    'info.flexibility.title': 'Good to know',
+    'info.flexibility.message':
+      "You're free to add and remove images until you complete your payment. After payment, your submissions are locked in.",
+    'info.flexibility.dismiss': 'Got it',
+
+    // Payment banner
+    'payment.banner.message':
+      'Your photos are ready! Complete your entry by making payment.',
+
     // Image states
     'image.click-to-view': 'Click to view',
   },
@@ -697,6 +715,24 @@ export const translations = {
 
     // Collaborations
     'collaborations.title': 'Collaborazioni:',
+
+    // Countdown
+    'countdown.closing-in': 'Il concorso chiude tra',
+    'countdown.days': 'Giorni',
+    'countdown.hours': 'Ore',
+    'countdown.minutes': 'Minuti',
+    'countdown.seconds': 'Secondi',
+    'countdown.closed': 'Le candidature sono chiuse',
+
+    // Flexibility info panel
+    'info.flexibility.title': 'Buono a sapersi',
+    'info.flexibility.message':
+      'Sei libero di aggiungere e rimuovere immagini fino al completamento del pagamento. Dopo il pagamento, le candidature saranno bloccate.',
+    'info.flexibility.dismiss': 'Capito',
+
+    // Payment banner
+    'payment.banner.message':
+      'Le tue foto sono pronte! Completa la tua iscrizione effettuando il pagamento.',
 
     // Image states
     'image.click-to-view': 'Clicca per vedere',
