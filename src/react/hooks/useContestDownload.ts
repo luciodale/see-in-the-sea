@@ -2,7 +2,7 @@ import { useAuth } from '@clerk/clerk-react';
 import JSZip from 'jszip';
 import { useCallback, useRef, useState } from 'react';
 
-const CONCURRENCY = 10;
+const BATCH_SIZE = 50;
 
 export type DownloadItem = {
   r2ImageId: string | null;
@@ -79,25 +79,13 @@ function deduplicateFilename(
   return `${filename.slice(0, dot)}_${count + 1}${filename.slice(dot)}`;
 }
 
-async function runPool<T>(
-  items: T[],
-  concurrency: number,
-  fn: (item: T, index: number) => Promise<void>
-): Promise<void> {
-  let next = 0;
-
-  async function worker() {
-    while (next < items.length) {
-      const idx = next++;
-      await fn(items[idx], idx);
-    }
-  }
-
-  const workers = Array.from(
-    { length: Math.min(concurrency, items.length) },
-    () => worker()
-  );
-  await Promise.all(workers);
+function triggerDownload(blob: Blob, filename: string) {
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url;
+  a.download = filename;
+  a.click();
+  URL.revokeObjectURL(url);
 }
 
 export function useContestDownload() {
@@ -130,17 +118,8 @@ export function useContestDownload() {
       const controller = new AbortController();
       abortRef.current = controller;
 
-      setState({
-        status: 'downloading',
-        downloaded: 0,
-        failed: 0,
-        total: downloadable.length,
-        error: null,
-      });
-
-      const zip = new JSZip();
+      // Pre-compute all filenames
       const seenFilenames = new Map<string, number>();
-      // Pre-compute filenames (must be synchronous to avoid race conditions on dedup)
       const filenames = downloadable.map(sub => {
         const base = buildFilename({
           contestYear,
@@ -153,58 +132,90 @@ export function useContestDownload() {
         return deduplicateFilename(base, seenFilenames);
       });
 
+      setState({
+        status: 'downloading',
+        downloaded: 0,
+        failed: 0,
+        total: downloadable.length,
+        error: null,
+      });
+
       try {
         const token = await getToken();
 
-        await runPool(downloadable, CONCURRENCY, async (sub, idx) => {
+        // Split into batches to avoid OOM
+        const totalBatches = Math.ceil(downloadable.length / BATCH_SIZE);
+
+        for (let batchIdx = 0; batchIdx < totalBatches; batchIdx++) {
           if (controller.signal.aborted) return;
 
-          try {
-            const response = await fetch(
-              `/api/admin/image-proxy?key=${encodeURIComponent(sub.r2ImageId)}`,
-              {
-                headers: { Authorization: `Bearer ${token}` },
-                signal: controller.signal,
-              }
-            );
+          const start = batchIdx * BATCH_SIZE;
+          const end = Math.min(start + BATCH_SIZE, downloadable.length);
+          const batch = downloadable.slice(start, end);
+          const batchFilenames = filenames.slice(start, end);
 
-            if (!response.ok) {
-              console.warn(
-                `Failed to fetch image ${sub.r2ImageId}: ${response.status}`
+          const zip = new JSZip();
+
+          // Fetch images sequentially to minimize memory pressure
+          for (let i = 0; i < batch.length; i++) {
+            if (controller.signal.aborted) return;
+
+            const sub = batch[i];
+            try {
+              const response = await fetch(
+                `/api/admin/image-proxy?key=${encodeURIComponent(sub.r2ImageId)}`,
+                {
+                  headers: { Authorization: `Bearer ${token}` },
+                  signal: controller.signal,
+                }
               );
+
+              if (!response.ok) {
+                console.warn(
+                  `Failed to fetch image ${sub.r2ImageId}: ${response.status}`
+                );
+                setState(prev => ({
+                  ...prev,
+                  downloaded: prev.downloaded + 1,
+                  failed: prev.failed + 1,
+                }));
+                continue;
+              }
+
+              const blob = await response.blob();
+              zip.file(batchFilenames[i], blob);
+              setState(prev => ({ ...prev, downloaded: prev.downloaded + 1 }));
+            } catch (err) {
+              if (controller.signal.aborted) return;
+              console.warn(`Error fetching ${sub.r2ImageId}:`, err);
               setState(prev => ({
                 ...prev,
                 downloaded: prev.downloaded + 1,
                 failed: prev.failed + 1,
               }));
-              return;
             }
-
-            const blob = await response.blob();
-            zip.file(filenames[idx], blob);
-            setState(prev => ({ ...prev, downloaded: prev.downloaded + 1 }));
-          } catch (err) {
-            if (controller.signal.aborted) return;
-            console.warn(`Error fetching ${sub.r2ImageId}:`, err);
-            setState(prev => ({
-              ...prev,
-              downloaded: prev.downloaded + 1,
-              failed: prev.failed + 1,
-            }));
           }
-        });
 
-        if (controller.signal.aborted) return;
+          if (controller.signal.aborted) return;
 
-        setState(prev => ({ ...prev, status: 'zipping' }));
+          setState(prev => ({ ...prev, status: 'zipping' }));
 
-        const zipBlob = await zip.generateAsync({ type: 'blob' });
-        const url = URL.createObjectURL(zipBlob);
-        const a = document.createElement('a');
-        a.href = url;
-        a.download = `contest_${contestYear}_images.zip`;
-        a.click();
-        URL.revokeObjectURL(url);
+          const zipBlob = await zip.generateAsync({
+            type: 'blob',
+            compression: 'STORE', // images are already compressed
+          });
+
+          const zipName =
+            totalBatches === 1
+              ? `contest_${contestYear}_images.zip`
+              : `contest_${contestYear}_images_${batchIdx + 1}.zip`;
+          triggerDownload(zipBlob, zipName);
+
+          // Resume downloading status for next batch
+          if (batchIdx < totalBatches - 1) {
+            setState(prev => ({ ...prev, status: 'downloading' }));
+          }
+        }
 
         setState(prev => ({ ...prev, status: 'complete' }));
       } catch (error) {

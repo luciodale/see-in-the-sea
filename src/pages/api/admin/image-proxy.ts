@@ -1,5 +1,4 @@
 import type { APIRoute } from 'astro';
-import { IMAGES_BASE_URL } from '../../../constants';
 import { authenticateAdmin } from '../../../server/authenticateRequest';
 
 export const prerender = false;
@@ -23,21 +22,28 @@ export const GET: APIRoute = async ({ request, locals }) => {
     return unauthenticatedResponse();
   }
 
-  try {
-    const imageUrl = `${IMAGES_BASE_URL}/${key}`;
-    const response = await fetch(imageUrl);
+  const bucket = locals.runtime.env.R2_IMAGES_BUCKET;
+  if (!bucket) {
+    return new Response(
+      JSON.stringify({ success: false, message: 'R2 bucket not available' }),
+      { status: 500 }
+    );
+  }
 
-    if (!response.ok) {
+  try {
+    const object = await bucket.get(key);
+
+    if (!object) {
       return new Response(
         JSON.stringify({ success: false, message: 'Image not found' }),
-        { status: response.status }
+        { status: 404 }
       );
     }
 
-    return new Response(response.body, {
+    return new Response(object.body, {
       headers: {
         'Content-Type':
-          response.headers.get('Content-Type') || 'application/octet-stream',
+          object.httpMetadata?.contentType || 'application/octet-stream',
         'Cache-Control': 'private, max-age=3600',
       },
     });
