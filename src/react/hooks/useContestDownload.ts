@@ -1,6 +1,6 @@
-import { useAuth } from '@clerk/clerk-react';
 import JSZip from 'jszip';
 import { useCallback, useRef, useState } from 'react';
+import { IMAGES_BASE_URL } from '../../constants';
 
 const BATCH_SIZE = 50;
 
@@ -89,7 +89,6 @@ function triggerDownload(blob: Blob, filename: string) {
 }
 
 export function useContestDownload() {
-  const { getToken } = useAuth();
   const [state, setState] = useState<DownloadState>({
     status: 'idle',
     downloaded: 0,
@@ -141,8 +140,6 @@ export function useContestDownload() {
       });
 
       try {
-        const token = await getToken();
-
         // Split into batches to avoid OOM
         const totalBatches = Math.ceil(downloadable.length / BATCH_SIZE);
 
@@ -163,11 +160,8 @@ export function useContestDownload() {
             const sub = batch[i];
             try {
               const response = await fetch(
-                `/api/admin/image-proxy?key=${encodeURIComponent(sub.r2ImageId)}`,
-                {
-                  headers: { Authorization: `Bearer ${token}` },
-                  signal: controller.signal,
-                }
+                `${IMAGES_BASE_URL}/${sub.r2ImageId}`,
+                { signal: controller.signal }
               );
 
               if (!response.ok) {
@@ -211,8 +205,9 @@ export function useContestDownload() {
               : `contest_${contestYear}_images_${batchIdx + 1}.zip`;
           triggerDownload(zipBlob, zipName);
 
-          // Resume downloading status for next batch
+          // Pause between batches to free memory and avoid rate limits
           if (batchIdx < totalBatches - 1) {
+            await new Promise(resolve => setTimeout(resolve, 1000));
             setState(prev => ({ ...prev, status: 'downloading' }));
           }
         }
@@ -227,7 +222,7 @@ export function useContestDownload() {
         }));
       }
     },
-    [getToken]
+    []
   );
 
   const cancel = useCallback(() => {
