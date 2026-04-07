@@ -163,6 +163,7 @@ export type Judge = {
   id: string;
   contestId: string;
   fullName: string;
+  r2ImageId?: string | null;
   createdAt?: string | null;
 };
 

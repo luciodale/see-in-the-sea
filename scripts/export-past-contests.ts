@@ -50,6 +50,7 @@ interface RawJudgeRow {
   id: string;
   contest_id: string;
   full_name: string;
+  r2_image_id: string | null;
 }
 
 // 2. Output Data Structure (Internal Working Types)
@@ -58,6 +59,7 @@ type Placement = 'first' | 'second' | 'third' | 'runner-up';
 interface Judge {
   id: string;
   fullName: string;
+  r2ImageId: string | null;
 }
 
 interface Photographer {
@@ -145,7 +147,7 @@ async function main() {
   const rows = (JSON.parse(mainRaw)[0]?.results || []) as RawRow[];
 
   // 3. Fetch DB Data (Judges)
-  const judgesSql = `SELECT id, contest_id, full_name FROM judges`;
+  const judgesSql = `SELECT id, contest_id, full_name, r2_image_id FROM judges`;
 
   console.log(`⚖️  Querying judges...`);
   const judgesRaw = await robustExec(
@@ -270,6 +272,7 @@ async function main() {
       contest.judges.push({
         id: jRow.id,
         fullName: jRow.full_name,
+        r2ImageId: jRow.r2_image_id,
       });
     }
   }
@@ -309,6 +312,7 @@ async function main() {
 export interface Judge {
   id: string;
   fullName: string;
+  r2ImageId: string | null;
 }
 
 export interface Photographer {

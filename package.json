@@ -38,7 +38,6 @@
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
     "drizzle-orm": "^0.44.3",
-    "jszip": "^3.10.1",
     "lucide-react": "^0.526.0",
     "nanoid": "^5.1.5",
     "react": "18.0.0",
@@ -61,6 +60,7 @@
   "scripts": {
     "astro": "astro",
     "export:contests": "bun scripts/export-past-contests.ts --remote",
+    "download:contest-images": "bun scripts/download-contest-images.ts",
     "build": "astro build",
     "cf-typegen": "wrangler types",
     "check": "astro build && tsc && wrangler deploy --dry-run",

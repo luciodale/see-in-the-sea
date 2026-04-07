@@ -1,0 +1,17 @@
+---
+export const prerender = true;
+
+import { pastContestsData } from '@/data/past-contests';
+import { getLocalizedPath, type Language } from '@/i18n';
+
+const currentLang = (Astro.currentLocale ?? 'en') as Language;
+
+// Redirect to the latest contest's judges page
+const latestContest = pastContestsData
+  .slice()
+  .sort((a, b) => b.year - a.year)[0];
+
+return Astro.redirect(
+  getLocalizedPath(`judges/${latestContest.id}`, currentLang)
+);
+---

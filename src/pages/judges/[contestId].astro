@@ -1,0 +1,27 @@
+---
+export const prerender = true;
+
+import JudgesPage from '@/components/pages/JudgesPage.astro';
+import { pastContestsData } from '@/data/past-contests';
+import { getLocalizedPath, type Language } from '@/i18n';
+
+export function getStaticPaths() {
+  return pastContestsData.map(contest => ({
+    params: { contestId: contest.id, contestid: contest.id },
+    props: { contestData: contest, contestId: contest.id },
+  }));
+}
+
+const { contestData, contestId } = Astro.props;
+const currentLang = (Astro.currentLocale ?? 'en') as Language;
+
+if (!contestId) {
+  return Astro.redirect(getLocalizedPath('404', currentLang));
+}
+---
+
+<JudgesPage
+  lang={currentLang}
+  contestId={contestId}
+  contestData={contestData}
+/>

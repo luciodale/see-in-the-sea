@@ -1,0 +1,33 @@
+---
+import AppWrapper from '@/components/AppWrapper.astro';
+import JudgesGrid from '@/components/Gallery/JudgesGrid.astro';
+import Layout from '@/components/Gallery/Layout.astro';
+import NavbarHeaderStandalone from '@/components/Navbar/NavbarHeaderStandalone.astro';
+import type { Contest } from '@/data/past-contests';
+import { getLocalizedPath, type Language, useTranslations } from '@/i18n';
+
+interface Props {
+  lang: Language;
+  contestId: string;
+  contestData: Contest;
+}
+
+const { lang, contestId, contestData } = Astro.props;
+const t = useTranslations(lang);
+
+if (!contestId) {
+  return Astro.redirect(getLocalizedPath('404', lang));
+}
+---
+
+<AppWrapper
+  title={`${t('judges.title')} - ${contestData.name}`}
+  description={t('site.description')}
+  lang={lang}
+>
+  <NavbarHeaderStandalone lang={lang} />
+
+  <Layout>
+    <JudgesGrid contestId={contestId} contestData={contestData} />
+  </Layout>
+</AppWrapper>

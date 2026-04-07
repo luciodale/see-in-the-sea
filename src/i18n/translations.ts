@@ -11,6 +11,7 @@ export const translations = {
     // Navigation
     'nav.about': 'About',
     'nav.contests': 'Past Editions',
+    'nav.judges': 'Judges',
     'nav.trophy': 'Trophy',
     'nav.sponsors': 'Sponsors',
     'nav.contact': 'Contact Us',
@@ -159,6 +160,10 @@ export const translations = {
     // Anonymous author
     'author.anonymous': 'Anonymous',
     'author.by': 'by',
+
+    // Judges page
+    'judges.title': 'Judges',
+    'judges.page-title': 'The Jury',
 
     // Contests page
     'contests.title': 'Contest Years',
@@ -373,6 +378,7 @@ export const translations = {
     // Navigation
     'nav.about': 'Chi Siamo',
     'nav.contests': 'Edizioni Precedenti',
+    'nav.judges': 'Giuria',
     'nav.trophy': 'Trofeo',
     'nav.sponsors': 'Sponsor',
     'nav.contact': 'Contatti',
@@ -523,6 +529,10 @@ export const translations = {
     // Anonymous author
     'author.anonymous': 'Anonimo',
     'author.by': 'di',
+
+    // Judges page
+    'judges.title': 'Giuria',
+    'judges.page-title': 'La Giuria',
 
     // Contests page
     'contests.title': 'Edizioni Precedenti',

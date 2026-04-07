@@ -1,6 +1,8 @@
 import { useAuth } from '@clerk/clerk-react';
-import { useState } from 'react';
+import { useRef, useState } from 'react';
+import { IMAGES_BASE_URL } from '../../constants';
 import type {
+  ApiResponse,
   CreateJudgeResponse,
   DeleteJudgeResponse,
   Judge,
@@ -13,146 +15,209 @@ interface JudgeManagerProps {
   onUpdate: () => void;
 }
 
-export const JudgeManager = ({
+export function JudgeManager({
   contestId,
   judges,
   onUpdate,
-}: JudgeManagerProps) => {
+}: JudgeManagerProps) {
   const { getToken } = useAuth();
   const [showAddForm, setShowAddForm] = useState(false);
   const [newJudgeName, setNewJudgeName] = useState('');
   const [editingJudgeId, setEditingJudgeId] = useState<string | null>(null);
   const [editJudgeName, setEditJudgeName] = useState('');
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [uploadingJudgeId, setUploadingJudgeId] = useState<string | null>(null);
   const [error, setError] = useState<string | null>(null);
+  const fileInputRef = useRef<HTMLInputElement>(null);
+  const pendingJudgeIdRef = useRef<string | null>(null);
 
-  const handleAddJudge = async () => {
+  function handleAddJudge() {
     if (!newJudgeName.trim()) {
       setError('Il nome del giudice è obbligatorio');
       return;
     }
 
-    try {
-      setIsSubmitting(true);
-      setError(null);
+    setIsSubmitting(true);
+    setError(null);
 
-      const token = await getToken();
-      const response = await fetch('/api/admin/contest-judges', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          Authorization: `Bearer ${token}`,
-        },
-        body: JSON.stringify({
-          contestId,
-          fullName: newJudgeName.trim(),
-        }),
-      });
+    getToken()
+      .then(token =>
+        fetch('/api/admin/contest-judges', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            Authorization: `Bearer ${token}`,
+          },
+          body: JSON.stringify({ contestId, fullName: newJudgeName.trim() }),
+        })
+      )
+      .then(async response => {
+        const result: CreateJudgeResponse = await response.json();
+        if (!response.ok)
+          throw new Error(result.message || "Errore durante l'aggiunta");
+        setNewJudgeName('');
+        setShowAddForm(false);
+        onUpdate();
+      })
+      .catch(err => {
+        console.error('Error adding judge:', err);
+        setError(err instanceof Error ? err.message : 'Errore imprevisto');
+      })
+      .finally(() => setIsSubmitting(false));
+  }
 
-      const result: CreateJudgeResponse = await response.json();
-
-      if (!response.ok) {
-        throw new Error(result.message || "Errore durante l'aggiunta");
-      }
-
-      setNewJudgeName('');
-      setShowAddForm(false);
-      onUpdate();
-    } catch (err) {
-      console.error('Error adding judge:', err);
-      setError(err instanceof Error ? err.message : 'Errore imprevisto');
-    } finally {
-      setIsSubmitting(false);
-    }
-  };
-
-  const handleUpdateJudge = async (judgeId: string) => {
+  function handleUpdateJudge(judgeId: string) {
     if (!editJudgeName.trim()) {
       setError('Il nome del giudice è obbligatorio');
       return;
     }
 
-    try {
-      setIsSubmitting(true);
-      setError(null);
+    setIsSubmitting(true);
+    setError(null);
 
-      const token = await getToken();
-      const response = await fetch('/api/admin/contest-judges', {
-        method: 'PUT',
-        headers: {
-          'Content-Type': 'application/json',
-          Authorization: `Bearer ${token}`,
-        },
-        body: JSON.stringify({
-          judgeId,
-          fullName: editJudgeName.trim(),
-        }),
-      });
-
-      const result: UpdateJudgeResponse = await response.json();
-
-      if (!response.ok) {
-        throw new Error(result.message || "Errore durante l'aggiornamento");
-      }
-
-      setEditingJudgeId(null);
-      setEditJudgeName('');
-      onUpdate();
-    } catch (err) {
-      console.error('Error updating judge:', err);
-      setError(err instanceof Error ? err.message : 'Errore imprevisto');
-    } finally {
-      setIsSubmitting(false);
-    }
-  };
-
-  const handleDeleteJudge = async (judgeId: string) => {
-    if (!confirm('Sei sicuro di voler eliminare questo giudice?')) {
-      return;
-    }
-
-    try {
-      setIsSubmitting(true);
-      setError(null);
-
-      const token = await getToken();
-      const response = await fetch(
-        `/api/admin/contest-judges?judgeId=${judgeId}`,
-        {
-          method: 'DELETE',
+    getToken()
+      .then(token =>
+        fetch('/api/admin/contest-judges', {
+          method: 'PUT',
           headers: {
+            'Content-Type': 'application/json',
             Authorization: `Bearer ${token}`,
           },
-        }
-      );
+          body: JSON.stringify({ judgeId, fullName: editJudgeName.trim() }),
+        })
+      )
+      .then(async response => {
+        const result: UpdateJudgeResponse = await response.json();
+        if (!response.ok)
+          throw new Error(result.message || "Errore durante l'aggiornamento");
+        setEditingJudgeId(null);
+        setEditJudgeName('');
+        onUpdate();
+      })
+      .catch(err => {
+        console.error('Error updating judge:', err);
+        setError(err instanceof Error ? err.message : 'Errore imprevisto');
+      })
+      .finally(() => setIsSubmitting(false));
+  }
 
-      const result: DeleteJudgeResponse = await response.json();
+  function handleDeleteJudge(judgeId: string) {
+    if (!confirm('Sei sicuro di voler eliminare questo giudice?')) return;
 
-      if (!response.ok) {
-        throw new Error(result.message || "Errore durante l'eliminazione");
-      }
+    setIsSubmitting(true);
+    setError(null);
 
-      onUpdate();
-    } catch (err) {
-      console.error('Error deleting judge:', err);
-      setError(err instanceof Error ? err.message : 'Errore imprevisto');
-    } finally {
-      setIsSubmitting(false);
-    }
-  };
+    getToken()
+      .then(token =>
+        fetch(`/api/admin/contest-judges?judgeId=${judgeId}`, {
+          method: 'DELETE',
+          headers: { Authorization: `Bearer ${token}` },
+        })
+      )
+      .then(async response => {
+        const result: DeleteJudgeResponse = await response.json();
+        if (!response.ok)
+          throw new Error(result.message || "Errore durante l'eliminazione");
+        onUpdate();
+      })
+      .catch(err => {
+        console.error('Error deleting judge:', err);
+        setError(err instanceof Error ? err.message : 'Errore imprevisto');
+      })
+      .finally(() => setIsSubmitting(false));
+  }
 
-  const startEditing = (judge: Judge) => {
+  function triggerImageUpload(judgeId: string) {
+    pendingJudgeIdRef.current = judgeId;
+    fileInputRef.current?.click();
+  }
+
+  function handleFileSelected(e: React.ChangeEvent<HTMLInputElement>) {
+    const file = e.target.files?.[0];
+    const judgeId = pendingJudgeIdRef.current;
+    if (!file || !judgeId) return;
+
+    // Reset input so same file can be re-selected
+    e.target.value = '';
+
+    setUploadingJudgeId(judgeId);
+    setError(null);
+
+    getToken()
+      .then(token => {
+        const formData = new FormData();
+        formData.append('judgeId', judgeId);
+        formData.append('image', file);
+        return fetch('/api/admin/judge-image', {
+          method: 'POST',
+          headers: { Authorization: `Bearer ${token}` },
+          body: formData,
+        });
+      })
+      .then(async response => {
+        const result: ApiResponse<{ r2ImageId: string }> =
+          await response.json();
+        if (!response.ok)
+          throw new Error(result.message || 'Errore upload immagine');
+        onUpdate();
+      })
+      .catch(err => {
+        console.error('Error uploading judge image:', err);
+        setError(err instanceof Error ? err.message : 'Errore imprevisto');
+      })
+      .finally(() => {
+        setUploadingJudgeId(null);
+        pendingJudgeIdRef.current = null;
+      });
+  }
+
+  function handleDeleteImage(judgeId: string) {
+    if (!confirm("Sei sicuro di voler eliminare l'immagine?")) return;
+
+    setUploadingJudgeId(judgeId);
+    setError(null);
+
+    getToken()
+      .then(token =>
+        fetch(`/api/admin/judge-image?judgeId=${judgeId}`, {
+          method: 'DELETE',
+          headers: { Authorization: `Bearer ${token}` },
+        })
+      )
+      .then(async response => {
+        const result: ApiResponse<object> = await response.json();
+        if (!response.ok)
+          throw new Error(result.message || 'Errore eliminazione immagine');
+        onUpdate();
+      })
+      .catch(err => {
+        console.error('Error deleting judge image:', err);
+        setError(err instanceof Error ? err.message : 'Errore imprevisto');
+      })
+      .finally(() => setUploadingJudgeId(null));
+  }
+
+  function startEditing(judge: Judge) {
     setEditingJudgeId(judge.id);
     setEditJudgeName(judge.fullName);
-  };
+  }
 
-  const cancelEditing = () => {
+  function cancelEditing() {
     setEditingJudgeId(null);
     setEditJudgeName('');
-  };
+  }
 
   return (
     <div className="space-y-4">
+      {/* Hidden file input for image uploads */}
+      <input
+        ref={fileInputRef}
+        type="file"
+        accept="image/*"
+        className="hidden"
+        onChange={handleFileSelected}
+      />
+
       {/* Add Judge Button */}
       <div className="flex items-center justify-between">
         <h3 className="text-lg font-semibold text-white">Giudici</h3>
@@ -201,8 +266,40 @@ export const JudgeManager = ({
           {judges.map(judge => (
             <div
               key={judge.id}
-              className="flex items-center gap-2 p-3 bg-slate-700 rounded-md"
+              className="flex items-center gap-3 p-3 bg-slate-700 rounded-md"
             >
+              {/* Judge Image */}
+              <div className="relative shrink-0">
+                {judge.r2ImageId ? (
+                  <img
+                    src={`${IMAGES_BASE_URL}/${judge.r2ImageId}`}
+                    alt={judge.fullName}
+                    className="w-12 h-12 rounded-full object-cover border border-slate-500"
+                  />
+                ) : (
+                  <div className="w-12 h-12 rounded-full bg-slate-600 flex items-center justify-center border border-slate-500">
+                    <svg
+                      className="w-6 h-6 text-slate-400"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth="2"
+                        d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"
+                      />
+                    </svg>
+                  </div>
+                )}
+                {uploadingJudgeId === judge.id && (
+                  <div className="absolute inset-0 flex items-center justify-center bg-black/50 rounded-full">
+                    <div className="w-5 h-5 border-2 border-white/30 border-t-white rounded-full animate-spin" />
+                  </div>
+                )}
+              </div>
+
               {editingJudgeId === judge.id ? (
                 <>
                   <input
@@ -236,6 +333,29 @@ export const JudgeManager = ({
                   </span>
                   <button
                     type="button"
+                    onClick={() => triggerImageUpload(judge.id)}
+                    disabled={
+                      isSubmitting || uploadingJudgeId === judge.id
+                    }
+                    className="text-cyan-400 hover:text-cyan-300 text-sm disabled:opacity-50"
+                    title="Carica foto"
+                  >
+                    {judge.r2ImageId ? 'Cambia foto' : 'Aggiungi foto'}
+                  </button>
+                  {judge.r2ImageId && (
+                    <button
+                      type="button"
+                      onClick={() => handleDeleteImage(judge.id)}
+                      disabled={
+                        isSubmitting || uploadingJudgeId === judge.id
+                      }
+                      className="text-orange-400 hover:text-orange-300 text-sm disabled:opacity-50"
+                    >
+                      Rimuovi foto
+                    </button>
+                  )}
+                  <button
+                    type="button"
                     onClick={() => startEditing(judge)}
                     disabled={isSubmitting}
                     className="text-blue-400 hover:text-blue-300 text-sm disabled:opacity-50"
@@ -262,4 +382,4 @@ export const JudgeManager = ({
       )}
     </div>
   );
-};
+}

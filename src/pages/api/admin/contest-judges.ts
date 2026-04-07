@@ -316,6 +316,19 @@ export const DELETE: APIRoute = async ({ request, locals }) => {
       }
     }
 
+    // Delete R2 image if exists
+    const r2ImageId = judgeWithContest[0].judge.r2ImageId;
+    if (r2ImageId) {
+      const R2Bucket = locals.runtime.env.R2_IMAGES_BUCKET;
+      if (R2Bucket) {
+        try {
+          await R2Bucket.delete(r2ImageId);
+        } catch (err) {
+          console.error(`Failed to delete judge image ${r2ImageId}:`, err);
+        }
+      }
+    }
+
     // Delete judge
     await db.delete(judges).where(eq(judges.id, judgeId));
 

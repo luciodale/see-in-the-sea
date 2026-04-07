@@ -4,6 +4,7 @@
 export interface Judge {
   id: string;
   fullName: string;
+  r2ImageId: string | null;
 }
 
 export interface Photographer {
@@ -51,14 +52,17 @@ export const pastContestsData: Contest[] = [
       {
         id: 'TA4YMn4PQGEhT11vs5Ztg',
         fullName: 'Pietro Formis',
+        r2ImageId: null,
       },
       {
         id: 'BA4YMn4PQGEhT11vs5Ztg',
         fullName: 'Pasquale Vassallo',
+        r2ImageId: null,
       },
       {
         id: 'CA4YMn4PQGEhT11vs5Ztg',
         fullName: 'Domy Tripodi',
+        r2ImageId: null,
       },
     ],
     categories: [
@@ -476,14 +480,17 @@ export const pastContestsData: Contest[] = [
       {
         id: 'TH4YMn4PQGEhT11vs5Ztg',
         fullName: 'Pietro Formis',
+        r2ImageId: null,
       },
       {
         id: 'F9eVSRSXFhxdKZEZeUt1C',
         fullName: 'Domenico Roscigno',
+        r2ImageId: null,
       },
       {
         id: 'Ui10CqkpLz0DrWbowHHYb',
         fullName: 'Pasquale Vassallo',
+        r2ImageId: null,
       },
     ],
     categories: [
@@ -824,14 +831,17 @@ export const pastContestsData: Contest[] = [
       {
         id: 'yLp8d-oRxG4vfK_oCnW9N',
         fullName: 'Isabella Maffei',
+        r2ImageId: null,
       },
       {
         id: 'iNA8Gu9679M025g-k0vUG',
         fullName: 'David Salvatori',
+        r2ImageId: null,
       },
       {
         id: 'ZJxTXdf09zRmjQDSb451Q',
         fullName: 'Massimo Zannini',
+        r2ImageId: null,
       },
     ],
     categories: [
@@ -1584,14 +1594,17 @@ export const pastContestsData: Contest[] = [
       {
         id: '_s9DzpDk9PYG2Ly3rnTNQ',
         fullName: 'Domenico Roscigno',
+        r2ImageId: null,
       },
       {
         id: 'BaJz0TKQerI9gcxhzeJLb',
         fullName: 'Davide Vezzaro',
+        r2ImageId: null,
       },
       {
         id: 'K8egrXEW1LyuSYsYWga0o',
         fullName: 'Massimo Zannini',
+        r2ImageId: null,
       },
     ],
     categories: [
@@ -2068,14 +2081,17 @@ export const pastContestsData: Contest[] = [
       {
         id: 'ccGE-aJh_epCipAgKqnFn',
         fullName: 'Marco Colombo',
+        r2ImageId: null,
       },
       {
         id: 'hESkp1xwL-CYsqLGK25EI',
         fullName: 'Marcello Di Francesco',
+        r2ImageId: null,
       },
       {
         id: 'FMOcHbt-i6hp35Qpdq16R',
         fullName: 'Davide Vezzaro',
+        r2ImageId: null,
       },
     ],
     categories: [
@@ -2636,14 +2652,17 @@ export const pastContestsData: Contest[] = [
       {
         id: 'slNRhpI3DaGhZaGNltv9g',
         fullName: 'Marco Colombo',
+        r2ImageId: null,
       },
       {
         id: '1zC7RsAwCHfJR3hEGnFKI',
         fullName: 'Paolo Fossati',
+        r2ImageId: null,
       },
       {
         id: 'MrrWhYP79t1LrinbswhcQ',
         fullName: 'Davide Vezzaro',
+        r2ImageId: null,
       },
     ],
     categories: [
@@ -3476,14 +3495,17 @@ export const pastContestsData: Contest[] = [
       {
         id: 'Ev9G4qDYCfHRnWfKo0UK5',
         fullName: 'Alberto Balbi',
+        r2ImageId: null,
       },
       {
         id: 'mbhBMkOgwsUxSIcLvSMUf',
         fullName: 'Franco Banfi',
+        r2ImageId: null,
       },
       {
         id: 'fiiJijdAxfC6rzlFAHGXo',
         fullName: 'Paolo Fossati',
+        r2ImageId: null,
       },
     ],
     categories: [
@@ -4100,14 +4122,17 @@ export const pastContestsData: Contest[] = [
       {
         id: 'F13DMnF202qzMRi7D3wbM',
         fullName: 'Alberto Balbi',
+        r2ImageId: null,
       },
       {
         id: 'iJSxcCToqD_sJiP_ejKQZ',
         fullName: 'Franco Banfi',
+        r2ImageId: null,
       },
       {
         id: 'J8i9TVGR5En9ZYmqOXAB0',
         fullName: 'Paolo Fossati',
+        r2ImageId: null,
       },
     ],
     categories: [
@@ -5131,18 +5156,22 @@ export const pastContestsData: Contest[] = [
       {
         id: 'jm-ZXGkqViblT6CAsjZui',
         fullName: 'Silvia Boccato',
+        r2ImageId: null,
       },
       {
         id: 'UF50lKQRM3MBBWnqQvuCH',
         fullName: 'Paolo Fossati',
+        r2ImageId: null,
       },
       {
         id: 'UBZNsKjcl1Xh22T4bsrXL',
         fullName: 'Claudio Giulianini',
+        r2ImageId: null,
       },
       {
         id: '7k5mzmZ81uUdi4zEGjiEr',
         fullName: 'Giuseppe Pignataro',
+        r2ImageId: null,
       },
     ],
     categories: [
@@ -6103,6 +6132,7 @@ export const pastContestsData: Contest[] = [
       {
         id: '1qGx5oJNxE4VP2bzE4KIz',
         fullName: 'Giuseppe Pignataro Paolo Fossati Francesco Turano',
+        r2ImageId: null,
       },
     ],
     categories: [
@@ -6512,6 +6542,7 @@ export const pastContestsData: Contest[] = [
         id: 'PZ76ylJsrmpqjouozzenP',
         fullName:
           'Andrea Giulianini  Denis Palbiani Giuseppe Pignataro Gennaro Ciavarella',
+        r2ImageId: null,
       },
     ],
     categories: [
@@ -7232,14 +7263,17 @@ export const pastContestsData: Contest[] = [
       {
         id: 'q4GTFTwRQqsef73q9Hwod',
         fullName: 'Andrea Giulianini',
+        r2ImageId: null,
       },
       {
         id: 'q06TptQMvbld6RIPaUYMu',
         fullName: 'Denis Palviani',
+        r2ImageId: null,
       },
       {
         id: '1kF373JS3NA6vgysyyu0h',
         fullName: 'Claudio Bertasini',
+        r2ImageId: null,
       },
     ],
     categories: [
@@ -7564,14 +7598,17 @@ export const pastContestsData: Contest[] = [
       {
         id: 'iJjOA7N-FnkP6p2NaKYOX',
         fullName: 'Andrea Giulianini',
+        r2ImageId: null,
       },
       {
         id: 'FbtI6tCC-PGIy0i9Nyewf',
         fullName: 'Denis Palviani',
+        r2ImageId: null,
       },
       {
         id: 'Dlwko22-RBAUZvehWyoby',
         fullName: 'Claudio Bertasini',
+        r2ImageId: null,
       },
     ],
     categories: [
@@ -7812,6 +7849,7 @@ export const pastContestsData: Contest[] = [
       {
         id: '9nfgbHvsvMAH9v1Mh1k95',
         fullName: 'Andrea Giulianini Gennaro Ciavarella Franca Cauti',
+        r2ImageId: null,
       },
     ],
     categories: [
@@ -8136,6 +8174,7 @@ export const pastContestsData: Contest[] = [
       {
         id: '1jVPmgJ__p0LHAjYaAAfS',
         fullName: 'Andrea Giulianini Pippo Cappellano Franca Cauti',
+        r2ImageId: null,
       },
     ],
     categories: [
@@ -8461,6 +8500,7 @@ export const pastContestsData: Contest[] = [
         id: 'kJZ_YpwErSxBZcn4tTk9J',
         fullName:
           'Alberto Muro Pelliconi , Gennaro Ciavarella, Franca Cauti , Gaetano Basti',
+        r2ImageId: null,
       },
     ],
     categories: [

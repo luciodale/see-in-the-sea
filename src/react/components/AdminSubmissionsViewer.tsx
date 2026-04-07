@@ -6,7 +6,6 @@ import type {
   AdminSubmission,
   AdminSubmissionsResponse,
 } from '../../types/api';
-import { useContestDownload } from '../hooks/useContestDownload';
 import {
   CheckCircleIcon,
   ChevronRightIcon,
@@ -40,7 +39,6 @@ export function AdminSubmissionsViewer({
   contestId,
 }: AdminSubmissionsViewerProps) {
   const { getToken } = useAuth();
-  const download = useContestDownload();
   const [allSubmissions, setAllSubmissions] = useState<AdminSubmission[]>([]);
   const [filteredSubmissions, setFilteredSubmissions] = useState<
     AdminSubmission[]
@@ -295,80 +293,6 @@ export function AdminSubmissionsViewer({
               </p>
             </div>
             <div className="flex items-center gap-3">
-              {/* Download progress */}
-              {(download.status === 'downloading' ||
-                download.status === 'zipping') && (
-                <div className="flex items-center gap-3 w-48">
-                  <div className="flex-1 h-2 bg-slate-700 rounded-full overflow-hidden">
-                    <div
-                      className="h-full bg-blue-500 rounded-full transition-all duration-200"
-                      style={{
-                        width: `${download.total > 0 ? (download.downloaded / download.total) * 100 : 0}%`,
-                      }}
-                    />
-                  </div>
-                  <span className="text-xs text-slate-400 tabular-nums whitespace-nowrap">
-                    {download.status === 'zipping'
-                      ? 'Zip...'
-                      : `${download.downloaded}/${download.total}`}
-                  </span>
-                </div>
-              )}
-              {download.status === 'error' && (
-                <span className="text-xs text-red-400">{download.error}</span>
-              )}
-              {download.status === 'complete' && (
-                <span className="text-xs text-emerald-400">
-                  Completato
-                  {download.failed > 0 && ` (${download.failed} errori)`}
-                </span>
-              )}
-
-              {(download.status === 'downloading' ||
-                download.status === 'zipping') && (
-                <button
-                  type="button"
-                  onClick={download.cancel}
-                  className="px-3 py-2 text-sm bg-slate-600 text-white rounded-md hover:bg-slate-500 transition-colors"
-                >
-                  Annulla
-                </button>
-              )}
-
-              <button
-                type="button"
-                disabled={
-                  download.status === 'downloading' ||
-                  download.status === 'zipping' ||
-                  allSubmissions.length === 0
-                }
-                onClick={() => {
-                  const yearMatch = contestId.match(/(\d{4})/);
-                  const year = yearMatch
-                    ? Number.parseInt(yearMatch[1], 10)
-                    : new Date().getFullYear();
-                  download.downloadContest(
-                    year,
-                    allSubmissions
-                      .filter(s => s.hasPaid)
-                      .map(s => ({
-                        r2ImageId: s.r2ImageId,
-                        categoryId: s.categoryId,
-                        firstName: s.firstName,
-                        lastName: s.lastName,
-                      }))
-                  );
-                }}
-                className="inline-flex items-center px-4 py-2 border border-slate-600 text-sm font-medium rounded-md text-slate-200 bg-slate-800 hover:bg-slate-700 focus:outline-none focus:ring-2 focus:ring-blue-500 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
-              >
-                <DownloadIcon className="w-4 h-4 mr-2" />
-                {download.status === 'downloading'
-                  ? 'Scaricando...'
-                  : download.status === 'zipping'
-                    ? 'Creazione zip...'
-                    : 'Scarica Immagini'}
-              </button>
-
               <button
                 type="button"
                 onClick={exportToCsv}

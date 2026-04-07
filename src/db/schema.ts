@@ -82,6 +82,7 @@ export const judges = sqliteTable('judges', {
     .notNull()
     .references(() => contests.id),
   fullName: text('full_name').notNull(),
+  r2ImageId: text('r2_image_id'),
   createdAt: text('created_at').default(sql`CURRENT_TIMESTAMP`),
 });
 
