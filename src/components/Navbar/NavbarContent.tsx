@@ -3,64 +3,37 @@ import { useI18n } from '@/i18n/react';
 export function NavbarContent() {
   const { t, lang } = useI18n();
 
-  const cta = {
-    show: false,
-    text: t('navbar.cta'),
-    link: '/',
-  };
   return (
-    <div className="mx-auto max-w-2xl pb-32 pt-6 sm:pt-12 sm:pb-48 lg:pb-38">
-      <div className="text-center mb-6">
-        <p className="font-light text-gray-400 text-[10px] uppercase tracking-widest mb-2">
-          {t('navbar.patronage')}
-        </p>
-        <img
-          src="/images/patrocini/regione-abruzzo-logo.svg"
-          alt="Regione Abruzzo"
-          loading="lazy"
-          className="w-28 h-auto opacity-80 mx-auto"
-        />
-      </div>
-      {cta.show && (
-        <div className="hidden sm:mb-8 sm:flex sm:justify-center">
-          <a
-            href={cta.link}
-            className="relative rounded-full px-3 py-1 text-indigo-400 text-sm/6 ring-1 ring-white/10 hover:ring-white/20"
-          >
-            {`${cta.text} `}
-            <span aria-hidden="true">&rarr;</span>
-          </a>
-        </div>
-      )}
-      <div className="text-center">
+    <div className="flex min-h-screen flex-col items-center justify-center">
+      <div className="text-center drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)]">
         <div className="flex sm:flex-row flex-col items-center justify-center">
-          <img src="/images/logo.svg" alt="Logo" className="h-64" />
-          <h1 className="sm:text-left flex flex-col gap-1 tracking-tight text-balance text-white">
-            <span className="sm:text-5xl text-4xl font-semibold">
-              See In The Sea
-            </span>
-            <span className="sm:text-4xl text-2xl">
-              International Underwater Photocontest
-            </span>
-          </h1>
-        </div>
-
-        <p className="sm:mt-2 mt-4 text-lg font-light text-pretty text-gray-300 sm:text-xl/8">
-          {t('site.description')}
-        </p>
-        <div className="mt-10 flex items-center justify-center gap-x-6">
-          <a
-            href={lang === 'it' ? '/it/user/submissions' : '/user/submissions'}
-            className="rounded-md bg-indigo-500 px-3.5 py-2.5 text-sm font-semibold text-white shadow-xs hover:bg-indigo-400 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-500"
-          >
-            {t('navbar.register')}
-          </a>
-          <a
-            href={lang === 'it' ? '/it/rules' : '/rules'}
-            className="text-sm/6 font-semibold text-white"
-          >
-            {t('navbar.discover')} <span aria-hidden="true">→</span>
-          </a>
+          <img src="/images/logo.svg" alt="Logo" className="h-40 sm:h-64" />
+          <div className="sm:text-left flex flex-col gap-1">
+            <h1 className="flex flex-col gap-1 tracking-tight text-balance text-white">
+              <span className="sm:text-5xl text-4xl font-semibold">
+                See In The Sea
+              </span>
+              <span className="sm:text-4xl text-2xl">
+                International Underwater Photocontest
+              </span>
+            </h1>
+            <div className="mt-4 flex flex-col sm:flex-row items-center sm:items-start gap-3">
+              <a
+                href={
+                  lang === 'it' ? '/it/contest/uw-2025' : '/contest/uw-2025'
+                }
+                className="rounded-md bg-[#077f9d] px-3.5 py-2.5 text-sm font-semibold text-white text-center shadow-xs hover:bg-[#077f9d]/80 w-48"
+              >
+                {t('navbar.winners')}
+              </a>
+              <a
+                href={lang === 'it' ? '/it/user/submissions' : '/user/submissions'}
+                className="rounded-md border border-[#077f9d] px-3.5 py-2.5 text-sm font-semibold text-white text-center hover:bg-[#077f9d]/10 w-48"
+              >
+                {t('navbar.discover')}
+              </a>
+            </div>
+          </div>
         </div>
       </div>
     </div>

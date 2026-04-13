@@ -20,10 +20,18 @@ const t = useTranslations(currentLang);
 
 // Get judges from contestData
 const contestJudges = contestData.judges;
-const contestCategories = contestData.categories.map(c => ({
-  id: c.id,
-  name: c.name,
-}));
+const categoryOrder: Record<string, number> = {
+  macro: 0,
+  'wide-angle': 1,
+  'black-and-white': 2,
+  mediterranean: 3,
+};
+const contestCategories = contestData.categories
+  .map(c => ({
+    id: c.id,
+    name: c.name,
+  }))
+  .sort((a, b) => (categoryOrder[a.id] ?? 99) - (categoryOrder[b.id] ?? 99));
 
 // Get navigation data from pastContestsData
 const sortedContests = pastContestsData

@@ -2,7 +2,7 @@ export function ImageBackground() {
   return (
     <div>
       <div className="absolute bottom-4 right-10 text-slate-500 font-bold italic">
-        Max Giorgetta - Vite Protette
+        Marco Domenicucci
       </div>
       <img
         alt="Underwater wallpaper"

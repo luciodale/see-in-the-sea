@@ -33,9 +33,14 @@ const getPhotographerKey = (entry: Entry) =>
 const mediterraneanCategory = contestData.categories.find(
   c => c.id === MEDITERRANEAN_CATEGORY_ID
 );
-const otherCategories = contestData.categories.filter(
-  c => c.id !== MEDITERRANEAN_CATEGORY_ID
-);
+const categoryOrder: Record<string, number> = {
+  macro: 0,
+  'wide-angle': 1,
+  'black-and-white': 2,
+};
+const otherCategories = contestData.categories
+  .filter(c => c.id !== MEDITERRANEAN_CATEGORY_ID)
+  .sort((a, b) => (categoryOrder[a.id] ?? 99) - (categoryOrder[b.id] ?? 99));
 
 // Process Mediterranean first-place portfolios (grouped by photographer)
 const mediterraneanPortfolios = (() => {
@@ -110,24 +115,10 @@ const hasWinners =
   {
     hasWinners ? (
       <div class="space-y-12 sm:space-y-16 md:space-y-20">
-        {mediterraneanPortfolios.map((portfolio, index) => (
-          <div
-            class="winner-entry"
-            style={`animation-delay: ${index * 100}ms;`}
-          >
-            <MediterraneanPortfolioWinner
-              categoryName={portfolio.categoryName}
-              rank={getResultName('First Place', currentLang)}
-              rawResult={portfolio.result}
-              author={portfolio.author}
-              images={portfolio.images}
-            />
-          </div>
-        ))}
         {regularWinners.map((winner, index) => (
           <div
             class="winner-entry"
-            style={`animation-delay: ${(mediterraneanPortfolios.length + index) * 100}ms;`}
+            style={`animation-delay: ${index * 100}ms;`}
           >
             <TopWinnerImage
               categoryName={winner.categoryName}
@@ -137,6 +128,20 @@ const hasWinners =
               fullImageUrl={winner.fullImageUrl}
               title={winner.title}
               author={winner.author}
+            />
+          </div>
+        ))}
+        {mediterraneanPortfolios.map((portfolio, index) => (
+          <div
+            class="winner-entry"
+            style={`animation-delay: ${(regularWinners.length + index) * 100}ms;`}
+          >
+            <MediterraneanPortfolioWinner
+              categoryName={portfolio.categoryName}
+              rank={getResultName('First Place', currentLang)}
+              rawResult={portfolio.result}
+              author={portfolio.author}
+              images={portfolio.images}
             />
           </div>
         ))}

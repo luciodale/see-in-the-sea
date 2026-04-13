@@ -122,7 +122,9 @@ export function NavbarHeader({ standalone = false }: { standalone?: boolean }) {
   }
 
   return (
-    <header className={`${!standalone ? 'absolute' : ''} inset-x-0 top-0 z-50`}>
+    <header
+      className={`${!standalone ? 'absolute' : ''} inset-x-0 top-0 z-50 bg-gradient-to-b from-black/60 to-transparent`}
+    >
       <nav
         aria-label="Global"
         className="mx-auto max-w-screen-2xl flex items-center justify-between p-4 lg:px-6 xl:px-8"
@@ -133,7 +135,7 @@ export function NavbarHeader({ standalone = false }: { standalone?: boolean }) {
             <img
               alt=""
               src={logoPath}
-              className="h-14 lg:h-16 xl:h-20 2xl:h-24 w-auto"
+              className="h-10 lg:h-12 xl:h-14 2xl:h-16 w-auto"
             />
           </a>
         </div>

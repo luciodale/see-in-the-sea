@@ -35,7 +35,7 @@ export const translations = {
 
     // Navbar
     'navbar.cta': 'Registration Open!',
-    'navbar.register': 'Register Now',
+    'navbar.winners': '2025 Winners',
     'navbar.discover': 'Discover the Contest',
     'navbar.patronage': 'With the high patronage of',
 
@@ -402,7 +402,7 @@ export const translations = {
 
     // Navbar
     'navbar.cta': 'Iscrizioni Aperte!',
-    'navbar.register': 'Iscriviti Ora',
+    'navbar.winners': 'Vincitori 2025',
     'navbar.discover': 'Scopri il Concorso',
     'navbar.patronage': 'Con il patrocinio di',
 
