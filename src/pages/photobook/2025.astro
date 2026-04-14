@@ -2,14 +2,22 @@
 export const prerender = true;
 
 import '@/styles/global.css';
-import {
-  getPhotobook2025,
-  type PhotobookLang,
-} from '@/i18n/photobook-2025';
+import { getPhotobook2025, type PhotobookLang } from '@/i18n/photobook-2025';
 
 const lang: PhotobookLang = Astro.currentLocale === 'it' ? 'it' : 'en';
 const content = getPhotobook2025(lang);
-const { ui, meta, cover, bw, macro, wide, portfolio, leadership, judges, photographerIndex } = content;
+const {
+  ui,
+  meta,
+  cover,
+  bw,
+  macro,
+  wide,
+  portfolio,
+  leadership,
+  judges,
+  photographerIndex,
+} = content;
 
 const canonicalUrl = Astro.url.href;
 
@@ -139,11 +147,18 @@ const itUrl = stripped === '/' ? '/it' : `/it${stripped}`;
           <h2 class="pb-people__title pb-reveal">
             {ui.judgesTitlePrefix}<em>{ui.judgesTitleEm}</em>
           </h2>
-          <div class="pb-people__grid pb-people__grid--three">
+          <div class="pb-people__grid pb-people__grid--three pb-people__grid--portraits">
             {judges.map(judge => (
-              <article class="pb-person pb-reveal">
+              <article class="pb-person pb-person--portrait pb-reveal">
+                <figure class="pb-person__portrait">
+                  <img
+                    src={judge.image}
+                    alt={judge.name}
+                    loading="lazy"
+                    decoding="async"
+                  />
+                </figure>
                 <h3 class="pb-person__name"><em>{judge.name}</em></h3>
-                <p class="pb-person__body">{judge.body}</p>
               </article>
             ))}
           </div>
@@ -161,6 +176,7 @@ const itUrl = stripped === '/' ? '/it' : `/it${stripped}`;
           <div class="pb-intro__body pb-reveal">
             <p>{ui.preface.paragraph1}</p>
             <p>{ui.preface.paragraph2}</p>
+            <p>{ui.preface.paragraph3}</p>
           </div>
           <ol class="pb-toc pb-reveal">
             <li><span>01</span> {ui.categories.bw}</li>
@@ -604,8 +620,13 @@ const itUrl = stripped === '/' ? '/it' : `/it${stripped}`;
           // 200 inches ≈ 19,200px at 96 DPI. If content is taller we scale
           // the whole document down with CSS zoom so it fits on ONE page.
           const MAX_PAGE_PX = 18000;
-          const zoom = rawHeight > MAX_PAGE_PX ? MAX_PAGE_PX / rawHeight : 1;
-          const totalHeight = Math.ceil(rawHeight * zoom);
+          // Shrink slightly under the cap so sub-pixel rounding can't push
+          // content to a 2nd page.
+          const zoom =
+            rawHeight > MAX_PAGE_PX ? (MAX_PAGE_PX - 8) / rawHeight : 1;
+          // Buffer a few pixels so the @page box is strictly >= content.
+          const PAGE_BUFFER_PX = 4;
+          const totalHeight = Math.ceil(rawHeight * zoom) + PAGE_BUFFER_PX;
           const pageWidth = Math.ceil(width * zoom);
 
           const style = document.createElement('style');
@@ -622,7 +643,7 @@ const itUrl = stripped === '/' ? '/it' : `/it${stripped}`;
               html, body {
                 width: ${width}px !important;
                 height: ${rawHeight}px !important;
-                overflow: visible !important;
+                overflow: hidden !important;
                 background: #000 !important;
                 margin: 0 !important;
                 padding: 0 !important;
@@ -787,8 +808,8 @@ const itUrl = stripped === '/' ? '/it' : `/it${stripped}`;
         text-transform: uppercase;
       }
       .pb-topbar__brand img {
-        width: 22px;
-        height: 22px;
+        width: 80px;
+        height: 80px;
       }
       .pb-topbar__brand span {
         opacity: 0.82;
@@ -1129,6 +1150,32 @@ const itUrl = stripped === '/' ? '/it' : `/it${stripped}`;
         letter-spacing: 0.005em;
         color: rgba(244, 242, 238, 0.82);
         margin: 0;
+      }
+      .pb-people__grid--portraits {
+        text-align: center;
+      }
+      .pb-person--portrait {
+        align-items: center;
+        gap: 20px;
+      }
+      .pb-person__portrait {
+        margin: 0;
+        width: 100%;
+        max-width: 260px;
+        aspect-ratio: 4 / 5;
+        overflow: hidden;
+        border-radius: 2px;
+        background: #1a1a1a;
+      }
+      .pb-person__portrait img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        display: block;
+        filter: grayscale(1) contrast(1.02);
+      }
+      .pb-person--portrait .pb-person__name {
+        text-align: center;
       }
 
       /* 3. Dividers — single tight layout, applied to all */
@@ -1692,7 +1739,30 @@ const itUrl = stripped === '/' ? '/it' : `/it${stripped}`;
       /* Responsive */
       @media screen and (max-width: 900px) {
         .pb-topbar {
-          padding: 14px 18px;
+          position: static;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          gap: 10px;
+          padding: 12px 16px;
+        }
+        .pb-topbar__brand img {
+          width: 48px;
+          height: 48px;
+        }
+        .pb-topbar__brand span {
+          font-size: 10px;
+        }
+        .pb-topbar__year {
+          display: none;
+        }
+        .pb-topbar__actions {
+          justify-content: center;
+          gap: 14px;
+        }
+        .pb-topbar__button {
+          padding: 7px 14px;
+          font-size: 10px;
         }
         .pb-cover__content {
           padding: 72px 24px 48px;

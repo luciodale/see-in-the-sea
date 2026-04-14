@@ -73,11 +73,25 @@ export const photobook2025Shared = {
       ],
     },
   },
-  leadership: [{ name: 'Paolo De Iure' }, { name: 'Giuseppe Pignataro' }],
+  leadership: [
+    { name: 'Paolo De Iure' },
+    { name: 'Giuseppe Pignataro' },
+    { name: "Lucio D'Alessandro" },
+  ],
   judges: [
-    { name: 'Pietro Formis' },
-    { name: 'Pasquale Vassallo' },
-    { name: 'Domy Tripodi' },
+    {
+      name: 'Pietro Formis',
+      image: 'https://placehold.co/600x750/1a1a1a/f4f2ee?text=Pietro+Formis',
+    },
+    {
+      name: 'Pasquale Vassallo',
+      image:
+        'https://placehold.co/600x750/1a1a1a/f4f2ee?text=Pasquale+Vassallo',
+    },
+    {
+      name: 'Domy Tripodi',
+      image: 'https://placehold.co/600x750/1a1a1a/f4f2ee?text=Domy+Tripodi',
+    },
   ],
   photographerIndex: [
     'Marc Casanovas',
@@ -133,6 +147,7 @@ type PhotobookCopy = {
       titleLine2Em: string;
       paragraph1: string;
       paragraph2: string;
+      paragraph3: string;
     };
     dividers: {
       bw: { titleLine1: string; titleLine2Em: string; sub: string };
@@ -169,7 +184,6 @@ type PhotobookCopy = {
     { role: string; body: string },
     { role: string; body: string },
   ];
-  judges: readonly [{ body: string }, { body: string }, { body: string }];
 };
 
 const it: PhotobookCopy = {
@@ -194,17 +208,19 @@ const it: PhotobookCopy = {
     ordinals: ['1°', '2°', '3°'],
     placeSuffix: 'classificato',
     leadershipTitlePrefix: 'La ',
-    leadershipTitleEm: 'direzione.',
+    leadershipTitleEm: 'direzione',
     judgesEyebrow: 'Giuria',
     judgesTitlePrefix: 'I ',
-    judgesTitleEm: 'giudici.',
+    judgesTitleEm: 'giudici',
     preface: {
       eyebrow: 'Prefazione',
       titleLine1: 'Un anno di immagini',
-      titleLine2Em: 'dal silenzio del mare.',
+      titleLine2Em: 'dal silenzio del mare',
       paragraph1:
-        "Dodici autori, quattro categorie, un solo linguaggio: la luce. Questo volume raccoglie le fotografie premiate dall'edizione 2025 del See in the Sea, concorso internazionale dedicato alla fotografia subacquea.",
+        'Dodici autori, quattro categorie, un solo linguaggio: la luce. ',
       paragraph2:
+        "Questo volume raccoglie le fotografie premiate dall'edizione 2025 del See in the Sea, concorso internazionale dedicato alla fotografia subacquea.",
+      paragraph3:
         'Ogni scatto è un incontro. Con un soggetto, con una condizione di luce, con un istante irripetibile. Sfoglialo lentamente.',
     },
     dividers: {
@@ -358,22 +374,11 @@ const it: PhotobookCopy = {
   leadership: [
     {
       role: 'Presidente Ortona Sub',
-      body: "Alla guida di Ortona Sub, promuove da anni la cultura del mare e la diffusione della fotografia subacquea come strumento di conoscenza e tutela dell'ambiente marino.",
+      body: '"Me lo sono chiesto tante volte, fissando in silenzio questo schermo nero... Frammenti di blu si accavallano a volti sfumati, l\'eco sopito di bolle leggere, onde lontane, sensazioni sospese che profumano di sole, di sale, di acqua di mare... colori e forme mutevoli dove nulla è come sembra... In un passato ormai lontano ho provato a raccontare il nostro viaggio, incontro di sguardi, passioni fuse per creare una storia, il brivido di una visione irrazionale, la magia di cercare oltre l\'orizzonte..."',
     },
     {
       role: 'Direttore Tecnico',
       body: 'Responsabile della direzione tecnica del concorso, coordina logistica, sicurezza e criteri di valutazione garantendo lo standard qualitativo delle edizioni.',
-    },
-  ],
-  judges: [
-    {
-      body: 'Fotografo subacqueo di fama internazionale, autore pubblicato su riviste di settore. La sua ricerca unisce rigore documentaristico e sensibilità estetica.',
-    },
-    {
-      body: 'Biologo marino e fotografo, collabora con le principali testate naturalistiche italiane. Racconta il Mediterraneo attraverso immagini di rara precisione scientifica.',
-    },
-    {
-      body: "Istruttore e fotografo, da oltre vent'anni documenta la biodiversità degli ecosistemi costieri italiani con un linguaggio visivo personale.",
     },
   ],
 };
@@ -400,18 +405,19 @@ const en: PhotobookCopy = {
     ordinals: ['1st', '2nd', '3rd'],
     placeSuffix: 'place',
     leadershipTitlePrefix: 'Our ',
-    leadershipTitleEm: 'leadership.',
+    leadershipTitleEm: 'leadership',
     judgesEyebrow: 'Jury',
     judgesTitlePrefix: 'The ',
-    judgesTitleEm: 'judges.',
+    judgesTitleEm: 'judges',
     preface: {
       eyebrow: 'Preface',
       titleLine1: 'A year of images',
-      titleLine2Em: 'from the silence of the sea.',
+      titleLine2Em: 'from the silence of the sea',
       paragraph1:
         'Twelve authors, four categories, a single language: light. This volume gathers the photographs awarded at the 2025 edition of See in the Sea, the international contest dedicated to underwater photography.',
       paragraph2:
         'Every shot is an encounter. With a subject, with a lighting condition, with an unrepeatable instant. Turn the pages slowly.',
+      paragraph3: '',
     },
     dividers: {
       bw: {
@@ -571,17 +577,6 @@ const en: PhotobookCopy = {
       body: 'Responsible for the technical direction of the contest, he coordinates logistics, safety and judging criteria, ensuring the quality standard of each edition.',
     },
   ],
-  judges: [
-    {
-      body: 'Internationally renowned underwater photographer, published in the leading titles of the field. His practice blends documentary rigour with aesthetic sensibility.',
-    },
-    {
-      body: "Marine biologist and photographer, contributor to the main Italian nature magazines. He tells the Mediterranean through images of rare scientific precision.",
-    },
-    {
-      body: "Instructor and photographer, for over twenty years he has documented the biodiversity of Italy's coastal ecosystems with a personal visual language.",
-    },
-  ],
 };
 
 export const photobook2025Copy: Record<PhotobookLang, PhotobookCopy> = {
@@ -599,7 +594,10 @@ function mergeTriple(
   const slots: readonly TripleSlot[] = ['first', 'second', 'third'] as const;
   return Object.fromEntries(
     slots.map(slot => [slot, { ...shared[slot], ...copy[slot] }])
-  ) as Record<TripleSlot, LocalizedPiece & { image: string; photographer: string }>;
+  ) as Record<
+    TripleSlot,
+    LocalizedPiece & { image: string; photographer: string }
+  >;
 }
 
 export function getPhotobook2025(lang: PhotobookLang) {
@@ -643,10 +641,10 @@ export function getPhotobook2025(lang: PhotobookLang) {
       ...person,
       ...c.leadership[i],
     })) as Array<{ name: string; role: string; body: string }>,
-    judges: s.judges.map((judge, i) => ({
-      ...judge,
-      ...c.judges[i],
-    })) as Array<{ name: string; body: string }>,
+    judges: s.judges.map(judge => ({ ...judge })) as Array<{
+      name: string;
+      image: string;
+    }>,
     photographerIndex: s.photographerIndex,
   };
 }
