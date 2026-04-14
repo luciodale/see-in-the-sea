@@ -2,22 +2,9 @@
 
 ---
 
-<div
-  class="min-h-screen w-full bg-gradient-to-b from-slate-950 via-slate-900 to-slate-950 relative z-0"
->
-  <div class="absolute inset-0 overflow-hidden pointer-events-none">
-    <div
-      class="absolute top-0 left-1/4 w-96 h-96 bg-cyan-500/5 rounded-full blur-3xl"
-    >
-    </div>
-    <div
-      class="absolute bottom-1/4 right-1/4 w-96 h-96 bg-blue-500/5 rounded-full blur-3xl"
-    >
-    </div>
-  </div>
-
+<div class="min-h-screen w-full bg-background relative z-0">
   <div
-    class="relative max-w-6xl mx-auto py-12 sm:pt-8 sm:pb-16 px-4 sm:px-6 lg:px-8"
+    class="relative max-w-6xl mx-auto py-16 sm:py-20 px-4 sm:px-6 lg:px-8"
   >
     <slot />
   </div>
@@ -39,11 +26,11 @@
   <div class="absolute inset-0 flex items-center justify-center p-4 sm:p-8">
     <button
       id="lightbox-close"
-      class="absolute top-4 right-4 z-10 p-2 rounded-full bg-white/10 hover:bg-white/20 transition-colors"
+      class="absolute top-4 right-4 z-10 p-2 rounded-full bg-surface/80 hover:bg-surface-hover transition-colors"
       aria-label="Chiudi"
     >
       <svg
-        class="w-6 h-6 text-white"
+        class="w-6 h-6 text-foreground"
         fill="none"
         stroke="currentColor"
         viewBox="0 0 24 24"
@@ -64,7 +51,7 @@
         class="absolute inset-0 flex items-center justify-center"
       >
         <div
-          class="w-10 h-10 border-2 border-white/20 border-t-white rounded-full animate-spin"
+          class="w-10 h-10 border-2 border-border border-t-foreground rounded-full animate-spin"
         >
         </div>
       </div>
@@ -79,8 +66,8 @@
         id="lightbox-info"
         class="text-center opacity-0 transition-opacity duration-300"
       >
-        <p id="lightbox-author" class="text-white font-light text-lg"></p>
-        <p id="lightbox-title" class="text-gray-400 text-sm italic mt-1"></p>
+        <p id="lightbox-author" class="text-foreground font-light text-lg"></p>
+        <p id="lightbox-title" class="text-muted-foreground text-sm italic mt-1"></p>
       </div>
     </div>
   </div>

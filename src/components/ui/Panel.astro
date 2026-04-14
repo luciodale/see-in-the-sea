@@ -1,0 +1,25 @@
+---
+type Variant = 'default' | 'raised';
+
+type Props = {
+  variant?: Variant;
+  class?: string;
+};
+
+const { variant = 'default', class: className = '' } = Astro.props;
+
+const base = 'backdrop-blur-xl rounded-3xl border p-8 shadow-2xl';
+
+const variantClasses: Record<Variant, string> = {
+  default: 'bg-surface/80 border-border',
+  raised: 'bg-surface-raised/90 border-border-strong',
+};
+
+const classes = [base, variantClasses[variant], className]
+  .filter(Boolean)
+  .join(' ');
+---
+
+<div class={classes}>
+  <slot />
+</div>

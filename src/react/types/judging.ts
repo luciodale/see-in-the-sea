@@ -29,10 +29,18 @@ export type PlacementInfo = {
 };
 
 export const PLACEMENTS: PlacementInfo[] = [
-  { value: 'first', label: '1\u00B0', color: 'bg-yellow-500' },
-  { value: 'second', label: '2\u00B0', color: 'bg-gray-400' },
-  { value: 'third', label: '3\u00B0', color: 'bg-amber-600' },
-  { value: 'runner-up', label: 'M', color: 'bg-blue-500' },
+  { value: 'first', label: '1\u00B0', color: 'bg-gold text-gold-foreground' },
+  {
+    value: 'second',
+    label: '2\u00B0',
+    color: 'bg-surface-raised text-foreground',
+  },
+  {
+    value: 'third',
+    label: '3\u00B0',
+    color: 'bg-warning/80 text-warning-foreground',
+  },
+  { value: 'runner-up', label: 'M', color: 'bg-accent text-accent-foreground' },
 ];
 
 export type PortfolioGroup = {

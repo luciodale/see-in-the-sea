@@ -24,7 +24,7 @@ export function SuccessModal({
       return (
         <svg
           aria-hidden="true"
-          className="w-12 h-12 text-emerald-500"
+          className="w-12 h-12 text-success"
           fill="none"
           stroke="currentColor"
           viewBox="0 0 24 24"
@@ -41,7 +41,7 @@ export function SuccessModal({
     return (
       <svg
         aria-hidden="true"
-        className="w-12 h-12 text-blue-500"
+        className="w-12 h-12 text-accent-hover"
         fill="none"
         stroke="currentColor"
         viewBox="0 0 24 24"
@@ -62,7 +62,7 @@ export function SuccessModal({
         {/* Icon and Message */}
         <div className="text-center">
           <div className="flex justify-center mb-4">{getIcon()}</div>
-          <p className="text-slate-300 leading-relaxed">{message}</p>
+          <p className="text-muted-foreground leading-relaxed">{message}</p>
         </div>
 
         {/* Action */}

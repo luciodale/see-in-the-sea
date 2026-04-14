@@ -53,11 +53,11 @@ export function PortfolioGrid({
   }, [t]);
 
   return (
-    <div className="bg-slate-800 border border-slate-700 rounded-xl p-5">
-      <h3 className="text-lg font-semibold text-white mb-4">
+    <div className="bg-surface border border-border rounded-2xl p-6">
+      <h3 className="font-serif text-xl text-foreground mb-5 leading-heading">
         {t('portfolio.title')} {portfolioNumber}
       </h3>
-      <div className="grid grid-cols-3 gap-3 mb-4">
+      <div className="grid grid-cols-3 gap-3 mb-5">
         {photoSlots.map(({ photoType, label }) => {
           const submission = portfolioSubmissions.find(
             s => s.portfolioPhotoType === photoType
@@ -77,12 +77,12 @@ export function PortfolioGrid({
           );
         })}
       </div>
-      <div className="pt-4 border-t border-slate-700">
+      <div className="pt-4 border-t border-border">
         <div className="flex items-center justify-center gap-2">
           {status.isComplete && (
             <svg
               aria-hidden="true"
-              className="w-4 h-4 text-emerald-400"
+              className="w-4 h-4 text-success"
               fill="currentColor"
               viewBox="0 0 20 20"
             >
@@ -94,7 +94,7 @@ export function PortfolioGrid({
             </svg>
           )}
           <span
-            className={`text-sm font-medium ${status.isComplete ? 'text-emerald-400' : 'text-slate-400'}`}
+            className={`text-editorial uppercase tracking-editorial ${status.isComplete ? 'text-success' : 'text-muted-foreground'}`}
           >
             {status.isComplete
               ? t('portfolio.complete')

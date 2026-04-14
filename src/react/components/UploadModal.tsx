@@ -6,6 +6,7 @@ import { ACCEPTED_IMAGE_TYPES } from '../../server/utils';
 import type { UploadResponse } from '../../types/api';
 import { BaseModal } from './BaseModal';
 import { Button } from './ui/Button';
+import { Input, Textarea } from './ui/Input';
 
 type UploadModalProps = {
   isOpen: boolean;
@@ -45,7 +46,7 @@ export function UploadModal({
   const [error, setError] = useState<string | null>(null);
 
   const handleFileChange = (file: File | null) => {
-    setError(null); // Clear any previous errors when selecting a new file
+    setError(null);
 
     if (!file) {
       setSelectedFile(null);
@@ -54,12 +55,11 @@ export function UploadModal({
       return;
     }
 
-    // Check file size and set error if too large, but still show preview
     if (file.size > MAX_IMAGE_SIZE) {
       const actualSize = (file.size / (1024 * 1024)).toFixed(1);
       setError(`${t('form.file-too-large')} (${actualSize}MB/${MAX_MB}MB)`);
     } else {
-      setError(null); // Clear error if file size is OK
+      setError(null);
     }
 
     setSelectedFile(file);
@@ -70,7 +70,6 @@ export function UploadModal({
   const handleUpload = async () => {
     if (!selectedFile || !title.trim()) return;
 
-    // Double-check file size before upload (safety measure)
     if (selectedFile.size > MAX_IMAGE_SIZE) {
       const actualSize = (selectedFile.size / (1024 * 1024)).toFixed(1);
       setError(`${t('form.file-too-large')} (${actualSize}MB/${MAX_MB}MB)`);
@@ -94,7 +93,6 @@ export function UploadModal({
       form.append('title', title.trim());
       form.append('description', description.trim());
 
-      // Add portfolio fields if provided
       if (portfolio) {
         form.append('portfolio', portfolio);
       }
@@ -102,7 +100,6 @@ export function UploadModal({
         form.append('portfolioPhotoType', portfolioPhotoType);
       }
 
-      // Add admin upload fields if this is an admin upload
       if (isAdminUpload) {
         form.append('adminUpload', 'true');
         if (adminUserEmail) {
@@ -124,7 +121,6 @@ export function UploadModal({
         throw new Error(result.message || 'Upload failed');
       }
 
-      // Clear form
       setSelectedFile(null);
       setPreview(null);
       setTitle('');
@@ -144,7 +140,6 @@ export function UploadModal({
   const handleClose = () => {
     if (isUploading) return;
 
-    // Clear form state
     setSelectedFile(null);
     if (preview) URL.revokeObjectURL(preview);
     setPreview(null);
@@ -167,18 +162,19 @@ export function UploadModal({
       maxWidth="2xl"
       error={!!error}
     >
-      {/* Form */}
-      <div className="space-y-4">
-        {/* Admin Upload Notice */}
+      <div className="space-y-5">
         {isAdminUpload && adminUserEmail && (
-          <div className="bg-blue-900/30 border border-blue-700 text-blue-200 rounded-lg p-3">
-            <p className="text-sm">
-              <strong>Admin Upload:</strong> This image will be uploaded on
-              behalf of <span className="font-mono">{adminUserEmail}</span>
+          <div className="bg-accent-muted border border-accent/40 text-foreground rounded-xl p-4">
+            <p className="font-light text-sm leading-paragraph">
+              <strong className="text-editorial uppercase tracking-editorial mr-2">
+                Admin Upload
+              </strong>
+              This image will be uploaded on behalf of{' '}
+              <span className="font-mono">{adminUserEmail}</span>
             </p>
           </div>
         )}
-        {/* File input */}
+
         <div>
           <input
             ref={fileInputRef}
@@ -188,95 +184,59 @@ export function UploadModal({
             onChange={e => handleFileChange(e.target.files?.[0] || null)}
           />
           <Button
-            variant="secondary"
+            variant="outline"
             fullWidth
             size="lg"
             onClick={() => fileInputRef.current?.click()}
             disabled={isUploading}
-            className="border border-slate-600"
           >
             {selectedFile ? selectedFile.name : t('form.choose-file')}
           </Button>
         </div>
 
-        {/* Preview */}
         {preview && (
-          <div className="relative w-full h-80 bg-slate-900 rounded-lg overflow-hidden">
+          <div className="relative w-full h-80 bg-background border border-border rounded-xl overflow-hidden">
             <img
               src={preview}
               alt="Preview"
               className="w-full h-full object-contain"
             />
-            {/* Error overlay on image */}
             {error && (
-              <div
-                className="absolute bottom-0 left-0 right-0 text-red-100 p-3 text-sm font-medium"
-                style={{
-                  background: `
-                        repeating-linear-gradient(
-                          45deg,
-                          rgba(127, 29, 29, 0.9),
-                          rgba(127, 29, 29, 0.9) 10px,
-                          rgba(153, 27, 27, 0.9) 10px,
-                          rgba(153, 27, 27, 0.9) 20px
-                        )
-                      `,
-                }}
-              >
+              <div className="absolute bottom-0 left-0 right-0 bg-destructive/90 text-destructive-foreground p-3 text-sm font-light">
                 {error}
               </div>
             )}
           </div>
         )}
 
-        {/* Title */}
-        <div>
-          <label
-            htmlFor="upload-title"
-            className="block text-sm font-medium text-slate-300 mb-2"
-          >
-            {t('form.title')} *
-          </label>
-          <input
-            id="upload-title"
-            type="text"
-            value={title}
-            onChange={e => setTitle(e.target.value)}
-            disabled={isUploading}
-            className="w-full px-3 py-2 bg-slate-900 border border-slate-700 text-white rounded-lg disabled:opacity-50"
-            placeholder={t('form.title-placeholder')}
-          />
-        </div>
+        <Input
+          id="upload-title"
+          type="text"
+          label={`${t('form.title')} *`}
+          value={title}
+          onChange={e => setTitle(e.target.value)}
+          disabled={isUploading}
+          placeholder={t('form.title-placeholder')}
+        />
 
-        {/* Description */}
-        <div>
-          <label
-            htmlFor="upload-description"
-            className="block text-sm font-medium text-slate-300 mb-2"
-          >
-            {t('form.description-optional')}
-          </label>
-          <textarea
-            id="upload-description"
-            value={description}
-            onChange={e => setDescription(e.target.value)}
-            disabled={isUploading}
-            rows={3}
-            className="w-full px-3 py-2 bg-slate-900 border border-slate-700 text-white rounded-lg disabled:opacity-50"
-            placeholder={t('form.description-placeholder')}
-          />
-        </div>
+        <Textarea
+          id="upload-description"
+          label={t('form.description-optional')}
+          value={description}
+          onChange={e => setDescription(e.target.value)}
+          disabled={isUploading}
+          rows={3}
+          placeholder={t('form.description-placeholder')}
+        />
 
-        {/* File size info */}
-        <div className="text-xs text-slate-400">
+        <p className="text-editorial uppercase tracking-editorial text-subtle-foreground">
           {t('submissions.max-size')}: {MAX_MB}MB
-        </div>
+        </p>
       </div>
 
-      {/* Actions */}
-      <div className="flex gap-3 mt-6">
+      <div className="flex gap-3 mt-8">
         <Button
-          variant="secondary"
+          variant="outline"
           fullWidth
           onClick={handleClose}
           disabled={isUploading}

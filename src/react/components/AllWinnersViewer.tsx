@@ -21,10 +21,10 @@ const PLACEMENT_STYLE: Record<
   WinnersPreviewRow['placement'],
   { label: string; color: string }
 > = {
-  first: { label: '1°', color: 'bg-yellow-500' },
-  second: { label: '2°', color: 'bg-gray-400' },
-  third: { label: '3°', color: 'bg-amber-600' },
-  'runner-up': { label: 'M', color: 'bg-blue-500' },
+  first: { label: '1°', color: 'bg-gold text-gold-foreground' },
+  second: { label: '2°', color: 'bg-surface-raised text-foreground' },
+  third: { label: '3°', color: 'bg-warning/80 text-warning-foreground' },
+  'runner-up': { label: 'M', color: 'bg-accent text-accent-foreground' },
 };
 
 function formatName(row: WinnersPreviewRow): string {

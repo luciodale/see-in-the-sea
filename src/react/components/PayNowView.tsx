@@ -29,7 +29,6 @@ export function PayNowView() {
       const data: CheckoutResponse = await response.json();
 
       if (data.success && data.url) {
-        // Redirect to Stripe Checkout
         window.location.href = data.url;
       } else {
         setError(data.message || 'Failed to create checkout session');
@@ -42,53 +41,48 @@ export function PayNowView() {
   };
 
   return (
-    <div className="max-w-2xl mx-auto space-y-6">
-      {/* Header */}
-      <div className="text-center">
+    <div className="max-w-2xl mx-auto space-y-8 py-8">
+      <div className="text-center space-y-4">
         <Link
           to="/user/submissions"
-          className="text-slate-400 hover:text-white transition-colors mb-4 inline-block cursor-pointer"
+          className="text-editorial uppercase tracking-editorial text-muted-foreground hover:text-foreground transition-colors inline-block cursor-pointer"
         >
-          {t('payment.back-to-submissions')}
+          ← {t('payment.back-to-submissions')}
         </Link>
-        <h1 className="text-3xl font-bold text-white mb-2">
+        <h1 className="font-serif text-4xl sm:text-5xl text-foreground leading-display tracking-display">
           {t('payment.title')}
         </h1>
       </div>
 
-      {/* Warning Card */}
       <Card variant="warning">
         <div className="flex items-start gap-4">
-          <ExclamationTriangleIcon className="w-8 h-8 text-amber-400 flex-shrink-0 mt-1" />
+          <ExclamationTriangleIcon className="w-6 h-6 text-warning flex-shrink-0 mt-1" />
           <div className="space-y-3">
-            <h2 className="text-xl font-semibold text-amber-200">
+            <h2 className="font-serif text-xl text-foreground leading-heading">
               {t('payment.warning.title')}
             </h2>
-            <p className="text-amber-100 leading-relaxed">
+            <p className="font-light text-sm text-foreground/80 leading-paragraph">
               {t('payment.warning.message')}
             </p>
           </div>
         </div>
       </Card>
 
-      {/* Payment Card */}
-      <Card variant="success" className="rounded-lg">
-        <div className="text-center">
-          <div className="flex items-center justify-center mb-4">
-            <CreditCardIcon className="h-8 w-8 text-emerald-400 mr-3" />
-            <h3 className="text-xl font-bold text-white">
+      <Card>
+        <div className="text-center space-y-5">
+          <div className="flex items-center justify-center gap-3">
+            <CreditCardIcon className="h-6 w-6 text-foreground/70" />
+            <h3 className="font-serif text-2xl text-foreground leading-heading">
               {t('payment.pay-now')}
             </h3>
           </div>
 
-          <div className="mb-6">
-            <p className="text-slate-300 text-sm">
-              {t('payment.secure-payment')}
-            </p>
-          </div>
+          <p className="font-light text-sm text-muted-foreground leading-paragraph">
+            {t('payment.secure-payment')}
+          </p>
 
           {error && (
-            <div className="bg-red-900/40 border border-red-800 text-red-200 rounded-lg p-3 mb-4 text-sm">
+            <div className="bg-destructive/10 border border-destructive/40 text-destructive rounded-xl p-3 text-sm font-light">
               {error}
             </div>
           )}
@@ -104,7 +98,7 @@ export function PayNowView() {
               t('payment.processing')
             ) : (
               <>
-                <CreditCardIcon className="h-5 w-5" />
+                <CreditCardIcon className="h-4 w-4" />
                 {t('payment.pay-now')}
               </>
             )}

@@ -5,7 +5,6 @@ import { useI18n } from '@/i18n/react';
 export function LanguageSwitcherReact() {
   const { lang } = useI18n();
   const [isOpen, setIsOpen] = useState(false);
-  console.log('lang', lang);
 
   const languages = [
     { code: 'en', label: 'English', flag: '🇺🇸' },
@@ -33,7 +32,7 @@ export function LanguageSwitcherReact() {
     <div className="relative inline-block">
       <button
         type="button"
-        className="flex items-center gap-2 px-3 py-2 text-sm font-medium text-white bg-white/10 border border-white/20 rounded-md hover:bg-white/20 focus:outline-none focus:ring-2 focus:ring-white/50 cursor-pointer"
+        className="flex items-center gap-2 px-3 py-2 text-sm font-medium text-foreground bg-surface/60 border border-border rounded-md hover:bg-surface-hover focus:outline-none focus:ring-2 focus:ring-ring cursor-pointer"
         onClick={() => setIsOpen(!isOpen)}
         aria-expanded={isOpen}
         aria-haspopup="true"
@@ -54,7 +53,7 @@ export function LanguageSwitcherReact() {
           />
 
           {/* Dropdown */}
-          <div className="absolute left-0 top-full mt-1 w-full bg-gray-800 border border-gray-600 rounded-md shadow-lg z-50">
+          <div className="absolute left-0 top-full mt-1 w-full bg-popover border border-border-strong rounded-md shadow-2xl z-50">
             <div className="py-1">
               {languages.map(language => (
                 <button
@@ -63,8 +62,8 @@ export function LanguageSwitcherReact() {
                   onClick={() => handleLanguageChange(language.code)}
                   className={`w-full text-left block px-4 py-2 text-sm transition-colors duration-150 cursor-pointer ${
                     language.code === lang
-                      ? 'bg-indigo-600 text-white font-medium'
-                      : 'text-gray-200 hover:bg-gray-700 hover:text-white'
+                      ? 'bg-accent text-accent-foreground font-medium'
+                      : 'text-muted-foreground hover:bg-surface-hover hover:text-foreground'
                   }`}
                   role="menuitem"
                 >
@@ -73,7 +72,7 @@ export function LanguageSwitcherReact() {
                     {language.code === lang && (
                       <svg
                         aria-hidden="true"
-                        className="w-4 h-4 ml-auto text-indigo-200"
+                        className="w-4 h-4 ml-auto text-accent-foreground"
                         fill="currentColor"
                         viewBox="0 0 20 20"
                       >

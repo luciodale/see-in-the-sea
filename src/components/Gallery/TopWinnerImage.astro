@@ -1,6 +1,7 @@
 ---
 import type { Language } from '@/i18n/translations';
 import { useTranslations } from '@/i18n/utils';
+import { getRankStyles } from './winner-styles';
 
 type Props = {
   categoryName: string;
@@ -25,56 +26,32 @@ const {
 const currentLang = (Astro.currentLocale ?? 'en') as Language;
 const t = useTranslations(currentLang);
 
-// Define accent color based on rank
-const getAccentStyles = (result: string) => {
-  switch (result) {
-    case 'first':
-      return {
-        border: 'border-amber-400/30',
-        badge: 'bg-gradient-to-r from-amber-500 to-yellow-500',
-      };
-    case 'second':
-      return {
-        border: 'border-slate-400/30',
-        badge: 'bg-gradient-to-r from-slate-400 to-gray-400',
-      };
-    case 'third':
-      return {
-        border: 'border-orange-600/30',
-        badge: 'bg-gradient-to-r from-orange-600 to-amber-600',
-      };
-    default:
-      return {
-        border: 'border-cyan-500/30',
-        badge: 'bg-gradient-to-r from-cyan-500 to-blue-500',
-      };
-  }
-};
-
-const styles = getAccentStyles(rawResult);
+const styles = getRankStyles(rawResult);
 ---
 
 <div class="winner-section group" data-image-url={imageUrl}>
   <div
     class="flex flex-col sm:flex-row sm:items-end justify-between gap-3 mb-4"
   >
-    <div class="space-y-1.5">
+    <div class="space-y-2">
       <span
-        class={`inline-block px-2.5 py-1 text-[10px] font-semibold uppercase tracking-widest ${styles.badge} text-white rounded-full shadow-lg`}
+        class={`inline-block px-3 py-1 text-tiny uppercase tracking-editorial-wide ${styles.badge} rounded-full`}
       >
         {rank}
       </span>
       <h2
-        class="text-xl sm:text-2xl md:text-3xl font-light text-white tracking-wide"
+        class="font-serif text-2xl sm:text-3xl md:text-4xl text-foreground leading-display tracking-display"
       >
         {categoryName}
       </h2>
     </div>
     <div class="sm:text-right space-y-0.5">
-      <p class="text-base sm:text-lg font-light text-white/90">{author}</p>
+      <p class="font-serif text-xl sm:text-2xl text-foreground/90 leading-tight">
+        {author}
+      </p>
       {
         title && (
-          <p class="text-sm sm:text-base font-light italic text-gray-400">
+          <p class="text-sm sm:text-base font-light italic text-muted-foreground">
             {title}
           </p>
         )
@@ -83,7 +60,7 @@ const styles = getAccentStyles(rawResult);
   </div>
 
   <div
-    class={`relative aspect-[16/10] rounded-2xl overflow-hidden shadow-xl border ${styles.border} bg-slate-900 cursor-pointer outline-none focus:outline-none`}
+    class={`relative aspect-[16/10] rounded-2xl overflow-hidden shadow-xl border ${styles.border} bg-background cursor-pointer outline-none focus:outline-none`}
     role="button"
     tabindex="0"
     data-lightbox-trigger
@@ -93,10 +70,10 @@ const styles = getAccentStyles(rawResult);
   >
     <!-- Loading skeleton -->
     <div
-      class="winner-skeleton absolute inset-0 animate-pulse bg-gradient-to-br from-slate-800 via-slate-850 to-slate-900 flex items-center justify-center"
+      class="winner-skeleton absolute inset-0 animate-pulse bg-surface flex items-center justify-center"
     >
       <svg
-        class="w-16 h-16 text-slate-700"
+        class="w-16 h-16 text-subtle-foreground"
         fill="none"
         stroke="currentColor"
         viewBox="0 0 24 24"
@@ -112,9 +89,9 @@ const styles = getAccentStyles(rawResult);
 
     <!-- Fallback state (hidden by default, shown on error) -->
     <div
-      class="winner-fallback absolute inset-0 hidden items-center justify-center bg-gradient-to-br from-slate-800 to-slate-900"
+      class="winner-fallback absolute inset-0 hidden items-center justify-center bg-surface"
     >
-      <div class="flex flex-col items-center gap-2 text-gray-400">
+      <div class="flex flex-col items-center gap-2 text-muted-foreground">
         <svg
           class="w-10 h-10"
           fill="none"

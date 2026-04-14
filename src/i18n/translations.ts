@@ -18,6 +18,7 @@ export const translations = {
     'nav.rules': 'Rules',
     'nav.login': 'Join the Contest',
     'nav.submissions': 'My Photos',
+    'nav.profile': 'Profile',
     'nav.admin': 'Admin',
 
     // Home page sections
@@ -34,6 +35,10 @@ export const translations = {
     'home.sponsors.button': 'See Sponsors →',
     'home.sponsors.invite':
       'This contest is made possible by the generous support of our sponsors.',
+    'home.trophy.title': 'The Trophy',
+    'home.trophy.description':
+      'A bespoke sculpture awarded to the winners. A piece of craftsmanship that honours the art, the sea, and the hands that shaped it.',
+    'home.trophy.button': 'Discover the Trophy →',
 
     // Navbar
     'navbar.cta': 'Registration Open!',
@@ -387,6 +392,7 @@ export const translations = {
     'nav.rules': 'Regolamento',
     'nav.login': 'Partecipa al Concorso',
     'nav.submissions': 'Le mie foto',
+    'nav.profile': 'Profilo',
     'nav.admin': 'Admin',
 
     // Home page sections
@@ -403,6 +409,10 @@ export const translations = {
     'home.sponsors.button': 'Vedi Sponsor →',
     'home.sponsors.invite':
       'Questo concorso è reso possibile dal generoso supporto dei nostri sponsor.',
+    'home.trophy.title': 'Il Trofeo',
+    'home.trophy.description':
+      "Una scultura realizzata su misura e assegnata ai vincitori. Un'opera di artigianato che rende omaggio all'arte, al mare e alle mani che l'hanno modellata.",
+    'home.trophy.button': 'Scopri il Trofeo →',
 
     // Navbar
     'navbar.cta': 'Iscrizioni Aperte!',

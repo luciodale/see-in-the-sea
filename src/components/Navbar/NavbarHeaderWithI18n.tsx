@@ -4,20 +4,20 @@ import { NavbarHeaderWithClerk } from './NavbarHeaderWithClerk';
 
 interface Props {
   lang: Language;
-  standalone?: boolean;
+  darkOverlay?: boolean;
   clerkPublicKey: string;
 }
 
 export function NavbarHeaderWithI18n({
   lang,
-  standalone = false,
+  darkOverlay = false,
   clerkPublicKey,
 }: Props) {
   return (
     <I18nProvider lang={lang}>
       <NavbarHeaderWithClerk
         clerkPublicKey={clerkPublicKey}
-        standalone={standalone}
+        darkOverlay={darkOverlay}
         lang={lang}
       />
     </I18nProvider>

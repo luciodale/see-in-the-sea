@@ -231,9 +231,11 @@ export function UnifiedSubmissions() {
 
   if (loading) {
     return (
-      <div className="flex items-center justify-center p-12">
-        <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-400" />
-        <span className="ml-3 text-slate-300">{t('submissions.loading')}</span>
+      <div className="flex items-center justify-center gap-3 p-16">
+        <div className="animate-spin rounded-full h-5 w-5 border-b-2 border-foreground/70" />
+        <span className="text-editorial uppercase tracking-editorial text-muted-foreground">
+          {t('submissions.loading')}
+        </span>
       </div>
     );
   }
@@ -247,11 +249,13 @@ export function UnifiedSubmissions() {
   const hasSubmissions = categoriesWithSubmissions.length > 0;
 
   return (
-    <div className="max-w-5xl mx-auto space-y-8">
+    <div className="max-w-5xl mx-auto space-y-10 py-8">
       {/* Header with judges + countdown */}
-      <div className="text-center">
-        <h1 className="text-3xl font-bold text-white">
-          UW 2026 Contest{': '}
+      <div className="text-center space-y-4">
+        <p className="text-editorial uppercase tracking-editorial-wider text-muted-foreground">
+          UW 2026 Contest
+        </p>
+        <h1 className="font-serif text-4xl sm:text-5xl text-foreground leading-display tracking-display">
           {t('nav.submissions')}
         </h1>
         {!noActiveContest && (
@@ -265,15 +269,17 @@ export function UnifiedSubmissions() {
       </div>
 
       {error && (
-        <div className="bg-red-900/40 border border-red-800 text-red-200 rounded-lg p-4">
+        <div className="bg-destructive/10 border border-destructive/40 text-destructive rounded-xl p-4 font-light text-sm leading-paragraph">
           {error}
         </div>
       )}
 
       {/* No active contest message */}
       {noActiveContest && (
-        <div className="bg-slate-900 border border-slate-700 text-slate-200 rounded-lg p-6 text-center">
-          {t('submissions.closed')}
+        <div className="bg-surface border border-border text-muted-foreground rounded-2xl p-10 text-center">
+          <p className="font-light text-base leading-paragraph">
+            {t('submissions.closed')}
+          </p>
         </div>
       )}
 

@@ -237,7 +237,7 @@ export function PortfolioInspectModal({
                     {zoomedPhoto.description}
                     {!descriptionExpanded &&
                       zoomedPhoto.description.length > 100 && (
-                        <span className="text-cyan-400 ml-1">...</span>
+                        <span className="text-accent-hover ml-1">...</span>
                       )}
                   </button>
                 )}

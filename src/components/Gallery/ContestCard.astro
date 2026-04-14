@@ -18,10 +18,10 @@ const currentLang = (Astro.currentLocale ?? 'en') as Language;
 
 <a
   href={getLocalizedPath(`/contest/${contest.id}`, currentLang)}
-  class="w-full group block overflow-hidden backdrop-blur-lg bg-gradient-to-br from-white/10 via-blue-500/5 to-transparent border border-white/20 rounded-2xl shadow-2xl transition-all duration-500 hover:border-white/30 hover:shadow-blue-500/20 hover:scale-105 hover:from-white/15"
+  class="w-full group block overflow-hidden backdrop-blur-lg bg-surface border border-border rounded-2xl transition-all duration-500 hover:border-border-strong hover:bg-surface-hover/70"
 >
   <!-- Contest Image -->
-  <div class="aspect-video overflow-hidden bg-slate-900/50 relative">
+  <div class="aspect-video overflow-hidden bg-background relative">
     {
       contest.winningImage && (
         <>
@@ -34,24 +34,21 @@ const currentLang = (Astro.currentLocale ?? 'en') as Language;
           />
           {/* Subtle gradient overlay */}
           <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
-          {/* Glass shine effect */}
-          <div class="absolute inset-0 bg-gradient-to-br from-white/20 via-transparent to-transparent opacity-0 group-hover:opacity-30 transition-opacity duration-500" />
         </>
       )
     }
   </div>
 
   <!-- Card Content -->
-  <div
-    class="p-6 space-y-4 backdrop-blur-sm bg-gradient-to-br from-white/5 to-transparent"
-  >
-    <!-- Contest Info -->
+  <div class="p-6 space-y-4">
     <div class="gap-3 flex justify-between items-center">
-      <h3 class="text-2xl font-light text-white tracking-wide drop-shadow-lg">
+      <h3
+        class="font-serif text-2xl text-foreground leading-heading drop-shadow-lg"
+      >
         {contest.name}
       </h3>
       <div
-        class="text-blue-300 group-hover:text-white transition-colors duration-300"
+        class="text-muted-foreground group-hover:text-foreground transition-colors duration-300"
       >
         <svg
           class="w-6 h-6 group-hover:translate-x-1 transition-transform duration-300"

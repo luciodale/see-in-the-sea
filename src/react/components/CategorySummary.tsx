@@ -32,46 +32,44 @@ export function CategorySummary({
   const canUpload = canAddMore && isContestActive && !hasPaid;
 
   return (
-    <Card>
-      <div className="mb-4">
-        <h2 className="text-xl font-semibold text-white mb-2">
-          {t(`category.${categoryId}` as unknown as TranslationKey)}
-        </h2>
-        <p className="text-sm text-slate-400">
-          {submissions.length === 0
-            ? t('submissions.no-pictures-uploaded')
-            : `${submissions.length} ${t('submissions.pictures-uploaded')}`}
-        </p>
+    <div className="space-y-6">
+      <div className="flex flex-wrap items-baseline justify-between gap-4">
+        <div className="space-y-1">
+          <h2 className="font-serif text-xl text-foreground leading-heading">
+            {t(`category.${categoryId}` as unknown as TranslationKey)}
+          </h2>
+          <p className="text-editorial uppercase tracking-editorial text-muted-foreground">
+            {submissions.length === 0
+              ? t('submissions.no-pictures-uploaded')
+              : `${submissions.length} ${t('submissions.pictures-uploaded')}`}
+          </p>
+        </div>
+
+        {canUpload && (
+          <Button variant="primary" size="sm" onClick={onUploadClick}>
+            {t('action.upload-picture')}
+          </Button>
+        )}
       </div>
 
-      {/* Upload button */}
-      {canUpload && (
-        <Button variant="primary" size="md" onClick={onUploadClick}>
-          {t('action.upload-picture')}
-        </Button>
-      )}
-
-      {/* Payment status message */}
       {hasPaid && canAddMore && isContestActive && (
-        <div className="py-2.5 px-4 bg-slate-700/40 text-slate-400 rounded-lg text-sm text-center">
+        <p className="text-editorial uppercase tracking-editorial text-muted-foreground text-center">
           {t('payment.submissions-locked')}
-        </div>
+        </p>
       )}
 
-      {/* Contest closed notice */}
       {canAddMore && !isContestActive && (
         <Card variant="warning" className="p-4 text-center">
           {t('submissions.closed')}
         </Card>
       )}
 
-      {/* Category full notice */}
       {!canAddMore && (
-        <div className="bg-emerald-950/30 border border-emerald-800/30 text-emerald-200/90 rounded-lg p-4 text-center">
-          <div className="flex items-center justify-center gap-2 mb-1">
+        <Card variant="success" className="p-5 text-center space-y-2">
+          <div className="flex items-center justify-center gap-2">
             <svg
               aria-hidden="true"
-              className="w-4 h-4 text-emerald-500/70"
+              className="w-4 h-4 text-success"
               fill="currentColor"
               viewBox="0 0 20 20"
             >
@@ -81,26 +79,25 @@ export function CategorySummary({
                 clipRule="evenodd"
               />
             </svg>
-            <span className="text-sm font-medium">
+            <span className="text-editorial uppercase tracking-editorial text-foreground">
               {t('submissions.category-complete')}
             </span>
           </div>
-          <p className="text-xs text-emerald-300/50">
+          <p className="font-light text-sm text-muted-foreground leading-paragraph">
             {t('submissions.category-complete-description')}
           </p>
-        </div>
+        </Card>
       )}
 
-      {/* Existing submissions */}
       {submissions.length > 0 && (
-        <div className="mt-6 space-y-3">
-          <h3 className="text-sm font-medium text-slate-300">
+        <div className="space-y-3">
+          <p className="text-editorial uppercase tracking-editorial-wider text-muted-foreground">
             {t('submissions.your-pictures')}
-          </h3>
+          </p>
           {submissions.map(submission => (
             <div
               key={submission.id}
-              className="bg-slate-900/50 border border-slate-700/40 rounded-lg p-4"
+              className="bg-surface border border-border rounded-xl p-4"
             >
               <div className="flex items-center gap-4">
                 <div className="w-24 h-18 rounded overflow-hidden flex-shrink-0">
@@ -110,11 +107,11 @@ export function CategorySummary({
                   />
                 </div>
                 <div className="flex-1 min-w-0">
-                  <h4 className="text-white font-medium truncate">
+                  <h4 className="font-serif text-base text-foreground leading-heading truncate">
                     {submission.title}
                   </h4>
                   {submission.description && (
-                    <p className="text-sm text-slate-400 line-clamp-1">
+                    <p className="font-light text-sm text-muted-foreground line-clamp-1 leading-paragraph mt-1">
                       {submission.description}
                     </p>
                   )}
@@ -128,6 +125,6 @@ export function CategorySummary({
           ))}
         </div>
       )}
-    </Card>
+    </div>
   );
 }

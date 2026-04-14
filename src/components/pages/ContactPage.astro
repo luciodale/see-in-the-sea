@@ -3,6 +3,7 @@ import AppWrapper from '@/components/AppWrapper.astro';
 import EmailLink from '@/components/EmailLink.astro';
 import Layout from '@/components/Gallery/Layout.astro';
 import NavbarHeaderStandalone from '@/components/Navbar/NavbarHeaderStandalone.astro';
+import PageHero from '@/components/ui/PageHero.astro';
 import type { Language } from '@/i18n/translations';
 import { useTranslations } from '@/i18n/utils';
 
@@ -50,26 +51,17 @@ const contacts = [
   <NavbarHeaderStandalone lang={lang} />
   <Layout>
     <div class="max-w-5xl mx-auto">
-      <!-- Header -->
-      <div class="text-center mb-16">
-        <h1
-          class="text-3xl sm:text-4xl font-light text-white uppercase tracking-[0.15em] mb-6"
-        >
-          {heading}
-        </h1>
-        <div
-          class="w-16 h-px bg-gradient-to-r from-transparent via-cyan-500/50 to-transparent mx-auto"
-        >
-        </div>
-      </div>
+      <PageHero title={heading} class="mb-16" />
 
       <!-- Organization Info Card -->
       <div class="text-center mb-12">
         <div class="inline-block">
-          <h2 class="text-xl font-light text-white/90 tracking-wide mb-3">
+          <h2
+            class="font-serif text-2xl sm:text-3xl text-foreground/90 leading-heading mb-3"
+          >
             {t('contact.organization')}
           </h2>
-          <p class="text-gray-400 text-sm leading-relaxed mb-4">
+          <p class="text-muted-foreground text-sm leading-body mb-4">
             {t('contact.address-details')}
           </p>
           <EmailLink variant="large" showLabel={true} />
@@ -80,15 +72,17 @@ const contacts = [
       <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 mb-16">
         {
           contacts.map(contact => (
-            <div class="group relative backdrop-blur-sm bg-white/[0.03] border border-white/10 rounded-lg p-6 hover:border-cyan-500/30 transition-colors duration-300">
-              <p class="text-xs text-cyan-400/80 uppercase tracking-wider mb-2">
+            <div class="group relative backdrop-blur-sm bg-surface/60 border border-border rounded-lg p-6 hover:border-border-strong transition-colors duration-300">
+              <p class="text-editorial text-muted-foreground uppercase tracking-editorial-wider mb-2">
                 {contact.role}
               </p>
-              <p class="text-white font-light text-lg mb-1">{contact.name}</p>
+              <p class="font-serif text-foreground text-xl mb-1">
+                {contact.name}
+              </p>
               {contact.phone && (
                 <a
                   href={`tel:+39${contact.phone.replace(/\s/g, '')}`}
-                  class="text-gray-400 text-sm hover:text-cyan-400 transition-colors"
+                  class="text-muted-foreground text-sm hover:text-foreground transition-colors"
                 >
                   +39 {contact.phone}
                 </a>
@@ -101,11 +95,13 @@ const contacts = [
       <!-- Map Section -->
       <div class="relative">
         <div class="text-center mb-6">
-          <p class="text-sm text-gray-500 uppercase tracking-wider">
+          <p
+            class="text-editorial text-muted-foreground uppercase tracking-editorial-wider"
+          >
             {lang === 'it' ? 'Dove Siamo' : 'Find Us'}
           </p>
         </div>
-        <div class="rounded-xl overflow-hidden border border-white/10">
+        <div class="rounded-xl overflow-hidden border border-border">
           <iframe
             title="Google Map"
             style="width:100%;height:350px"

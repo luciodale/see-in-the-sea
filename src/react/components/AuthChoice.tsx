@@ -5,6 +5,8 @@ import {
 } from '@heroicons/react/24/outline';
 import { useI18n } from '../../i18n/react';
 import type { AuthMode } from '../hooks/useAuth';
+import { Button } from './ui/Button';
+import { Panel } from './ui/Panel';
 
 interface AuthChoiceProps {
   onModeSelect: (mode: AuthMode) => void;
@@ -14,20 +16,19 @@ export function AuthChoice({ onModeSelect }: AuthChoiceProps) {
   const { t } = useI18n();
 
   return (
-    <div className="backdrop-blur-xl bg-gradient-to-br from-slate-900/90 via-blue-950/80 to-slate-900/90 rounded-3xl border border-white/10 p-8 shadow-2xl">
-      {/* Header */}
+    <Panel>
       <div className="text-center mb-8 relative">
         <button
           type="button"
           onClick={() => window.history.back()}
-          className="absolute -top-2 -left-2 p-2 text-gray-300 hover:text-white transition-colors hover:bg-white/10 rounded-lg cursor-pointer"
+          className="absolute -top-2 -left-2 p-2 text-muted-foreground hover:text-foreground transition-colors hover:bg-surface rounded-lg cursor-pointer"
         >
           <ArrowLeftIcon className="h-5 w-5" />
         </button>
-        <div className="w-20 h-20 bg-gradient-to-br from-cyan-500 to-blue-600 rounded-full flex items-center justify-center mx-auto mb-6 shadow-lg shadow-cyan-500/30">
+        <div className="w-20 h-20 bg-accent-muted border border-border-strong rounded-full flex items-center justify-center mx-auto mb-6 text-foreground">
           <svg
             aria-hidden="true"
-            className="w-10 h-10 text-white"
+            className="w-10 h-10"
             fill="none"
             stroke="currentColor"
             viewBox="0 0 24 24"
@@ -46,46 +47,46 @@ export function AuthChoice({ onModeSelect }: AuthChoiceProps) {
             />
           </svg>
         </div>
-        <h1 className="text-3xl font-light text-white mb-3 tracking-wide">
+        <h1 className="font-serif text-4xl text-foreground mb-3 leading-display tracking-display">
           {t('auth.choice.title')}
         </h1>
-        <p className="text-gray-300 text-lg">{t('auth.choice.subtitle')}</p>
+        <p className="text-muted-foreground text-base leading-body">
+          {t('auth.choice.subtitle')}
+        </p>
       </div>
 
-      {/* Action Buttons */}
       <div className="space-y-3">
-        {/* Sign Up Button */}
-        <button
-          type="button"
+        <Button
+          variant="primary"
+          size="lg"
+          fullWidth
           onClick={() => onModeSelect('signup')}
-          className="w-full bg-white/10 hover:bg-white/15 text-white font-medium py-4 px-6 rounded-xl transition-all duration-200 flex items-center justify-center group cursor-pointer border border-white/20 hover:border-white/30"
         >
-          <UserPlusIcon className="h-5 w-5 mr-3" />
+          <UserPlusIcon className="h-5 w-5" />
           {t('auth.choice.signup')}
-        </button>
+        </Button>
 
-        {/* Divider */}
         <div className="relative my-6">
           <div className="absolute inset-0 flex items-center">
-            <div className="w-full border-t border-white/10" />
+            <div className="w-full border-t border-border" />
           </div>
           <div className="relative flex justify-center text-sm">
-            <span className="px-4 bg-gradient-to-br from-slate-900/90 via-blue-950/80 to-slate-900/90 text-gray-400 text-xs uppercase tracking-wider">
+            <span className="px-4 bg-surface text-subtle-foreground text-xs uppercase tracking-wider">
               {t('auth.choice.existing-account')}
             </span>
           </div>
         </div>
 
-        {/* Sign In Button */}
-        <button
-          type="button"
+        <Button
+          variant="secondary"
+          size="lg"
+          fullWidth
           onClick={() => onModeSelect('login')}
-          className="w-full bg-white/5 hover:bg-white/10 text-white font-medium py-4 px-6 rounded-xl transition-all duration-200 flex items-center justify-center group border border-white/10 hover:border-white/20 cursor-pointer"
         >
-          <ArrowRightEndOnRectangleIcon className="h-5 w-5 mr-3" />
+          <ArrowRightEndOnRectangleIcon className="h-5 w-5" />
           {t('auth.choice.login')}
-        </button>
+        </Button>
       </div>
-    </div>
+    </Panel>
   );
 }

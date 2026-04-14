@@ -27,21 +27,23 @@ const objectFit = image.objectFit ?? false;
     <div class={`space-y-8 ${isRight ? 'lg:order-2' : 'lg:order-1'}`}>
       <div class="space-y-6">
         <h2
-          class="text-4xl sm:text-5xl font-extralight text-gray-50 uppercase tracking-wider leading-tight"
+          class="font-serif text-4xl sm:text-5xl md:text-6xl text-foreground leading-display tracking-display"
         >
           {title}
         </h2>
-        <p class="text-xl font-light text-gray-300 leading-relaxed max-w-2xl">
+        <p
+          class="text-sm sm:text-base font-light text-muted-foreground leading-paragraph max-w-prose-narrow"
+        >
           {description}
         </p>
       </div>
 
       {
         buttonCTA && (
-          <div class="pt-4">
+          <div class="pt-2">
             <a
               href={buttonCTA.link}
-              class="inline-flex items-center px-6 py-3 bg-blue-600/60 border border-blue-500/70 text-blue-100 rounded transition-all duration-300 text-base font-light tracking-wide uppercase"
+              class="inline-flex items-center px-5 py-2 bg-surface border border-border text-foreground rounded-full transition-all duration-300 text-editorial uppercase tracking-editorial hover:bg-surface-hover hover:border-border-strong"
               target={buttonCTA.target}
             >
               {buttonCTA.text}
@@ -53,7 +55,7 @@ const objectFit = image.objectFit ?? false;
 
     <!-- Image -->
     <div class={`${isRight ? 'lg:order-1' : 'lg:order-2'}`}>
-      <div class="aspect-square overflow-hidden bg-slate-800/60 rounded-lg">
+      <div class="aspect-square overflow-hidden bg-surface rounded-lg">
         <Picture
           src={image.link}
           alt={title}

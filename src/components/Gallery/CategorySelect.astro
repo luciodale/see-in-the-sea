@@ -1,0 +1,77 @@
+---
+import type { Contest } from '@/data/past-contests';
+import type { Language } from '@/i18n/translations';
+import {
+  getCategoryName,
+  getLocalizedPath,
+  useTranslations,
+} from '@/i18n/utils';
+
+type Props = {
+  contestId: string;
+  activeCategoryId?: string;
+  categories: Contest['categories'];
+  lang: Language;
+};
+
+const { contestId, activeCategoryId, categories, lang } = Astro.props;
+const t = useTranslations(lang);
+
+const categoryOrder: Record<string, number> = {
+  macro: 0,
+  'wide-angle': 1,
+  'black-and-white': 2,
+  mediterranean: 3,
+};
+
+const sortedCategories = categories
+  .map(c => ({ id: c.id, name: c.name }))
+  .sort((a, b) => (categoryOrder[a.id] ?? 99) - (categoryOrder[b.id] ?? 99));
+---
+
+<div class="flex justify-center">
+  <div class="w-full max-w-xs">
+    <select
+      id="category-select"
+      class="w-full pl-5 pr-12 py-3 text-editorial font-medium tracking-editorial uppercase bg-surface-raised border border-border text-foreground rounded-full hover:border-border-strong transition-all duration-300 cursor-pointer focus:outline-none focus:ring-2 focus:ring-ring focus:border-accent appearance-none bg-no-repeat"
+      style="background-image: url('data:image/svg+xml;charset=UTF-8,%3csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 24 24%27 fill=%27none%27 stroke=%27%238e8a82%27 stroke-width=%272%27 stroke-linecap=%27round%27 stroke-linejoin=%27round%27%3e%3cpolyline points=%276 9 12 15 18 9%27%3e%3c/polyline%3e%3c/svg%3e'); background-position: right 1rem center; background-size: 1.25em;"
+      onchange="window.location.href = this.value"
+    >
+      <option
+        value={getLocalizedPath(`contest/${contestId}`, lang)}
+        selected={!activeCategoryId}
+      >
+        {t('category.winners-only')}
+      </option>
+      {
+        sortedCategories.map(category => {
+          const isActive = activeCategoryId === category.id;
+          return (
+            <option
+              value={getLocalizedPath(
+                `contest/${contestId}/${category.id}`,
+                lang
+              )}
+              selected={isActive}
+            >
+              {getCategoryName(category.id, category.name, lang)}
+            </option>
+          );
+        })
+      }
+    </select>
+  </div>
+</div>
+
+<style>
+  select option {
+    background-color: var(--popover);
+    color: var(--foreground);
+    padding: 12px;
+  }
+
+  select option:checked {
+    background-color: var(--accent);
+    color: var(--accent-foreground);
+  }
+</style>

@@ -58,12 +58,12 @@ export function FlexibilityInfoPanel({ contestId }: FlexibilityInfoPanelProps) {
     >
       <Card variant="info">
         <div className="flex items-start gap-3">
-          <InformationCircleIcon className="w-5 h-5 text-sky-400/80 flex-shrink-0 mt-0.5" />
+          <InformationCircleIcon className="w-5 h-5 text-accent-hover flex-shrink-0 mt-0.5" />
           <div className="flex-1 min-w-0">
-            <h3 className="text-sm font-medium text-sky-200/90 mb-0.5">
+            <h3 className="text-sm font-medium text-foreground/90 mb-0.5">
               {t('info.flexibility.title')}
             </h3>
-            <p className="text-sm text-slate-300/80 leading-relaxed">
+            <p className="text-sm text-muted-foreground leading-relaxed">
               {t('info.flexibility.message')}
             </p>
           </div>
@@ -71,7 +71,7 @@ export function FlexibilityInfoPanel({ contestId }: FlexibilityInfoPanelProps) {
             variant="ghost"
             size="sm"
             onClick={handleDismiss}
-            className="text-slate-400 hover:text-slate-200 flex-shrink-0"
+            className="flex-shrink-0"
           >
             {t('info.flexibility.dismiss')}
           </Button>

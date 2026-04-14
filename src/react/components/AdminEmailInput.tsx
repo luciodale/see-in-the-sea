@@ -76,8 +76,8 @@ export function AdminEmailInput({
           </button>
         </form>
 
-        <div className="mt-4 p-3 bg-blue-900/30 border border-blue-700 rounded-lg">
-          <p className="text-xs text-blue-200">
+        <div className="mt-4 p-3 bg-accent-muted border border-accent/40 rounded-lg">
+          <p className="text-xs text-accent-foreground">
             <strong>Nota:</strong> Potrai sfogliare le categorie e caricare foto
             per conto di questo utente per il concorso 2025.
           </p>

@@ -322,14 +322,14 @@ export function AdminSubmissionsViewer({
                     <button
                       type="button"
                       onClick={() => setShowUsersModal(true)}
-                      className="mt-2 text-xs text-blue-400 hover:text-blue-300 underline"
+                      className="mt-2 text-xs text-accent-hover hover:underline"
                     >
                       {usersWithoutUploads.length} senza foto
                     </button>
                   )}
                 </div>
-                <div className="bg-blue-900/40 rounded-full p-3">
-                  <UsersIcon className="w-6 h-6 text-blue-300" />
+                <div className="bg-accent-muted rounded-full p-3">
+                  <UsersIcon className="w-6 h-6 text-accent-hover" />
                 </div>
               </div>
             </div>

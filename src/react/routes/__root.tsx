@@ -22,18 +22,13 @@ export const Route = createRootRoute({
 
     return (
       <div className="flex flex-col flex-1">
-        {/* Contest App Header */}
-        <div className="bg-slate-900 border border-b-slate-700 sticky top-0 z-50">
-          <NavbarHeader standalone />
-        </div>
-        {/* Main Content */}
-        <div className="flex-1 w-full bg-slate-900 relative">
+        <NavbarHeader />
+        <div className="flex-1 w-full bg-background relative">
           <main className="max-w-7xl mx-auto px-6 min-h-[80dvh]">
             <Outlet />
           </main>
         </div>
 
-        {/* Dev Tools */}
         <TanStackRouterDevtools />
       </div>
     );

@@ -88,7 +88,7 @@ export const SubmissionCard = memo(function SubmissionCard({
             <span className="text-xs text-red-400 font-medium">
               Errore caricamento
             </span>
-            <span className="text-[10px] text-red-500/70">
+            <span className="text-tiny text-red-500/70">
               #{submission.id.slice(0, 6)}
             </span>
           </div>

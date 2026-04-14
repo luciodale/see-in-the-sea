@@ -51,10 +51,8 @@ export function SubmissionManageModal({
       loadingSubMessage={t('modal.please-wait')}
       maxWidth="4xl"
     >
-      {/* Content */}
       <div className="space-y-6">
-        {/* Image */}
-        <div className="w-full bg-slate-900 rounded-lg overflow-hidden">
+        <div className="w-full bg-background border border-border rounded-xl overflow-hidden">
           <img
             src={submission.r2ImageId ? getImageUrl(submission.r2ImageId) : ''}
             alt={submission.title}
@@ -62,30 +60,32 @@ export function SubmissionManageModal({
           />
         </div>
 
-        {/* Submission Details */}
         <div className="space-y-4">
-          <div>
-            <h3 className="text-lg font-semibold text-white mb-2">
+          <div className="space-y-3">
+            <h3 className="font-serif text-2xl text-foreground leading-heading">
               {submission.title}
             </h3>
             {submission.description && (
-              <p className="text-slate-300 leading-relaxed">
+              <p className="font-light text-sm sm:text-base text-foreground/80 leading-paragraph">
                 {submission.description}
               </p>
             )}
             {submission.portfolio && submission.portfolioPhotoType && (
-              <div className="mt-3 text-sm text-slate-400">
-                <p>Portfolio: {submission.portfolio}</p>
-                <p>Type: {submission.portfolioPhotoType}</p>
+              <div className="space-y-1 pt-2">
+                <p className="text-editorial uppercase tracking-editorial text-muted-foreground">
+                  Portfolio: {submission.portfolio}
+                </p>
+                <p className="text-editorial uppercase tracking-editorial text-muted-foreground">
+                  Type: {submission.portfolioPhotoType}
+                </p>
               </div>
             )}
           </div>
         </div>
 
-        {/* Actions */}
-        <div className="flex gap-3 pt-4 border-t border-slate-700">
+        <div className="flex gap-3 pt-4 border-t border-border">
           <Button
-            variant="secondary"
+            variant="outline"
             fullWidth
             onClick={onClose}
             disabled={isDeleting}

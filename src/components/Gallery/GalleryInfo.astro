@@ -1,11 +1,8 @@
 ---
-import { type Contest, pastContestsData } from '@/data/past-contests';
-import type { Language } from '@/i18n/translations';
-import {
-  getCategoryName,
-  getLocalizedPath,
-  useTranslations,
-} from '@/i18n/utils';
+import { type Contest, pastContestsData } from "@/data/past-contests";
+import type { Language } from "@/i18n/translations";
+import { getLocalizedPath, useTranslations } from "@/i18n/utils";
+import CategorySelect from "./CategorySelect.astro";
 
 type Props = {
   contestTitle: string;
@@ -15,29 +12,15 @@ type Props = {
 };
 
 const { contestTitle, contestId, activeCategoryId, contestData } = Astro.props;
-const currentLang = (Astro.currentLocale ?? 'en') as Language;
+const currentLang = (Astro.currentLocale ?? "en") as Language;
 const t = useTranslations(currentLang);
 
-// Get judges from contestData
 const contestJudges = contestData.judges;
-const categoryOrder: Record<string, number> = {
-  macro: 0,
-  'wide-angle': 1,
-  'black-and-white': 2,
-  mediterranean: 3,
-};
-const contestCategories = contestData.categories
-  .map(c => ({
-    id: c.id,
-    name: c.name,
-  }))
-  .sort((a, b) => (categoryOrder[a.id] ?? 99) - (categoryOrder[b.id] ?? 99));
 
-// Get navigation data from pastContestsData
 const sortedContests = pastContestsData
-  .map(c => ({ id: c.id, name: c.name, year: c.year }))
+  .map((c) => ({ id: c.id, name: c.name, year: c.year }))
   .sort((a, b) => b.year - a.year);
-const currentIndex = sortedContests.findIndex(c => c.id === contestId);
+const currentIndex = sortedContests.findIndex((c) => c.id === contestId);
 const prevContest =
   currentIndex < sortedContests.length - 1
     ? sortedContests[currentIndex + 1]
@@ -45,171 +28,138 @@ const prevContest =
 const nextContest = currentIndex > 0 ? sortedContests[currentIndex - 1] : null;
 ---
 
-<div class="space-y-6 pb-6">
-  <!-- Year Navigation Pills (hidden on mobile, arrow nav is sufficient) -->
-  <div class="hidden sm:flex justify-center">
-    <div
-      class="flex items-center gap-1 p-1 backdrop-blur-xl bg-white/5 rounded-full border border-white/10"
-    >
-      {
-        sortedContests.map(contest => {
-          const isActive = contest.id === contestId;
-          return (
+<header class="space-y-12 sm:space-y-16 pb-12">
+  <!-- Years timeline - minimal editorial (desktop only) -->
+  <div
+    class="hidden sm:flex flex-wrap justify-center items-center gap-x-3 gap-y-3 text-editorial uppercase tracking-editorial-wider"
+  >
+    {
+      sortedContests.map((contest, idx) => {
+        const isActive = contest.id === contestId;
+        return (
+          <>
+            {idx > 0 && (
+              <span
+                class="inline-block w-1 h-1 rounded-full bg-muted-foreground/60"
+                aria-hidden="true"
+              />
+            )}
             <a
               href={getLocalizedPath(`contest/${contest.id}`, currentLang)}
               class:list={[
-                'px-3 py-1.5 rounded-full text-xs font-medium transition-all duration-300 whitespace-nowrap',
+                "transition-colors duration-300",
                 isActive
-                  ? 'bg-gradient-to-r from-cyan-500 to-blue-500 text-white shadow-lg shadow-cyan-500/30'
-                  : 'text-gray-400 hover:text-white hover:bg-white/10',
+                  ? "text-foreground"
+                  : "text-muted-foreground hover:text-foreground",
               ]}
             >
               {contest.year}
             </a>
-          );
-        })
-      }
-    </div>
+          </>
+        );
+      })
+    }
   </div>
 
-  <!-- Contest Title - Clean & Elegant -->
-  <div class="text-center space-y-4">
-    <div class="flex items-center justify-center gap-4">
-      <!-- Next Year Arrow (newer, on left) -->
-      {
-        nextContest ? (
-          <a
-            href={getLocalizedPath(`contest/${nextContest.id}`, currentLang)}
-            class="group flex items-center gap-1 text-gray-500 hover:text-cyan-400 transition-colors duration-300"
-            title={`${nextContest.year}`}
+  <!-- Contest title with inline prev/next navigation (all breakpoints) -->
+  <div class="flex items-center justify-center gap-4 sm:gap-8">
+    {
+      nextContest ? (
+        <a
+          href={getLocalizedPath(`contest/${nextContest.id}`, currentLang)}
+          class="group flex items-center gap-2 text-muted-foreground hover:text-foreground transition-colors duration-300 text-editorial uppercase tracking-editorial flex-shrink-0"
+          title={`${nextContest.year}`}
+          aria-label={`Previous contest: ${nextContest.year}`}
+        >
+          <svg
+            class="w-5 h-5 transform group-hover:-translate-x-1 transition-transform duration-300"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+            aria-hidden="true"
           >
-            <svg
-              class="w-5 h-5 transform group-hover:-translate-x-1 transition-transform duration-300"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-            >
-              <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                stroke-width="2"
-                d="M15 19l-7-7 7-7"
-              />
-            </svg>
-            <span class="text-xs font-light">{nextContest.year}</span>
-          </a>
-        ) : (
-          <div class="w-8 sm:w-12" />
-        )
-      }
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="1.5"
+              d="M15 19l-7-7 7-7"
+            />
+          </svg>
+          <span class="hidden md:inline">{nextContest.year}</span>
+        </a>
+      ) : (
+        <span class="w-5 md:w-16 flex-shrink-0" aria-hidden="true" />
+      )
+    }
 
-      <h1
-        class="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-light text-white uppercase tracking-[0.05em] sm:tracking-[0.1em]"
-      >
-        {contestTitle}
-      </h1>
+    <h1
+      class="font-serif text-4xl sm:text-6xl md:text-7xl lg:text-8xl text-foreground leading-display-tight tracking-display text-center"
+    >
+      {contestTitle}
+    </h1>
 
-      <!-- Previous Year Arrow (older, on right) -->
-      {
-        prevContest ? (
-          <a
-            href={getLocalizedPath(`contest/${prevContest.id}`, currentLang)}
-            class="group flex items-center gap-1 text-gray-500 hover:text-cyan-400 transition-colors duration-300"
-            title={`${prevContest.year}`}
+    {
+      prevContest ? (
+        <a
+          href={getLocalizedPath(`contest/${prevContest.id}`, currentLang)}
+          class="group flex items-center gap-2 text-muted-foreground hover:text-foreground transition-colors duration-300 text-editorial uppercase tracking-editorial flex-shrink-0"
+          title={`${prevContest.year}`}
+          aria-label={`Next contest: ${prevContest.year}`}
+        >
+          <span class="hidden md:inline">{prevContest.year}</span>
+          <svg
+            class="w-5 h-5 transform group-hover:translate-x-1 transition-transform duration-300"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+            aria-hidden="true"
           >
-            <span class="text-xs font-light">{prevContest.year}</span>
-            <svg
-              class="w-5 h-5 transform group-hover:translate-x-1 transition-transform duration-300"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-            >
-              <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                stroke-width="2"
-                d="M9 5l7 7-7 7"
-              />
-            </svg>
-          </a>
-        ) : (
-          <div class="w-8 sm:w-12" />
-        )
-      }
-    </div>
-
-    <!-- Subtle Info Line -->
-    <div
-      class="flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-6 text-xs font-light text-gray-400 px-4"
-    >
-      <div class="flex items-center gap-1.5">
-        <span class="text-cyan-500/70 uppercase tracking-wider">
-          {t('submissions.technical-director')}
-        </span>
-        <span class="text-gray-300">Giuseppe Pignataro</span>
-      </div>
-
-      <span class="hidden sm:inline text-gray-700">|</span>
-
-      <div class="flex items-center gap-1.5 flex-wrap justify-center">
-        <span class="text-blue-500/70 uppercase tracking-wider">
-          {t('submissions.jury')}
-        </span>
-        <span class="text-gray-300">
-          {contestJudges.map(j => j.fullName).join(', ')}
-        </span>
-      </div>
-    </div>
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="1.5"
+              d="M9 5l7 7-7 7"
+            />
+          </svg>
+        </a>
+      ) : (
+        <span class="w-5 md:w-16 flex-shrink-0" aria-hidden="true" />
+      )
+    }
   </div>
-</div>
 
-<!-- Categories Dropdown with Glass Effect -->
-<div class="flex justify-center mt-6">
-  <div class="w-full max-w-xs">
-    <select
-      id="category-select"
-      class="w-full pl-5 pr-12 py-3 text-sm font-medium tracking-wide uppercase backdrop-blur-xl bg-slate-800/80 border border-slate-700 text-white rounded-xl shadow-xl hover:border-cyan-500/50 transition-all duration-300 cursor-pointer focus:outline-none focus:ring-2 focus:ring-cyan-500/50 focus:border-cyan-500/50 appearance-none bg-no-repeat"
-      style="background-image: url('data:image/svg+xml;charset=UTF-8,%3csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 24 24%27 fill=%27none%27 stroke=%27%2394a3b8%27 stroke-width=%272%27 stroke-linecap=%27round%27 stroke-linejoin=%27round%27%3e%3cpolyline points=%276 9 12 15 18 9%27%3e%3c/polyline%3e%3c/svg%3e'); background-position: right 1rem center; background-size: 1.25em;"
-      onchange="window.location.href = this.value"
-    >
-      <option
-        value={getLocalizedPath(`contest/${contestId}`, currentLang)}
-        selected={!activeCategoryId}
+  <!-- Director + Jury -->
+  <div
+    class="grid grid-cols-1 sm:grid-cols-2 gap-y-8 sm:gap-x-16 max-w-3xl mx-auto text-center"
+  >
+    <div class="space-y-2">
+      <p
+        class="text-editorial uppercase tracking-editorial-wider text-muted-foreground"
       >
-        {t('category.winners-only')}
-      </option>
-      {
-        contestCategories.map(category => {
-          const isActive = activeCategoryId === category.id;
-          return (
-            <option
-              value={getLocalizedPath(
-                `contest/${contestId}/${category.id}`,
-                currentLang
-              )}
-              selected={isActive}
-            >
-              {getCategoryName(category.id, category.name, currentLang)}
-            </option>
-          );
-        })
-      }
-    </select>
+        {t("submissions.technical-director")}
+      </p>
+      <p class="font-serif text-lg text-foreground leading-heading">
+        Giuseppe Pignataro
+      </p>
+    </div>
+    <div class="space-y-2">
+      <p
+        class="text-editorial uppercase tracking-editorial-wider text-muted-foreground"
+      >
+        {t("submissions.jury")}
+      </p>
+      <p class="font-serif text-lg text-foreground leading-heading">
+        {contestJudges.map((j) => j.fullName).join(", ")}
+      </p>
+    </div>
   </div>
+</header>
+
+<div class="pb-8">
+  <CategorySelect
+    contestId={contestId}
+    activeCategoryId={activeCategoryId}
+    categories={contestData.categories}
+    lang={currentLang}
+  />
 </div>
-
-<style>
-  select option {
-    background-color: rgb(15 23 42);
-    color: white;
-    padding: 12px;
-  }
-
-  select option:checked {
-    background: linear-gradient(
-      to right,
-      rgb(6 182 212 / 0.4),
-      rgb(59 130 246 / 0.4)
-    );
-  }
-</style>

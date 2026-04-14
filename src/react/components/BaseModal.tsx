@@ -39,23 +39,22 @@ export function BaseModal({
   const defaultLoadingMessage = loadingMessage || t('state.loading');
   const defaultLoadingSubMessage = loadingSubMessage || t('modal.please-wait');
 
+  const borderClass = error ? 'border-destructive/60' : 'border-border-strong';
+
   return (
-    <div className="fixed inset-0 z-50 bg-black/60 flex items-center justify-center p-4">
+    <div className="fixed inset-0 z-50 bg-black/70 backdrop-blur-sm flex items-center justify-center p-4">
       <div
-        className={`${
-          error ? 'bg-red-700 border-red-600' : 'bg-slate-800 border-slate-700'
-        } border rounded-xl w-full ${maxWidthClasses[maxWidth]} max-h-[90vh] overflow-y-auto relative`}
+        className={`bg-popover ${borderClass} border rounded-2xl w-full ${maxWidthClasses[maxWidth]} max-h-[90vh] overflow-y-auto relative shadow-2xl`}
       >
-        {/* Loading overlay */}
         {isLoading && (
-          <div className="absolute inset-0 bg-slate-800/90 backdrop-blur-sm flex items-center justify-center z-10 rounded-xl">
-            <div className="text-center">
-              <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-emerald-500 mx-auto mb-4"></div>
-              <p className="text-white text-lg font-medium">
+          <div className="absolute inset-0 bg-popover/95 backdrop-blur-sm flex items-center justify-center z-10 rounded-2xl">
+            <div className="text-center space-y-4">
+              <div className="animate-spin rounded-full h-10 w-10 border-b-2 border-foreground/70 mx-auto" />
+              <p className="font-serif text-xl text-foreground leading-heading">
                 {defaultLoadingMessage}
               </p>
               {defaultLoadingSubMessage && (
-                <p className="text-slate-400 text-sm mt-2">
+                <p className="text-editorial uppercase tracking-editorial text-muted-foreground">
                   {defaultLoadingSubMessage}
                 </p>
               )}
@@ -63,20 +62,21 @@ export function BaseModal({
           </div>
         )}
 
-        <div className="p-6">
-          {/* Header */}
+        <div className="p-8">
           <div className="flex items-center justify-between mb-6">
-            <h2 className="text-xl font-semibold text-white">{title}</h2>
+            <h2 className="font-serif text-2xl text-foreground leading-heading">
+              {title}
+            </h2>
             <button
               type="button"
               onClick={onClose}
               disabled={isLoading}
-              className="text-slate-400 hover:text-white disabled:opacity-50 transition-colors cursor-pointer"
+              className="text-muted-foreground hover:text-foreground disabled:opacity-50 transition-colors cursor-pointer"
               aria-label={t('action.close')}
             >
               <svg
                 aria-hidden="true"
-                className="w-6 h-6"
+                className="w-5 h-5"
                 fill="none"
                 stroke="currentColor"
                 viewBox="0 0 24 24"
@@ -92,7 +92,6 @@ export function BaseModal({
             </button>
           </div>
 
-          {/* Content */}
           {children}
         </div>
       </div>

@@ -1,0 +1,26 @@
+---
+type Size = 'sm' | 'md' | 'lg' | 'xl';
+type As = 'h1' | 'h2' | 'h3';
+
+type Props = {
+  as?: As;
+  size?: Size;
+  class?: string;
+};
+
+const { as: Tag = 'h1', size = 'md', class: className = '' } = Astro.props;
+
+const sizeClasses: Record<Size, string> = {
+  sm: 'text-3xl sm:text-4xl',
+  md: 'text-4xl sm:text-5xl',
+  lg: 'text-5xl sm:text-6xl',
+  xl: 'text-6xl sm:text-7xl lg:text-8xl',
+};
+
+const classes =
+  `font-serif text-foreground leading-display tracking-display ${sizeClasses[size]} ${className}`.trim();
+---
+
+<Tag class={classes}>
+  <slot />
+</Tag>

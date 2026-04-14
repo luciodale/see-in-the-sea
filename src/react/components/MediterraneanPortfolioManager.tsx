@@ -29,7 +29,6 @@ export const MediterraneanPortfolioManager = memo(
 
     return (
       <div className="space-y-6">
-        {/* Portfolio Status Overview */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           {portfolioGrids.map(({ portfolioNumber }) => (
             <PortfolioGrid
@@ -43,10 +42,11 @@ export const MediterraneanPortfolioManager = memo(
           ))}
         </div>
 
-        {/* Instructions */}
-        <Card className="p-4">
-          <p className="text-sm text-slate-300">
-            <strong>{t('mediterranean.instructions.title')}</strong>{' '}
+        <Card className="p-5">
+          <p className="font-light text-sm text-foreground/80 leading-paragraph">
+            <span className="text-editorial uppercase tracking-editorial-wider text-muted-foreground mr-2">
+              {t('mediterranean.instructions.title')}
+            </span>
             {t('mediterranean.instructions.content')}{' '}
             {PORTFOLIOS_PER_MEDITERRANEAN}{' '}
             {t('mediterranean.instructions.portfolios')} (

@@ -50,95 +50,92 @@ export function ContestSlider({ contests, lang }: ContestSliderProps) {
 
   if (!contests || contests.length === 0) return null;
 
-  return (
-    <div className="min-h-screen bg-gradient-to-b from-slate-900 via-slate-900 to-slate-950 flex flex-col">
-      {/* Slider Container */}
-      <div className="flex-1 flex items-center relative">
-        {/* Left Arrow - Desktop only */}
-        <button
-          type="button"
-          onClick={() => scroll('left')}
-          className={`hidden md:flex absolute left-4 z-10 w-12 h-12 items-center justify-center rounded-full bg-white/10 backdrop-blur-sm border border-white/20 text-white transition-all duration-300 ${
-            canScrollLeft
-              ? 'opacity-100 hover:bg-white/20 hover:scale-110'
-              : 'opacity-0 pointer-events-none'
-          }`}
-          aria-label="Previous contest"
-        >
-          <ChevronLeft className="w-6 h-6" />
-        </button>
+  const cardClass =
+    'group relative rounded-2xl overflow-hidden border border-border hover:border-border-strong transition-colors duration-300 ' +
+    'w-full aspect-[4/5] sm:w-full sm:aspect-[16/10] ' +
+    'md:flex-shrink-0 md:snap-center md:w-[55vw] lg:w-[42vw] xl:w-[32vw] md:aspect-[4/5]';
 
-        {/* Edge gradients - hint there's more content */}
-        <div className="absolute left-0 top-0 bottom-0 w-8 bg-gradient-to-r from-slate-900 to-transparent z-10 pointer-events-none md:hidden" />
-        <div className="absolute right-0 top-0 bottom-0 w-8 bg-gradient-to-l from-slate-900 to-transparent z-10 pointer-events-none md:hidden" />
-
-        {/* Scrollable Cards */}
-        <div
-          ref={scrollRef}
-          className="flex gap-4 overflow-x-auto snap-x snap-mandatory scroll-smooth pb-8 px-6 md:px-12 w-full scrollbar-hide"
-          style={{
-            scrollbarWidth: 'none',
-            msOverflowStyle: 'none',
-          }}
-        >
-          {contests.map(contest => (
-            <a
-              key={contest.id}
-              href={contest.link}
-              className="group flex-shrink-0 snap-center w-[75vw] md:w-[60vw] lg:w-[45vw] xl:w-[35vw] aspect-[4/5] md:aspect-[3/4] relative rounded-2xl overflow-hidden"
-            >
-              {/* Background Image */}
-              {contest.indexImage ? (
-                <img
-                  src={contest.indexImage}
-                  alt={contest.name}
-                  loading="lazy"
-                  className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
-                />
-              ) : (
-                <div className="absolute inset-0 bg-gradient-to-br from-slate-800 to-slate-900 flex items-center justify-center">
-                  <span className="text-8xl opacity-50">&#127942;</span>
-                </div>
-              )}
-
-              {/* Gradient Overlay */}
-              <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
-
-              {/* Content */}
-              <div className="absolute inset-0 flex flex-col justify-end p-6 md:p-8">
-                <div className="transform transition-transform duration-300 group-hover:translate-y-[-4px]">
-                  <h2 className="text-3xl md:text-4xl font-light text-white tracking-wide uppercase mb-3">
-                    {contest.name}
-                  </h2>
-
-                  <div className="flex items-center gap-2 text-white/80 group-hover:text-white transition-colors">
-                    <span className="text-sm font-medium tracking-wide">
-                      {t('contests.slider.view-gallery')}
-                    </span>
-                    <ArrowRight className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1" />
-                  </div>
-                </div>
-              </div>
-
-              {/* Subtle border */}
-              <div className="absolute inset-0 rounded-2xl border border-white/10 group-hover:border-white/25 transition-colors duration-300 pointer-events-none" />
-            </a>
-          ))}
+  const cards = contests.map(contest => (
+    <a key={contest.id} href={contest.link} className={cardClass}>
+      {contest.indexImage ? (
+        <img
+          src={contest.indexImage}
+          alt={contest.name}
+          loading="lazy"
+          className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+        />
+      ) : (
+        <div className="absolute inset-0 bg-surface flex items-center justify-center">
+          <span className="text-8xl opacity-40">&#127942;</span>
         </div>
+      )}
 
-        {/* Right Arrow - Desktop only */}
-        <button
-          type="button"
-          onClick={() => scroll('right')}
-          className={`hidden md:flex absolute right-4 z-10 w-12 h-12 items-center justify-center rounded-full bg-white/10 backdrop-blur-sm border border-white/20 text-white transition-all duration-300 ${
-            canScrollRight
-              ? 'opacity-100 hover:bg-white/20 hover:scale-110'
-              : 'opacity-0 pointer-events-none'
-          }`}
-          aria-label="Next contest"
-        >
-          <ChevronRight className="w-6 h-6" />
-        </button>
+      <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/30 to-transparent" />
+
+      <div className="absolute inset-0 flex flex-col justify-end p-6 md:p-10">
+        <div className="space-y-3 transform transition-transform duration-300 group-hover:-translate-y-1">
+          <h2 className="font-serif text-3xl md:text-4xl lg:text-5xl text-foreground leading-display tracking-display">
+            {contest.name}
+          </h2>
+
+          <div className="flex items-center gap-2 text-foreground/70 group-hover:text-foreground transition-colors">
+            <span className="text-editorial uppercase tracking-editorial">
+              {t('contests.slider.view-gallery')}
+            </span>
+            <ArrowRight className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1" />
+          </div>
+        </div>
+      </div>
+    </a>
+  ));
+
+  return (
+    <div className="bg-background">
+      {/* Mobile: vertical stack that scrolls with the page */}
+      <div className="md:hidden flex flex-col gap-6 px-4 py-8 max-w-md mx-auto">
+        {cards}
+      </div>
+
+      {/* Desktop: horizontal carousel, full-screen feature */}
+      <div className="hidden md:flex min-h-screen flex-col">
+        <div className="flex-1 flex items-center relative">
+          <button
+            type="button"
+            onClick={() => scroll('left')}
+            className={`absolute left-4 z-10 w-11 h-11 flex items-center justify-center rounded-full bg-surface border border-border text-foreground/85 transition-all duration-300 ${
+              canScrollLeft
+                ? 'opacity-100 hover:bg-surface-hover hover:border-border-strong hover:text-foreground'
+                : 'opacity-0 pointer-events-none'
+            }`}
+            aria-label="Previous contest"
+          >
+            <ChevronLeft className="w-5 h-5" />
+          </button>
+
+          <div
+            ref={scrollRef}
+            className="flex gap-4 overflow-x-auto snap-x snap-mandatory scroll-smooth pb-8 px-12 w-full scrollbar-hide"
+            style={{
+              scrollbarWidth: 'none',
+              msOverflowStyle: 'none',
+            }}
+          >
+            {cards}
+          </div>
+
+          <button
+            type="button"
+            onClick={() => scroll('right')}
+            className={`absolute right-4 z-10 w-11 h-11 flex items-center justify-center rounded-full bg-surface border border-border text-foreground/85 transition-all duration-300 ${
+              canScrollRight
+                ? 'opacity-100 hover:bg-surface-hover hover:border-border-strong hover:text-foreground'
+                : 'opacity-0 pointer-events-none'
+            }`}
+            aria-label="Next contest"
+          >
+            <ChevronRight className="w-5 h-5" />
+          </button>
+        </div>
       </div>
     </div>
   );

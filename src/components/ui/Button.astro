@@ -1,0 +1,66 @@
+---
+type Variant = 'primary' | 'outline' | 'ghost' | 'secondary';
+type Size = 'sm' | 'md' | 'lg';
+
+type Props = {
+  href?: string;
+  variant?: Variant;
+  size?: Size;
+  fullWidth?: boolean;
+  target?: string;
+  rel?: string;
+  class?: string;
+  type?: 'button' | 'submit' | 'reset';
+};
+
+const {
+  href,
+  variant = 'primary',
+  size = 'md',
+  fullWidth = false,
+  class: className = '',
+  ...rest
+} = Astro.props;
+
+const base =
+  'inline-flex items-center justify-center gap-2 rounded-full uppercase tracking-editorial font-medium transition-all duration-300 cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring';
+
+const variantClasses: Record<Variant, string> = {
+  primary:
+    'bg-foreground text-background border border-foreground hover:bg-white hover:border-white',
+  outline:
+    'bg-surface-raised text-foreground border border-border-strong hover:bg-surface-hover hover:border-foreground/40',
+  ghost:
+    'bg-transparent text-muted-foreground border border-transparent hover:text-foreground hover:bg-surface',
+  secondary:
+    'bg-surface-raised text-foreground border border-border hover:bg-surface-hover hover:border-border-strong',
+};
+
+const sizeClasses: Record<Size, string> = {
+  sm: 'px-4 py-1.5 text-tiny',
+  md: 'px-5 py-2 text-editorial',
+  lg: 'px-7 py-3 text-xs tracking-editorial-wide',
+};
+
+const classes = [
+  base,
+  variantClasses[variant],
+  sizeClasses[size],
+  fullWidth ? 'w-full' : '',
+  className,
+]
+  .filter(Boolean)
+  .join(' ');
+---
+
+{
+  href ? (
+    <a href={href} class={classes} {...rest}>
+      <slot />
+    </a>
+  ) : (
+    <button class={classes} {...rest}>
+      <slot />
+    </button>
+  )
+}

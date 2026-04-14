@@ -2,6 +2,7 @@
 import AppWrapper from '@/components/AppWrapper.astro';
 import Layout from '@/components/Gallery/Layout.astro';
 import NavbarHeaderStandalone from '@/components/Navbar/NavbarHeaderStandalone.astro';
+import PageHero from '@/components/ui/PageHero.astro';
 import type { Language } from '@/i18n/translations';
 import { useTranslations } from '@/i18n/utils';
 import HeroSegment from '../HeroSegment.astro';
@@ -24,36 +25,29 @@ const t = useTranslations(lang);
   <NavbarHeaderStandalone lang={lang} />
 
   <Layout>
-    <div class="text-center mb-20">
-      <h1
-        class="text-5xl sm:text-6xl font-extralight text-gray-50 uppercase tracking-wider leading-tight"
-      >
-        {t('trophy.title')}
-      </h1>
-    </div>
+    <PageHero
+      eyebrow={t('trophy.title')}
+      title={t('trophy.description-title')}
+      class="mb-20"
+    />
 
     <div class="max-w-4xl mx-auto text-center">
-      <div class="flex justify-center mb-12">
+      <div class="flex justify-center mb-16">
         <img
           src="/images/trophy/trophy.png"
           alt={t('trophy.title')}
-          class="max-w-md w-full h-auto"
+          class="max-w-sm w-full h-auto"
         />
       </div>
 
-      <div class="space-y-6 mb-20 text-left sm:text-center">
-        <h2
-          class="text-4xl sm:text-5xl font-extralight text-gray-50 uppercase tracking-wider leading-tight"
-        >
-          {t('trophy.description-title')}
-        </h2>
+      <div class="space-y-6 mb-24 max-w-prose-narrow mx-auto">
         <p
-          class="text-xl font-light italic text-justify text-gray-300 leading-relaxed max-w-2xl mx-auto"
+          class="font-light text-sm sm:text-base text-muted-foreground leading-paragraph"
         >
           {t('trophy.description-intro')}
         </p>
         <p
-          class="text-xl font-light italic text-justify text-gray-300 leading-relaxed max-w-2xl mx-auto"
+          class="font-light text-sm sm:text-base text-muted-foreground leading-paragraph"
         >
           {t('trophy.description')}
         </p>

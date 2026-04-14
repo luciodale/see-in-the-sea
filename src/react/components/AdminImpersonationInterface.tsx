@@ -223,7 +223,7 @@ export function AdminImpersonationInterface({
   if (loading) {
     return (
       <div className="flex items-center justify-center p-12">
-        <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-400"></div>
+        <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-accent"></div>
         <span className="ml-3 text-slate-300">Caricamento...</span>
       </div>
     );

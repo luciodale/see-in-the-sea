@@ -260,7 +260,7 @@ function ContestManagementPage() {
                                     disabled={
                                       deletingSubmissionId === submission.id
                                     }
-                                    className="text-blue-400 hover:text-blue-300 text-sm disabled:opacity-50"
+                                    className="text-accent-hover hover:underline text-sm disabled:opacity-50"
                                   >
                                     Modifica
                                   </button>

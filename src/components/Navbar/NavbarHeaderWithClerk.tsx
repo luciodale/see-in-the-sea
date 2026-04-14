@@ -8,14 +8,13 @@ import { NavbarHeader } from './NavbarHeader';
 
 export function NavbarHeaderWithClerk({
   clerkPublicKey,
-  standalone = false,
+  darkOverlay = false,
   lang = 'en',
 }: {
   clerkPublicKey: string;
-  standalone?: boolean;
+  darkOverlay?: boolean;
   lang?: 'en' | 'it';
 }) {
-  // Generate language-aware redirect URLs
   const signInRedirectUrl = getLanguageAwareRedirectUrl(REDIRECT_URL, lang);
   const signUpRedirectUrl = getLanguageAwareRedirectUrl(REDIRECT_URL, lang);
   const signOutRedirectUrl = getLanguageAwareSignOutUrl(lang);
@@ -27,7 +26,7 @@ export function NavbarHeaderWithClerk({
       signInForceRedirectUrl={signInRedirectUrl}
       signUpForceRedirectUrl={signUpRedirectUrl}
     >
-      <NavbarHeader standalone={standalone} />
+      <NavbarHeader darkOverlay={darkOverlay} />
     </ClerkProvider>
   );
 }

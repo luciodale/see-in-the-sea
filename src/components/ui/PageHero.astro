@@ -1,0 +1,39 @@
+---
+type Props = {
+  eyebrow?: string;
+  title: string;
+  description?: string;
+  class?: string;
+};
+
+const {
+  eyebrow,
+  title,
+  description,
+  class: className = '',
+} = Astro.props;
+
+const containerClass = `text-center space-y-4 ${className}`.trim();
+---
+
+<div class={containerClass}>
+  {
+    eyebrow && (
+      <p class="text-editorial uppercase tracking-editorial-wider text-muted-foreground">
+        {eyebrow}
+      </p>
+    )
+  }
+  <h1
+    class="font-serif text-5xl sm:text-6xl md:text-7xl text-foreground leading-display tracking-display"
+  >
+    {title}
+  </h1>
+  {
+    description && (
+      <p class="text-base sm:text-lg font-light text-muted-foreground leading-paragraph max-w-prose-narrow mx-auto pt-2">
+        {description}
+      </p>
+    )
+  }
+</div>

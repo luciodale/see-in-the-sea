@@ -168,7 +168,7 @@ export function JudgingCategoryTabs({
               {PLACEMENTS.map(p => (
                 <span key={p.value} className="flex items-center gap-0.5">
                   <span
-                    className={`w-4 h-4 rounded ${p.color} flex items-center justify-center text-[10px] font-bold`}
+                    className={`w-4 h-4 rounded ${p.color} flex items-center justify-center text-tiny font-bold`}
                   >
                     {p.label}
                   </span>

@@ -335,7 +335,7 @@ export function JudgeManager({
                     type="button"
                     onClick={() => triggerImageUpload(judge.id)}
                     disabled={isSubmitting || uploadingJudgeId === judge.id}
-                    className="text-cyan-400 hover:text-cyan-300 text-sm disabled:opacity-50"
+                    className="text-accent-hover hover:underline text-sm disabled:opacity-50"
                     title="Carica foto"
                   >
                     {judge.r2ImageId ? 'Cambia foto' : 'Aggiungi foto'}
@@ -354,7 +354,7 @@ export function JudgeManager({
                     type="button"
                     onClick={() => startEditing(judge)}
                     disabled={isSubmitting}
-                    className="text-blue-400 hover:text-blue-300 text-sm disabled:opacity-50"
+                    className="text-accent-hover hover:underline text-sm disabled:opacity-50"
                   >
                     Modifica
                   </button>

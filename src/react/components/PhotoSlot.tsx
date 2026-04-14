@@ -37,45 +37,41 @@ export function PhotoSlot({
   };
 
   return (
-    <div className="text-center">
+    <div className="text-center space-y-2">
       {submission?.r2ImageId ? (
-        // Show image icon with manage button when image exists
-        <div className="w-full">
-          {/* Success indicator banner */}
-          <div className="flex items-center justify-center gap-1 mb-2 p-1.5 bg-emerald-900/20 border border-emerald-700/50 rounded-md">
-            <span className="text-xs font-medium text-emerald-300">
-              {t('submissions.success-received')}
-            </span>
-          </div>
-
-          <div className="w-full aspect-square bg-slate-700 rounded-lg overflow-hidden mb-2 relative">
-            <ImageIcon className="w-full h-full rounded-lg" />
+        <div className="w-full space-y-2">
+          <p className="text-tiny uppercase tracking-editorial-wider text-success">
+            {t('submissions.success-received')}
+          </p>
+          <div className="w-full aspect-square bg-surface-raised border border-border rounded-xl overflow-hidden relative">
+            <ImageIcon className="w-full h-full rounded-xl" />
             <div className="absolute bottom-2 right-2">
               <ManageButton
                 onClick={handleManageClick}
-                className="text-xs px-2 py-1"
+                className="text-tiny px-3 py-1"
                 disabled={hasPaid}
               />
             </div>
           </div>
         </div>
       ) : (
-        // Show empty slot when no image exists
         <button
           type="button"
           onClick={hasPaid ? undefined : handleUploadClick}
           disabled={hasPaid}
           className={clsx(
-            'w-full aspect-square rounded-lg overflow-hidden mb-2 transition-opacity',
+            'w-full aspect-square rounded-xl overflow-hidden transition-opacity',
             hasPaid
-              ? 'cursor-not-allowed opacity-50'
+              ? 'cursor-not-allowed opacity-40'
               : 'hover:opacity-80 cursor-pointer'
           )}
         >
-          <ImageIcon variant="empty" className="w-full h-full rounded-lg" />
+          <ImageIcon variant="empty" className="w-full h-full rounded-xl" />
         </button>
       )}
-      <p className="text-xs text-slate-300">{label}</p>
+      <p className="text-tiny uppercase tracking-editorial-wider text-muted-foreground">
+        {label}
+      </p>
     </div>
   );
 }

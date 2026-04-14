@@ -1,0 +1,13 @@
+---
+type Props = {
+  class?: string;
+};
+
+const { class: className = '' } = Astro.props;
+---
+
+<p
+  class={`text-editorial uppercase text-muted-foreground tracking-editorial-wider m-0 ${className}`}
+>
+  <slot />
+</p>

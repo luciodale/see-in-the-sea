@@ -114,7 +114,7 @@ export const PortfolioCard = memo(function PortfolioCard({
                     <span className="text-xl">&#128444;&#65039;</span>
                   </div>
                 )}
-                <div className="absolute bottom-0.5 left-0.5 text-[9px] bg-black/70 text-slate-300 px-1 py-0.5 rounded capitalize">
+                <div className="absolute bottom-0.5 left-0.5 text-tiny bg-black/70 text-slate-300 px-1 py-0.5 rounded capitalize">
                   {photoType.charAt(0)}
                 </div>
               </div>

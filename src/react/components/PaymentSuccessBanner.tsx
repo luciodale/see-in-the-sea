@@ -7,20 +7,22 @@ export function PaymentSuccessBanner() {
 
   return (
     <div className="max-w-2xl mx-auto mb-6">
-      <Card variant="success" className="p-8 text-center">
+      <Card variant="success" className="p-10 text-center">
         <div className="flex items-center justify-center mb-6">
-          <CheckCircleIcon className="h-16 w-16 text-emerald-400" />
+          <div className="w-16 h-16 rounded-full bg-success/10 border border-success/40 flex items-center justify-center">
+            <CheckCircleIcon className="h-8 w-8 text-success" />
+          </div>
         </div>
 
-        <h2 className="text-3xl font-bold text-emerald-400 mb-4">
+        <h2 className="font-serif text-3xl text-foreground mb-4 leading-display tracking-display">
           {t('payment.success.title')}
         </h2>
 
-        <p className="text-slate-200 text-lg mb-4">
+        <p className="font-light text-sm sm:text-base text-foreground/80 leading-paragraph mb-3">
           {t('payment.success.message')}
         </p>
 
-        <p className="text-slate-300 text-sm">
+        <p className="text-editorial uppercase tracking-editorial text-muted-foreground">
           {t('payment.success.next-steps')}
         </p>
       </Card>

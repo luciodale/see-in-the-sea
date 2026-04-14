@@ -13,7 +13,9 @@ export function ContestCountdown({ year }: ContestCountdownProps) {
 
   if (isExpired) {
     return (
-      <span className="text-xs text-slate-500">{t('countdown.closed')}</span>
+      <span className="text-editorial uppercase tracking-editorial-wider text-subtle-foreground">
+        {t('countdown.closed')}
+      </span>
     );
   }
 
@@ -22,12 +24,13 @@ export function ContestCountdown({ year }: ContestCountdownProps) {
   return (
     <span
       className={cn(
-        'inline-flex items-center gap-1.5 text-xs tabular-nums',
-        isUrgent ? 'text-amber-400' : 'text-slate-500'
+        'inline-flex items-center gap-2 text-editorial uppercase tracking-editorial tabular-nums',
+        isUrgent ? 'text-warning' : 'text-muted-foreground'
       )}
     >
       <span>{t('countdown.closing-in')}</span>
-      <span className="font-medium">
+      <span className="h-px w-4 bg-border-strong" />
+      <span className="text-foreground">
         {days}d {pad(hours)}h {pad(minutes)}m {pad(seconds)}s
       </span>
     </span>

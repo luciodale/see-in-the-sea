@@ -1,3 +1,7 @@
+import { getNavigationItems } from '@/config/navigation';
+import { useI18n } from '@/i18n/react';
+import { getLanguageAwareSignOutUrl, getLocalizedPath } from '@/i18n/utils';
+import { useUserRole } from '@/react/hooks/useUserRole';
 import { SignedIn, SignedOut, useClerk, useUser } from '@clerk/clerk-react';
 import {
   Dialog,
@@ -14,13 +18,15 @@ import {
   XMarkIcon,
 } from '@heroicons/react/24/outline';
 import { useState } from 'react';
-import { getNavigationItems } from '@/config/navigation';
-import { useI18n } from '@/i18n/react';
-import { getLanguageAwareSignOutUrl, getLocalizedPath } from '@/i18n/utils';
-import { useUserRole } from '@/react/hooks/useUserRole';
 import { LanguageSwitcherReact } from '../LanguageSwitcherReact';
 
 const logoPath = '/images/ortona-sub-logo.svg';
+
+const navLinkClass =
+  'text-editorial uppercase tracking-editorial text-foreground/85 hover:text-foreground transition-colors whitespace-nowrap';
+
+const mobileLinkClass =
+  '-mx-3 block rounded-lg px-3 py-3 text-editorial uppercase tracking-editorial text-foreground/85 hover:text-foreground hover:bg-surface transition-colors';
 
 function UserDropdown() {
   const { t, lang } = useI18n();
@@ -39,22 +45,24 @@ function UserDropdown() {
 
   return (
     <Menu as="div" className="relative">
-      <MenuButton className="flex items-center gap-1 text-sm/6 font-bold uppercase text-white cursor-pointer">
-        {t('nav.submissions')}
-        <ChevronDownIcon className="w-4 h-4" />
+      <MenuButton
+        className={`flex items-center gap-1 cursor-pointer ${navLinkClass}`}
+      >
+        {t('nav.profile')}
+        <ChevronDownIcon className="w-3 h-3" />
       </MenuButton>
 
       <MenuItems
         transition
-        className="absolute right-0 mt-2 w-52 origin-top-right rounded-lg bg-slate-800 border border-slate-700 shadow-xl ring-1 ring-black/20 focus:outline-none transition data-[closed]:scale-95 data-[closed]:opacity-0 data-[enter]:duration-100 data-[leave]:duration-75 z-50"
+        className="absolute right-0 mt-3 w-56 origin-top-right rounded-xl bg-popover border border-border-strong shadow-2xl focus:outline-none transition data-[closed]:scale-95 data-[closed]:opacity-0 data-[enter]:duration-100 data-[leave]:duration-75 z-50"
       >
         <div className="p-1">
           {user && (
-            <div className="px-3 py-2 border-b border-slate-700 mb-1">
-              <p className="text-sm font-medium text-white truncate">
+            <div className="px-3 py-3 border-b border-border mb-1">
+              <p className="font-serif text-base text-foreground leading-heading">
                 {user.firstName} {user.lastName}
               </p>
-              <p className="text-xs text-slate-400 truncate">
+              <p className="text-xs text-muted-foreground truncate mt-0.5">
                 {user.emailAddresses[0]?.emailAddress}
               </p>
             </div>
@@ -63,7 +71,7 @@ function UserDropdown() {
           <MenuItem>
             <a
               href={submissionsPath}
-              className="flex items-center gap-2 rounded-md px-3 py-2 text-sm text-slate-200 data-[focus]:bg-slate-700 transition-colors"
+              className="flex items-center gap-2 rounded-md px-3 py-2 text-editorial uppercase tracking-editorial text-foreground/85 data-[focus]:bg-surface-hover data-[focus]:text-foreground transition-colors"
             >
               {t('nav.submissions')}
             </a>
@@ -73,23 +81,23 @@ function UserDropdown() {
             <MenuItem>
               <a
                 href="/admin"
-                className="flex items-center gap-2 rounded-md px-3 py-2 text-sm text-slate-200 data-[focus]:bg-slate-700 transition-colors"
+                className="flex items-center gap-2 rounded-md px-3 py-2 text-editorial uppercase tracking-editorial text-foreground/85 data-[focus]:bg-surface-hover data-[focus]:text-foreground transition-colors"
               >
                 {t('nav.admin')}
               </a>
             </MenuItem>
           )}
 
-          <div className="border-t border-slate-700 mt-1 pt-1">
+          <div className="border-t border-border mt-1 pt-1">
             <MenuItem>
               <button
                 type="button"
                 onClick={handleSignOut}
                 disabled={signingOut}
-                className="flex w-full items-center gap-2 rounded-md px-3 py-2 text-sm text-slate-300 data-[focus]:bg-slate-700 transition-colors disabled:opacity-50"
+                className="flex w-full items-center gap-2 rounded-md px-3 py-2 text-editorial uppercase tracking-editorial text-muted-foreground data-[focus]:bg-surface-hover data-[focus]:text-foreground transition-colors disabled:opacity-50"
               >
                 {signingOut ? (
-                  <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-white" />
+                  <div className="animate-spin rounded-full h-3 w-3 border-b-2 border-current" />
                 ) : (
                   <ArrowRightStartOnRectangleIcon className="h-4 w-4" />
                 )}
@@ -103,7 +111,11 @@ function UserDropdown() {
   );
 }
 
-export function NavbarHeader({ standalone = false }: { standalone?: boolean }) {
+type NavbarHeaderProps = {
+  darkOverlay?: boolean;
+};
+
+export function NavbarHeader({ darkOverlay = false }: NavbarHeaderProps) {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const { t, lang } = useI18n();
   const navigation = getNavigationItems(lang, t);
@@ -120,13 +132,15 @@ export function NavbarHeader({ standalone = false }: { standalone?: boolean }) {
     signOut({ redirectUrl }).catch(() => setSigningOut(false));
   }
 
+  const overlayClass = darkOverlay
+    ? 'bg-gradient-to-b from-black/80 via-black/80 to-transparent'
+    : '';
+
   return (
-    <header
-      className={`${!standalone ? 'absolute' : ''} inset-x-0 top-0 z-50 bg-gradient-to-b from-black/60 to-transparent`}
-    >
+    <header className={`relative z-40 pointer-events-none ${overlayClass}`}>
       <nav
         aria-label="Global"
-        className="mx-auto max-w-screen-2xl flex items-center justify-between p-4 lg:px-6 xl:px-8"
+        className="mx-auto max-w-screen-2xl flex items-center justify-between p-5 lg:px-7 xl:px-10 pointer-events-auto"
       >
         <div className="flex-shrink-0 w-24 lg:w-28 xl:w-32">
           <a href={lang === 'it' ? '/it' : '/'} className="block">
@@ -142,33 +156,26 @@ export function NavbarHeader({ standalone = false }: { standalone?: boolean }) {
           <button
             type="button"
             onClick={() => setMobileMenuOpen(true)}
-            className="-m-2.5 inline-flex items-center justify-center rounded-md p-2.5 text-gray-400 cursor-pointer"
+            className="-m-2.5 inline-flex items-center justify-center rounded-md p-2.5 text-muted-foreground hover:text-foreground transition-colors cursor-pointer"
           >
             <span className="sr-only">Open main menu</span>
             <Bars3Icon aria-hidden="true" className="size-6" />
           </button>
         </div>
-        <div className="hidden lg:flex lg:gap-14">
+        <div className="hidden lg:flex lg:gap-10 xl:gap-14">
           {navigation.map(item => (
-            <a
-              key={item.name}
-              href={item.href}
-              className="text-sm xl:text-base 2xl:text-lg font-bold uppercase text-white whitespace-nowrap"
-            >
+            <a key={item.name} href={item.href} className={navLinkClass}>
               {item.name}
             </a>
           ))}
         </div>
-        <div className="hidden lg:flex items-center justify-end gap-3 flex-shrink-0 w-56 xl:w-64">
+        <div className="hidden lg:flex items-center justify-end gap-4 flex-shrink-0 w-56 xl:w-64">
           <SignedIn>
             <UserDropdown />
           </SignedIn>
           <SignedOut>
-            <a
-              href={loginPath}
-              className="text-sm/6 font-semibold text-white inline-block"
-            >
-              {t('nav.login')} <span aria-hidden="true">&rarr;</span>
+            <a href={loginPath} className={navLinkClass}>
+              {t('nav.login')}
             </a>
           </SignedOut>
           <LanguageSwitcherReact />
@@ -179,10 +186,10 @@ export function NavbarHeader({ standalone = false }: { standalone?: boolean }) {
       <Dialog
         open={mobileMenuOpen}
         onClose={setMobileMenuOpen}
-        className="lg:hidden"
+        className="lg:hidden pointer-events-auto"
       >
-        <div className="fixed inset-0 z-50" />
-        <DialogPanel className="fixed inset-y-0 right-0 z-50 w-full overflow-y-auto bg-gray-900 p-6 sm:max-w-sm sm:ring-1 sm:ring-gray-100/10">
+        <div className="fixed inset-0 z-50 bg-black/60" />
+        <DialogPanel className="fixed inset-y-0 right-0 z-50 w-full overflow-y-auto bg-background p-6 sm:max-w-sm border-l border-border">
           <div className="flex items-center justify-between">
             <a href={lang === 'it' ? '/it' : '/'} className="-m-1.5 p-1.5">
               <span className="sr-only">See in the sea</span>
@@ -191,38 +198,32 @@ export function NavbarHeader({ standalone = false }: { standalone?: boolean }) {
             <button
               type="button"
               onClick={() => setMobileMenuOpen(false)}
-              className="-m-2.5 rounded-md p-2.5 text-gray-400 cursor-pointer"
+              className="-m-2.5 rounded-md p-2.5 text-muted-foreground hover:text-foreground transition-colors cursor-pointer"
             >
               <span className="sr-only">Close menu</span>
               <XMarkIcon aria-hidden="true" className="size-6" />
             </button>
           </div>
-          <div className="mt-6 flow-root">
-            <div className="-my-6 divide-y divide-gray-500/25">
-              <div className="space-y-2 py-6">
+          <div className="mt-8 flow-root">
+            <div className="-my-6 divide-y divide-border">
+              <div className="space-y-1 py-6">
                 {navigation.map(item => (
                   <a
                     key={item.name}
                     href={item.href}
-                    className="-mx-3 block rounded-lg px-3 py-2 text-base/7 font-semibold text-white hover:bg-white/5"
+                    className={mobileLinkClass}
                   >
                     {item.name}
                   </a>
                 ))}
               </div>
-              <div className="py-6 space-y-2">
+              <div className="py-6 space-y-1">
                 <SignedIn>
-                  <a
-                    href={submissionsPath}
-                    className="-mx-3 block rounded-lg px-3 py-2 text-base/7 font-semibold text-white hover:bg-white/5"
-                  >
+                  <a href={submissionsPath} className={mobileLinkClass}>
                     {t('nav.submissions')}
                   </a>
                   {isAdmin && (
-                    <a
-                      href="/admin"
-                      className="-mx-3 block rounded-lg px-3 py-2 text-base/7 font-semibold text-white hover:bg-white/5"
-                    >
+                    <a href="/admin" className={mobileLinkClass}>
                       {t('nav.admin')}
                     </a>
                   )}
@@ -230,25 +231,24 @@ export function NavbarHeader({ standalone = false }: { standalone?: boolean }) {
                     type="button"
                     onClick={handleMobileSignOut}
                     disabled={signingOut}
-                    className="-mx-3 flex items-center gap-2 w-full rounded-lg px-3 py-2 text-base/7 font-semibold text-white hover:bg-white/5 disabled:opacity-50"
+                    className="-mx-3 flex items-center gap-2 w-full rounded-lg px-3 py-3 text-editorial uppercase tracking-editorial text-muted-foreground hover:text-foreground hover:bg-surface transition-colors disabled:opacity-50"
                   >
                     {signingOut ? (
-                      <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-white" />
+                      <div className="animate-spin rounded-full h-3 w-3 border-b-2 border-current" />
                     ) : (
-                      <ArrowRightStartOnRectangleIcon className="h-5 w-5" />
+                      <ArrowRightStartOnRectangleIcon className="h-4 w-4" />
                     )}
                     {t('auth.logout')}
                   </button>
                 </SignedIn>
                 <SignedOut>
-                  <a
-                    href={loginPath}
-                    className="-mx-3 block rounded-lg px-3 py-2 text-base/7 font-semibold text-white hover:bg-white/5"
-                  >
-                    {t('nav.login')} <span aria-hidden="true">&rarr;</span>
+                  <a href={loginPath} className={mobileLinkClass}>
+                    {t('nav.login')}
                   </a>
                 </SignedOut>
-                <LanguageSwitcherReact />
+                <div className="pt-4">
+                  <LanguageSwitcherReact />
+                </div>
               </div>
             </div>
           </div>

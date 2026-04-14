@@ -5,11 +5,12 @@ import { cn } from './cn';
 const cardVariants = cva('rounded-xl border p-6', {
   variants: {
     variant: {
-      default: 'bg-slate-800/80 border-slate-700/60',
-      info: 'bg-sky-950/30 border-sky-800/30',
-      success:
-        'bg-gradient-to-r from-emerald-950/40 to-teal-950/30 border-emerald-800/40',
-      warning: 'bg-amber-950/25 border-amber-800/40',
+      default: 'bg-surface border-border',
+      raised: 'bg-surface-raised border-border-strong',
+      info: 'bg-accent-muted border-accent/30',
+      success: 'bg-success/10 border-success/30',
+      warning: 'bg-warning/10 border-warning/30',
+      danger: 'bg-destructive/10 border-destructive/30',
     },
   },
   defaultVariants: {

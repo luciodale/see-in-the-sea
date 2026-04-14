@@ -18,13 +18,15 @@ export function Navbar({
 
   return (
     <I18nProvider lang={lang}>
-      <div className="bg-gray-900 relative">
-        <NavbarHeaderWithClerk clerkPublicKey={clerkPublicKey} lang={lang} />
-        <div className="relative isolate overflow-hidden">
-          <ImageBackground />
-          <div className="mx-auto max-w-7xl px-6 lg:px-8">
-            <NavbarContent />
-          </div>
+      <div className="relative isolate overflow-hidden h-screen flex flex-col">
+        <ImageBackground />
+        <NavbarHeaderWithClerk
+          clerkPublicKey={clerkPublicKey}
+          lang={lang}
+          darkOverlay
+        />
+        <div className="flex-1 flex mx-auto max-w-7xl w-full px-6 lg:px-8">
+          <NavbarContent />
         </div>
       </div>
     </I18nProvider>

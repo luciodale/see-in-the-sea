@@ -11,9 +11,7 @@ function UserSubmissions() {
   return (
     <>
       <SignedIn>
-        <div className="py-8 text-white">
-          <UnifiedSubmissions />
-        </div>
+        <UnifiedSubmissions />
       </SignedIn>
 
       <SignedOut>

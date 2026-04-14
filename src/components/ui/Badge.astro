@@ -1,0 +1,30 @@
+---
+type Variant = 'default' | 'accent' | 'gold' | 'success' | 'warning' | 'danger';
+
+type Props = {
+  variant?: Variant;
+  class?: string;
+};
+
+const { variant = 'default', class: className = '' } = Astro.props;
+
+const base =
+  'inline-flex items-center text-xs font-medium px-2 py-0.5 rounded-full';
+
+const variantClasses: Record<Variant, string> = {
+  default: 'bg-surface-raised text-muted-foreground',
+  accent: 'bg-accent text-accent-foreground',
+  gold: 'bg-gold text-gold-foreground',
+  success: 'bg-success/20 text-success',
+  warning: 'bg-warning/20 text-warning',
+  danger: 'bg-destructive/20 text-destructive',
+};
+
+const classes = [base, variantClasses[variant], className]
+  .filter(Boolean)
+  .join(' ');
+---
+
+<span class={classes}>
+  <slot />
+</span>

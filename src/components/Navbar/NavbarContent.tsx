@@ -4,25 +4,25 @@ export function NavbarContent() {
   const { t, lang } = useI18n();
 
   return (
-    <div className="flex min-h-screen flex-col items-center justify-center">
-      <div className="text-center drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)]">
-        <div className="flex sm:flex-row flex-col items-center justify-center">
+    <div className="flex flex-1 flex-col items-center justify-center">
+      <div className="text-center">
+        <div className="flex sm:flex-row flex-col items-center justify-center gap-6">
           <img src="/images/logo.svg" alt="Logo" className="h-40 sm:h-64" />
-          <div className="sm:text-left flex flex-col gap-1">
-            <h1 className="flex flex-col gap-1 tracking-tight text-balance text-white">
-              <span className="sm:text-5xl text-4xl font-semibold">
-                See In The Sea
+          <div className="sm:text-left flex flex-col gap-5">
+            <h1 className="flex flex-col gap-2 text-balance text-foreground">
+              <span className="font-serif sm:text-7xl text-5xl leading-display-tight tracking-display drop-shadow-sharp">
+                See in the Sea
               </span>
-              <span className="sm:text-4xl text-2xl">
+              <span className="text-editorial sm:text-xs uppercase tracking-editorial-wider text-foreground drop-shadow-strong">
                 International Underwater Photocontest
               </span>
             </h1>
-            <div className="mt-4 flex flex-col sm:flex-row items-center sm:items-start gap-3">
+            <div className="flex flex-col sm:flex-row items-center sm:items-start gap-3">
               <a
                 href={
                   lang === 'it' ? '/it/contest/uw-2025' : '/contest/uw-2025'
                 }
-                className="rounded-md bg-[#077f9d] px-3.5 py-2.5 text-sm font-semibold text-white text-center shadow-xs hover:bg-[#077f9d]/80 w-48"
+                className="inline-flex items-center justify-center rounded-full bg-accent border border-accent text-accent-foreground px-6 py-2.5 text-editorial uppercase tracking-editorial drop-shadow-sharp hover:bg-accent-hover hover:border-accent-hover transition-all duration-300"
               >
                 {t('navbar.winners')}
               </a>
@@ -30,7 +30,7 @@ export function NavbarContent() {
                 href={
                   lang === 'it' ? '/it/user/submissions' : '/user/submissions'
                 }
-                className="rounded-md border border-[#077f9d] px-3.5 py-2.5 text-sm font-semibold text-white text-center hover:bg-[#077f9d]/10 w-48"
+                className="inline-flex items-center justify-center rounded-full border border-border-strong bg-black/40 text-foreground px-6 py-2.5 text-editorial uppercase tracking-editorial drop-shadow-sharp hover:bg-black/60 hover:border-foreground/40 transition-all duration-300"
               >
                 {t('navbar.discover')}
               </a>

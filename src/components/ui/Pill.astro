@@ -1,0 +1,23 @@
+---
+type Props = {
+  href: string;
+  active?: boolean;
+  class?: string;
+  title?: string;
+};
+
+const { href, active = false, class: className = '', title } = Astro.props;
+
+const base =
+  'inline-flex items-center px-4 py-1.5 rounded-full uppercase text-editorial tracking-editorial transition-all duration-300 whitespace-nowrap';
+
+const state = active
+  ? 'bg-accent text-accent-foreground border border-accent'
+  : 'bg-surface text-muted-foreground border border-border hover:text-foreground hover:bg-surface-hover hover:border-border-strong';
+
+const classes = [base, state, className].filter(Boolean).join(' ');
+---
+
+<a href={href} class={classes} title={title}>
+  <slot />
+</a>

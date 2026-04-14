@@ -274,7 +274,7 @@ export function JudgingContentGrid({
           0 && (
           <div className="mt-8 pt-8 border-t border-slate-800">
             <h3 className="text-lg font-medium mb-4 flex items-center gap-2">
-              <span className="bg-blue-500 w-8 h-8 rounded-full flex items-center justify-center text-sm font-bold">
+              <span className="bg-accent text-accent-foreground w-8 h-8 rounded-full flex items-center justify-center text-sm font-bold">
                 M
               </span>
               <span className="text-slate-300">

@@ -587,10 +587,9 @@ export const photobook2025Copy: Record<PhotobookLang, PhotobookCopy> = {
 type PortfolioSlot = 'first' | 'second' | 'third';
 type TripleSlot = 'first' | 'second' | 'third';
 
-function mergeTriple(
-  shared: (typeof photobook2025Shared)['bw'],
-  copy: LocalizedTriple
-) {
+type SharedTriple = Record<TripleSlot, { image: string; photographer: string }>;
+
+function mergeTriple(shared: SharedTriple, copy: LocalizedTriple) {
   const slots: readonly TripleSlot[] = ['first', 'second', 'third'] as const;
   return Object.fromEntries(
     slots.map(slot => [slot, { ...shared[slot], ...copy[slot] }])

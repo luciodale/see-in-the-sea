@@ -33,16 +33,18 @@ const PUBLIC_CLERK_PUBLISHABLE_KEY = import.meta.env
 
   <!-- Sponsors invitation + Partners -->
   <div class="relative z-0">
-    <div class="bg-gradient-to-b from-slate-900 to-gray-900 px-4 py-8">
+    <div class="bg-background border-t border-border px-4 py-10">
       <div
-        class="max-w-4xl mx-auto flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-6 text-center"
+        class="max-w-4xl mx-auto flex flex-col sm:flex-row items-center justify-center gap-6 text-center"
       >
-        <p class="text-sm sm:text-base font-light text-gray-300">
+        <p
+          class="font-serif text-xl sm:text-2xl text-foreground leading-heading"
+        >
           {t('home.sponsors.invite')}
         </p>
         <a
           href={getLocalizedPath('sponsors', lang)}
-          class="inline-flex items-center gap-2 px-5 py-2 rounded-full border border-white/15 bg-white/5 text-white text-sm tracking-wide hover:bg-white/10 hover:border-white/30 transition-colors"
+          class="inline-flex items-center gap-2 px-7 py-3 rounded-full border border-foreground bg-transparent text-foreground text-xs uppercase tracking-editorial-wide font-medium hover:bg-foreground hover:text-background transition-colors flex-shrink-0"
         >
           {t('home.sponsors.button')}
         </a>
@@ -53,21 +55,9 @@ const PUBLIC_CLERK_PUBLISHABLE_KEY = import.meta.env
 
   <Layout>
     <div class="flex flex-col gap-24 lg:gap-32">
-      <!-- Who We Are -->
-      <HeroSegment
-        title={t('home.who-we-are.title')}
-        description={t('home.who-we-are.description')}
-        image={{ link: '/images/two-logos.svg' }}
-        buttonCTA={{
-          text: t('action.learn-more'),
-          link: getLocalizedPath('about', lang),
-        }}
-      />
-
       <!-- Past Contests -->
       <HeroSegment
         title={t('home.past-contests.title')}
-        isRight={true}
         description={t('home.past-contests.description')}
         image={{ link: '/images/home/past-contests.webp', objectFit: true }}
         buttonCTA={{
@@ -81,9 +71,21 @@ const PUBLIC_CLERK_PUBLISHABLE_KEY = import.meta.env
         title={t('home.sponsors.title')}
         description={t('home.sponsors.description')}
         image={{ link: '/images/home/sponsors.webp', objectFit: true }}
+        isRight={true}
         buttonCTA={{
           text: t('home.sponsors.button'),
           link: getLocalizedPath('sponsors', lang),
+        }}
+      />
+
+      <!-- Trophy -->
+      <HeroSegment
+        title={t('home.trophy.title')}
+        description={t('home.trophy.description')}
+        image={{ link: '/images/home/trophy.webp', objectFit: true }}
+        buttonCTA={{
+          text: t('home.trophy.button'),
+          link: getLocalizedPath('trophy', lang),
         }}
       />
     </div>
