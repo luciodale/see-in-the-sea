@@ -112,17 +112,17 @@ export const sponsors: Sponsor[] = [
     logo: '/images/sponsors/ciampoli-logo.svg',
   },
   {
-    logo: '/images/sponsors-banner/foto-diego.png',
+    logo: '/images/sponsors/foto-diego-logo.png',
     website: sponsorsMeta.fotoDiego.website,
     width: 'w-xl',
   },
   {
-    logo: '/images/sponsors-banner/terzini.png',
+    logo: '/images/sponsors/terzini-logo.png',
     website: sponsorsMeta.terzini.website,
     width: 'w-xl',
   },
   {
-    logo: '/images/sponsors-banner/goldengas.png',
+    logo: '/images/sponsors/goldengas-logo.png',
     width: 'w-xl',
   },
   {
@@ -131,11 +131,11 @@ export const sponsors: Sponsor[] = [
     width: 'w-xl',
   },
   {
-    logo: '/images/sponsors-banner/ficarella-diving-club.png',
+    logo: '/images/sponsors/ficarella-diving-club-logo.png',
     website: sponsorsMeta.fincarellaDivingClub.website,
   },
   {
-    logo: '/images/sponsors-banner/san-tommaso.png',
+    logo: '/images/sponsors/san-tommaso-logo.png',
     website: sponsorsMeta.sanTommaso.website,
   },
   {

@@ -14,9 +14,14 @@ const allPartners = [
   {
     src: '/images/patrocini/regione-abruzzo-logo.svg',
     alt: 'Regione Abruzzo',
+    prominent: true,
   },
   { src: '/images/patrocini/one-ocean-young-logo.svg', alt: 'One Ocean Young' },
-  { src: '/images/patrocini/ortona-logo.png', alt: 'Comune di Ortona' },
+  {
+    src: '/images/patrocini/ortona-logo.png',
+    alt: 'Comune di Ortona',
+    prominent: true,
+  },
   { src: '/images/patrocini/arpa-abruzzo-logo.svg', alt: 'ARPA Abruzzo' },
   // Collaborations
   { src: '/images/collabs/zeropixel-logo.png', alt: 'Zeropixel' },
@@ -41,7 +46,10 @@ const label =
             src={p.src}
             alt={p.alt}
             loading="lazy"
-            class="h-8 sm:h-10 w-auto opacity-75 hover:opacity-100 transition-opacity"
+            class:list={[
+              'w-auto',
+              p.prominent ? 'h-12 sm:h-14' : 'h-8 sm:h-10',
+            ]}
           />
         ))
       }

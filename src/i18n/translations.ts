@@ -32,6 +32,8 @@ export const translations = {
     'home.sponsors.description':
       "We're grateful to our incredible sponsors who make this competition possible. Their support enables us to celebrate underwater photography and provide amazing opportunities for photographers worldwide.",
     'home.sponsors.button': 'See Sponsors →',
+    'home.sponsors.invite':
+      'This contest is made possible by the generous support of our sponsors.',
 
     // Navbar
     'navbar.cta': 'Registration Open!',
@@ -399,6 +401,8 @@ export const translations = {
     'home.sponsors.description':
       'Siamo grati ai nostri straordinari sponsor che rendono possibile questa competizione. Il loro supporto ci permette di celebrare la fotografia subacquea e di offrire opportunità eccezionali ai fotografi di tutto il mondo.',
     'home.sponsors.button': 'Vedi Sponsor →',
+    'home.sponsors.invite':
+      'Questo concorso è reso possibile dal generoso supporto dei nostri sponsor.',
 
     // Navbar
     'navbar.cta': 'Iscrizioni Aperte!',
