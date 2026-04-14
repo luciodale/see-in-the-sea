@@ -1,7 +1,8 @@
 import { ArrowRight, ChevronLeft, ChevronRight } from 'lucide-react';
 import { useCallback, useEffect, useRef, useState } from 'react';
 import type { Contest } from '@/data/past-contests';
-import { type Language, useTranslations } from '@/i18n';
+import type { Language } from '@/i18n/translations';
+import { useTranslations } from '@/i18n/utils';
 
 type ContestAndLink = {
   link: string;

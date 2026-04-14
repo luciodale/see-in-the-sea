@@ -2,7 +2,8 @@
 import AppWrapper from '@/components/AppWrapper.astro';
 import Layout from '@/components/Gallery/Layout.astro';
 import NavbarHeaderStandalone from '@/components/Navbar/NavbarHeaderStandalone.astro';
-import { type Language, useTranslations } from '@/i18n';
+import type { Language } from '@/i18n/translations';
+import { useTranslations } from '@/i18n/utils';
 import HeroSegment from '../HeroSegment.astro';
 
 interface Props {

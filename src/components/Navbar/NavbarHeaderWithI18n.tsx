@@ -1,5 +1,5 @@
-import type { Language } from '@/i18n';
 import { I18nProvider } from '@/i18n/react';
+import type { Language } from '@/i18n/translations';
 import { NavbarHeaderWithClerk } from './NavbarHeaderWithClerk';
 
 interface Props {

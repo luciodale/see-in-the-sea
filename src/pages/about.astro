@@ -1,6 +1,7 @@
 ---
 import AboutPage from '@/components/pages/AboutPage.astro';
-import { getAlternates, type Language } from '@/i18n';
+import type { Language } from '@/i18n/translations';
+import { getAlternates } from '@/i18n/utils';
 
 const currentLang = (Astro.currentLocale ?? 'en') as Language;
 const alternates = getAlternates(Astro.url);

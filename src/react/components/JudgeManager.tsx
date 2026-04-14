@@ -334,9 +334,7 @@ export function JudgeManager({
                   <button
                     type="button"
                     onClick={() => triggerImageUpload(judge.id)}
-                    disabled={
-                      isSubmitting || uploadingJudgeId === judge.id
-                    }
+                    disabled={isSubmitting || uploadingJudgeId === judge.id}
                     className="text-cyan-400 hover:text-cyan-300 text-sm disabled:opacity-50"
                     title="Carica foto"
                   >
@@ -346,9 +344,7 @@ export function JudgeManager({
                     <button
                       type="button"
                       onClick={() => handleDeleteImage(judge.id)}
-                      disabled={
-                        isSubmitting || uploadingJudgeId === judge.id
-                      }
+                      disabled={isSubmitting || uploadingJudgeId === judge.id}
                       className="text-orange-400 hover:text-orange-300 text-sm disabled:opacity-50"
                     >
                       Rimuovi foto

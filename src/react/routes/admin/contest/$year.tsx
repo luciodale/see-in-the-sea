@@ -1,7 +1,7 @@
 import { SignedIn, SignedOut, useAuth } from '@clerk/clerk-react';
 import { createFileRoute } from '@tanstack/react-router';
 import { useRef, useState } from 'react';
-import AdminTabs from '@/react/components/AdminTabs';
+import { AdminTabs } from '@/react/components/AdminTabs';
 import { AdminAccessDenied } from '@/react/components/admin/AdminAccessDenied';
 import { AdminPageLoader } from '@/react/components/admin/AdminPageLoader';
 import { JudgeManager } from '@/react/components/JudgeManager';

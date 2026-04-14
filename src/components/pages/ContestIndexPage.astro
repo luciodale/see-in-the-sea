@@ -1,7 +1,8 @@
 ---
 import AppWrapper from '@/components/AppWrapper.astro';
 import { pastContestsData } from '@/data/past-contests';
-import { getLocalizedPath, type Language, useTranslations } from '@/i18n';
+import type { Language } from '@/i18n/translations';
+import { getLocalizedPath, useTranslations } from '@/i18n/utils';
 import { ContestSlider } from '@/react/components/ContestSlider';
 import { NavbarHeaderWithI18n } from '../Navbar/NavbarHeaderWithI18n';
 

@@ -1,6 +1,7 @@
 ---
 import { getNavigationItems } from '@/config/navigation';
-import { getLocalizedPath, type Language, useTranslations } from '@/i18n';
+import type { Language } from '@/i18n/translations';
+import { getLocalizedPath, useTranslations } from '@/i18n/utils';
 import EmailLink from './EmailLink.astro';
 
 interface Props {

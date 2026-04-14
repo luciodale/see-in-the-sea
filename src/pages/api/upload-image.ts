@@ -15,6 +15,7 @@ import {
   generateR2ImageId,
   uploadImageWithMetadata,
 } from '../../server/imageService';
+import { checkAndRecordUploadAttempt } from '../../server/rateLimitService';
 import {
   validateImageFile,
   validateSubmissionAction,
@@ -58,6 +59,34 @@ export const POST: APIRoute = async ({ request, locals }) => {
     }
 
     let userEmail = user.emailAddress || 'unknown';
+
+    // Step 1b: Rate limit non-admin users (30 uploads/hour)
+    if (!isAdminRole()) {
+      const rateLimit = await checkAndRecordUploadAttempt(db, userEmail);
+      if (!rateLimit.allowed) {
+        const minutes = Math.max(
+          1,
+          Math.ceil(rateLimit.retryAfterSeconds / 60)
+        );
+        const message = getBackendTranslation(
+          'error.upload-rate-limit',
+          request
+        ).replace('{minutes}', String(minutes));
+        return new Response(
+          JSON.stringify({
+            success: false,
+            message,
+          }),
+          {
+            status: 429,
+            headers: {
+              'Content-Type': 'application/json',
+              'Retry-After': String(rateLimit.retryAfterSeconds),
+            },
+          }
+        );
+      }
+    }
 
     // Step 2: Parse and validate form data
     const formData = await request.formData();

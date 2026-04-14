@@ -32,9 +32,12 @@ export const sponsorsMeta = {
   terzini: { website: 'https://cantinaterzini.it/' },
   goldengas: {},
   subMonteConero: { website: 'https://www.centrosubmonteconero.com/' },
-  fincarellaDivingClub: {website: "https://www.instagram.com/explore/locations/857205105/ficarella-diving-club---saline-joniche---italy/"},
-  sanTommaso: {website: "https://www.santommaso.eu/"},
-	icpBari: {website: "https://www.instagram.com/image.center.productions/"}
+  fincarellaDivingClub: {
+    website:
+      'https://www.instagram.com/explore/locations/857205105/ficarella-diving-club---saline-joniche---italy/',
+  },
+  sanTommaso: { website: 'https://www.santommaso.eu/' },
+  icpBari: { website: 'https://www.instagram.com/image.center.productions/' },
 } as const;
 
 export const sponsorAlbatrosMain = {
@@ -127,15 +130,17 @@ export const sponsors: Sponsor[] = [
     website: sponsorsMeta.subMonteConero.website,
     width: 'w-xl',
   },
-  { logo: '/images/sponsors-banner/ficarella-diving-club.png',
-		website: sponsorsMeta.fincarellaDivingClub.website
-	 },
-  { logo: '/images/sponsors-banner/san-tommaso.png',
-		website: sponsorsMeta.sanTommaso.website
-
-	 },
-  { logo: '/images/sponsors/icp-logo.jpg', width: 'w-xl',
-		website: sponsorsMeta.icpBari.website
-
-	 },
+  {
+    logo: '/images/sponsors-banner/ficarella-diving-club.png',
+    website: sponsorsMeta.fincarellaDivingClub.website,
+  },
+  {
+    logo: '/images/sponsors-banner/san-tommaso.png',
+    website: sponsorsMeta.sanTommaso.website,
+  },
+  {
+    logo: '/images/sponsors/icp-logo.jpg',
+    width: 'w-xl',
+    website: sponsorsMeta.icpBari.website,
+  },
 ];

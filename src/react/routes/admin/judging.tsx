@@ -3,7 +3,7 @@ import { createFileRoute } from '@tanstack/react-router';
 import { useCallback, useState } from 'react';
 import { CURRENT_CONTEST_CATEGORIES } from '../../../constants/categories';
 import { validateAdminSearch } from '../../adminSearchSchema';
-import AdminTabs from '../../components/AdminTabs';
+import { AdminTabs } from '../../components/AdminTabs';
 import { AdminAccessDenied } from '../../components/admin/AdminAccessDenied';
 import { AdminPageLoader } from '../../components/admin/AdminPageLoader';
 import { JudgingCategoryTabs } from '../../components/judging/JudgingCategoryTabs';

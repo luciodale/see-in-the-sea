@@ -1,5 +1,5 @@
-import type { TranslationKey } from '../../i18n';
 import { useI18n } from '../../i18n/react';
+import type { TranslationKey } from '../../i18n/translations';
 import type { UISubmission } from '../../types/ui';
 import { ImageIcon } from './ImageIcon';
 import { ManageButton } from './ManageButton';

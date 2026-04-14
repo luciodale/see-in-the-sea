@@ -85,6 +85,3 @@ export function AdminTabs({
     </div>
   );
 }
-
-// Keep default export for backwards compat with existing imports
-export default AdminTabs;

@@ -86,6 +86,13 @@ export const judges = sqliteTable('judges', {
   createdAt: text('created_at').default(sql`CURRENT_TIMESTAMP`),
 });
 
+// Upload attempts table for rate limiting uploads per user
+export const uploadAttempts = sqliteTable('upload_attempts', {
+  id: text('id').primaryKey(),
+  userEmail: text('user_email').notNull(),
+  attemptedAt: text('attempted_at').default(sql`CURRENT_TIMESTAMP`).notNull(),
+});
+
 // Payments table for tracking successful payments
 export const payments = sqliteTable('payments', {
   id: text('id').primaryKey(),
@@ -128,6 +135,11 @@ export const judgesContestIdx = index('idx_judges_contest').on(
   judges.contestId
 );
 
+// Upload attempts indexes
+export const uploadAttemptsUserTimeIdx = index(
+  'idx_upload_attempts_user_time'
+).on(uploadAttempts.userEmail, uploadAttempts.attemptedAt);
+
 // Payments indexes
 export const paymentsContestUserIdx = index('idx_payments_contest_user').on(
   payments.contestId,
@@ -153,5 +165,7 @@ export type Judge = typeof judges.$inferSelect;
 export type NewJudge = typeof judges.$inferInsert;
 export type Payment = typeof payments.$inferSelect;
 export type NewPayment = typeof payments.$inferInsert;
+export type UploadAttempt = typeof uploadAttempts.$inferSelect;
+export type NewUploadAttempt = typeof uploadAttempts.$inferInsert;
 export type JudgingFlag = typeof judgingFlags.$inferSelect;
 export type NewJudgingFlag = typeof judgingFlags.$inferInsert;

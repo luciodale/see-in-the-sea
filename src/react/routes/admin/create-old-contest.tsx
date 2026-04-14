@@ -1,6 +1,6 @@
 import { SignedIn, SignedOut } from '@clerk/clerk-react';
 import { createFileRoute, useNavigate } from '@tanstack/react-router';
-import AdminTabs from '../../components/AdminTabs';
+import { AdminTabs } from '../../components/AdminTabs';
 import { AdminAccessDenied } from '../../components/admin/AdminAccessDenied';
 import { AdminPageLoader } from '../../components/admin/AdminPageLoader';
 import { RedirectToSignIn } from '../../components/RedirectToSignIn';

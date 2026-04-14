@@ -2,8 +2,8 @@ import {
   PHOTOS_PER_PORTFOLIO,
   PORTFOLIOS_PER_MEDITERRANEAN,
 } from '../../constants';
-import type { TranslationKey } from '../../i18n';
 import { useI18n } from '../../i18n/react';
+import type { TranslationKey } from '../../i18n/translations';
 import type { UICategory } from '../../types/ui';
 import { Badge } from './ui/Badge';
 import { cn } from './ui/cn';

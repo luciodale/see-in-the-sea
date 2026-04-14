@@ -1,4 +1,5 @@
-import { getLocalizedPath, type Language, type TranslationKey } from '@/i18n';
+import type { Language, TranslationKey } from '@/i18n/translations';
+import { getLocalizedPath } from '@/i18n/utils';
 
 export interface NavItem {
   name: string;

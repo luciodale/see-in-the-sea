@@ -1,6 +1,7 @@
 ---
 import { Picture } from 'astro:assets';
-import { getLocalizedPath, type Language } from '../../i18n';
+import type { Language } from '../../i18n/translations';
+import { getLocalizedPath } from '../../i18n/utils';
 
 type Props = {
   contest: {

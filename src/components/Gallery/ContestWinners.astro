@@ -1,11 +1,7 @@
 ---
 import type { Contest, Entry } from '@/data/past-contests';
-import {
-  getCategoryName,
-  getResultName,
-  type Language,
-  useTranslations,
-} from '@/i18n';
+import type { Language } from '@/i18n/translations';
+import { getCategoryName, getResultName, useTranslations } from '@/i18n/utils';
 import { MEDITERRANEAN_CATEGORY_ID } from '../../constants';
 import { getFullQualityImageUrl } from '../../server/imageService';
 import GalleryInfo from './GalleryInfo.astro';

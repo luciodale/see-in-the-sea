@@ -3,7 +3,8 @@ import AppWrapper from '@/components/AppWrapper.astro';
 import HeroSegment from '@/components/HeroSegment.astro';
 import { Navbar } from '@/components/Navbar/Navbar';
 import SponsorsBanner from '@/components/SponsorsBanner.astro';
-import { getLocalizedPath, type Language, useTranslations } from '@/i18n';
+import type { Language } from '@/i18n/translations';
+import { getLocalizedPath, useTranslations } from '@/i18n/utils';
 import Layout from '../Gallery/Layout.astro';
 import PartnersSection from '../PartnersSection.astro';
 

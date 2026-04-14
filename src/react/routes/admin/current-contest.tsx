@@ -3,7 +3,7 @@ import { createFileRoute } from '@tanstack/react-router';
 import { useCallback } from 'react';
 import { validateAdminSearch } from '../../adminSearchSchema';
 import { AdminSubmissionsViewer } from '../../components/AdminSubmissionsViewer';
-import AdminTabs from '../../components/AdminTabs';
+import { AdminTabs } from '../../components/AdminTabs';
 import { AdminAccessDenied } from '../../components/admin/AdminAccessDenied';
 import { AdminPageLoader } from '../../components/admin/AdminPageLoader';
 import { RedirectToSignIn } from '../../components/RedirectToSignIn';

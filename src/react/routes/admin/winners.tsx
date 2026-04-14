@@ -2,7 +2,7 @@ import { SignedIn, SignedOut } from '@clerk/clerk-react';
 import { createFileRoute } from '@tanstack/react-router';
 import { useCallback } from 'react';
 import { validateAdminSearch } from '../../adminSearchSchema';
-import AdminTabs from '../../components/AdminTabs';
+import { AdminTabs } from '../../components/AdminTabs';
 import { AllWinnersViewer } from '../../components/AllWinnersViewer';
 import { AdminAccessDenied } from '../../components/admin/AdminAccessDenied';
 import { AdminPageLoader } from '../../components/admin/AdminPageLoader';

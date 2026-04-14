@@ -4,7 +4,8 @@ import ContestWinners from '@/components/Gallery/ContestWinners.astro';
 import Layout from '@/components/Gallery/Layout.astro';
 import NavbarHeaderStandalone from '@/components/Navbar/NavbarHeaderStandalone.astro';
 import type { Contest } from '@/data/past-contests';
-import { getLocalizedPath, type Language, useTranslations } from '@/i18n';
+import type { Language } from '@/i18n/translations';
+import { getLocalizedPath, useTranslations } from '@/i18n/utils';
 
 interface Props {
   lang: Language;

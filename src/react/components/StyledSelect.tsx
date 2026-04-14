@@ -12,7 +12,7 @@ type StyledSelectProps = {
   className?: string;
 };
 
-export default function StyledSelect({
+export function StyledSelect({
   id = 'styled-select',
   label,
   value,

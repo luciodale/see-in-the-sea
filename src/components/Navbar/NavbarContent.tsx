@@ -27,7 +27,9 @@ export function NavbarContent() {
                 {t('navbar.winners')}
               </a>
               <a
-                href={lang === 'it' ? '/it/user/submissions' : '/user/submissions'}
+                href={
+                  lang === 'it' ? '/it/user/submissions' : '/user/submissions'
+                }
                 className="rounded-md border border-[#077f9d] px-3.5 py-2.5 text-sm font-semibold text-white text-center hover:bg-[#077f9d]/10 w-48"
               >
                 {t('navbar.discover')}

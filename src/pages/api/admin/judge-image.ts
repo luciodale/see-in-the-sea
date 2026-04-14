@@ -70,8 +70,7 @@ export const POST: APIRoute = async ({ request, locals }) => {
         return new Response(
           JSON.stringify({
             success: false,
-            message:
-              'Non puoi modificare giudici di concorsi attuali o futuri',
+            message: 'Non puoi modificare giudici di concorsi attuali o futuri',
           }),
           { status: 403 }
         );
@@ -96,10 +95,7 @@ export const POST: APIRoute = async ({ request, locals }) => {
     });
 
     // Update DB
-    await db
-      .update(judges)
-      .set({ r2ImageId })
-      .where(eq(judges.id, judgeId));
+    await db.update(judges).set({ r2ImageId }).where(eq(judges.id, judgeId));
 
     const response: ApiResponse<{ r2ImageId: string }> = {
       success: true,

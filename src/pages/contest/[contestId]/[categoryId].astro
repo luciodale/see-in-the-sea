@@ -3,7 +3,8 @@ export const prerender = true;
 
 import ContestCategoryPage from '@/components/pages/ContestCategoryPage.astro';
 import { pastContestsData } from '@/data/past-contests';
-import { getLocalizedPath, type Language } from '@/i18n';
+import type { Language } from '@/i18n/translations';
+import { getLocalizedPath } from '@/i18n/utils';
 
 export function getStaticPaths() {
   return pastContestsData.flatMap(contest =>

@@ -68,6 +68,10 @@ export const backendTranslations = {
     'error.failed-to-check-payment-status': 'Failed to check payment status',
     'error.failed-to-fetch-judges': 'Failed to fetch judges',
 
+    // Rate limiting
+    'error.upload-rate-limit':
+      'Upload limit reached (30 per hour). Please try again in {minutes} minute(s).',
+
     // Success messages
     'success.submission-deleted': 'Submission deleted',
     'success.image-uploaded': 'Image uploaded successfully!',
@@ -136,6 +140,10 @@ export const backendTranslations = {
       'Recupero contest e categorie fallito',
     'error.failed-to-check-payment-status': 'Controllo stato pagamento fallito',
     'error.failed-to-fetch-judges': 'Recupero giudici fallito',
+
+    // Rate limiting
+    'error.upload-rate-limit':
+      'Limite di caricamenti raggiunto (30 all\u2019ora). Riprova tra {minutes} minuto/i.',
 
     // Success messages
     'success.submission-deleted': 'Candidatura eliminata',

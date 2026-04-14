@@ -1,7 +1,8 @@
 ---
-import { type Contest, pastContestsData } from '@/data/past-contests';
 import { IMAGES_BASE_URL } from '@/constants';
-import { getLocalizedPath, type Language, useTranslations } from '@/i18n';
+import { type Contest, pastContestsData } from '@/data/past-contests';
+import type { Language } from '@/i18n/translations';
+import { getLocalizedPath, useTranslations } from '@/i18n/utils';
 
 type Props = {
   contestId: string;

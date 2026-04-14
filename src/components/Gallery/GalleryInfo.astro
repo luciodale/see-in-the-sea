@@ -1,11 +1,11 @@
 ---
 import { type Contest, pastContestsData } from '@/data/past-contests';
+import type { Language } from '@/i18n/translations';
 import {
   getCategoryName,
   getLocalizedPath,
-  type Language,
   useTranslations,
-} from '@/i18n';
+} from '@/i18n/utils';
 
 type Props = {
   contestTitle: string;

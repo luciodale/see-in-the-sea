@@ -1,3 +1,4 @@
+import { getFile, getRequiredString, getString } from './formData';
 import {
   getFileExtensionFromMime,
   SUPPORTED_IMAGE_MIME_TYPES,
@@ -32,14 +33,9 @@ export function validateImageFile(imageFile: File): ValidationResult<{
     };
   }
 
-  if (!imageFile.type.startsWith('image/')) {
-    return {
-      isValid: false,
-      error: 'Invalid image file provided. Must be an image file.',
-    };
-  }
-
-  // Check if the MIME type is supported
+  // Check if the MIME type is in the explicit whitelist.
+  // Do not fall back to a generic `image/*` check: it would let through
+  // untrusted formats like SVG (XSS vector).
   if (
     !SUPPORTED_IMAGE_MIME_TYPES.includes(
       imageFile.type as SupportedImageMimeType
@@ -88,15 +84,13 @@ export function validateUploadFormData(formData: FormData): ValidationResult<{
   portfolio?: string;
   portfolioPhotoType?: string;
 }> {
-  const imageFile = formData.get('image') as File;
-  const contestId = formData.get('contestId') as string;
-  const categoryId = formData.get('categoryId') as string;
-  const title = formData.get('title') as string;
-  const description = formData.get('description') as string | null;
-  const portfolio = formData.get('portfolio') as string | null;
-  const portfolioPhotoType = formData.get('portfolioPhotoType') as
-    | string
-    | null;
+  const imageFile = getFile(formData, 'image');
+  const contestId = getRequiredString(formData, 'contestId');
+  const categoryId = getRequiredString(formData, 'categoryId');
+  const title = getRequiredString(formData, 'title');
+  const description = getString(formData, 'description');
+  const portfolio = getString(formData, 'portfolio');
+  const portfolioPhotoType = getString(formData, 'portfolioPhotoType');
 
   if (!imageFile || !contestId || !categoryId || !title) {
     return {
