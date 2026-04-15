@@ -18,6 +18,7 @@ const t = useTranslations(currentLang);
 const contestJudges = contestData.judges;
 
 const sortedContests = pastContestsData
+  .filter((c) => !c.currentContest)
   .map((c) => ({ id: c.id, name: c.name, year: c.year }))
   .sort((a, b) => b.year - a.year);
 const currentIndex = sortedContests.findIndex((c) => c.id === contestId);

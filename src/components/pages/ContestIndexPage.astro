@@ -13,10 +13,12 @@ interface Props {
 const { lang } = Astro.props;
 const t = useTranslations(lang);
 
-const contestsWithLinks = pastContestsData.map(c => ({
-  ...c,
-  link: getLocalizedPath(`/contest/${c.id}`, lang),
-}));
+const contestsWithLinks = pastContestsData
+  .filter(c => !c.currentContest)
+  .map(c => ({
+    ...c,
+    link: getLocalizedPath(`/contest/${c.id}`, lang),
+  }));
 
 const PUBLIC_CLERK_PUBLISHABLE_KEY = import.meta.env
   .PUBLIC_CLERK_PUBLISHABLE_KEY;

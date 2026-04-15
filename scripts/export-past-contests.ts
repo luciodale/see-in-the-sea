@@ -53,6 +53,14 @@ interface RawJudgeRow {
   r2_image_id: string | null;
 }
 
+interface RawContestRow {
+  id: string;
+  name: string;
+  description: string | null;
+  year: number;
+  status: string;
+}
+
 // 2. Output Data Structure (Internal Working Types)
 type Placement = 'first' | 'second' | 'third' | 'runner-up';
 
@@ -91,6 +99,8 @@ interface Contest {
   name: string;
   description: string | null;
   indexImage: string | null;
+  indexImageR2Id: string | null;
+  currentContest: boolean;
   judges: Judge[];
   categories: Category[];
 }
@@ -127,6 +137,35 @@ async function main() {
     if (!existsSync(d)) mkdirSync(d, { recursive: true });
   });
 
+  // 1b. Read prior generated file (if any) to preserve manual indexImage
+  // overrides. We look up by r2Id first, then fall back to the raw path
+  // (covers first regeneration before indexImageR2Id was tracked).
+  const priorIndexByContest = new Map<
+    string,
+    { indexImage: string | null; indexImageR2Id: string | null }
+  >();
+  if (existsSync(OUT_FILE)) {
+    try {
+      const priorModule = await import(OUT_FILE);
+      const priorData = (priorModule.pastContestsData ?? []) as Array<{
+        id: string;
+        indexImage?: string | null;
+        indexImageR2Id?: string | null;
+      }>;
+      priorData.forEach(c => {
+        priorIndexByContest.set(c.id, {
+          indexImage: c.indexImage ?? null,
+          indexImageR2Id: c.indexImageR2Id ?? null,
+        });
+      });
+      console.log(
+        `📌 Loaded ${priorIndexByContest.size} prior indexImage overrides`
+      );
+    } catch (e) {
+      console.warn('⚠️ Could not read prior past-contests.ts:', e);
+    }
+  }
+
   // 2. Fetch DB Data (Main Content)
   const mainSql = `
     SELECT 
@@ -155,8 +194,21 @@ async function main() {
   );
   const judgeRows = (JSON.parse(judgesRaw)[0]?.results || []) as RawJudgeRow[];
 
-  if (!rows.length) {
-    console.log('⚠️ No results found.');
+  // 3b. Fetch DB Data (All Contests)
+  // Needed so contests without submissions/results (e.g. a currently running
+  // contest that only has judges set up) still appear in the generated file
+  // and get a static judges page.
+  const contestsSql = `SELECT id, name, description, year, status FROM contests`;
+
+  console.log(`🏆 Querying contests...`);
+  const contestsRaw = await robustExec(
+    `bunx wrangler d1 execute ${DB_NAME} --${mode} --command="${contestsSql.replace(/"/g, '\\"')}" --json`
+  );
+  const contestRows = (JSON.parse(contestsRaw)[0]?.results ||
+    []) as RawContestRow[];
+
+  if (!contestRows.length) {
+    console.log('⚠️ No contests found.');
     return;
   }
 
@@ -223,19 +275,25 @@ async function main() {
   console.log('🏗️  Structuring Data...');
   const contestsMap = new Map<string, Contest>();
 
-  // A. Build Contest Skeleton
+  // A1. Seed map with ALL contests (including those without results yet).
+  // `currentContest` is derived from the D1 status column: a contest is
+  // considered current when its status is 'active'.
+  for (const cRow of contestRows) {
+    contestsMap.set(cRow.id, {
+      id: cRow.id,
+      year: cRow.year,
+      name: cRow.name,
+      description: cRow.description,
+      indexImage: null,
+      indexImageR2Id: null,
+      currentContest: cRow.status === 'active',
+      judges: [],
+      categories: [],
+    });
+  }
+
+  // A2. Overlay submission/result rows onto the seeded map
   for (const row of rows) {
-    if (!contestsMap.has(row.contest_id)) {
-      contestsMap.set(row.contest_id, {
-        id: row.contest_id,
-        year: row.contest_year,
-        name: row.contest_name,
-        description: row.contest_description,
-        indexImage: null,
-        judges: [],
-        categories: [],
-      });
-    }
     const contest = contestsMap.get(row.contest_id);
     if (!contest) continue;
 
@@ -297,8 +355,40 @@ async function main() {
         }
       });
 
-      const heroCat = contest.categories.find(c => c.winnerImage);
-      if (heroCat) contest.indexImage = heroCat.winnerImage;
+      // Index image: preserve prior override if still valid; otherwise auto-
+      // pick the first category's winner. "Still valid" means the referenced
+      // r2Id (or raw path, on first regen) still exists in this contest.
+      const prior = priorIndexByContest.get(contest.id);
+      const allEntries = contest.categories.flatMap(c => c.entries);
+      let chosenImage: string | null = null;
+      let chosenR2Id: string | null = null;
+
+      if (prior?.indexImageR2Id) {
+        const match = allEntries.find(
+          e => e.imageR2Id === prior.indexImageR2Id
+        );
+        if (match) {
+          chosenImage = match.image;
+          chosenR2Id = match.imageR2Id;
+        }
+      }
+      if (!chosenR2Id && prior?.indexImage) {
+        const match = allEntries.find(e => e.image === prior.indexImage);
+        if (match) {
+          chosenImage = match.image;
+          chosenR2Id = match.imageR2Id;
+        }
+      }
+      if (!chosenR2Id) {
+        const heroCat = contest.categories.find(c => c.winnerImage);
+        if (heroCat) {
+          chosenImage = heroCat.winnerImage;
+          chosenR2Id = heroCat.winnerImageR2Id;
+        }
+      }
+
+      contest.indexImage = chosenImage;
+      contest.indexImageR2Id = chosenR2Id;
 
       return contest;
     })
@@ -306,7 +396,7 @@ async function main() {
 
   // 7. Save as TS (Using exact requested types)
   // Note: I added | null to images to be safe for TS strictness if data is missing
-  const tsContent = `// Auto-generated by scripts/sync-content.ts
+  const tsContent = `// Auto-generated by scripts/export-past-contests.ts
 // Do not edit manually
 
 export interface Judge {
@@ -343,7 +433,9 @@ export interface Contest {
   year: number;
   name: string;
   description: string | null;
-  indexImage: string;
+  indexImage: string | null;
+  indexImageR2Id: string | null;
+  currentContest: boolean;
   judges: Judge[];
   categories: Category[];
 }

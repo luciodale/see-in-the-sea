@@ -7,11 +7,13 @@ import type { Language } from '@/i18n/translations';
 import { getLocalizedPath } from '@/i18n/utils';
 
 export function getStaticPaths() {
-  return pastContestsData.map(contest => ({
-    // Both casings needed: Astro lowercases params for i18n fallback routes
-    params: { contestId: contest.id, contestid: contest.id },
-    props: { contestData: contest, contestId: contest.id },
-  }));
+  return pastContestsData
+    .filter(c => !c.currentContest)
+    .map(contest => ({
+      // Both casings needed: Astro lowercases params for i18n fallback routes
+      params: { contestId: contest.id, contestid: contest.id },
+      props: { contestData: contest, contestId: contest.id },
+    }));
 }
 
 const { contestData, contestId } = Astro.props;

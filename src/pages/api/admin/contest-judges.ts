@@ -1,5 +1,5 @@
 import type { APIRoute } from 'astro';
-import { eq } from 'drizzle-orm';
+import { and, eq, ne } from 'drizzle-orm';
 import { nanoid } from 'nanoid';
 import { getDb } from '../../../db';
 import { contests, judges } from '../../../db/schema';
@@ -39,12 +39,15 @@ export const POST: APIRoute = async ({ request, locals }) => {
       return unauthenticatedResponse();
     }
 
-    // Parse request body with type annotation
+    // Parse request body with type annotation. `r2ImageId` is optional and
+    // used when reusing an existing judge photo via the library picker.
     const body: {
       contestId: string;
       fullName: string;
+      r2ImageId?: string | null;
     } = await request.json();
     const { contestId, fullName } = body;
+    const reusedR2ImageId = body.r2ImageId?.trim() || null;
 
     // Validation
     if (!contestId || !fullName || fullName.trim().length === 0) {
@@ -57,7 +60,7 @@ export const POST: APIRoute = async ({ request, locals }) => {
       );
     }
 
-    // Verify contest exists and is not current/future
+    // Verify contest exists
     const contestResult = await db
       .select()
       .from(contests)
@@ -74,15 +77,23 @@ export const POST: APIRoute = async ({ request, locals }) => {
       );
     }
 
-    const currentYear = new Date().getFullYear();
-    if (contestResult[0].year >= currentYear) {
-      return new Response(
-        JSON.stringify({
-          success: false,
-          message: 'Non puoi modificare giudici di concorsi attuali o futuri',
-        }),
-        { status: 403 }
-      );
+    // If reusing a photo, validate the r2ImageId actually exists on some
+    // other judge (prevents arbitrary keys being injected from the client).
+    if (reusedR2ImageId) {
+      const exists = await db
+        .select({ id: judges.id })
+        .from(judges)
+        .where(eq(judges.r2ImageId, reusedR2ImageId))
+        .limit(1);
+      if (exists.length === 0) {
+        return new Response(
+          JSON.stringify({
+            success: false,
+            message: 'Immagine giudice non trovata nella libreria',
+          }),
+          { status: 400 }
+        );
+      }
     }
 
     // Create judge
@@ -91,6 +102,7 @@ export const POST: APIRoute = async ({ request, locals }) => {
       id: judgeId,
       contestId,
       fullName: fullName.trim(),
+      r2ImageId: reusedR2ImageId,
     });
 
     console.log(`[admin-contest-judges] Created judge: ${judgeId}`);
@@ -171,18 +183,14 @@ export const PUT: APIRoute = async ({ request, locals }) => {
       );
     }
 
-    // Verify judge exists and get contest info
-    const judgeWithContest = await db
-      .select({
-        judge: judges,
-        contest: contests,
-      })
+    // Verify judge exists
+    const existing = await db
+      .select({ id: judges.id })
       .from(judges)
-      .leftJoin(contests, eq(contests.id, judges.contestId))
       .where(eq(judges.id, judgeId))
       .limit(1);
 
-    if (judgeWithContest.length === 0) {
+    if (existing.length === 0) {
       return new Response(
         JSON.stringify({
           success: false,
@@ -190,20 +198,6 @@ export const PUT: APIRoute = async ({ request, locals }) => {
         }),
         { status: 404 }
       );
-    }
-
-    const contest = judgeWithContest[0].contest;
-    if (contest) {
-      const currentYear = new Date().getFullYear();
-      if (contest.year >= currentYear) {
-        return new Response(
-          JSON.stringify({
-            success: false,
-            message: 'Non puoi modificare giudici di concorsi attuali o futuri',
-          }),
-          { status: 403 }
-        );
-      }
     }
 
     // Update judge
@@ -281,18 +275,14 @@ export const DELETE: APIRoute = async ({ request, locals }) => {
       );
     }
 
-    // Verify judge exists and get contest info
-    const judgeWithContest = await db
-      .select({
-        judge: judges,
-        contest: contests,
-      })
+    // Verify judge exists
+    const existing = await db
+      .select({ r2ImageId: judges.r2ImageId })
       .from(judges)
-      .leftJoin(contests, eq(contests.id, judges.contestId))
       .where(eq(judges.id, judgeId))
       .limit(1);
 
-    if (judgeWithContest.length === 0) {
+    if (existing.length === 0) {
       return new Response(
         JSON.stringify({
           success: false,
@@ -302,34 +292,30 @@ export const DELETE: APIRoute = async ({ request, locals }) => {
       );
     }
 
-    const contest = judgeWithContest[0].contest;
-    if (contest) {
-      const currentYear = new Date().getFullYear();
-      if (contest.year >= currentYear) {
-        return new Response(
-          JSON.stringify({
-            success: false,
-            message: 'Non puoi eliminare giudici di concorsi attuali o futuri',
-          }),
-          { status: 403 }
-        );
-      }
-    }
-
-    // Delete R2 image if exists
-    const r2ImageId = judgeWithContest[0].judge.r2ImageId;
+    // If this judge has a photo, only delete the R2 object when no other
+    // judge row references it. Photos are shared across contests for the
+    // same person, so we must not delete a photo still in use.
+    const r2ImageId = existing[0].r2ImageId;
     if (r2ImageId) {
-      const R2Bucket = locals.runtime.env.R2_IMAGES_BUCKET;
-      if (R2Bucket) {
-        try {
-          await R2Bucket.delete(r2ImageId);
-        } catch (err) {
-          console.error(`Failed to delete judge image ${r2ImageId}:`, err);
+      const otherUsers = await db
+        .select({ id: judges.id })
+        .from(judges)
+        .where(and(eq(judges.r2ImageId, r2ImageId), ne(judges.id, judgeId)))
+        .limit(1);
+
+      if (otherUsers.length === 0) {
+        const R2Bucket = locals.runtime.env.R2_IMAGES_BUCKET;
+        if (R2Bucket) {
+          try {
+            await R2Bucket.delete(r2ImageId);
+          } catch (err) {
+            console.error(`Failed to delete judge image ${r2ImageId}:`, err);
+          }
         }
       }
     }
 
-    // Delete judge
+    // Delete judge row
     await db.delete(judges).where(eq(judges.id, judgeId));
 
     console.log(`[admin-contest-judges] Deleted judge: ${judgeId}`);

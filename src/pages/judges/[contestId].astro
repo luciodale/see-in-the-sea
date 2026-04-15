@@ -1,43 +1,24 @@
 ---
-export const prerender = false;
+export const prerender = true;
 
-import { asc, eq } from 'drizzle-orm';
 import JudgesPage from '@/components/pages/JudgesPage.astro';
-import { type Contest, pastContestsData } from '@/data/past-contests';
-import { getDb } from '@/db';
-import { judges as judgesTable } from '@/db/schema';
+import { pastContestsData } from '@/data/past-contests';
 import type { Language } from '@/i18n/translations';
 import { getLocalizedPath } from '@/i18n/utils';
 
-const { contestId } = Astro.params;
-const currentLang = (Astro.currentLocale ?? 'en') as Language;
-
-const staticContest = contestId
-  ? pastContestsData.find(c => c.id === contestId)
-  : undefined;
-
-if (!contestId || !staticContest) {
-  return Astro.redirect(getLocalizedPath('404', currentLang));
+export function getStaticPaths() {
+  return pastContestsData.map(contest => ({
+    params: { contestId: contest.id },
+    props: { contestData: contest },
+  }));
 }
 
-// Fetch fresh judges from D1 so uploaded photos show up without a redeploy.
-// Falls back to the static snapshot if the DB binding is unavailable.
-const D1Database = Astro.locals.runtime.env.DB;
-let contestData: Contest = staticContest;
+const { contestId } = Astro.params;
+const { contestData } = Astro.props;
+const currentLang = (Astro.currentLocale ?? 'en') as Language;
 
-if (D1Database) {
-  const db = getDb(D1Database);
-  const freshJudges = await db
-    .select({
-      id: judgesTable.id,
-      fullName: judgesTable.fullName,
-      r2ImageId: judgesTable.r2ImageId,
-    })
-    .from(judgesTable)
-    .where(eq(judgesTable.contestId, contestId))
-    .orderBy(asc(judgesTable.createdAt));
-
-  contestData = { ...staticContest, judges: freshJudges };
+if (!contestId || !contestData) {
+  return Astro.redirect(getLocalizedPath('404', currentLang));
 }
 ---
 

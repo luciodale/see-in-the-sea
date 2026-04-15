@@ -227,6 +227,12 @@ export type CreateJudgeResponse = ApiResponse<CreateJudgeData>;
 export type UpdateJudgeResponse = ApiResponse<object>;
 export type DeleteJudgeResponse = ApiResponse<object>;
 
+export type JudgeLibraryItem = {
+  fullName: string;
+  r2ImageId: string;
+};
+export type JudgesLibraryResponse = ApiResponse<JudgeLibraryItem[]>;
+
 // Admin Winners Preview (from judging_flags, not results)
 export type WinnersPreviewRow = {
   categoryId: string;

@@ -7,8 +7,10 @@ import type { Language } from '@/i18n/translations';
 import { getLocalizedPath } from '@/i18n/utils';
 
 export function getStaticPaths() {
-  return pastContestsData.flatMap(contest =>
-    contest.categories.map(category => ({
+  return pastContestsData
+    .filter(c => !c.currentContest)
+    .flatMap(contest =>
+      contest.categories.map(category => ({
       // Both casings needed: Astro uses camelCase for the English route
       // but lowercases directory params for the Italian fallback route
       params: {

@@ -1,8 +1,8 @@
 ---
-import { IMAGES_BASE_URL } from '@/constants';
-import { type Contest, pastContestsData } from '@/data/past-contests';
-import type { Language } from '@/i18n/translations';
-import { getLocalizedPath, useTranslations } from '@/i18n/utils';
+import { IMAGES_BASE_URL } from "@/constants";
+import { type Contest, pastContestsData } from "@/data/past-contests";
+import type { Language } from "@/i18n/translations";
+import { getLocalizedPath, useTranslations } from "@/i18n/utils";
 
 type Props = {
   contestId: string;
@@ -10,16 +10,16 @@ type Props = {
 };
 
 const { contestId, contestData } = Astro.props;
-const currentLang = (Astro.currentLocale ?? 'en') as Language;
+const currentLang = (Astro.currentLocale ?? "en") as Language;
 const t = useTranslations(currentLang);
 
 const contestJudges = contestData.judges;
 
 // Year navigation (same logic as GalleryInfo)
 const sortedContests = pastContestsData
-  .map(c => ({ id: c.id, name: c.name, year: c.year }))
+  .map((c) => ({ id: c.id, name: c.name, year: c.year }))
   .sort((a, b) => b.year - a.year);
-const currentIndex = sortedContests.findIndex(c => c.id === contestId);
+const currentIndex = sortedContests.findIndex((c) => c.id === contestId);
 const prevContest =
   currentIndex < sortedContests.length - 1
     ? sortedContests[currentIndex + 1]
@@ -46,10 +46,10 @@ const nextContest = currentIndex > 0 ? sortedContests[currentIndex - 1] : null;
             <a
               href={getLocalizedPath(`judges/${contest.id}`, currentLang)}
               class:list={[
-                'transition-colors duration-300',
+                "transition-colors duration-300",
                 isActive
-                  ? 'text-foreground'
-                  : 'text-muted-foreground hover:text-foreground',
+                  ? "text-foreground"
+                  : "text-muted-foreground hover:text-foreground",
               ]}
             >
               {contest.year}
@@ -94,7 +94,8 @@ const nextContest = currentIndex > 0 ? sortedContests[currentIndex - 1] : null;
     <h1
       class="font-serif text-4xl sm:text-5xl md:text-6xl lg:text-7xl text-foreground leading-display-tight tracking-display text-center"
     >
-      {t('judges.page-title')} {contestData.year}
+      {t("judges.page-title")}
+      {contestData.year}
     </h1>
 
     {
@@ -175,10 +176,10 @@ const nextContest = currentIndex > 0 ? sortedContests[currentIndex - 1] : null;
         <div class="inline-flex flex-col items-center gap-4 p-8 rounded-2xl backdrop-blur-xl bg-surface/60 border border-border">
           <div class="space-y-2">
             <h3 class="font-serif text-2xl text-foreground leading-tight">
-              {t('judges.title')}
+              {t("judges.title")}
             </h3>
             <p class="text-muted-foreground text-sm leading-body max-w-sm">
-              {t('contests.no-winners-desc')}
+              {t("contests.no-winners-desc")}
             </p>
           </div>
         </div>

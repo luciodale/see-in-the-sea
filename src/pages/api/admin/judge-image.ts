@@ -1,7 +1,8 @@
 import type { APIRoute } from 'astro';
 import { eq } from 'drizzle-orm';
+import { nanoid } from 'nanoid';
 import { getDb } from '../../../db';
-import { contests, judges } from '../../../db/schema';
+import { judges } from '../../../db/schema';
 import { authenticateAdmin } from '../../../server/authenticateRequest';
 import type { ApiResponse } from '../../../types/api';
 
@@ -48,37 +49,24 @@ export const POST: APIRoute = async ({ request, locals }) => {
       );
     }
 
-    // Verify judge exists and belongs to a past contest
-    const judgeWithContest = await db
-      .select({ judge: judges, contest: contests })
+    // Verify judge exists
+    const existing = await db
+      .select({ r2ImageId: judges.r2ImageId })
       .from(judges)
-      .leftJoin(contests, eq(contests.id, judges.contestId))
       .where(eq(judges.id, judgeId))
       .limit(1);
 
-    if (judgeWithContest.length === 0) {
+    if (existing.length === 0) {
       return new Response(
         JSON.stringify({ success: false, message: 'Giudice non trovato' }),
         { status: 404 }
       );
     }
 
-    const contest = judgeWithContest[0].contest;
-    if (contest) {
-      const currentYear = new Date().getFullYear();
-      if (contest.year >= currentYear) {
-        return new Response(
-          JSON.stringify({
-            success: false,
-            message: 'Non puoi modificare giudici di concorsi attuali o futuri',
-          }),
-          { status: 403 }
-        );
-      }
-    }
-
-    // Delete old image if exists
-    const existingR2Id = judgeWithContest[0].judge.r2ImageId;
+    // Delete old image if exists (the same R2 object may be shared across
+    // multiple judge rows — same person across contests). One delete handles
+    // all of them.
+    const existingR2Id = existing[0].r2ImageId;
     if (existingR2Id) {
       try {
         await R2Bucket.delete(existingR2Id);
@@ -87,15 +75,25 @@ export const POST: APIRoute = async ({ request, locals }) => {
       }
     }
 
-    // Upload new image: judges/{judgeId}
-    const r2ImageId = `judges/${judgeId}`;
+    // Upload new image with a unique suffix so the URL changes on every
+    // replace (bypasses browser/CDN cache that would otherwise serve the
+    // previous object at the same key).
+    const r2ImageId = `judges/${judgeId}/${nanoid()}`;
     const buffer = await imageFile.arrayBuffer();
     await R2Bucket.put(r2ImageId, buffer, {
       httpMetadata: { contentType: imageFile.type },
     });
 
-    // Update DB
-    await db.update(judges).set({ r2ImageId }).where(eq(judges.id, judgeId));
+    // Cascade the new r2_image_id to every row that pointed at the old one.
+    // First upload (no old id) only updates the target judge.
+    if (existingR2Id) {
+      await db
+        .update(judges)
+        .set({ r2ImageId })
+        .where(eq(judges.r2ImageId, existingR2Id));
+    } else {
+      await db.update(judges).set({ r2ImageId }).where(eq(judges.id, judgeId));
+    }
 
     const response: ApiResponse<{ r2ImageId: string }> = {
       success: true,
@@ -172,6 +170,8 @@ export const DELETE: APIRoute = async ({ request, locals }) => {
       );
     }
 
+    // Delete the R2 object and cascade-null every judge row that referenced
+    // it (the photo can be shared across contests for the same person).
     const r2ImageId = judgeResult[0].r2ImageId;
     if (r2ImageId) {
       try {
@@ -179,12 +179,13 @@ export const DELETE: APIRoute = async ({ request, locals }) => {
       } catch (err) {
         console.error(`Failed to delete judge image ${r2ImageId}:`, err);
       }
+      await db
+        .update(judges)
+        .set({ r2ImageId: null })
+        .where(eq(judges.r2ImageId, r2ImageId));
+    } else {
+      // Already null — nothing to do; keep response shape consistent.
     }
-
-    await db
-      .update(judges)
-      .set({ r2ImageId: null })
-      .where(eq(judges.id, judgeId));
 
     const response: ApiResponse<object> = {
       success: true,
