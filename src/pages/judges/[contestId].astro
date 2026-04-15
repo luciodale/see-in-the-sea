@@ -8,7 +8,8 @@ import { getLocalizedPath } from '@/i18n/utils';
 
 export function getStaticPaths() {
   return pastContestsData.map(contest => ({
-    params: { contestId: contest.id },
+    // Both casings needed: Astro lowercases params for i18n fallback routes
+    params: { contestId: contest.id, contestid: contest.id },
     props: { contestData: contest },
   }));
 }

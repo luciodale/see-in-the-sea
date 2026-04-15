@@ -44,8941 +44,8982 @@ export interface Contest {
 
 export const pastContestsData: Contest[] = [
   {
-    "id": "uw-2026",
-    "year": 2026,
-    "name": "UW Contest 2026",
-    "description": "Annual underwater photography competition celebrating the beauty and diversity of marine life",
-    "indexImage": null,
-    "indexImageR2Id": null,
-    "currentContest": true,
-    "judges": [],
-    "categories": []
+    id: 'uw-2026',
+    year: 2026,
+    name: 'UW Contest 2026',
+    description:
+      'Annual underwater photography competition celebrating the beauty and diversity of marine life',
+    indexImage: null,
+    indexImageR2Id: null,
+    currentContest: true,
+    judges: [],
+    categories: [],
   },
   {
-    "id": "uw-2025",
-    "year": 2025,
-    "name": "UW Contest 2025",
-    "description": "Annual underwater photography competition celebrating the beauty and diversity of marine life",
-    "indexImage": "/images/contests/2025/AyNJL5aPY2mqvE7Hlut_m.webp",
-    "indexImageR2Id": "uw-2025/macro/AyNJL5aPY2mqvE7Hlut_m",
-    "currentContest": false,
-    "judges": [
+    id: 'uw-2025',
+    year: 2025,
+    name: 'UW Contest 2025',
+    description:
+      'Annual underwater photography competition celebrating the beauty and diversity of marine life',
+    indexImage: '/images/contests/2025/AyNJL5aPY2mqvE7Hlut_m.webp',
+    indexImageR2Id: 'uw-2025/macro/AyNJL5aPY2mqvE7Hlut_m',
+    currentContest: false,
+    judges: [
       {
-        "id": "TA4YMn4PQGEhT11vs5Ztg",
-        "fullName": "Pietro Formis",
-        "r2ImageId": "judges/TA4YMn4PQGEhT11vs5Ztg/y7HwiJ3smydmCE7U-h-Yk"
+        id: 'TA4YMn4PQGEhT11vs5Ztg',
+        fullName: 'Pietro Formis',
+        r2ImageId: 'judges/TA4YMn4PQGEhT11vs5Ztg/y7HwiJ3smydmCE7U-h-Yk',
       },
       {
-        "id": "BA4YMn4PQGEhT11vs5Ztg",
-        "fullName": "Pasquale Vassallo",
-        "r2ImageId": "judges/BA4YMn4PQGEhT11vs5Ztg/oi-7LVzH3QDt68p-Kqt6W"
+        id: 'BA4YMn4PQGEhT11vs5Ztg',
+        fullName: 'Pasquale Vassallo',
+        r2ImageId: 'judges/BA4YMn4PQGEhT11vs5Ztg/oi-7LVzH3QDt68p-Kqt6W',
       },
       {
-        "id": "CA4YMn4PQGEhT11vs5Ztg",
-        "fullName": "Domy Tripodi",
-        "r2ImageId": "judges/CA4YMn4PQGEhT11vs5Ztg/PlGzGi8UUS1mqM-MJKjpP"
-      }
+        id: 'CA4YMn4PQGEhT11vs5Ztg',
+        fullName: 'Domy Tripodi',
+        r2ImageId: 'judges/CA4YMn4PQGEhT11vs5Ztg/PlGzGi8UUS1mqM-MJKjpP',
+      },
     ],
-    "categories": [
+    categories: [
       {
-        "id": "black-and-white",
-        "name": "Black & White",
-        "winnerImage": "/images/contests/2025/HqAtLmm_WZNcaqdqS-qvY.webp",
-        "winnerImageR2Id": "uw-2025/black-and-white/HqAtLmm_WZNcaqdqS-qvY",
-        "entries": [
+        id: 'black-and-white',
+        name: 'Black & White',
+        winnerImage: '/images/contests/2025/HqAtLmm_WZNcaqdqS-qvY.webp',
+        winnerImageR2Id: 'uw-2025/black-and-white/HqAtLmm_WZNcaqdqS-qvY',
+        entries: [
           {
-            "id": "HqAtLmm_WZNcaqdqS-qvY",
-            "title": "Incontro giocoso",
-            "description": "Una femmina adulta di megattera si avvicina con calma, mostrando un comportamento curioso e vivace. Era accompagnata da un maschio adulto, probabilmente in un rituale di corteggiamento, e ha mostrato un interesse reale verso di me, restandomi intorno per più di un’ora. Ho scattato questa foto nell’agosto 2025 nelle acque di Vava’u, a Tonga, dove molte megattere arrivano durante l’inverno australe per accoppiarsi e partorire. Dopo diverse settimane in mare, questo è stato l’unico momento in cui una balena si è mostrata così curiosa e interattiva.",
-            "placement": "first",
-            "photographer": {
-              "firstName": "Marco",
-              "lastName": "Domenicucci"
+            id: 'HqAtLmm_WZNcaqdqS-qvY',
+            title: 'Incontro giocoso',
+            description:
+              'Una femmina adulta di megattera si avvicina con calma, mostrando un comportamento curioso e vivace. Era accompagnata da un maschio adulto, probabilmente in un rituale di corteggiamento, e ha mostrato un interesse reale verso di me, restandomi intorno per più di un’ora. Ho scattato questa foto nell’agosto 2025 nelle acque di Vava’u, a Tonga, dove molte megattere arrivano durante l’inverno australe per accoppiarsi e partorire. Dopo diverse settimane in mare, questo è stato l’unico momento in cui una balena si è mostrata così curiosa e interattiva.',
+            placement: 'first',
+            photographer: {
+              firstName: 'Marco',
+              lastName: 'Domenicucci',
             },
-            "image": "/images/contests/2025/HqAtLmm_WZNcaqdqS-qvY.webp",
-            "imageR2Id": "uw-2025/black-and-white/HqAtLmm_WZNcaqdqS-qvY"
+            image: '/images/contests/2025/HqAtLmm_WZNcaqdqS-qvY.webp',
+            imageR2Id: 'uw-2025/black-and-white/HqAtLmm_WZNcaqdqS-qvY',
           },
           {
-            "id": "dxnP7pmJwuhi58qDvkDc0",
-            "title": "Ctenoforo",
-            "description": "",
-            "placement": "second",
-            "photographer": {
-              "firstName": "Alessandro",
-              "lastName": "Grasso"
+            id: 'dxnP7pmJwuhi58qDvkDc0',
+            title: 'Ctenoforo',
+            description: '',
+            placement: 'second',
+            photographer: {
+              firstName: 'Alessandro',
+              lastName: 'Grasso',
             },
-            "image": "/images/contests/2025/dxnP7pmJwuhi58qDvkDc0.webp",
-            "imageR2Id": "uw-2025/black-and-white/dxnP7pmJwuhi58qDvkDc0"
+            image: '/images/contests/2025/dxnP7pmJwuhi58qDvkDc0.webp',
+            imageR2Id: 'uw-2025/black-and-white/dxnP7pmJwuhi58qDvkDc0',
           },
           {
-            "id": "hrnLz6cso33mNyOHMqTfE",
-            "title": "Face a Face",
-            "description": "",
-            "placement": "third",
-            "photographer": {
-              "firstName": "Yves",
-              "lastName": "Guenot"
+            id: 'hrnLz6cso33mNyOHMqTfE',
+            title: 'Face a Face',
+            description: '',
+            placement: 'third',
+            photographer: {
+              firstName: 'Yves',
+              lastName: 'Guenot',
             },
-            "image": "/images/contests/2025/hrnLz6cso33mNyOHMqTfE.webp",
-            "imageR2Id": "uw-2025/black-and-white/hrnLz6cso33mNyOHMqTfE"
+            image: '/images/contests/2025/hrnLz6cso33mNyOHMqTfE.webp',
+            imageR2Id: 'uw-2025/black-and-white/hrnLz6cso33mNyOHMqTfE',
           },
           {
-            "id": "ryO0Bbh9iNDkolLUroFIS",
-            "title": "La spigolosa bellezza di un solitario",
-            "description": "",
-            "placement": "runner-up",
-            "photographer": {
-              "firstName": "Umberto",
-              "lastName": "Raganato"
+            id: 'ryO0Bbh9iNDkolLUroFIS',
+            title: 'La spigolosa bellezza di un solitario',
+            description: '',
+            placement: 'runner-up',
+            photographer: {
+              firstName: 'Umberto',
+              lastName: 'Raganato',
             },
-            "image": "/images/contests/2025/ryO0Bbh9iNDkolLUroFIS.webp",
-            "imageR2Id": "uw-2025/black-and-white/ryO0Bbh9iNDkolLUroFIS"
+            image: '/images/contests/2025/ryO0Bbh9iNDkolLUroFIS.webp',
+            imageR2Id: 'uw-2025/black-and-white/ryO0Bbh9iNDkolLUroFIS',
           },
           {
-            "id": "rnqpiHihDxDM0J84-aR0e",
-            "title": "Marine Texture",
-            "description": "",
-            "placement": "runner-up",
-            "photographer": {
-              "firstName": "Alessandro",
-              "lastName": "Grasso"
+            id: 'rnqpiHihDxDM0J84-aR0e',
+            title: 'Marine Texture',
+            description: '',
+            placement: 'runner-up',
+            photographer: {
+              firstName: 'Alessandro',
+              lastName: 'Grasso',
             },
-            "image": "/images/contests/2025/rnqpiHihDxDM0J84-aR0e.webp",
-            "imageR2Id": "uw-2025/black-and-white/rnqpiHihDxDM0J84-aR0e"
-          }
-        ]
+            image: '/images/contests/2025/rnqpiHihDxDM0J84-aR0e.webp',
+            imageR2Id: 'uw-2025/black-and-white/rnqpiHihDxDM0J84-aR0e',
+          },
+        ],
       },
       {
-        "id": "macro",
-        "name": "Macro",
-        "winnerImage": "/images/contests/2025/AyNJL5aPY2mqvE7Hlut_m.webp",
-        "winnerImageR2Id": "uw-2025/macro/AyNJL5aPY2mqvE7Hlut_m",
-        "entries": [
+        id: 'macro',
+        name: 'Macro',
+        winnerImage: '/images/contests/2025/AyNJL5aPY2mqvE7Hlut_m.webp',
+        winnerImageR2Id: 'uw-2025/macro/AyNJL5aPY2mqvE7Hlut_m',
+        entries: [
           {
-            "id": "AyNJL5aPY2mqvE7Hlut_m",
-            "title": "A pancia piena",
-            "description": "",
-            "placement": "first",
-            "photographer": {
-              "firstName": "Umberto",
-              "lastName": "Raganato"
+            id: 'AyNJL5aPY2mqvE7Hlut_m',
+            title: 'A pancia piena',
+            description: '',
+            placement: 'first',
+            photographer: {
+              firstName: 'Umberto',
+              lastName: 'Raganato',
             },
-            "image": "/images/contests/2025/AyNJL5aPY2mqvE7Hlut_m.webp",
-            "imageR2Id": "uw-2025/macro/AyNJL5aPY2mqvE7Hlut_m"
+            image: '/images/contests/2025/AyNJL5aPY2mqvE7Hlut_m.webp',
+            imageR2Id: 'uw-2025/macro/AyNJL5aPY2mqvE7Hlut_m',
           },
           {
-            "id": "jDKeqtHMCjuD-zY3nyyK_",
-            "title": "Contorni di luce",
-            "description": "Un Hairy frogfish ripreso con due snoot, che hanno permesso di isolare il soggetto e di esaltarne la complessa morfologia. Uno snoot in backlight e uno concentrato sul suo occhio.",
-            "placement": "second",
-            "photographer": {
-              "firstName": "Giancarlo",
-              "lastName": "Mazarese"
+            id: 'jDKeqtHMCjuD-zY3nyyK_',
+            title: 'Contorni di luce',
+            description:
+              'Un Hairy frogfish ripreso con due snoot, che hanno permesso di isolare il soggetto e di esaltarne la complessa morfologia. Uno snoot in backlight e uno concentrato sul suo occhio.',
+            placement: 'second',
+            photographer: {
+              firstName: 'Giancarlo',
+              lastName: 'Mazarese',
             },
-            "image": "/images/contests/2025/jDKeqtHMCjuD-zY3nyyK_.webp",
-            "imageR2Id": "uw-2025/macro/jDKeqtHMCjuD-zY3nyyK_"
+            image: '/images/contests/2025/jDKeqtHMCjuD-zY3nyyK_.webp',
+            imageR2Id: 'uw-2025/macro/jDKeqtHMCjuD-zY3nyyK_',
           },
           {
-            "id": "Bq0pvZY2C2ZGuG2d-Zb1J",
-            "title": "Piercing",
-            "description": "A Platax tieira , caught in the hook of a fishing line, is still surviving under a pier.",
-            "placement": "third",
-            "photographer": {
-              "firstName": "Renata ",
-              "lastName": "Romeo"
+            id: 'Bq0pvZY2C2ZGuG2d-Zb1J',
+            title: 'Piercing',
+            description:
+              'A Platax tieira , caught in the hook of a fishing line, is still surviving under a pier.',
+            placement: 'third',
+            photographer: {
+              firstName: 'Renata ',
+              lastName: 'Romeo',
             },
-            "image": "/images/contests/2025/Bq0pvZY2C2ZGuG2d-Zb1J.webp",
-            "imageR2Id": "uw-2025/macro/Bq0pvZY2C2ZGuG2d-Zb1J"
+            image: '/images/contests/2025/Bq0pvZY2C2ZGuG2d-Zb1J.webp',
+            imageR2Id: 'uw-2025/macro/Bq0pvZY2C2ZGuG2d-Zb1J',
           },
           {
-            "id": "5C0Jgo1UFYUD7L0cZa94b",
-            "title": "Orango on fire",
-            "description": "",
-            "placement": "runner-up",
-            "photographer": {
-              "firstName": "Alessandra",
-              "lastName": "Turchi"
+            id: '5C0Jgo1UFYUD7L0cZa94b',
+            title: 'Orango on fire',
+            description: '',
+            placement: 'runner-up',
+            photographer: {
+              firstName: 'Alessandra',
+              lastName: 'Turchi',
             },
-            "image": "/images/contests/2025/5C0Jgo1UFYUD7L0cZa94b.webp",
-            "imageR2Id": "uw-2025/macro/5C0Jgo1UFYUD7L0cZa94b"
+            image: '/images/contests/2025/5C0Jgo1UFYUD7L0cZa94b.webp',
+            imageR2Id: 'uw-2025/macro/5C0Jgo1UFYUD7L0cZa94b',
           },
           {
-            "id": "GAKXCowui1Q4L4A_dZH6j",
-            "title": "Il cerchio della Vita",
-            "description": "",
-            "placement": "runner-up",
-            "photographer": {
-              "firstName": "Andrea",
-              "lastName": "Montesi"
+            id: 'GAKXCowui1Q4L4A_dZH6j',
+            title: 'Il cerchio della Vita',
+            description: '',
+            placement: 'runner-up',
+            photographer: {
+              firstName: 'Andrea',
+              lastName: 'Montesi',
             },
-            "image": "/images/contests/2025/GAKXCowui1Q4L4A_dZH6j.webp",
-            "imageR2Id": "uw-2025/macro/GAKXCowui1Q4L4A_dZH6j"
-          }
-        ]
+            image: '/images/contests/2025/GAKXCowui1Q4L4A_dZH6j.webp',
+            imageR2Id: 'uw-2025/macro/GAKXCowui1Q4L4A_dZH6j',
+          },
+        ],
       },
       {
-        "id": "mediterranean",
-        "name": "Mediterranean Portfolio",
-        "winnerImage": "/images/contests/2025/OjpWUXDW8vqCMx-Pmdlwi.webp",
-        "winnerImageR2Id": "uw-2025/mediterranean/OjpWUXDW8vqCMx-Pmdlwi",
-        "entries": [
+        id: 'mediterranean',
+        name: 'Mediterranean Portfolio',
+        winnerImage: '/images/contests/2025/OjpWUXDW8vqCMx-Pmdlwi.webp',
+        winnerImageR2Id: 'uw-2025/mediterranean/OjpWUXDW8vqCMx-Pmdlwi',
+        entries: [
           {
-            "id": "OjpWUXDW8vqCMx-Pmdlwi",
-            "title": "FOREVER",
-            "description": "",
-            "placement": "first",
-            "photographer": {
-              "firstName": "Domenico",
-              "lastName": "Roscigno"
+            id: 'OjpWUXDW8vqCMx-Pmdlwi',
+            title: 'FOREVER',
+            description: '',
+            placement: 'first',
+            photographer: {
+              firstName: 'Domenico',
+              lastName: 'Roscigno',
             },
-            "image": "/images/contests/2025/OjpWUXDW8vqCMx-Pmdlwi.webp",
-            "imageR2Id": "uw-2025/mediterranean/OjpWUXDW8vqCMx-Pmdlwi"
+            image: '/images/contests/2025/OjpWUXDW8vqCMx-Pmdlwi.webp',
+            imageR2Id: 'uw-2025/mediterranean/OjpWUXDW8vqCMx-Pmdlwi',
           },
           {
-            "id": "GSyDfXQ6BaGI4YDZkCavI",
-            "title": "ANGRY",
-            "description": "",
-            "placement": "first",
-            "photographer": {
-              "firstName": "Domenico",
-              "lastName": "Roscigno"
+            id: 'GSyDfXQ6BaGI4YDZkCavI',
+            title: 'ANGRY',
+            description: '',
+            placement: 'first',
+            photographer: {
+              firstName: 'Domenico',
+              lastName: 'Roscigno',
             },
-            "image": "/images/contests/2025/GSyDfXQ6BaGI4YDZkCavI.webp",
-            "imageR2Id": "uw-2025/mediterranean/GSyDfXQ6BaGI4YDZkCavI"
+            image: '/images/contests/2025/GSyDfXQ6BaGI4YDZkCavI.webp',
+            imageR2Id: 'uw-2025/mediterranean/GSyDfXQ6BaGI4YDZkCavI',
           },
           {
-            "id": "Xs0fF1WIYvVeqTgiGQkXA",
-            "title": "PRIMORDIAL BROTH",
-            "description": "",
-            "placement": "first",
-            "photographer": {
-              "firstName": "Domenico",
-              "lastName": "Roscigno"
+            id: 'Xs0fF1WIYvVeqTgiGQkXA',
+            title: 'PRIMORDIAL BROTH',
+            description: '',
+            placement: 'first',
+            photographer: {
+              firstName: 'Domenico',
+              lastName: 'Roscigno',
             },
-            "image": "/images/contests/2025/Xs0fF1WIYvVeqTgiGQkXA.webp",
-            "imageR2Id": "uw-2025/mediterranean/Xs0fF1WIYvVeqTgiGQkXA"
+            image: '/images/contests/2025/Xs0fF1WIYvVeqTgiGQkXA.webp',
+            imageR2Id: 'uw-2025/mediterranean/Xs0fF1WIYvVeqTgiGQkXA',
           },
           {
-            "id": "8t0rHKWGb5r-kGPRsXwO5",
-            "title": "Sepiola",
-            "description": "",
-            "placement": "second",
-            "photographer": {
-              "firstName": "Francesco",
-              "lastName": "Visintin"
+            id: '8t0rHKWGb5r-kGPRsXwO5',
+            title: 'Sepiola',
+            description: '',
+            placement: 'second',
+            photographer: {
+              firstName: 'Francesco',
+              lastName: 'Visintin',
             },
-            "image": "/images/contests/2025/8t0rHKWGb5r-kGPRsXwO5.webp",
-            "imageR2Id": "uw-2025/mediterranean/8t0rHKWGb5r-kGPRsXwO5"
+            image: '/images/contests/2025/8t0rHKWGb5r-kGPRsXwO5.webp',
+            imageR2Id: 'uw-2025/mediterranean/8t0rHKWGb5r-kGPRsXwO5',
           },
           {
-            "id": "ihU4DBr1pNp9paPSHn0sm",
-            "title": "Love is blind—and apparently deaf to danger. While the cuttlefish flaunt their stripes in a passionate display, the crabs goes unnoticed and the trap behind them waits patiently. Forte dei Marmi (Italy) 2025",
-            "description": "Love is blind, and apparently deaf to danger. While the cuttlefish flaunt their stripes in a passionate display, the crabs goes unnoticed and the trap behind them waits patiently. Forte dei Marmi (Italy) 2025",
-            "placement": "second",
-            "photographer": {
-              "firstName": "Francesco",
-              "lastName": "Visintin"
+            id: 'ihU4DBr1pNp9paPSHn0sm',
+            title:
+              'Love is blind—and apparently deaf to danger. While the cuttlefish flaunt their stripes in a passionate display, the crabs goes unnoticed and the trap behind them waits patiently. Forte dei Marmi (Italy) 2025',
+            description:
+              'Love is blind, and apparently deaf to danger. While the cuttlefish flaunt their stripes in a passionate display, the crabs goes unnoticed and the trap behind them waits patiently. Forte dei Marmi (Italy) 2025',
+            placement: 'second',
+            photographer: {
+              firstName: 'Francesco',
+              lastName: 'Visintin',
             },
-            "image": "/images/contests/2025/ihU4DBr1pNp9paPSHn0sm.webp",
-            "imageR2Id": "uw-2025/mediterranean/ihU4DBr1pNp9paPSHn0sm"
+            image: '/images/contests/2025/ihU4DBr1pNp9paPSHn0sm.webp',
+            imageR2Id: 'uw-2025/mediterranean/ihU4DBr1pNp9paPSHn0sm',
           },
           {
-            "id": "Z4BBuzaR6xqBmdvS4Tlog",
-            "title": "the octopus and the sea bream",
-            "description": "",
-            "placement": "second",
-            "photographer": {
-              "firstName": "Francesco",
-              "lastName": "Visintin"
+            id: 'Z4BBuzaR6xqBmdvS4Tlog',
+            title: 'the octopus and the sea bream',
+            description: '',
+            placement: 'second',
+            photographer: {
+              firstName: 'Francesco',
+              lastName: 'Visintin',
             },
-            "image": "/images/contests/2025/Z4BBuzaR6xqBmdvS4Tlog.webp",
-            "imageR2Id": "uw-2025/mediterranean/Z4BBuzaR6xqBmdvS4Tlog"
+            image: '/images/contests/2025/Z4BBuzaR6xqBmdvS4Tlog.webp',
+            imageR2Id: 'uw-2025/mediterranean/Z4BBuzaR6xqBmdvS4Tlog',
           },
           {
-            "id": "vMAN1zWQkOijUie96K5i9",
-            "title": "Guarding the Next Generation",
-            "description": "The image shows a Lepadogaster candolii, a clingfish native to the Mediterranean and surrounding waters, actively guarding its egg clutch. The small dots with visible eyes are developing embryos within adhesive capsules attached to the surface.\r\n\r\nThis fish uses its specialised ventral disc to firmly cling to rocks and substrates, allowing it to protect the eggs in dynamic marine environments. Parental care includes constant ventilation of the eggs to ensure oxygenation and protect them from predators and sediment—behaviours crucial for the offspring’s survival.\r\n\r\nThis scene illustrates the reproductive strategy and parental behaviour of Lepadogaster candolii, highlighting the importance of care during early life stages in coastal marine ecosystems.",
-            "placement": "third",
-            "photographer": {
-              "firstName": "Marc",
-              "lastName": "Casanovas "
+            id: 'vMAN1zWQkOijUie96K5i9',
+            title: 'Guarding the Next Generation',
+            description:
+              'The image shows a Lepadogaster candolii, a clingfish native to the Mediterranean and surrounding waters, actively guarding its egg clutch. The small dots with visible eyes are developing embryos within adhesive capsules attached to the surface.\r\n\r\nThis fish uses its specialised ventral disc to firmly cling to rocks and substrates, allowing it to protect the eggs in dynamic marine environments. Parental care includes constant ventilation of the eggs to ensure oxygenation and protect them from predators and sediment—behaviours crucial for the offspring’s survival.\r\n\r\nThis scene illustrates the reproductive strategy and parental behaviour of Lepadogaster candolii, highlighting the importance of care during early life stages in coastal marine ecosystems.',
+            placement: 'third',
+            photographer: {
+              firstName: 'Marc',
+              lastName: 'Casanovas ',
             },
-            "image": "/images/contests/2025/vMAN1zWQkOijUie96K5i9.webp",
-            "imageR2Id": "uw-2025/mediterranean/vMAN1zWQkOijUie96K5i9"
+            image: '/images/contests/2025/vMAN1zWQkOijUie96K5i9.webp',
+            imageR2Id: 'uw-2025/mediterranean/vMAN1zWQkOijUie96K5i9',
           },
           {
-            "id": "toZsZS8iWVQS5i9yp7DAW",
-            "title": "Lophius",
-            "description": "The Mediterranean monkfish (Lophius piscatorius) inhabits both the Mediterranean Sea and the Atlantic Ocean. However, this specimen stood out as the largest I have had the opportunity to photograph in recent years, measuring almost a metre and a half in length. Its formidable size and unusual appearance make it one of the most remarkable predators in these waters.",
-            "placement": "third",
-            "photographer": {
-              "firstName": "Marc",
-              "lastName": "Casanovas "
+            id: 'toZsZS8iWVQS5i9yp7DAW',
+            title: 'Lophius',
+            description:
+              'The Mediterranean monkfish (Lophius piscatorius) inhabits both the Mediterranean Sea and the Atlantic Ocean. However, this specimen stood out as the largest I have had the opportunity to photograph in recent years, measuring almost a metre and a half in length. Its formidable size and unusual appearance make it one of the most remarkable predators in these waters.',
+            placement: 'third',
+            photographer: {
+              firstName: 'Marc',
+              lastName: 'Casanovas ',
             },
-            "image": "/images/contests/2025/toZsZS8iWVQS5i9yp7DAW.webp",
-            "imageR2Id": "uw-2025/mediterranean/toZsZS8iWVQS5i9yp7DAW"
+            image: '/images/contests/2025/toZsZS8iWVQS5i9yp7DAW.webp',
+            imageR2Id: 'uw-2025/mediterranean/toZsZS8iWVQS5i9yp7DAW',
           },
           {
-            "id": "z0zWrTXxd768IfVRRK0Xh",
-            "title": "Nesting syndrome",
-            "description": "Nests play a crucial role in the reproductive biology of Symphodus cinereus. This species constructs its nests on the seabed, typically in areas with sandy or gravelly substrates, often in close proximity to seagrass meadows. The male attracts females to his nest, and following egg deposition, he assumes responsibility for their protection and care.",
-            "placement": "third",
-            "photographer": {
-              "firstName": "Marc",
-              "lastName": "Casanovas "
+            id: 'z0zWrTXxd768IfVRRK0Xh',
+            title: 'Nesting syndrome',
+            description:
+              'Nests play a crucial role in the reproductive biology of Symphodus cinereus. This species constructs its nests on the seabed, typically in areas with sandy or gravelly substrates, often in close proximity to seagrass meadows. The male attracts females to his nest, and following egg deposition, he assumes responsibility for their protection and care.',
+            placement: 'third',
+            photographer: {
+              firstName: 'Marc',
+              lastName: 'Casanovas ',
             },
-            "image": "/images/contests/2025/z0zWrTXxd768IfVRRK0Xh.webp",
-            "imageR2Id": "uw-2025/mediterranean/z0zWrTXxd768IfVRRK0Xh"
+            image: '/images/contests/2025/z0zWrTXxd768IfVRRK0Xh.webp',
+            imageR2Id: 'uw-2025/mediterranean/z0zWrTXxd768IfVRRK0Xh',
           },
           {
-            "id": "prDmbrdnuBfmZg2pa8kAm",
-            "title": "Bavose",
-            "description": "",
-            "placement": "runner-up",
-            "photographer": {
-              "firstName": "Alessandro",
-              "lastName": "Grasso"
+            id: 'prDmbrdnuBfmZg2pa8kAm',
+            title: 'Bavose',
+            description: '',
+            placement: 'runner-up',
+            photographer: {
+              firstName: 'Alessandro',
+              lastName: 'Grasso',
             },
-            "image": "/images/contests/2025/prDmbrdnuBfmZg2pa8kAm.webp",
-            "imageR2Id": "uw-2025/mediterranean/prDmbrdnuBfmZg2pa8kAm"
+            image: '/images/contests/2025/prDmbrdnuBfmZg2pa8kAm.webp',
+            imageR2Id: 'uw-2025/mediterranean/prDmbrdnuBfmZg2pa8kAm',
           },
           {
-            "id": "-3BcSVDpZO2WN2tYVDxXU",
-            "title": "Velelle",
-            "description": "",
-            "placement": "runner-up",
-            "photographer": {
-              "firstName": "Alessandro",
-              "lastName": "Grasso"
+            id: '-3BcSVDpZO2WN2tYVDxXU',
+            title: 'Velelle',
+            description: '',
+            placement: 'runner-up',
+            photographer: {
+              firstName: 'Alessandro',
+              lastName: 'Grasso',
             },
-            "image": "/images/contests/2025/-3BcSVDpZO2WN2tYVDxXU.webp",
-            "imageR2Id": "uw-2025/mediterranean/-3BcSVDpZO2WN2tYVDxXU"
+            image: '/images/contests/2025/-3BcSVDpZO2WN2tYVDxXU.webp',
+            imageR2Id: 'uw-2025/mediterranean/-3BcSVDpZO2WN2tYVDxXU',
           },
           {
-            "id": "1_ejaLRybeNB2D3zCBcQz",
-            "title": "Gorgonie",
-            "description": "",
-            "placement": "runner-up",
-            "photographer": {
-              "firstName": "Alessandro",
-              "lastName": "Grasso"
+            id: '1_ejaLRybeNB2D3zCBcQz',
+            title: 'Gorgonie',
+            description: '',
+            placement: 'runner-up',
+            photographer: {
+              firstName: 'Alessandro',
+              lastName: 'Grasso',
             },
-            "image": "/images/contests/2025/1_ejaLRybeNB2D3zCBcQz.webp",
-            "imageR2Id": "uw-2025/mediterranean/1_ejaLRybeNB2D3zCBcQz"
+            image: '/images/contests/2025/1_ejaLRybeNB2D3zCBcQz.webp',
+            imageR2Id: 'uw-2025/mediterranean/1_ejaLRybeNB2D3zCBcQz',
           },
           {
-            "id": "nJW3yMxvKdo_hITbyT1yh",
-            "title": "HEADACHE",
-            "description": "",
-            "placement": "runner-up",
-            "photographer": {
-              "firstName": "Domenico",
-              "lastName": "Roscigno"
+            id: 'nJW3yMxvKdo_hITbyT1yh',
+            title: 'HEADACHE',
+            description: '',
+            placement: 'runner-up',
+            photographer: {
+              firstName: 'Domenico',
+              lastName: 'Roscigno',
             },
-            "image": "/images/contests/2025/nJW3yMxvKdo_hITbyT1yh.webp",
-            "imageR2Id": "uw-2025/mediterranean/nJW3yMxvKdo_hITbyT1yh"
+            image: '/images/contests/2025/nJW3yMxvKdo_hITbyT1yh.webp',
+            imageR2Id: 'uw-2025/mediterranean/nJW3yMxvKdo_hITbyT1yh',
           },
           {
-            "id": "DjIWUtw7qmY4zSmS64fmS",
-            "title": "TAKEN",
-            "description": "",
-            "placement": "runner-up",
-            "photographer": {
-              "firstName": "Domenico",
-              "lastName": "Roscigno"
+            id: 'DjIWUtw7qmY4zSmS64fmS',
+            title: 'TAKEN',
+            description: '',
+            placement: 'runner-up',
+            photographer: {
+              firstName: 'Domenico',
+              lastName: 'Roscigno',
             },
-            "image": "/images/contests/2025/DjIWUtw7qmY4zSmS64fmS.webp",
-            "imageR2Id": "uw-2025/mediterranean/DjIWUtw7qmY4zSmS64fmS"
+            image: '/images/contests/2025/DjIWUtw7qmY4zSmS64fmS.webp',
+            imageR2Id: 'uw-2025/mediterranean/DjIWUtw7qmY4zSmS64fmS',
           },
           {
-            "id": "2kYwGl96GTWK4xFvvoGml",
-            "title": "CLOSE ENCOUNTER",
-            "description": "",
-            "placement": "runner-up",
-            "photographer": {
-              "firstName": "Domenico",
-              "lastName": "Roscigno"
+            id: '2kYwGl96GTWK4xFvvoGml',
+            title: 'CLOSE ENCOUNTER',
+            description: '',
+            placement: 'runner-up',
+            photographer: {
+              firstName: 'Domenico',
+              lastName: 'Roscigno',
             },
-            "image": "/images/contests/2025/2kYwGl96GTWK4xFvvoGml.webp",
-            "imageR2Id": "uw-2025/mediterranean/2kYwGl96GTWK4xFvvoGml"
-          }
-        ]
+            image: '/images/contests/2025/2kYwGl96GTWK4xFvvoGml.webp',
+            imageR2Id: 'uw-2025/mediterranean/2kYwGl96GTWK4xFvvoGml',
+          },
+        ],
       },
       {
-        "id": "wide-angle",
-        "name": "Wide Angle",
-        "winnerImage": "/images/contests/2025/M3UuRRotHaiyAhx09RExR.webp",
-        "winnerImageR2Id": "uw-2025/wide-angle/M3UuRRotHaiyAhx09RExR",
-        "entries": [
+        id: 'wide-angle',
+        name: 'Wide Angle',
+        winnerImage: '/images/contests/2025/M3UuRRotHaiyAhx09RExR.webp',
+        winnerImageR2Id: 'uw-2025/wide-angle/M3UuRRotHaiyAhx09RExR',
+        entries: [
           {
-            "id": "M3UuRRotHaiyAhx09RExR",
-            "title": ".... che scatto!!",
-            "description": "Raja....",
-            "placement": "first",
-            "photographer": {
-              "firstName": "Marco",
-              "lastName": "Giuliano "
+            id: 'M3UuRRotHaiyAhx09RExR',
+            title: '.... che scatto!!',
+            description: 'Raja....',
+            placement: 'first',
+            photographer: {
+              firstName: 'Marco',
+              lastName: 'Giuliano ',
             },
-            "image": "/images/contests/2025/M3UuRRotHaiyAhx09RExR.webp",
-            "imageR2Id": "uw-2025/wide-angle/M3UuRRotHaiyAhx09RExR"
+            image: '/images/contests/2025/M3UuRRotHaiyAhx09RExR.webp',
+            imageR2Id: 'uw-2025/wide-angle/M3UuRRotHaiyAhx09RExR',
           },
           {
-            "id": "QP9TPG9VXi1eEWlu2ynBA",
-            "title": "L'opportunista",
-            "description": "",
-            "placement": "second",
-            "photographer": {
-              "firstName": "Marco",
-              "lastName": "Gargiulo"
+            id: 'QP9TPG9VXi1eEWlu2ynBA',
+            title: "L'opportunista",
+            description: '',
+            placement: 'second',
+            photographer: {
+              firstName: 'Marco',
+              lastName: 'Gargiulo',
             },
-            "image": "/images/contests/2025/QP9TPG9VXi1eEWlu2ynBA.webp",
-            "imageR2Id": "uw-2025/wide-angle/QP9TPG9VXi1eEWlu2ynBA"
+            image: '/images/contests/2025/QP9TPG9VXi1eEWlu2ynBA.webp',
+            imageR2Id: 'uw-2025/wide-angle/QP9TPG9VXi1eEWlu2ynBA',
           },
           {
-            "id": "GLZCG4LSGQ0os0PuAy2P3",
-            "title": "Alien World",
-            "description": "",
-            "placement": "third",
-            "photographer": {
-              "firstName": "Enrico ",
-              "lastName": "Pompei"
+            id: 'GLZCG4LSGQ0os0PuAy2P3',
+            title: 'Alien World',
+            description: '',
+            placement: 'third',
+            photographer: {
+              firstName: 'Enrico ',
+              lastName: 'Pompei',
             },
-            "image": "/images/contests/2025/GLZCG4LSGQ0os0PuAy2P3.webp",
-            "imageR2Id": "uw-2025/wide-angle/GLZCG4LSGQ0os0PuAy2P3"
+            image: '/images/contests/2025/GLZCG4LSGQ0os0PuAy2P3.webp',
+            imageR2Id: 'uw-2025/wide-angle/GLZCG4LSGQ0os0PuAy2P3',
           },
           {
-            "id": "xzjCtEnyKe4IgYJcsb15E",
-            "title": "YELLOW JELLYFISH",
-            "description": "Nella foto migliaia di meduse intrappolate in una laguna dove si trovano sole, protette dalla conformazione geografica della laguna la quale le intrappola e le protegge dagli altri esseri viventi. Ci troviamo a RAJA AMPAT in Indonesia..!",
-            "placement": "runner-up",
-            "photographer": {
-              "firstName": "alessandro",
-              "lastName": "giannaccini"
+            id: 'xzjCtEnyKe4IgYJcsb15E',
+            title: 'YELLOW JELLYFISH',
+            description:
+              'Nella foto migliaia di meduse intrappolate in una laguna dove si trovano sole, protette dalla conformazione geografica della laguna la quale le intrappola e le protegge dagli altri esseri viventi. Ci troviamo a RAJA AMPAT in Indonesia..!',
+            placement: 'runner-up',
+            photographer: {
+              firstName: 'alessandro',
+              lastName: 'giannaccini',
             },
-            "image": "/images/contests/2025/xzjCtEnyKe4IgYJcsb15E.webp",
-            "imageR2Id": "uw-2025/wide-angle/xzjCtEnyKe4IgYJcsb15E"
+            image: '/images/contests/2025/xzjCtEnyKe4IgYJcsb15E.webp',
+            imageR2Id: 'uw-2025/wide-angle/xzjCtEnyKe4IgYJcsb15E',
           },
           {
-            "id": "9GpV6AbRzIRKbV00Jcxf8",
-            "title": "Sea snake",
-            "description": "Sea snake shedding its skin",
-            "placement": "runner-up",
-            "photographer": {
-              "firstName": "Galice",
-              "lastName": "Hoarau"
+            id: '9GpV6AbRzIRKbV00Jcxf8',
+            title: 'Sea snake',
+            description: 'Sea snake shedding its skin',
+            placement: 'runner-up',
+            photographer: {
+              firstName: 'Galice',
+              lastName: 'Hoarau',
             },
-            "image": "/images/contests/2025/9GpV6AbRzIRKbV00Jcxf8.webp",
-            "imageR2Id": "uw-2025/wide-angle/9GpV6AbRzIRKbV00Jcxf8"
-          }
-        ]
-      }
-    ]
+            image: '/images/contests/2025/9GpV6AbRzIRKbV00Jcxf8.webp',
+            imageR2Id: 'uw-2025/wide-angle/9GpV6AbRzIRKbV00Jcxf8',
+          },
+        ],
+      },
+    ],
   },
   {
-    "id": "uw-2024",
-    "year": 2024,
-    "name": "UW Contest 2024",
-    "description": "Annual underwater photography competition celebrating the beauty and diversity of marine life",
-    "indexImage": "/images/contests/2024/lqK1ITrXtD4wuTvxBPs-v.webp",
-    "indexImageR2Id": "uw-2024/black-and-white/lqK1ITrXtD4wuTvxBPs-v",
-    "currentContest": false,
-    "judges": [
+    id: 'uw-2024',
+    year: 2024,
+    name: 'UW Contest 2024',
+    description:
+      'Annual underwater photography competition celebrating the beauty and diversity of marine life',
+    indexImage: '/images/contests/2024/lqK1ITrXtD4wuTvxBPs-v.webp',
+    indexImageR2Id: 'uw-2024/black-and-white/lqK1ITrXtD4wuTvxBPs-v',
+    currentContest: false,
+    judges: [
       {
-        "id": "TH4YMn4PQGEhT11vs5Ztg",
-        "fullName": "Pietro Formis",
-        "r2ImageId": null
+        id: 'TH4YMn4PQGEhT11vs5Ztg',
+        fullName: 'Pietro Formis',
+        r2ImageId: null,
       },
       {
-        "id": "F9eVSRSXFhxdKZEZeUt1C",
-        "fullName": "Domenico Roscigno",
-        "r2ImageId": null
+        id: 'F9eVSRSXFhxdKZEZeUt1C',
+        fullName: 'Domenico Roscigno',
+        r2ImageId: null,
       },
       {
-        "id": "Ui10CqkpLz0DrWbowHHYb",
-        "fullName": "Pasquale Vassallo",
-        "r2ImageId": null
-      }
+        id: 'Ui10CqkpLz0DrWbowHHYb',
+        fullName: 'Pasquale Vassallo',
+        r2ImageId: null,
+      },
     ],
-    "categories": [
+    categories: [
       {
-        "id": "black-and-white",
-        "name": "Black & White",
-        "winnerImage": "/images/contests/2024/lqK1ITrXtD4wuTvxBPs-v.webp",
-        "winnerImageR2Id": "uw-2024/black-and-white/lqK1ITrXtD4wuTvxBPs-v",
-        "entries": [
+        id: 'black-and-white',
+        name: 'Black & White',
+        winnerImage: '/images/contests/2024/lqK1ITrXtD4wuTvxBPs-v.webp',
+        winnerImageR2Id: 'uw-2024/black-and-white/lqK1ITrXtD4wuTvxBPs-v',
+        entries: [
           {
-            "id": "lqK1ITrXtD4wuTvxBPs-v",
-            "title": "Gehoornde Slijmvis",
-            "description": "",
-            "placement": "first",
-            "photographer": {
-              "firstName": "Luc",
-              "lastName": "Rooman"
+            id: 'lqK1ITrXtD4wuTvxBPs-v',
+            title: 'Gehoornde Slijmvis',
+            description: '',
+            placement: 'first',
+            photographer: {
+              firstName: 'Luc',
+              lastName: 'Rooman',
             },
-            "image": "/images/contests/2024/lqK1ITrXtD4wuTvxBPs-v.webp",
-            "imageR2Id": "uw-2024/black-and-white/lqK1ITrXtD4wuTvxBPs-v"
+            image: '/images/contests/2024/lqK1ITrXtD4wuTvxBPs-v.webp',
+            imageR2Id: 'uw-2024/black-and-white/lqK1ITrXtD4wuTvxBPs-v',
           },
           {
-            "id": "NbebkX_2kI2sjxdMJJfOa",
-            "title": "Strike",
-            "description": "",
-            "placement": "second",
-            "photographer": {
-              "firstName": "Raffaele",
-              "lastName": "Livornese"
+            id: 'NbebkX_2kI2sjxdMJJfOa',
+            title: 'Strike',
+            description: '',
+            placement: 'second',
+            photographer: {
+              firstName: 'Raffaele',
+              lastName: 'Livornese',
             },
-            "image": "/images/contests/2024/NbebkX_2kI2sjxdMJJfOa.webp",
-            "imageR2Id": "uw-2024/black-and-white/NbebkX_2kI2sjxdMJJfOa"
+            image: '/images/contests/2024/NbebkX_2kI2sjxdMJJfOa.webp',
+            imageR2Id: 'uw-2024/black-and-white/NbebkX_2kI2sjxdMJJfOa',
           },
           {
-            "id": "dgXmmuv7xK8rB0Ki78agm",
-            "title": "Velo",
-            "description": "",
-            "placement": "third",
-            "photographer": {
-              "firstName": "Stefano",
-              "lastName": "Cerbai"
+            id: 'dgXmmuv7xK8rB0Ki78agm',
+            title: 'Velo',
+            description: '',
+            placement: 'third',
+            photographer: {
+              firstName: 'Stefano',
+              lastName: 'Cerbai',
             },
-            "image": "/images/contests/2024/dgXmmuv7xK8rB0Ki78agm.webp",
-            "imageR2Id": "uw-2024/black-and-white/dgXmmuv7xK8rB0Ki78agm"
+            image: '/images/contests/2024/dgXmmuv7xK8rB0Ki78agm.webp',
+            imageR2Id: 'uw-2024/black-and-white/dgXmmuv7xK8rB0Ki78agm',
           },
           {
-            "id": "c_blXjthUaYoPMz6nzUxg",
-            "title": "",
-            "description": "",
-            "placement": "runner-up",
-            "photographer": {
-              "firstName": "Gabriella",
-              "lastName": "Luongo"
+            id: 'c_blXjthUaYoPMz6nzUxg',
+            title: '',
+            description: '',
+            placement: 'runner-up',
+            photographer: {
+              firstName: 'Gabriella',
+              lastName: 'Luongo',
             },
-            "image": "/images/contests/2024/c_blXjthUaYoPMz6nzUxg.webp",
-            "imageR2Id": "uw-2024/black-and-white/c_blXjthUaYoPMz6nzUxg"
+            image: '/images/contests/2024/c_blXjthUaYoPMz6nzUxg.webp',
+            imageR2Id: 'uw-2024/black-and-white/c_blXjthUaYoPMz6nzUxg',
           },
           {
-            "id": "QsGzUh5X8UsrCY0roaaze",
-            "title": "Caporais",
-            "description": "",
-            "placement": "runner-up",
-            "photographer": {
-              "firstName": "Lorenzo",
-              "lastName": "Vantaggiato"
+            id: 'QsGzUh5X8UsrCY0roaaze',
+            title: 'Caporais',
+            description: '',
+            placement: 'runner-up',
+            photographer: {
+              firstName: 'Lorenzo',
+              lastName: 'Vantaggiato',
             },
-            "image": "/images/contests/2024/QsGzUh5X8UsrCY0roaaze.webp",
-            "imageR2Id": "uw-2024/black-and-white/QsGzUh5X8UsrCY0roaaze"
+            image: '/images/contests/2024/QsGzUh5X8UsrCY0roaaze.webp',
+            imageR2Id: 'uw-2024/black-and-white/QsGzUh5X8UsrCY0roaaze',
           },
           {
-            "id": "TnnMP1jA7m92eyB53ZpcX",
-            "title": "",
-            "description": "",
-            "placement": "runner-up",
-            "photographer": {
-              "firstName": "Massimo",
-              "lastName": "Giorgetta"
+            id: 'TnnMP1jA7m92eyB53ZpcX',
+            title: '',
+            description: '',
+            placement: 'runner-up',
+            photographer: {
+              firstName: 'Massimo',
+              lastName: 'Giorgetta',
             },
-            "image": "/images/contests/2024/TnnMP1jA7m92eyB53ZpcX.webp",
-            "imageR2Id": "uw-2024/black-and-white/TnnMP1jA7m92eyB53ZpcX"
+            image: '/images/contests/2024/TnnMP1jA7m92eyB53ZpcX.webp',
+            imageR2Id: 'uw-2024/black-and-white/TnnMP1jA7m92eyB53ZpcX',
           },
           {
-            "id": "tn2F3xs5TSkeANytiPzFP",
-            "title": "",
-            "description": "",
-            "placement": "runner-up",
-            "photographer": {
-              "firstName": "Davide",
-              "lastName": "Lombroso"
+            id: 'tn2F3xs5TSkeANytiPzFP',
+            title: '',
+            description: '',
+            placement: 'runner-up',
+            photographer: {
+              firstName: 'Davide',
+              lastName: 'Lombroso',
             },
-            "image": "/images/contests/2024/tn2F3xs5TSkeANytiPzFP.webp",
-            "imageR2Id": "uw-2024/black-and-white/tn2F3xs5TSkeANytiPzFP"
+            image: '/images/contests/2024/tn2F3xs5TSkeANytiPzFP.webp',
+            imageR2Id: 'uw-2024/black-and-white/tn2F3xs5TSkeANytiPzFP',
           },
           {
-            "id": "U9p4Q4CfBPWVwgeJbcnOP",
-            "title": "Zeus",
-            "description": "",
-            "placement": "runner-up",
-            "photographer": {
-              "firstName": "Marco",
-              "lastName": "Gargiulo"
+            id: 'U9p4Q4CfBPWVwgeJbcnOP',
+            title: 'Zeus',
+            description: '',
+            placement: 'runner-up',
+            photographer: {
+              firstName: 'Marco',
+              lastName: 'Gargiulo',
             },
-            "image": "/images/contests/2024/U9p4Q4CfBPWVwgeJbcnOP.webp",
-            "imageR2Id": "uw-2024/black-and-white/U9p4Q4CfBPWVwgeJbcnOP"
-          }
-        ]
+            image: '/images/contests/2024/U9p4Q4CfBPWVwgeJbcnOP.webp',
+            imageR2Id: 'uw-2024/black-and-white/U9p4Q4CfBPWVwgeJbcnOP',
+          },
+        ],
       },
       {
-        "id": "macro",
-        "name": "Macro",
-        "winnerImage": "/images/contests/2024/M-cI2y_SAsKR_uziqEMVc.webp",
-        "winnerImageR2Id": "uw-2024/macro/M-cI2y_SAsKR_uziqEMVc",
-        "entries": [
+        id: 'macro',
+        name: 'Macro',
+        winnerImage: '/images/contests/2024/M-cI2y_SAsKR_uziqEMVc.webp',
+        winnerImageR2Id: 'uw-2024/macro/M-cI2y_SAsKR_uziqEMVc',
+        entries: [
           {
-            "id": "M-cI2y_SAsKR_uziqEMVc",
-            "title": "Vite Protette",
-            "description": null,
-            "placement": "first",
-            "photographer": {
-              "firstName": "Massimo",
-              "lastName": "Giorgetta"
+            id: 'M-cI2y_SAsKR_uziqEMVc',
+            title: 'Vite Protette',
+            description: null,
+            placement: 'first',
+            photographer: {
+              firstName: 'Massimo',
+              lastName: 'Giorgetta',
             },
-            "image": "/images/contests/2024/M-cI2y_SAsKR_uziqEMVc.webp",
-            "imageR2Id": "uw-2024/macro/M-cI2y_SAsKR_uziqEMVc"
+            image: '/images/contests/2024/M-cI2y_SAsKR_uziqEMVc.webp',
+            imageR2Id: 'uw-2024/macro/M-cI2y_SAsKR_uziqEMVc',
           },
           {
-            "id": "f0bGy0H79T84CUvQuwypw",
-            "title": "Japanse Kruiskwal",
-            "description": "",
-            "placement": "second",
-            "photographer": {
-              "firstName": "Luc",
-              "lastName": "Rooman"
+            id: 'f0bGy0H79T84CUvQuwypw',
+            title: 'Japanse Kruiskwal',
+            description: '',
+            placement: 'second',
+            photographer: {
+              firstName: 'Luc',
+              lastName: 'Rooman',
             },
-            "image": "/images/contests/2024/f0bGy0H79T84CUvQuwypw.webp",
-            "imageR2Id": "uw-2024/macro/f0bGy0H79T84CUvQuwypw"
+            image: '/images/contests/2024/f0bGy0H79T84CUvQuwypw.webp',
+            imageR2Id: 'uw-2024/macro/f0bGy0H79T84CUvQuwypw',
           },
           {
-            "id": "OI7r822HH1G4LzVMRoVoj",
-            "title": "LEAF SCORPIONFISH IN RED",
-            "description": null,
-            "placement": "third",
-            "photographer": {
-              "firstName": "Giancarlo",
-              "lastName": "Mazarese"
+            id: 'OI7r822HH1G4LzVMRoVoj',
+            title: 'LEAF SCORPIONFISH IN RED',
+            description: null,
+            placement: 'third',
+            photographer: {
+              firstName: 'Giancarlo',
+              lastName: 'Mazarese',
             },
-            "image": "/images/contests/2024/OI7r822HH1G4LzVMRoVoj.webp",
-            "imageR2Id": "uw-2024/macro/OI7r822HH1G4LzVMRoVoj"
+            image: '/images/contests/2024/OI7r822HH1G4LzVMRoVoj.webp',
+            imageR2Id: 'uw-2024/macro/OI7r822HH1G4LzVMRoVoj',
           },
           {
-            "id": "K3PlZelgc-nwF_FaqE1vY",
-            "title": "",
-            "description": "",
-            "placement": "runner-up",
-            "photographer": {
-              "firstName": "Galice",
-              "lastName": "Hoarau"
+            id: 'K3PlZelgc-nwF_FaqE1vY',
+            title: '',
+            description: '',
+            placement: 'runner-up',
+            photographer: {
+              firstName: 'Galice',
+              lastName: 'Hoarau',
             },
-            "image": "/images/contests/2024/K3PlZelgc-nwF_FaqE1vY.webp",
-            "imageR2Id": "uw-2024/macro/K3PlZelgc-nwF_FaqE1vY"
+            image: '/images/contests/2024/K3PlZelgc-nwF_FaqE1vY.webp',
+            imageR2Id: 'uw-2024/macro/K3PlZelgc-nwF_FaqE1vY',
           },
           {
-            "id": "-M_An40J4idR_Ti7d5wva",
-            "title": "",
-            "description": "",
-            "placement": "runner-up",
-            "photographer": {
-              "firstName": "Alberto",
-              "lastName": "Groppo"
+            id: '-M_An40J4idR_Ti7d5wva',
+            title: '',
+            description: '',
+            placement: 'runner-up',
+            photographer: {
+              firstName: 'Alberto',
+              lastName: 'Groppo',
             },
-            "image": "/images/contests/2024/-M_An40J4idR_Ti7d5wva.webp",
-            "imageR2Id": "uw-2024/macro/-M_An40J4idR_Ti7d5wva"
+            image: '/images/contests/2024/-M_An40J4idR_Ti7d5wva.webp',
+            imageR2Id: 'uw-2024/macro/-M_An40J4idR_Ti7d5wva',
           },
           {
-            "id": "_wkqj-04Aq_DYnkWWU-Bz",
-            "title": "Salamander",
-            "description": "",
-            "placement": "runner-up",
-            "photographer": {
-              "firstName": "Luc",
-              "lastName": "Rooman"
+            id: '_wkqj-04Aq_DYnkWWU-Bz',
+            title: 'Salamander',
+            description: '',
+            placement: 'runner-up',
+            photographer: {
+              firstName: 'Luc',
+              lastName: 'Rooman',
             },
-            "image": "/images/contests/2024/_wkqj-04Aq_DYnkWWU-Bz.webp",
-            "imageR2Id": "uw-2024/macro/_wkqj-04Aq_DYnkWWU-Bz"
+            image: '/images/contests/2024/_wkqj-04Aq_DYnkWWU-Bz.webp',
+            imageR2Id: 'uw-2024/macro/_wkqj-04Aq_DYnkWWU-Bz',
           },
           {
-            "id": "EL3-Lk33z75J6RZ6ffGsl",
-            "title": "The Good Father",
-            "description": "",
-            "placement": "runner-up",
-            "photographer": {
-              "firstName": "Raffaele",
-              "lastName": "Livornese"
+            id: 'EL3-Lk33z75J6RZ6ffGsl',
+            title: 'The Good Father',
+            description: '',
+            placement: 'runner-up',
+            photographer: {
+              firstName: 'Raffaele',
+              lastName: 'Livornese',
             },
-            "image": "/images/contests/2024/EL3-Lk33z75J6RZ6ffGsl.webp",
-            "imageR2Id": "uw-2024/macro/EL3-Lk33z75J6RZ6ffGsl"
-          }
-        ]
+            image: '/images/contests/2024/EL3-Lk33z75J6RZ6ffGsl.webp',
+            imageR2Id: 'uw-2024/macro/EL3-Lk33z75J6RZ6ffGsl',
+          },
+        ],
       },
       {
-        "id": "wide-angle",
-        "name": "Wide Angle",
-        "winnerImage": "/images/contests/2024/J2tv_0zBzFe6jBsYsBX34.webp",
-        "winnerImageR2Id": "uw-2024/wide-angle/J2tv_0zBzFe6jBsYsBX34",
-        "entries": [
+        id: 'wide-angle',
+        name: 'Wide Angle',
+        winnerImage: '/images/contests/2024/J2tv_0zBzFe6jBsYsBX34.webp',
+        winnerImageR2Id: 'uw-2024/wide-angle/J2tv_0zBzFe6jBsYsBX34',
+        entries: [
           {
-            "id": "J2tv_0zBzFe6jBsYsBX34",
-            "title": "Sea Dragon",
-            "description": "",
-            "placement": "first",
-            "photographer": {
-              "firstName": "Stefano",
-              "lastName": "Cerbai"
+            id: 'J2tv_0zBzFe6jBsYsBX34',
+            title: 'Sea Dragon',
+            description: '',
+            placement: 'first',
+            photographer: {
+              firstName: 'Stefano',
+              lastName: 'Cerbai',
             },
-            "image": "/images/contests/2024/J2tv_0zBzFe6jBsYsBX34.webp",
-            "imageR2Id": "uw-2024/wide-angle/J2tv_0zBzFe6jBsYsBX34"
+            image: '/images/contests/2024/J2tv_0zBzFe6jBsYsBX34.webp',
+            imageR2Id: 'uw-2024/wide-angle/J2tv_0zBzFe6jBsYsBX34',
           },
           {
-            "id": "QfiZp-BDxeWF1VAdtSN3l",
-            "title": "Snoek",
-            "description": "",
-            "placement": "second",
-            "photographer": {
-              "firstName": "Luc",
-              "lastName": "Rooman"
+            id: 'QfiZp-BDxeWF1VAdtSN3l',
+            title: 'Snoek',
+            description: '',
+            placement: 'second',
+            photographer: {
+              firstName: 'Luc',
+              lastName: 'Rooman',
             },
-            "image": "/images/contests/2024/QfiZp-BDxeWF1VAdtSN3l.webp",
-            "imageR2Id": "uw-2024/wide-angle/QfiZp-BDxeWF1VAdtSN3l"
+            image: '/images/contests/2024/QfiZp-BDxeWF1VAdtSN3l.webp',
+            imageR2Id: 'uw-2024/wide-angle/QfiZp-BDxeWF1VAdtSN3l',
           },
           {
-            "id": "i-JTs6jORIXHpy35YqS4r",
-            "title": "Il Treno",
-            "description": "",
-            "placement": "third",
-            "photographer": {
-              "firstName": "Enrico",
-              "lastName": "Pati"
+            id: 'i-JTs6jORIXHpy35YqS4r',
+            title: 'Il Treno',
+            description: '',
+            placement: 'third',
+            photographer: {
+              firstName: 'Enrico',
+              lastName: 'Pati',
             },
-            "image": "/images/contests/2024/i-JTs6jORIXHpy35YqS4r.webp",
-            "imageR2Id": "uw-2024/wide-angle/i-JTs6jORIXHpy35YqS4r"
+            image: '/images/contests/2024/i-JTs6jORIXHpy35YqS4r.webp',
+            imageR2Id: 'uw-2024/wide-angle/i-JTs6jORIXHpy35YqS4r',
           },
           {
-            "id": "BRwkzj7TtYNiqz54i1COP",
-            "title": "Parende Kikkers",
-            "description": "",
-            "placement": "runner-up",
-            "photographer": {
-              "firstName": "Luc",
-              "lastName": "Rooman"
+            id: 'BRwkzj7TtYNiqz54i1COP',
+            title: 'Parende Kikkers',
+            description: '',
+            placement: 'runner-up',
+            photographer: {
+              firstName: 'Luc',
+              lastName: 'Rooman',
             },
-            "image": "/images/contests/2024/BRwkzj7TtYNiqz54i1COP.webp",
-            "imageR2Id": "uw-2024/wide-angle/BRwkzj7TtYNiqz54i1COP"
+            image: '/images/contests/2024/BRwkzj7TtYNiqz54i1COP.webp',
+            imageR2Id: 'uw-2024/wide-angle/BRwkzj7TtYNiqz54i1COP',
           },
           {
-            "id": "tlQvfH5DIaxu7YblNuPp6",
-            "title": "Faccia a Faccia",
-            "description": "",
-            "placement": "runner-up",
-            "photographer": {
-              "firstName": "Rosario",
-              "lastName": "Scariati"
+            id: 'tlQvfH5DIaxu7YblNuPp6',
+            title: 'Faccia a Faccia',
+            description: '',
+            placement: 'runner-up',
+            photographer: {
+              firstName: 'Rosario',
+              lastName: 'Scariati',
             },
-            "image": "/images/contests/2024/tlQvfH5DIaxu7YblNuPp6.webp",
-            "imageR2Id": "uw-2024/wide-angle/tlQvfH5DIaxu7YblNuPp6"
+            image: '/images/contests/2024/tlQvfH5DIaxu7YblNuPp6.webp',
+            imageR2Id: 'uw-2024/wide-angle/tlQvfH5DIaxu7YblNuPp6',
           },
           {
-            "id": "5I9m9Il7HH2hK2TeBsjE7",
-            "title": "Il Granchio Ed Il Ponte",
-            "description": "",
-            "placement": "runner-up",
-            "photographer": {
-              "firstName": "Francesco",
-              "lastName": "Visintin"
+            id: '5I9m9Il7HH2hK2TeBsjE7',
+            title: 'Il Granchio Ed Il Ponte',
+            description: '',
+            placement: 'runner-up',
+            photographer: {
+              firstName: 'Francesco',
+              lastName: 'Visintin',
             },
-            "image": "/images/contests/2024/5I9m9Il7HH2hK2TeBsjE7.webp",
-            "imageR2Id": "uw-2024/wide-angle/5I9m9Il7HH2hK2TeBsjE7"
+            image: '/images/contests/2024/5I9m9Il7HH2hK2TeBsjE7.webp',
+            imageR2Id: 'uw-2024/wide-angle/5I9m9Il7HH2hK2TeBsjE7',
           },
           {
-            "id": "cRe2lWpv4A264SYz7101N",
-            "title": "Gambero Di Fiume",
-            "description": "",
-            "placement": "runner-up",
-            "photographer": {
-              "firstName": "Stefano",
-              "lastName": "Cerbai"
+            id: 'cRe2lWpv4A264SYz7101N',
+            title: 'Gambero Di Fiume',
+            description: '',
+            placement: 'runner-up',
+            photographer: {
+              firstName: 'Stefano',
+              lastName: 'Cerbai',
             },
-            "image": "/images/contests/2024/cRe2lWpv4A264SYz7101N.webp",
-            "imageR2Id": "uw-2024/wide-angle/cRe2lWpv4A264SYz7101N"
+            image: '/images/contests/2024/cRe2lWpv4A264SYz7101N.webp',
+            imageR2Id: 'uw-2024/wide-angle/cRe2lWpv4A264SYz7101N',
           },
           {
-            "id": "-ks58wviNjf3uP-mgbQgJ",
-            "title": "Cave",
-            "description": "",
-            "placement": "runner-up",
-            "photographer": {
-              "firstName": "Alessandro",
-              "lastName": "Buzzichelli"
+            id: '-ks58wviNjf3uP-mgbQgJ',
+            title: 'Cave',
+            description: '',
+            placement: 'runner-up',
+            photographer: {
+              firstName: 'Alessandro',
+              lastName: 'Buzzichelli',
             },
-            "image": "/images/contests/2024/-ks58wviNjf3uP-mgbQgJ.webp",
-            "imageR2Id": "uw-2024/wide-angle/-ks58wviNjf3uP-mgbQgJ"
+            image: '/images/contests/2024/-ks58wviNjf3uP-mgbQgJ.webp',
+            imageR2Id: 'uw-2024/wide-angle/-ks58wviNjf3uP-mgbQgJ',
           },
           {
-            "id": "4dMRuuCbAuReo8aDVU3MS",
-            "title": "Wide 2",
-            "description": "",
-            "placement": "runner-up",
-            "photographer": {
-              "firstName": "Davide",
-              "lastName": "Lombroso"
+            id: '4dMRuuCbAuReo8aDVU3MS',
+            title: 'Wide 2',
+            description: '',
+            placement: 'runner-up',
+            photographer: {
+              firstName: 'Davide',
+              lastName: 'Lombroso',
             },
-            "image": "/images/contests/2024/4dMRuuCbAuReo8aDVU3MS.webp",
-            "imageR2Id": "uw-2024/wide-angle/4dMRuuCbAuReo8aDVU3MS"
+            image: '/images/contests/2024/4dMRuuCbAuReo8aDVU3MS.webp',
+            imageR2Id: 'uw-2024/wide-angle/4dMRuuCbAuReo8aDVU3MS',
           },
           {
-            "id": "QCO7exLR013iOAmeXGtXF",
-            "title": "Night Walk",
-            "description": "",
-            "placement": "runner-up",
-            "photographer": {
-              "firstName": "Gabriella",
-              "lastName": "Luongo"
+            id: 'QCO7exLR013iOAmeXGtXF',
+            title: 'Night Walk',
+            description: '',
+            placement: 'runner-up',
+            photographer: {
+              firstName: 'Gabriella',
+              lastName: 'Luongo',
             },
-            "image": "/images/contests/2024/QCO7exLR013iOAmeXGtXF.webp",
-            "imageR2Id": "uw-2024/wide-angle/QCO7exLR013iOAmeXGtXF"
-          }
-        ]
-      }
-    ]
+            image: '/images/contests/2024/QCO7exLR013iOAmeXGtXF.webp',
+            imageR2Id: 'uw-2024/wide-angle/QCO7exLR013iOAmeXGtXF',
+          },
+        ],
+      },
+    ],
   },
   {
-    "id": "uw-2019",
-    "year": 2019,
-    "name": "UW Contest 2019",
-    "description": "Annual underwater photography competition celebrating the beauty and diversity of marine life",
-    "indexImage": "/images/contests/2019/Xg-idX7A_tDzJlPeMmNir.webp",
-    "indexImageR2Id": "uw-2019/black-background/Xg-idX7A_tDzJlPeMmNir",
-    "currentContest": false,
-    "judges": [
+    id: 'uw-2019',
+    year: 2019,
+    name: 'UW Contest 2019',
+    description:
+      'Annual underwater photography competition celebrating the beauty and diversity of marine life',
+    indexImage: '/images/contests/2019/Xg-idX7A_tDzJlPeMmNir.webp',
+    indexImageR2Id: 'uw-2019/black-background/Xg-idX7A_tDzJlPeMmNir',
+    currentContest: false,
+    judges: [
       {
-        "id": "yLp8d-oRxG4vfK_oCnW9N",
-        "fullName": "Isabella Maffei",
-        "r2ImageId": null
+        id: 'yLp8d-oRxG4vfK_oCnW9N',
+        fullName: 'Isabella Maffei',
+        r2ImageId: null,
       },
       {
-        "id": "iNA8Gu9679M025g-k0vUG",
-        "fullName": "David Salvatori",
-        "r2ImageId": null
+        id: 'iNA8Gu9679M025g-k0vUG',
+        fullName: 'David Salvatori',
+        r2ImageId: null,
       },
       {
-        "id": "ZJxTXdf09zRmjQDSb451Q",
-        "fullName": "Massimo Zannini",
-        "r2ImageId": null
-      }
+        id: 'ZJxTXdf09zRmjQDSb451Q',
+        fullName: 'Massimo Zannini',
+        r2ImageId: null,
+      },
     ],
-    "categories": [
+    categories: [
       {
-        "id": "black-background",
-        "name": "Black Background",
-        "winnerImage": "/images/contests/2019/Xg-idX7A_tDzJlPeMmNir.webp",
-        "winnerImageR2Id": "uw-2019/black-background/Xg-idX7A_tDzJlPeMmNir",
-        "entries": [
+        id: 'black-background',
+        name: 'Black Background',
+        winnerImage: '/images/contests/2019/Xg-idX7A_tDzJlPeMmNir.webp',
+        winnerImageR2Id: 'uw-2019/black-background/Xg-idX7A_tDzJlPeMmNir',
+        entries: [
           {
-            "id": "Xg-idX7A_tDzJlPeMmNir",
-            "title": "Diamond",
-            "description": "",
-            "placement": "first",
-            "photographer": {
-              "firstName": "Marco",
-              "lastName": "Steiner"
+            id: 'Xg-idX7A_tDzJlPeMmNir',
+            title: 'Diamond',
+            description: '',
+            placement: 'first',
+            photographer: {
+              firstName: 'Marco',
+              lastName: 'Steiner',
             },
-            "image": "/images/contests/2019/Xg-idX7A_tDzJlPeMmNir.webp",
-            "imageR2Id": "uw-2019/black-background/Xg-idX7A_tDzJlPeMmNir"
+            image: '/images/contests/2019/Xg-idX7A_tDzJlPeMmNir.webp',
+            imageR2Id: 'uw-2019/black-background/Xg-idX7A_tDzJlPeMmNir',
           },
           {
-            "id": "W219oeiy_ZyRW7wQUp3Y5",
-            "title": "Night Rainbow",
-            "description": "",
-            "placement": "second",
-            "photographer": {
-              "firstName": "Paolo",
-              "lastName": "Bausani"
+            id: 'W219oeiy_ZyRW7wQUp3Y5',
+            title: 'Night Rainbow',
+            description: '',
+            placement: 'second',
+            photographer: {
+              firstName: 'Paolo',
+              lastName: 'Bausani',
             },
-            "image": "/images/contests/2019/W219oeiy_ZyRW7wQUp3Y5.webp",
-            "imageR2Id": "uw-2019/black-background/W219oeiy_ZyRW7wQUp3Y5"
+            image: '/images/contests/2019/W219oeiy_ZyRW7wQUp3Y5.webp',
+            imageR2Id: 'uw-2019/black-background/W219oeiy_ZyRW7wQUp3Y5',
           },
           {
-            "id": "K8mN2pQr9sT3vW5xZ7aB1c",
-            "title": "Black Background",
-            "description": "",
-            "placement": "third",
-            "photographer": {
-              "firstName": "Anonymous",
-              "lastName": null
+            id: 'K8mN2pQr9sT3vW5xZ7aB1c',
+            title: 'Black Background',
+            description: '',
+            placement: 'third',
+            photographer: {
+              firstName: 'Anonymous',
+              lastName: null,
             },
-            "image": "/images/contests/2019/K8mN2pQr9sT3vW5xZ7aB1c.webp",
-            "imageR2Id": "uw-2019/black-background/K8mN2pQr9sT3vW5xZ7aB1c"
+            image: '/images/contests/2019/K8mN2pQr9sT3vW5xZ7aB1c.webp',
+            imageR2Id: 'uw-2019/black-background/K8mN2pQr9sT3vW5xZ7aB1c',
           },
           {
-            "id": "L9nO3qRs0tU4wX6yA8bC2d",
-            "title": "Mirror",
-            "description": "",
-            "placement": "runner-up",
-            "photographer": {
-              "firstName": "Anonymous",
-              "lastName": null
+            id: 'L9nO3qRs0tU4wX6yA8bC2d',
+            title: 'Mirror',
+            description: '',
+            placement: 'runner-up',
+            photographer: {
+              firstName: 'Anonymous',
+              lastName: null,
             },
-            "image": "/images/contests/2019/L9nO3qRs0tU4wX6yA8bC2d.webp",
-            "imageR2Id": "uw-2019/black-background/L9nO3qRs0tU4wX6yA8bC2d"
+            image: '/images/contests/2019/L9nO3qRs0tU4wX6yA8bC2d.webp',
+            imageR2Id: 'uw-2019/black-background/L9nO3qRs0tU4wX6yA8bC2d',
           },
           {
-            "id": "M0oP4rSt1uV5xY7zB9cD3e",
-            "title": "Squid",
-            "description": "",
-            "placement": "runner-up",
-            "photographer": {
-              "firstName": "Anonymous",
-              "lastName": null
+            id: 'M0oP4rSt1uV5xY7zB9cD3e',
+            title: 'Squid',
+            description: '',
+            placement: 'runner-up',
+            photographer: {
+              firstName: 'Anonymous',
+              lastName: null,
             },
-            "image": "/images/contests/2019/M0oP4rSt1uV5xY7zB9cD3e.webp",
-            "imageR2Id": "uw-2019/black-background/M0oP4rSt1uV5xY7zB9cD3e"
+            image: '/images/contests/2019/M0oP4rSt1uV5xY7zB9cD3e.webp',
+            imageR2Id: 'uw-2019/black-background/M0oP4rSt1uV5xY7zB9cD3e',
           },
           {
-            "id": "N1pQ5sTu2vW6yZ8aC0dE4f",
-            "title": "P6282765 Edit",
-            "description": "",
-            "placement": "runner-up",
-            "photographer": {
-              "firstName": "Anonymous",
-              "lastName": null
+            id: 'N1pQ5sTu2vW6yZ8aC0dE4f',
+            title: 'P6282765 Edit',
+            description: '',
+            placement: 'runner-up',
+            photographer: {
+              firstName: 'Anonymous',
+              lastName: null,
             },
-            "image": "/images/contests/2019/N1pQ5sTu2vW6yZ8aC0dE4f.webp",
-            "imageR2Id": "uw-2019/black-background/N1pQ5sTu2vW6yZ8aC0dE4f"
+            image: '/images/contests/2019/N1pQ5sTu2vW6yZ8aC0dE4f.webp',
+            imageR2Id: 'uw-2019/black-background/N1pQ5sTu2vW6yZ8aC0dE4f',
           },
           {
-            "id": "O2qR6tUv3wX7zA9bD1eF5g",
-            "title": "0I5A6347O 200DPI",
-            "description": "",
-            "placement": "runner-up",
-            "photographer": {
-              "firstName": "Anonymous",
-              "lastName": null
+            id: 'O2qR6tUv3wX7zA9bD1eF5g',
+            title: '0I5A6347O 200DPI',
+            description: '',
+            placement: 'runner-up',
+            photographer: {
+              firstName: 'Anonymous',
+              lastName: null,
             },
-            "image": "/images/contests/2019/O2qR6tUv3wX7zA9bD1eF5g.webp",
-            "imageR2Id": "uw-2019/black-background/O2qR6tUv3wX7zA9bD1eF5g"
+            image: '/images/contests/2019/O2qR6tUv3wX7zA9bD1eF5g.webp',
+            imageR2Id: 'uw-2019/black-background/O2qR6tUv3wX7zA9bD1eF5g',
           },
           {
-            "id": "P3rS7uVw4xY8aB0cE2fG6h",
-            "title": "DF 6258 Edit 2",
-            "description": "",
-            "placement": "runner-up",
-            "photographer": {
-              "firstName": "Anonymous",
-              "lastName": null
+            id: 'P3rS7uVw4xY8aB0cE2fG6h',
+            title: 'DF 6258 Edit 2',
+            description: '',
+            placement: 'runner-up',
+            photographer: {
+              firstName: 'Anonymous',
+              lastName: null,
             },
-            "image": "/images/contests/2019/P3rS7uVw4xY8aB0cE2fG6h.webp",
-            "imageR2Id": "uw-2019/black-background/P3rS7uVw4xY8aB0cE2fG6h"
+            image: '/images/contests/2019/P3rS7uVw4xY8aB0cE2fG6h.webp',
+            imageR2Id: 'uw-2019/black-background/P3rS7uVw4xY8aB0cE2fG6h',
           },
           {
-            "id": "Q4sT8vWx5yZ9bC1dF3gH7i",
-            "title": "Hitchhiker",
-            "description": "",
-            "placement": "runner-up",
-            "photographer": {
-              "firstName": "Anonymous",
-              "lastName": null
+            id: 'Q4sT8vWx5yZ9bC1dF3gH7i',
+            title: 'Hitchhiker',
+            description: '',
+            placement: 'runner-up',
+            photographer: {
+              firstName: 'Anonymous',
+              lastName: null,
             },
-            "image": "/images/contests/2019/Q4sT8vWx5yZ9bC1dF3gH7i.webp",
-            "imageR2Id": "uw-2019/black-background/Q4sT8vWx5yZ9bC1dF3gH7i"
-          }
-        ]
+            image: '/images/contests/2019/Q4sT8vWx5yZ9bC1dF3gH7i.webp',
+            imageR2Id: 'uw-2019/black-background/Q4sT8vWx5yZ9bC1dF3gH7i',
+          },
+        ],
       },
       {
-        "id": "macro",
-        "name": "Macro",
-        "winnerImage": "/images/contests/2019/L9kW2mX8vYpQ3nR7sT1uC.webp",
-        "winnerImageR2Id": "uw-2019/macro/L9kW2mX8vYpQ3nR7sT1uC",
-        "entries": [
+        id: 'macro',
+        name: 'Macro',
+        winnerImage: '/images/contests/2019/L9kW2mX8vYpQ3nR7sT1uC.webp',
+        winnerImageR2Id: 'uw-2019/macro/L9kW2mX8vYpQ3nR7sT1uC',
+        entries: [
           {
-            "id": "L9kW2mX8vYpQ3nR7sT1uC",
-            "title": "Fluido Mortale",
-            "description": "",
-            "placement": "first",
-            "photographer": {
-              "firstName": "Paolo",
-              "lastName": "Bausani"
+            id: 'L9kW2mX8vYpQ3nR7sT1uC',
+            title: 'Fluido Mortale',
+            description: '',
+            placement: 'first',
+            photographer: {
+              firstName: 'Paolo',
+              lastName: 'Bausani',
             },
-            "image": "/images/contests/2019/L9kW2mX8vYpQ3nR7sT1uC.webp",
-            "imageR2Id": "uw-2019/macro/L9kW2mX8vYpQ3nR7sT1uC"
+            image: '/images/contests/2019/L9kW2mX8vYpQ3nR7sT1uC.webp',
+            imageR2Id: 'uw-2019/macro/L9kW2mX8vYpQ3nR7sT1uC',
           },
           {
-            "id": "M3pK9qR5tU8wV2nX7sA1B",
-            "title": "Jack and Kelly",
-            "description": "",
-            "placement": "second",
-            "photographer": {
-              "firstName": "Hoarau",
-              "lastName": "Galice"
+            id: 'M3pK9qR5tU8wV2nX7sA1B',
+            title: 'Jack and Kelly',
+            description: '',
+            placement: 'second',
+            photographer: {
+              firstName: 'Hoarau',
+              lastName: 'Galice',
             },
-            "image": "/images/contests/2019/M3pK9qR5tU8wV2nX7sA1B.webp",
-            "imageR2Id": "uw-2019/macro/M3pK9qR5tU8wV2nX7sA1B"
+            image: '/images/contests/2019/M3pK9qR5tU8wV2nX7sA1B.webp',
+            imageR2Id: 'uw-2019/macro/M3pK9qR5tU8wV2nX7sA1B',
           },
           {
-            "id": "N7dF2hY9pL6mK3rT8uQ5W",
-            "title": "Blue Angler",
-            "description": "",
-            "placement": "third",
-            "photographer": {
-              "firstName": "Marco",
-              "lastName": "Steiner"
+            id: 'N7dF2hY9pL6mK3rT8uQ5W',
+            title: 'Blue Angler',
+            description: '',
+            placement: 'third',
+            photographer: {
+              firstName: 'Marco',
+              lastName: 'Steiner',
             },
-            "image": "/images/contests/2019/N7dF2hY9pL6mK3rT8uQ5W.webp",
-            "imageR2Id": "uw-2019/macro/N7dF2hY9pL6mK3rT8uQ5W"
+            image: '/images/contests/2019/N7dF2hY9pL6mK3rT8uQ5W.webp',
+            imageR2Id: 'uw-2019/macro/N7dF2hY9pL6mK3rT8uQ5W',
           },
           {
-            "id": "P8kQ3rT5uV9wX2nY7sB1C",
-            "title": "Illuminato",
-            "description": "",
-            "placement": "runner-up",
-            "photographer": {
-              "firstName": "Stefano",
-              "lastName": "Cerbai"
+            id: 'P8kQ3rT5uV9wX2nY7sB1C',
+            title: 'Illuminato',
+            description: '',
+            placement: 'runner-up',
+            photographer: {
+              firstName: 'Stefano',
+              lastName: 'Cerbai',
             },
-            "image": "/images/contests/2019/P8kQ3rT5uV9wX2nY7sB1C.webp",
-            "imageR2Id": "uw-2019/macro/P8kQ3rT5uV9wX2nY7sB1C"
+            image: '/images/contests/2019/P8kQ3rT5uV9wX2nY7sB1C.webp',
+            imageR2Id: 'uw-2019/macro/P8kQ3rT5uV9wX2nY7sB1C',
           },
           {
-            "id": "Q9mS4tU6vW0xY3nZ8sC2D",
-            "title": "Zeus",
-            "description": "",
-            "placement": "runner-up",
-            "photographer": {
-              "firstName": "Marco",
-              "lastName": "Gargiulo"
+            id: 'Q9mS4tU6vW0xY3nZ8sC2D',
+            title: 'Zeus',
+            description: '',
+            placement: 'runner-up',
+            photographer: {
+              firstName: 'Marco',
+              lastName: 'Gargiulo',
             },
-            "image": "/images/contests/2019/Q9mS4tU6vW0xY3nZ8sC2D.webp",
-            "imageR2Id": "uw-2019/macro/Q9mS4tU6vW0xY3nZ8sC2D"
+            image: '/images/contests/2019/Q9mS4tU6vW0xY3nZ8sC2D.webp',
+            imageR2Id: 'uw-2019/macro/Q9mS4tU6vW0xY3nZ8sC2D',
           },
           {
-            "id": "R1nT5uW7xZ0yA4oB9sD3E",
-            "title": "Neighbours",
-            "description": "",
-            "placement": "runner-up",
-            "photographer": {
-              "firstName": "Enrico",
-              "lastName": "Simogyi"
+            id: 'R1nT5uW7xZ0yA4oB9sD3E',
+            title: 'Neighbours',
+            description: '',
+            placement: 'runner-up',
+            photographer: {
+              firstName: 'Enrico',
+              lastName: 'Simogyi',
             },
-            "image": "/images/contests/2019/R1nT5uW7xZ0yA4oB9sD3E.webp",
-            "imageR2Id": "uw-2019/macro/R1nT5uW7xZ0yA4oB9sD3E"
+            image: '/images/contests/2019/R1nT5uW7xZ0yA4oB9sD3E.webp',
+            imageR2Id: 'uw-2019/macro/R1nT5uW7xZ0yA4oB9sD3E',
           },
           {
-            "id": "S2oU6vY8zA1yB5pC0sE4F",
-            "title": "Punk Boy",
-            "description": "",
-            "placement": "runner-up",
-            "photographer": {
-              "firstName": "Francesco",
-              "lastName": "Visintin"
+            id: 'S2oU6vY8zA1yB5pC0sE4F',
+            title: 'Punk Boy',
+            description: '',
+            placement: 'runner-up',
+            photographer: {
+              firstName: 'Francesco',
+              lastName: 'Visintin',
             },
-            "image": "/images/contests/2019/S2oU6vY8zA1yB5pC0sE4F.webp",
-            "imageR2Id": "uw-2019/macro/S2oU6vY8zA1yB5pC0sE4F"
+            image: '/images/contests/2019/S2oU6vY8zA1yB5pC0sE4F.webp',
+            imageR2Id: 'uw-2019/macro/S2oU6vY8zA1yB5pC0sE4F',
           },
           {
-            "id": "T3pV7wZ9aB2yC6qD1sF5G",
-            "title": "Seahorse",
-            "description": "",
-            "placement": "runner-up",
-            "photographer": {
-              "firstName": "Fabio",
-              "lastName": "Strazzi"
+            id: 'T3pV7wZ9aB2yC6qD1sF5G',
+            title: 'Seahorse',
+            description: '',
+            placement: 'runner-up',
+            photographer: {
+              firstName: 'Fabio',
+              lastName: 'Strazzi',
             },
-            "image": "/images/contests/2019/T3pV7wZ9aB2yC6qD1sF5G.webp",
-            "imageR2Id": "uw-2019/macro/T3pV7wZ9aB2yC6qD1sF5G"
+            image: '/images/contests/2019/T3pV7wZ9aB2yC6qD1sF5G.webp',
+            imageR2Id: 'uw-2019/macro/T3pV7wZ9aB2yC6qD1sF5G',
           },
           {
-            "id": "U4qW8xA0bC3yD7rE2sG6H",
-            "title": "Ospite Inatteso",
-            "description": "",
-            "placement": "runner-up",
-            "photographer": {
-              "firstName": "Stefano",
-              "lastName": "Proakis"
+            id: 'U4qW8xA0bC3yD7rE2sG6H',
+            title: 'Ospite Inatteso',
+            description: '',
+            placement: 'runner-up',
+            photographer: {
+              firstName: 'Stefano',
+              lastName: 'Proakis',
             },
-            "image": "/images/contests/2019/U4qW8xA0bC3yD7rE2sG6H.webp",
-            "imageR2Id": "uw-2019/macro/U4qW8xA0bC3yD7rE2sG6H"
+            image: '/images/contests/2019/U4qW8xA0bC3yD7rE2sG6H.webp',
+            imageR2Id: 'uw-2019/macro/U4qW8xA0bC3yD7rE2sG6H',
           },
           {
-            "id": "V5rX9yB1cD4zE8sF3tH7I",
-            "title": "San Pietrino Affamato",
-            "description": "",
-            "placement": "runner-up",
-            "photographer": {
-              "firstName": "Giacomo",
-              "lastName": "Giovannini"
+            id: 'V5rX9yB1cD4zE8sF3tH7I',
+            title: 'San Pietrino Affamato',
+            description: '',
+            placement: 'runner-up',
+            photographer: {
+              firstName: 'Giacomo',
+              lastName: 'Giovannini',
             },
-            "image": "/images/contests/2019/V5rX9yB1cD4zE8sF3tH7I.webp",
-            "imageR2Id": "uw-2019/macro/V5rX9yB1cD4zE8sF3tH7I"
-          }
-        ]
+            image: '/images/contests/2019/V5rX9yB1cD4zE8sF3tH7I.webp',
+            imageR2Id: 'uw-2019/macro/V5rX9yB1cD4zE8sF3tH7I',
+          },
+        ],
       },
       {
-        "id": "mediterranean",
-        "name": "Mediterranean Portfolio",
-        "winnerImage": "/images/contests/2019/Z1cV3wS5lP0oE8sF3tH7I.webp",
-        "winnerImageR2Id": "uw-2019/mediterranean/Z1cV3wS5lP0oE8sF3tH7I",
-        "entries": [
+        id: 'mediterranean',
+        name: 'Mediterranean Portfolio',
+        winnerImage: '/images/contests/2019/Z1cV3wS5lP0oE8sF3tH7I.webp',
+        winnerImageR2Id: 'uw-2019/mediterranean/Z1cV3wS5lP0oE8sF3tH7I',
+        entries: [
           {
-            "id": "Z1cV3wS5lP0oE8sF3tH7I",
-            "title": "Solar Reflection",
-            "description": "",
-            "placement": "first",
-            "photographer": {
-              "firstName": "Salvatore",
-              "lastName": "Ianniello"
+            id: 'Z1cV3wS5lP0oE8sF3tH7I',
+            title: 'Solar Reflection',
+            description: '',
+            placement: 'first',
+            photographer: {
+              firstName: 'Salvatore',
+              lastName: 'Ianniello',
             },
-            "image": "/images/contests/2019/Z1cV3wS5lP0oE8sF3tH7I.webp",
-            "imageR2Id": "uw-2019/mediterranean/Z1cV3wS5lP0oE8sF3tH7I"
+            image: '/images/contests/2019/Z1cV3wS5lP0oE8sF3tH7I.webp',
+            imageR2Id: 'uw-2019/mediterranean/Z1cV3wS5lP0oE8sF3tH7I',
           },
           {
-            "id": "W6sY0zC2dE5aF9tG4uI8J",
-            "title": "For Protection",
-            "description": "",
-            "placement": "first",
-            "photographer": {
-              "firstName": "Salvatore",
-              "lastName": "Ianniello"
+            id: 'W6sY0zC2dE5aF9tG4uI8J',
+            title: 'For Protection',
+            description: '',
+            placement: 'first',
+            photographer: {
+              firstName: 'Salvatore',
+              lastName: 'Ianniello',
             },
-            "image": "/images/contests/2019/W6sY0zC2dE5aF9tG4uI8J.webp",
-            "imageR2Id": "uw-2019/mediterranean/W6sY0zC2dE5aF9tG4uI8J"
+            image: '/images/contests/2019/W6sY0zC2dE5aF9tG4uI8J.webp',
+            imageR2Id: 'uw-2019/mediterranean/W6sY0zC2dE5aF9tG4uI8J',
           },
           {
-            "id": "X7tZ1aD3eF6bG0uH5vJ9K",
-            "title": "Yellow Capture",
-            "description": "",
-            "placement": "first",
-            "photographer": {
-              "firstName": "Salvatore",
-              "lastName": "Ianniello"
+            id: 'X7tZ1aD3eF6bG0uH5vJ9K',
+            title: 'Yellow Capture',
+            description: '',
+            placement: 'first',
+            photographer: {
+              firstName: 'Salvatore',
+              lastName: 'Ianniello',
             },
-            "image": "/images/contests/2019/X7tZ1aD3eF6bG0uH5vJ9K.webp",
-            "imageR2Id": "uw-2019/mediterranean/X7tZ1aD3eF6bG0uH5vJ9K"
+            image: '/images/contests/2019/X7tZ1aD3eF6bG0uH5vJ9K.webp',
+            imageR2Id: 'uw-2019/mediterranean/X7tZ1aD3eF6bG0uH5vJ9K',
           },
           {
-            "id": "Y8uA2bE4fG7cH1vI6wK0L",
-            "title": "Portfolio 1 3",
-            "description": "",
-            "placement": "second",
-            "photographer": {
-              "firstName": "Francesco",
-              "lastName": "Visintin"
+            id: 'Y8uA2bE4fG7cH1vI6wK0L',
+            title: 'Portfolio 1 3',
+            description: '',
+            placement: 'second',
+            photographer: {
+              firstName: 'Francesco',
+              lastName: 'Visintin',
             },
-            "image": "/images/contests/2019/Y8uA2bE4fG7cH1vI6wK0L.webp",
-            "imageR2Id": "uw-2019/mediterranean/Y8uA2bE4fG7cH1vI6wK0L"
+            image: '/images/contests/2019/Y8uA2bE4fG7cH1vI6wK0L.webp',
+            imageR2Id: 'uw-2019/mediterranean/Y8uA2bE4fG7cH1vI6wK0L',
           },
           {
-            "id": "Z9vB3cF5gH8dI2wJ7xL1M",
-            "title": "Portfolio 2 3",
-            "description": "",
-            "placement": "second",
-            "photographer": {
-              "firstName": "Francesco",
-              "lastName": "Visintin"
+            id: 'Z9vB3cF5gH8dI2wJ7xL1M',
+            title: 'Portfolio 2 3',
+            description: '',
+            placement: 'second',
+            photographer: {
+              firstName: 'Francesco',
+              lastName: 'Visintin',
             },
-            "image": "/images/contests/2019/Z9vB3cF5gH8dI2wJ7xL1M.webp",
-            "imageR2Id": "uw-2019/mediterranean/Z9vB3cF5gH8dI2wJ7xL1M"
+            image: '/images/contests/2019/Z9vB3cF5gH8dI2wJ7xL1M.webp',
+            imageR2Id: 'uw-2019/mediterranean/Z9vB3cF5gH8dI2wJ7xL1M',
           },
           {
-            "id": "A0wC4dG6hI9eJ3xK8yM2N",
-            "title": "Portfolio 3 3",
-            "description": "",
-            "placement": "second",
-            "photographer": {
-              "firstName": "Francesco",
-              "lastName": "Visintin"
+            id: 'A0wC4dG6hI9eJ3xK8yM2N',
+            title: 'Portfolio 3 3',
+            description: '',
+            placement: 'second',
+            photographer: {
+              firstName: 'Francesco',
+              lastName: 'Visintin',
             },
-            "image": "/images/contests/2019/A0wC4dG6hI9eJ3xK8yM2N.webp",
-            "imageR2Id": "uw-2019/mediterranean/A0wC4dG6hI9eJ3xK8yM2N"
+            image: '/images/contests/2019/A0wC4dG6hI9eJ3xK8yM2N.webp',
+            imageR2Id: 'uw-2019/mediterranean/A0wC4dG6hI9eJ3xK8yM2N',
           },
           {
-            "id": "B1xD5eH7iJ0fK4yL9zN3O",
-            "title": "Cromatismi Mediterranei",
-            "description": "",
-            "placement": "third",
-            "photographer": {
-              "firstName": "Alessandro",
-              "lastName": "Grasso"
+            id: 'B1xD5eH7iJ0fK4yL9zN3O',
+            title: 'Cromatismi Mediterranei',
+            description: '',
+            placement: 'third',
+            photographer: {
+              firstName: 'Alessandro',
+              lastName: 'Grasso',
             },
-            "image": "/images/contests/2019/B1xD5eH7iJ0fK4yL9zN3O.webp",
-            "imageR2Id": "uw-2019/mediterranean/B1xD5eH7iJ0fK4yL9zN3O"
+            image: '/images/contests/2019/B1xD5eH7iJ0fK4yL9zN3O.webp',
+            imageR2Id: 'uw-2019/mediterranean/B1xD5eH7iJ0fK4yL9zN3O',
           },
           {
-            "id": "C2yE6fI8jK1gL5zM0aN4P",
-            "title": "Cromatismi Mediterranei",
-            "description": "",
-            "placement": "third",
-            "photographer": {
-              "firstName": "Alessandro",
-              "lastName": "Grasso"
+            id: 'C2yE6fI8jK1gL5zM0aN4P',
+            title: 'Cromatismi Mediterranei',
+            description: '',
+            placement: 'third',
+            photographer: {
+              firstName: 'Alessandro',
+              lastName: 'Grasso',
             },
-            "image": "/images/contests/2019/C2yE6fI8jK1gL5zM0aN4P.webp",
-            "imageR2Id": "uw-2019/mediterranean/C2yE6fI8jK1gL5zM0aN4P"
+            image: '/images/contests/2019/C2yE6fI8jK1gL5zM0aN4P.webp',
+            imageR2Id: 'uw-2019/mediterranean/C2yE6fI8jK1gL5zM0aN4P',
           },
           {
-            "id": "D3zF7gJ9kL2hM6aN1bO5Q",
-            "title": "Cromatismi Mediterranei",
-            "description": "",
-            "placement": "third",
-            "photographer": {
-              "firstName": "Alessandro",
-              "lastName": "Grasso"
+            id: 'D3zF7gJ9kL2hM6aN1bO5Q',
+            title: 'Cromatismi Mediterranei',
+            description: '',
+            placement: 'third',
+            photographer: {
+              firstName: 'Alessandro',
+              lastName: 'Grasso',
             },
-            "image": "/images/contests/2019/D3zF7gJ9kL2hM6aN1bO5Q.webp",
-            "imageR2Id": "uw-2019/mediterranean/D3zF7gJ9kL2hM6aN1bO5Q"
+            image: '/images/contests/2019/D3zF7gJ9kL2hM6aN1bO5Q.webp',
+            imageR2Id: 'uw-2019/mediterranean/D3zF7gJ9kL2hM6aN1bO5Q',
           },
           {
-            "id": "E4aG8hK0lM3iN7bO2cP6R",
-            "title": "The Hunter",
-            "description": "",
-            "placement": "runner-up",
-            "photographer": {
-              "firstName": "Pasquale",
-              "lastName": "Vassallo"
+            id: 'E4aG8hK0lM3iN7bO2cP6R',
+            title: 'The Hunter',
+            description: '',
+            placement: 'runner-up',
+            photographer: {
+              firstName: 'Pasquale',
+              lastName: 'Vassallo',
             },
-            "image": "/images/contests/2019/E4aG8hK0lM3iN7bO2cP6R.webp",
-            "imageR2Id": "uw-2019/mediterranean/E4aG8hK0lM3iN7bO2cP6R"
+            image: '/images/contests/2019/E4aG8hK0lM3iN7bO2cP6R.webp',
+            imageR2Id: 'uw-2019/mediterranean/E4aG8hK0lM3iN7bO2cP6R',
           },
           {
-            "id": "G6cI0jM2nO5kP9dQ4eR8T",
-            "title": "The Hunter",
-            "description": "",
-            "placement": "runner-up",
-            "photographer": {
-              "firstName": "Pasquale",
-              "lastName": "Vassallo"
+            id: 'G6cI0jM2nO5kP9dQ4eR8T',
+            title: 'The Hunter',
+            description: '',
+            placement: 'runner-up',
+            photographer: {
+              firstName: 'Pasquale',
+              lastName: 'Vassallo',
             },
-            "image": "/images/contests/2019/G6cI0jM2nO5kP9dQ4eR8T.webp",
-            "imageR2Id": "uw-2019/mediterranean/G6cI0jM2nO5kP9dQ4eR8T"
+            image: '/images/contests/2019/G6cI0jM2nO5kP9dQ4eR8T.webp',
+            imageR2Id: 'uw-2019/mediterranean/G6cI0jM2nO5kP9dQ4eR8T',
           },
           {
-            "id": "H7dJ1kN3oP6lQ0eR5fS9U",
-            "title": "Hippocampus Hippocampus",
-            "description": "",
-            "placement": "runner-up",
-            "photographer": {
-              "firstName": "Nicholas",
-              "lastName": "Samaras"
+            id: 'H7dJ1kN3oP6lQ0eR5fS9U',
+            title: 'Hippocampus Hippocampus',
+            description: '',
+            placement: 'runner-up',
+            photographer: {
+              firstName: 'Nicholas',
+              lastName: 'Samaras',
             },
-            "image": "/images/contests/2019/H7dJ1kN3oP6lQ0eR5fS9U.webp",
-            "imageR2Id": "uw-2019/mediterranean/H7dJ1kN3oP6lQ0eR5fS9U"
-          }
-        ]
+            image: '/images/contests/2019/H7dJ1kN3oP6lQ0eR5fS9U.webp',
+            imageR2Id: 'uw-2019/mediterranean/H7dJ1kN3oP6lQ0eR5fS9U',
+          },
+        ],
       },
       {
-        "id": "storyboard",
-        "name": "Storyboard",
-        "winnerImage": "/images/contests/2019/ay7adZWHfCETUSNhI8b78.webp",
-        "winnerImageR2Id": "uw-2019/storyboard/ay7adZWHfCETUSNhI8b78",
-        "entries": [
+        id: 'storyboard',
+        name: 'Storyboard',
+        winnerImage: '/images/contests/2019/ay7adZWHfCETUSNhI8b78.webp',
+        winnerImageR2Id: 'uw-2019/storyboard/ay7adZWHfCETUSNhI8b78',
+        entries: [
           {
-            "id": "ay7adZWHfCETUSNhI8b78",
-            "title": "Assalto Alla Acciughe",
-            "description": "",
-            "placement": "first",
-            "photographer": {
-              "firstName": "Alessandro",
-              "lastName": "Grasso"
+            id: 'ay7adZWHfCETUSNhI8b78',
+            title: 'Assalto Alla Acciughe',
+            description: '',
+            placement: 'first',
+            photographer: {
+              firstName: 'Alessandro',
+              lastName: 'Grasso',
             },
-            "image": "/images/contests/2019/ay7adZWHfCETUSNhI8b78.webp",
-            "imageR2Id": "uw-2019/storyboard/ay7adZWHfCETUSNhI8b78"
+            image: '/images/contests/2019/ay7adZWHfCETUSNhI8b78.webp',
+            imageR2Id: 'uw-2019/storyboard/ay7adZWHfCETUSNhI8b78',
           },
           {
-            "id": "WkyXOBiiYiqZNWSbQlFUu",
-            "title": "1 Iceberg",
-            "description": "",
-            "placement": "second",
-            "photographer": {
-              "firstName": "Hoarau",
-              "lastName": "Galice"
+            id: 'WkyXOBiiYiqZNWSbQlFUu',
+            title: '1 Iceberg',
+            description: '',
+            placement: 'second',
+            photographer: {
+              firstName: 'Hoarau',
+              lastName: 'Galice',
             },
-            "image": "/images/contests/2019/WkyXOBiiYiqZNWSbQlFUu.webp",
-            "imageR2Id": "uw-2019/storyboard/WkyXOBiiYiqZNWSbQlFUu"
+            image: '/images/contests/2019/WkyXOBiiYiqZNWSbQlFUu.webp',
+            imageR2Id: 'uw-2019/storyboard/WkyXOBiiYiqZNWSbQlFUu',
           },
           {
-            "id": "DJUOgux7nB_wk_WrWt_jt",
-            "title": "2 Ice & Kelly",
-            "description": "",
-            "placement": "second",
-            "photographer": {
-              "firstName": "Hoarau",
-              "lastName": "Galice"
+            id: 'DJUOgux7nB_wk_WrWt_jt',
+            title: '2 Ice & Kelly',
+            description: '',
+            placement: 'second',
+            photographer: {
+              firstName: 'Hoarau',
+              lastName: 'Galice',
             },
-            "image": "/images/contests/2019/DJUOgux7nB_wk_WrWt_jt.webp",
-            "imageR2Id": "uw-2019/storyboard/DJUOgux7nB_wk_WrWt_jt"
+            image: '/images/contests/2019/DJUOgux7nB_wk_WrWt_jt.webp',
+            imageR2Id: 'uw-2019/storyboard/DJUOgux7nB_wk_WrWt_jt',
           },
           {
-            "id": "8VpeiNQkbkKGCsyCiQ3Dr",
-            "title": "3 Idiver in the Iceberg",
-            "description": "",
-            "placement": "second",
-            "photographer": {
-              "firstName": "Hoarau",
-              "lastName": "Galice"
+            id: '8VpeiNQkbkKGCsyCiQ3Dr',
+            title: '3 Idiver in the Iceberg',
+            description: '',
+            placement: 'second',
+            photographer: {
+              firstName: 'Hoarau',
+              lastName: 'Galice',
             },
-            "image": "/images/contests/2019/8VpeiNQkbkKGCsyCiQ3Dr.webp",
-            "imageR2Id": "uw-2019/storyboard/8VpeiNQkbkKGCsyCiQ3Dr"
+            image: '/images/contests/2019/8VpeiNQkbkKGCsyCiQ3Dr.webp',
+            imageR2Id: 'uw-2019/storyboard/8VpeiNQkbkKGCsyCiQ3Dr',
           },
           {
-            "id": "Zch6ynbwBo7-jdzR1F5BL",
-            "title": "4 Living in the Ice",
-            "description": "",
-            "placement": "second",
-            "photographer": {
-              "firstName": "Hoarau",
-              "lastName": "Galice"
+            id: 'Zch6ynbwBo7-jdzR1F5BL',
+            title: '4 Living in the Ice',
+            description: '',
+            placement: 'second',
+            photographer: {
+              firstName: 'Hoarau',
+              lastName: 'Galice',
             },
-            "image": "/images/contests/2019/Zch6ynbwBo7-jdzR1F5BL.webp",
-            "imageR2Id": "uw-2019/storyboard/Zch6ynbwBo7-jdzR1F5BL"
+            image: '/images/contests/2019/Zch6ynbwBo7-jdzR1F5BL.webp',
+            imageR2Id: 'uw-2019/storyboard/Zch6ynbwBo7-jdzR1F5BL',
           },
           {
-            "id": "MEl79lKsykGxbUKjTO-Ug",
-            "title": "4 Iceberg",
-            "description": "",
-            "placement": "second",
-            "photographer": {
-              "firstName": "Hoarau",
-              "lastName": "Galice"
+            id: 'MEl79lKsykGxbUKjTO-Ug',
+            title: '4 Iceberg',
+            description: '',
+            placement: 'second',
+            photographer: {
+              firstName: 'Hoarau',
+              lastName: 'Galice',
             },
-            "image": "/images/contests/2019/MEl79lKsykGxbUKjTO-Ug.webp",
-            "imageR2Id": "uw-2019/storyboard/MEl79lKsykGxbUKjTO-Ug"
+            image: '/images/contests/2019/MEl79lKsykGxbUKjTO-Ug.webp',
+            imageR2Id: 'uw-2019/storyboard/MEl79lKsykGxbUKjTO-Ug',
           },
           {
-            "id": "OSQEi-1CMxcM-IzDObaIt",
-            "title": "1 Danni Collaterali",
-            "description": "",
-            "placement": "third",
-            "photographer": {
-              "firstName": "Marcello",
-              "lastName": "Di Francesco"
+            id: 'OSQEi-1CMxcM-IzDObaIt',
+            title: '1 Danni Collaterali',
+            description: '',
+            placement: 'third',
+            photographer: {
+              firstName: 'Marcello',
+              lastName: 'Di Francesco',
             },
-            "image": "/images/contests/2019/OSQEi-1CMxcM-IzDObaIt.webp",
-            "imageR2Id": "uw-2019/storyboard/OSQEi-1CMxcM-IzDObaIt"
+            image: '/images/contests/2019/OSQEi-1CMxcM-IzDObaIt.webp',
+            imageR2Id: 'uw-2019/storyboard/OSQEi-1CMxcM-IzDObaIt',
           },
           {
-            "id": "PfzURhzOUG2CiN32-x5Em",
-            "title": "2 Danni Collaterali",
-            "description": "",
-            "placement": "third",
-            "photographer": {
-              "firstName": "Marcello",
-              "lastName": "Di Francesco"
+            id: 'PfzURhzOUG2CiN32-x5Em',
+            title: '2 Danni Collaterali',
+            description: '',
+            placement: 'third',
+            photographer: {
+              firstName: 'Marcello',
+              lastName: 'Di Francesco',
             },
-            "image": "/images/contests/2019/PfzURhzOUG2CiN32-x5Em.webp",
-            "imageR2Id": "uw-2019/storyboard/PfzURhzOUG2CiN32-x5Em"
+            image: '/images/contests/2019/PfzURhzOUG2CiN32-x5Em.webp',
+            imageR2Id: 'uw-2019/storyboard/PfzURhzOUG2CiN32-x5Em',
           },
           {
-            "id": "cTdbgJryjHwT4XumyMPuB",
-            "title": "3 Danni Collaterali",
-            "description": "",
-            "placement": "third",
-            "photographer": {
-              "firstName": "Marcello",
-              "lastName": "Di Francesco"
+            id: 'cTdbgJryjHwT4XumyMPuB',
+            title: '3 Danni Collaterali',
+            description: '',
+            placement: 'third',
+            photographer: {
+              firstName: 'Marcello',
+              lastName: 'Di Francesco',
             },
-            "image": "/images/contests/2019/cTdbgJryjHwT4XumyMPuB.webp",
-            "imageR2Id": "uw-2019/storyboard/cTdbgJryjHwT4XumyMPuB"
+            image: '/images/contests/2019/cTdbgJryjHwT4XumyMPuB.webp',
+            imageR2Id: 'uw-2019/storyboard/cTdbgJryjHwT4XumyMPuB',
           },
           {
-            "id": "uZW3-SrqxGzfgddYFTe2u",
-            "title": "4 Danni Collaterali",
-            "description": "",
-            "placement": "third",
-            "photographer": {
-              "firstName": "Marcello",
-              "lastName": "Di Francesco"
+            id: 'uZW3-SrqxGzfgddYFTe2u',
+            title: '4 Danni Collaterali',
+            description: '',
+            placement: 'third',
+            photographer: {
+              firstName: 'Marcello',
+              lastName: 'Di Francesco',
             },
-            "image": "/images/contests/2019/uZW3-SrqxGzfgddYFTe2u.webp",
-            "imageR2Id": "uw-2019/storyboard/uZW3-SrqxGzfgddYFTe2u"
+            image: '/images/contests/2019/uZW3-SrqxGzfgddYFTe2u.webp',
+            imageR2Id: 'uw-2019/storyboard/uZW3-SrqxGzfgddYFTe2u',
           },
           {
-            "id": "DkjPjg_ZBavDqmLk0c7No",
-            "title": "5 Danni Collaterali",
-            "description": "",
-            "placement": "third",
-            "photographer": {
-              "firstName": "Marcello",
-              "lastName": "Di Francesco"
+            id: 'DkjPjg_ZBavDqmLk0c7No',
+            title: '5 Danni Collaterali',
+            description: '',
+            placement: 'third',
+            photographer: {
+              firstName: 'Marcello',
+              lastName: 'Di Francesco',
             },
-            "image": "/images/contests/2019/DkjPjg_ZBavDqmLk0c7No.webp",
-            "imageR2Id": "uw-2019/storyboard/DkjPjg_ZBavDqmLk0c7No"
+            image: '/images/contests/2019/DkjPjg_ZBavDqmLk0c7No.webp',
+            imageR2Id: 'uw-2019/storyboard/DkjPjg_ZBavDqmLk0c7No',
           },
           {
-            "id": "wacdYP7sYUW9NJUxUnIo7",
-            "title": "Gorgonian Life 1",
-            "description": "",
-            "placement": "runner-up",
-            "photographer": {
-              "firstName": "Francesco",
-              "lastName": "Visintin"
+            id: 'wacdYP7sYUW9NJUxUnIo7',
+            title: 'Gorgonian Life 1',
+            description: '',
+            placement: 'runner-up',
+            photographer: {
+              firstName: 'Francesco',
+              lastName: 'Visintin',
             },
-            "image": "/images/contests/2019/wacdYP7sYUW9NJUxUnIo7.webp",
-            "imageR2Id": "uw-2019/storyboard/wacdYP7sYUW9NJUxUnIo7"
+            image: '/images/contests/2019/wacdYP7sYUW9NJUxUnIo7.webp',
+            imageR2Id: 'uw-2019/storyboard/wacdYP7sYUW9NJUxUnIo7',
           },
           {
-            "id": "n14Q6neTGyPxkuD16R3xE",
-            "title": "Gorgonian Life 2",
-            "description": "",
-            "placement": "runner-up",
-            "photographer": {
-              "firstName": "Francesco",
-              "lastName": "Visintin"
+            id: 'n14Q6neTGyPxkuD16R3xE',
+            title: 'Gorgonian Life 2',
+            description: '',
+            placement: 'runner-up',
+            photographer: {
+              firstName: 'Francesco',
+              lastName: 'Visintin',
             },
-            "image": "/images/contests/2019/n14Q6neTGyPxkuD16R3xE.webp",
-            "imageR2Id": "uw-2019/storyboard/n14Q6neTGyPxkuD16R3xE"
+            image: '/images/contests/2019/n14Q6neTGyPxkuD16R3xE.webp',
+            imageR2Id: 'uw-2019/storyboard/n14Q6neTGyPxkuD16R3xE',
           },
           {
-            "id": "XDKn7Ng9o7IEXGTphrfiX",
-            "title": "Gorgonian Life 3",
-            "description": "",
-            "placement": "runner-up",
-            "photographer": {
-              "firstName": "Francesco",
-              "lastName": "Visintin"
+            id: 'XDKn7Ng9o7IEXGTphrfiX',
+            title: 'Gorgonian Life 3',
+            description: '',
+            placement: 'runner-up',
+            photographer: {
+              firstName: 'Francesco',
+              lastName: 'Visintin',
             },
-            "image": "/images/contests/2019/XDKn7Ng9o7IEXGTphrfiX.webp",
-            "imageR2Id": "uw-2019/storyboard/XDKn7Ng9o7IEXGTphrfiX"
+            image: '/images/contests/2019/XDKn7Ng9o7IEXGTphrfiX.webp',
+            imageR2Id: 'uw-2019/storyboard/XDKn7Ng9o7IEXGTphrfiX',
           },
           {
-            "id": "aRQNOd_HuPlNgcKUIaUWw",
-            "title": "Gorgonian Life 4",
-            "description": "",
-            "placement": "runner-up",
-            "photographer": {
-              "firstName": "Francesco",
-              "lastName": "Visintin"
+            id: 'aRQNOd_HuPlNgcKUIaUWw',
+            title: 'Gorgonian Life 4',
+            description: '',
+            placement: 'runner-up',
+            photographer: {
+              firstName: 'Francesco',
+              lastName: 'Visintin',
             },
-            "image": "/images/contests/2019/aRQNOd_HuPlNgcKUIaUWw.webp",
-            "imageR2Id": "uw-2019/storyboard/aRQNOd_HuPlNgcKUIaUWw"
+            image: '/images/contests/2019/aRQNOd_HuPlNgcKUIaUWw.webp',
+            imageR2Id: 'uw-2019/storyboard/aRQNOd_HuPlNgcKUIaUWw',
           },
           {
-            "id": "lEiedJFqXaghxLKeUK_5X",
-            "title": "Gorgonian Life 5",
-            "description": "",
-            "placement": "runner-up",
-            "photographer": {
-              "firstName": "Francesco",
-              "lastName": "Visintin"
+            id: 'lEiedJFqXaghxLKeUK_5X',
+            title: 'Gorgonian Life 5',
+            description: '',
+            placement: 'runner-up',
+            photographer: {
+              firstName: 'Francesco',
+              lastName: 'Visintin',
             },
-            "image": "/images/contests/2019/lEiedJFqXaghxLKeUK_5X.webp",
-            "imageR2Id": "uw-2019/storyboard/lEiedJFqXaghxLKeUK_5X"
+            image: '/images/contests/2019/lEiedJFqXaghxLKeUK_5X.webp',
+            imageR2Id: 'uw-2019/storyboard/lEiedJFqXaghxLKeUK_5X',
           },
           {
-            "id": "0_F72aLv7Jm_Zv3YAAaS3",
-            "title": "L'armata degli Hermodice",
-            "description": "",
-            "placement": "runner-up",
-            "photographer": {
-              "firstName": "Giovanni",
-              "lastName": "Pitone"
+            id: '0_F72aLv7Jm_Zv3YAAaS3',
+            title: "L'armata degli Hermodice",
+            description: '',
+            placement: 'runner-up',
+            photographer: {
+              firstName: 'Giovanni',
+              lastName: 'Pitone',
             },
-            "image": "/images/contests/2019/0_F72aLv7Jm_Zv3YAAaS3.webp",
-            "imageR2Id": "uw-2019/storyboard/0_F72aLv7Jm_Zv3YAAaS3"
-          }
-        ]
+            image: '/images/contests/2019/0_F72aLv7Jm_Zv3YAAaS3.webp',
+            imageR2Id: 'uw-2019/storyboard/0_F72aLv7Jm_Zv3YAAaS3',
+          },
+        ],
       },
       {
-        "id": "wide-angle",
-        "name": "Wide Angle",
-        "winnerImage": "/images/contests/2019/3H-BlySO0TMarMRhuPCda.webp",
-        "winnerImageR2Id": "uw-2019/wide-angle/3H-BlySO0TMarMRhuPCda",
-        "entries": [
+        id: 'wide-angle',
+        name: 'Wide Angle',
+        winnerImage: '/images/contests/2019/3H-BlySO0TMarMRhuPCda.webp',
+        winnerImageR2Id: 'uw-2019/wide-angle/3H-BlySO0TMarMRhuPCda',
+        entries: [
           {
-            "id": "3H-BlySO0TMarMRhuPCda",
-            "title": "Sharks",
-            "description": "",
-            "placement": "first",
-            "photographer": {
-              "firstName": "Hoarau",
-              "lastName": "Galice"
+            id: '3H-BlySO0TMarMRhuPCda',
+            title: 'Sharks',
+            description: '',
+            placement: 'first',
+            photographer: {
+              firstName: 'Hoarau',
+              lastName: 'Galice',
             },
-            "image": "/images/contests/2019/3H-BlySO0TMarMRhuPCda.webp",
-            "imageR2Id": "uw-2019/wide-angle/3H-BlySO0TMarMRhuPCda"
+            image: '/images/contests/2019/3H-BlySO0TMarMRhuPCda.webp',
+            imageR2Id: 'uw-2019/wide-angle/3H-BlySO0TMarMRhuPCda',
           },
           {
-            "id": "oJgaX65FmJo39kMLm6dDq",
-            "title": "Turtle",
-            "description": "",
-            "placement": "second",
-            "photographer": {
-              "firstName": "Luc",
-              "lastName": "Rooman"
+            id: 'oJgaX65FmJo39kMLm6dDq',
+            title: 'Turtle',
+            description: '',
+            placement: 'second',
+            photographer: {
+              firstName: 'Luc',
+              lastName: 'Rooman',
             },
-            "image": "/images/contests/2019/oJgaX65FmJo39kMLm6dDq.webp",
-            "imageR2Id": "uw-2019/wide-angle/oJgaX65FmJo39kMLm6dDq"
+            image: '/images/contests/2019/oJgaX65FmJo39kMLm6dDq.webp',
+            imageR2Id: 'uw-2019/wide-angle/oJgaX65FmJo39kMLm6dDq',
           },
           {
-            "id": "HQrP1Kgpybm1OZuhTVmJf",
-            "title": "Carousel",
-            "description": "",
-            "placement": "third",
-            "photographer": {
-              "firstName": "Francesco",
-              "lastName": "Visintin"
+            id: 'HQrP1Kgpybm1OZuhTVmJf',
+            title: 'Carousel',
+            description: '',
+            placement: 'third',
+            photographer: {
+              firstName: 'Francesco',
+              lastName: 'Visintin',
             },
-            "image": "/images/contests/2019/HQrP1Kgpybm1OZuhTVmJf.webp",
-            "imageR2Id": "uw-2019/wide-angle/HQrP1Kgpybm1OZuhTVmJf"
+            image: '/images/contests/2019/HQrP1Kgpybm1OZuhTVmJf.webp',
+            imageR2Id: 'uw-2019/wide-angle/HQrP1Kgpybm1OZuhTVmJf',
           },
           {
-            "id": "4zsBxE5hpxDq8l39Axhwr",
-            "title": "Danza Della Natura",
-            "description": "",
-            "placement": "runner-up",
-            "photographer": {
-              "firstName": "Raffaele",
-              "lastName": "Livornese"
+            id: '4zsBxE5hpxDq8l39Axhwr',
+            title: 'Danza Della Natura',
+            description: '',
+            placement: 'runner-up',
+            photographer: {
+              firstName: 'Raffaele',
+              lastName: 'Livornese',
             },
-            "image": "/images/contests/2019/4zsBxE5hpxDq8l39Axhwr.webp",
-            "imageR2Id": "uw-2019/wide-angle/4zsBxE5hpxDq8l39Axhwr"
+            image: '/images/contests/2019/4zsBxE5hpxDq8l39Axhwr.webp',
+            imageR2Id: 'uw-2019/wide-angle/4zsBxE5hpxDq8l39Axhwr',
           },
           {
-            "id": "HZMyS5zQIdJRhHRZJQoY0",
-            "title": "Gray Seal",
-            "description": "",
-            "placement": "runner-up",
-            "photographer": {
-              "firstName": "Stefano",
-              "lastName": "Cerbai"
+            id: 'HZMyS5zQIdJRhHRZJQoY0',
+            title: 'Gray Seal',
+            description: '',
+            placement: 'runner-up',
+            photographer: {
+              firstName: 'Stefano',
+              lastName: 'Cerbai',
             },
-            "image": "/images/contests/2019/HZMyS5zQIdJRhHRZJQoY0.webp",
-            "imageR2Id": "uw-2019/wide-angle/HZMyS5zQIdJRhHRZJQoY0"
+            image: '/images/contests/2019/HZMyS5zQIdJRhHRZJQoY0.webp',
+            imageR2Id: 'uw-2019/wide-angle/HZMyS5zQIdJRhHRZJQoY0',
           },
           {
-            "id": "xgEwnMalPRWU5KedSyJ7W",
-            "title": "Grey Nurse Cruising along",
-            "description": "",
-            "placement": "runner-up",
-            "photographer": {
-              "firstName": "Lena",
-              "lastName": "Remy"
+            id: 'xgEwnMalPRWU5KedSyJ7W',
+            title: 'Grey Nurse Cruising along',
+            description: '',
+            placement: 'runner-up',
+            photographer: {
+              firstName: 'Lena',
+              lastName: 'Remy',
             },
-            "image": "/images/contests/2019/xgEwnMalPRWU5KedSyJ7W.webp",
-            "imageR2Id": "uw-2019/wide-angle/xgEwnMalPRWU5KedSyJ7W"
+            image: '/images/contests/2019/xgEwnMalPRWU5KedSyJ7W.webp',
+            imageR2Id: 'uw-2019/wide-angle/xgEwnMalPRWU5KedSyJ7W',
           },
           {
-            "id": "VJDHLAK6pJHXOkp3R-32Q",
-            "title": "Mating Toads in the Sun",
-            "description": "",
-            "placement": "runner-up",
-            "photographer": {
-              "firstName": "Gino",
-              "lastName": "Symus"
+            id: 'VJDHLAK6pJHXOkp3R-32Q',
+            title: 'Mating Toads in the Sun',
+            description: '',
+            placement: 'runner-up',
+            photographer: {
+              firstName: 'Gino',
+              lastName: 'Symus',
             },
-            "image": "/images/contests/2019/VJDHLAK6pJHXOkp3R-32Q.webp",
-            "imageR2Id": "uw-2019/wide-angle/VJDHLAK6pJHXOkp3R-32Q"
+            image: '/images/contests/2019/VJDHLAK6pJHXOkp3R-32Q.webp',
+            imageR2Id: 'uw-2019/wide-angle/VJDHLAK6pJHXOkp3R-32Q',
           },
           {
-            "id": "JyIHjiGZVHV2bvw5-Deok",
-            "title": "Pike between Waterlines",
-            "description": "",
-            "placement": "runner-up",
-            "photographer": {
-              "firstName": "Gino",
-              "lastName": "Symus"
+            id: 'JyIHjiGZVHV2bvw5-Deok',
+            title: 'Pike between Waterlines',
+            description: '',
+            placement: 'runner-up',
+            photographer: {
+              firstName: 'Gino',
+              lastName: 'Symus',
             },
-            "image": "/images/contests/2019/JyIHjiGZVHV2bvw5-Deok.webp",
-            "imageR2Id": "uw-2019/wide-angle/JyIHjiGZVHV2bvw5-Deok"
+            image: '/images/contests/2019/JyIHjiGZVHV2bvw5-Deok.webp',
+            imageR2Id: 'uw-2019/wide-angle/JyIHjiGZVHV2bvw5-Deok',
           },
           {
-            "id": "1ocmMiY9WmMAAnORYbgsD",
-            "title": "Shark",
-            "description": "",
-            "placement": "runner-up",
-            "photographer": {
-              "firstName": "Alessandro",
-              "lastName": "Pagano"
+            id: '1ocmMiY9WmMAAnORYbgsD',
+            title: 'Shark',
+            description: '',
+            placement: 'runner-up',
+            photographer: {
+              firstName: 'Alessandro',
+              lastName: 'Pagano',
             },
-            "image": "/images/contests/2019/1ocmMiY9WmMAAnORYbgsD.webp",
-            "imageR2Id": "uw-2019/wide-angle/1ocmMiY9WmMAAnORYbgsD"
+            image: '/images/contests/2019/1ocmMiY9WmMAAnORYbgsD.webp',
+            imageR2Id: 'uw-2019/wide-angle/1ocmMiY9WmMAAnORYbgsD',
           },
           {
-            "id": "VIijqw9C_NHG3_SpNL3wc",
-            "title": "Delfini",
-            "description": "",
-            "placement": "runner-up",
-            "photographer": {
-              "firstName": "Alessandro",
-              "lastName": "Grasso"
+            id: 'VIijqw9C_NHG3_SpNL3wc',
+            title: 'Delfini',
+            description: '',
+            placement: 'runner-up',
+            photographer: {
+              firstName: 'Alessandro',
+              lastName: 'Grasso',
             },
-            "image": "/images/contests/2019/VIijqw9C_NHG3_SpNL3wc.webp",
-            "imageR2Id": "uw-2019/wide-angle/VIijqw9C_NHG3_SpNL3wc"
-          }
-        ]
-      }
-    ]
+            image: '/images/contests/2019/VIijqw9C_NHG3_SpNL3wc.webp',
+            imageR2Id: 'uw-2019/wide-angle/VIijqw9C_NHG3_SpNL3wc',
+          },
+        ],
+      },
+    ],
   },
   {
-    "id": "uw-2018",
-    "year": 2018,
-    "name": "UW Contest 2018",
-    "description": "Annual underwater photography competition celebrating the beauty and diversity of marine life",
-    "indexImage": "/images/contests/2018/0F14dvZm-WjjbMgD822EC.webp",
-    "indexImageR2Id": "uw-2018/compact/0F14dvZm-WjjbMgD822EC",
-    "currentContest": false,
-    "judges": [
+    id: 'uw-2018',
+    year: 2018,
+    name: 'UW Contest 2018',
+    description:
+      'Annual underwater photography competition celebrating the beauty and diversity of marine life',
+    indexImage: '/images/contests/2018/0F14dvZm-WjjbMgD822EC.webp',
+    indexImageR2Id: 'uw-2018/compact/0F14dvZm-WjjbMgD822EC',
+    currentContest: false,
+    judges: [
       {
-        "id": "_s9DzpDk9PYG2Ly3rnTNQ",
-        "fullName": "Domenico Roscigno",
-        "r2ImageId": null
+        id: '_s9DzpDk9PYG2Ly3rnTNQ',
+        fullName: 'Domenico Roscigno',
+        r2ImageId: null,
       },
       {
-        "id": "BaJz0TKQerI9gcxhzeJLb",
-        "fullName": "Davide Vezzaro",
-        "r2ImageId": null
+        id: 'BaJz0TKQerI9gcxhzeJLb',
+        fullName: 'Davide Vezzaro',
+        r2ImageId: null,
       },
       {
-        "id": "K8egrXEW1LyuSYsYWga0o",
-        "fullName": "Massimo Zannini",
-        "r2ImageId": null
-      }
+        id: 'K8egrXEW1LyuSYsYWga0o',
+        fullName: 'Massimo Zannini',
+        r2ImageId: null,
+      },
     ],
-    "categories": [
+    categories: [
       {
-        "id": "compact",
-        "name": "Compact",
-        "winnerImage": "/images/contests/2018/0F14dvZm-WjjbMgD822EC.webp",
-        "winnerImageR2Id": "uw-2018/compact/0F14dvZm-WjjbMgD822EC",
-        "entries": [
+        id: 'compact',
+        name: 'Compact',
+        winnerImage: '/images/contests/2018/0F14dvZm-WjjbMgD822EC.webp',
+        winnerImageR2Id: 'uw-2018/compact/0F14dvZm-WjjbMgD822EC',
+        entries: [
           {
-            "id": "0F14dvZm-WjjbMgD822EC",
-            "title": "Corteggiamento",
-            "description": "",
-            "placement": "first",
-            "photographer": {
-              "firstName": "Alessio",
-              "lastName": "Tinti"
+            id: '0F14dvZm-WjjbMgD822EC',
+            title: 'Corteggiamento',
+            description: '',
+            placement: 'first',
+            photographer: {
+              firstName: 'Alessio',
+              lastName: 'Tinti',
             },
-            "image": "/images/contests/2018/0F14dvZm-WjjbMgD822EC.webp",
-            "imageR2Id": "uw-2018/compact/0F14dvZm-WjjbMgD822EC"
+            image: '/images/contests/2018/0F14dvZm-WjjbMgD822EC.webp',
+            imageR2Id: 'uw-2018/compact/0F14dvZm-WjjbMgD822EC',
           },
           {
-            "id": "R-KUk22-R8KFJJgd-Lz7d",
-            "title": "L'ultimo bicchiere",
-            "description": "",
-            "placement": "second",
-            "photographer": {
-              "firstName": "Stefano",
-              "lastName": "Cerbai"
+            id: 'R-KUk22-R8KFJJgd-Lz7d',
+            title: "L'ultimo bicchiere",
+            description: '',
+            placement: 'second',
+            photographer: {
+              firstName: 'Stefano',
+              lastName: 'Cerbai',
             },
-            "image": "/images/contests/2018/R-KUk22-R8KFJJgd-Lz7d.webp",
-            "imageR2Id": "uw-2018/compact/R-KUk22-R8KFJJgd-Lz7d"
+            image: '/images/contests/2018/R-KUk22-R8KFJJgd-Lz7d.webp',
+            imageR2Id: 'uw-2018/compact/R-KUk22-R8KFJJgd-Lz7d',
           },
           {
-            "id": "4ZWtBkr9nJnO9EKOHLY3-",
-            "title": "Platax in Formazione",
-            "description": "",
-            "placement": "third",
-            "photographer": {
-              "firstName": "Davide",
-              "lastName": "Clementelli"
+            id: '4ZWtBkr9nJnO9EKOHLY3-',
+            title: 'Platax in Formazione',
+            description: '',
+            placement: 'third',
+            photographer: {
+              firstName: 'Davide',
+              lastName: 'Clementelli',
             },
-            "image": "/images/contests/2018/4ZWtBkr9nJnO9EKOHLY3-.webp",
-            "imageR2Id": "uw-2018/compact/4ZWtBkr9nJnO9EKOHLY3-"
+            image: '/images/contests/2018/4ZWtBkr9nJnO9EKOHLY3-.webp',
+            imageR2Id: 'uw-2018/compact/4ZWtBkr9nJnO9EKOHLY3-',
           },
           {
-            "id": "uL5B-pECq4aYJeGnNxZXL",
-            "title": "Squid Mother and Her Egg",
-            "description": "",
-            "placement": "runner-up",
-            "photographer": {
-              "firstName": "Chuang",
-              "lastName": "Melody"
+            id: 'uL5B-pECq4aYJeGnNxZXL',
+            title: 'Squid Mother and Her Egg',
+            description: '',
+            placement: 'runner-up',
+            photographer: {
+              firstName: 'Chuang',
+              lastName: 'Melody',
             },
-            "image": "/images/contests/2018/uL5B-pECq4aYJeGnNxZXL.webp",
-            "imageR2Id": "uw-2018/compact/uL5B-pECq4aYJeGnNxZXL"
+            image: '/images/contests/2018/uL5B-pECq4aYJeGnNxZXL.webp',
+            imageR2Id: 'uw-2018/compact/uL5B-pECq4aYJeGnNxZXL',
           },
           {
-            "id": "gv6g_Sc_iubByA64Kk4_X",
-            "title": "Octopus Protect Her Eggs",
-            "description": "",
-            "placement": "runner-up",
-            "photographer": {
-              "firstName": "Chen",
-              "lastName": "Stan"
+            id: 'gv6g_Sc_iubByA64Kk4_X',
+            title: 'Octopus Protect Her Eggs',
+            description: '',
+            placement: 'runner-up',
+            photographer: {
+              firstName: 'Chen',
+              lastName: 'Stan',
             },
-            "image": "/images/contests/2018/gv6g_Sc_iubByA64Kk4_X.webp",
-            "imageR2Id": "uw-2018/compact/gv6g_Sc_iubByA64Kk4_X"
+            image: '/images/contests/2018/gv6g_Sc_iubByA64Kk4_X.webp',
+            imageR2Id: 'uw-2018/compact/gv6g_Sc_iubByA64Kk4_X',
           },
           {
-            "id": "GZcFeSDuz40xkxabwpa_j",
-            "title": "Learn to Fly",
-            "description": "",
-            "placement": "runner-up",
-            "photographer": {
-              "firstName": "Gianluca",
-              "lastName": "Cucco"
+            id: 'GZcFeSDuz40xkxabwpa_j',
+            title: 'Learn to Fly',
+            description: '',
+            placement: 'runner-up',
+            photographer: {
+              firstName: 'Gianluca',
+              lastName: 'Cucco',
             },
-            "image": "/images/contests/2018/GZcFeSDuz40xkxabwpa_j.webp",
-            "imageR2Id": "uw-2018/compact/GZcFeSDuz40xkxabwpa_j"
-          }
-        ]
+            image: '/images/contests/2018/GZcFeSDuz40xkxabwpa_j.webp',
+            imageR2Id: 'uw-2018/compact/GZcFeSDuz40xkxabwpa_j',
+          },
+        ],
       },
       {
-        "id": "macro",
-        "name": "Macro",
-        "winnerImage": "/images/contests/2018/q3q5sN2OWhUtGTTemr6w5.webp",
-        "winnerImageR2Id": "uw-2018/macro/q3q5sN2OWhUtGTTemr6w5",
-        "entries": [
+        id: 'macro',
+        name: 'Macro',
+        winnerImage: '/images/contests/2018/q3q5sN2OWhUtGTTemr6w5.webp',
+        winnerImageR2Id: 'uw-2018/macro/q3q5sN2OWhUtGTTemr6w5',
+        entries: [
           {
-            "id": "q3q5sN2OWhUtGTTemr6w5",
-            "title": "Dancing",
-            "description": "",
-            "placement": "first",
-            "photographer": {
-              "firstName": "Songda",
-              "lastName": "Cai"
+            id: 'q3q5sN2OWhUtGTTemr6w5',
+            title: 'Dancing',
+            description: '',
+            placement: 'first',
+            photographer: {
+              firstName: 'Songda',
+              lastName: 'Cai',
             },
-            "image": "/images/contests/2018/q3q5sN2OWhUtGTTemr6w5.webp",
-            "imageR2Id": "uw-2018/macro/q3q5sN2OWhUtGTTemr6w5"
+            image: '/images/contests/2018/q3q5sN2OWhUtGTTemr6w5.webp',
+            imageR2Id: 'uw-2018/macro/q3q5sN2OWhUtGTTemr6w5',
           },
           {
-            "id": "r6kh5qs27jM-clUWwUsRk",
-            "title": "In Fondo La Luce",
-            "description": "",
-            "placement": "second",
-            "photographer": {
-              "firstName": "Paolo",
-              "lastName": "Bausani"
+            id: 'r6kh5qs27jM-clUWwUsRk',
+            title: 'In Fondo La Luce',
+            description: '',
+            placement: 'second',
+            photographer: {
+              firstName: 'Paolo',
+              lastName: 'Bausani',
             },
-            "image": "/images/contests/2018/r6kh5qs27jM-clUWwUsRk.webp",
-            "imageR2Id": "uw-2018/macro/r6kh5qs27jM-clUWwUsRk"
+            image: '/images/contests/2018/r6kh5qs27jM-clUWwUsRk.webp',
+            imageR2Id: 'uw-2018/macro/r6kh5qs27jM-clUWwUsRk',
           },
           {
-            "id": "gExzeqBxJceeCSrVNkrLq",
-            "title": "Giovane Lupo",
-            "description": "",
-            "placement": "third",
-            "photographer": {
-              "firstName": "Claudio",
-              "lastName": "Zori"
+            id: 'gExzeqBxJceeCSrVNkrLq',
+            title: 'Giovane Lupo',
+            description: '',
+            placement: 'third',
+            photographer: {
+              firstName: 'Claudio',
+              lastName: 'Zori',
             },
-            "image": "/images/contests/2018/gExzeqBxJceeCSrVNkrLq.webp",
-            "imageR2Id": "uw-2018/macro/gExzeqBxJceeCSrVNkrLq"
-          }
-        ]
+            image: '/images/contests/2018/gExzeqBxJceeCSrVNkrLq.webp',
+            imageR2Id: 'uw-2018/macro/gExzeqBxJceeCSrVNkrLq',
+          },
+        ],
       },
       {
-        "id": "mediterranean",
-        "name": "Mediterranean Portfolio",
-        "winnerImage": "/images/contests/2018/wlJ_1k0CgykQgt3nf2XI3.webp",
-        "winnerImageR2Id": "uw-2018/mediterranean/wlJ_1k0CgykQgt3nf2XI3",
-        "entries": [
+        id: 'mediterranean',
+        name: 'Mediterranean Portfolio',
+        winnerImage: '/images/contests/2018/wlJ_1k0CgykQgt3nf2XI3.webp',
+        winnerImageR2Id: 'uw-2018/mediterranean/wlJ_1k0CgykQgt3nf2XI3',
+        entries: [
           {
-            "id": "wlJ_1k0CgykQgt3nf2XI3",
-            "title": "In Trappola",
-            "description": "",
-            "placement": "first",
-            "photographer": {
-              "firstName": "Virginia",
-              "lastName": "Salzedo"
+            id: 'wlJ_1k0CgykQgt3nf2XI3',
+            title: 'In Trappola',
+            description: '',
+            placement: 'first',
+            photographer: {
+              firstName: 'Virginia',
+              lastName: 'Salzedo',
             },
-            "image": "/images/contests/2018/wlJ_1k0CgykQgt3nf2XI3.webp",
-            "imageR2Id": "uw-2018/mediterranean/wlJ_1k0CgykQgt3nf2XI3"
+            image: '/images/contests/2018/wlJ_1k0CgykQgt3nf2XI3.webp',
+            imageR2Id: 'uw-2018/mediterranean/wlJ_1k0CgykQgt3nf2XI3',
           },
           {
-            "id": "LlO7F1akO90VSFhkBXzS-",
-            "title": "Cucciolo Dagli Abissi",
-            "description": "",
-            "placement": "first",
-            "photographer": {
-              "firstName": "Virginia",
-              "lastName": "Salzedo"
+            id: 'LlO7F1akO90VSFhkBXzS-',
+            title: 'Cucciolo Dagli Abissi',
+            description: '',
+            placement: 'first',
+            photographer: {
+              firstName: 'Virginia',
+              lastName: 'Salzedo',
             },
-            "image": "/images/contests/2018/LlO7F1akO90VSFhkBXzS-.webp",
-            "imageR2Id": "uw-2018/mediterranean/LlO7F1akO90VSFhkBXzS-"
+            image: '/images/contests/2018/LlO7F1akO90VSFhkBXzS-.webp',
+            imageR2Id: 'uw-2018/mediterranean/LlO7F1akO90VSFhkBXzS-',
           },
           {
-            "id": "xVi7jS1z60fQcGQezQzL4",
-            "title": "Odi Et Amo",
-            "description": "",
-            "placement": "first",
-            "photographer": {
-              "firstName": "Virginia",
-              "lastName": "Salzedo"
+            id: 'xVi7jS1z60fQcGQezQzL4',
+            title: 'Odi Et Amo',
+            description: '',
+            placement: 'first',
+            photographer: {
+              firstName: 'Virginia',
+              lastName: 'Salzedo',
             },
-            "image": "/images/contests/2018/xVi7jS1z60fQcGQezQzL4.webp",
-            "imageR2Id": "uw-2018/mediterranean/xVi7jS1z60fQcGQezQzL4"
+            image: '/images/contests/2018/xVi7jS1z60fQcGQezQzL4.webp',
+            imageR2Id: 'uw-2018/mediterranean/xVi7jS1z60fQcGQezQzL4',
           },
           {
-            "id": "61B2PUdv9_yNDDeWnO_Rl",
-            "title": "Smiling in the Sunlight",
-            "description": "",
-            "placement": "second",
-            "photographer": {
-              "firstName": "Nicholas",
-              "lastName": "Samaras"
+            id: '61B2PUdv9_yNDDeWnO_Rl',
+            title: 'Smiling in the Sunlight',
+            description: '',
+            placement: 'second',
+            photographer: {
+              firstName: 'Nicholas',
+              lastName: 'Samaras',
             },
-            "image": "/images/contests/2018/61B2PUdv9_yNDDeWnO_Rl.webp",
-            "imageR2Id": "uw-2018/mediterranean/61B2PUdv9_yNDDeWnO_Rl"
+            image: '/images/contests/2018/61B2PUdv9_yNDDeWnO_Rl.webp',
+            imageR2Id: 'uw-2018/mediterranean/61B2PUdv9_yNDDeWnO_Rl',
           },
           {
-            "id": "yWckJo7ThrlUZfhEZTnJ8",
-            "title": "Graceful in the Dark",
-            "description": "",
-            "placement": "second",
-            "photographer": {
-              "firstName": "Nicholas",
-              "lastName": "Samaras"
+            id: 'yWckJo7ThrlUZfhEZTnJ8',
+            title: 'Graceful in the Dark',
+            description: '',
+            placement: 'second',
+            photographer: {
+              firstName: 'Nicholas',
+              lastName: 'Samaras',
             },
-            "image": "/images/contests/2018/yWckJo7ThrlUZfhEZTnJ8.webp",
-            "imageR2Id": "uw-2018/mediterranean/yWckJo7ThrlUZfhEZTnJ8"
+            image: '/images/contests/2018/yWckJo7ThrlUZfhEZTnJ8.webp',
+            imageR2Id: 'uw-2018/mediterranean/yWckJo7ThrlUZfhEZTnJ8',
           },
           {
-            "id": "bij4eHg1KdoEOKiOVsWIa",
-            "title": "Magic Sphere",
-            "description": "",
-            "placement": "second",
-            "photographer": {
-              "firstName": "Nicholas",
-              "lastName": "Samaras"
+            id: 'bij4eHg1KdoEOKiOVsWIa',
+            title: 'Magic Sphere',
+            description: '',
+            placement: 'second',
+            photographer: {
+              firstName: 'Nicholas',
+              lastName: 'Samaras',
             },
-            "image": "/images/contests/2018/bij4eHg1KdoEOKiOVsWIa.webp",
-            "imageR2Id": "uw-2018/mediterranean/bij4eHg1KdoEOKiOVsWIa"
+            image: '/images/contests/2018/bij4eHg1KdoEOKiOVsWIa.webp',
+            imageR2Id: 'uw-2018/mediterranean/bij4eHg1KdoEOKiOVsWIa',
           },
           {
-            "id": "EdPNpr0Q23oeUMZoOewPS",
-            "title": "Rainbow Face",
-            "description": "",
-            "placement": "third",
-            "photographer": {
-              "firstName": "Salvatore",
-              "lastName": "Ianniello"
+            id: 'EdPNpr0Q23oeUMZoOewPS',
+            title: 'Rainbow Face',
+            description: '',
+            placement: 'third',
+            photographer: {
+              firstName: 'Salvatore',
+              lastName: 'Ianniello',
             },
-            "image": "/images/contests/2018/EdPNpr0Q23oeUMZoOewPS.webp",
-            "imageR2Id": "uw-2018/mediterranean/EdPNpr0Q23oeUMZoOewPS"
+            image: '/images/contests/2018/EdPNpr0Q23oeUMZoOewPS.webp',
+            imageR2Id: 'uw-2018/mediterranean/EdPNpr0Q23oeUMZoOewPS',
           },
           {
-            "id": "SPztK1iBmYfm03oSr8_sX",
-            "title": "Mirror",
-            "description": "",
-            "placement": "third",
-            "photographer": {
-              "firstName": "Salvatore",
-              "lastName": "Ianniello"
+            id: 'SPztK1iBmYfm03oSr8_sX',
+            title: 'Mirror',
+            description: '',
+            placement: 'third',
+            photographer: {
+              firstName: 'Salvatore',
+              lastName: 'Ianniello',
             },
-            "image": "/images/contests/2018/SPztK1iBmYfm03oSr8_sX.webp",
-            "imageR2Id": "uw-2018/mediterranean/SPztK1iBmYfm03oSr8_sX"
+            image: '/images/contests/2018/SPztK1iBmYfm03oSr8_sX.webp',
+            imageR2Id: 'uw-2018/mediterranean/SPztK1iBmYfm03oSr8_sX',
           },
           {
-            "id": "eEAJ1txhvVVcX0BCoi8xp",
-            "title": "Kiss Me",
-            "description": "",
-            "placement": "third",
-            "photographer": {
-              "firstName": "Salvatore",
-              "lastName": "Ianniello"
+            id: 'eEAJ1txhvVVcX0BCoi8xp',
+            title: 'Kiss Me',
+            description: '',
+            placement: 'third',
+            photographer: {
+              firstName: 'Salvatore',
+              lastName: 'Ianniello',
             },
-            "image": "/images/contests/2018/eEAJ1txhvVVcX0BCoi8xp.webp",
-            "imageR2Id": "uw-2018/mediterranean/eEAJ1txhvVVcX0BCoi8xp"
+            image: '/images/contests/2018/eEAJ1txhvVVcX0BCoi8xp.webp',
+            imageR2Id: 'uw-2018/mediterranean/eEAJ1txhvVVcX0BCoi8xp',
           },
           {
-            "id": "zSQgxVLRMH27nzenfi7Fj",
-            "title": "Colazione Da Tiffany",
-            "description": "",
-            "placement": "runner-up",
-            "photographer": {
-              "firstName": "Guido",
-              "lastName": "Villani"
+            id: 'zSQgxVLRMH27nzenfi7Fj',
+            title: 'Colazione Da Tiffany',
+            description: '',
+            placement: 'runner-up',
+            photographer: {
+              firstName: 'Guido',
+              lastName: 'Villani',
             },
-            "image": "/images/contests/2018/zSQgxVLRMH27nzenfi7Fj.webp",
-            "imageR2Id": "uw-2018/mediterranean/zSQgxVLRMH27nzenfi7Fj"
+            image: '/images/contests/2018/zSQgxVLRMH27nzenfi7Fj.webp',
+            imageR2Id: 'uw-2018/mediterranean/zSQgxVLRMH27nzenfi7Fj',
           },
           {
-            "id": "K3eSDktmAhVnGqJdJb7q5",
-            "title": "Gobius Bucchichi Embryos",
-            "description": "",
-            "placement": "runner-up",
-            "photographer": {
-              "firstName": "Guido",
-              "lastName": "Villani"
+            id: 'K3eSDktmAhVnGqJdJb7q5',
+            title: 'Gobius Bucchichi Embryos',
+            description: '',
+            placement: 'runner-up',
+            photographer: {
+              firstName: 'Guido',
+              lastName: 'Villani',
             },
-            "image": "/images/contests/2018/K3eSDktmAhVnGqJdJb7q5.webp",
-            "imageR2Id": "uw-2018/mediterranean/K3eSDktmAhVnGqJdJb7q5"
+            image: '/images/contests/2018/K3eSDktmAhVnGqJdJb7q5.webp',
+            imageR2Id: 'uw-2018/mediterranean/K3eSDktmAhVnGqJdJb7q5',
           },
           {
-            "id": "IOwYGAGVImTzvAYRSZVMe",
-            "title": "Thoughts in the Head",
-            "description": "",
-            "placement": "runner-up",
-            "photographer": {
-              "firstName": "Paolo",
-              "lastName": "Fontanella"
+            id: 'IOwYGAGVImTzvAYRSZVMe',
+            title: 'Thoughts in the Head',
+            description: '',
+            placement: 'runner-up',
+            photographer: {
+              firstName: 'Paolo',
+              lastName: 'Fontanella',
             },
-            "image": "/images/contests/2018/IOwYGAGVImTzvAYRSZVMe.webp",
-            "imageR2Id": "uw-2018/mediterranean/IOwYGAGVImTzvAYRSZVMe"
+            image: '/images/contests/2018/IOwYGAGVImTzvAYRSZVMe.webp',
+            imageR2Id: 'uw-2018/mediterranean/IOwYGAGVImTzvAYRSZVMe',
           },
           {
-            "id": "8HVjvtgVduuXxjyTPT7Gn",
-            "title": "Swans Fossils",
-            "description": "",
-            "placement": "runner-up",
-            "photographer": {
-              "firstName": "Paolo",
-              "lastName": "Fontanella"
+            id: '8HVjvtgVduuXxjyTPT7Gn',
+            title: 'Swans Fossils',
+            description: '',
+            placement: 'runner-up',
+            photographer: {
+              firstName: 'Paolo',
+              lastName: 'Fontanella',
             },
-            "image": "/images/contests/2018/8HVjvtgVduuXxjyTPT7Gn.webp",
-            "imageR2Id": "uw-2018/mediterranean/8HVjvtgVduuXxjyTPT7Gn"
+            image: '/images/contests/2018/8HVjvtgVduuXxjyTPT7Gn.webp',
+            imageR2Id: 'uw-2018/mediterranean/8HVjvtgVduuXxjyTPT7Gn',
           },
           {
-            "id": "PzCkfi-0moOGS4yVsTBOk",
-            "title": "You Do Not Escape Me",
-            "description": "",
-            "placement": "runner-up",
-            "photographer": {
-              "firstName": "Paolo",
-              "lastName": "Fontanella"
+            id: 'PzCkfi-0moOGS4yVsTBOk',
+            title: 'You Do Not Escape Me',
+            description: '',
+            placement: 'runner-up',
+            photographer: {
+              firstName: 'Paolo',
+              lastName: 'Fontanella',
             },
-            "image": "/images/contests/2018/PzCkfi-0moOGS4yVsTBOk.webp",
-            "imageR2Id": "uw-2018/mediterranean/PzCkfi-0moOGS4yVsTBOk"
+            image: '/images/contests/2018/PzCkfi-0moOGS4yVsTBOk.webp',
+            imageR2Id: 'uw-2018/mediterranean/PzCkfi-0moOGS4yVsTBOk',
           },
           {
-            "id": "sG6DfMuwtE_xSRUg0gzMP",
-            "title": "Backlighted",
-            "description": "",
-            "placement": "runner-up",
-            "photographer": {
-              "firstName": "Fabio",
-              "lastName": "Strazzi"
+            id: 'sG6DfMuwtE_xSRUg0gzMP',
+            title: 'Backlighted',
+            description: '',
+            placement: 'runner-up',
+            photographer: {
+              firstName: 'Fabio',
+              lastName: 'Strazzi',
             },
-            "image": "/images/contests/2018/sG6DfMuwtE_xSRUg0gzMP.webp",
-            "imageR2Id": "uw-2018/mediterranean/sG6DfMuwtE_xSRUg0gzMP"
+            image: '/images/contests/2018/sG6DfMuwtE_xSRUg0gzMP.webp',
+            imageR2Id: 'uw-2018/mediterranean/sG6DfMuwtE_xSRUg0gzMP',
           },
           {
-            "id": "i_0O4CPsEbJBuSo6TcWFz",
-            "title": "Flying",
-            "description": "",
-            "placement": "runner-up",
-            "photographer": {
-              "firstName": "Fabio",
-              "lastName": "Strazzi"
+            id: 'i_0O4CPsEbJBuSo6TcWFz',
+            title: 'Flying',
+            description: '',
+            placement: 'runner-up',
+            photographer: {
+              firstName: 'Fabio',
+              lastName: 'Strazzi',
             },
-            "image": "/images/contests/2018/i_0O4CPsEbJBuSo6TcWFz.webp",
-            "imageR2Id": "uw-2018/mediterranean/i_0O4CPsEbJBuSo6TcWFz"
+            image: '/images/contests/2018/i_0O4CPsEbJBuSo6TcWFz.webp',
+            imageR2Id: 'uw-2018/mediterranean/i_0O4CPsEbJBuSo6TcWFz',
           },
           {
-            "id": "foyMhDcubcuV99y5P-Qj2",
-            "title": "Zeus Faber",
-            "description": "",
-            "placement": "runner-up",
-            "photographer": {
-              "firstName": "Fabio",
-              "lastName": "Strazzi"
+            id: 'foyMhDcubcuV99y5P-Qj2',
+            title: 'Zeus Faber',
+            description: '',
+            placement: 'runner-up',
+            photographer: {
+              firstName: 'Fabio',
+              lastName: 'Strazzi',
             },
-            "image": "/images/contests/2018/foyMhDcubcuV99y5P-Qj2.webp",
-            "imageR2Id": "uw-2018/mediterranean/foyMhDcubcuV99y5P-Qj2"
-          }
-        ]
+            image: '/images/contests/2018/foyMhDcubcuV99y5P-Qj2.webp',
+            imageR2Id: 'uw-2018/mediterranean/foyMhDcubcuV99y5P-Qj2',
+          },
+        ],
       },
       {
-        "id": "storyboard",
-        "name": "Storyboard",
-        "winnerImage": "/images/contests/2018/IGNlzQEZRDTb8vhmY4PLo.webp",
-        "winnerImageR2Id": "uw-2018/storyboard/IGNlzQEZRDTb8vhmY4PLo",
-        "entries": [
+        id: 'storyboard',
+        name: 'Storyboard',
+        winnerImage: '/images/contests/2018/IGNlzQEZRDTb8vhmY4PLo.webp',
+        winnerImageR2Id: 'uw-2018/storyboard/IGNlzQEZRDTb8vhmY4PLo',
+        entries: [
           {
-            "id": "IGNlzQEZRDTb8vhmY4PLo",
-            "title": "Il Pane Quotidiano",
-            "description": "",
-            "placement": "first",
-            "photographer": {
-              "firstName": "Virginia",
-              "lastName": "Salzedo"
+            id: 'IGNlzQEZRDTb8vhmY4PLo',
+            title: 'Il Pane Quotidiano',
+            description: '',
+            placement: 'first',
+            photographer: {
+              firstName: 'Virginia',
+              lastName: 'Salzedo',
             },
-            "image": "/images/contests/2018/IGNlzQEZRDTb8vhmY4PLo.webp",
-            "imageR2Id": "uw-2018/storyboard/IGNlzQEZRDTb8vhmY4PLo"
+            image: '/images/contests/2018/IGNlzQEZRDTb8vhmY4PLo.webp',
+            imageR2Id: 'uw-2018/storyboard/IGNlzQEZRDTb8vhmY4PLo',
           },
           {
-            "id": "JVT3twI8JkPpvwuBX5CQI",
-            "title": "Storyboard",
-            "description": "",
-            "placement": "second",
-            "photographer": {
-              "firstName": "Gabriella",
-              "lastName": "Luongo"
+            id: 'JVT3twI8JkPpvwuBX5CQI',
+            title: 'Storyboard',
+            description: '',
+            placement: 'second',
+            photographer: {
+              firstName: 'Gabriella',
+              lastName: 'Luongo',
             },
-            "image": "/images/contests/2018/JVT3twI8JkPpvwuBX5CQI.webp",
-            "imageR2Id": "uw-2018/storyboard/JVT3twI8JkPpvwuBX5CQI"
+            image: '/images/contests/2018/JVT3twI8JkPpvwuBX5CQI.webp',
+            imageR2Id: 'uw-2018/storyboard/JVT3twI8JkPpvwuBX5CQI',
           },
           {
-            "id": "L0sVwlcNsvCumgfFsftqA",
-            "title": "Yin E Yang",
-            "description": "",
-            "placement": "third",
-            "photographer": {
-              "firstName": "Emanuele",
-              "lastName": "Vitale"
+            id: 'L0sVwlcNsvCumgfFsftqA',
+            title: 'Yin E Yang',
+            description: '',
+            placement: 'third',
+            photographer: {
+              firstName: 'Emanuele',
+              lastName: 'Vitale',
             },
-            "image": "/images/contests/2018/L0sVwlcNsvCumgfFsftqA.webp",
-            "imageR2Id": "uw-2018/storyboard/L0sVwlcNsvCumgfFsftqA"
-          }
-        ]
+            image: '/images/contests/2018/L0sVwlcNsvCumgfFsftqA.webp',
+            imageR2Id: 'uw-2018/storyboard/L0sVwlcNsvCumgfFsftqA',
+          },
+        ],
       },
       {
-        "id": "wide-angle",
-        "name": "Wide Angle",
-        "winnerImage": "/images/contests/2018/GZinETc4Jc0i31pl5YGpT.webp",
-        "winnerImageR2Id": "uw-2018/wide-angle/GZinETc4Jc0i31pl5YGpT",
-        "entries": [
+        id: 'wide-angle',
+        name: 'Wide Angle',
+        winnerImage: '/images/contests/2018/GZinETc4Jc0i31pl5YGpT.webp',
+        winnerImageR2Id: 'uw-2018/wide-angle/GZinETc4Jc0i31pl5YGpT',
+        entries: [
           {
-            "id": "GZinETc4Jc0i31pl5YGpT",
-            "title": "Mating Frogs",
-            "description": "",
-            "placement": "first",
-            "photographer": {
-              "firstName": "Luc",
-              "lastName": "Rooman"
+            id: 'GZinETc4Jc0i31pl5YGpT',
+            title: 'Mating Frogs',
+            description: '',
+            placement: 'first',
+            photographer: {
+              firstName: 'Luc',
+              lastName: 'Rooman',
             },
-            "image": "/images/contests/2018/GZinETc4Jc0i31pl5YGpT.webp",
-            "imageR2Id": "uw-2018/wide-angle/GZinETc4Jc0i31pl5YGpT"
+            image: '/images/contests/2018/GZinETc4Jc0i31pl5YGpT.webp',
+            imageR2Id: 'uw-2018/wide-angle/GZinETc4Jc0i31pl5YGpT',
           },
           {
-            "id": "Ys_wg0seX6B1yrxSpP8MY",
-            "title": "Dos Amigos",
-            "description": "",
-            "placement": "second",
-            "photographer": {
-              "firstName": "Francesco",
-              "lastName": "Visintin"
+            id: 'Ys_wg0seX6B1yrxSpP8MY',
+            title: 'Dos Amigos',
+            description: '',
+            placement: 'second',
+            photographer: {
+              firstName: 'Francesco',
+              lastName: 'Visintin',
             },
-            "image": "/images/contests/2018/Ys_wg0seX6B1yrxSpP8MY.webp",
-            "imageR2Id": "uw-2018/wide-angle/Ys_wg0seX6B1yrxSpP8MY"
+            image: '/images/contests/2018/Ys_wg0seX6B1yrxSpP8MY.webp',
+            imageR2Id: 'uw-2018/wide-angle/Ys_wg0seX6B1yrxSpP8MY',
           },
           {
-            "id": "xhOOVcGuLybDPRI3FrcgF",
-            "title": "Canada",
-            "description": "",
-            "placement": "third",
-            "photographer": {
-              "firstName": "Claudio",
-              "lastName": "Zori"
+            id: 'xhOOVcGuLybDPRI3FrcgF',
+            title: 'Canada',
+            description: '',
+            placement: 'third',
+            photographer: {
+              firstName: 'Claudio',
+              lastName: 'Zori',
             },
-            "image": "/images/contests/2018/xhOOVcGuLybDPRI3FrcgF.webp",
-            "imageR2Id": "uw-2018/wide-angle/xhOOVcGuLybDPRI3FrcgF"
+            image: '/images/contests/2018/xhOOVcGuLybDPRI3FrcgF.webp',
+            imageR2Id: 'uw-2018/wide-angle/xhOOVcGuLybDPRI3FrcgF',
           },
           {
-            "id": "kP8MLP43qodrS4JhKVS0L",
-            "title": "Crab and Seafan",
-            "description": "",
-            "placement": "runner-up",
-            "photographer": {
-              "firstName": "Francesco",
-              "lastName": "Visintin"
+            id: 'kP8MLP43qodrS4JhKVS0L',
+            title: 'Crab and Seafan',
+            description: '',
+            placement: 'runner-up',
+            photographer: {
+              firstName: 'Francesco',
+              lastName: 'Visintin',
             },
-            "image": "/images/contests/2018/kP8MLP43qodrS4JhKVS0L.webp",
-            "imageR2Id": "uw-2018/wide-angle/kP8MLP43qodrS4JhKVS0L"
+            image: '/images/contests/2018/kP8MLP43qodrS4JhKVS0L.webp',
+            imageR2Id: 'uw-2018/wide-angle/kP8MLP43qodrS4JhKVS0L',
           },
           {
-            "id": "AwF3Rndl1BpetVXtdRmNh",
-            "title": "Nascondino",
-            "description": "",
-            "placement": "runner-up",
-            "photographer": {
-              "firstName": "Gabriella",
-              "lastName": "Luongo"
+            id: 'AwF3Rndl1BpetVXtdRmNh',
+            title: 'Nascondino',
+            description: '',
+            placement: 'runner-up',
+            photographer: {
+              firstName: 'Gabriella',
+              lastName: 'Luongo',
             },
-            "image": "/images/contests/2018/AwF3Rndl1BpetVXtdRmNh.webp",
-            "imageR2Id": "uw-2018/wide-angle/AwF3Rndl1BpetVXtdRmNh"
+            image: '/images/contests/2018/AwF3Rndl1BpetVXtdRmNh.webp',
+            imageR2Id: 'uw-2018/wide-angle/AwF3Rndl1BpetVXtdRmNh',
           },
           {
-            "id": "32qTCwrXcBCNiUvQVdHRe",
-            "title": "Rospi",
-            "description": "",
-            "placement": "runner-up",
-            "photographer": {
-              "firstName": "Claudio",
-              "lastName": "Zori"
+            id: '32qTCwrXcBCNiUvQVdHRe',
+            title: 'Rospi',
+            description: '',
+            placement: 'runner-up',
+            photographer: {
+              firstName: 'Claudio',
+              lastName: 'Zori',
             },
-            "image": "/images/contests/2018/32qTCwrXcBCNiUvQVdHRe.webp",
-            "imageR2Id": "uw-2018/wide-angle/32qTCwrXcBCNiUvQVdHRe"
-          }
-        ]
-      }
-    ]
+            image: '/images/contests/2018/32qTCwrXcBCNiUvQVdHRe.webp',
+            imageR2Id: 'uw-2018/wide-angle/32qTCwrXcBCNiUvQVdHRe',
+          },
+        ],
+      },
+    ],
   },
   {
-    "id": "uw-2017",
-    "year": 2017,
-    "name": "UW Contest 2017",
-    "description": "Annual underwater photography competition celebrating the beauty and diversity of marine life",
-    "indexImage": "/images/contests/2017/3vrOQkkwFDWaSYuxuOR5v.webp",
-    "indexImageR2Id": "uw-2017/wide-angle/3vrOQkkwFDWaSYuxuOR5v",
-    "currentContest": false,
-    "judges": [
+    id: 'uw-2017',
+    year: 2017,
+    name: 'UW Contest 2017',
+    description:
+      'Annual underwater photography competition celebrating the beauty and diversity of marine life',
+    indexImage: '/images/contests/2017/3vrOQkkwFDWaSYuxuOR5v.webp',
+    indexImageR2Id: 'uw-2017/wide-angle/3vrOQkkwFDWaSYuxuOR5v',
+    currentContest: false,
+    judges: [
       {
-        "id": "ccGE-aJh_epCipAgKqnFn",
-        "fullName": "Marco Colombo",
-        "r2ImageId": null
+        id: 'ccGE-aJh_epCipAgKqnFn',
+        fullName: 'Marco Colombo',
+        r2ImageId: null,
       },
       {
-        "id": "hESkp1xwL-CYsqLGK25EI",
-        "fullName": "Marcello Di Francesco",
-        "r2ImageId": null
+        id: 'hESkp1xwL-CYsqLGK25EI',
+        fullName: 'Marcello Di Francesco',
+        r2ImageId: null,
       },
       {
-        "id": "FMOcHbt-i6hp35Qpdq16R",
-        "fullName": "Davide Vezzaro",
-        "r2ImageId": null
-      }
+        id: 'FMOcHbt-i6hp35Qpdq16R',
+        fullName: 'Davide Vezzaro',
+        r2ImageId: null,
+      },
     ],
-    "categories": [
+    categories: [
       {
-        "id": "compact",
-        "name": "Compact",
-        "winnerImage": "/images/contests/2017/hPSLlD-Y0wAO8n5pqs_5I.webp",
-        "winnerImageR2Id": "uw-2017/compact/hPSLlD-Y0wAO8n5pqs_5I",
-        "entries": [
+        id: 'compact',
+        name: 'Compact',
+        winnerImage: '/images/contests/2017/hPSLlD-Y0wAO8n5pqs_5I.webp',
+        winnerImageR2Id: 'uw-2017/compact/hPSLlD-Y0wAO8n5pqs_5I',
+        entries: [
           {
-            "id": "hPSLlD-Y0wAO8n5pqs_5I",
-            "title": "Fly of the Queen",
-            "description": "",
-            "placement": "first",
-            "photographer": {
-              "firstName": "Davide",
-              "lastName": "Clementelli"
+            id: 'hPSLlD-Y0wAO8n5pqs_5I',
+            title: 'Fly of the Queen',
+            description: '',
+            placement: 'first',
+            photographer: {
+              firstName: 'Davide',
+              lastName: 'Clementelli',
             },
-            "image": "/images/contests/2017/hPSLlD-Y0wAO8n5pqs_5I.webp",
-            "imageR2Id": "uw-2017/compact/hPSLlD-Y0wAO8n5pqs_5I"
+            image: '/images/contests/2017/hPSLlD-Y0wAO8n5pqs_5I.webp',
+            imageR2Id: 'uw-2017/compact/hPSLlD-Y0wAO8n5pqs_5I',
           },
           {
-            "id": "IZ20izNQrEGNS5WnyCKt1",
-            "title": "Elvis",
-            "description": "",
-            "placement": "second",
-            "photographer": {
-              "firstName": "Stefano",
-              "lastName": "Cerbai"
+            id: 'IZ20izNQrEGNS5WnyCKt1',
+            title: 'Elvis',
+            description: '',
+            placement: 'second',
+            photographer: {
+              firstName: 'Stefano',
+              lastName: 'Cerbai',
             },
-            "image": "/images/contests/2017/IZ20izNQrEGNS5WnyCKt1.webp",
-            "imageR2Id": "uw-2017/compact/IZ20izNQrEGNS5WnyCKt1"
+            image: '/images/contests/2017/IZ20izNQrEGNS5WnyCKt1.webp',
+            imageR2Id: 'uw-2017/compact/IZ20izNQrEGNS5WnyCKt1',
           },
           {
-            "id": "0AYEntN5A62R59hJpn4if",
-            "title": "Bursatella",
-            "description": "",
-            "placement": "third",
-            "photographer": {
-              "firstName": "Giacomo",
-              "lastName": "Giovannini"
+            id: '0AYEntN5A62R59hJpn4if',
+            title: 'Bursatella',
+            description: '',
+            placement: 'third',
+            photographer: {
+              firstName: 'Giacomo',
+              lastName: 'Giovannini',
             },
-            "image": "/images/contests/2017/0AYEntN5A62R59hJpn4if.webp",
-            "imageR2Id": "uw-2017/compact/0AYEntN5A62R59hJpn4if"
+            image: '/images/contests/2017/0AYEntN5A62R59hJpn4if.webp',
+            imageR2Id: 'uw-2017/compact/0AYEntN5A62R59hJpn4if',
           },
           {
-            "id": "eVhD7QJEAe6Mhyx1tdFcl",
-            "title": "The Swarm",
-            "description": "",
-            "placement": "runner-up",
-            "photographer": {
-              "firstName": "Enrico",
-              "lastName": "Somogyi"
+            id: 'eVhD7QJEAe6Mhyx1tdFcl',
+            title: 'The Swarm',
+            description: '',
+            placement: 'runner-up',
+            photographer: {
+              firstName: 'Enrico',
+              lastName: 'Somogyi',
             },
-            "image": "/images/contests/2017/eVhD7QJEAe6Mhyx1tdFcl.webp",
-            "imageR2Id": "uw-2017/compact/eVhD7QJEAe6Mhyx1tdFcl"
+            image: '/images/contests/2017/eVhD7QJEAe6Mhyx1tdFcl.webp',
+            imageR2Id: 'uw-2017/compact/eVhD7QJEAe6Mhyx1tdFcl',
           },
           {
-            "id": "ypaWGPXzZYNdKg6N8dYWb",
-            "title": "Shark Smile",
-            "description": "",
-            "placement": "runner-up",
-            "photographer": {
-              "firstName": "Francesco",
-              "lastName": "Bazzotti"
+            id: 'ypaWGPXzZYNdKg6N8dYWb',
+            title: 'Shark Smile',
+            description: '',
+            placement: 'runner-up',
+            photographer: {
+              firstName: 'Francesco',
+              lastName: 'Bazzotti',
             },
-            "image": "/images/contests/2017/ypaWGPXzZYNdKg6N8dYWb.webp",
-            "imageR2Id": "uw-2017/compact/ypaWGPXzZYNdKg6N8dYWb"
+            image: '/images/contests/2017/ypaWGPXzZYNdKg6N8dYWb.webp',
+            imageR2Id: 'uw-2017/compact/ypaWGPXzZYNdKg6N8dYWb',
           },
           {
-            "id": "l5dGPgE06FIASYWN8cl5S",
-            "title": "Missione Su Marte",
-            "description": "",
-            "placement": "runner-up",
-            "photographer": {
-              "firstName": "Edoardo",
-              "lastName": "Errani"
+            id: 'l5dGPgE06FIASYWN8cl5S',
+            title: 'Missione Su Marte',
+            description: '',
+            placement: 'runner-up',
+            photographer: {
+              firstName: 'Edoardo',
+              lastName: 'Errani',
             },
-            "image": "/images/contests/2017/l5dGPgE06FIASYWN8cl5S.webp",
-            "imageR2Id": "uw-2017/compact/l5dGPgE06FIASYWN8cl5S"
-          }
-        ]
+            image: '/images/contests/2017/l5dGPgE06FIASYWN8cl5S.webp',
+            imageR2Id: 'uw-2017/compact/l5dGPgE06FIASYWN8cl5S',
+          },
+        ],
       },
       {
-        "id": "dan-europe-photography-security",
-        "name": "Dan Europe Photography Security",
-        "winnerImage": "/images/contests/2017/p4BPp6WGWGGpxBIC4iTU7.webp",
-        "winnerImageR2Id": "uw-2017/dan-europe-photography-security/p4BPp6WGWGGpxBIC4iTU7",
-        "entries": [
+        id: 'dan-europe-photography-security',
+        name: 'Dan Europe Photography Security',
+        winnerImage: '/images/contests/2017/p4BPp6WGWGGpxBIC4iTU7.webp',
+        winnerImageR2Id:
+          'uw-2017/dan-europe-photography-security/p4BPp6WGWGGpxBIC4iTU7',
+        entries: [
           {
-            "id": "p4BPp6WGWGGpxBIC4iTU7",
-            "title": "In Coppia",
-            "description": "",
-            "placement": "first",
-            "photographer": {
-              "firstName": "Stefano",
-              "lastName": "Cerbai"
+            id: 'p4BPp6WGWGGpxBIC4iTU7',
+            title: 'In Coppia',
+            description: '',
+            placement: 'first',
+            photographer: {
+              firstName: 'Stefano',
+              lastName: 'Cerbai',
             },
-            "image": "/images/contests/2017/p4BPp6WGWGGpxBIC4iTU7.webp",
-            "imageR2Id": "uw-2017/dan-europe-photography-security/p4BPp6WGWGGpxBIC4iTU7"
+            image: '/images/contests/2017/p4BPp6WGWGGpxBIC4iTU7.webp',
+            imageR2Id:
+              'uw-2017/dan-europe-photography-security/p4BPp6WGWGGpxBIC4iTU7',
           },
           {
-            "id": "-XQXBepZJeUZupXzVzlCt",
-            "title": "Forever",
-            "description": "",
-            "placement": "second",
-            "photographer": {
-              "firstName": "Emanuele",
-              "lastName": "Vitale"
+            id: '-XQXBepZJeUZupXzVzlCt',
+            title: 'Forever',
+            description: '',
+            placement: 'second',
+            photographer: {
+              firstName: 'Emanuele',
+              lastName: 'Vitale',
             },
-            "image": "/images/contests/2017/-XQXBepZJeUZupXzVzlCt.webp",
-            "imageR2Id": "uw-2017/dan-europe-photography-security/-XQXBepZJeUZupXzVzlCt"
+            image: '/images/contests/2017/-XQXBepZJeUZupXzVzlCt.webp',
+            imageR2Id:
+              'uw-2017/dan-europe-photography-security/-XQXBepZJeUZupXzVzlCt',
           },
           {
-            "id": "bzENyoG-lVEmoSVP56AFC",
-            "title": "Unknown Title",
-            "description": "",
-            "placement": "third",
-            "photographer": {
-              "firstName": "Unknown",
-              "lastName": "Photographer"
+            id: 'bzENyoG-lVEmoSVP56AFC',
+            title: 'Unknown Title',
+            description: '',
+            placement: 'third',
+            photographer: {
+              firstName: 'Unknown',
+              lastName: 'Photographer',
             },
-            "image": "/images/contests/2017/bzENyoG-lVEmoSVP56AFC.webp",
-            "imageR2Id": "uw-2017/dan-europe-photography-security/bzENyoG-lVEmoSVP56AFC"
-          }
-        ]
+            image: '/images/contests/2017/bzENyoG-lVEmoSVP56AFC.webp',
+            imageR2Id:
+              'uw-2017/dan-europe-photography-security/bzENyoG-lVEmoSVP56AFC',
+          },
+        ],
       },
       {
-        "id": "mediterranean",
-        "name": "Mediterranean Portfolio",
-        "winnerImage": "/images/contests/2017/x0hoHg3ICabXfMbJQA-kr.webp",
-        "winnerImageR2Id": "uw-2017/mediterranean/x0hoHg3ICabXfMbJQA-kr",
-        "entries": [
+        id: 'mediterranean',
+        name: 'Mediterranean Portfolio',
+        winnerImage: '/images/contests/2017/x0hoHg3ICabXfMbJQA-kr.webp',
+        winnerImageR2Id: 'uw-2017/mediterranean/x0hoHg3ICabXfMbJQA-kr',
+        entries: [
           {
-            "id": "x0hoHg3ICabXfMbJQA-kr",
-            "title": "Variazioni Cromatiche in Beige - San Pietro",
-            "description": "",
-            "placement": "first",
-            "photographer": {
-              "firstName": "Marco",
-              "lastName": "Gargiulo"
+            id: 'x0hoHg3ICabXfMbJQA-kr',
+            title: 'Variazioni Cromatiche in Beige - San Pietro',
+            description: '',
+            placement: 'first',
+            photographer: {
+              firstName: 'Marco',
+              lastName: 'Gargiulo',
             },
-            "image": "/images/contests/2017/x0hoHg3ICabXfMbJQA-kr.webp",
-            "imageR2Id": "uw-2017/mediterranean/x0hoHg3ICabXfMbJQA-kr"
+            image: '/images/contests/2017/x0hoHg3ICabXfMbJQA-kr.webp',
+            imageR2Id: 'uw-2017/mediterranean/x0hoHg3ICabXfMbJQA-kr',
           },
           {
-            "id": "FfeJNLInnA2Ct7qeqUpYy",
-            "title": "Variazioni Cromatiche in Beige - the Mask",
-            "description": "",
-            "placement": "first",
-            "photographer": {
-              "firstName": "Marco",
-              "lastName": "Gargiulo"
+            id: 'FfeJNLInnA2Ct7qeqUpYy',
+            title: 'Variazioni Cromatiche in Beige - the Mask',
+            description: '',
+            placement: 'first',
+            photographer: {
+              firstName: 'Marco',
+              lastName: 'Gargiulo',
             },
-            "image": "/images/contests/2017/FfeJNLInnA2Ct7qeqUpYy.webp",
-            "imageR2Id": "uw-2017/mediterranean/FfeJNLInnA2Ct7qeqUpYy"
+            image: '/images/contests/2017/FfeJNLInnA2Ct7qeqUpYy.webp',
+            imageR2Id: 'uw-2017/mediterranean/FfeJNLInnA2Ct7qeqUpYy',
           },
           {
-            "id": "jrFaS9HB-zgsIVFEVZueJ",
-            "title": "Variazioni Cromatiche in Beige - Jelly & Vesuvio",
-            "description": "",
-            "placement": "first",
-            "photographer": {
-              "firstName": "Marco",
-              "lastName": "Gargiulo"
+            id: 'jrFaS9HB-zgsIVFEVZueJ',
+            title: 'Variazioni Cromatiche in Beige - Jelly & Vesuvio',
+            description: '',
+            placement: 'first',
+            photographer: {
+              firstName: 'Marco',
+              lastName: 'Gargiulo',
             },
-            "image": "/images/contests/2017/jrFaS9HB-zgsIVFEVZueJ.webp",
-            "imageR2Id": "uw-2017/mediterranean/jrFaS9HB-zgsIVFEVZueJ"
+            image: '/images/contests/2017/jrFaS9HB-zgsIVFEVZueJ.webp',
+            imageR2Id: 'uw-2017/mediterranean/jrFaS9HB-zgsIVFEVZueJ',
           },
           {
-            "id": "szbdu1ybReysMtSWSFkbS",
-            "title": "Swirl of the Fish",
-            "description": "",
-            "placement": "second",
-            "photographer": {
-              "firstName": "Nicholas",
-              "lastName": "Samaras"
+            id: 'szbdu1ybReysMtSWSFkbS',
+            title: 'Swirl of the Fish',
+            description: '',
+            placement: 'second',
+            photographer: {
+              firstName: 'Nicholas',
+              lastName: 'Samaras',
             },
-            "image": "/images/contests/2017/szbdu1ybReysMtSWSFkbS.webp",
-            "imageR2Id": "uw-2017/mediterranean/szbdu1ybReysMtSWSFkbS"
+            image: '/images/contests/2017/szbdu1ybReysMtSWSFkbS.webp',
+            imageR2Id: 'uw-2017/mediterranean/szbdu1ybReysMtSWSFkbS',
           },
           {
-            "id": "3eFF9BK3DsjrDpbXGY5zk",
-            "title": "Pink Heart",
-            "description": "",
-            "placement": "second",
-            "photographer": {
-              "firstName": "Nicholas",
-              "lastName": "Samaras"
+            id: '3eFF9BK3DsjrDpbXGY5zk',
+            title: 'Pink Heart',
+            description: '',
+            placement: 'second',
+            photographer: {
+              firstName: 'Nicholas',
+              lastName: 'Samaras',
             },
-            "image": "/images/contests/2017/3eFF9BK3DsjrDpbXGY5zk.webp",
-            "imageR2Id": "uw-2017/mediterranean/3eFF9BK3DsjrDpbXGY5zk"
+            image: '/images/contests/2017/3eFF9BK3DsjrDpbXGY5zk.webp',
+            imageR2Id: 'uw-2017/mediterranean/3eFF9BK3DsjrDpbXGY5zk',
           },
           {
-            "id": "Koufj_WRW4CYrdzCFZMOT",
-            "title": "Fragile Elegance",
-            "description": "",
-            "placement": "second",
-            "photographer": {
-              "firstName": "Nicholas",
-              "lastName": "Samaras"
+            id: 'Koufj_WRW4CYrdzCFZMOT',
+            title: 'Fragile Elegance',
+            description: '',
+            placement: 'second',
+            photographer: {
+              firstName: 'Nicholas',
+              lastName: 'Samaras',
             },
-            "image": "/images/contests/2017/Koufj_WRW4CYrdzCFZMOT.webp",
-            "imageR2Id": "uw-2017/mediterranean/Koufj_WRW4CYrdzCFZMOT"
+            image: '/images/contests/2017/Koufj_WRW4CYrdzCFZMOT.webp',
+            imageR2Id: 'uw-2017/mediterranean/Koufj_WRW4CYrdzCFZMOT',
           },
           {
-            "id": "TWfYjpAcS2PbUgD5UTflM",
-            "title": "The Mask",
-            "description": "",
-            "placement": "third",
-            "photographer": {
-              "firstName": "Salvatore",
-              "lastName": "Ianniello"
+            id: 'TWfYjpAcS2PbUgD5UTflM',
+            title: 'The Mask',
+            description: '',
+            placement: 'third',
+            photographer: {
+              firstName: 'Salvatore',
+              lastName: 'Ianniello',
             },
-            "image": "/images/contests/2017/TWfYjpAcS2PbUgD5UTflM.webp",
-            "imageR2Id": "uw-2017/mediterranean/TWfYjpAcS2PbUgD5UTflM"
+            image: '/images/contests/2017/TWfYjpAcS2PbUgD5UTflM.webp',
+            imageR2Id: 'uw-2017/mediterranean/TWfYjpAcS2PbUgD5UTflM',
           },
           {
-            "id": "i9GcVtsySfmkTglromet6",
-            "title": "Double Stress",
-            "description": "",
-            "placement": "third",
-            "photographer": {
-              "firstName": "Salvatore",
-              "lastName": "Ianniello"
+            id: 'i9GcVtsySfmkTglromet6',
+            title: 'Double Stress',
+            description: '',
+            placement: 'third',
+            photographer: {
+              firstName: 'Salvatore',
+              lastName: 'Ianniello',
             },
-            "image": "/images/contests/2017/i9GcVtsySfmkTglromet6.webp",
-            "imageR2Id": "uw-2017/mediterranean/i9GcVtsySfmkTglromet6"
+            image: '/images/contests/2017/i9GcVtsySfmkTglromet6.webp',
+            imageR2Id: 'uw-2017/mediterranean/i9GcVtsySfmkTglromet6',
           },
           {
-            "id": "Sbi9Hf3eHN_1-XdMIFKPP",
-            "title": "Octopus Mammutt",
-            "description": "",
-            "placement": "third",
-            "photographer": {
-              "firstName": "Salvatore",
-              "lastName": "Ianniello"
+            id: 'Sbi9Hf3eHN_1-XdMIFKPP',
+            title: 'Octopus Mammutt',
+            description: '',
+            placement: 'third',
+            photographer: {
+              firstName: 'Salvatore',
+              lastName: 'Ianniello',
             },
-            "image": "/images/contests/2017/Sbi9Hf3eHN_1-XdMIFKPP.webp",
-            "imageR2Id": "uw-2017/mediterranean/Sbi9Hf3eHN_1-XdMIFKPP"
+            image: '/images/contests/2017/Sbi9Hf3eHN_1-XdMIFKPP.webp',
+            imageR2Id: 'uw-2017/mediterranean/Sbi9Hf3eHN_1-XdMIFKPP',
           },
           {
-            "id": "zcUJU8kmOU83MKltXtt8_",
-            "title": "Phatos",
-            "description": "",
-            "placement": "runner-up",
-            "photographer": {
-              "firstName": "Davide",
-              "lastName": "Lombroso"
+            id: 'zcUJU8kmOU83MKltXtt8_',
+            title: 'Phatos',
+            description: '',
+            placement: 'runner-up',
+            photographer: {
+              firstName: 'Davide',
+              lastName: 'Lombroso',
             },
-            "image": "/images/contests/2017/zcUJU8kmOU83MKltXtt8_.webp",
-            "imageR2Id": "uw-2017/mediterranean/zcUJU8kmOU83MKltXtt8_"
+            image: '/images/contests/2017/zcUJU8kmOU83MKltXtt8_.webp',
+            imageR2Id: 'uw-2017/mediterranean/zcUJU8kmOU83MKltXtt8_',
           },
           {
-            "id": "YyKLO0PsFTcwBrnifFyHf",
-            "title": "Effetti Speciali",
-            "description": "",
-            "placement": "runner-up",
-            "photographer": {
-              "firstName": "Davide",
-              "lastName": "Lombroso"
+            id: 'YyKLO0PsFTcwBrnifFyHf',
+            title: 'Effetti Speciali',
+            description: '',
+            placement: 'runner-up',
+            photographer: {
+              firstName: 'Davide',
+              lastName: 'Lombroso',
             },
-            "image": "/images/contests/2017/YyKLO0PsFTcwBrnifFyHf.webp",
-            "imageR2Id": "uw-2017/mediterranean/YyKLO0PsFTcwBrnifFyHf"
+            image: '/images/contests/2017/YyKLO0PsFTcwBrnifFyHf.webp',
+            imageR2Id: 'uw-2017/mediterranean/YyKLO0PsFTcwBrnifFyHf',
           },
           {
-            "id": "8HM8jMGjY_j4v9jx3p8j_",
-            "title": "L'attimo fuggente",
-            "description": "",
-            "placement": "runner-up",
-            "photographer": {
-              "firstName": "Davide",
-              "lastName": "Lombroso"
+            id: '8HM8jMGjY_j4v9jx3p8j_',
+            title: "L'attimo fuggente",
+            description: '',
+            placement: 'runner-up',
+            photographer: {
+              firstName: 'Davide',
+              lastName: 'Lombroso',
             },
-            "image": "/images/contests/2017/8HM8jMGjY_j4v9jx3p8j_.webp",
-            "imageR2Id": "uw-2017/mediterranean/8HM8jMGjY_j4v9jx3p8j_"
+            image: '/images/contests/2017/8HM8jMGjY_j4v9jx3p8j_.webp',
+            imageR2Id: 'uw-2017/mediterranean/8HM8jMGjY_j4v9jx3p8j_',
           },
           {
-            "id": "C5P48A4Ya9ePHqqL25i2t",
-            "title": "Barracuda Portrait",
-            "description": "",
-            "placement": "runner-up",
-            "photographer": {
-              "firstName": "Domenico",
-              "lastName": "Roscigno"
+            id: 'C5P48A4Ya9ePHqqL25i2t',
+            title: 'Barracuda Portrait',
+            description: '',
+            placement: 'runner-up',
+            photographer: {
+              firstName: 'Domenico',
+              lastName: 'Roscigno',
             },
-            "image": "/images/contests/2017/C5P48A4Ya9ePHqqL25i2t.webp",
-            "imageR2Id": "uw-2017/mediterranean/C5P48A4Ya9ePHqqL25i2t"
+            image: '/images/contests/2017/C5P48A4Ya9ePHqqL25i2t.webp',
+            imageR2Id: 'uw-2017/mediterranean/C5P48A4Ya9ePHqqL25i2t',
           },
           {
-            "id": "6d1zsPf9yIFKch1grRgmd",
-            "title": "Classico Mediterraneo",
-            "description": "",
-            "placement": "runner-up",
-            "photographer": {
-              "firstName": "Domenico",
-              "lastName": "Roscigno"
+            id: '6d1zsPf9yIFKch1grRgmd',
+            title: 'Classico Mediterraneo',
+            description: '',
+            placement: 'runner-up',
+            photographer: {
+              firstName: 'Domenico',
+              lastName: 'Roscigno',
             },
-            "image": "/images/contests/2017/6d1zsPf9yIFKch1grRgmd.webp",
-            "imageR2Id": "uw-2017/mediterranean/6d1zsPf9yIFKch1grRgmd"
+            image: '/images/contests/2017/6d1zsPf9yIFKch1grRgmd.webp',
+            imageR2Id: 'uw-2017/mediterranean/6d1zsPf9yIFKch1grRgmd',
           },
           {
-            "id": "h0RnnRsKytXh7vSOFGFZp",
-            "title": "Gattopardi",
-            "description": "",
-            "placement": "runner-up",
-            "photographer": {
-              "firstName": "Domenico",
-              "lastName": "Roscigno"
+            id: 'h0RnnRsKytXh7vSOFGFZp',
+            title: 'Gattopardi',
+            description: '',
+            placement: 'runner-up',
+            photographer: {
+              firstName: 'Domenico',
+              lastName: 'Roscigno',
             },
-            "image": "/images/contests/2017/h0RnnRsKytXh7vSOFGFZp.webp",
-            "imageR2Id": "uw-2017/mediterranean/h0RnnRsKytXh7vSOFGFZp"
+            image: '/images/contests/2017/h0RnnRsKytXh7vSOFGFZp.webp',
+            imageR2Id: 'uw-2017/mediterranean/h0RnnRsKytXh7vSOFGFZp',
           },
           {
-            "id": "1BVBGYS3YdacGjRxVCho4",
-            "title": "Cannabina Axinella",
-            "description": "",
-            "placement": "runner-up",
-            "photographer": {
-              "firstName": "Claudio",
-              "lastName": "Zori"
+            id: '1BVBGYS3YdacGjRxVCho4',
+            title: 'Cannabina Axinella',
+            description: '',
+            placement: 'runner-up',
+            photographer: {
+              firstName: 'Claudio',
+              lastName: 'Zori',
             },
-            "image": "/images/contests/2017/1BVBGYS3YdacGjRxVCho4.webp",
-            "imageR2Id": "uw-2017/mediterranean/1BVBGYS3YdacGjRxVCho4"
+            image: '/images/contests/2017/1BVBGYS3YdacGjRxVCho4.webp',
+            imageR2Id: 'uw-2017/mediterranean/1BVBGYS3YdacGjRxVCho4',
           },
           {
-            "id": "uoALdoyJpF_8lVBVedUmI",
-            "title": "Riflessi",
-            "description": "",
-            "placement": "runner-up",
-            "photographer": {
-              "firstName": "Claudio",
-              "lastName": "Zori"
+            id: 'uoALdoyJpF_8lVBVedUmI',
+            title: 'Riflessi',
+            description: '',
+            placement: 'runner-up',
+            photographer: {
+              firstName: 'Claudio',
+              lastName: 'Zori',
             },
-            "image": "/images/contests/2017/uoALdoyJpF_8lVBVedUmI.webp",
-            "imageR2Id": "uw-2017/mediterranean/uoALdoyJpF_8lVBVedUmI"
+            image: '/images/contests/2017/uoALdoyJpF_8lVBVedUmI.webp',
+            imageR2Id: 'uw-2017/mediterranean/uoALdoyJpF_8lVBVedUmI',
           },
           {
-            "id": "wLXSIEh9q3jrZV3NtvFdd",
-            "title": "A Bocca Aperta",
-            "description": "",
-            "placement": "runner-up",
-            "photographer": {
-              "firstName": "Claudio",
-              "lastName": "Zori"
+            id: 'wLXSIEh9q3jrZV3NtvFdd',
+            title: 'A Bocca Aperta',
+            description: '',
+            placement: 'runner-up',
+            photographer: {
+              firstName: 'Claudio',
+              lastName: 'Zori',
             },
-            "image": "/images/contests/2017/wLXSIEh9q3jrZV3NtvFdd.webp",
-            "imageR2Id": "uw-2017/mediterranean/wLXSIEh9q3jrZV3NtvFdd"
-          }
-        ]
+            image: '/images/contests/2017/wLXSIEh9q3jrZV3NtvFdd.webp',
+            imageR2Id: 'uw-2017/mediterranean/wLXSIEh9q3jrZV3NtvFdd',
+          },
+        ],
       },
       {
-        "id": "molluscs",
-        "name": "Molluscs",
-        "winnerImage": "/images/contests/2017/GeY0GBryJc8QguS5XhRoI.webp",
-        "winnerImageR2Id": "uw-2017/molluscs/GeY0GBryJc8QguS5XhRoI",
-        "entries": [
+        id: 'molluscs',
+        name: 'Molluscs',
+        winnerImage: '/images/contests/2017/GeY0GBryJc8QguS5XhRoI.webp',
+        winnerImageR2Id: 'uw-2017/molluscs/GeY0GBryJc8QguS5XhRoI',
+        entries: [
           {
-            "id": "GeY0GBryJc8QguS5XhRoI",
-            "title": "In Un Cielo Trapunto Di Stelle",
-            "description": "",
-            "placement": "first",
-            "photographer": {
-              "firstName": "Gabriella",
-              "lastName": "Luongo"
+            id: 'GeY0GBryJc8QguS5XhRoI',
+            title: 'In Un Cielo Trapunto Di Stelle',
+            description: '',
+            placement: 'first',
+            photographer: {
+              firstName: 'Gabriella',
+              lastName: 'Luongo',
             },
-            "image": "/images/contests/2017/GeY0GBryJc8QguS5XhRoI.webp",
-            "imageR2Id": "uw-2017/molluscs/GeY0GBryJc8QguS5XhRoI"
+            image: '/images/contests/2017/GeY0GBryJc8QguS5XhRoI.webp',
+            imageR2Id: 'uw-2017/molluscs/GeY0GBryJc8QguS5XhRoI',
           },
           {
-            "id": "GZqDRQMpZkvTxj1_IlJgq",
-            "title": "Monolocale",
-            "description": "",
-            "placement": "second",
-            "photographer": {
-              "firstName": "Paolo",
-              "lastName": "Bausani"
+            id: 'GZqDRQMpZkvTxj1_IlJgq',
+            title: 'Monolocale',
+            description: '',
+            placement: 'second',
+            photographer: {
+              firstName: 'Paolo',
+              lastName: 'Bausani',
             },
-            "image": "/images/contests/2017/GZqDRQMpZkvTxj1_IlJgq.webp",
-            "imageR2Id": "uw-2017/molluscs/GZqDRQMpZkvTxj1_IlJgq"
+            image: '/images/contests/2017/GZqDRQMpZkvTxj1_IlJgq.webp',
+            imageR2Id: 'uw-2017/molluscs/GZqDRQMpZkvTxj1_IlJgq',
           },
           {
-            "id": "0Wiv9brEuay9HP6PtlAVY",
-            "title": "Decollo Mediterraneo",
-            "description": "",
-            "placement": "third",
-            "photographer": {
-              "firstName": "Domenico",
-              "lastName": "Roscigno"
+            id: '0Wiv9brEuay9HP6PtlAVY',
+            title: 'Decollo Mediterraneo',
+            description: '',
+            placement: 'third',
+            photographer: {
+              firstName: 'Domenico',
+              lastName: 'Roscigno',
             },
-            "image": "/images/contests/2017/0Wiv9brEuay9HP6PtlAVY.webp",
-            "imageR2Id": "uw-2017/molluscs/0Wiv9brEuay9HP6PtlAVY"
+            image: '/images/contests/2017/0Wiv9brEuay9HP6PtlAVY.webp',
+            imageR2Id: 'uw-2017/molluscs/0Wiv9brEuay9HP6PtlAVY',
           },
           {
-            "id": "zS5frlKh-QqqpFQz25Fgt",
-            "title": "Tritone",
-            "description": "",
-            "placement": "runner-up",
-            "photographer": {
-              "firstName": "Francesco",
-              "lastName": "Visintin"
+            id: 'zS5frlKh-QqqpFQz25Fgt',
+            title: 'Tritone',
+            description: '',
+            placement: 'runner-up',
+            photographer: {
+              firstName: 'Francesco',
+              lastName: 'Visintin',
             },
-            "image": "/images/contests/2017/zS5frlKh-QqqpFQz25Fgt.webp",
-            "imageR2Id": "uw-2017/molluscs/zS5frlKh-QqqpFQz25Fgt"
+            image: '/images/contests/2017/zS5frlKh-QqqpFQz25Fgt.webp',
+            imageR2Id: 'uw-2017/molluscs/zS5frlKh-QqqpFQz25Fgt',
           },
           {
-            "id": "8oqYC9arnbML9tUrL212H",
-            "title": "Occhi Dolci",
-            "description": "",
-            "placement": "runner-up",
-            "photographer": {
-              "firstName": "Raffaele",
-              "lastName": "Livornese"
+            id: '8oqYC9arnbML9tUrL212H',
+            title: 'Occhi Dolci',
+            description: '',
+            placement: 'runner-up',
+            photographer: {
+              firstName: 'Raffaele',
+              lastName: 'Livornese',
             },
-            "image": "/images/contests/2017/8oqYC9arnbML9tUrL212H.webp",
-            "imageR2Id": "uw-2017/molluscs/8oqYC9arnbML9tUrL212H"
+            image: '/images/contests/2017/8oqYC9arnbML9tUrL212H.webp',
+            imageR2Id: 'uw-2017/molluscs/8oqYC9arnbML9tUrL212H',
           },
           {
-            "id": "gn_NXO_6lW6HI1nxTfOfS",
-            "title": "A Bocca Aperta",
-            "description": "",
-            "placement": "runner-up",
-            "photographer": {
-              "firstName": "Mauro",
-              "lastName": "Apuleo"
+            id: 'gn_NXO_6lW6HI1nxTfOfS',
+            title: 'A Bocca Aperta',
+            description: '',
+            placement: 'runner-up',
+            photographer: {
+              firstName: 'Mauro',
+              lastName: 'Apuleo',
             },
-            "image": "/images/contests/2017/gn_NXO_6lW6HI1nxTfOfS.webp",
-            "imageR2Id": "uw-2017/molluscs/gn_NXO_6lW6HI1nxTfOfS"
-          }
-        ]
+            image: '/images/contests/2017/gn_NXO_6lW6HI1nxTfOfS.webp',
+            imageR2Id: 'uw-2017/molluscs/gn_NXO_6lW6HI1nxTfOfS',
+          },
+        ],
       },
       {
-        "id": "the-sea",
-        "name": "The Sea",
-        "winnerImage": "/images/contests/2017/EqhGxVZtl0Ep-l4kcWdpp.webp",
-        "winnerImageR2Id": "uw-2017/the-sea/EqhGxVZtl0Ep-l4kcWdpp",
-        "entries": [
+        id: 'the-sea',
+        name: 'The Sea',
+        winnerImage: '/images/contests/2017/EqhGxVZtl0Ep-l4kcWdpp.webp',
+        winnerImageR2Id: 'uw-2017/the-sea/EqhGxVZtl0Ep-l4kcWdpp',
+        entries: [
           {
-            "id": "EqhGxVZtl0Ep-l4kcWdpp",
-            "title": "Shark Whisperer",
-            "description": "",
-            "placement": "first",
-            "photographer": {
-              "firstName": "Fan",
-              "lastName": "Ping"
+            id: 'EqhGxVZtl0Ep-l4kcWdpp',
+            title: 'Shark Whisperer',
+            description: '',
+            placement: 'first',
+            photographer: {
+              firstName: 'Fan',
+              lastName: 'Ping',
             },
-            "image": "/images/contests/2017/EqhGxVZtl0Ep-l4kcWdpp.webp",
-            "imageR2Id": "uw-2017/the-sea/EqhGxVZtl0Ep-l4kcWdpp"
+            image: '/images/contests/2017/EqhGxVZtl0Ep-l4kcWdpp.webp',
+            imageR2Id: 'uw-2017/the-sea/EqhGxVZtl0Ep-l4kcWdpp',
           },
           {
-            "id": "tOh1Rs5chSGGgNodiBlnW",
-            "title": "Pescatore Al Sabbione",
-            "description": "",
-            "placement": "second",
-            "photographer": {
-              "firstName": "Flavio",
-              "lastName": "Vailati"
+            id: 'tOh1Rs5chSGGgNodiBlnW',
+            title: 'Pescatore Al Sabbione',
+            description: '',
+            placement: 'second',
+            photographer: {
+              firstName: 'Flavio',
+              lastName: 'Vailati',
             },
-            "image": "/images/contests/2017/tOh1Rs5chSGGgNodiBlnW.webp",
-            "imageR2Id": "uw-2017/the-sea/tOh1Rs5chSGGgNodiBlnW"
-          }
-        ]
+            image: '/images/contests/2017/tOh1Rs5chSGGgNodiBlnW.webp',
+            imageR2Id: 'uw-2017/the-sea/tOh1Rs5chSGGgNodiBlnW',
+          },
+        ],
       },
       {
-        "id": "wide-angle",
-        "name": "Wide Angle",
-        "winnerImage": "/images/contests/2017/8MtYErWj1Xu6KBYerR7lr.webp",
-        "winnerImageR2Id": "uw-2017/wide-angle/8MtYErWj1Xu6KBYerR7lr",
-        "entries": [
+        id: 'wide-angle',
+        name: 'Wide Angle',
+        winnerImage: '/images/contests/2017/8MtYErWj1Xu6KBYerR7lr.webp',
+        winnerImageR2Id: 'uw-2017/wide-angle/8MtYErWj1Xu6KBYerR7lr',
+        entries: [
           {
-            "id": "8MtYErWj1Xu6KBYerR7lr",
-            "title": "L'albero della vita",
-            "description": "",
-            "placement": "first",
-            "photographer": {
-              "firstName": "Paolo",
-              "lastName": "Bausani"
+            id: '8MtYErWj1Xu6KBYerR7lr',
+            title: "L'albero della vita",
+            description: '',
+            placement: 'first',
+            photographer: {
+              firstName: 'Paolo',
+              lastName: 'Bausani',
             },
-            "image": "/images/contests/2017/8MtYErWj1Xu6KBYerR7lr.webp",
-            "imageR2Id": "uw-2017/wide-angle/8MtYErWj1Xu6KBYerR7lr"
+            image: '/images/contests/2017/8MtYErWj1Xu6KBYerR7lr.webp',
+            imageR2Id: 'uw-2017/wide-angle/8MtYErWj1Xu6KBYerR7lr',
           },
           {
-            "id": "jqTi5oebum-19zHJ30TC7",
-            "title": "Mi Stai Guardando",
-            "description": "",
-            "placement": "second",
-            "photographer": {
-              "firstName": "Gabriella",
-              "lastName": "Luongo"
+            id: 'jqTi5oebum-19zHJ30TC7',
+            title: 'Mi Stai Guardando',
+            description: '',
+            placement: 'second',
+            photographer: {
+              firstName: 'Gabriella',
+              lastName: 'Luongo',
             },
-            "image": "/images/contests/2017/jqTi5oebum-19zHJ30TC7.webp",
-            "imageR2Id": "uw-2017/wide-angle/jqTi5oebum-19zHJ30TC7"
+            image: '/images/contests/2017/jqTi5oebum-19zHJ30TC7.webp',
+            imageR2Id: 'uw-2017/wide-angle/jqTi5oebum-19zHJ30TC7',
           },
           {
-            "id": "DfUjkVbK9n1yoOiuGiPWu",
-            "title": "Non Era Una Chimera",
-            "description": "",
-            "placement": "third",
-            "photographer": {
-              "firstName": "Domenico",
-              "lastName": "Roscigno"
+            id: 'DfUjkVbK9n1yoOiuGiPWu',
+            title: 'Non Era Una Chimera',
+            description: '',
+            placement: 'third',
+            photographer: {
+              firstName: 'Domenico',
+              lastName: 'Roscigno',
             },
-            "image": "/images/contests/2017/DfUjkVbK9n1yoOiuGiPWu.webp",
-            "imageR2Id": "uw-2017/wide-angle/DfUjkVbK9n1yoOiuGiPWu"
+            image: '/images/contests/2017/DfUjkVbK9n1yoOiuGiPWu.webp',
+            imageR2Id: 'uw-2017/wide-angle/DfUjkVbK9n1yoOiuGiPWu',
           },
           {
-            "id": "3vrOQkkwFDWaSYuxuOR5v",
-            "title": "Cocco Mirror",
-            "description": "",
-            "placement": "runner-up",
-            "photographer": {
-              "firstName": "Massimo",
-              "lastName": "Giorgetta"
+            id: '3vrOQkkwFDWaSYuxuOR5v',
+            title: 'Cocco Mirror',
+            description: '',
+            placement: 'runner-up',
+            photographer: {
+              firstName: 'Massimo',
+              lastName: 'Giorgetta',
             },
-            "image": "/images/contests/2017/3vrOQkkwFDWaSYuxuOR5v.webp",
-            "imageR2Id": "uw-2017/wide-angle/3vrOQkkwFDWaSYuxuOR5v"
+            image: '/images/contests/2017/3vrOQkkwFDWaSYuxuOR5v.webp',
+            imageR2Id: 'uw-2017/wide-angle/3vrOQkkwFDWaSYuxuOR5v',
           },
           {
-            "id": "uJ-ijcCXcwGfh6aU9qwjx",
-            "title": "Acqua Dolce",
-            "description": "",
-            "placement": "runner-up",
-            "photographer": {
-              "firstName": "Francesco",
-              "lastName": "Visintin"
+            id: 'uJ-ijcCXcwGfh6aU9qwjx',
+            title: 'Acqua Dolce',
+            description: '',
+            placement: 'runner-up',
+            photographer: {
+              firstName: 'Francesco',
+              lastName: 'Visintin',
             },
-            "image": "/images/contests/2017/uJ-ijcCXcwGfh6aU9qwjx.webp",
-            "imageR2Id": "uw-2017/wide-angle/uJ-ijcCXcwGfh6aU9qwjx"
+            image: '/images/contests/2017/uJ-ijcCXcwGfh6aU9qwjx.webp',
+            imageR2Id: 'uw-2017/wide-angle/uJ-ijcCXcwGfh6aU9qwjx',
           },
           {
-            "id": "U6rNF2btKAHgOIk8oEIhC",
-            "title": "Cocco Mirror",
-            "description": "",
-            "placement": "runner-up",
-            "photographer": {
-              "firstName": "Massimo",
-              "lastName": "Zannini"
+            id: 'U6rNF2btKAHgOIk8oEIhC',
+            title: 'Cocco Mirror',
+            description: '',
+            placement: 'runner-up',
+            photographer: {
+              firstName: 'Massimo',
+              lastName: 'Zannini',
             },
-            "image": "/images/contests/2017/U6rNF2btKAHgOIk8oEIhC.webp",
-            "imageR2Id": "uw-2017/wide-angle/U6rNF2btKAHgOIk8oEIhC"
-          }
-        ]
-      }
-    ]
+            image: '/images/contests/2017/U6rNF2btKAHgOIk8oEIhC.webp',
+            imageR2Id: 'uw-2017/wide-angle/U6rNF2btKAHgOIk8oEIhC',
+          },
+        ],
+      },
+    ],
   },
   {
-    "id": "uw-2016",
-    "year": 2016,
-    "name": "UW Contest 2016",
-    "description": "Annual underwater photography competition celebrating the beauty and diversity of marine life",
-    "indexImage": "/images/contests/2016/8hGGW1e7gqv0bhBCGeLaA.webp",
-    "indexImageR2Id": "uw-2016/compact/8hGGW1e7gqv0bhBCGeLaA",
-    "currentContest": false,
-    "judges": [
+    id: 'uw-2016',
+    year: 2016,
+    name: 'UW Contest 2016',
+    description:
+      'Annual underwater photography competition celebrating the beauty and diversity of marine life',
+    indexImage: '/images/contests/2016/8hGGW1e7gqv0bhBCGeLaA.webp',
+    indexImageR2Id: 'uw-2016/compact/8hGGW1e7gqv0bhBCGeLaA',
+    currentContest: false,
+    judges: [
       {
-        "id": "slNRhpI3DaGhZaGNltv9g",
-        "fullName": "Marco Colombo",
-        "r2ImageId": null
+        id: 'slNRhpI3DaGhZaGNltv9g',
+        fullName: 'Marco Colombo',
+        r2ImageId: null,
       },
       {
-        "id": "1zC7RsAwCHfJR3hEGnFKI",
-        "fullName": "Paolo Fossati",
-        "r2ImageId": null
+        id: '1zC7RsAwCHfJR3hEGnFKI',
+        fullName: 'Paolo Fossati',
+        r2ImageId: null,
       },
       {
-        "id": "MrrWhYP79t1LrinbswhcQ",
-        "fullName": "Davide Vezzaro",
-        "r2ImageId": null
-      }
+        id: 'MrrWhYP79t1LrinbswhcQ',
+        fullName: 'Davide Vezzaro',
+        r2ImageId: null,
+      },
     ],
-    "categories": [
+    categories: [
       {
-        "id": "compact",
-        "name": "Compact",
-        "winnerImage": "/images/contests/2016/8hGGW1e7gqv0bhBCGeLaA.webp",
-        "winnerImageR2Id": "uw-2016/compact/8hGGW1e7gqv0bhBCGeLaA",
-        "entries": [
+        id: 'compact',
+        name: 'Compact',
+        winnerImage: '/images/contests/2016/8hGGW1e7gqv0bhBCGeLaA.webp',
+        winnerImageR2Id: 'uw-2016/compact/8hGGW1e7gqv0bhBCGeLaA',
+        entries: [
           {
-            "id": "8hGGW1e7gqv0bhBCGeLaA",
-            "title": "Specchio",
-            "description": "",
-            "placement": "first",
-            "photographer": {
-              "firstName": "Edoardo",
-              "lastName": "Errani"
+            id: '8hGGW1e7gqv0bhBCGeLaA',
+            title: 'Specchio',
+            description: '',
+            placement: 'first',
+            photographer: {
+              firstName: 'Edoardo',
+              lastName: 'Errani',
             },
-            "image": "/images/contests/2016/8hGGW1e7gqv0bhBCGeLaA.webp",
-            "imageR2Id": "uw-2016/compact/8hGGW1e7gqv0bhBCGeLaA"
+            image: '/images/contests/2016/8hGGW1e7gqv0bhBCGeLaA.webp',
+            imageR2Id: 'uw-2016/compact/8hGGW1e7gqv0bhBCGeLaA',
           },
           {
-            "id": "Lk0UH_JEcGptmMDR24Zpp",
-            "title": "In the Mood for Love",
-            "description": "",
-            "placement": "second",
-            "photographer": {
-              "firstName": "Gianluca",
-              "lastName": "Cucco"
+            id: 'Lk0UH_JEcGptmMDR24Zpp',
+            title: 'In the Mood for Love',
+            description: '',
+            placement: 'second',
+            photographer: {
+              firstName: 'Gianluca',
+              lastName: 'Cucco',
             },
-            "image": "/images/contests/2016/Lk0UH_JEcGptmMDR24Zpp.webp",
-            "imageR2Id": "uw-2016/compact/Lk0UH_JEcGptmMDR24Zpp"
+            image: '/images/contests/2016/Lk0UH_JEcGptmMDR24Zpp.webp',
+            imageR2Id: 'uw-2016/compact/Lk0UH_JEcGptmMDR24Zpp',
           },
           {
-            "id": "TRm4mWRyH_QMT0JEioBKz",
-            "title": "Dugongo",
-            "description": "",
-            "placement": "third",
-            "photographer": {
-              "firstName": "Andrea",
-              "lastName": "Izzotti"
+            id: 'TRm4mWRyH_QMT0JEioBKz',
+            title: 'Dugongo',
+            description: '',
+            placement: 'third',
+            photographer: {
+              firstName: 'Andrea',
+              lastName: 'Izzotti',
             },
-            "image": "/images/contests/2016/TRm4mWRyH_QMT0JEioBKz.webp",
-            "imageR2Id": "uw-2016/compact/TRm4mWRyH_QMT0JEioBKz"
+            image: '/images/contests/2016/TRm4mWRyH_QMT0JEioBKz.webp',
+            imageR2Id: 'uw-2016/compact/TRm4mWRyH_QMT0JEioBKz',
           },
           {
-            "id": "Z12bqJBAgeNZZ61WR5rOl",
-            "title": "Il Polpo Da Un' altra prospettiva",
-            "description": "",
-            "placement": "runner-up",
-            "photographer": {
-              "firstName": "Pierluigi",
-              "lastName": "Peis"
+            id: 'Z12bqJBAgeNZZ61WR5rOl',
+            title: "Il Polpo Da Un' altra prospettiva",
+            description: '',
+            placement: 'runner-up',
+            photographer: {
+              firstName: 'Pierluigi',
+              lastName: 'Peis',
             },
-            "image": "/images/contests/2016/Z12bqJBAgeNZZ61WR5rOl.webp",
-            "imageR2Id": "uw-2016/compact/Z12bqJBAgeNZZ61WR5rOl"
+            image: '/images/contests/2016/Z12bqJBAgeNZZ61WR5rOl.webp',
+            imageR2Id: 'uw-2016/compact/Z12bqJBAgeNZZ61WR5rOl',
           },
           {
-            "id": "i0IxfDm2KRuWFJf5bY9OJ",
-            "title": "Rosso Di Notte",
-            "description": "",
-            "placement": "runner-up",
-            "photographer": {
-              "firstName": "Massimo",
-              "lastName": "Giorgetta"
+            id: 'i0IxfDm2KRuWFJf5bY9OJ',
+            title: 'Rosso Di Notte',
+            description: '',
+            placement: 'runner-up',
+            photographer: {
+              firstName: 'Massimo',
+              lastName: 'Giorgetta',
             },
-            "image": "/images/contests/2016/i0IxfDm2KRuWFJf5bY9OJ.webp",
-            "imageR2Id": "uw-2016/compact/i0IxfDm2KRuWFJf5bY9OJ"
+            image: '/images/contests/2016/i0IxfDm2KRuWFJf5bY9OJ.webp',
+            imageR2Id: 'uw-2016/compact/i0IxfDm2KRuWFJf5bY9OJ',
           },
           {
-            "id": "B5Mu6kngeZCQvXSO3iTzM",
-            "title": "Upside down",
-            "description": "",
-            "placement": "runner-up",
-            "photographer": {
-              "firstName": "Lynn",
-              "lastName": "Wu"
+            id: 'B5Mu6kngeZCQvXSO3iTzM',
+            title: 'Upside down',
+            description: '',
+            placement: 'runner-up',
+            photographer: {
+              firstName: 'Lynn',
+              lastName: 'Wu',
             },
-            "image": "/images/contests/2016/B5Mu6kngeZCQvXSO3iTzM.webp",
-            "imageR2Id": "uw-2016/compact/B5Mu6kngeZCQvXSO3iTzM"
+            image: '/images/contests/2016/B5Mu6kngeZCQvXSO3iTzM.webp',
+            imageR2Id: 'uw-2016/compact/B5Mu6kngeZCQvXSO3iTzM',
           },
           {
-            "id": "YVAgJvIR7nNEuAjqmU2FA",
-            "title": "Anemone Leopardo",
-            "description": "",
-            "placement": "runner-up",
-            "photographer": {
-              "firstName": "Virginia",
-              "lastName": "Salzedo"
+            id: 'YVAgJvIR7nNEuAjqmU2FA',
+            title: 'Anemone Leopardo',
+            description: '',
+            placement: 'runner-up',
+            photographer: {
+              firstName: 'Virginia',
+              lastName: 'Salzedo',
             },
-            "image": "/images/contests/2016/YVAgJvIR7nNEuAjqmU2FA.webp",
-            "imageR2Id": "uw-2016/compact/YVAgJvIR7nNEuAjqmU2FA"
+            image: '/images/contests/2016/YVAgJvIR7nNEuAjqmU2FA.webp',
+            imageR2Id: 'uw-2016/compact/YVAgJvIR7nNEuAjqmU2FA',
           },
           {
-            "id": "DhWqpAjNdXaQ4mpZjuhwg",
-            "title": "Atteggiamento Difensivo",
-            "description": "",
-            "placement": "runner-up",
-            "photographer": {
-              "firstName": "Gianni",
-              "lastName": "Colucci"
+            id: 'DhWqpAjNdXaQ4mpZjuhwg',
+            title: 'Atteggiamento Difensivo',
+            description: '',
+            placement: 'runner-up',
+            photographer: {
+              firstName: 'Gianni',
+              lastName: 'Colucci',
             },
-            "image": "/images/contests/2016/DhWqpAjNdXaQ4mpZjuhwg.webp",
-            "imageR2Id": "uw-2016/compact/DhWqpAjNdXaQ4mpZjuhwg"
+            image: '/images/contests/2016/DhWqpAjNdXaQ4mpZjuhwg.webp',
+            imageR2Id: 'uw-2016/compact/DhWqpAjNdXaQ4mpZjuhwg',
           },
           {
-            "id": "sMfHyl74g7tUDtioinA2Q",
-            "title": "Pulizia Meccanica",
-            "description": "",
-            "placement": "runner-up",
-            "photographer": {
-              "firstName": "Stefano",
-              "lastName": "Cerbai"
+            id: 'sMfHyl74g7tUDtioinA2Q',
+            title: 'Pulizia Meccanica',
+            description: '',
+            placement: 'runner-up',
+            photographer: {
+              firstName: 'Stefano',
+              lastName: 'Cerbai',
             },
-            "image": "/images/contests/2016/sMfHyl74g7tUDtioinA2Q.webp",
-            "imageR2Id": "uw-2016/compact/sMfHyl74g7tUDtioinA2Q"
+            image: '/images/contests/2016/sMfHyl74g7tUDtioinA2Q.webp',
+            imageR2Id: 'uw-2016/compact/sMfHyl74g7tUDtioinA2Q',
           },
           {
-            "id": "gD5EejmNFy7e2UmnHWqm4",
-            "title": "Ascentic",
-            "description": "",
-            "placement": "runner-up",
-            "photographer": {
-              "firstName": "Emanuele",
-              "lastName": "Vitale"
+            id: 'gD5EejmNFy7e2UmnHWqm4',
+            title: 'Ascentic',
+            description: '',
+            placement: 'runner-up',
+            photographer: {
+              firstName: 'Emanuele',
+              lastName: 'Vitale',
             },
-            "image": "/images/contests/2016/gD5EejmNFy7e2UmnHWqm4.webp",
-            "imageR2Id": "uw-2016/compact/gD5EejmNFy7e2UmnHWqm4"
-          }
-        ]
+            image: '/images/contests/2016/gD5EejmNFy7e2UmnHWqm4.webp',
+            imageR2Id: 'uw-2016/compact/gD5EejmNFy7e2UmnHWqm4',
+          },
+        ],
       },
       {
-        "id": "macro",
-        "name": "Macro",
-        "winnerImage": "/images/contests/2016/62119fs-s8Bxa9hEXAEkZ.webp",
-        "winnerImageR2Id": "uw-2016/macro/62119fs-s8Bxa9hEXAEkZ",
-        "entries": [
+        id: 'macro',
+        name: 'Macro',
+        winnerImage: '/images/contests/2016/62119fs-s8Bxa9hEXAEkZ.webp',
+        winnerImageR2Id: 'uw-2016/macro/62119fs-s8Bxa9hEXAEkZ',
+        entries: [
           {
-            "id": "62119fs-s8Bxa9hEXAEkZ",
-            "title": "Acrobata",
-            "description": "",
-            "placement": "first",
-            "photographer": {
-              "firstName": "Giacomo",
-              "lastName": "Marchione"
+            id: '62119fs-s8Bxa9hEXAEkZ',
+            title: 'Acrobata',
+            description: '',
+            placement: 'first',
+            photographer: {
+              firstName: 'Giacomo',
+              lastName: 'Marchione',
             },
-            "image": "/images/contests/2016/62119fs-s8Bxa9hEXAEkZ.webp",
-            "imageR2Id": "uw-2016/macro/62119fs-s8Bxa9hEXAEkZ"
+            image: '/images/contests/2016/62119fs-s8Bxa9hEXAEkZ.webp',
+            imageR2Id: 'uw-2016/macro/62119fs-s8Bxa9hEXAEkZ',
           },
           {
-            "id": "nnffRNn9eTn5anoqRKqAz",
-            "title": "Clownfish",
-            "description": "",
-            "placement": "second",
-            "photographer": {
-              "firstName": "Rooman",
-              "lastName": "Luc"
+            id: 'nnffRNn9eTn5anoqRKqAz',
+            title: 'Clownfish',
+            description: '',
+            placement: 'second',
+            photographer: {
+              firstName: 'Rooman',
+              lastName: 'Luc',
             },
-            "image": "/images/contests/2016/nnffRNn9eTn5anoqRKqAz.webp",
-            "imageR2Id": "uw-2016/macro/nnffRNn9eTn5anoqRKqAz"
+            image: '/images/contests/2016/nnffRNn9eTn5anoqRKqAz.webp',
+            imageR2Id: 'uw-2016/macro/nnffRNn9eTn5anoqRKqAz',
           },
           {
-            "id": "0_LVA4xclDOR7FAN8qCLT",
-            "title": "Ladybug",
-            "description": "",
-            "placement": "third",
-            "photographer": {
-              "firstName": "Jorge",
-              "lastName": "Marco"
+            id: '0_LVA4xclDOR7FAN8qCLT',
+            title: 'Ladybug',
+            description: '',
+            placement: 'third',
+            photographer: {
+              firstName: 'Jorge',
+              lastName: 'Marco',
             },
-            "image": "/images/contests/2016/0_LVA4xclDOR7FAN8qCLT.webp",
-            "imageR2Id": "uw-2016/macro/0_LVA4xclDOR7FAN8qCLT"
+            image: '/images/contests/2016/0_LVA4xclDOR7FAN8qCLT.webp',
+            imageR2Id: 'uw-2016/macro/0_LVA4xclDOR7FAN8qCLT',
           },
           {
-            "id": "56L4yUDl7bHYTGPR1GCNq",
-            "title": "Mi Casa Es Tu Casa !",
-            "description": "",
-            "placement": "runner-up",
-            "photographer": {
-              "firstName": "Alberto",
-              "lastName": "Buonanno"
+            id: '56L4yUDl7bHYTGPR1GCNq',
+            title: 'Mi Casa Es Tu Casa !',
+            description: '',
+            placement: 'runner-up',
+            photographer: {
+              firstName: 'Alberto',
+              lastName: 'Buonanno',
             },
-            "image": "/images/contests/2016/56L4yUDl7bHYTGPR1GCNq.webp",
-            "imageR2Id": "uw-2016/macro/56L4yUDl7bHYTGPR1GCNq"
+            image: '/images/contests/2016/56L4yUDl7bHYTGPR1GCNq.webp',
+            imageR2Id: 'uw-2016/macro/56L4yUDl7bHYTGPR1GCNq',
           },
           {
-            "id": "EZV3jmDy_qsXQpq_cnhOu",
-            "title": "Eye in the Dark",
-            "description": "",
-            "placement": "runner-up",
-            "photographer": {
-              "firstName": "Lynn",
-              "lastName": "Wu"
+            id: 'EZV3jmDy_qsXQpq_cnhOu',
+            title: 'Eye in the Dark',
+            description: '',
+            placement: 'runner-up',
+            photographer: {
+              firstName: 'Lynn',
+              lastName: 'Wu',
             },
-            "image": "/images/contests/2016/EZV3jmDy_qsXQpq_cnhOu.webp",
-            "imageR2Id": "uw-2016/macro/EZV3jmDy_qsXQpq_cnhOu"
+            image: '/images/contests/2016/EZV3jmDy_qsXQpq_cnhOu.webp',
+            imageR2Id: 'uw-2016/macro/EZV3jmDy_qsXQpq_cnhOu',
           },
           {
-            "id": "zPJom7RxXrt_v0o-HG7zt",
-            "title": "The Little King",
-            "description": "",
-            "placement": "runner-up",
-            "photographer": {
-              "firstName": "Mauro",
-              "lastName": "Mainardi"
+            id: 'zPJom7RxXrt_v0o-HG7zt',
+            title: 'The Little King',
+            description: '',
+            placement: 'runner-up',
+            photographer: {
+              firstName: 'Mauro',
+              lastName: 'Mainardi',
             },
-            "image": "/images/contests/2016/zPJom7RxXrt_v0o-HG7zt.webp",
-            "imageR2Id": "uw-2016/macro/zPJom7RxXrt_v0o-HG7zt"
+            image: '/images/contests/2016/zPJom7RxXrt_v0o-HG7zt.webp',
+            imageR2Id: 'uw-2016/macro/zPJom7RxXrt_v0o-HG7zt',
           },
           {
-            "id": "CZgbEOqkXW9vqSJ8AuGIu",
-            "title": "Gorgonia Snooty",
-            "description": "",
-            "placement": "runner-up",
-            "photographer": {
-              "firstName": "Alessandro",
-              "lastName": "Giannaccini"
+            id: 'CZgbEOqkXW9vqSJ8AuGIu',
+            title: 'Gorgonia Snooty',
+            description: '',
+            placement: 'runner-up',
+            photographer: {
+              firstName: 'Alessandro',
+              lastName: 'Giannaccini',
             },
-            "image": "/images/contests/2016/CZgbEOqkXW9vqSJ8AuGIu.webp",
-            "imageR2Id": "uw-2016/macro/CZgbEOqkXW9vqSJ8AuGIu"
+            image: '/images/contests/2016/CZgbEOqkXW9vqSJ8AuGIu.webp',
+            imageR2Id: 'uw-2016/macro/CZgbEOqkXW9vqSJ8AuGIu',
           },
           {
-            "id": "CNn6SZDCKsx6gE94kocs0",
-            "title": "L'Ago",
-            "description": "",
-            "placement": "runner-up",
-            "photographer": {
-              "firstName": "Domenico",
-              "lastName": "Tritto"
+            id: 'CNn6SZDCKsx6gE94kocs0',
+            title: "L'Ago",
+            description: '',
+            placement: 'runner-up',
+            photographer: {
+              firstName: 'Domenico',
+              lastName: 'Tritto',
             },
-            "image": "/images/contests/2016/CNn6SZDCKsx6gE94kocs0.webp",
-            "imageR2Id": "uw-2016/macro/CNn6SZDCKsx6gE94kocs0"
+            image: '/images/contests/2016/CNn6SZDCKsx6gE94kocs0.webp',
+            imageR2Id: 'uw-2016/macro/CNn6SZDCKsx6gE94kocs0',
           },
           {
-            "id": "LnXWjDhncQo396et7IgqW",
-            "title": "Red Devil",
-            "description": "",
-            "placement": "runner-up",
-            "photographer": {
-              "firstName": "Staes",
-              "lastName": "Filip"
+            id: 'LnXWjDhncQo396et7IgqW',
+            title: 'Red Devil',
+            description: '',
+            placement: 'runner-up',
+            photographer: {
+              firstName: 'Staes',
+              lastName: 'Filip',
             },
-            "image": "/images/contests/2016/LnXWjDhncQo396et7IgqW.webp",
-            "imageR2Id": "uw-2016/macro/LnXWjDhncQo396et7IgqW"
+            image: '/images/contests/2016/LnXWjDhncQo396et7IgqW.webp',
+            imageR2Id: 'uw-2016/macro/LnXWjDhncQo396et7IgqW',
           },
           {
-            "id": "S3RRKtkInbMNnXkLpjfAp",
-            "title": "Parto Con Successo",
-            "description": "",
-            "placement": "runner-up",
-            "photographer": {
-              "firstName": "Gianni",
-              "lastName": "Colucci"
+            id: 'S3RRKtkInbMNnXkLpjfAp',
+            title: 'Parto Con Successo',
+            description: '',
+            placement: 'runner-up',
+            photographer: {
+              firstName: 'Gianni',
+              lastName: 'Colucci',
             },
-            "image": "/images/contests/2016/S3RRKtkInbMNnXkLpjfAp.webp",
-            "imageR2Id": "uw-2016/macro/S3RRKtkInbMNnXkLpjfAp"
+            image: '/images/contests/2016/S3RRKtkInbMNnXkLpjfAp.webp',
+            imageR2Id: 'uw-2016/macro/S3RRKtkInbMNnXkLpjfAp',
           },
           {
-            "id": "qVF361bRTvxZrpv_N2mXx",
-            "title": "Sul Tappeto Rosso",
-            "description": "",
-            "placement": "runner-up",
-            "photographer": {
-              "firstName": "Gianluca",
-              "lastName": "Romano"
+            id: 'qVF361bRTvxZrpv_N2mXx',
+            title: 'Sul Tappeto Rosso',
+            description: '',
+            placement: 'runner-up',
+            photographer: {
+              firstName: 'Gianluca',
+              lastName: 'Romano',
             },
-            "image": "/images/contests/2016/qVF361bRTvxZrpv_N2mXx.webp",
-            "imageR2Id": "uw-2016/macro/qVF361bRTvxZrpv_N2mXx"
-          }
-        ]
+            image: '/images/contests/2016/qVF361bRTvxZrpv_N2mXx.webp',
+            imageR2Id: 'uw-2016/macro/qVF361bRTvxZrpv_N2mXx',
+          },
+        ],
       },
       {
-        "id": "mediterranean",
-        "name": "Mediterranean Portfolio",
-        "winnerImage": "/images/contests/2016/qHDkOBQ0q9txjIgfCAhWs.webp",
-        "winnerImageR2Id": "uw-2016/mediterranean/qHDkOBQ0q9txjIgfCAhWs",
-        "entries": [
+        id: 'mediterranean',
+        name: 'Mediterranean Portfolio',
+        winnerImage: '/images/contests/2016/qHDkOBQ0q9txjIgfCAhWs.webp',
+        winnerImageR2Id: 'uw-2016/mediterranean/qHDkOBQ0q9txjIgfCAhWs',
+        entries: [
           {
-            "id": "qHDkOBQ0q9txjIgfCAhWs",
-            "title": "Rombo Alla Ligure",
-            "description": "",
-            "placement": "first",
-            "photographer": {
-              "firstName": "Pietro",
-              "lastName": "Formis"
+            id: 'qHDkOBQ0q9txjIgfCAhWs',
+            title: 'Rombo Alla Ligure',
+            description: '',
+            placement: 'first',
+            photographer: {
+              firstName: 'Pietro',
+              lastName: 'Formis',
             },
-            "image": "/images/contests/2016/qHDkOBQ0q9txjIgfCAhWs.webp",
-            "imageR2Id": "uw-2016/mediterranean/qHDkOBQ0q9txjIgfCAhWs"
+            image: '/images/contests/2016/qHDkOBQ0q9txjIgfCAhWs.webp',
+            imageR2Id: 'uw-2016/mediterranean/qHDkOBQ0q9txjIgfCAhWs',
           },
           {
-            "id": "Of0pvz4RVBzpy7jgcpQUJ",
-            "title": "Generazione D'oro",
-            "description": "",
-            "placement": "first",
-            "photographer": {
-              "firstName": "Pietro",
-              "lastName": "Formis"
+            id: 'Of0pvz4RVBzpy7jgcpQUJ',
+            title: "Generazione D'oro",
+            description: '',
+            placement: 'first',
+            photographer: {
+              firstName: 'Pietro',
+              lastName: 'Formis',
             },
-            "image": "/images/contests/2016/Of0pvz4RVBzpy7jgcpQUJ.webp",
-            "imageR2Id": "uw-2016/mediterranean/Of0pvz4RVBzpy7jgcpQUJ"
+            image: '/images/contests/2016/Of0pvz4RVBzpy7jgcpQUJ.webp',
+            imageR2Id: 'uw-2016/mediterranean/Of0pvz4RVBzpy7jgcpQUJ',
           },
           {
-            "id": "ibuiNVHUkO4XP70Vr-0aZ",
-            "title": "Monster & Co",
-            "description": "",
-            "placement": "first",
-            "photographer": {
-              "firstName": "Pietro",
-              "lastName": "Formis"
+            id: 'ibuiNVHUkO4XP70Vr-0aZ',
+            title: 'Monster & Co',
+            description: '',
+            placement: 'first',
+            photographer: {
+              firstName: 'Pietro',
+              lastName: 'Formis',
             },
-            "image": "/images/contests/2016/ibuiNVHUkO4XP70Vr-0aZ.webp",
-            "imageR2Id": "uw-2016/mediterranean/ibuiNVHUkO4XP70Vr-0aZ"
+            image: '/images/contests/2016/ibuiNVHUkO4XP70Vr-0aZ.webp',
+            imageR2Id: 'uw-2016/mediterranean/ibuiNVHUkO4XP70Vr-0aZ',
           },
           {
-            "id": "h74iiwn-Wx_GAN2N33uQF",
-            "title": "Nursery",
-            "description": "",
-            "placement": "second",
-            "photographer": {
-              "firstName": "Gabriella",
-              "lastName": "Luongo"
+            id: 'h74iiwn-Wx_GAN2N33uQF',
+            title: 'Nursery',
+            description: '',
+            placement: 'second',
+            photographer: {
+              firstName: 'Gabriella',
+              lastName: 'Luongo',
             },
-            "image": "/images/contests/2016/h74iiwn-Wx_GAN2N33uQF.webp",
-            "imageR2Id": "uw-2016/mediterranean/h74iiwn-Wx_GAN2N33uQF"
+            image: '/images/contests/2016/h74iiwn-Wx_GAN2N33uQF.webp',
+            imageR2Id: 'uw-2016/mediterranean/h74iiwn-Wx_GAN2N33uQF',
           },
           {
-            "id": "qAnU6fGxkQgjaofHa9OtD",
-            "title": "Gorgonia Con Gameti",
-            "description": "",
-            "placement": "second",
-            "photographer": {
-              "firstName": "Gabriella",
-              "lastName": "Luongo"
+            id: 'qAnU6fGxkQgjaofHa9OtD',
+            title: 'Gorgonia Con Gameti',
+            description: '',
+            placement: 'second',
+            photographer: {
+              firstName: 'Gabriella',
+              lastName: 'Luongo',
             },
-            "image": "/images/contests/2016/qAnU6fGxkQgjaofHa9OtD.webp",
-            "imageR2Id": "uw-2016/mediterranean/qAnU6fGxkQgjaofHa9OtD"
+            image: '/images/contests/2016/qAnU6fGxkQgjaofHa9OtD.webp',
+            imageR2Id: 'uw-2016/mediterranean/qAnU6fGxkQgjaofHa9OtD',
           },
           {
-            "id": "4pyb5JTjTUOaMsjQ1NMsY",
-            "title": "Timidezza",
-            "description": "",
-            "placement": "second",
-            "photographer": {
-              "firstName": "Gabriella",
-              "lastName": "Luongo"
+            id: '4pyb5JTjTUOaMsjQ1NMsY',
+            title: 'Timidezza',
+            description: '',
+            placement: 'second',
+            photographer: {
+              firstName: 'Gabriella',
+              lastName: 'Luongo',
             },
-            "image": "/images/contests/2016/4pyb5JTjTUOaMsjQ1NMsY.webp",
-            "imageR2Id": "uw-2016/mediterranean/4pyb5JTjTUOaMsjQ1NMsY"
+            image: '/images/contests/2016/4pyb5JTjTUOaMsjQ1NMsY.webp',
+            imageR2Id: 'uw-2016/mediterranean/4pyb5JTjTUOaMsjQ1NMsY',
           },
           {
-            "id": "SKpz59dxXoMN8-qZ4MF82",
-            "title": "Med Jewerly",
-            "description": "",
-            "placement": "third",
-            "photographer": {
-              "firstName": "Massimo",
-              "lastName": "Zannini"
+            id: 'SKpz59dxXoMN8-qZ4MF82',
+            title: 'Med Jewerly',
+            description: '',
+            placement: 'third',
+            photographer: {
+              firstName: 'Massimo',
+              lastName: 'Zannini',
             },
-            "image": "/images/contests/2016/SKpz59dxXoMN8-qZ4MF82.webp",
-            "imageR2Id": "uw-2016/mediterranean/SKpz59dxXoMN8-qZ4MF82"
+            image: '/images/contests/2016/SKpz59dxXoMN8-qZ4MF82.webp',
+            imageR2Id: 'uw-2016/mediterranean/SKpz59dxXoMN8-qZ4MF82',
           },
           {
-            "id": "WKtYwtEHbb6z_9qbI4900",
-            "title": "Med Jewerly",
-            "description": "",
-            "placement": "third",
-            "photographer": {
-              "firstName": "Massimo",
-              "lastName": "Zannini"
+            id: 'WKtYwtEHbb6z_9qbI4900',
+            title: 'Med Jewerly',
+            description: '',
+            placement: 'third',
+            photographer: {
+              firstName: 'Massimo',
+              lastName: 'Zannini',
             },
-            "image": "/images/contests/2016/WKtYwtEHbb6z_9qbI4900.webp",
-            "imageR2Id": "uw-2016/mediterranean/WKtYwtEHbb6z_9qbI4900"
+            image: '/images/contests/2016/WKtYwtEHbb6z_9qbI4900.webp',
+            imageR2Id: 'uw-2016/mediterranean/WKtYwtEHbb6z_9qbI4900',
           },
           {
-            "id": "QjtGasqDhYJrlVHqgQOWL",
-            "title": "Med Jewerly",
-            "description": "",
-            "placement": "third",
-            "photographer": {
-              "firstName": "Massimo",
-              "lastName": "Zannini"
+            id: 'QjtGasqDhYJrlVHqgQOWL',
+            title: 'Med Jewerly',
+            description: '',
+            placement: 'third',
+            photographer: {
+              firstName: 'Massimo',
+              lastName: 'Zannini',
             },
-            "image": "/images/contests/2016/QjtGasqDhYJrlVHqgQOWL.webp",
-            "imageR2Id": "uw-2016/mediterranean/QjtGasqDhYJrlVHqgQOWL"
+            image: '/images/contests/2016/QjtGasqDhYJrlVHqgQOWL.webp',
+            imageR2Id: 'uw-2016/mediterranean/QjtGasqDhYJrlVHqgQOWL',
           },
           {
-            "id": "TQNAjba3qoXjYs1zgvjkP",
-            "title": "Toward Orbit",
-            "description": "",
-            "placement": "runner-up",
-            "photographer": {
-              "firstName": "Salvatore",
-              "lastName": "Ianniello"
+            id: 'TQNAjba3qoXjYs1zgvjkP',
+            title: 'Toward Orbit',
+            description: '',
+            placement: 'runner-up',
+            photographer: {
+              firstName: 'Salvatore',
+              lastName: 'Ianniello',
             },
-            "image": "/images/contests/2016/TQNAjba3qoXjYs1zgvjkP.webp",
-            "imageR2Id": "uw-2016/mediterranean/TQNAjba3qoXjYs1zgvjkP"
+            image: '/images/contests/2016/TQNAjba3qoXjYs1zgvjkP.webp',
+            imageR2Id: 'uw-2016/mediterranean/TQNAjba3qoXjYs1zgvjkP',
           },
           {
-            "id": "55CgO_UaOum0nMksnDFCL",
-            "title": "Yellow Mom",
-            "description": "",
-            "placement": "runner-up",
-            "photographer": {
-              "firstName": "Salvatore",
-              "lastName": "Ianniello"
+            id: '55CgO_UaOum0nMksnDFCL',
+            title: 'Yellow Mom',
+            description: '',
+            placement: 'runner-up',
+            photographer: {
+              firstName: 'Salvatore',
+              lastName: 'Ianniello',
             },
-            "image": "/images/contests/2016/55CgO_UaOum0nMksnDFCL.webp",
-            "imageR2Id": "uw-2016/mediterranean/55CgO_UaOum0nMksnDFCL"
+            image: '/images/contests/2016/55CgO_UaOum0nMksnDFCL.webp',
+            imageR2Id: 'uw-2016/mediterranean/55CgO_UaOum0nMksnDFCL',
           },
           {
-            "id": "9RTXQFplSjpdRBC2IBbcq",
-            "title": "Looking at the Sky",
-            "description": "",
-            "placement": "runner-up",
-            "photographer": {
-              "firstName": "Salvatore",
-              "lastName": "Ianniello"
+            id: '9RTXQFplSjpdRBC2IBbcq',
+            title: 'Looking at the Sky',
+            description: '',
+            placement: 'runner-up',
+            photographer: {
+              firstName: 'Salvatore',
+              lastName: 'Ianniello',
             },
-            "image": "/images/contests/2016/9RTXQFplSjpdRBC2IBbcq.webp",
-            "imageR2Id": "uw-2016/mediterranean/9RTXQFplSjpdRBC2IBbcq"
+            image: '/images/contests/2016/9RTXQFplSjpdRBC2IBbcq.webp',
+            imageR2Id: 'uw-2016/mediterranean/9RTXQFplSjpdRBC2IBbcq',
           },
           {
-            "id": "A9WTD17h9DnDTReFg2_1V",
-            "title": "The Queen",
-            "description": "",
-            "placement": "runner-up",
-            "photographer": {
-              "firstName": "Pasquale",
-              "lastName": "Vassallo"
+            id: 'A9WTD17h9DnDTReFg2_1V',
+            title: 'The Queen',
+            description: '',
+            placement: 'runner-up',
+            photographer: {
+              firstName: 'Pasquale',
+              lastName: 'Vassallo',
             },
-            "image": "/images/contests/2016/A9WTD17h9DnDTReFg2_1V.webp",
-            "imageR2Id": "uw-2016/mediterranean/A9WTD17h9DnDTReFg2_1V"
+            image: '/images/contests/2016/A9WTD17h9DnDTReFg2_1V.webp',
+            imageR2Id: 'uw-2016/mediterranean/A9WTD17h9DnDTReFg2_1V',
           },
           {
-            "id": "MwPL-hw0ptzQXgUwFWYPf",
-            "title": "Future",
-            "description": "",
-            "placement": "runner-up",
-            "photographer": {
-              "firstName": "Pasquale",
-              "lastName": "Vassallo"
+            id: 'MwPL-hw0ptzQXgUwFWYPf',
+            title: 'Future',
+            description: '',
+            placement: 'runner-up',
+            photographer: {
+              firstName: 'Pasquale',
+              lastName: 'Vassallo',
             },
-            "image": "/images/contests/2016/MwPL-hw0ptzQXgUwFWYPf.webp",
-            "imageR2Id": "uw-2016/mediterranean/MwPL-hw0ptzQXgUwFWYPf"
+            image: '/images/contests/2016/MwPL-hw0ptzQXgUwFWYPf.webp',
+            imageR2Id: 'uw-2016/mediterranean/MwPL-hw0ptzQXgUwFWYPf',
           },
           {
-            "id": "eDw0bvSD6XJd2E051Xv9t",
-            "title": "The Guest",
-            "description": "",
-            "placement": "runner-up",
-            "photographer": {
-              "firstName": "Pasquale",
-              "lastName": "Vassallo"
+            id: 'eDw0bvSD6XJd2E051Xv9t',
+            title: 'The Guest',
+            description: '',
+            placement: 'runner-up',
+            photographer: {
+              firstName: 'Pasquale',
+              lastName: 'Vassallo',
             },
-            "image": "/images/contests/2016/eDw0bvSD6XJd2E051Xv9t.webp",
-            "imageR2Id": "uw-2016/mediterranean/eDw0bvSD6XJd2E051Xv9t"
+            image: '/images/contests/2016/eDw0bvSD6XJd2E051Xv9t.webp',
+            imageR2Id: 'uw-2016/mediterranean/eDw0bvSD6XJd2E051Xv9t',
           },
           {
-            "id": "vK1bccTzP9QWcObIOY0CV",
-            "title": "Doride in the Light",
-            "description": "",
-            "placement": "runner-up",
-            "photographer": {
-              "firstName": "Virginia",
-              "lastName": "Salzedo"
+            id: 'vK1bccTzP9QWcObIOY0CV',
+            title: 'Doride in the Light',
+            description: '',
+            placement: 'runner-up',
+            photographer: {
+              firstName: 'Virginia',
+              lastName: 'Salzedo',
             },
-            "image": "/images/contests/2016/vK1bccTzP9QWcObIOY0CV.webp",
-            "imageR2Id": "uw-2016/mediterranean/vK1bccTzP9QWcObIOY0CV"
+            image: '/images/contests/2016/vK1bccTzP9QWcObIOY0CV.webp',
+            imageR2Id: 'uw-2016/mediterranean/vK1bccTzP9QWcObIOY0CV',
           },
           {
-            "id": "hddHV0zcf3mMb6LN1PRgO",
-            "title": "La Straniera",
-            "description": "",
-            "placement": "runner-up",
-            "photographer": {
-              "firstName": "Virginia",
-              "lastName": "Salzedo"
+            id: 'hddHV0zcf3mMb6LN1PRgO',
+            title: 'La Straniera',
+            description: '',
+            placement: 'runner-up',
+            photographer: {
+              firstName: 'Virginia',
+              lastName: 'Salzedo',
             },
-            "image": "/images/contests/2016/hddHV0zcf3mMb6LN1PRgO.webp",
-            "imageR2Id": "uw-2016/mediterranean/hddHV0zcf3mMb6LN1PRgO"
+            image: '/images/contests/2016/hddHV0zcf3mMb6LN1PRgO.webp',
+            imageR2Id: 'uw-2016/mediterranean/hddHV0zcf3mMb6LN1PRgO',
           },
           {
-            "id": "ttDsVVkdNDupd_5L8p0ab",
-            "title": "Una Finestra Sul Mare",
-            "description": "",
-            "placement": "runner-up",
-            "photographer": {
-              "firstName": "Virginia",
-              "lastName": "Salzedo"
+            id: 'ttDsVVkdNDupd_5L8p0ab',
+            title: 'Una Finestra Sul Mare',
+            description: '',
+            placement: 'runner-up',
+            photographer: {
+              firstName: 'Virginia',
+              lastName: 'Salzedo',
             },
-            "image": "/images/contests/2016/ttDsVVkdNDupd_5L8p0ab.webp",
-            "imageR2Id": "uw-2016/mediterranean/ttDsVVkdNDupd_5L8p0ab"
-          }
-        ]
+            image: '/images/contests/2016/ttDsVVkdNDupd_5L8p0ab.webp',
+            imageR2Id: 'uw-2016/mediterranean/ttDsVVkdNDupd_5L8p0ab',
+          },
+        ],
       },
       {
-        "id": "seahorse",
-        "name": "Seahorse",
-        "winnerImage": "/images/contests/2016/m9PMrfBA1nTk1smDHMAAP.webp",
-        "winnerImageR2Id": "uw-2016/seahorse/m9PMrfBA1nTk1smDHMAAP",
-        "entries": [
+        id: 'seahorse',
+        name: 'Seahorse',
+        winnerImage: '/images/contests/2016/m9PMrfBA1nTk1smDHMAAP.webp',
+        winnerImageR2Id: 'uw-2016/seahorse/m9PMrfBA1nTk1smDHMAAP',
+        entries: [
           {
-            "id": "m9PMrfBA1nTk1smDHMAAP",
-            "title": "Inno Alla Gioia",
-            "description": "",
-            "placement": "first",
-            "photographer": {
-              "firstName": "Gianluca",
-              "lastName": "Romano"
+            id: 'm9PMrfBA1nTk1smDHMAAP',
+            title: 'Inno Alla Gioia',
+            description: '',
+            placement: 'first',
+            photographer: {
+              firstName: 'Gianluca',
+              lastName: 'Romano',
             },
-            "image": "/images/contests/2016/m9PMrfBA1nTk1smDHMAAP.webp",
-            "imageR2Id": "uw-2016/seahorse/m9PMrfBA1nTk1smDHMAAP"
+            image: '/images/contests/2016/m9PMrfBA1nTk1smDHMAAP.webp',
+            imageR2Id: 'uw-2016/seahorse/m9PMrfBA1nTk1smDHMAAP',
           },
           {
-            "id": "paZMZOaFoKfuZVRHdNFON",
-            "title": "Magic Moment",
-            "description": "",
-            "placement": "second",
-            "photographer": {
-              "firstName": "Flavio",
-              "lastName": "Vailati"
+            id: 'paZMZOaFoKfuZVRHdNFON',
+            title: 'Magic Moment',
+            description: '',
+            placement: 'second',
+            photographer: {
+              firstName: 'Flavio',
+              lastName: 'Vailati',
             },
-            "image": "/images/contests/2016/paZMZOaFoKfuZVRHdNFON.webp",
-            "imageR2Id": "uw-2016/seahorse/paZMZOaFoKfuZVRHdNFON"
+            image: '/images/contests/2016/paZMZOaFoKfuZVRHdNFON.webp',
+            imageR2Id: 'uw-2016/seahorse/paZMZOaFoKfuZVRHdNFON',
           },
           {
-            "id": "JEz8h2fnxzfhFp5ZZKjRh",
-            "title": "Alla Finestra",
-            "description": "",
-            "placement": "third",
-            "photographer": {
-              "firstName": "Mauro",
-              "lastName": "Apuleo"
+            id: 'JEz8h2fnxzfhFp5ZZKjRh',
+            title: 'Alla Finestra',
+            description: '',
+            placement: 'third',
+            photographer: {
+              firstName: 'Mauro',
+              lastName: 'Apuleo',
             },
-            "image": "/images/contests/2016/JEz8h2fnxzfhFp5ZZKjRh.webp",
-            "imageR2Id": "uw-2016/seahorse/JEz8h2fnxzfhFp5ZZKjRh"
+            image: '/images/contests/2016/JEz8h2fnxzfhFp5ZZKjRh.webp',
+            imageR2Id: 'uw-2016/seahorse/JEz8h2fnxzfhFp5ZZKjRh',
           },
           {
-            "id": "gRh5_EzuyMe3w107mwSRc",
-            "title": "Red Family",
-            "description": "",
-            "placement": "runner-up",
-            "photographer": {
-              "firstName": "Giacomo",
-              "lastName": "Marchione"
+            id: 'gRh5_EzuyMe3w107mwSRc',
+            title: 'Red Family',
+            description: '',
+            placement: 'runner-up',
+            photographer: {
+              firstName: 'Giacomo',
+              lastName: 'Marchione',
             },
-            "image": "/images/contests/2016/gRh5_EzuyMe3w107mwSRc.webp",
-            "imageR2Id": "uw-2016/seahorse/gRh5_EzuyMe3w107mwSRc"
+            image: '/images/contests/2016/gRh5_EzuyMe3w107mwSRc.webp',
+            imageR2Id: 'uw-2016/seahorse/gRh5_EzuyMe3w107mwSRc',
           },
           {
-            "id": "JeScQtWEv47aEUBAUSBT8",
-            "title": "Monster",
-            "description": "",
-            "placement": "runner-up",
-            "photographer": {
-              "firstName": "Marco",
-              "lastName": "Gargiulo"
+            id: 'JeScQtWEv47aEUBAUSBT8',
+            title: 'Monster',
+            description: '',
+            placement: 'runner-up',
+            photographer: {
+              firstName: 'Marco',
+              lastName: 'Gargiulo',
             },
-            "image": "/images/contests/2016/JeScQtWEv47aEUBAUSBT8.webp",
-            "imageR2Id": "uw-2016/seahorse/JeScQtWEv47aEUBAUSBT8"
+            image: '/images/contests/2016/JeScQtWEv47aEUBAUSBT8.webp',
+            imageR2Id: 'uw-2016/seahorse/JeScQtWEv47aEUBAUSBT8',
           },
           {
-            "id": "uvCXULX1aXuQ7AIxu7Tuo",
-            "title": "Scusate",
-            "description": "",
-            "placement": "runner-up",
-            "photographer": {
-              "firstName": "Massimo",
-              "lastName": "Corradi"
+            id: 'uvCXULX1aXuQ7AIxu7Tuo',
+            title: 'Scusate',
+            description: '',
+            placement: 'runner-up',
+            photographer: {
+              firstName: 'Massimo',
+              lastName: 'Corradi',
             },
-            "image": "/images/contests/2016/uvCXULX1aXuQ7AIxu7Tuo.webp",
-            "imageR2Id": "uw-2016/seahorse/uvCXULX1aXuQ7AIxu7Tuo"
+            image: '/images/contests/2016/uvCXULX1aXuQ7AIxu7Tuo.webp',
+            imageR2Id: 'uw-2016/seahorse/uvCXULX1aXuQ7AIxu7Tuo',
           },
           {
-            "id": "VXoDhxb0SptEaBT88q6XH",
-            "title": "Occhio Per Occhio",
-            "description": "",
-            "placement": "runner-up",
-            "photographer": {
-              "firstName": "Gianni",
-              "lastName": "Colucci"
+            id: 'VXoDhxb0SptEaBT88q6XH',
+            title: 'Occhio Per Occhio',
+            description: '',
+            placement: 'runner-up',
+            photographer: {
+              firstName: 'Gianni',
+              lastName: 'Colucci',
             },
-            "image": "/images/contests/2016/VXoDhxb0SptEaBT88q6XH.webp",
-            "imageR2Id": "uw-2016/seahorse/VXoDhxb0SptEaBT88q6XH"
+            image: '/images/contests/2016/VXoDhxb0SptEaBT88q6XH.webp',
+            imageR2Id: 'uw-2016/seahorse/VXoDhxb0SptEaBT88q6XH',
           },
           {
-            "id": "SOO7lwkSnxA_HIdsgHiAz",
-            "title": "Cavalluccio Luminoso",
-            "description": "",
-            "placement": "runner-up",
-            "photographer": {
-              "firstName": "Raffaele",
-              "lastName": "Livornese"
+            id: 'SOO7lwkSnxA_HIdsgHiAz',
+            title: 'Cavalluccio Luminoso',
+            description: '',
+            placement: 'runner-up',
+            photographer: {
+              firstName: 'Raffaele',
+              lastName: 'Livornese',
             },
-            "image": "/images/contests/2016/SOO7lwkSnxA_HIdsgHiAz.webp",
-            "imageR2Id": "uw-2016/seahorse/SOO7lwkSnxA_HIdsgHiAz"
+            image: '/images/contests/2016/SOO7lwkSnxA_HIdsgHiAz.webp',
+            imageR2Id: 'uw-2016/seahorse/SOO7lwkSnxA_HIdsgHiAz',
           },
           {
-            "id": "m829hsnfuBz2hIbi0PIUh",
-            "title": "Red & Blue",
-            "description": "",
-            "placement": "runner-up",
-            "photographer": {
-              "firstName": "Jordi",
-              "lastName": "Benitex"
+            id: 'm829hsnfuBz2hIbi0PIUh',
+            title: 'Red & Blue',
+            description: '',
+            placement: 'runner-up',
+            photographer: {
+              firstName: 'Jordi',
+              lastName: 'Benitex',
             },
-            "image": "/images/contests/2016/m829hsnfuBz2hIbi0PIUh.webp",
-            "imageR2Id": "uw-2016/seahorse/m829hsnfuBz2hIbi0PIUh"
-          }
-        ]
+            image: '/images/contests/2016/m829hsnfuBz2hIbi0PIUh.webp',
+            imageR2Id: 'uw-2016/seahorse/m829hsnfuBz2hIbi0PIUh',
+          },
+        ],
       },
       {
-        "id": "waves",
-        "name": "Waves",
-        "winnerImage": "/images/contests/2016/-LxsWcDHoHIVkhmb4o7GY.webp",
-        "winnerImageR2Id": "uw-2016/waves/-LxsWcDHoHIVkhmb4o7GY",
-        "entries": [
+        id: 'waves',
+        name: 'Waves',
+        winnerImage: '/images/contests/2016/-LxsWcDHoHIVkhmb4o7GY.webp',
+        winnerImageR2Id: 'uw-2016/waves/-LxsWcDHoHIVkhmb4o7GY',
+        entries: [
           {
-            "id": "-LxsWcDHoHIVkhmb4o7GY",
-            "title": "Sardinia Wave",
-            "description": "",
-            "placement": "first",
-            "photographer": {
-              "firstName": "Andrea",
-              "lastName": "Izzotti"
+            id: '-LxsWcDHoHIVkhmb4o7GY',
+            title: 'Sardinia Wave',
+            description: '',
+            placement: 'first',
+            photographer: {
+              firstName: 'Andrea',
+              lastName: 'Izzotti',
             },
-            "image": "/images/contests/2016/-LxsWcDHoHIVkhmb4o7GY.webp",
-            "imageR2Id": "uw-2016/waves/-LxsWcDHoHIVkhmb4o7GY"
+            image: '/images/contests/2016/-LxsWcDHoHIVkhmb4o7GY.webp',
+            imageR2Id: 'uw-2016/waves/-LxsWcDHoHIVkhmb4o7GY',
           },
           {
-            "id": "z-AtHBKJnKCVAt0qdaG9r",
-            "title": "W2",
-            "description": "",
-            "placement": "second",
-            "photographer": {
-              "firstName": "Carlos",
-              "lastName": "Virgili Ribe"
+            id: 'z-AtHBKJnKCVAt0qdaG9r',
+            title: 'W2',
+            description: '',
+            placement: 'second',
+            photographer: {
+              firstName: 'Carlos',
+              lastName: 'Virgili Ribe',
             },
-            "image": "/images/contests/2016/z-AtHBKJnKCVAt0qdaG9r.webp",
-            "imageR2Id": "uw-2016/waves/z-AtHBKJnKCVAt0qdaG9r"
+            image: '/images/contests/2016/z-AtHBKJnKCVAt0qdaG9r.webp',
+            imageR2Id: 'uw-2016/waves/z-AtHBKJnKCVAt0qdaG9r',
           },
           {
-            "id": "5ZzbGAegWUcijTM82Cb0i",
-            "title": "Splash",
-            "description": "",
-            "placement": "third",
-            "photographer": {
-              "firstName": "Mauro",
-              "lastName": "Apuleo"
+            id: '5ZzbGAegWUcijTM82Cb0i',
+            title: 'Splash',
+            description: '',
+            placement: 'third',
+            photographer: {
+              firstName: 'Mauro',
+              lastName: 'Apuleo',
             },
-            "image": "/images/contests/2016/5ZzbGAegWUcijTM82Cb0i.webp",
-            "imageR2Id": "uw-2016/waves/5ZzbGAegWUcijTM82Cb0i"
+            image: '/images/contests/2016/5ZzbGAegWUcijTM82Cb0i.webp',
+            imageR2Id: 'uw-2016/waves/5ZzbGAegWUcijTM82Cb0i',
           },
           {
-            "id": "c88BcfQs2rf76ODPotG3D",
-            "title": "Tranquility",
-            "description": "",
-            "placement": "runner-up",
-            "photographer": {
-              "firstName": "Beth",
-              "lastName": "Watson"
+            id: 'c88BcfQs2rf76ODPotG3D',
+            title: 'Tranquility',
+            description: '',
+            placement: 'runner-up',
+            photographer: {
+              firstName: 'Beth',
+              lastName: 'Watson',
             },
-            "image": "/images/contests/2016/c88BcfQs2rf76ODPotG3D.webp",
-            "imageR2Id": "uw-2016/waves/c88BcfQs2rf76ODPotG3D"
+            image: '/images/contests/2016/c88BcfQs2rf76ODPotG3D.webp',
+            imageR2Id: 'uw-2016/waves/c88BcfQs2rf76ODPotG3D',
           },
           {
-            "id": "5-jUOwkOreQAG0BHnGyC1",
-            "title": "L'attimo di cristallo",
-            "description": "",
-            "placement": "runner-up",
-            "photographer": {
-              "firstName": "Gianluca",
-              "lastName": "Romano"
+            id: '5-jUOwkOreQAG0BHnGyC1',
+            title: "L'attimo di cristallo",
+            description: '',
+            placement: 'runner-up',
+            photographer: {
+              firstName: 'Gianluca',
+              lastName: 'Romano',
             },
-            "image": "/images/contests/2016/5-jUOwkOreQAG0BHnGyC1.webp",
-            "imageR2Id": "uw-2016/waves/5-jUOwkOreQAG0BHnGyC1"
+            image: '/images/contests/2016/5-jUOwkOreQAG0BHnGyC1.webp',
+            imageR2Id: 'uw-2016/waves/5-jUOwkOreQAG0BHnGyC1',
           },
           {
-            "id": "ikEhot6w0CmjXX5vN0cc2",
-            "title": "Il Tubo",
-            "description": "",
-            "placement": "runner-up",
-            "photographer": {
-              "firstName": "Gianluca",
-              "lastName": "Romano"
+            id: 'ikEhot6w0CmjXX5vN0cc2',
+            title: 'Il Tubo',
+            description: '',
+            placement: 'runner-up',
+            photographer: {
+              firstName: 'Gianluca',
+              lastName: 'Romano',
             },
-            "image": "/images/contests/2016/ikEhot6w0CmjXX5vN0cc2.webp",
-            "imageR2Id": "uw-2016/waves/ikEhot6w0CmjXX5vN0cc2"
-          }
-        ]
+            image: '/images/contests/2016/ikEhot6w0CmjXX5vN0cc2.webp',
+            imageR2Id: 'uw-2016/waves/ikEhot6w0CmjXX5vN0cc2',
+          },
+        ],
       },
       {
-        "id": "wide-angle",
-        "name": "Wide Angle",
-        "winnerImage": "/images/contests/2016/BwUOgQaF_MElP923r6Gqn.webp",
-        "winnerImageR2Id": "uw-2016/wide-angle/BwUOgQaF_MElP923r6Gqn",
-        "entries": [
+        id: 'wide-angle',
+        name: 'Wide Angle',
+        winnerImage: '/images/contests/2016/BwUOgQaF_MElP923r6Gqn.webp',
+        winnerImageR2Id: 'uw-2016/wide-angle/BwUOgQaF_MElP923r6Gqn',
+        entries: [
           {
-            "id": "BwUOgQaF_MElP923r6Gqn",
-            "title": "Dancers",
-            "description": "",
-            "placement": "first",
-            "photographer": {
-              "firstName": "Gabriella",
-              "lastName": "Luongo"
+            id: 'BwUOgQaF_MElP923r6Gqn',
+            title: 'Dancers',
+            description: '',
+            placement: 'first',
+            photographer: {
+              firstName: 'Gabriella',
+              lastName: 'Luongo',
             },
-            "image": "/images/contests/2016/BwUOgQaF_MElP923r6Gqn.webp",
-            "imageR2Id": "uw-2016/wide-angle/BwUOgQaF_MElP923r6Gqn"
+            image: '/images/contests/2016/BwUOgQaF_MElP923r6Gqn.webp',
+            imageR2Id: 'uw-2016/wide-angle/BwUOgQaF_MElP923r6Gqn',
           },
           {
-            "id": "st6MBQ17SqMM3E34IBdWP",
-            "title": "Le Pseudo Orche Di Karam Masamirit",
-            "description": "",
-            "placement": "second",
-            "photographer": {
-              "firstName": "Renato",
-              "lastName": "La Grassa"
+            id: 'st6MBQ17SqMM3E34IBdWP',
+            title: 'Le Pseudo Orche Di Karam Masamirit',
+            description: '',
+            placement: 'second',
+            photographer: {
+              firstName: 'Renato',
+              lastName: 'La Grassa',
             },
-            "image": "/images/contests/2016/st6MBQ17SqMM3E34IBdWP.webp",
-            "imageR2Id": "uw-2016/wide-angle/st6MBQ17SqMM3E34IBdWP"
+            image: '/images/contests/2016/st6MBQ17SqMM3E34IBdWP.webp',
+            imageR2Id: 'uw-2016/wide-angle/st6MBQ17SqMM3E34IBdWP',
           },
           {
-            "id": "Zw9T3wLcIoOiuLWL9Bys4",
-            "title": "Red Velvet",
-            "description": "",
-            "placement": "third",
-            "photographer": {
-              "firstName": "Fabio",
-              "lastName": "Iardino"
+            id: 'Zw9T3wLcIoOiuLWL9Bys4',
+            title: 'Red Velvet',
+            description: '',
+            placement: 'third',
+            photographer: {
+              firstName: 'Fabio',
+              lastName: 'Iardino',
             },
-            "image": "/images/contests/2016/Zw9T3wLcIoOiuLWL9Bys4.webp",
-            "imageR2Id": "uw-2016/wide-angle/Zw9T3wLcIoOiuLWL9Bys4"
+            image: '/images/contests/2016/Zw9T3wLcIoOiuLWL9Bys4.webp',
+            imageR2Id: 'uw-2016/wide-angle/Zw9T3wLcIoOiuLWL9Bys4',
           },
           {
-            "id": "hBGxp-tSkdRkxLBWazYG-",
-            "title": "Verdesche Atlantiche",
-            "description": "",
-            "placement": "runner-up",
-            "photographer": {
-              "firstName": "Flavio",
-              "lastName": "Vailati"
+            id: 'hBGxp-tSkdRkxLBWazYG-',
+            title: 'Verdesche Atlantiche',
+            description: '',
+            placement: 'runner-up',
+            photographer: {
+              firstName: 'Flavio',
+              lastName: 'Vailati',
             },
-            "image": "/images/contests/2016/hBGxp-tSkdRkxLBWazYG-.webp",
-            "imageR2Id": "uw-2016/wide-angle/hBGxp-tSkdRkxLBWazYG-"
+            image: '/images/contests/2016/hBGxp-tSkdRkxLBWazYG-.webp',
+            imageR2Id: 'uw-2016/wide-angle/hBGxp-tSkdRkxLBWazYG-',
           },
           {
-            "id": "wSZ9TPG_eJLWrOdspXYdw",
-            "title": "Sunray in the Deep",
-            "description": "",
-            "placement": "runner-up",
-            "photographer": {
-              "firstName": "Alberto",
-              "lastName": "Buonanno"
+            id: 'wSZ9TPG_eJLWrOdspXYdw',
+            title: 'Sunray in the Deep',
+            description: '',
+            placement: 'runner-up',
+            photographer: {
+              firstName: 'Alberto',
+              lastName: 'Buonanno',
             },
-            "image": "/images/contests/2016/wSZ9TPG_eJLWrOdspXYdw.webp",
-            "imageR2Id": "uw-2016/wide-angle/wSZ9TPG_eJLWrOdspXYdw"
+            image: '/images/contests/2016/wSZ9TPG_eJLWrOdspXYdw.webp',
+            imageR2Id: 'uw-2016/wide-angle/wSZ9TPG_eJLWrOdspXYdw',
           },
           {
-            "id": "PMVyMuhzF6pCXd7O_ATeW",
-            "title": "Diagonale Doppia",
-            "description": "",
-            "placement": "runner-up",
-            "photographer": {
-              "firstName": "Mauro",
-              "lastName": "Rapini"
+            id: 'PMVyMuhzF6pCXd7O_ATeW',
+            title: 'Diagonale Doppia',
+            description: '',
+            placement: 'runner-up',
+            photographer: {
+              firstName: 'Mauro',
+              lastName: 'Rapini',
             },
-            "image": "/images/contests/2016/PMVyMuhzF6pCXd7O_ATeW.webp",
-            "imageR2Id": "uw-2016/wide-angle/PMVyMuhzF6pCXd7O_ATeW"
+            image: '/images/contests/2016/PMVyMuhzF6pCXd7O_ATeW.webp',
+            imageR2Id: 'uw-2016/wide-angle/PMVyMuhzF6pCXd7O_ATeW',
           },
           {
-            "id": "bpkjLTTj7OxdxKj2410KH",
-            "title": "Shark Torpedo",
-            "description": "",
-            "placement": "runner-up",
-            "photographer": {
-              "firstName": "Yen-Yi",
-              "lastName": "Lee"
+            id: 'bpkjLTTj7OxdxKj2410KH',
+            title: 'Shark Torpedo',
+            description: '',
+            placement: 'runner-up',
+            photographer: {
+              firstName: 'Yen-Yi',
+              lastName: 'Lee',
             },
-            "image": "/images/contests/2016/bpkjLTTj7OxdxKj2410KH.webp",
-            "imageR2Id": "uw-2016/wide-angle/bpkjLTTj7OxdxKj2410KH"
+            image: '/images/contests/2016/bpkjLTTj7OxdxKj2410KH.webp',
+            imageR2Id: 'uw-2016/wide-angle/bpkjLTTj7OxdxKj2410KH',
           },
           {
-            "id": "_OJnBg3ShUy98xG8dA0Aq",
-            "title": "Humpback Dance",
-            "description": "",
-            "placement": "runner-up",
-            "photographer": {
-              "firstName": "Massimo",
-              "lastName": "Zannini"
+            id: '_OJnBg3ShUy98xG8dA0Aq',
+            title: 'Humpback Dance',
+            description: '',
+            placement: 'runner-up',
+            photographer: {
+              firstName: 'Massimo',
+              lastName: 'Zannini',
             },
-            "image": "/images/contests/2016/_OJnBg3ShUy98xG8dA0Aq.webp",
-            "imageR2Id": "uw-2016/wide-angle/_OJnBg3ShUy98xG8dA0Aq"
+            image: '/images/contests/2016/_OJnBg3ShUy98xG8dA0Aq.webp',
+            imageR2Id: 'uw-2016/wide-angle/_OJnBg3ShUy98xG8dA0Aq',
           },
           {
-            "id": "aJBBdYR96ejHyTtNb8JBZ",
-            "title": "La Superba Regalità",
-            "description": "",
-            "placement": "runner-up",
-            "photographer": {
-              "firstName": "Mauro",
-              "lastName": "Mainardi"
+            id: 'aJBBdYR96ejHyTtNb8JBZ',
+            title: 'La Superba Regalità',
+            description: '',
+            placement: 'runner-up',
+            photographer: {
+              firstName: 'Mauro',
+              lastName: 'Mainardi',
             },
-            "image": "/images/contests/2016/aJBBdYR96ejHyTtNb8JBZ.webp",
-            "imageR2Id": "uw-2016/wide-angle/aJBBdYR96ejHyTtNb8JBZ"
+            image: '/images/contests/2016/aJBBdYR96ejHyTtNb8JBZ.webp',
+            imageR2Id: 'uw-2016/wide-angle/aJBBdYR96ejHyTtNb8JBZ',
           },
           {
-            "id": "MdN6WbjuBOeiB9Sqq5gAO",
-            "title": "Planet Turtles",
-            "description": "",
-            "placement": "runner-up",
-            "photographer": {
-              "firstName": "Plamena",
-              "lastName": "Mileva"
+            id: 'MdN6WbjuBOeiB9Sqq5gAO',
+            title: 'Planet Turtles',
+            description: '',
+            placement: 'runner-up',
+            photographer: {
+              firstName: 'Plamena',
+              lastName: 'Mileva',
             },
-            "image": "/images/contests/2016/MdN6WbjuBOeiB9Sqq5gAO.webp",
-            "imageR2Id": "uw-2016/wide-angle/MdN6WbjuBOeiB9Sqq5gAO"
-          }
-        ]
-      }
-    ]
+            image: '/images/contests/2016/MdN6WbjuBOeiB9Sqq5gAO.webp',
+            imageR2Id: 'uw-2016/wide-angle/MdN6WbjuBOeiB9Sqq5gAO',
+          },
+        ],
+      },
+    ],
   },
   {
-    "id": "uw-2015",
-    "year": 2015,
-    "name": "UW Contest 2015",
-    "description": "Annual underwater photography competition celebrating the beauty and diversity of marine life",
-    "indexImage": "/images/contests/2015/YqEXyTuTENq5xTxP4qCw1.webp",
-    "indexImageR2Id": "uw-2015/macro/YqEXyTuTENq5xTxP4qCw1",
-    "currentContest": false,
-    "judges": [
+    id: 'uw-2015',
+    year: 2015,
+    name: 'UW Contest 2015',
+    description:
+      'Annual underwater photography competition celebrating the beauty and diversity of marine life',
+    indexImage: '/images/contests/2015/YqEXyTuTENq5xTxP4qCw1.webp',
+    indexImageR2Id: 'uw-2015/macro/YqEXyTuTENq5xTxP4qCw1',
+    currentContest: false,
+    judges: [
       {
-        "id": "Ev9G4qDYCfHRnWfKo0UK5",
-        "fullName": "Alberto Balbi",
-        "r2ImageId": null
+        id: 'Ev9G4qDYCfHRnWfKo0UK5',
+        fullName: 'Alberto Balbi',
+        r2ImageId: null,
       },
       {
-        "id": "mbhBMkOgwsUxSIcLvSMUf",
-        "fullName": "Franco Banfi",
-        "r2ImageId": null
+        id: 'mbhBMkOgwsUxSIcLvSMUf',
+        fullName: 'Franco Banfi',
+        r2ImageId: null,
       },
       {
-        "id": "fiiJijdAxfC6rzlFAHGXo",
-        "fullName": "Paolo Fossati",
-        "r2ImageId": null
-      }
+        id: 'fiiJijdAxfC6rzlFAHGXo',
+        fullName: 'Paolo Fossati',
+        r2ImageId: null,
+      },
     ],
-    "categories": [
+    categories: [
       {
-        "id": "dan-europe",
-        "name": "Dan Europe",
-        "winnerImage": "/images/contests/2015/iVMRgheK1DHYJkbq_ADrK.webp",
-        "winnerImageR2Id": "uw-2015/dan-europe/iVMRgheK1DHYJkbq_ADrK",
-        "entries": [
+        id: 'dan-europe',
+        name: 'Dan Europe',
+        winnerImage: '/images/contests/2015/iVMRgheK1DHYJkbq_ADrK.webp',
+        winnerImageR2Id: 'uw-2015/dan-europe/iVMRgheK1DHYJkbq_ADrK',
+        entries: [
           {
-            "id": "iVMRgheK1DHYJkbq_ADrK",
-            "title": "Diego E La Boa Sparabile",
-            "description": "",
-            "placement": "first",
-            "photographer": {
-              "firstName": "Virginia",
-              "lastName": "Salzedo"
+            id: 'iVMRgheK1DHYJkbq_ADrK',
+            title: 'Diego E La Boa Sparabile',
+            description: '',
+            placement: 'first',
+            photographer: {
+              firstName: 'Virginia',
+              lastName: 'Salzedo',
             },
-            "image": "/images/contests/2015/iVMRgheK1DHYJkbq_ADrK.webp",
-            "imageR2Id": "uw-2015/dan-europe/iVMRgheK1DHYJkbq_ADrK"
+            image: '/images/contests/2015/iVMRgheK1DHYJkbq_ADrK.webp',
+            imageR2Id: 'uw-2015/dan-europe/iVMRgheK1DHYJkbq_ADrK',
           },
           {
-            "id": "ES2EJ2OdM2s65A-UZLtAP",
-            "title": "Unione",
-            "description": "",
-            "placement": "second",
-            "photographer": {
-              "firstName": "Vito",
-              "lastName": "Giannecchini"
+            id: 'ES2EJ2OdM2s65A-UZLtAP',
+            title: 'Unione',
+            description: '',
+            placement: 'second',
+            photographer: {
+              firstName: 'Vito',
+              lastName: 'Giannecchini',
             },
-            "image": "/images/contests/2015/ES2EJ2OdM2s65A-UZLtAP.webp",
-            "imageR2Id": "uw-2015/dan-europe/ES2EJ2OdM2s65A-UZLtAP"
+            image: '/images/contests/2015/ES2EJ2OdM2s65A-UZLtAP.webp',
+            imageR2Id: 'uw-2015/dan-europe/ES2EJ2OdM2s65A-UZLtAP',
           },
           {
-            "id": "vQgppTgiAk19ODPBNKfTy",
-            "title": "Sistema Di Coppia a Prescindere",
-            "description": "",
-            "placement": "third",
-            "photographer": {
-              "firstName": "Lorenzo",
-              "lastName": "Terraneo"
+            id: 'vQgppTgiAk19ODPBNKfTy',
+            title: 'Sistema Di Coppia a Prescindere',
+            description: '',
+            placement: 'third',
+            photographer: {
+              firstName: 'Lorenzo',
+              lastName: 'Terraneo',
             },
-            "image": "/images/contests/2015/vQgppTgiAk19ODPBNKfTy.webp",
-            "imageR2Id": "uw-2015/dan-europe/vQgppTgiAk19ODPBNKfTy"
+            image: '/images/contests/2015/vQgppTgiAk19ODPBNKfTy.webp',
+            imageR2Id: 'uw-2015/dan-europe/vQgppTgiAk19ODPBNKfTy',
           },
           {
-            "id": "4m2I4AwY1OE8pF40IBjvC",
-            "title": "Decompressione",
-            "description": "",
-            "placement": "runner-up",
-            "photographer": {
-              "firstName": "Alberto",
-              "lastName": "Gallucci"
+            id: '4m2I4AwY1OE8pF40IBjvC',
+            title: 'Decompressione',
+            description: '',
+            placement: 'runner-up',
+            photographer: {
+              firstName: 'Alberto',
+              lastName: 'Gallucci',
             },
-            "image": "/images/contests/2015/4m2I4AwY1OE8pF40IBjvC.webp",
-            "imageR2Id": "uw-2015/dan-europe/4m2I4AwY1OE8pF40IBjvC"
+            image: '/images/contests/2015/4m2I4AwY1OE8pF40IBjvC.webp',
+            imageR2Id: 'uw-2015/dan-europe/4m2I4AwY1OE8pF40IBjvC',
           },
           {
-            "id": "cerFO0usFkhc5dcpZyXdo",
-            "title": "La Coppia",
-            "description": "",
-            "placement": "runner-up",
-            "photographer": {
-              "firstName": "Fabrizio",
-              "lastName": "Pompilio"
+            id: 'cerFO0usFkhc5dcpZyXdo',
+            title: 'La Coppia',
+            description: '',
+            placement: 'runner-up',
+            photographer: {
+              firstName: 'Fabrizio',
+              lastName: 'Pompilio',
             },
-            "image": "/images/contests/2015/cerFO0usFkhc5dcpZyXdo.webp",
-            "imageR2Id": "uw-2015/dan-europe/cerFO0usFkhc5dcpZyXdo"
+            image: '/images/contests/2015/cerFO0usFkhc5dcpZyXdo.webp',
+            imageR2Id: 'uw-2015/dan-europe/cerFO0usFkhc5dcpZyXdo',
           },
           {
-            "id": "hQ_SrmSw0N8kze69eZN9R",
-            "title": "Segnalazione",
-            "description": "",
-            "placement": "runner-up",
-            "photographer": {
-              "firstName": "Lorenzo",
-              "lastName": "Terraneo"
+            id: 'hQ_SrmSw0N8kze69eZN9R',
+            title: 'Segnalazione',
+            description: '',
+            placement: 'runner-up',
+            photographer: {
+              firstName: 'Lorenzo',
+              lastName: 'Terraneo',
             },
-            "image": "/images/contests/2015/hQ_SrmSw0N8kze69eZN9R.webp",
-            "imageR2Id": "uw-2015/dan-europe/hQ_SrmSw0N8kze69eZN9R"
-          }
-        ]
+            image: '/images/contests/2015/hQ_SrmSw0N8kze69eZN9R.webp',
+            imageR2Id: 'uw-2015/dan-europe/hQ_SrmSw0N8kze69eZN9R',
+          },
+        ],
       },
       {
-        "id": "fresh-waters",
-        "name": "Fresh Waters",
-        "winnerImage": "/images/contests/2015/oBHY-HSjxfv9Roi0z_fIF.webp",
-        "winnerImageR2Id": "uw-2015/fresh-waters/oBHY-HSjxfv9Roi0z_fIF",
-        "entries": [
+        id: 'fresh-waters',
+        name: 'Fresh Waters',
+        winnerImage: '/images/contests/2015/oBHY-HSjxfv9Roi0z_fIF.webp',
+        winnerImageR2Id: 'uw-2015/fresh-waters/oBHY-HSjxfv9Roi0z_fIF',
+        entries: [
           {
-            "id": "oBHY-HSjxfv9Roi0z_fIF",
-            "title": "Parende Padden",
-            "description": "",
-            "placement": "first",
-            "photographer": {
-              "firstName": "Rooman",
-              "lastName": "Luc"
+            id: 'oBHY-HSjxfv9Roi0z_fIF',
+            title: 'Parende Padden',
+            description: '',
+            placement: 'first',
+            photographer: {
+              firstName: 'Rooman',
+              lastName: 'Luc',
             },
-            "image": "/images/contests/2015/oBHY-HSjxfv9Roi0z_fIF.webp",
-            "imageR2Id": "uw-2015/fresh-waters/oBHY-HSjxfv9Roi0z_fIF"
+            image: '/images/contests/2015/oBHY-HSjxfv9Roi0z_fIF.webp',
+            imageR2Id: 'uw-2015/fresh-waters/oBHY-HSjxfv9Roi0z_fIF',
           },
           {
-            "id": "gZucoWJlfoZzem669kFFg",
-            "title": "Ephemeroptera Larvae",
-            "description": "",
-            "placement": "second",
-            "photographer": {
-              "firstName": "Maurizio",
-              "lastName": "Pasi"
+            id: 'gZucoWJlfoZzem669kFFg',
+            title: 'Ephemeroptera Larvae',
+            description: '',
+            placement: 'second',
+            photographer: {
+              firstName: 'Maurizio',
+              lastName: 'Pasi',
             },
-            "image": "/images/contests/2015/gZucoWJlfoZzem669kFFg.webp",
-            "imageR2Id": "uw-2015/fresh-waters/gZucoWJlfoZzem669kFFg"
+            image: '/images/contests/2015/gZucoWJlfoZzem669kFFg.webp',
+            imageR2Id: 'uw-2015/fresh-waters/gZucoWJlfoZzem669kFFg',
           },
           {
-            "id": "nJYmtsrEkhVE-NB7OmX7X",
-            "title": "Oilà",
-            "description": "",
-            "placement": "third",
-            "photographer": {
-              "firstName": "Virginia",
-              "lastName": "Salzedo"
+            id: 'nJYmtsrEkhVE-NB7OmX7X',
+            title: 'Oilà',
+            description: '',
+            placement: 'third',
+            photographer: {
+              firstName: 'Virginia',
+              lastName: 'Salzedo',
             },
-            "image": "/images/contests/2015/nJYmtsrEkhVE-NB7OmX7X.webp",
-            "imageR2Id": "uw-2015/fresh-waters/nJYmtsrEkhVE-NB7OmX7X"
+            image: '/images/contests/2015/nJYmtsrEkhVE-NB7OmX7X.webp',
+            imageR2Id: 'uw-2015/fresh-waters/nJYmtsrEkhVE-NB7OmX7X',
           },
           {
-            "id": "j5kgR2h7ho7YUsCDO6EYK",
-            "title": "Salamander Larvae",
-            "description": "",
-            "placement": "runner-up",
-            "photographer": {
-              "firstName": "Maurizio",
-              "lastName": "Pasi"
+            id: 'j5kgR2h7ho7YUsCDO6EYK',
+            title: 'Salamander Larvae',
+            description: '',
+            placement: 'runner-up',
+            photographer: {
+              firstName: 'Maurizio',
+              lastName: 'Pasi',
             },
-            "image": "/images/contests/2015/j5kgR2h7ho7YUsCDO6EYK.webp",
-            "imageR2Id": "uw-2015/fresh-waters/j5kgR2h7ho7YUsCDO6EYK"
+            image: '/images/contests/2015/j5kgR2h7ho7YUsCDO6EYK.webp',
+            imageR2Id: 'uw-2015/fresh-waters/j5kgR2h7ho7YUsCDO6EYK',
           },
           {
-            "id": "3ppnHqqDBBPA02fpRYs80",
-            "title": "Meerval",
-            "description": "",
-            "placement": "runner-up",
-            "photographer": {
-              "firstName": "Rooman",
-              "lastName": "Luc"
+            id: '3ppnHqqDBBPA02fpRYs80',
+            title: 'Meerval',
+            description: '',
+            placement: 'runner-up',
+            photographer: {
+              firstName: 'Rooman',
+              lastName: 'Luc',
             },
-            "image": "/images/contests/2015/3ppnHqqDBBPA02fpRYs80.webp",
-            "imageR2Id": "uw-2015/fresh-waters/3ppnHqqDBBPA02fpRYs80"
+            image: '/images/contests/2015/3ppnHqqDBBPA02fpRYs80.webp',
+            imageR2Id: 'uw-2015/fresh-waters/3ppnHqqDBBPA02fpRYs80',
           },
           {
-            "id": "KwNtsm-WFNOK7fJwRXiWD",
-            "title": "Il Guardiano Del Lago",
-            "description": "",
-            "placement": "runner-up",
-            "photographer": {
-              "firstName": "Francesco",
-              "lastName": "Visintin"
+            id: 'KwNtsm-WFNOK7fJwRXiWD',
+            title: 'Il Guardiano Del Lago',
+            description: '',
+            placement: 'runner-up',
+            photographer: {
+              firstName: 'Francesco',
+              lastName: 'Visintin',
             },
-            "image": "/images/contests/2015/KwNtsm-WFNOK7fJwRXiWD.webp",
-            "imageR2Id": "uw-2015/fresh-waters/KwNtsm-WFNOK7fJwRXiWD"
-          }
-        ]
+            image: '/images/contests/2015/KwNtsm-WFNOK7fJwRXiWD.webp',
+            imageR2Id: 'uw-2015/fresh-waters/KwNtsm-WFNOK7fJwRXiWD',
+          },
+        ],
       },
       {
-        "id": "macro",
-        "name": "Macro",
-        "winnerImage": "/images/contests/2015/AE0Vz2aEMcrXBm2O7iViU.webp",
-        "winnerImageR2Id": "uw-2015/macro/AE0Vz2aEMcrXBm2O7iViU",
-        "entries": [
+        id: 'macro',
+        name: 'Macro',
+        winnerImage: '/images/contests/2015/AE0Vz2aEMcrXBm2O7iViU.webp',
+        winnerImageR2Id: 'uw-2015/macro/AE0Vz2aEMcrXBm2O7iViU',
+        entries: [
           {
-            "id": "AE0Vz2aEMcrXBm2O7iViU",
-            "title": "Nascita",
-            "description": "",
-            "placement": "first",
-            "photographer": {
-              "firstName": "Elio",
-              "lastName": "Nicosia"
+            id: 'AE0Vz2aEMcrXBm2O7iViU',
+            title: 'Nascita',
+            description: '',
+            placement: 'first',
+            photographer: {
+              firstName: 'Elio',
+              lastName: 'Nicosia',
             },
-            "image": "/images/contests/2015/AE0Vz2aEMcrXBm2O7iViU.webp",
-            "imageR2Id": "uw-2015/macro/AE0Vz2aEMcrXBm2O7iViU"
+            image: '/images/contests/2015/AE0Vz2aEMcrXBm2O7iViU.webp',
+            imageR2Id: 'uw-2015/macro/AE0Vz2aEMcrXBm2O7iViU',
           },
           {
-            "id": "lvmh-M5sDgNArIX5BPjzg",
-            "title": "Riflessi",
-            "description": "",
-            "placement": "second",
-            "photographer": {
-              "firstName": "Claudio",
-              "lastName": "Zori"
+            id: 'lvmh-M5sDgNArIX5BPjzg',
+            title: 'Riflessi',
+            description: '',
+            placement: 'second',
+            photographer: {
+              firstName: 'Claudio',
+              lastName: 'Zori',
             },
-            "image": "/images/contests/2015/lvmh-M5sDgNArIX5BPjzg.webp",
-            "imageR2Id": "uw-2015/macro/lvmh-M5sDgNArIX5BPjzg"
+            image: '/images/contests/2015/lvmh-M5sDgNArIX5BPjzg.webp',
+            imageR2Id: 'uw-2015/macro/lvmh-M5sDgNArIX5BPjzg',
           },
           {
-            "id": "YqEXyTuTENq5xTxP4qCw1",
-            "title": "Stazione Di Pulizia",
-            "description": "",
-            "placement": "third",
-            "photographer": {
-              "firstName": "Paolo",
-              "lastName": "Bausani"
+            id: 'YqEXyTuTENq5xTxP4qCw1',
+            title: 'Stazione Di Pulizia',
+            description: '',
+            placement: 'third',
+            photographer: {
+              firstName: 'Paolo',
+              lastName: 'Bausani',
             },
-            "image": "/images/contests/2015/YqEXyTuTENq5xTxP4qCw1.webp",
-            "imageR2Id": "uw-2015/macro/YqEXyTuTENq5xTxP4qCw1"
+            image: '/images/contests/2015/YqEXyTuTENq5xTxP4qCw1.webp',
+            imageR2Id: 'uw-2015/macro/YqEXyTuTENq5xTxP4qCw1',
           },
           {
-            "id": "nfw6fWhJewIJ5Hxdj6kZC",
-            "title": "Spotlight",
-            "description": "",
-            "placement": "runner-up",
-            "photographer": {
-              "firstName": "Matteo",
-              "lastName": "Visconti"
+            id: 'nfw6fWhJewIJ5Hxdj6kZC',
+            title: 'Spotlight',
+            description: '',
+            placement: 'runner-up',
+            photographer: {
+              firstName: 'Matteo',
+              lastName: 'Visconti',
             },
-            "image": "/images/contests/2015/nfw6fWhJewIJ5Hxdj6kZC.webp",
-            "imageR2Id": "uw-2015/macro/nfw6fWhJewIJ5Hxdj6kZC"
+            image: '/images/contests/2015/nfw6fWhJewIJ5Hxdj6kZC.webp',
+            imageR2Id: 'uw-2015/macro/nfw6fWhJewIJ5Hxdj6kZC',
           },
           {
-            "id": "zZZh6yHPhVvsXl7nwHvCI",
-            "title": "Mysterious Light",
-            "description": "",
-            "placement": "runner-up",
-            "photographer": {
-              "firstName": "Beth",
-              "lastName": "Watson"
+            id: 'zZZh6yHPhVvsXl7nwHvCI',
+            title: 'Mysterious Light',
+            description: '',
+            placement: 'runner-up',
+            photographer: {
+              firstName: 'Beth',
+              lastName: 'Watson',
             },
-            "image": "/images/contests/2015/zZZh6yHPhVvsXl7nwHvCI.webp",
-            "imageR2Id": "uw-2015/macro/zZZh6yHPhVvsXl7nwHvCI"
+            image: '/images/contests/2015/zZZh6yHPhVvsXl7nwHvCI.webp',
+            imageR2Id: 'uw-2015/macro/zZZh6yHPhVvsXl7nwHvCI',
           },
           {
-            "id": "WbxcdDL6OS8QKSD76_8kD",
-            "title": "The Hijacker",
-            "description": "",
-            "placement": "runner-up",
-            "photographer": {
-              "firstName": "Nicholaus",
-              "lastName": "Samaras"
+            id: 'WbxcdDL6OS8QKSD76_8kD',
+            title: 'The Hijacker',
+            description: '',
+            placement: 'runner-up',
+            photographer: {
+              firstName: 'Nicholaus',
+              lastName: 'Samaras',
             },
-            "image": "/images/contests/2015/WbxcdDL6OS8QKSD76_8kD.webp",
-            "imageR2Id": "uw-2015/macro/WbxcdDL6OS8QKSD76_8kD"
+            image: '/images/contests/2015/WbxcdDL6OS8QKSD76_8kD.webp',
+            imageR2Id: 'uw-2015/macro/WbxcdDL6OS8QKSD76_8kD',
           },
           {
-            "id": "MgxlSvbmn60E-53r9Vb12",
-            "title": "Eggs of the Sea",
-            "description": "",
-            "placement": "runner-up",
-            "photographer": {
-              "firstName": "Lorenzo",
-              "lastName": "Terraneo"
+            id: 'MgxlSvbmn60E-53r9Vb12',
+            title: 'Eggs of the Sea',
+            description: '',
+            placement: 'runner-up',
+            photographer: {
+              firstName: 'Lorenzo',
+              lastName: 'Terraneo',
             },
-            "image": "/images/contests/2015/MgxlSvbmn60E-53r9Vb12.webp",
-            "imageR2Id": "uw-2015/macro/MgxlSvbmn60E-53r9Vb12"
-          }
-        ]
+            image: '/images/contests/2015/MgxlSvbmn60E-53r9Vb12.webp',
+            imageR2Id: 'uw-2015/macro/MgxlSvbmn60E-53r9Vb12',
+          },
+        ],
       },
       {
-        "id": "mediterranean",
-        "name": "Mediterranean Portfolio",
-        "winnerImage": "/images/contests/2015/d7ejT5v58mMmhrg3CIDQl.webp",
-        "winnerImageR2Id": "uw-2015/mediterranean/d7ejT5v58mMmhrg3CIDQl",
-        "entries": [
+        id: 'mediterranean',
+        name: 'Mediterranean Portfolio',
+        winnerImage: '/images/contests/2015/d7ejT5v58mMmhrg3CIDQl.webp',
+        winnerImageR2Id: 'uw-2015/mediterranean/d7ejT5v58mMmhrg3CIDQl',
+        entries: [
           {
-            "id": "d7ejT5v58mMmhrg3CIDQl",
-            "title": "Un Po Nervoso",
-            "description": "",
-            "placement": "first",
-            "photographer": {
-              "firstName": "Salvatore",
-              "lastName": "Ianniello"
+            id: 'd7ejT5v58mMmhrg3CIDQl',
+            title: 'Un Po Nervoso',
+            description: '',
+            placement: 'first',
+            photographer: {
+              firstName: 'Salvatore',
+              lastName: 'Ianniello',
             },
-            "image": "/images/contests/2015/d7ejT5v58mMmhrg3CIDQl.webp",
-            "imageR2Id": "uw-2015/mediterranean/d7ejT5v58mMmhrg3CIDQl"
+            image: '/images/contests/2015/d7ejT5v58mMmhrg3CIDQl.webp',
+            imageR2Id: 'uw-2015/mediterranean/d7ejT5v58mMmhrg3CIDQl',
           },
           {
-            "id": "87hemlSVp-AU6JCaEBgZB",
-            "title": "San Ippocampo",
-            "description": "",
-            "placement": "first",
-            "photographer": {
-              "firstName": "Salvatore",
-              "lastName": "Ianniello"
+            id: '87hemlSVp-AU6JCaEBgZB',
+            title: 'San Ippocampo',
+            description: '',
+            placement: 'first',
+            photographer: {
+              firstName: 'Salvatore',
+              lastName: 'Ianniello',
             },
-            "image": "/images/contests/2015/87hemlSVp-AU6JCaEBgZB.webp",
-            "imageR2Id": "uw-2015/mediterranean/87hemlSVp-AU6JCaEBgZB"
+            image: '/images/contests/2015/87hemlSVp-AU6JCaEBgZB.webp',
+            imageR2Id: 'uw-2015/mediterranean/87hemlSVp-AU6JCaEBgZB',
           },
           {
-            "id": "RvNvRJJhbgtiYQNf7gNlO",
-            "title": "Doppia Sfortuna",
-            "description": "",
-            "placement": "first",
-            "photographer": {
-              "firstName": "Salvatore",
-              "lastName": "Ianniello"
+            id: 'RvNvRJJhbgtiYQNf7gNlO',
+            title: 'Doppia Sfortuna',
+            description: '',
+            placement: 'first',
+            photographer: {
+              firstName: 'Salvatore',
+              lastName: 'Ianniello',
             },
-            "image": "/images/contests/2015/RvNvRJJhbgtiYQNf7gNlO.webp",
-            "imageR2Id": "uw-2015/mediterranean/RvNvRJJhbgtiYQNf7gNlO"
+            image: '/images/contests/2015/RvNvRJJhbgtiYQNf7gNlO.webp',
+            imageR2Id: 'uw-2015/mediterranean/RvNvRJJhbgtiYQNf7gNlO',
           },
           {
-            "id": "0QP15S5wPrBBY2QJP_RMM",
-            "title": "The Satellite",
-            "description": "",
-            "placement": "second",
-            "photographer": {
-              "firstName": "Francesco",
-              "lastName": "Visintin"
+            id: '0QP15S5wPrBBY2QJP_RMM',
+            title: 'The Satellite',
+            description: '',
+            placement: 'second',
+            photographer: {
+              firstName: 'Francesco',
+              lastName: 'Visintin',
             },
-            "image": "/images/contests/2015/0QP15S5wPrBBY2QJP_RMM.webp",
-            "imageR2Id": "uw-2015/mediterranean/0QP15S5wPrBBY2QJP_RMM"
+            image: '/images/contests/2015/0QP15S5wPrBBY2QJP_RMM.webp',
+            imageR2Id: 'uw-2015/mediterranean/0QP15S5wPrBBY2QJP_RMM',
           },
           {
-            "id": "NMMuWIYhMtBx2M-P7B013",
-            "title": "Pipefish",
-            "description": "",
-            "placement": "second",
-            "photographer": {
-              "firstName": "Francesco",
-              "lastName": "Visintin"
+            id: 'NMMuWIYhMtBx2M-P7B013',
+            title: 'Pipefish',
+            description: '',
+            placement: 'second',
+            photographer: {
+              firstName: 'Francesco',
+              lastName: 'Visintin',
             },
-            "image": "/images/contests/2015/NMMuWIYhMtBx2M-P7B013.webp",
-            "imageR2Id": "uw-2015/mediterranean/NMMuWIYhMtBx2M-P7B013"
+            image: '/images/contests/2015/NMMuWIYhMtBx2M-P7B013.webp',
+            imageR2Id: 'uw-2015/mediterranean/NMMuWIYhMtBx2M-P7B013',
           },
           {
-            "id": "brFAwJIK_J7P2hrJpNTFk",
-            "title": "Life on the Edge",
-            "description": "",
-            "placement": "second",
-            "photographer": {
-              "firstName": "Francesco",
-              "lastName": "Visintin"
+            id: 'brFAwJIK_J7P2hrJpNTFk',
+            title: 'Life on the Edge',
+            description: '',
+            placement: 'second',
+            photographer: {
+              firstName: 'Francesco',
+              lastName: 'Visintin',
             },
-            "image": "/images/contests/2015/brFAwJIK_J7P2hrJpNTFk.webp",
-            "imageR2Id": "uw-2015/mediterranean/brFAwJIK_J7P2hrJpNTFk"
+            image: '/images/contests/2015/brFAwJIK_J7P2hrJpNTFk.webp',
+            imageR2Id: 'uw-2015/mediterranean/brFAwJIK_J7P2hrJpNTFk',
           },
           {
-            "id": "REAoFMXf5Jo3494I9pXMh",
-            "title": "Portfolio 1",
-            "description": "",
-            "placement": "third",
-            "photographer": {
-              "firstName": "Davide",
-              "lastName": "Lopresti"
+            id: 'REAoFMXf5Jo3494I9pXMh',
+            title: 'Portfolio 1',
+            description: '',
+            placement: 'third',
+            photographer: {
+              firstName: 'Davide',
+              lastName: 'Lopresti',
             },
-            "image": "/images/contests/2015/REAoFMXf5Jo3494I9pXMh.webp",
-            "imageR2Id": "uw-2015/mediterranean/REAoFMXf5Jo3494I9pXMh"
+            image: '/images/contests/2015/REAoFMXf5Jo3494I9pXMh.webp',
+            imageR2Id: 'uw-2015/mediterranean/REAoFMXf5Jo3494I9pXMh',
           },
           {
-            "id": "eXB6EYrzHLWt_mM9RKMLQ",
-            "title": "Portfolio 2",
-            "description": "",
-            "placement": "third",
-            "photographer": {
-              "firstName": "Davide",
-              "lastName": "Lopresti"
+            id: 'eXB6EYrzHLWt_mM9RKMLQ',
+            title: 'Portfolio 2',
+            description: '',
+            placement: 'third',
+            photographer: {
+              firstName: 'Davide',
+              lastName: 'Lopresti',
             },
-            "image": "/images/contests/2015/eXB6EYrzHLWt_mM9RKMLQ.webp",
-            "imageR2Id": "uw-2015/mediterranean/eXB6EYrzHLWt_mM9RKMLQ"
+            image: '/images/contests/2015/eXB6EYrzHLWt_mM9RKMLQ.webp',
+            imageR2Id: 'uw-2015/mediterranean/eXB6EYrzHLWt_mM9RKMLQ',
           },
           {
-            "id": "OJrSBkvEHc3HcsgtCncQ9",
-            "title": "Portfolio 3",
-            "description": "",
-            "placement": "third",
-            "photographer": {
-              "firstName": "Davide",
-              "lastName": "Lopresti"
+            id: 'OJrSBkvEHc3HcsgtCncQ9',
+            title: 'Portfolio 3',
+            description: '',
+            placement: 'third',
+            photographer: {
+              firstName: 'Davide',
+              lastName: 'Lopresti',
             },
-            "image": "/images/contests/2015/OJrSBkvEHc3HcsgtCncQ9.webp",
-            "imageR2Id": "uw-2015/mediterranean/OJrSBkvEHc3HcsgtCncQ9"
+            image: '/images/contests/2015/OJrSBkvEHc3HcsgtCncQ9.webp',
+            imageR2Id: 'uw-2015/mediterranean/OJrSBkvEHc3HcsgtCncQ9',
           },
           {
-            "id": "NXbeRZfuKeAKv99c6PVi_",
-            "title": "Convivenza",
-            "description": "",
-            "placement": "runner-up",
-            "photographer": {
-              "firstName": "Domenico",
-              "lastName": "Roscigno"
+            id: 'NXbeRZfuKeAKv99c6PVi_',
+            title: 'Convivenza',
+            description: '',
+            placement: 'runner-up',
+            photographer: {
+              firstName: 'Domenico',
+              lastName: 'Roscigno',
             },
-            "image": "/images/contests/2015/NXbeRZfuKeAKv99c6PVi_.webp",
-            "imageR2Id": "uw-2015/mediterranean/NXbeRZfuKeAKv99c6PVi_"
+            image: '/images/contests/2015/NXbeRZfuKeAKv99c6PVi_.webp',
+            imageR2Id: 'uw-2015/mediterranean/NXbeRZfuKeAKv99c6PVi_',
           },
           {
-            "id": "z5_XYR_InQWdE4pahXj8s",
-            "title": "Femmine !",
-            "description": "",
-            "placement": "runner-up",
-            "photographer": {
-              "firstName": "Domenico",
-              "lastName": "Roscigno"
+            id: 'z5_XYR_InQWdE4pahXj8s',
+            title: 'Femmine !',
+            description: '',
+            placement: 'runner-up',
+            photographer: {
+              firstName: 'Domenico',
+              lastName: 'Roscigno',
             },
-            "image": "/images/contests/2015/z5_XYR_InQWdE4pahXj8s.webp",
-            "imageR2Id": "uw-2015/mediterranean/z5_XYR_InQWdE4pahXj8s"
+            image: '/images/contests/2015/z5_XYR_InQWdE4pahXj8s.webp',
+            imageR2Id: 'uw-2015/mediterranean/z5_XYR_InQWdE4pahXj8s',
           },
           {
-            "id": "KPkYujjqskt4BKLc4eDdW",
-            "title": "Coppia Di Fatto",
-            "description": "",
-            "placement": "runner-up",
-            "photographer": {
-              "firstName": "Domenico",
-              "lastName": "Roscigno"
+            id: 'KPkYujjqskt4BKLc4eDdW',
+            title: 'Coppia Di Fatto',
+            description: '',
+            placement: 'runner-up',
+            photographer: {
+              firstName: 'Domenico',
+              lastName: 'Roscigno',
             },
-            "image": "/images/contests/2015/KPkYujjqskt4BKLc4eDdW.webp",
-            "imageR2Id": "uw-2015/mediterranean/KPkYujjqskt4BKLc4eDdW"
+            image: '/images/contests/2015/KPkYujjqskt4BKLc4eDdW.webp',
+            imageR2Id: 'uw-2015/mediterranean/KPkYujjqskt4BKLc4eDdW',
           },
           {
-            "id": "arJkcCR4h83VYDJdgwzqI",
-            "title": "Il Golfo",
-            "description": "",
-            "placement": "runner-up",
-            "photographer": {
-              "firstName": "Pasquale",
-              "lastName": "Vassallo"
+            id: 'arJkcCR4h83VYDJdgwzqI',
+            title: 'Il Golfo',
+            description: '',
+            placement: 'runner-up',
+            photographer: {
+              firstName: 'Pasquale',
+              lastName: 'Vassallo',
             },
-            "image": "/images/contests/2015/arJkcCR4h83VYDJdgwzqI.webp",
-            "imageR2Id": "uw-2015/mediterranean/arJkcCR4h83VYDJdgwzqI"
+            image: '/images/contests/2015/arJkcCR4h83VYDJdgwzqI.webp',
+            imageR2Id: 'uw-2015/mediterranean/arJkcCR4h83VYDJdgwzqI',
           },
           {
-            "id": "NjFK8SJPxMWo_0gKAyceP",
-            "title": "The Boss",
-            "description": "",
-            "placement": "runner-up",
-            "photographer": {
-              "firstName": "Pasquale",
-              "lastName": "Vassallo"
+            id: 'NjFK8SJPxMWo_0gKAyceP',
+            title: 'The Boss',
+            description: '',
+            placement: 'runner-up',
+            photographer: {
+              firstName: 'Pasquale',
+              lastName: 'Vassallo',
             },
-            "image": "/images/contests/2015/NjFK8SJPxMWo_0gKAyceP.webp",
-            "imageR2Id": "uw-2015/mediterranean/NjFK8SJPxMWo_0gKAyceP"
+            image: '/images/contests/2015/NjFK8SJPxMWo_0gKAyceP.webp',
+            imageR2Id: 'uw-2015/mediterranean/NjFK8SJPxMWo_0gKAyceP',
           },
           {
-            "id": "aU_tWM_6bShz7KKCBwj_Y",
-            "title": "L'ospite",
-            "description": "",
-            "placement": "runner-up",
-            "photographer": {
-              "firstName": "Pasquale",
-              "lastName": "Vassallo"
+            id: 'aU_tWM_6bShz7KKCBwj_Y',
+            title: "L'ospite",
+            description: '',
+            placement: 'runner-up',
+            photographer: {
+              firstName: 'Pasquale',
+              lastName: 'Vassallo',
             },
-            "image": "/images/contests/2015/aU_tWM_6bShz7KKCBwj_Y.webp",
-            "imageR2Id": "uw-2015/mediterranean/aU_tWM_6bShz7KKCBwj_Y"
+            image: '/images/contests/2015/aU_tWM_6bShz7KKCBwj_Y.webp',
+            imageR2Id: 'uw-2015/mediterranean/aU_tWM_6bShz7KKCBwj_Y',
           },
           {
-            "id": "KJJ96SVXIv7DfCkTwxNT_",
-            "title": "Eye",
-            "description": "",
-            "placement": "runner-up",
-            "photographer": {
-              "firstName": "Alessandro",
-              "lastName": "Buzzichelli"
+            id: 'KJJ96SVXIv7DfCkTwxNT_',
+            title: 'Eye',
+            description: '',
+            placement: 'runner-up',
+            photographer: {
+              firstName: 'Alessandro',
+              lastName: 'Buzzichelli',
             },
-            "image": "/images/contests/2015/KJJ96SVXIv7DfCkTwxNT_.webp",
-            "imageR2Id": "uw-2015/mediterranean/KJJ96SVXIv7DfCkTwxNT_"
+            image: '/images/contests/2015/KJJ96SVXIv7DfCkTwxNT_.webp',
+            imageR2Id: 'uw-2015/mediterranean/KJJ96SVXIv7DfCkTwxNT_',
           },
           {
-            "id": "gmI0NDRYNKoh2dy_RCq_d",
-            "title": "Parazoanhus",
-            "description": "",
-            "placement": "runner-up",
-            "photographer": {
-              "firstName": "Alessandro",
-              "lastName": "Buzzichelli"
+            id: 'gmI0NDRYNKoh2dy_RCq_d',
+            title: 'Parazoanhus',
+            description: '',
+            placement: 'runner-up',
+            photographer: {
+              firstName: 'Alessandro',
+              lastName: 'Buzzichelli',
             },
-            "image": "/images/contests/2015/gmI0NDRYNKoh2dy_RCq_d.webp",
-            "imageR2Id": "uw-2015/mediterranean/gmI0NDRYNKoh2dy_RCq_d"
-          }
-        ]
+            image: '/images/contests/2015/gmI0NDRYNKoh2dy_RCq_d.webp',
+            imageR2Id: 'uw-2015/mediterranean/gmI0NDRYNKoh2dy_RCq_d',
+          },
+        ],
       },
       {
-        "id": "newcomers",
-        "name": "Newcomers",
-        "winnerImage": "/images/contests/2015/NP1i9F1VfoZ4KNygC_LKr.webp",
-        "winnerImageR2Id": "uw-2015/newcomers/NP1i9F1VfoZ4KNygC_LKr",
-        "entries": [
+        id: 'newcomers',
+        name: 'Newcomers',
+        winnerImage: '/images/contests/2015/NP1i9F1VfoZ4KNygC_LKr.webp',
+        winnerImageR2Id: 'uw-2015/newcomers/NP1i9F1VfoZ4KNygC_LKr',
+        entries: [
           {
-            "id": "NP1i9F1VfoZ4KNygC_LKr",
-            "title": "Cavalluccio Su Spirografo",
-            "description": "",
-            "placement": "first",
-            "photographer": {
-              "firstName": "Angelo",
-              "lastName": "Pascale"
+            id: 'NP1i9F1VfoZ4KNygC_LKr',
+            title: 'Cavalluccio Su Spirografo',
+            description: '',
+            placement: 'first',
+            photographer: {
+              firstName: 'Angelo',
+              lastName: 'Pascale',
             },
-            "image": "/images/contests/2015/NP1i9F1VfoZ4KNygC_LKr.webp",
-            "imageR2Id": "uw-2015/newcomers/NP1i9F1VfoZ4KNygC_LKr"
+            image: '/images/contests/2015/NP1i9F1VfoZ4KNygC_LKr.webp',
+            imageR2Id: 'uw-2015/newcomers/NP1i9F1VfoZ4KNygC_LKr',
           },
           {
-            "id": "nypAYToq-7qxEEUnVjTWB",
-            "title": "Life in a Crane",
-            "description": "",
-            "placement": "second",
-            "photographer": {
-              "firstName": "Alberto",
-              "lastName": "Buonanno"
+            id: 'nypAYToq-7qxEEUnVjTWB',
+            title: 'Life in a Crane',
+            description: '',
+            placement: 'second',
+            photographer: {
+              firstName: 'Alberto',
+              lastName: 'Buonanno',
             },
-            "image": "/images/contests/2015/nypAYToq-7qxEEUnVjTWB.webp",
-            "imageR2Id": "uw-2015/newcomers/nypAYToq-7qxEEUnVjTWB"
+            image: '/images/contests/2015/nypAYToq-7qxEEUnVjTWB.webp',
+            imageR2Id: 'uw-2015/newcomers/nypAYToq-7qxEEUnVjTWB',
           },
           {
-            "id": "Z2hc4wpWd0ka63cCygV1v",
-            "title": "Amici",
-            "description": "",
-            "placement": "third",
-            "photographer": {
-              "firstName": "Daniele",
-              "lastName": "Maggi"
+            id: 'Z2hc4wpWd0ka63cCygV1v',
+            title: 'Amici',
+            description: '',
+            placement: 'third',
+            photographer: {
+              firstName: 'Daniele',
+              lastName: 'Maggi',
             },
-            "image": "/images/contests/2015/Z2hc4wpWd0ka63cCygV1v.webp",
-            "imageR2Id": "uw-2015/newcomers/Z2hc4wpWd0ka63cCygV1v"
+            image: '/images/contests/2015/Z2hc4wpWd0ka63cCygV1v.webp',
+            imageR2Id: 'uw-2015/newcomers/Z2hc4wpWd0ka63cCygV1v',
           },
           {
-            "id": "Tcb48J6nmpTDpDZni8ZhH",
-            "title": "Boxeur",
-            "description": "",
-            "placement": "runner-up",
-            "photographer": {
-              "firstName": "Giancarlo",
-              "lastName": "Zambelli"
+            id: 'Tcb48J6nmpTDpDZni8ZhH',
+            title: 'Boxeur',
+            description: '',
+            placement: 'runner-up',
+            photographer: {
+              firstName: 'Giancarlo',
+              lastName: 'Zambelli',
             },
-            "image": "/images/contests/2015/Tcb48J6nmpTDpDZni8ZhH.webp",
-            "imageR2Id": "uw-2015/newcomers/Tcb48J6nmpTDpDZni8ZhH"
+            image: '/images/contests/2015/Tcb48J6nmpTDpDZni8ZhH.webp',
+            imageR2Id: 'uw-2015/newcomers/Tcb48J6nmpTDpDZni8ZhH',
           },
           {
-            "id": "SuMVWJmN3N7_9Ei-DrJWv",
-            "title": "Harlequin Shrimp",
-            "description": "",
-            "placement": "runner-up",
-            "photographer": {
-              "firstName": "Gabriella",
-              "lastName": "Luongo"
+            id: 'SuMVWJmN3N7_9Ei-DrJWv',
+            title: 'Harlequin Shrimp',
+            description: '',
+            placement: 'runner-up',
+            photographer: {
+              firstName: 'Gabriella',
+              lastName: 'Luongo',
             },
-            "image": "/images/contests/2015/SuMVWJmN3N7_9Ei-DrJWv.webp",
-            "imageR2Id": "uw-2015/newcomers/SuMVWJmN3N7_9Ei-DrJWv"
-          }
-        ]
+            image: '/images/contests/2015/SuMVWJmN3N7_9Ei-DrJWv.webp',
+            imageR2Id: 'uw-2015/newcomers/SuMVWJmN3N7_9Ei-DrJWv',
+          },
+        ],
       },
       {
-        "id": "wide-angle",
-        "name": "Wide Angle",
-        "winnerImage": "/images/contests/2015/TqA8Rczao0vpiGKGyzERt.webp",
-        "winnerImageR2Id": "uw-2015/wide-angle/TqA8Rczao0vpiGKGyzERt",
-        "entries": [
+        id: 'wide-angle',
+        name: 'Wide Angle',
+        winnerImage: '/images/contests/2015/TqA8Rczao0vpiGKGyzERt.webp',
+        winnerImageR2Id: 'uw-2015/wide-angle/TqA8Rczao0vpiGKGyzERt',
+        entries: [
           {
-            "id": "TqA8Rczao0vpiGKGyzERt",
-            "title": "Dal Profondo Degli Abissi",
-            "description": "",
-            "placement": "second",
-            "photographer": {
-              "firstName": "Raffaele",
-              "lastName": "Livornese"
+            id: 'TqA8Rczao0vpiGKGyzERt',
+            title: 'Dal Profondo Degli Abissi',
+            description: '',
+            placement: 'second',
+            photographer: {
+              firstName: 'Raffaele',
+              lastName: 'Livornese',
             },
-            "image": "/images/contests/2015/TqA8Rczao0vpiGKGyzERt.webp",
-            "imageR2Id": "uw-2015/wide-angle/TqA8Rczao0vpiGKGyzERt"
+            image: '/images/contests/2015/TqA8Rczao0vpiGKGyzERt.webp',
+            imageR2Id: 'uw-2015/wide-angle/TqA8Rczao0vpiGKGyzERt',
           },
           {
-            "id": "IUTBDLaTAYixfXjZktLTh",
-            "title": "Danza Dell'amore",
-            "description": "",
-            "placement": "third",
-            "photographer": {
-              "firstName": "Domenico",
-              "lastName": "Roscigno"
+            id: 'IUTBDLaTAYixfXjZktLTh',
+            title: "Danza Dell'amore",
+            description: '',
+            placement: 'third',
+            photographer: {
+              firstName: 'Domenico',
+              lastName: 'Roscigno',
             },
-            "image": "/images/contests/2015/IUTBDLaTAYixfXjZktLTh.webp",
-            "imageR2Id": "uw-2015/wide-angle/IUTBDLaTAYixfXjZktLTh"
+            image: '/images/contests/2015/IUTBDLaTAYixfXjZktLTh.webp',
+            imageR2Id: 'uw-2015/wide-angle/IUTBDLaTAYixfXjZktLTh',
           },
           {
-            "id": "iIz-hBBiTX0EBJW-0DN_b",
-            "title": "Pesce San Pietro",
-            "description": "",
-            "placement": "runner-up",
-            "photographer": {
-              "firstName": "Marco",
-              "lastName": "Gargiulo"
+            id: 'iIz-hBBiTX0EBJW-0DN_b',
+            title: 'Pesce San Pietro',
+            description: '',
+            placement: 'runner-up',
+            photographer: {
+              firstName: 'Marco',
+              lastName: 'Gargiulo',
             },
-            "image": "/images/contests/2015/iIz-hBBiTX0EBJW-0DN_b.webp",
-            "imageR2Id": "uw-2015/wide-angle/iIz-hBBiTX0EBJW-0DN_b"
+            image: '/images/contests/2015/iIz-hBBiTX0EBJW-0DN_b.webp',
+            imageR2Id: 'uw-2015/wide-angle/iIz-hBBiTX0EBJW-0DN_b',
           },
           {
-            "id": "fjkogCnKW_RBgZ01efRQn",
-            "title": "The Passenger",
-            "description": "",
-            "placement": "runner-up",
-            "photographer": {
-              "firstName": "Francesco",
-              "lastName": "Visintin"
+            id: 'fjkogCnKW_RBgZ01efRQn',
+            title: 'The Passenger',
+            description: '',
+            placement: 'runner-up',
+            photographer: {
+              firstName: 'Francesco',
+              lastName: 'Visintin',
             },
-            "image": "/images/contests/2015/fjkogCnKW_RBgZ01efRQn.webp",
-            "imageR2Id": "uw-2015/wide-angle/fjkogCnKW_RBgZ01efRQn"
+            image: '/images/contests/2015/fjkogCnKW_RBgZ01efRQn.webp',
+            imageR2Id: 'uw-2015/wide-angle/fjkogCnKW_RBgZ01efRQn',
           },
           {
-            "id": "Yp-NXDMJYYxkp7atuy7pF",
-            "title": "Alla Scoperta Del Mondo",
-            "description": "",
-            "placement": "runner-up",
-            "photographer": {
-              "firstName": "Claudio",
-              "lastName": "Zori"
+            id: 'Yp-NXDMJYYxkp7atuy7pF',
+            title: 'Alla Scoperta Del Mondo',
+            description: '',
+            placement: 'runner-up',
+            photographer: {
+              firstName: 'Claudio',
+              lastName: 'Zori',
             },
-            "image": "/images/contests/2015/Yp-NXDMJYYxkp7atuy7pF.webp",
-            "imageR2Id": "uw-2015/wide-angle/Yp-NXDMJYYxkp7atuy7pF"
-          }
-        ]
-      }
-    ]
+            image: '/images/contests/2015/Yp-NXDMJYYxkp7atuy7pF.webp',
+            imageR2Id: 'uw-2015/wide-angle/Yp-NXDMJYYxkp7atuy7pF',
+          },
+        ],
+      },
+    ],
   },
   {
-    "id": "uw-2014",
-    "year": 2014,
-    "name": "UW Contest 2014",
-    "description": "Annual underwater photography competition celebrating the beauty and diversity of marine life",
-    "indexImage": "/images/contests/2014/cJ5b1jai35ORhX9Dngw4A.webp",
-    "indexImageR2Id": "uw-2014/macro/cJ5b1jai35ORhX9Dngw4A",
-    "currentContest": false,
-    "judges": [
+    id: 'uw-2014',
+    year: 2014,
+    name: 'UW Contest 2014',
+    description:
+      'Annual underwater photography competition celebrating the beauty and diversity of marine life',
+    indexImage: '/images/contests/2014/cJ5b1jai35ORhX9Dngw4A.webp',
+    indexImageR2Id: 'uw-2014/macro/cJ5b1jai35ORhX9Dngw4A',
+    currentContest: false,
+    judges: [
       {
-        "id": "F13DMnF202qzMRi7D3wbM",
-        "fullName": "Alberto Balbi",
-        "r2ImageId": null
+        id: 'F13DMnF202qzMRi7D3wbM',
+        fullName: 'Alberto Balbi',
+        r2ImageId: null,
       },
       {
-        "id": "iJSxcCToqD_sJiP_ejKQZ",
-        "fullName": "Franco Banfi",
-        "r2ImageId": null
+        id: 'iJSxcCToqD_sJiP_ejKQZ',
+        fullName: 'Franco Banfi',
+        r2ImageId: null,
       },
       {
-        "id": "J8i9TVGR5En9ZYmqOXAB0",
-        "fullName": "Paolo Fossati",
-        "r2ImageId": null
-      }
+        id: 'J8i9TVGR5En9ZYmqOXAB0',
+        fullName: 'Paolo Fossati',
+        r2ImageId: null,
+      },
     ],
-    "categories": [
+    categories: [
       {
-        "id": "fresh-waters",
-        "name": "Fresh Waters",
-        "winnerImage": "/images/contests/2014/YToOpPSk_NIMgXrj2vFOA.webp",
-        "winnerImageR2Id": "uw-2014/fresh-waters/YToOpPSk_NIMgXrj2vFOA",
-        "entries": [
+        id: 'fresh-waters',
+        name: 'Fresh Waters',
+        winnerImage: '/images/contests/2014/YToOpPSk_NIMgXrj2vFOA.webp',
+        winnerImageR2Id: 'uw-2014/fresh-waters/YToOpPSk_NIMgXrj2vFOA',
+        entries: [
           {
-            "id": "YToOpPSk_NIMgXrj2vFOA",
-            "title": "Capodacqua Bw",
-            "description": "",
-            "placement": "first",
-            "photographer": {
-              "firstName": "Pietro",
-              "lastName": "Cremone"
+            id: 'YToOpPSk_NIMgXrj2vFOA',
+            title: 'Capodacqua Bw',
+            description: '',
+            placement: 'first',
+            photographer: {
+              firstName: 'Pietro',
+              lastName: 'Cremone',
             },
-            "image": "/images/contests/2014/YToOpPSk_NIMgXrj2vFOA.webp",
-            "imageR2Id": "uw-2014/fresh-waters/YToOpPSk_NIMgXrj2vFOA"
+            image: '/images/contests/2014/YToOpPSk_NIMgXrj2vFOA.webp',
+            imageR2Id: 'uw-2014/fresh-waters/YToOpPSk_NIMgXrj2vFOA',
           },
           {
-            "id": "UpjmDUoRXVIM_N5v_KOt0",
-            "title": "Bufi",
-            "description": "",
-            "placement": "second",
-            "photographer": {
-              "firstName": "Pietro",
-              "lastName": "Formis"
+            id: 'UpjmDUoRXVIM_N5v_KOt0',
+            title: 'Bufi',
+            description: '',
+            placement: 'second',
+            photographer: {
+              firstName: 'Pietro',
+              lastName: 'Formis',
             },
-            "image": "/images/contests/2014/UpjmDUoRXVIM_N5v_KOt0.webp",
-            "imageR2Id": "uw-2014/fresh-waters/UpjmDUoRXVIM_N5v_KOt0"
+            image: '/images/contests/2014/UpjmDUoRXVIM_N5v_KOt0.webp',
+            imageR2Id: 'uw-2014/fresh-waters/UpjmDUoRXVIM_N5v_KOt0',
           },
           {
-            "id": "ehZIp4NbtuMCdRmHSgE0G",
-            "title": "Bubbles",
-            "description": "",
-            "placement": "third",
-            "photographer": {
-              "firstName": "Matteo",
-              "lastName": "Visconti"
+            id: 'ehZIp4NbtuMCdRmHSgE0G',
+            title: 'Bubbles',
+            description: '',
+            placement: 'third',
+            photographer: {
+              firstName: 'Matteo',
+              lastName: 'Visconti',
             },
-            "image": "/images/contests/2014/ehZIp4NbtuMCdRmHSgE0G.webp",
-            "imageR2Id": "uw-2014/fresh-waters/ehZIp4NbtuMCdRmHSgE0G"
+            image: '/images/contests/2014/ehZIp4NbtuMCdRmHSgE0G.webp',
+            imageR2Id: 'uw-2014/fresh-waters/ehZIp4NbtuMCdRmHSgE0G',
           },
           {
-            "id": "CWWvaWO9IsBygg89FUljc",
-            "title": "Rutilus Aula",
-            "description": "",
-            "placement": "runner-up",
-            "photographer": {
-              "firstName": "Guido",
-              "lastName": "Villani"
+            id: 'CWWvaWO9IsBygg89FUljc',
+            title: 'Rutilus Aula',
+            description: '',
+            placement: 'runner-up',
+            photographer: {
+              firstName: 'Guido',
+              lastName: 'Villani',
             },
-            "image": "/images/contests/2014/CWWvaWO9IsBygg89FUljc.webp",
-            "imageR2Id": "uw-2014/fresh-waters/CWWvaWO9IsBygg89FUljc"
+            image: '/images/contests/2014/CWWvaWO9IsBygg89FUljc.webp',
+            imageR2Id: 'uw-2014/fresh-waters/CWWvaWO9IsBygg89FUljc',
           },
           {
-            "id": "VgR7DO-2hdJB-IoURB6lb",
-            "title": "My Friend the Pike",
-            "description": "",
-            "placement": "runner-up",
-            "photographer": {
-              "firstName": "Alessio",
-              "lastName": "Viora"
+            id: 'VgR7DO-2hdJB-IoURB6lb',
+            title: 'My Friend the Pike',
+            description: '',
+            placement: 'runner-up',
+            photographer: {
+              firstName: 'Alessio',
+              lastName: 'Viora',
             },
-            "image": "/images/contests/2014/VgR7DO-2hdJB-IoURB6lb.webp",
-            "imageR2Id": "uw-2014/fresh-waters/VgR7DO-2hdJB-IoURB6lb"
+            image: '/images/contests/2014/VgR7DO-2hdJB-IoURB6lb.webp',
+            imageR2Id: 'uw-2014/fresh-waters/VgR7DO-2hdJB-IoURB6lb',
           },
           {
-            "id": "ZwCJQ7pSS7h4BzZC5iNbb",
-            "title": "Roots",
-            "description": "",
-            "placement": "runner-up",
-            "photographer": {
-              "firstName": "Pietro",
-              "lastName": "Formis"
+            id: 'ZwCJQ7pSS7h4BzZC5iNbb',
+            title: 'Roots',
+            description: '',
+            placement: 'runner-up',
+            photographer: {
+              firstName: 'Pietro',
+              lastName: 'Formis',
             },
-            "image": "/images/contests/2014/ZwCJQ7pSS7h4BzZC5iNbb.webp",
-            "imageR2Id": "uw-2014/fresh-waters/ZwCJQ7pSS7h4BzZC5iNbb"
+            image: '/images/contests/2014/ZwCJQ7pSS7h4BzZC5iNbb.webp',
+            imageR2Id: 'uw-2014/fresh-waters/ZwCJQ7pSS7h4BzZC5iNbb',
           },
           {
-            "id": "nLWBNYmmx0cztQ5iUNRCH",
-            "title": "Green Planet",
-            "description": "",
-            "placement": "runner-up",
-            "photographer": {
-              "firstName": "Matteo",
-              "lastName": "Visconti"
+            id: 'nLWBNYmmx0cztQ5iUNRCH',
+            title: 'Green Planet',
+            description: '',
+            placement: 'runner-up',
+            photographer: {
+              firstName: 'Matteo',
+              lastName: 'Visconti',
             },
-            "image": "/images/contests/2014/nLWBNYmmx0cztQ5iUNRCH.webp",
-            "imageR2Id": "uw-2014/fresh-waters/nLWBNYmmx0cztQ5iUNRCH"
+            image: '/images/contests/2014/nLWBNYmmx0cztQ5iUNRCH.webp',
+            imageR2Id: 'uw-2014/fresh-waters/nLWBNYmmx0cztQ5iUNRCH',
           },
           {
-            "id": "_HLyaF9PQVbP02-QbBw_O",
-            "title": "Little River Crab",
-            "description": "",
-            "placement": "runner-up",
-            "photographer": {
-              "firstName": "Francesco",
-              "lastName": "Pacienza"
+            id: '_HLyaF9PQVbP02-QbBw_O',
+            title: 'Little River Crab',
+            description: '',
+            placement: 'runner-up',
+            photographer: {
+              firstName: 'Francesco',
+              lastName: 'Pacienza',
             },
-            "image": "/images/contests/2014/_HLyaF9PQVbP02-QbBw_O.webp",
-            "imageR2Id": "uw-2014/fresh-waters/_HLyaF9PQVbP02-QbBw_O"
+            image: '/images/contests/2014/_HLyaF9PQVbP02-QbBw_O.webp',
+            imageR2Id: 'uw-2014/fresh-waters/_HLyaF9PQVbP02-QbBw_O',
           },
           {
-            "id": "0rO3EpD7R5oQVe3tfd_ny",
-            "title": "Mulini Sommersi",
-            "description": "",
-            "placement": "runner-up",
-            "photographer": {
-              "firstName": "Gianni",
-              "lastName": "Cicalese"
+            id: '0rO3EpD7R5oQVe3tfd_ny',
+            title: 'Mulini Sommersi',
+            description: '',
+            placement: 'runner-up',
+            photographer: {
+              firstName: 'Gianni',
+              lastName: 'Cicalese',
             },
-            "image": "/images/contests/2014/0rO3EpD7R5oQVe3tfd_ny.webp",
-            "imageR2Id": "uw-2014/fresh-waters/0rO3EpD7R5oQVe3tfd_ny"
+            image: '/images/contests/2014/0rO3EpD7R5oQVe3tfd_ny.webp',
+            imageR2Id: 'uw-2014/fresh-waters/0rO3EpD7R5oQVe3tfd_ny',
           },
           {
-            "id": "iCi6G9GEE8GzSZQZojO7t",
-            "title": "The Flea",
-            "description": "",
-            "placement": "runner-up",
-            "photographer": {
-              "firstName": "Francesco",
-              "lastName": "Sessa"
+            id: 'iCi6G9GEE8GzSZQZojO7t',
+            title: 'The Flea',
+            description: '',
+            placement: 'runner-up',
+            photographer: {
+              firstName: 'Francesco',
+              lastName: 'Sessa',
             },
-            "image": "/images/contests/2014/iCi6G9GEE8GzSZQZojO7t.webp",
-            "imageR2Id": "uw-2014/fresh-waters/iCi6G9GEE8GzSZQZojO7t"
-          }
-        ]
+            image: '/images/contests/2014/iCi6G9GEE8GzSZQZojO7t.webp',
+            imageR2Id: 'uw-2014/fresh-waters/iCi6G9GEE8GzSZQZojO7t',
+          },
+        ],
       },
       {
-        "id": "macro",
-        "name": "Macro",
-        "winnerImage": "/images/contests/2014/cJ5b1jai35ORhX9Dngw4A.webp",
-        "winnerImageR2Id": "uw-2014/macro/cJ5b1jai35ORhX9Dngw4A",
-        "entries": [
+        id: 'macro',
+        name: 'Macro',
+        winnerImage: '/images/contests/2014/cJ5b1jai35ORhX9Dngw4A.webp',
+        winnerImageR2Id: 'uw-2014/macro/cJ5b1jai35ORhX9Dngw4A',
+        entries: [
           {
-            "id": "cJ5b1jai35ORhX9Dngw4A",
-            "title": "Those Eyes",
-            "description": "",
-            "placement": "first",
-            "photographer": {
-              "firstName": "Beth",
-              "lastName": "Watson"
+            id: 'cJ5b1jai35ORhX9Dngw4A',
+            title: 'Those Eyes',
+            description: '',
+            placement: 'first',
+            photographer: {
+              firstName: 'Beth',
+              lastName: 'Watson',
             },
-            "image": "/images/contests/2014/cJ5b1jai35ORhX9Dngw4A.webp",
-            "imageR2Id": "uw-2014/macro/cJ5b1jai35ORhX9Dngw4A"
+            image: '/images/contests/2014/cJ5b1jai35ORhX9Dngw4A.webp',
+            imageR2Id: 'uw-2014/macro/cJ5b1jai35ORhX9Dngw4A',
           },
           {
-            "id": "VYiTAX-LB706bMn5CyREr",
-            "title": "Faccia a Faccia",
-            "description": "",
-            "placement": "second",
-            "photographer": {
-              "firstName": "Marco",
-              "lastName": "Caraceni"
+            id: 'VYiTAX-LB706bMn5CyREr',
+            title: 'Faccia a Faccia',
+            description: '',
+            placement: 'second',
+            photographer: {
+              firstName: 'Marco',
+              lastName: 'Caraceni',
             },
-            "image": "/images/contests/2014/VYiTAX-LB706bMn5CyREr.webp",
-            "imageR2Id": "uw-2014/macro/VYiTAX-LB706bMn5CyREr"
+            image: '/images/contests/2014/VYiTAX-LB706bMn5CyREr.webp',
+            imageR2Id: 'uw-2014/macro/VYiTAX-LB706bMn5CyREr',
           },
           {
-            "id": "fUiD2xT0pedo4jt2uwPgt",
-            "title": "Scream",
-            "description": "",
-            "placement": "third",
-            "photographer": {
-              "firstName": "Paolo",
-              "lastName": "Bausani"
+            id: 'fUiD2xT0pedo4jt2uwPgt',
+            title: 'Scream',
+            description: '',
+            placement: 'third',
+            photographer: {
+              firstName: 'Paolo',
+              lastName: 'Bausani',
             },
-            "image": "/images/contests/2014/fUiD2xT0pedo4jt2uwPgt.webp",
-            "imageR2Id": "uw-2014/macro/fUiD2xT0pedo4jt2uwPgt"
+            image: '/images/contests/2014/fUiD2xT0pedo4jt2uwPgt.webp',
+            imageR2Id: 'uw-2014/macro/fUiD2xT0pedo4jt2uwPgt',
           },
           {
-            "id": "pdDrTw1yRfylnf-5EGeAP",
-            "title": "Merletti",
-            "description": "",
-            "placement": "runner-up",
-            "photographer": {
-              "firstName": "Giacomo",
-              "lastName": "Marchione"
+            id: 'pdDrTw1yRfylnf-5EGeAP',
+            title: 'Merletti',
+            description: '',
+            placement: 'runner-up',
+            photographer: {
+              firstName: 'Giacomo',
+              lastName: 'Marchione',
             },
-            "image": "/images/contests/2014/pdDrTw1yRfylnf-5EGeAP.webp",
-            "imageR2Id": "uw-2014/macro/pdDrTw1yRfylnf-5EGeAP"
+            image: '/images/contests/2014/pdDrTw1yRfylnf-5EGeAP.webp',
+            imageR2Id: 'uw-2014/macro/pdDrTw1yRfylnf-5EGeAP',
           },
           {
-            "id": "cx_BRhHyWW5WytCXv5dEm",
-            "title": "Sheep Eat Grass",
-            "description": "",
-            "placement": "runner-up",
-            "photographer": {
-              "firstName": "Lynn",
-              "lastName": "Wu"
+            id: 'cx_BRhHyWW5WytCXv5dEm',
+            title: 'Sheep Eat Grass',
+            description: '',
+            placement: 'runner-up',
+            photographer: {
+              firstName: 'Lynn',
+              lastName: 'Wu',
             },
-            "image": "/images/contests/2014/cx_BRhHyWW5WytCXv5dEm.webp",
-            "imageR2Id": "uw-2014/macro/cx_BRhHyWW5WytCXv5dEm"
+            image: '/images/contests/2014/cx_BRhHyWW5WytCXv5dEm.webp',
+            imageR2Id: 'uw-2014/macro/cx_BRhHyWW5WytCXv5dEm',
           },
           {
-            "id": "Vf8sv9wx3JQ737GfRFW6Q",
-            "title": "Like a Bird",
-            "description": "",
-            "placement": "runner-up",
-            "photographer": {
-              "firstName": "Jordi",
-              "lastName": "Riba"
+            id: 'Vf8sv9wx3JQ737GfRFW6Q',
+            title: 'Like a Bird',
+            description: '',
+            placement: 'runner-up',
+            photographer: {
+              firstName: 'Jordi',
+              lastName: 'Riba',
             },
-            "image": "/images/contests/2014/Vf8sv9wx3JQ737GfRFW6Q.webp",
-            "imageR2Id": "uw-2014/macro/Vf8sv9wx3JQ737GfRFW6Q"
+            image: '/images/contests/2014/Vf8sv9wx3JQ737GfRFW6Q.webp',
+            imageR2Id: 'uw-2014/macro/Vf8sv9wx3JQ737GfRFW6Q',
           },
           {
-            "id": "jfDUSFgPb47wzpPPZSj4e",
-            "title": "Shy Gobi",
-            "description": "",
-            "placement": "runner-up",
-            "photographer": {
-              "firstName": "Jordi",
-              "lastName": "Riba"
+            id: 'jfDUSFgPb47wzpPPZSj4e',
+            title: 'Shy Gobi',
+            description: '',
+            placement: 'runner-up',
+            photographer: {
+              firstName: 'Jordi',
+              lastName: 'Riba',
             },
-            "image": "/images/contests/2014/jfDUSFgPb47wzpPPZSj4e.webp",
-            "imageR2Id": "uw-2014/macro/jfDUSFgPb47wzpPPZSj4e"
+            image: '/images/contests/2014/jfDUSFgPb47wzpPPZSj4e.webp',
+            imageR2Id: 'uw-2014/macro/jfDUSFgPb47wzpPPZSj4e',
           },
           {
-            "id": "QpNL5pGvhLN9dZiFufl2_",
-            "title": "Little Beauty",
-            "description": "",
-            "placement": "runner-up",
-            "photographer": {
-              "firstName": "Raimundo",
-              "lastName": "Fernandez Diez"
+            id: 'QpNL5pGvhLN9dZiFufl2_',
+            title: 'Little Beauty',
+            description: '',
+            placement: 'runner-up',
+            photographer: {
+              firstName: 'Raimundo',
+              lastName: 'Fernandez Diez',
             },
-            "image": "/images/contests/2014/QpNL5pGvhLN9dZiFufl2_.webp",
-            "imageR2Id": "uw-2014/macro/QpNL5pGvhLN9dZiFufl2_"
+            image: '/images/contests/2014/QpNL5pGvhLN9dZiFufl2_.webp',
+            imageR2Id: 'uw-2014/macro/QpNL5pGvhLN9dZiFufl2_',
           },
           {
-            "id": "u6afNdQjcxk74TRI43XIK",
-            "title": "Elegant Feathers",
-            "description": "",
-            "placement": "runner-up",
-            "photographer": {
-              "firstName": "Francesco",
-              "lastName": "Pacienza"
+            id: 'u6afNdQjcxk74TRI43XIK',
+            title: 'Elegant Feathers',
+            description: '',
+            placement: 'runner-up',
+            photographer: {
+              firstName: 'Francesco',
+              lastName: 'Pacienza',
             },
-            "image": "/images/contests/2014/u6afNdQjcxk74TRI43XIK.webp",
-            "imageR2Id": "uw-2014/macro/u6afNdQjcxk74TRI43XIK"
+            image: '/images/contests/2014/u6afNdQjcxk74TRI43XIK.webp',
+            imageR2Id: 'uw-2014/macro/u6afNdQjcxk74TRI43XIK',
           },
           {
-            "id": "pJPhSj2vqQx6q7hsq5FY2",
-            "title": "Fly High and Smile",
-            "description": "",
-            "placement": "runner-up",
-            "photographer": {
-              "firstName": "Nicholas",
-              "lastName": "Samaras"
+            id: 'pJPhSj2vqQx6q7hsq5FY2',
+            title: 'Fly High and Smile',
+            description: '',
+            placement: 'runner-up',
+            photographer: {
+              firstName: 'Nicholas',
+              lastName: 'Samaras',
             },
-            "image": "/images/contests/2014/pJPhSj2vqQx6q7hsq5FY2.webp",
-            "imageR2Id": "uw-2014/macro/pJPhSj2vqQx6q7hsq5FY2"
-          }
-        ]
+            image: '/images/contests/2014/pJPhSj2vqQx6q7hsq5FY2.webp',
+            imageR2Id: 'uw-2014/macro/pJPhSj2vqQx6q7hsq5FY2',
+          },
+        ],
       },
       {
-        "id": "mediterranean",
-        "name": "Mediterranean Portfolio",
-        "winnerImage": "/images/contests/2014/sF-mg8LQ7xA9uiFYyN5Y2.webp",
-        "winnerImageR2Id": "uw-2014/mediterranean/sF-mg8LQ7xA9uiFYyN5Y2",
-        "entries": [
+        id: 'mediterranean',
+        name: 'Mediterranean Portfolio',
+        winnerImage: '/images/contests/2014/sF-mg8LQ7xA9uiFYyN5Y2.webp',
+        winnerImageR2Id: 'uw-2014/mediterranean/sF-mg8LQ7xA9uiFYyN5Y2',
+        entries: [
           {
-            "id": "sF-mg8LQ7xA9uiFYyN5Y2",
-            "title": "Cima Viva",
-            "description": "",
-            "placement": "first",
-            "photographer": {
-              "firstName": "Domenico",
-              "lastName": "Roscigno"
+            id: 'sF-mg8LQ7xA9uiFYyN5Y2',
+            title: 'Cima Viva',
+            description: '',
+            placement: 'first',
+            photographer: {
+              firstName: 'Domenico',
+              lastName: 'Roscigno',
             },
-            "image": "/images/contests/2014/sF-mg8LQ7xA9uiFYyN5Y2.webp",
-            "imageR2Id": "uw-2014/mediterranean/sF-mg8LQ7xA9uiFYyN5Y2"
+            image: '/images/contests/2014/sF-mg8LQ7xA9uiFYyN5Y2.webp',
+            imageR2Id: 'uw-2014/mediterranean/sF-mg8LQ7xA9uiFYyN5Y2',
           },
           {
-            "id": "KbWJVbr1xs_mHZBgN8Z4Z",
-            "title": "Edo E Spugna",
-            "description": "",
-            "placement": "first",
-            "photographer": {
-              "firstName": "Domenico",
-              "lastName": "Roscigno"
+            id: 'KbWJVbr1xs_mHZBgN8Z4Z',
+            title: 'Edo E Spugna',
+            description: '',
+            placement: 'first',
+            photographer: {
+              firstName: 'Domenico',
+              lastName: 'Roscigno',
             },
-            "image": "/images/contests/2014/KbWJVbr1xs_mHZBgN8Z4Z.webp",
-            "imageR2Id": "uw-2014/mediterranean/KbWJVbr1xs_mHZBgN8Z4Z"
+            image: '/images/contests/2014/KbWJVbr1xs_mHZBgN8Z4Z.webp',
+            imageR2Id: 'uw-2014/mediterranean/KbWJVbr1xs_mHZBgN8Z4Z',
           },
           {
-            "id": "SOMds3iAPeu5ihiodgqee",
-            "title": "Hidden",
-            "description": "",
-            "placement": "first",
-            "photographer": {
-              "firstName": "Domenico",
-              "lastName": "Roscigno"
+            id: 'SOMds3iAPeu5ihiodgqee',
+            title: 'Hidden',
+            description: '',
+            placement: 'first',
+            photographer: {
+              firstName: 'Domenico',
+              lastName: 'Roscigno',
             },
-            "image": "/images/contests/2014/SOMds3iAPeu5ihiodgqee.webp",
-            "imageR2Id": "uw-2014/mediterranean/SOMds3iAPeu5ihiodgqee"
+            image: '/images/contests/2014/SOMds3iAPeu5ihiodgqee.webp',
+            imageR2Id: 'uw-2014/mediterranean/SOMds3iAPeu5ihiodgqee',
           },
           {
-            "id": "OKrXDdOYJ_-zy-F0UvCPr",
-            "title": "These Eyes",
-            "description": "",
-            "placement": "second",
-            "photographer": {
-              "firstName": "Nicholas",
-              "lastName": "Samaras"
+            id: 'OKrXDdOYJ_-zy-F0UvCPr',
+            title: 'These Eyes',
+            description: '',
+            placement: 'second',
+            photographer: {
+              firstName: 'Nicholas',
+              lastName: 'Samaras',
             },
-            "image": "/images/contests/2014/OKrXDdOYJ_-zy-F0UvCPr.webp",
-            "imageR2Id": "uw-2014/mediterranean/OKrXDdOYJ_-zy-F0UvCPr"
+            image: '/images/contests/2014/OKrXDdOYJ_-zy-F0UvCPr.webp',
+            imageR2Id: 'uw-2014/mediterranean/OKrXDdOYJ_-zy-F0UvCPr',
           },
           {
-            "id": "adCUqS9nV8FRdu8SH_7CY",
-            "title": "Spaceship",
-            "description": "",
-            "placement": "second",
-            "photographer": {
-              "firstName": "Nicholas",
-              "lastName": "Samaras"
+            id: 'adCUqS9nV8FRdu8SH_7CY',
+            title: 'Spaceship',
+            description: '',
+            placement: 'second',
+            photographer: {
+              firstName: 'Nicholas',
+              lastName: 'Samaras',
             },
-            "image": "/images/contests/2014/adCUqS9nV8FRdu8SH_7CY.webp",
-            "imageR2Id": "uw-2014/mediterranean/adCUqS9nV8FRdu8SH_7CY"
+            image: '/images/contests/2014/adCUqS9nV8FRdu8SH_7CY.webp',
+            imageR2Id: 'uw-2014/mediterranean/adCUqS9nV8FRdu8SH_7CY',
           },
           {
-            "id": "fD8g5y7VWSeVlqtR3blLh",
-            "title": "Swimming in the Sunset",
-            "description": "",
-            "placement": "second",
-            "photographer": {
-              "firstName": "Nicholas",
-              "lastName": "Samaras"
+            id: 'fD8g5y7VWSeVlqtR3blLh',
+            title: 'Swimming in the Sunset',
+            description: '',
+            placement: 'second',
+            photographer: {
+              firstName: 'Nicholas',
+              lastName: 'Samaras',
             },
-            "image": "/images/contests/2014/fD8g5y7VWSeVlqtR3blLh.webp",
-            "imageR2Id": "uw-2014/mediterranean/fD8g5y7VWSeVlqtR3blLh"
+            image: '/images/contests/2014/fD8g5y7VWSeVlqtR3blLh.webp',
+            imageR2Id: 'uw-2014/mediterranean/fD8g5y7VWSeVlqtR3blLh',
           },
           {
-            "id": "o9sMs7dDF0Oj-ti-l7wkX",
-            "title": "Cothyloriza Dream",
-            "description": "",
-            "placement": "third",
-            "photographer": {
-              "firstName": "Adriano",
-              "lastName": "Morettin"
+            id: 'o9sMs7dDF0Oj-ti-l7wkX',
+            title: 'Cothyloriza Dream',
+            description: '',
+            placement: 'third',
+            photographer: {
+              firstName: 'Adriano',
+              lastName: 'Morettin',
             },
-            "image": "/images/contests/2014/o9sMs7dDF0Oj-ti-l7wkX.webp",
-            "imageR2Id": "uw-2014/mediterranean/o9sMs7dDF0Oj-ti-l7wkX"
+            image: '/images/contests/2014/o9sMs7dDF0Oj-ti-l7wkX.webp',
+            imageR2Id: 'uw-2014/mediterranean/o9sMs7dDF0Oj-ti-l7wkX',
           },
           {
-            "id": "VZkAORX5chUvOT4uWeq8T",
-            "title": "Tubeworms Tree",
-            "description": "",
-            "placement": "third",
-            "photographer": {
-              "firstName": "Adriano",
-              "lastName": "Morettin"
+            id: 'VZkAORX5chUvOT4uWeq8T',
+            title: 'Tubeworms Tree',
+            description: '',
+            placement: 'third',
+            photographer: {
+              firstName: 'Adriano',
+              lastName: 'Morettin',
             },
-            "image": "/images/contests/2014/VZkAORX5chUvOT4uWeq8T.webp",
-            "imageR2Id": "uw-2014/mediterranean/VZkAORX5chUvOT4uWeq8T"
+            image: '/images/contests/2014/VZkAORX5chUvOT4uWeq8T.webp',
+            imageR2Id: 'uw-2014/mediterranean/VZkAORX5chUvOT4uWeq8T',
           },
           {
-            "id": "k3cXltm-_mkEfhLXYpJAZ",
-            "title": "On Stage",
-            "description": "",
-            "placement": "third",
-            "photographer": {
-              "firstName": "Adriano",
-              "lastName": "Morettin"
+            id: 'k3cXltm-_mkEfhLXYpJAZ',
+            title: 'On Stage',
+            description: '',
+            placement: 'third',
+            photographer: {
+              firstName: 'Adriano',
+              lastName: 'Morettin',
             },
-            "image": "/images/contests/2014/k3cXltm-_mkEfhLXYpJAZ.webp",
-            "imageR2Id": "uw-2014/mediterranean/k3cXltm-_mkEfhLXYpJAZ"
+            image: '/images/contests/2014/k3cXltm-_mkEfhLXYpJAZ.webp',
+            imageR2Id: 'uw-2014/mediterranean/k3cXltm-_mkEfhLXYpJAZ',
           },
           {
-            "id": "invRhhcrVKpsaDfb2CtRY",
-            "title": "Life Is 1",
-            "description": "",
-            "placement": "runner-up",
-            "photographer": {
-              "firstName": "Elio",
-              "lastName": "Nicosia"
+            id: 'invRhhcrVKpsaDfb2CtRY',
+            title: 'Life Is 1',
+            description: '',
+            placement: 'runner-up',
+            photographer: {
+              firstName: 'Elio',
+              lastName: 'Nicosia',
             },
-            "image": "/images/contests/2014/invRhhcrVKpsaDfb2CtRY.webp",
-            "imageR2Id": "uw-2014/mediterranean/invRhhcrVKpsaDfb2CtRY"
+            image: '/images/contests/2014/invRhhcrVKpsaDfb2CtRY.webp',
+            imageR2Id: 'uw-2014/mediterranean/invRhhcrVKpsaDfb2CtRY',
           },
           {
-            "id": "6g5KWQF4IRfmgCJbP2BE1",
-            "title": "Life Is 2",
-            "description": "",
-            "placement": "runner-up",
-            "photographer": {
-              "firstName": "Elio",
-              "lastName": "Nicosia"
+            id: '6g5KWQF4IRfmgCJbP2BE1',
+            title: 'Life Is 2',
+            description: '',
+            placement: 'runner-up',
+            photographer: {
+              firstName: 'Elio',
+              lastName: 'Nicosia',
             },
-            "image": "/images/contests/2014/6g5KWQF4IRfmgCJbP2BE1.webp",
-            "imageR2Id": "uw-2014/mediterranean/6g5KWQF4IRfmgCJbP2BE1"
+            image: '/images/contests/2014/6g5KWQF4IRfmgCJbP2BE1.webp',
+            imageR2Id: 'uw-2014/mediterranean/6g5KWQF4IRfmgCJbP2BE1',
           },
           {
-            "id": "pyzWXsaFBpWZQfwLw1ME3",
-            "title": "Life Is 3",
-            "description": "",
-            "placement": "runner-up",
-            "photographer": {
-              "firstName": "Elio",
-              "lastName": "Nicosia"
+            id: 'pyzWXsaFBpWZQfwLw1ME3',
+            title: 'Life Is 3',
+            description: '',
+            placement: 'runner-up',
+            photographer: {
+              firstName: 'Elio',
+              lastName: 'Nicosia',
             },
-            "image": "/images/contests/2014/pyzWXsaFBpWZQfwLw1ME3.webp",
-            "imageR2Id": "uw-2014/mediterranean/pyzWXsaFBpWZQfwLw1ME3"
+            image: '/images/contests/2014/pyzWXsaFBpWZQfwLw1ME3.webp',
+            imageR2Id: 'uw-2014/mediterranean/pyzWXsaFBpWZQfwLw1ME3',
           },
           {
-            "id": "PT5HcOWjDnalf7gye0siW",
-            "title": "Grotta",
-            "description": "",
-            "placement": "runner-up",
-            "photographer": {
-              "firstName": "Marco",
-              "lastName": "Gargiulo"
+            id: 'PT5HcOWjDnalf7gye0siW',
+            title: 'Grotta',
+            description: '',
+            placement: 'runner-up',
+            photographer: {
+              firstName: 'Marco',
+              lastName: 'Gargiulo',
             },
-            "image": "/images/contests/2014/PT5HcOWjDnalf7gye0siW.webp",
-            "imageR2Id": "uw-2014/mediterranean/PT5HcOWjDnalf7gye0siW"
+            image: '/images/contests/2014/PT5HcOWjDnalf7gye0siW.webp',
+            imageR2Id: 'uw-2014/mediterranean/PT5HcOWjDnalf7gye0siW',
           },
           {
-            "id": "QOmud8le_1PzzX14YT0vo",
-            "title": "In Volo",
-            "description": "",
-            "placement": "runner-up",
-            "photographer": {
-              "firstName": "Marco",
-              "lastName": "Gargiulo"
+            id: 'QOmud8le_1PzzX14YT0vo',
+            title: 'In Volo',
+            description: '',
+            placement: 'runner-up',
+            photographer: {
+              firstName: 'Marco',
+              lastName: 'Gargiulo',
             },
-            "image": "/images/contests/2014/QOmud8le_1PzzX14YT0vo.webp",
-            "imageR2Id": "uw-2014/mediterranean/QOmud8le_1PzzX14YT0vo"
+            image: '/images/contests/2014/QOmud8le_1PzzX14YT0vo.webp',
+            imageR2Id: 'uw-2014/mediterranean/QOmud8le_1PzzX14YT0vo',
           },
           {
-            "id": "Py0Bj6w7I_Tn_H38GMR8-",
-            "title": "The Circle",
-            "description": "",
-            "placement": "runner-up",
-            "photographer": {
-              "firstName": "Marco",
-              "lastName": "Gargiulo"
+            id: 'Py0Bj6w7I_Tn_H38GMR8-',
+            title: 'The Circle',
+            description: '',
+            placement: 'runner-up',
+            photographer: {
+              firstName: 'Marco',
+              lastName: 'Gargiulo',
             },
-            "image": "/images/contests/2014/Py0Bj6w7I_Tn_H38GMR8-.webp",
-            "imageR2Id": "uw-2014/mediterranean/Py0Bj6w7I_Tn_H38GMR8-"
+            image: '/images/contests/2014/Py0Bj6w7I_Tn_H38GMR8-.webp',
+            imageR2Id: 'uw-2014/mediterranean/Py0Bj6w7I_Tn_H38GMR8-',
           },
           {
-            "id": "Xjz29KG6ev2Ytn1v7h-aa",
-            "title": "Resting in a Cloud",
-            "description": "",
-            "placement": "runner-up",
-            "photographer": {
-              "firstName": "Jordi",
-              "lastName": "Riba"
+            id: 'Xjz29KG6ev2Ytn1v7h-aa',
+            title: 'Resting in a Cloud',
+            description: '',
+            placement: 'runner-up',
+            photographer: {
+              firstName: 'Jordi',
+              lastName: 'Riba',
             },
-            "image": "/images/contests/2014/Xjz29KG6ev2Ytn1v7h-aa.webp",
-            "imageR2Id": "uw-2014/mediterranean/Xjz29KG6ev2Ytn1v7h-aa"
+            image: '/images/contests/2014/Xjz29KG6ev2Ytn1v7h-aa.webp',
+            imageR2Id: 'uw-2014/mediterranean/Xjz29KG6ev2Ytn1v7h-aa',
           },
           {
-            "id": "IvDhMwLuXCQq-hoGfgbrV",
-            "title": "Underwater World",
-            "description": "",
-            "placement": "runner-up",
-            "photographer": {
-              "firstName": "Jordi",
-              "lastName": "Riba"
+            id: 'IvDhMwLuXCQq-hoGfgbrV',
+            title: 'Underwater World',
+            description: '',
+            placement: 'runner-up',
+            photographer: {
+              firstName: 'Jordi',
+              lastName: 'Riba',
             },
-            "image": "/images/contests/2014/IvDhMwLuXCQq-hoGfgbrV.webp",
-            "imageR2Id": "uw-2014/mediterranean/IvDhMwLuXCQq-hoGfgbrV"
+            image: '/images/contests/2014/IvDhMwLuXCQq-hoGfgbrV.webp',
+            imageR2Id: 'uw-2014/mediterranean/IvDhMwLuXCQq-hoGfgbrV',
           },
           {
-            "id": "nXERi7Re96osrQ06QA41F",
-            "title": "Equilibrist",
-            "description": "",
-            "placement": "runner-up",
-            "photographer": {
-              "firstName": "Jordi",
-              "lastName": "Riba"
+            id: 'nXERi7Re96osrQ06QA41F',
+            title: 'Equilibrist',
+            description: '',
+            placement: 'runner-up',
+            photographer: {
+              firstName: 'Jordi',
+              lastName: 'Riba',
             },
-            "image": "/images/contests/2014/nXERi7Re96osrQ06QA41F.webp",
-            "imageR2Id": "uw-2014/mediterranean/nXERi7Re96osrQ06QA41F"
+            image: '/images/contests/2014/nXERi7Re96osrQ06QA41F.webp',
+            imageR2Id: 'uw-2014/mediterranean/nXERi7Re96osrQ06QA41F',
           },
           {
-            "id": "zHINuY1NGeIe8-2oIT89q",
-            "title": "La Gorgone",
-            "description": "",
-            "placement": "runner-up",
-            "photographer": {
-              "firstName": "Filippo",
-              "lastName": "Borghi"
+            id: 'zHINuY1NGeIe8-2oIT89q',
+            title: 'La Gorgone',
+            description: '',
+            placement: 'runner-up',
+            photographer: {
+              firstName: 'Filippo',
+              lastName: 'Borghi',
             },
-            "image": "/images/contests/2014/zHINuY1NGeIe8-2oIT89q.webp",
-            "imageR2Id": "uw-2014/mediterranean/zHINuY1NGeIe8-2oIT89q"
+            image: '/images/contests/2014/zHINuY1NGeIe8-2oIT89q.webp',
+            imageR2Id: 'uw-2014/mediterranean/zHINuY1NGeIe8-2oIT89q',
           },
           {
-            "id": "fi6VQ2Ee9ThDFNmz8I3na",
-            "title": "La Pescatrice",
-            "description": "",
-            "placement": "runner-up",
-            "photographer": {
-              "firstName": "Filippo",
-              "lastName": "Borghi"
+            id: 'fi6VQ2Ee9ThDFNmz8I3na',
+            title: 'La Pescatrice',
+            description: '',
+            placement: 'runner-up',
+            photographer: {
+              firstName: 'Filippo',
+              lastName: 'Borghi',
             },
-            "image": "/images/contests/2014/fi6VQ2Ee9ThDFNmz8I3na.webp",
-            "imageR2Id": "uw-2014/mediterranean/fi6VQ2Ee9ThDFNmz8I3na"
+            image: '/images/contests/2014/fi6VQ2Ee9ThDFNmz8I3na.webp',
+            imageR2Id: 'uw-2014/mediterranean/fi6VQ2Ee9ThDFNmz8I3na',
           },
           {
-            "id": "h6fkkI2qo0ghiikxkbt2P",
-            "title": "Sotto L'ombrello",
-            "description": "",
-            "placement": "runner-up",
-            "photographer": {
-              "firstName": "Filippo",
-              "lastName": "Borghi"
+            id: 'h6fkkI2qo0ghiikxkbt2P',
+            title: "Sotto L'ombrello",
+            description: '',
+            placement: 'runner-up',
+            photographer: {
+              firstName: 'Filippo',
+              lastName: 'Borghi',
             },
-            "image": "/images/contests/2014/h6fkkI2qo0ghiikxkbt2P.webp",
-            "imageR2Id": "uw-2014/mediterranean/h6fkkI2qo0ghiikxkbt2P"
+            image: '/images/contests/2014/h6fkkI2qo0ghiikxkbt2P.webp',
+            imageR2Id: 'uw-2014/mediterranean/h6fkkI2qo0ghiikxkbt2P',
           },
           {
-            "id": "5t0eTmCy0fKYvOGFAriUL",
-            "title": "Umbrella",
-            "description": "",
-            "placement": "runner-up",
-            "photographer": {
-              "firstName": "David",
-              "lastName": "Mocholi"
+            id: '5t0eTmCy0fKYvOGFAriUL',
+            title: 'Umbrella',
+            description: '',
+            placement: 'runner-up',
+            photographer: {
+              firstName: 'David',
+              lastName: 'Mocholi',
             },
-            "image": "/images/contests/2014/5t0eTmCy0fKYvOGFAriUL.webp",
-            "imageR2Id": "uw-2014/mediterranean/5t0eTmCy0fKYvOGFAriUL"
+            image: '/images/contests/2014/5t0eTmCy0fKYvOGFAriUL.webp',
+            imageR2Id: 'uw-2014/mediterranean/5t0eTmCy0fKYvOGFAriUL',
           },
           {
-            "id": "D0PYlq1PbT_UOo7U-oC0P",
-            "title": "Blue Neon",
-            "description": "",
-            "placement": "runner-up",
-            "photographer": {
-              "firstName": "David",
-              "lastName": "Mocholi"
+            id: 'D0PYlq1PbT_UOo7U-oC0P',
+            title: 'Blue Neon',
+            description: '',
+            placement: 'runner-up',
+            photographer: {
+              firstName: 'David',
+              lastName: 'Mocholi',
             },
-            "image": "/images/contests/2014/D0PYlq1PbT_UOo7U-oC0P.webp",
-            "imageR2Id": "uw-2014/mediterranean/D0PYlq1PbT_UOo7U-oC0P"
+            image: '/images/contests/2014/D0PYlq1PbT_UOo7U-oC0P.webp',
+            imageR2Id: 'uw-2014/mediterranean/D0PYlq1PbT_UOo7U-oC0P',
           },
           {
-            "id": "UuMqKlhD25ye2ltncJB3F",
-            "title": "The Cave",
-            "description": "",
-            "placement": "runner-up",
-            "photographer": {
-              "firstName": "David",
-              "lastName": "Mocholi"
+            id: 'UuMqKlhD25ye2ltncJB3F',
+            title: 'The Cave',
+            description: '',
+            placement: 'runner-up',
+            photographer: {
+              firstName: 'David',
+              lastName: 'Mocholi',
             },
-            "image": "/images/contests/2014/UuMqKlhD25ye2ltncJB3F.webp",
-            "imageR2Id": "uw-2014/mediterranean/UuMqKlhD25ye2ltncJB3F"
+            image: '/images/contests/2014/UuMqKlhD25ye2ltncJB3F.webp',
+            imageR2Id: 'uw-2014/mediterranean/UuMqKlhD25ye2ltncJB3F',
           },
           {
-            "id": "evww3qRjAdt1uNGhSA_sG",
-            "title": "Trapanie Lineate in Rosa",
-            "description": "",
-            "placement": "runner-up",
-            "photographer": {
-              "firstName": "Virginia",
-              "lastName": "Salzedo"
+            id: 'evww3qRjAdt1uNGhSA_sG',
+            title: 'Trapanie Lineate in Rosa',
+            description: '',
+            placement: 'runner-up',
+            photographer: {
+              firstName: 'Virginia',
+              lastName: 'Salzedo',
             },
-            "image": "/images/contests/2014/evww3qRjAdt1uNGhSA_sG.webp",
-            "imageR2Id": "uw-2014/mediterranean/evww3qRjAdt1uNGhSA_sG"
+            image: '/images/contests/2014/evww3qRjAdt1uNGhSA_sG.webp',
+            imageR2Id: 'uw-2014/mediterranean/evww3qRjAdt1uNGhSA_sG',
           },
           {
-            "id": "hyrARIu9J9qonNgybkZE4",
-            "title": "Daddy",
-            "description": "",
-            "placement": "runner-up",
-            "photographer": {
-              "firstName": "Virginia",
-              "lastName": "Salzedo"
+            id: 'hyrARIu9J9qonNgybkZE4',
+            title: 'Daddy',
+            description: '',
+            placement: 'runner-up',
+            photographer: {
+              firstName: 'Virginia',
+              lastName: 'Salzedo',
             },
-            "image": "/images/contests/2014/hyrARIu9J9qonNgybkZE4.webp",
-            "imageR2Id": "uw-2014/mediterranean/hyrARIu9J9qonNgybkZE4"
+            image: '/images/contests/2014/hyrARIu9J9qonNgybkZE4.webp',
+            imageR2Id: 'uw-2014/mediterranean/hyrARIu9J9qonNgybkZE4',
           },
           {
-            "id": "T29PnXwI2s73-xwu1wuxP",
-            "title": "Tina Mon Amour",
-            "description": "",
-            "placement": "runner-up",
-            "photographer": {
-              "firstName": "Virginia",
-              "lastName": "Salzedo"
+            id: 'T29PnXwI2s73-xwu1wuxP',
+            title: 'Tina Mon Amour',
+            description: '',
+            placement: 'runner-up',
+            photographer: {
+              firstName: 'Virginia',
+              lastName: 'Salzedo',
             },
-            "image": "/images/contests/2014/T29PnXwI2s73-xwu1wuxP.webp",
-            "imageR2Id": "uw-2014/mediterranean/T29PnXwI2s73-xwu1wuxP"
+            image: '/images/contests/2014/T29PnXwI2s73-xwu1wuxP.webp',
+            imageR2Id: 'uw-2014/mediterranean/T29PnXwI2s73-xwu1wuxP',
           },
           {
-            "id": "48smQ2GN8BZegqQyDwunf",
-            "title": "Lady Viola",
-            "description": "",
-            "placement": "runner-up",
-            "photographer": {
-              "firstName": "David",
-              "lastName": "Mocholi"
+            id: '48smQ2GN8BZegqQyDwunf',
+            title: 'Lady Viola',
+            description: '',
+            placement: 'runner-up',
+            photographer: {
+              firstName: 'David',
+              lastName: 'Mocholi',
             },
-            "image": "/images/contests/2014/48smQ2GN8BZegqQyDwunf.webp",
-            "imageR2Id": "uw-2014/mediterranean/48smQ2GN8BZegqQyDwunf"
+            image: '/images/contests/2014/48smQ2GN8BZegqQyDwunf.webp',
+            imageR2Id: 'uw-2014/mediterranean/48smQ2GN8BZegqQyDwunf',
           },
           {
-            "id": "5UAVTjRzsxG6wOcz0CDj-",
-            "title": "Luci Dello Stretto",
-            "description": "",
-            "placement": "runner-up",
-            "photographer": {
-              "firstName": "Francesco",
-              "lastName": "Sesso"
+            id: '5UAVTjRzsxG6wOcz0CDj-',
+            title: 'Luci Dello Stretto',
+            description: '',
+            placement: 'runner-up',
+            photographer: {
+              firstName: 'Francesco',
+              lastName: 'Sesso',
             },
-            "image": "/images/contests/2014/5UAVTjRzsxG6wOcz0CDj-.webp",
-            "imageR2Id": "uw-2014/mediterranean/5UAVTjRzsxG6wOcz0CDj-"
+            image: '/images/contests/2014/5UAVTjRzsxG6wOcz0CDj-.webp',
+            imageR2Id: 'uw-2014/mediterranean/5UAVTjRzsxG6wOcz0CDj-',
           },
           {
-            "id": "uMj0GooHr0-b8zzhn_m9-",
-            "title": "Tina",
-            "description": "",
-            "placement": "runner-up",
-            "photographer": {
-              "firstName": "David",
-              "lastName": "Mocholi"
+            id: 'uMj0GooHr0-b8zzhn_m9-',
+            title: 'Tina',
+            description: '',
+            placement: 'runner-up',
+            photographer: {
+              firstName: 'David',
+              lastName: 'Mocholi',
             },
-            "image": "/images/contests/2014/uMj0GooHr0-b8zzhn_m9-.webp",
-            "imageR2Id": "uw-2014/mediterranean/uMj0GooHr0-b8zzhn_m9-"
-          }
-        ]
+            image: '/images/contests/2014/uMj0GooHr0-b8zzhn_m9-.webp',
+            imageR2Id: 'uw-2014/mediterranean/uMj0GooHr0-b8zzhn_m9-',
+          },
+        ],
       },
       {
-        "id": "newcomers",
-        "name": "Newcomers",
-        "winnerImage": "/images/contests/2014/K68CQgDwEsPm1QzMC7Va1.webp",
-        "winnerImageR2Id": "uw-2014/newcomers/K68CQgDwEsPm1QzMC7Va1",
-        "entries": [
+        id: 'newcomers',
+        name: 'Newcomers',
+        winnerImage: '/images/contests/2014/K68CQgDwEsPm1QzMC7Va1.webp',
+        winnerImageR2Id: 'uw-2014/newcomers/K68CQgDwEsPm1QzMC7Va1',
+        entries: [
           {
-            "id": "K68CQgDwEsPm1QzMC7Va1",
-            "title": "Trasparenze",
-            "description": "",
-            "placement": "first",
-            "photographer": {
-              "firstName": "Mario",
-              "lastName": "Bonelli"
+            id: 'K68CQgDwEsPm1QzMC7Va1',
+            title: 'Trasparenze',
+            description: '',
+            placement: 'first',
+            photographer: {
+              firstName: 'Mario',
+              lastName: 'Bonelli',
             },
-            "image": "/images/contests/2014/K68CQgDwEsPm1QzMC7Va1.webp",
-            "imageR2Id": "uw-2014/newcomers/K68CQgDwEsPm1QzMC7Va1"
+            image: '/images/contests/2014/K68CQgDwEsPm1QzMC7Va1.webp',
+            imageR2Id: 'uw-2014/newcomers/K68CQgDwEsPm1QzMC7Va1',
           },
           {
-            "id": "SYzvS1vbpPK6FSZsGyMYD",
-            "title": "Che Bel Sorriso",
-            "description": "",
-            "placement": "second",
-            "photographer": {
-              "firstName": "Filippo",
-              "lastName": "Ioni"
+            id: 'SYzvS1vbpPK6FSZsGyMYD',
+            title: 'Che Bel Sorriso',
+            description: '',
+            placement: 'second',
+            photographer: {
+              firstName: 'Filippo',
+              lastName: 'Ioni',
             },
-            "image": "/images/contests/2014/SYzvS1vbpPK6FSZsGyMYD.webp",
-            "imageR2Id": "uw-2014/newcomers/SYzvS1vbpPK6FSZsGyMYD"
+            image: '/images/contests/2014/SYzvS1vbpPK6FSZsGyMYD.webp',
+            imageR2Id: 'uw-2014/newcomers/SYzvS1vbpPK6FSZsGyMYD',
           },
           {
-            "id": "aAvFMCfdMjVMUdIhMCIbk",
-            "title": "Fashion Night",
-            "description": "",
-            "placement": "third",
-            "photographer": {
-              "firstName": "Adriano",
-              "lastName": "Di Nocera"
+            id: 'aAvFMCfdMjVMUdIhMCIbk',
+            title: 'Fashion Night',
+            description: '',
+            placement: 'third',
+            photographer: {
+              firstName: 'Adriano',
+              lastName: 'Di Nocera',
             },
-            "image": "/images/contests/2014/aAvFMCfdMjVMUdIhMCIbk.webp",
-            "imageR2Id": "uw-2014/newcomers/aAvFMCfdMjVMUdIhMCIbk"
+            image: '/images/contests/2014/aAvFMCfdMjVMUdIhMCIbk.webp',
+            imageR2Id: 'uw-2014/newcomers/aAvFMCfdMjVMUdIhMCIbk',
           },
           {
-            "id": "jFHCQHddXlsGPc0BuMHBI",
-            "title": "",
-            "description": "",
-            "placement": "runner-up",
-            "photographer": {
-              "firstName": "Marco",
-              "lastName": "Faimali"
+            id: 'jFHCQHddXlsGPc0BuMHBI',
+            title: '',
+            description: '',
+            placement: 'runner-up',
+            photographer: {
+              firstName: 'Marco',
+              lastName: 'Faimali',
             },
-            "image": "/images/contests/2014/jFHCQHddXlsGPc0BuMHBI.webp",
-            "imageR2Id": "uw-2014/newcomers/jFHCQHddXlsGPc0BuMHBI"
+            image: '/images/contests/2014/jFHCQHddXlsGPc0BuMHBI.webp',
+            imageR2Id: 'uw-2014/newcomers/jFHCQHddXlsGPc0BuMHBI',
           },
           {
-            "id": "8FJG04q40pnkNaUYRWTu_",
-            "title": "Il Vezzo Del Cavalluccio",
-            "description": "",
-            "placement": "runner-up",
-            "photographer": {
-              "firstName": "Roberto",
-              "lastName": "Strafella"
+            id: '8FJG04q40pnkNaUYRWTu_',
+            title: 'Il Vezzo Del Cavalluccio',
+            description: '',
+            placement: 'runner-up',
+            photographer: {
+              firstName: 'Roberto',
+              lastName: 'Strafella',
             },
-            "image": "/images/contests/2014/8FJG04q40pnkNaUYRWTu_.webp",
-            "imageR2Id": "uw-2014/newcomers/8FJG04q40pnkNaUYRWTu_"
+            image: '/images/contests/2014/8FJG04q40pnkNaUYRWTu_.webp',
+            imageR2Id: 'uw-2014/newcomers/8FJG04q40pnkNaUYRWTu_',
           },
           {
-            "id": "0f2zDha48528XgHDiD3rm",
-            "title": "Melibe",
-            "description": "",
-            "placement": "runner-up",
-            "photographer": {
-              "firstName": "Domenico",
-              "lastName": "Maiorano"
+            id: '0f2zDha48528XgHDiD3rm',
+            title: 'Melibe',
+            description: '',
+            placement: 'runner-up',
+            photographer: {
+              firstName: 'Domenico',
+              lastName: 'Maiorano',
             },
-            "image": "/images/contests/2014/0f2zDha48528XgHDiD3rm.webp",
-            "imageR2Id": "uw-2014/newcomers/0f2zDha48528XgHDiD3rm"
+            image: '/images/contests/2014/0f2zDha48528XgHDiD3rm.webp',
+            imageR2Id: 'uw-2014/newcomers/0f2zDha48528XgHDiD3rm',
           },
           {
-            "id": "LNF4dM578EQNbdGjpQ7nL",
-            "title": "Le Gemelle",
-            "description": "",
-            "placement": "runner-up",
-            "photographer": {
-              "firstName": "Giancarlo",
-              "lastName": "Zambelli"
+            id: 'LNF4dM578EQNbdGjpQ7nL',
+            title: 'Le Gemelle',
+            description: '',
+            placement: 'runner-up',
+            photographer: {
+              firstName: 'Giancarlo',
+              lastName: 'Zambelli',
             },
-            "image": "/images/contests/2014/LNF4dM578EQNbdGjpQ7nL.webp",
-            "imageR2Id": "uw-2014/newcomers/LNF4dM578EQNbdGjpQ7nL"
+            image: '/images/contests/2014/LNF4dM578EQNbdGjpQ7nL.webp',
+            imageR2Id: 'uw-2014/newcomers/LNF4dM578EQNbdGjpQ7nL',
           },
           {
-            "id": "QNJiN62jWYJ3lEcpZhyI0",
-            "title": "Occhio Squilla (cicala)",
-            "description": "",
-            "placement": "runner-up",
-            "photographer": {
-              "firstName": "Pier",
-              "lastName": "Domenico Donato"
+            id: 'QNJiN62jWYJ3lEcpZhyI0',
+            title: 'Occhio Squilla (cicala)',
+            description: '',
+            placement: 'runner-up',
+            photographer: {
+              firstName: 'Pier',
+              lastName: 'Domenico Donato',
             },
-            "image": "/images/contests/2014/QNJiN62jWYJ3lEcpZhyI0.webp",
-            "imageR2Id": "uw-2014/newcomers/QNJiN62jWYJ3lEcpZhyI0"
+            image: '/images/contests/2014/QNJiN62jWYJ3lEcpZhyI0.webp',
+            imageR2Id: 'uw-2014/newcomers/QNJiN62jWYJ3lEcpZhyI0',
           },
           {
-            "id": "HUhd1HsqdBJO-Qyw0ynX1",
-            "title": "Hippy",
-            "description": "",
-            "placement": "runner-up",
-            "photographer": {
-              "firstName": "Mauro",
-              "lastName": "Di Lecce"
+            id: 'HUhd1HsqdBJO-Qyw0ynX1',
+            title: 'Hippy',
+            description: '',
+            placement: 'runner-up',
+            photographer: {
+              firstName: 'Mauro',
+              lastName: 'Di Lecce',
             },
-            "image": "/images/contests/2014/HUhd1HsqdBJO-Qyw0ynX1.webp",
-            "imageR2Id": "uw-2014/newcomers/HUhd1HsqdBJO-Qyw0ynX1"
-          }
-        ]
+            image: '/images/contests/2014/HUhd1HsqdBJO-Qyw0ynX1.webp',
+            imageR2Id: 'uw-2014/newcomers/HUhd1HsqdBJO-Qyw0ynX1',
+          },
+        ],
       },
       {
-        "id": "the-professions-of-the-sea",
-        "name": "The Professions of the Sea",
-        "winnerImage": "/images/contests/2014/O6_tm-pgf2k1R82b-wanW.webp",
-        "winnerImageR2Id": "uw-2014/the-professions-of-the-sea/O6_tm-pgf2k1R82b-wanW",
-        "entries": [
+        id: 'the-professions-of-the-sea',
+        name: 'The Professions of the Sea',
+        winnerImage: '/images/contests/2014/O6_tm-pgf2k1R82b-wanW.webp',
+        winnerImageR2Id:
+          'uw-2014/the-professions-of-the-sea/O6_tm-pgf2k1R82b-wanW',
+        entries: [
           {
-            "id": "O6_tm-pgf2k1R82b-wanW",
-            "title": "Sistemazione Delle Reti",
-            "description": "",
-            "placement": "first",
-            "photographer": {
-              "firstName": "Aldo",
-              "lastName": "Costa"
+            id: 'O6_tm-pgf2k1R82b-wanW',
+            title: 'Sistemazione Delle Reti',
+            description: '',
+            placement: 'first',
+            photographer: {
+              firstName: 'Aldo',
+              lastName: 'Costa',
             },
-            "image": "/images/contests/2014/O6_tm-pgf2k1R82b-wanW.webp",
-            "imageR2Id": "uw-2014/the-professions-of-the-sea/O6_tm-pgf2k1R82b-wanW"
+            image: '/images/contests/2014/O6_tm-pgf2k1R82b-wanW.webp',
+            imageR2Id:
+              'uw-2014/the-professions-of-the-sea/O6_tm-pgf2k1R82b-wanW',
           },
           {
-            "id": "4JxzrfaBFoB6uuoknLk3E",
-            "title": "The Human Shadow on the Sea",
-            "description": "",
-            "placement": "second",
-            "photographer": {
-              "firstName": "Marco",
-              "lastName": "Faimali"
+            id: '4JxzrfaBFoB6uuoknLk3E',
+            title: 'The Human Shadow on the Sea',
+            description: '',
+            placement: 'second',
+            photographer: {
+              firstName: 'Marco',
+              lastName: 'Faimali',
             },
-            "image": "/images/contests/2014/4JxzrfaBFoB6uuoknLk3E.webp",
-            "imageR2Id": "uw-2014/the-professions-of-the-sea/4JxzrfaBFoB6uuoknLk3E"
+            image: '/images/contests/2014/4JxzrfaBFoB6uuoknLk3E.webp',
+            imageR2Id:
+              'uw-2014/the-professions-of-the-sea/4JxzrfaBFoB6uuoknLk3E',
           },
           {
-            "id": "HSQ8FD3dSsRFeamvfeADJ",
-            "title": "Raccolta Delle Alghe Al Tramonto",
-            "description": "",
-            "placement": "third",
-            "photographer": {
-              "firstName": "Gianni",
-              "lastName": "Cicalese"
+            id: 'HSQ8FD3dSsRFeamvfeADJ',
+            title: 'Raccolta Delle Alghe Al Tramonto',
+            description: '',
+            placement: 'third',
+            photographer: {
+              firstName: 'Gianni',
+              lastName: 'Cicalese',
             },
-            "image": "/images/contests/2014/HSQ8FD3dSsRFeamvfeADJ.webp",
-            "imageR2Id": "uw-2014/the-professions-of-the-sea/HSQ8FD3dSsRFeamvfeADJ"
+            image: '/images/contests/2014/HSQ8FD3dSsRFeamvfeADJ.webp',
+            imageR2Id:
+              'uw-2014/the-professions-of-the-sea/HSQ8FD3dSsRFeamvfeADJ',
           },
           {
-            "id": "HjSUsEOPHBBDqp0F6ReTp",
-            "title": "L'alba dei pescatori",
-            "description": "",
-            "placement": "runner-up",
-            "photographer": {
-              "firstName": "Aldo",
-              "lastName": "Costa"
+            id: 'HjSUsEOPHBBDqp0F6ReTp',
+            title: "L'alba dei pescatori",
+            description: '',
+            placement: 'runner-up',
+            photographer: {
+              firstName: 'Aldo',
+              lastName: 'Costa',
             },
-            "image": "/images/contests/2014/HjSUsEOPHBBDqp0F6ReTp.webp",
-            "imageR2Id": "uw-2014/the-professions-of-the-sea/HjSUsEOPHBBDqp0F6ReTp"
+            image: '/images/contests/2014/HjSUsEOPHBBDqp0F6ReTp.webp',
+            imageR2Id:
+              'uw-2014/the-professions-of-the-sea/HjSUsEOPHBBDqp0F6ReTp',
           },
           {
-            "id": "Y8-cHNQMUnr-B0gAu9yDu",
-            "title": "La Raccolta",
-            "description": "",
-            "placement": "runner-up",
-            "photographer": {
-              "firstName": "Alessio",
-              "lastName": "Viora"
+            id: 'Y8-cHNQMUnr-B0gAu9yDu',
+            title: 'La Raccolta',
+            description: '',
+            placement: 'runner-up',
+            photographer: {
+              firstName: 'Alessio',
+              lastName: 'Viora',
             },
-            "image": "/images/contests/2014/Y8-cHNQMUnr-B0gAu9yDu.webp",
-            "imageR2Id": "uw-2014/the-professions-of-the-sea/Y8-cHNQMUnr-B0gAu9yDu"
+            image: '/images/contests/2014/Y8-cHNQMUnr-B0gAu9yDu.webp',
+            imageR2Id:
+              'uw-2014/the-professions-of-the-sea/Y8-cHNQMUnr-B0gAu9yDu',
           },
           {
-            "id": "-mO7rSpq7AovJbMj1Etkq",
-            "title": "Mattanza",
-            "description": "",
-            "placement": "runner-up",
-            "photographer": {
-              "firstName": "Alessio",
-              "lastName": "Viora"
+            id: '-mO7rSpq7AovJbMj1Etkq',
+            title: 'Mattanza',
+            description: '',
+            placement: 'runner-up',
+            photographer: {
+              firstName: 'Alessio',
+              lastName: 'Viora',
             },
-            "image": "/images/contests/2014/-mO7rSpq7AovJbMj1Etkq.webp",
-            "imageR2Id": "uw-2014/the-professions-of-the-sea/-mO7rSpq7AovJbMj1Etkq"
+            image: '/images/contests/2014/-mO7rSpq7AovJbMj1Etkq.webp',
+            imageR2Id:
+              'uw-2014/the-professions-of-the-sea/-mO7rSpq7AovJbMj1Etkq',
           },
           {
-            "id": "dNJEcdnxt-oGv3sB9JE5w",
-            "title": "Tonnarolo",
-            "description": "",
-            "placement": "runner-up",
-            "photographer": {
-              "firstName": "Pietro",
-              "lastName": "Formis"
+            id: 'dNJEcdnxt-oGv3sB9JE5w',
+            title: 'Tonnarolo',
+            description: '',
+            placement: 'runner-up',
+            photographer: {
+              firstName: 'Pietro',
+              lastName: 'Formis',
             },
-            "image": "/images/contests/2014/dNJEcdnxt-oGv3sB9JE5w.webp",
-            "imageR2Id": "uw-2014/the-professions-of-the-sea/dNJEcdnxt-oGv3sB9JE5w"
+            image: '/images/contests/2014/dNJEcdnxt-oGv3sB9JE5w.webp',
+            imageR2Id:
+              'uw-2014/the-professions-of-the-sea/dNJEcdnxt-oGv3sB9JE5w',
           },
           {
-            "id": "TSAuDkSpRM0ii4-KMVTMT",
-            "title": "Pescatori Tongani All'alba",
-            "description": "",
-            "placement": "runner-up",
-            "photographer": {
-              "firstName": "Andrea",
-              "lastName": "Izzotti"
+            id: 'TSAuDkSpRM0ii4-KMVTMT',
+            title: "Pescatori Tongani All'alba",
+            description: '',
+            placement: 'runner-up',
+            photographer: {
+              firstName: 'Andrea',
+              lastName: 'Izzotti',
             },
-            "image": "/images/contests/2014/TSAuDkSpRM0ii4-KMVTMT.webp",
-            "imageR2Id": "uw-2014/the-professions-of-the-sea/TSAuDkSpRM0ii4-KMVTMT"
+            image: '/images/contests/2014/TSAuDkSpRM0ii4-KMVTMT.webp',
+            imageR2Id:
+              'uw-2014/the-professions-of-the-sea/TSAuDkSpRM0ii4-KMVTMT',
           },
           {
-            "id": "Z6ZiPyeSNbkDnUyCxieAo",
-            "title": "Fishing Still Works",
-            "description": "",
-            "placement": "runner-up",
-            "photographer": {
-              "firstName": "Jordi",
-              "lastName": "Riba"
+            id: 'Z6ZiPyeSNbkDnUyCxieAo',
+            title: 'Fishing Still Works',
+            description: '',
+            placement: 'runner-up',
+            photographer: {
+              firstName: 'Jordi',
+              lastName: 'Riba',
             },
-            "image": "/images/contests/2014/Z6ZiPyeSNbkDnUyCxieAo.webp",
-            "imageR2Id": "uw-2014/the-professions-of-the-sea/Z6ZiPyeSNbkDnUyCxieAo"
+            image: '/images/contests/2014/Z6ZiPyeSNbkDnUyCxieAo.webp',
+            imageR2Id:
+              'uw-2014/the-professions-of-the-sea/Z6ZiPyeSNbkDnUyCxieAo',
           },
           {
-            "id": "ubjCwSEzAov98K8cOlC84",
-            "title": "Lavori Quotidiani",
-            "description": "",
-            "placement": "runner-up",
-            "photographer": {
-              "firstName": "Gianni",
-              "lastName": "Cicalese"
+            id: 'ubjCwSEzAov98K8cOlC84',
+            title: 'Lavori Quotidiani',
+            description: '',
+            placement: 'runner-up',
+            photographer: {
+              firstName: 'Gianni',
+              lastName: 'Cicalese',
             },
-            "image": "/images/contests/2014/ubjCwSEzAov98K8cOlC84.webp",
-            "imageR2Id": "uw-2014/the-professions-of-the-sea/ubjCwSEzAov98K8cOlC84"
-          }
-        ]
+            image: '/images/contests/2014/ubjCwSEzAov98K8cOlC84.webp',
+            imageR2Id:
+              'uw-2014/the-professions-of-the-sea/ubjCwSEzAov98K8cOlC84',
+          },
+        ],
       },
       {
-        "id": "wide-angle",
-        "name": "Wide Angle",
-        "winnerImage": "/images/contests/2014/j3CgxU_8Lp1-AjX--DiJ-.webp",
-        "winnerImageR2Id": "uw-2014/wide-angle/j3CgxU_8Lp1-AjX--DiJ-",
-        "entries": [
+        id: 'wide-angle',
+        name: 'Wide Angle',
+        winnerImage: '/images/contests/2014/j3CgxU_8Lp1-AjX--DiJ-.webp',
+        winnerImageR2Id: 'uw-2014/wide-angle/j3CgxU_8Lp1-AjX--DiJ-',
+        entries: [
           {
-            "id": "j3CgxU_8Lp1-AjX--DiJ-",
-            "title": "Channel Barracuda School",
-            "description": "",
-            "placement": "first",
-            "photographer": {
-              "firstName": "Gianni",
-              "lastName": "Cicalese"
+            id: 'j3CgxU_8Lp1-AjX--DiJ-',
+            title: 'Channel Barracuda School',
+            description: '',
+            placement: 'first',
+            photographer: {
+              firstName: 'Gianni',
+              lastName: 'Cicalese',
             },
-            "image": "/images/contests/2014/j3CgxU_8Lp1-AjX--DiJ-.webp",
-            "imageR2Id": "uw-2014/wide-angle/j3CgxU_8Lp1-AjX--DiJ-"
+            image: '/images/contests/2014/j3CgxU_8Lp1-AjX--DiJ-.webp',
+            imageR2Id: 'uw-2014/wide-angle/j3CgxU_8Lp1-AjX--DiJ-',
           },
           {
-            "id": "iK0z5TgXYMu5Zq4nVVQKo",
-            "title": "Fly",
-            "description": "",
-            "placement": "second",
-            "photographer": {
-              "firstName": "Mario",
-              "lastName": "Odorisio"
+            id: 'iK0z5TgXYMu5Zq4nVVQKo',
+            title: 'Fly',
+            description: '',
+            placement: 'second',
+            photographer: {
+              firstName: 'Mario',
+              lastName: 'Odorisio',
             },
-            "image": "/images/contests/2014/iK0z5TgXYMu5Zq4nVVQKo.webp",
-            "imageR2Id": "uw-2014/wide-angle/iK0z5TgXYMu5Zq4nVVQKo"
+            image: '/images/contests/2014/iK0z5TgXYMu5Zq4nVVQKo.webp',
+            imageR2Id: 'uw-2014/wide-angle/iK0z5TgXYMu5Zq4nVVQKo',
           },
           {
-            "id": "rqVV-f9-rHVsNWVY2lWi3",
-            "title": "Face to Face",
-            "description": "",
-            "placement": "third",
-            "photographer": {
-              "firstName": "Davide",
-              "lastName": "Lopresti"
+            id: 'rqVV-f9-rHVsNWVY2lWi3',
+            title: 'Face to Face',
+            description: '',
+            placement: 'third',
+            photographer: {
+              firstName: 'Davide',
+              lastName: 'Lopresti',
             },
-            "image": "/images/contests/2014/rqVV-f9-rHVsNWVY2lWi3.webp",
-            "imageR2Id": "uw-2014/wide-angle/rqVV-f9-rHVsNWVY2lWi3"
+            image: '/images/contests/2014/rqVV-f9-rHVsNWVY2lWi3.webp',
+            imageR2Id: 'uw-2014/wide-angle/rqVV-f9-rHVsNWVY2lWi3',
           },
           {
-            "id": "wOgFgkIVv01j9fZRF5Zwz",
-            "title": "A Caccia",
-            "description": "",
-            "placement": "runner-up",
-            "photographer": {
-              "firstName": "Domenico",
-              "lastName": "Roscigno"
+            id: 'wOgFgkIVv01j9fZRF5Zwz',
+            title: 'A Caccia',
+            description: '',
+            placement: 'runner-up',
+            photographer: {
+              firstName: 'Domenico',
+              lastName: 'Roscigno',
             },
-            "image": "/images/contests/2014/wOgFgkIVv01j9fZRF5Zwz.webp",
-            "imageR2Id": "uw-2014/wide-angle/wOgFgkIVv01j9fZRF5Zwz"
+            image: '/images/contests/2014/wOgFgkIVv01j9fZRF5Zwz.webp',
+            imageR2Id: 'uw-2014/wide-angle/wOgFgkIVv01j9fZRF5Zwz',
           },
           {
-            "id": "fuf3zwwHeXr-vxCC2_MWL",
-            "title": "Denti Aguzzi",
-            "description": "",
-            "placement": "runner-up",
-            "photographer": {
-              "firstName": "Alessio",
-              "lastName": "Viora"
+            id: 'fuf3zwwHeXr-vxCC2_MWL',
+            title: 'Denti Aguzzi',
+            description: '',
+            placement: 'runner-up',
+            photographer: {
+              firstName: 'Alessio',
+              lastName: 'Viora',
             },
-            "image": "/images/contests/2014/fuf3zwwHeXr-vxCC2_MWL.webp",
-            "imageR2Id": "uw-2014/wide-angle/fuf3zwwHeXr-vxCC2_MWL"
+            image: '/images/contests/2014/fuf3zwwHeXr-vxCC2_MWL.webp',
+            imageR2Id: 'uw-2014/wide-angle/fuf3zwwHeXr-vxCC2_MWL',
           },
           {
-            "id": "DkdzHIYIetzQMzVldezTr",
-            "title": "A Bocca Aperta",
-            "description": "",
-            "placement": "runner-up",
-            "photographer": {
-              "firstName": "Alberto",
-              "lastName": "Gallucci"
+            id: 'DkdzHIYIetzQMzVldezTr',
+            title: 'A Bocca Aperta',
+            description: '',
+            placement: 'runner-up',
+            photographer: {
+              firstName: 'Alberto',
+              lastName: 'Gallucci',
             },
-            "image": "/images/contests/2014/DkdzHIYIetzQMzVldezTr.webp",
-            "imageR2Id": "uw-2014/wide-angle/DkdzHIYIetzQMzVldezTr"
+            image: '/images/contests/2014/DkdzHIYIetzQMzVldezTr.webp',
+            imageR2Id: 'uw-2014/wide-angle/DkdzHIYIetzQMzVldezTr',
           },
           {
-            "id": "Zpbd1sxB4x0-hJnboXB6b",
-            "title": "Grande Bocca",
-            "description": "",
-            "placement": "runner-up",
-            "photographer": {
-              "firstName": "Giacomo",
-              "lastName": "Marchione"
+            id: 'Zpbd1sxB4x0-hJnboXB6b',
+            title: 'Grande Bocca',
+            description: '',
+            placement: 'runner-up',
+            photographer: {
+              firstName: 'Giacomo',
+              lastName: 'Marchione',
             },
-            "image": "/images/contests/2014/Zpbd1sxB4x0-hJnboXB6b.webp",
-            "imageR2Id": "uw-2014/wide-angle/Zpbd1sxB4x0-hJnboXB6b"
+            image: '/images/contests/2014/Zpbd1sxB4x0-hJnboXB6b.webp',
+            imageR2Id: 'uw-2014/wide-angle/Zpbd1sxB4x0-hJnboXB6b',
           },
           {
-            "id": "hdv5xnBKj6el1ft_DpxMT",
-            "title": "Patrolling",
-            "description": "",
-            "placement": "runner-up",
-            "photographer": {
-              "firstName": "Beth",
-              "lastName": "Watson"
+            id: 'hdv5xnBKj6el1ft_DpxMT',
+            title: 'Patrolling',
+            description: '',
+            placement: 'runner-up',
+            photographer: {
+              firstName: 'Beth',
+              lastName: 'Watson',
             },
-            "image": "/images/contests/2014/hdv5xnBKj6el1ft_DpxMT.webp",
-            "imageR2Id": "uw-2014/wide-angle/hdv5xnBKj6el1ft_DpxMT"
+            image: '/images/contests/2014/hdv5xnBKj6el1ft_DpxMT.webp',
+            imageR2Id: 'uw-2014/wide-angle/hdv5xnBKj6el1ft_DpxMT',
           },
           {
-            "id": "uRr7AqRkeNSnYQ75Kn21z",
-            "title": "Rise and Shine",
-            "description": "",
-            "placement": "runner-up",
-            "photographer": {
-              "firstName": "Beth",
-              "lastName": "Watson"
+            id: 'uRr7AqRkeNSnYQ75Kn21z',
+            title: 'Rise and Shine',
+            description: '',
+            placement: 'runner-up',
+            photographer: {
+              firstName: 'Beth',
+              lastName: 'Watson',
             },
-            "image": "/images/contests/2014/uRr7AqRkeNSnYQ75Kn21z.webp",
-            "imageR2Id": "uw-2014/wide-angle/uRr7AqRkeNSnYQ75Kn21z"
+            image: '/images/contests/2014/uRr7AqRkeNSnYQ75Kn21z.webp',
+            imageR2Id: 'uw-2014/wide-angle/uRr7AqRkeNSnYQ75Kn21z',
           },
           {
-            "id": "hvNF9rP9hTpfBTuqXt6Hr",
-            "title": "My Blue",
-            "description": "",
-            "placement": "runner-up",
-            "photographer": {
-              "firstName": "David",
-              "lastName": "Mocholi"
+            id: 'hvNF9rP9hTpfBTuqXt6Hr',
+            title: 'My Blue',
+            description: '',
+            placement: 'runner-up',
+            photographer: {
+              firstName: 'David',
+              lastName: 'Mocholi',
             },
-            "image": "/images/contests/2014/hvNF9rP9hTpfBTuqXt6Hr.webp",
-            "imageR2Id": "uw-2014/wide-angle/hvNF9rP9hTpfBTuqXt6Hr"
-          }
-        ]
-      }
-    ]
+            image: '/images/contests/2014/hvNF9rP9hTpfBTuqXt6Hr.webp',
+            imageR2Id: 'uw-2014/wide-angle/hvNF9rP9hTpfBTuqXt6Hr',
+          },
+        ],
+      },
+    ],
   },
   {
-    "id": "uw-2013",
-    "year": 2013,
-    "name": "UW Contest 2013",
-    "description": "Annual underwater photography competition celebrating the beauty and diversity of marine life",
-    "indexImage": "/images/contests/2013/PMpRCgfg8vcrNY_-jcYM5.webp",
-    "indexImageR2Id": "uw-2013/art-in-the-water/PMpRCgfg8vcrNY_-jcYM5",
-    "currentContest": false,
-    "judges": [
+    id: 'uw-2013',
+    year: 2013,
+    name: 'UW Contest 2013',
+    description:
+      'Annual underwater photography competition celebrating the beauty and diversity of marine life',
+    indexImage: '/images/contests/2013/PMpRCgfg8vcrNY_-jcYM5.webp',
+    indexImageR2Id: 'uw-2013/art-in-the-water/PMpRCgfg8vcrNY_-jcYM5',
+    currentContest: false,
+    judges: [
       {
-        "id": "jm-ZXGkqViblT6CAsjZui",
-        "fullName": "Silvia Boccato",
-        "r2ImageId": null
+        id: 'jm-ZXGkqViblT6CAsjZui',
+        fullName: 'Silvia Boccato',
+        r2ImageId: null,
       },
       {
-        "id": "UF50lKQRM3MBBWnqQvuCH",
-        "fullName": "Paolo Fossati",
-        "r2ImageId": null
+        id: 'UF50lKQRM3MBBWnqQvuCH',
+        fullName: 'Paolo Fossati',
+        r2ImageId: null,
       },
       {
-        "id": "UBZNsKjcl1Xh22T4bsrXL",
-        "fullName": "Claudio Giulianini",
-        "r2ImageId": null
+        id: 'UBZNsKjcl1Xh22T4bsrXL',
+        fullName: 'Claudio Giulianini',
+        r2ImageId: null,
       },
       {
-        "id": "7k5mzmZ81uUdi4zEGjiEr",
-        "fullName": "Giuseppe Pignataro",
-        "r2ImageId": null
-      }
+        id: '7k5mzmZ81uUdi4zEGjiEr',
+        fullName: 'Giuseppe Pignataro',
+        r2ImageId: null,
+      },
     ],
-    "categories": [
+    categories: [
       {
-        "id": "art-in-the-water",
-        "name": "Art in the Water",
-        "winnerImage": "/images/contests/2013/PMpRCgfg8vcrNY_-jcYM5.webp",
-        "winnerImageR2Id": "uw-2013/art-in-the-water/PMpRCgfg8vcrNY_-jcYM5",
-        "entries": [
+        id: 'art-in-the-water',
+        name: 'Art in the Water',
+        winnerImage: '/images/contests/2013/PMpRCgfg8vcrNY_-jcYM5.webp',
+        winnerImageR2Id: 'uw-2013/art-in-the-water/PMpRCgfg8vcrNY_-jcYM5',
+        entries: [
           {
-            "id": "PMpRCgfg8vcrNY_-jcYM5",
-            "title": "Giro",
-            "description": "",
-            "placement": "first",
-            "photographer": {
-              "firstName": "Fernandez",
-              "lastName": "Sergi Garcia"
+            id: 'PMpRCgfg8vcrNY_-jcYM5',
+            title: 'Giro',
+            description: '',
+            placement: 'first',
+            photographer: {
+              firstName: 'Fernandez',
+              lastName: 'Sergi Garcia',
             },
-            "image": "/images/contests/2013/PMpRCgfg8vcrNY_-jcYM5.webp",
-            "imageR2Id": "uw-2013/art-in-the-water/PMpRCgfg8vcrNY_-jcYM5"
+            image: '/images/contests/2013/PMpRCgfg8vcrNY_-jcYM5.webp',
+            imageR2Id: 'uw-2013/art-in-the-water/PMpRCgfg8vcrNY_-jcYM5',
           },
           {
-            "id": "up1Fsmm2prLM0R13Dw2VS",
-            "title": "Primavera",
-            "description": "",
-            "placement": "second",
-            "photographer": {
-              "firstName": "Marco",
-              "lastName": "Caraceni"
+            id: 'up1Fsmm2prLM0R13Dw2VS',
+            title: 'Primavera',
+            description: '',
+            placement: 'second',
+            photographer: {
+              firstName: 'Marco',
+              lastName: 'Caraceni',
             },
-            "image": "/images/contests/2013/up1Fsmm2prLM0R13Dw2VS.webp",
-            "imageR2Id": "uw-2013/art-in-the-water/up1Fsmm2prLM0R13Dw2VS"
+            image: '/images/contests/2013/up1Fsmm2prLM0R13Dw2VS.webp',
+            imageR2Id: 'uw-2013/art-in-the-water/up1Fsmm2prLM0R13Dw2VS',
           },
           {
-            "id": "k1zrV3ftlf1WsxybtCNio",
-            "title": "Pianeta Acqua",
-            "description": "",
-            "placement": "third",
-            "photographer": {
-              "firstName": "Raimundo",
-              "lastName": "Fernandez Diaz"
+            id: 'k1zrV3ftlf1WsxybtCNio',
+            title: 'Pianeta Acqua',
+            description: '',
+            placement: 'third',
+            photographer: {
+              firstName: 'Raimundo',
+              lastName: 'Fernandez Diaz',
             },
-            "image": "/images/contests/2013/k1zrV3ftlf1WsxybtCNio.webp",
-            "imageR2Id": "uw-2013/art-in-the-water/k1zrV3ftlf1WsxybtCNio"
+            image: '/images/contests/2013/k1zrV3ftlf1WsxybtCNio.webp',
+            imageR2Id: 'uw-2013/art-in-the-water/k1zrV3ftlf1WsxybtCNio',
           },
           {
-            "id": "CZYYVAurKkC1m8RVDbd-1",
-            "title": "Lacrime Di Luce",
-            "description": "",
-            "placement": "runner-up",
-            "photographer": {
-              "firstName": "Giordano",
-              "lastName": "Cipriani"
+            id: 'CZYYVAurKkC1m8RVDbd-1',
+            title: 'Lacrime Di Luce',
+            description: '',
+            placement: 'runner-up',
+            photographer: {
+              firstName: 'Giordano',
+              lastName: 'Cipriani',
             },
-            "image": "/images/contests/2013/CZYYVAurKkC1m8RVDbd-1.webp",
-            "imageR2Id": "uw-2013/art-in-the-water/CZYYVAurKkC1m8RVDbd-1"
+            image: '/images/contests/2013/CZYYVAurKkC1m8RVDbd-1.webp',
+            imageR2Id: 'uw-2013/art-in-the-water/CZYYVAurKkC1m8RVDbd-1',
           },
           {
-            "id": "ENMtec3oyC4a4uBBvKg-8",
-            "title": "Allo Specchio",
-            "description": "",
-            "placement": "runner-up",
-            "photographer": {
-              "firstName": "Tiziana",
-              "lastName": "Della Zanna"
+            id: 'ENMtec3oyC4a4uBBvKg-8',
+            title: 'Allo Specchio',
+            description: '',
+            placement: 'runner-up',
+            photographer: {
+              firstName: 'Tiziana',
+              lastName: 'Della Zanna',
             },
-            "image": "/images/contests/2013/ENMtec3oyC4a4uBBvKg-8.webp",
-            "imageR2Id": "uw-2013/art-in-the-water/ENMtec3oyC4a4uBBvKg-8"
-          }
-        ]
+            image: '/images/contests/2013/ENMtec3oyC4a4uBBvKg-8.webp',
+            imageR2Id: 'uw-2013/art-in-the-water/ENMtec3oyC4a4uBBvKg-8',
+          },
+        ],
       },
       {
-        "id": "macro",
-        "name": "Macro",
-        "winnerImage": "/images/contests/2013/gulNSQBEkXpcpZdKmlsu3.webp",
-        "winnerImageR2Id": "uw-2013/macro/gulNSQBEkXpcpZdKmlsu3",
-        "entries": [
+        id: 'macro',
+        name: 'Macro',
+        winnerImage: '/images/contests/2013/gulNSQBEkXpcpZdKmlsu3.webp',
+        winnerImageR2Id: 'uw-2013/macro/gulNSQBEkXpcpZdKmlsu3',
+        entries: [
           {
-            "id": "gulNSQBEkXpcpZdKmlsu3",
-            "title": "Iridescenze",
-            "description": "",
-            "placement": "first",
-            "photographer": {
-              "firstName": "Giuseppe",
-              "lastName": "Piccoli Resta"
+            id: 'gulNSQBEkXpcpZdKmlsu3',
+            title: 'Iridescenze',
+            description: '',
+            placement: 'first',
+            photographer: {
+              firstName: 'Giuseppe',
+              lastName: 'Piccoli Resta',
             },
-            "image": "/images/contests/2013/gulNSQBEkXpcpZdKmlsu3.webp",
-            "imageR2Id": "uw-2013/macro/gulNSQBEkXpcpZdKmlsu3"
+            image: '/images/contests/2013/gulNSQBEkXpcpZdKmlsu3.webp',
+            imageR2Id: 'uw-2013/macro/gulNSQBEkXpcpZdKmlsu3',
           },
           {
-            "id": "4w6IwARftRNqm3Fs2jasH",
-            "title": "Plantvis",
-            "description": "",
-            "placement": "second",
-            "photographer": {
-              "firstName": "Luc",
-              "lastName": "Rooman"
+            id: '4w6IwARftRNqm3Fs2jasH',
+            title: 'Plantvis',
+            description: '',
+            placement: 'second',
+            photographer: {
+              firstName: 'Luc',
+              lastName: 'Rooman',
             },
-            "image": "/images/contests/2013/4w6IwARftRNqm3Fs2jasH.webp",
-            "imageR2Id": "uw-2013/macro/4w6IwARftRNqm3Fs2jasH"
+            image: '/images/contests/2013/4w6IwARftRNqm3Fs2jasH.webp',
+            imageR2Id: 'uw-2013/macro/4w6IwARftRNqm3Fs2jasH',
           },
           {
-            "id": "zVmuDcE5rQnObSEVYdSbz",
-            "title": "The Dentist",
-            "description": "",
-            "placement": "third",
-            "photographer": {
-              "firstName": "Davide",
-              "lastName": "Lopresti"
+            id: 'zVmuDcE5rQnObSEVYdSbz',
+            title: 'The Dentist',
+            description: '',
+            placement: 'third',
+            photographer: {
+              firstName: 'Davide',
+              lastName: 'Lopresti',
             },
-            "image": "/images/contests/2013/zVmuDcE5rQnObSEVYdSbz.webp",
-            "imageR2Id": "uw-2013/macro/zVmuDcE5rQnObSEVYdSbz"
+            image: '/images/contests/2013/zVmuDcE5rQnObSEVYdSbz.webp',
+            imageR2Id: 'uw-2013/macro/zVmuDcE5rQnObSEVYdSbz',
           },
           {
-            "id": "-2iipIrh_bdwE3UQblFjs",
-            "title": "In Punta Di Pinne",
-            "description": "",
-            "placement": "runner-up",
-            "photographer": {
-              "firstName": "Paolo",
-              "lastName": "Bausani"
+            id: '-2iipIrh_bdwE3UQblFjs',
+            title: 'In Punta Di Pinne',
+            description: '',
+            placement: 'runner-up',
+            photographer: {
+              firstName: 'Paolo',
+              lastName: 'Bausani',
             },
-            "image": "/images/contests/2013/-2iipIrh_bdwE3UQblFjs.webp",
-            "imageR2Id": "uw-2013/macro/-2iipIrh_bdwE3UQblFjs"
+            image: '/images/contests/2013/-2iipIrh_bdwE3UQblFjs.webp',
+            imageR2Id: 'uw-2013/macro/-2iipIrh_bdwE3UQblFjs',
           },
           {
-            "id": "71123iAvXGgWkhCJ7gn3N",
-            "title": "Goby's",
-            "description": "",
-            "placement": "runner-up",
-            "photographer": {
-              "firstName": "Filippo",
-              "lastName": "Borghi"
+            id: '71123iAvXGgWkhCJ7gn3N',
+            title: "Goby's",
+            description: '',
+            placement: 'runner-up',
+            photographer: {
+              firstName: 'Filippo',
+              lastName: 'Borghi',
             },
-            "image": "/images/contests/2013/71123iAvXGgWkhCJ7gn3N.webp",
-            "imageR2Id": "uw-2013/macro/71123iAvXGgWkhCJ7gn3N"
+            image: '/images/contests/2013/71123iAvXGgWkhCJ7gn3N.webp',
+            imageR2Id: 'uw-2013/macro/71123iAvXGgWkhCJ7gn3N',
           },
           {
-            "id": "p3fTwd2YoyOKcGgGmnjUX",
-            "title": "Panzona",
-            "description": "",
-            "placement": "runner-up",
-            "photographer": {
-              "firstName": "Giuseppe",
-              "lastName": "Piccoli Resta"
+            id: 'p3fTwd2YoyOKcGgGmnjUX',
+            title: 'Panzona',
+            description: '',
+            placement: 'runner-up',
+            photographer: {
+              firstName: 'Giuseppe',
+              lastName: 'Piccoli Resta',
             },
-            "image": "/images/contests/2013/p3fTwd2YoyOKcGgGmnjUX.webp",
-            "imageR2Id": "uw-2013/macro/p3fTwd2YoyOKcGgGmnjUX"
+            image: '/images/contests/2013/p3fTwd2YoyOKcGgGmnjUX.webp',
+            imageR2Id: 'uw-2013/macro/p3fTwd2YoyOKcGgGmnjUX',
           },
           {
-            "id": "ndIiHRL1wbd1jfFV5-Ek6",
-            "title": "Frog Fish",
-            "description": "",
-            "placement": "runner-up",
-            "photographer": {
-              "firstName": "Matteo",
-              "lastName": "Visconti"
+            id: 'ndIiHRL1wbd1jfFV5-Ek6',
+            title: 'Frog Fish',
+            description: '',
+            placement: 'runner-up',
+            photographer: {
+              firstName: 'Matteo',
+              lastName: 'Visconti',
             },
-            "image": "/images/contests/2013/ndIiHRL1wbd1jfFV5-Ek6.webp",
-            "imageR2Id": "uw-2013/macro/ndIiHRL1wbd1jfFV5-Ek6"
+            image: '/images/contests/2013/ndIiHRL1wbd1jfFV5-Ek6.webp',
+            imageR2Id: 'uw-2013/macro/ndIiHRL1wbd1jfFV5-Ek6',
           },
           {
-            "id": "R5VoW1B5cOxAy9b9SXRGI",
-            "title": "Pigmy",
-            "description": "",
-            "placement": "runner-up",
-            "photographer": {
-              "firstName": "Pietro",
-              "lastName": "Formis"
+            id: 'R5VoW1B5cOxAy9b9SXRGI',
+            title: 'Pigmy',
+            description: '',
+            placement: 'runner-up',
+            photographer: {
+              firstName: 'Pietro',
+              lastName: 'Formis',
             },
-            "image": "/images/contests/2013/R5VoW1B5cOxAy9b9SXRGI.webp",
-            "imageR2Id": "uw-2013/macro/R5VoW1B5cOxAy9b9SXRGI"
+            image: '/images/contests/2013/R5VoW1B5cOxAy9b9SXRGI.webp',
+            imageR2Id: 'uw-2013/macro/R5VoW1B5cOxAy9b9SXRGI',
           },
           {
-            "id": "iQ6ZvkByUVN8Ioeypk-0V",
-            "title": "Nuova Generazione",
-            "description": "",
-            "placement": "runner-up",
-            "photographer": {
-              "firstName": "Davide",
-              "lastName": "Lopresti"
+            id: 'iQ6ZvkByUVN8Ioeypk-0V',
+            title: 'Nuova Generazione',
+            description: '',
+            placement: 'runner-up',
+            photographer: {
+              firstName: 'Davide',
+              lastName: 'Lopresti',
             },
-            "image": "/images/contests/2013/iQ6ZvkByUVN8Ioeypk-0V.webp",
-            "imageR2Id": "uw-2013/macro/iQ6ZvkByUVN8Ioeypk-0V"
+            image: '/images/contests/2013/iQ6ZvkByUVN8Ioeypk-0V.webp',
+            imageR2Id: 'uw-2013/macro/iQ6ZvkByUVN8Ioeypk-0V',
           },
           {
-            "id": "5wtlVYqo4dl5wKWqTtYkS",
-            "title": "La Strana Coppia",
-            "description": "",
-            "placement": "runner-up",
-            "photographer": {
-              "firstName": "Adriano",
-              "lastName": "Morettin"
+            id: '5wtlVYqo4dl5wKWqTtYkS',
+            title: 'La Strana Coppia',
+            description: '',
+            placement: 'runner-up',
+            photographer: {
+              firstName: 'Adriano',
+              lastName: 'Morettin',
             },
-            "image": "/images/contests/2013/5wtlVYqo4dl5wKWqTtYkS.webp",
-            "imageR2Id": "uw-2013/macro/5wtlVYqo4dl5wKWqTtYkS"
-          }
-        ]
+            image: '/images/contests/2013/5wtlVYqo4dl5wKWqTtYkS.webp',
+            imageR2Id: 'uw-2013/macro/5wtlVYqo4dl5wKWqTtYkS',
+          },
+        ],
       },
       {
-        "id": "mediterranean",
-        "name": "Mediterranean Portfolio",
-        "winnerImage": "/images/contests/2013/BqO_9WSUA4_b3QiKO_p3j.webp",
-        "winnerImageR2Id": "uw-2013/mediterranean/BqO_9WSUA4_b3QiKO_p3j",
-        "entries": [
+        id: 'mediterranean',
+        name: 'Mediterranean Portfolio',
+        winnerImage: '/images/contests/2013/BqO_9WSUA4_b3QiKO_p3j.webp',
+        winnerImageR2Id: 'uw-2013/mediterranean/BqO_9WSUA4_b3QiKO_p3j',
+        entries: [
           {
-            "id": "BqO_9WSUA4_b3QiKO_p3j",
-            "title": "The Monster",
-            "description": "",
-            "placement": "first",
-            "photographer": {
-              "firstName": "Marc",
-              "lastName": "Felix Casanovas"
+            id: 'BqO_9WSUA4_b3QiKO_p3j',
+            title: 'The Monster',
+            description: '',
+            placement: 'first',
+            photographer: {
+              firstName: 'Marc',
+              lastName: 'Felix Casanovas',
             },
-            "image": "/images/contests/2013/BqO_9WSUA4_b3QiKO_p3j.webp",
-            "imageR2Id": "uw-2013/mediterranean/BqO_9WSUA4_b3QiKO_p3j"
+            image: '/images/contests/2013/BqO_9WSUA4_b3QiKO_p3j.webp',
+            imageR2Id: 'uw-2013/mediterranean/BqO_9WSUA4_b3QiKO_p3j',
           },
           {
-            "id": "DhQZ8smumk_Ka0QfDvVrd",
-            "title": "Zeus",
-            "description": "",
-            "placement": "first",
-            "photographer": {
-              "firstName": "Marc",
-              "lastName": "Felix Casanovas"
+            id: 'DhQZ8smumk_Ka0QfDvVrd',
+            title: 'Zeus',
+            description: '',
+            placement: 'first',
+            photographer: {
+              firstName: 'Marc',
+              lastName: 'Felix Casanovas',
             },
-            "image": "/images/contests/2013/DhQZ8smumk_Ka0QfDvVrd.webp",
-            "imageR2Id": "uw-2013/mediterranean/DhQZ8smumk_Ka0QfDvVrd"
+            image: '/images/contests/2013/DhQZ8smumk_Ka0QfDvVrd.webp',
+            imageR2Id: 'uw-2013/mediterranean/DhQZ8smumk_Ka0QfDvVrd',
           },
           {
-            "id": "fuBZ4CP0KP9GP98pMO6-_",
-            "title": "Hippocampus",
-            "description": "",
-            "placement": "first",
-            "photographer": {
-              "firstName": "Marc",
-              "lastName": "Felix Casanovas"
+            id: 'fuBZ4CP0KP9GP98pMO6-_',
+            title: 'Hippocampus',
+            description: '',
+            placement: 'first',
+            photographer: {
+              firstName: 'Marc',
+              lastName: 'Felix Casanovas',
             },
-            "image": "/images/contests/2013/fuBZ4CP0KP9GP98pMO6-_.webp",
-            "imageR2Id": "uw-2013/mediterranean/fuBZ4CP0KP9GP98pMO6-_"
+            image: '/images/contests/2013/fuBZ4CP0KP9GP98pMO6-_.webp',
+            imageR2Id: 'uw-2013/mediterranean/fuBZ4CP0KP9GP98pMO6-_',
           },
           {
-            "id": "TEwFUnu08nN8aTNfiT27Q",
-            "title": "Cova De La Vaca,...",
-            "description": "",
-            "placement": "second",
-            "photographer": {
-              "firstName": "Pietro",
-              "lastName": "Formis"
+            id: 'TEwFUnu08nN8aTNfiT27Q',
+            title: 'Cova De La Vaca,...',
+            description: '',
+            placement: 'second',
+            photographer: {
+              firstName: 'Pietro',
+              lastName: 'Formis',
             },
-            "image": "/images/contests/2013/TEwFUnu08nN8aTNfiT27Q.webp",
-            "imageR2Id": "uw-2013/mediterranean/TEwFUnu08nN8aTNfiT27Q"
+            image: '/images/contests/2013/TEwFUnu08nN8aTNfiT27Q.webp',
+            imageR2Id: 'uw-2013/mediterranean/TEwFUnu08nN8aTNfiT27Q',
           },
           {
-            "id": "6g9hhwWVqG6a-BRSW8sL2",
-            "title": "Apogon",
-            "description": "",
-            "placement": "second",
-            "photographer": {
-              "firstName": "Pietro",
-              "lastName": "Formis"
+            id: '6g9hhwWVqG6a-BRSW8sL2',
+            title: 'Apogon',
+            description: '',
+            placement: 'second',
+            photographer: {
+              firstName: 'Pietro',
+              lastName: 'Formis',
             },
-            "image": "/images/contests/2013/6g9hhwWVqG6a-BRSW8sL2.webp",
-            "imageR2Id": "uw-2013/mediterranean/6g9hhwWVqG6a-BRSW8sL2"
+            image: '/images/contests/2013/6g9hhwWVqG6a-BRSW8sL2.webp',
+            imageR2Id: 'uw-2013/mediterranean/6g9hhwWVqG6a-BRSW8sL2',
           },
           {
-            "id": "-koBHPUgHEHmglxvJLOh8",
-            "title": "Spada",
-            "description": "",
-            "placement": "second",
-            "photographer": {
-              "firstName": "Pietro",
-              "lastName": "Formis"
+            id: '-koBHPUgHEHmglxvJLOh8',
+            title: 'Spada',
+            description: '',
+            placement: 'second',
+            photographer: {
+              firstName: 'Pietro',
+              lastName: 'Formis',
             },
-            "image": "/images/contests/2013/-koBHPUgHEHmglxvJLOh8.webp",
-            "imageR2Id": "uw-2013/mediterranean/-koBHPUgHEHmglxvJLOh8"
+            image: '/images/contests/2013/-koBHPUgHEHmglxvJLOh8.webp',
+            imageR2Id: 'uw-2013/mediterranean/-koBHPUgHEHmglxvJLOh8',
           },
           {
-            "id": "Q5dntF6h5_Z5kBDX4I9UL",
-            "title": "Deep Hunting,...",
-            "description": "",
-            "placement": "third",
-            "photographer": {
-              "firstName": "Maurizio",
-              "lastName": "Pasi"
+            id: 'Q5dntF6h5_Z5kBDX4I9UL',
+            title: 'Deep Hunting,...',
+            description: '',
+            placement: 'third',
+            photographer: {
+              firstName: 'Maurizio',
+              lastName: 'Pasi',
             },
-            "image": "/images/contests/2013/Q5dntF6h5_Z5kBDX4I9UL.webp",
-            "imageR2Id": "uw-2013/mediterranean/Q5dntF6h5_Z5kBDX4I9UL"
+            image: '/images/contests/2013/Q5dntF6h5_Z5kBDX4I9UL.webp',
+            imageR2Id: 'uw-2013/mediterranean/Q5dntF6h5_Z5kBDX4I9UL',
           },
           {
-            "id": "B3WjI9PNOwWgbVMdG-QKI",
-            "title": "Firework",
-            "description": "",
-            "placement": "third",
-            "photographer": {
-              "firstName": "Maurizio",
-              "lastName": "Pasi"
+            id: 'B3WjI9PNOwWgbVMdG-QKI',
+            title: 'Firework',
+            description: '',
+            placement: 'third',
+            photographer: {
+              firstName: 'Maurizio',
+              lastName: 'Pasi',
             },
-            "image": "/images/contests/2013/B3WjI9PNOwWgbVMdG-QKI.webp",
-            "imageR2Id": "uw-2013/mediterranean/B3WjI9PNOwWgbVMdG-QKI"
+            image: '/images/contests/2013/B3WjI9PNOwWgbVMdG-QKI.webp',
+            imageR2Id: 'uw-2013/mediterranean/B3WjI9PNOwWgbVMdG-QKI',
           },
           {
-            "id": "QbVNJYciWzMTL6QyRGNWe",
-            "title": "Twins",
-            "description": "",
-            "placement": "third",
-            "photographer": {
-              "firstName": "Maurizio",
-              "lastName": "Pasi"
+            id: 'QbVNJYciWzMTL6QyRGNWe',
+            title: 'Twins',
+            description: '',
+            placement: 'third',
+            photographer: {
+              firstName: 'Maurizio',
+              lastName: 'Pasi',
             },
-            "image": "/images/contests/2013/QbVNJYciWzMTL6QyRGNWe.webp",
-            "imageR2Id": "uw-2013/mediterranean/QbVNJYciWzMTL6QyRGNWe"
+            image: '/images/contests/2013/QbVNJYciWzMTL6QyRGNWe.webp',
+            imageR2Id: 'uw-2013/mediterranean/QbVNJYciWzMTL6QyRGNWe',
           },
           {
-            "id": "noL4vK1cgO6aXr9LXUDhf",
-            "title": "Friedegg",
-            "description": "",
-            "placement": "runner-up",
-            "photographer": {
-              "firstName": "David",
-              "lastName": "Antoja Mas"
+            id: 'noL4vK1cgO6aXr9LXUDhf',
+            title: 'Friedegg',
+            description: '',
+            placement: 'runner-up',
+            photographer: {
+              firstName: 'David',
+              lastName: 'Antoja Mas',
             },
-            "image": "/images/contests/2013/noL4vK1cgO6aXr9LXUDhf.webp",
-            "imageR2Id": "uw-2013/mediterranean/noL4vK1cgO6aXr9LXUDhf"
+            image: '/images/contests/2013/noL4vK1cgO6aXr9LXUDhf.webp',
+            imageR2Id: 'uw-2013/mediterranean/noL4vK1cgO6aXr9LXUDhf',
           },
           {
-            "id": "gjefqYbYH0GXyn4iTIhWN",
-            "title": "Janolus",
-            "description": "",
-            "placement": "runner-up",
-            "photographer": {
-              "firstName": "David",
-              "lastName": "Antoja Mas"
+            id: 'gjefqYbYH0GXyn4iTIhWN',
+            title: 'Janolus',
+            description: '',
+            placement: 'runner-up',
+            photographer: {
+              firstName: 'David',
+              lastName: 'Antoja Mas',
             },
-            "image": "/images/contests/2013/gjefqYbYH0GXyn4iTIhWN.webp",
-            "imageR2Id": "uw-2013/mediterranean/gjefqYbYH0GXyn4iTIhWN"
+            image: '/images/contests/2013/gjefqYbYH0GXyn4iTIhWN.webp',
+            imageR2Id: 'uw-2013/mediterranean/gjefqYbYH0GXyn4iTIhWN',
           },
           {
-            "id": "4LcWrJpg4LQqdRAxnWtGO",
-            "title": "Zeusfaber",
-            "description": "",
-            "placement": "runner-up",
-            "photographer": {
-              "firstName": "David",
-              "lastName": "Antoja Mas"
+            id: '4LcWrJpg4LQqdRAxnWtGO',
+            title: 'Zeusfaber',
+            description: '',
+            placement: 'runner-up',
+            photographer: {
+              firstName: 'David',
+              lastName: 'Antoja Mas',
             },
-            "image": "/images/contests/2013/4LcWrJpg4LQqdRAxnWtGO.webp",
-            "imageR2Id": "uw-2013/mediterranean/4LcWrJpg4LQqdRAxnWtGO"
+            image: '/images/contests/2013/4LcWrJpg4LQqdRAxnWtGO.webp',
+            imageR2Id: 'uw-2013/mediterranean/4LcWrJpg4LQqdRAxnWtGO',
           },
           {
-            "id": "6CP0hInp09rx2DKb199fZ",
-            "title": "Cassiopea",
-            "description": "",
-            "placement": "runner-up",
-            "photographer": {
-              "firstName": "Domenico",
-              "lastName": "Roscigno"
+            id: '6CP0hInp09rx2DKb199fZ',
+            title: 'Cassiopea',
+            description: '',
+            placement: 'runner-up',
+            photographer: {
+              firstName: 'Domenico',
+              lastName: 'Roscigno',
             },
-            "image": "/images/contests/2013/6CP0hInp09rx2DKb199fZ.webp",
-            "imageR2Id": "uw-2013/mediterranean/6CP0hInp09rx2DKb199fZ"
+            image: '/images/contests/2013/6CP0hInp09rx2DKb199fZ.webp',
+            imageR2Id: 'uw-2013/mediterranean/6CP0hInp09rx2DKb199fZ',
           },
           {
-            "id": "RQGrmMKv9TN4C-Ljmxjxz",
-            "title": "San Pietro",
-            "description": "",
-            "placement": "runner-up",
-            "photographer": {
-              "firstName": "Domenico",
-              "lastName": "Roscigno"
+            id: 'RQGrmMKv9TN4C-Ljmxjxz',
+            title: 'San Pietro',
+            description: '',
+            placement: 'runner-up',
+            photographer: {
+              firstName: 'Domenico',
+              lastName: 'Roscigno',
             },
-            "image": "/images/contests/2013/RQGrmMKv9TN4C-Ljmxjxz.webp",
-            "imageR2Id": "uw-2013/mediterranean/RQGrmMKv9TN4C-Ljmxjxz"
+            image: '/images/contests/2013/RQGrmMKv9TN4C-Ljmxjxz.webp',
+            imageR2Id: 'uw-2013/mediterranean/RQGrmMKv9TN4C-Ljmxjxz',
           },
           {
-            "id": "OVuTWCJiB6OvdqPOje9L5",
-            "title": "Spirografi",
-            "description": "",
-            "placement": "runner-up",
-            "photographer": {
-              "firstName": "Domenico",
-              "lastName": "Roscigno"
+            id: 'OVuTWCJiB6OvdqPOje9L5',
+            title: 'Spirografi',
+            description: '',
+            placement: 'runner-up',
+            photographer: {
+              firstName: 'Domenico',
+              lastName: 'Roscigno',
             },
-            "image": "/images/contests/2013/OVuTWCJiB6OvdqPOje9L5.webp",
-            "imageR2Id": "uw-2013/mediterranean/OVuTWCJiB6OvdqPOje9L5"
+            image: '/images/contests/2013/OVuTWCJiB6OvdqPOje9L5.webp',
+            imageR2Id: 'uw-2013/mediterranean/OVuTWCJiB6OvdqPOje9L5',
           },
           {
-            "id": "AIzhWjW1iNdwNqz0Yfu6_",
-            "title": "Cothyloriza",
-            "description": "",
-            "placement": "runner-up",
-            "photographer": {
-              "firstName": "Adriano",
-              "lastName": "Morettin"
+            id: 'AIzhWjW1iNdwNqz0Yfu6_',
+            title: 'Cothyloriza',
+            description: '',
+            placement: 'runner-up',
+            photographer: {
+              firstName: 'Adriano',
+              lastName: 'Morettin',
             },
-            "image": "/images/contests/2013/AIzhWjW1iNdwNqz0Yfu6_.webp",
-            "imageR2Id": "uw-2013/mediterranean/AIzhWjW1iNdwNqz0Yfu6_"
+            image: '/images/contests/2013/AIzhWjW1iNdwNqz0Yfu6_.webp',
+            imageR2Id: 'uw-2013/mediterranean/AIzhWjW1iNdwNqz0Yfu6_',
           },
           {
-            "id": "4YxzvJF7PvNidRh5NgAlA",
-            "title": "Protula",
-            "description": "",
-            "placement": "runner-up",
-            "photographer": {
-              "firstName": "Adriano",
-              "lastName": "Morettin"
+            id: '4YxzvJF7PvNidRh5NgAlA',
+            title: 'Protula',
+            description: '',
+            placement: 'runner-up',
+            photographer: {
+              firstName: 'Adriano',
+              lastName: 'Morettin',
             },
-            "image": "/images/contests/2013/4YxzvJF7PvNidRh5NgAlA.webp",
-            "imageR2Id": "uw-2013/mediterranean/4YxzvJF7PvNidRh5NgAlA"
+            image: '/images/contests/2013/4YxzvJF7PvNidRh5NgAlA.webp',
+            imageR2Id: 'uw-2013/mediterranean/4YxzvJF7PvNidRh5NgAlA',
           },
           {
-            "id": "C4sVtncI6RvMSPx1mkM8M",
-            "title": "Rhyzostoma",
-            "description": "",
-            "placement": "runner-up",
-            "photographer": {
-              "firstName": "Adriano",
-              "lastName": "Morettin"
+            id: 'C4sVtncI6RvMSPx1mkM8M',
+            title: 'Rhyzostoma',
+            description: '',
+            placement: 'runner-up',
+            photographer: {
+              firstName: 'Adriano',
+              lastName: 'Morettin',
             },
-            "image": "/images/contests/2013/C4sVtncI6RvMSPx1mkM8M.webp",
-            "imageR2Id": "uw-2013/mediterranean/C4sVtncI6RvMSPx1mkM8M"
+            image: '/images/contests/2013/C4sVtncI6RvMSPx1mkM8M.webp',
+            imageR2Id: 'uw-2013/mediterranean/C4sVtncI6RvMSPx1mkM8M',
           },
           {
-            "id": "vKbYChbPX8JoADhMbgDsY",
-            "title": "In Attesa",
-            "description": "",
-            "placement": "runner-up",
-            "photographer": {
-              "firstName": "Salvatore",
-              "lastName": "Ianniello"
+            id: 'vKbYChbPX8JoADhMbgDsY',
+            title: 'In Attesa',
+            description: '',
+            placement: 'runner-up',
+            photographer: {
+              firstName: 'Salvatore',
+              lastName: 'Ianniello',
             },
-            "image": "/images/contests/2013/vKbYChbPX8JoADhMbgDsY.webp",
-            "imageR2Id": "uw-2013/mediterranean/vKbYChbPX8JoADhMbgDsY"
+            image: '/images/contests/2013/vKbYChbPX8JoADhMbgDsY.webp',
+            imageR2Id: 'uw-2013/mediterranean/vKbYChbPX8JoADhMbgDsY',
           },
           {
-            "id": "GI3CECb4_E0iBaG5a8O_U",
-            "title": "Testa E Coda",
-            "description": "",
-            "placement": "runner-up",
-            "photographer": {
-              "firstName": "Salvatore",
-              "lastName": "Ianniello"
+            id: 'GI3CECb4_E0iBaG5a8O_U',
+            title: 'Testa E Coda',
+            description: '',
+            placement: 'runner-up',
+            photographer: {
+              firstName: 'Salvatore',
+              lastName: 'Ianniello',
             },
-            "image": "/images/contests/2013/GI3CECb4_E0iBaG5a8O_U.webp",
-            "imageR2Id": "uw-2013/mediterranean/GI3CECb4_E0iBaG5a8O_U"
+            image: '/images/contests/2013/GI3CECb4_E0iBaG5a8O_U.webp',
+            imageR2Id: 'uw-2013/mediterranean/GI3CECb4_E0iBaG5a8O_U',
           },
           {
-            "id": "CK2s8s_KbNY_iJsGUx9m6",
-            "title": "Viaggio Meraviglioso",
-            "description": "",
-            "placement": "runner-up",
-            "photographer": {
-              "firstName": "Salvatore",
-              "lastName": "Ianniello"
+            id: 'CK2s8s_KbNY_iJsGUx9m6',
+            title: 'Viaggio Meraviglioso',
+            description: '',
+            placement: 'runner-up',
+            photographer: {
+              firstName: 'Salvatore',
+              lastName: 'Ianniello',
             },
-            "image": "/images/contests/2013/CK2s8s_KbNY_iJsGUx9m6.webp",
-            "imageR2Id": "uw-2013/mediterranean/CK2s8s_KbNY_iJsGUx9m6"
+            image: '/images/contests/2013/CK2s8s_KbNY_iJsGUx9m6.webp',
+            imageR2Id: 'uw-2013/mediterranean/CK2s8s_KbNY_iJsGUx9m6',
           },
           {
-            "id": "r-zy9c-2DBAGALZCd0iam",
-            "title": "Esplode La Vita",
-            "description": "",
-            "placement": "runner-up",
-            "photographer": {
-              "firstName": "Alberto",
-              "lastName": "Gallucci"
+            id: 'r-zy9c-2DBAGALZCd0iam',
+            title: 'Esplode La Vita',
+            description: '',
+            placement: 'runner-up',
+            photographer: {
+              firstName: 'Alberto',
+              lastName: 'Gallucci',
             },
-            "image": "/images/contests/2013/r-zy9c-2DBAGALZCd0iam.webp",
-            "imageR2Id": "uw-2013/mediterranean/r-zy9c-2DBAGALZCd0iam"
+            image: '/images/contests/2013/r-zy9c-2DBAGALZCd0iam.webp',
+            imageR2Id: 'uw-2013/mediterranean/r-zy9c-2DBAGALZCd0iam',
           },
           {
-            "id": "2z6BmNzHQNK6eRWGVrqmi",
-            "title": "Pesce Balestra",
-            "description": "",
-            "placement": "runner-up",
-            "photographer": {
-              "firstName": "Alberto",
-              "lastName": "Gallucci"
+            id: '2z6BmNzHQNK6eRWGVrqmi',
+            title: 'Pesce Balestra',
+            description: '',
+            placement: 'runner-up',
+            photographer: {
+              firstName: 'Alberto',
+              lastName: 'Gallucci',
             },
-            "image": "/images/contests/2013/2z6BmNzHQNK6eRWGVrqmi.webp",
-            "imageR2Id": "uw-2013/mediterranean/2z6BmNzHQNK6eRWGVrqmi"
+            image: '/images/contests/2013/2z6BmNzHQNK6eRWGVrqmi.webp',
+            imageR2Id: 'uw-2013/mediterranean/2z6BmNzHQNK6eRWGVrqmi',
           },
           {
-            "id": "o4yfGtGB_2AJV-DkC5vrU",
-            "title": "Serpula Vermicularis",
-            "description": "",
-            "placement": "runner-up",
-            "photographer": {
-              "firstName": "Alberto",
-              "lastName": "Gallucci"
+            id: 'o4yfGtGB_2AJV-DkC5vrU',
+            title: 'Serpula Vermicularis',
+            description: '',
+            placement: 'runner-up',
+            photographer: {
+              firstName: 'Alberto',
+              lastName: 'Gallucci',
             },
-            "image": "/images/contests/2013/o4yfGtGB_2AJV-DkC5vrU.webp",
-            "imageR2Id": "uw-2013/mediterranean/o4yfGtGB_2AJV-DkC5vrU"
+            image: '/images/contests/2013/o4yfGtGB_2AJV-DkC5vrU.webp',
+            imageR2Id: 'uw-2013/mediterranean/o4yfGtGB_2AJV-DkC5vrU',
           },
           {
-            "id": "TQRxEholyEEcr-sqwr5bi",
-            "title": "Angelic",
-            "description": "",
-            "placement": "runner-up",
-            "photographer": {
-              "firstName": "Giuseppe",
-              "lastName": "Piccoli Resta"
+            id: 'TQRxEholyEEcr-sqwr5bi',
+            title: 'Angelic',
+            description: '',
+            placement: 'runner-up',
+            photographer: {
+              firstName: 'Giuseppe',
+              lastName: 'Piccoli Resta',
             },
-            "image": "/images/contests/2013/TQRxEholyEEcr-sqwr5bi.webp",
-            "imageR2Id": "uw-2013/mediterranean/TQRxEholyEEcr-sqwr5bi"
+            image: '/images/contests/2013/TQRxEholyEEcr-sqwr5bi.webp',
+            imageR2Id: 'uw-2013/mediterranean/TQRxEholyEEcr-sqwr5bi',
           },
           {
-            "id": "YJWoZ0heTcsQVI2HOoC1i",
-            "title": "Angelic",
-            "description": "",
-            "placement": "runner-up",
-            "photographer": {
-              "firstName": "Giuseppe",
-              "lastName": "Piccoli Resta"
+            id: 'YJWoZ0heTcsQVI2HOoC1i',
+            title: 'Angelic',
+            description: '',
+            placement: 'runner-up',
+            photographer: {
+              firstName: 'Giuseppe',
+              lastName: 'Piccoli Resta',
             },
-            "image": "/images/contests/2013/YJWoZ0heTcsQVI2HOoC1i.webp",
-            "imageR2Id": "uw-2013/mediterranean/YJWoZ0heTcsQVI2HOoC1i"
+            image: '/images/contests/2013/YJWoZ0heTcsQVI2HOoC1i.webp',
+            imageR2Id: 'uw-2013/mediterranean/YJWoZ0heTcsQVI2HOoC1i',
           },
           {
-            "id": "EXyXqIkRQQFacwkCNMRb0",
-            "title": "Condominio",
-            "description": "",
-            "placement": "runner-up",
-            "photographer": {
-              "firstName": "Marcello",
-              "lastName": "Di Francesco"
+            id: 'EXyXqIkRQQFacwkCNMRb0',
+            title: 'Condominio',
+            description: '',
+            placement: 'runner-up',
+            photographer: {
+              firstName: 'Marcello',
+              lastName: 'Di Francesco',
             },
-            "image": "/images/contests/2013/EXyXqIkRQQFacwkCNMRb0.webp",
-            "imageR2Id": "uw-2013/mediterranean/EXyXqIkRQQFacwkCNMRb0"
+            image: '/images/contests/2013/EXyXqIkRQQFacwkCNMRb0.webp',
+            imageR2Id: 'uw-2013/mediterranean/EXyXqIkRQQFacwkCNMRb0',
           },
           {
-            "id": "bwFPEcEI_GtI-9kQ4zSfQ",
-            "title": "Newlife",
-            "description": "",
-            "placement": "runner-up",
-            "photographer": {
-              "firstName": "Marcello",
-              "lastName": "Di Francesco"
+            id: 'bwFPEcEI_GtI-9kQ4zSfQ',
+            title: 'Newlife',
+            description: '',
+            placement: 'runner-up',
+            photographer: {
+              firstName: 'Marcello',
+              lastName: 'Di Francesco',
             },
-            "image": "/images/contests/2013/bwFPEcEI_GtI-9kQ4zSfQ.webp",
-            "imageR2Id": "uw-2013/mediterranean/bwFPEcEI_GtI-9kQ4zSfQ"
+            image: '/images/contests/2013/bwFPEcEI_GtI-9kQ4zSfQ.webp',
+            imageR2Id: 'uw-2013/mediterranean/bwFPEcEI_GtI-9kQ4zSfQ',
           },
           {
-            "id": "Ztcr_ZVJa9vMv4gTSLufX",
-            "title": "The Intruder",
-            "description": "",
-            "placement": "runner-up",
-            "photographer": {
-              "firstName": "Marcello",
-              "lastName": "Di Francesco"
+            id: 'Ztcr_ZVJa9vMv4gTSLufX',
+            title: 'The Intruder',
+            description: '',
+            placement: 'runner-up',
+            photographer: {
+              firstName: 'Marcello',
+              lastName: 'Di Francesco',
             },
-            "image": "/images/contests/2013/Ztcr_ZVJa9vMv4gTSLufX.webp",
-            "imageR2Id": "uw-2013/mediterranean/Ztcr_ZVJa9vMv4gTSLufX"
-          }
-        ]
+            image: '/images/contests/2013/Ztcr_ZVJa9vMv4gTSLufX.webp',
+            imageR2Id: 'uw-2013/mediterranean/Ztcr_ZVJa9vMv4gTSLufX',
+          },
+        ],
       },
       {
-        "id": "newcomers",
-        "name": "Newcomers",
-        "winnerImage": "/images/contests/2013/tJPLEtCiF4dYRWtkxSbKT.webp",
-        "winnerImageR2Id": "uw-2013/newcomers/tJPLEtCiF4dYRWtkxSbKT",
-        "entries": [
+        id: 'newcomers',
+        name: 'Newcomers',
+        winnerImage: '/images/contests/2013/tJPLEtCiF4dYRWtkxSbKT.webp',
+        winnerImageR2Id: 'uw-2013/newcomers/tJPLEtCiF4dYRWtkxSbKT',
+        entries: [
           {
-            "id": "tJPLEtCiF4dYRWtkxSbKT",
-            "title": "",
-            "description": "",
-            "placement": "first",
-            "photographer": {
-              "firstName": "Rosanna",
-              "lastName": "Bonati"
+            id: 'tJPLEtCiF4dYRWtkxSbKT',
+            title: '',
+            description: '',
+            placement: 'first',
+            photographer: {
+              firstName: 'Rosanna',
+              lastName: 'Bonati',
             },
-            "image": "/images/contests/2013/tJPLEtCiF4dYRWtkxSbKT.webp",
-            "imageR2Id": "uw-2013/newcomers/tJPLEtCiF4dYRWtkxSbKT"
+            image: '/images/contests/2013/tJPLEtCiF4dYRWtkxSbKT.webp',
+            imageR2Id: 'uw-2013/newcomers/tJPLEtCiF4dYRWtkxSbKT',
           },
           {
-            "id": "1F956js3mdpxbDDYfC_yc",
-            "title": "Giochi Di Luce",
-            "description": "",
-            "placement": "second",
-            "photographer": {
-              "firstName": "Francesco",
-              "lastName": "Bazzotti"
+            id: '1F956js3mdpxbDDYfC_yc',
+            title: 'Giochi Di Luce',
+            description: '',
+            placement: 'second',
+            photographer: {
+              firstName: 'Francesco',
+              lastName: 'Bazzotti',
             },
-            "image": "/images/contests/2013/1F956js3mdpxbDDYfC_yc.webp",
-            "imageR2Id": "uw-2013/newcomers/1F956js3mdpxbDDYfC_yc"
+            image: '/images/contests/2013/1F956js3mdpxbDDYfC_yc.webp',
+            imageR2Id: 'uw-2013/newcomers/1F956js3mdpxbDDYfC_yc',
           },
           {
-            "id": "QZKIt6T3_LX3Gjns3C-hx",
-            "title": "Nido D'amore",
-            "description": "",
-            "placement": "third",
-            "photographer": {
-              "firstName": "Filippo",
-              "lastName": "Ioni"
+            id: 'QZKIt6T3_LX3Gjns3C-hx',
+            title: "Nido D'amore",
+            description: '',
+            placement: 'third',
+            photographer: {
+              firstName: 'Filippo',
+              lastName: 'Ioni',
             },
-            "image": "/images/contests/2013/QZKIt6T3_LX3Gjns3C-hx.webp",
-            "imageR2Id": "uw-2013/newcomers/QZKIt6T3_LX3Gjns3C-hx"
+            image: '/images/contests/2013/QZKIt6T3_LX3Gjns3C-hx.webp',
+            imageR2Id: 'uw-2013/newcomers/QZKIt6T3_LX3Gjns3C-hx',
           },
           {
-            "id": "QC3ImBVn57j4IPBe6t22D",
-            "title": "Granchietto",
-            "description": "",
-            "placement": "runner-up",
-            "photographer": {
-              "firstName": "Nadia",
-              "lastName": "De Santis"
+            id: 'QC3ImBVn57j4IPBe6t22D',
+            title: 'Granchietto',
+            description: '',
+            placement: 'runner-up',
+            photographer: {
+              firstName: 'Nadia',
+              lastName: 'De Santis',
             },
-            "image": "/images/contests/2013/QC3ImBVn57j4IPBe6t22D.webp",
-            "imageR2Id": "uw-2013/newcomers/QC3ImBVn57j4IPBe6t22D"
+            image: '/images/contests/2013/QC3ImBVn57j4IPBe6t22D.webp',
+            imageR2Id: 'uw-2013/newcomers/QC3ImBVn57j4IPBe6t22D',
           },
           {
-            "id": "umfScLHnJ8phqwHPscV3D",
-            "title": "Proud Mama",
-            "description": "",
-            "placement": "runner-up",
-            "photographer": {
-              "firstName": "Rosanna",
-              "lastName": "Bonati"
+            id: 'umfScLHnJ8phqwHPscV3D',
+            title: 'Proud Mama',
+            description: '',
+            placement: 'runner-up',
+            photographer: {
+              firstName: 'Rosanna',
+              lastName: 'Bonati',
             },
-            "image": "/images/contests/2013/umfScLHnJ8phqwHPscV3D.webp",
-            "imageR2Id": "uw-2013/newcomers/umfScLHnJ8phqwHPscV3D"
+            image: '/images/contests/2013/umfScLHnJ8phqwHPscV3D.webp',
+            imageR2Id: 'uw-2013/newcomers/umfScLHnJ8phqwHPscV3D',
           },
           {
-            "id": "FL4FLyRhYM7-asKs9ti4Z",
-            "title": "Cavalluccio Rosso",
-            "description": "",
-            "placement": "runner-up",
-            "photographer": {
-              "firstName": "Gianni",
-              "lastName": "Colucci"
+            id: 'FL4FLyRhYM7-asKs9ti4Z',
+            title: 'Cavalluccio Rosso',
+            description: '',
+            placement: 'runner-up',
+            photographer: {
+              firstName: 'Gianni',
+              lastName: 'Colucci',
             },
-            "image": "/images/contests/2013/FL4FLyRhYM7-asKs9ti4Z.webp",
-            "imageR2Id": "uw-2013/newcomers/FL4FLyRhYM7-asKs9ti4Z"
+            image: '/images/contests/2013/FL4FLyRhYM7-asKs9ti4Z.webp',
+            imageR2Id: 'uw-2013/newcomers/FL4FLyRhYM7-asKs9ti4Z',
           },
           {
-            "id": "QhyL-ZJKJg6HFQhwV7duo",
-            "title": "Terminator",
-            "description": "",
-            "placement": "runner-up",
-            "photographer": {
-              "firstName": "Marco",
-              "lastName": "Fantin"
+            id: 'QhyL-ZJKJg6HFQhwV7duo',
+            title: 'Terminator',
+            description: '',
+            placement: 'runner-up',
+            photographer: {
+              firstName: 'Marco',
+              lastName: 'Fantin',
             },
-            "image": "/images/contests/2013/QhyL-ZJKJg6HFQhwV7duo.webp",
-            "imageR2Id": "uw-2013/newcomers/QhyL-ZJKJg6HFQhwV7duo"
+            image: '/images/contests/2013/QhyL-ZJKJg6HFQhwV7duo.webp',
+            imageR2Id: 'uw-2013/newcomers/QhyL-ZJKJg6HFQhwV7duo',
           },
           {
-            "id": "6Wt_7wrj0bt7YdH1Mp6RH",
-            "title": "Nuove Generazioni",
-            "description": "",
-            "placement": "runner-up",
-            "photographer": {
-              "firstName": "Paolo",
-              "lastName": "Fontanella"
+            id: '6Wt_7wrj0bt7YdH1Mp6RH',
+            title: 'Nuove Generazioni',
+            description: '',
+            placement: 'runner-up',
+            photographer: {
+              firstName: 'Paolo',
+              lastName: 'Fontanella',
             },
-            "image": "/images/contests/2013/6Wt_7wrj0bt7YdH1Mp6RH.webp",
-            "imageR2Id": "uw-2013/newcomers/6Wt_7wrj0bt7YdH1Mp6RH"
+            image: '/images/contests/2013/6Wt_7wrj0bt7YdH1Mp6RH.webp',
+            imageR2Id: 'uw-2013/newcomers/6Wt_7wrj0bt7YdH1Mp6RH',
           },
           {
-            "id": "PH7qzTWzDvaC0EJKesYt5",
-            "title": "Twist",
-            "description": "",
-            "placement": "runner-up",
-            "photographer": {
-              "firstName": "Flavio",
-              "lastName": "Vailati"
+            id: 'PH7qzTWzDvaC0EJKesYt5',
+            title: 'Twist',
+            description: '',
+            placement: 'runner-up',
+            photographer: {
+              firstName: 'Flavio',
+              lastName: 'Vailati',
             },
-            "image": "/images/contests/2013/PH7qzTWzDvaC0EJKesYt5.webp",
-            "imageR2Id": "uw-2013/newcomers/PH7qzTWzDvaC0EJKesYt5"
+            image: '/images/contests/2013/PH7qzTWzDvaC0EJKesYt5.webp',
+            imageR2Id: 'uw-2013/newcomers/PH7qzTWzDvaC0EJKesYt5',
           },
           {
-            "id": "us-68mycwVu-vfRkAFej6",
-            "title": "Apollo 13",
-            "description": "",
-            "placement": "runner-up",
-            "photographer": {
-              "firstName": "Marco",
-              "lastName": "Fantino"
+            id: 'us-68mycwVu-vfRkAFej6',
+            title: 'Apollo 13',
+            description: '',
+            placement: 'runner-up',
+            photographer: {
+              firstName: 'Marco',
+              lastName: 'Fantino',
             },
-            "image": "/images/contests/2013/us-68mycwVu-vfRkAFej6.webp",
-            "imageR2Id": "uw-2013/newcomers/us-68mycwVu-vfRkAFej6"
-          }
-        ]
+            image: '/images/contests/2013/us-68mycwVu-vfRkAFej6.webp',
+            imageR2Id: 'uw-2013/newcomers/us-68mycwVu-vfRkAFej6',
+          },
+        ],
       },
       {
-        "id": "special-mention",
-        "name": "Special Mention",
-        "winnerImage": "/images/contests/2013/phEe_6fJJTSAgF-_CXZ5Y.webp",
-        "winnerImageR2Id": "uw-2013/special-mention/phEe_6fJJTSAgF-_CXZ5Y",
-        "entries": [
+        id: 'special-mention',
+        name: 'Special Mention',
+        winnerImage: '/images/contests/2013/phEe_6fJJTSAgF-_CXZ5Y.webp',
+        winnerImageR2Id: 'uw-2013/special-mention/phEe_6fJJTSAgF-_CXZ5Y',
+        entries: [
           {
-            "id": "phEe_6fJJTSAgF-_CXZ5Y",
-            "title": "Angelic",
-            "description": "",
-            "placement": "first",
-            "photographer": {
-              "firstName": "Giuseppe",
-              "lastName": "Picccioli Resta"
+            id: 'phEe_6fJJTSAgF-_CXZ5Y',
+            title: 'Angelic',
+            description: '',
+            placement: 'first',
+            photographer: {
+              firstName: 'Giuseppe',
+              lastName: 'Picccioli Resta',
             },
-            "image": "/images/contests/2013/phEe_6fJJTSAgF-_CXZ5Y.webp",
-            "imageR2Id": "uw-2013/special-mention/phEe_6fJJTSAgF-_CXZ5Y"
-          }
-        ]
+            image: '/images/contests/2013/phEe_6fJJTSAgF-_CXZ5Y.webp',
+            imageR2Id: 'uw-2013/special-mention/phEe_6fJJTSAgF-_CXZ5Y',
+          },
+        ],
       },
       {
-        "id": "trabocchi-coast",
-        "name": "Trabocchi Coast",
-        "winnerImage": "/images/contests/2013/bMbmAE4sUgLhOQy9vTVRL.webp",
-        "winnerImageR2Id": "uw-2013/trabocchi-coast/bMbmAE4sUgLhOQy9vTVRL",
-        "entries": [
+        id: 'trabocchi-coast',
+        name: 'Trabocchi Coast',
+        winnerImage: '/images/contests/2013/bMbmAE4sUgLhOQy9vTVRL.webp',
+        winnerImageR2Id: 'uw-2013/trabocchi-coast/bMbmAE4sUgLhOQy9vTVRL',
+        entries: [
           {
-            "id": "bMbmAE4sUgLhOQy9vTVRL",
-            "title": "Contrasti",
-            "description": "",
-            "placement": "first",
-            "photographer": {
-              "firstName": "Corrado",
-              "lastName": "Ciavalini"
+            id: 'bMbmAE4sUgLhOQy9vTVRL',
+            title: 'Contrasti',
+            description: '',
+            placement: 'first',
+            photographer: {
+              firstName: 'Corrado',
+              lastName: 'Ciavalini',
             },
-            "image": "/images/contests/2013/bMbmAE4sUgLhOQy9vTVRL.webp",
-            "imageR2Id": "uw-2013/trabocchi-coast/bMbmAE4sUgLhOQy9vTVRL"
+            image: '/images/contests/2013/bMbmAE4sUgLhOQy9vTVRL.webp',
+            imageR2Id: 'uw-2013/trabocchi-coast/bMbmAE4sUgLhOQy9vTVRL',
           },
           {
-            "id": "IVKUiEhX78-Gg-caP22NL",
-            "title": "Where I Belong",
-            "description": "",
-            "placement": "second",
-            "photographer": {
-              "firstName": "Manuela",
-              "lastName": "Campitelli"
+            id: 'IVKUiEhX78-Gg-caP22NL',
+            title: 'Where I Belong',
+            description: '',
+            placement: 'second',
+            photographer: {
+              firstName: 'Manuela',
+              lastName: 'Campitelli',
             },
-            "image": "/images/contests/2013/IVKUiEhX78-Gg-caP22NL.webp",
-            "imageR2Id": "uw-2013/trabocchi-coast/IVKUiEhX78-Gg-caP22NL"
+            image: '/images/contests/2013/IVKUiEhX78-Gg-caP22NL.webp',
+            imageR2Id: 'uw-2013/trabocchi-coast/IVKUiEhX78-Gg-caP22NL',
           },
           {
-            "id": "bb6591vkQLn0oOw15nfSX",
-            "title": "A Riposo Nelle Onde",
-            "description": "",
-            "placement": "third",
-            "photographer": {
-              "firstName": "Corrado",
-              "lastName": "Ciavalini"
+            id: 'bb6591vkQLn0oOw15nfSX',
+            title: 'A Riposo Nelle Onde',
+            description: '',
+            placement: 'third',
+            photographer: {
+              firstName: 'Corrado',
+              lastName: 'Ciavalini',
             },
-            "image": "/images/contests/2013/bb6591vkQLn0oOw15nfSX.webp",
-            "imageR2Id": "uw-2013/trabocchi-coast/bb6591vkQLn0oOw15nfSX"
+            image: '/images/contests/2013/bb6591vkQLn0oOw15nfSX.webp',
+            imageR2Id: 'uw-2013/trabocchi-coast/bb6591vkQLn0oOw15nfSX',
           },
           {
-            "id": "L4JeEIgHJxEV9Ruzzftt3",
-            "title": "Come Correre Sui Trampoli",
-            "description": "",
-            "placement": "runner-up",
-            "photographer": {
-              "firstName": "Gabriele",
-              "lastName": "Di Credico"
+            id: 'L4JeEIgHJxEV9Ruzzftt3',
+            title: 'Come Correre Sui Trampoli',
+            description: '',
+            placement: 'runner-up',
+            photographer: {
+              firstName: 'Gabriele',
+              lastName: 'Di Credico',
             },
-            "image": "/images/contests/2013/L4JeEIgHJxEV9Ruzzftt3.webp",
-            "imageR2Id": "uw-2013/trabocchi-coast/L4JeEIgHJxEV9Ruzzftt3"
+            image: '/images/contests/2013/L4JeEIgHJxEV9Ruzzftt3.webp',
+            imageR2Id: 'uw-2013/trabocchi-coast/L4JeEIgHJxEV9Ruzzftt3',
           },
           {
-            "id": "2GMTkmNxFjctLnwqM6xHS",
-            "title": "",
-            "description": "",
-            "placement": "runner-up",
-            "photographer": {
-              "firstName": "Mario",
-              "lastName": "Rapini"
+            id: '2GMTkmNxFjctLnwqM6xHS',
+            title: '',
+            description: '',
+            placement: 'runner-up',
+            photographer: {
+              firstName: 'Mario',
+              lastName: 'Rapini',
             },
-            "image": "/images/contests/2013/2GMTkmNxFjctLnwqM6xHS.webp",
-            "imageR2Id": "uw-2013/trabocchi-coast/2GMTkmNxFjctLnwqM6xHS"
+            image: '/images/contests/2013/2GMTkmNxFjctLnwqM6xHS.webp',
+            imageR2Id: 'uw-2013/trabocchi-coast/2GMTkmNxFjctLnwqM6xHS',
           },
           {
-            "id": "0nRCFMZDr9YoCc54BVqhf",
-            "title": "Illuminata",
-            "description": "",
-            "placement": "runner-up",
-            "photographer": {
-              "firstName": "Fabio",
-              "lastName": "Costanzo"
+            id: '0nRCFMZDr9YoCc54BVqhf',
+            title: 'Illuminata',
+            description: '',
+            placement: 'runner-up',
+            photographer: {
+              firstName: 'Fabio',
+              lastName: 'Costanzo',
             },
-            "image": "/images/contests/2013/0nRCFMZDr9YoCc54BVqhf.webp",
-            "imageR2Id": "uw-2013/trabocchi-coast/0nRCFMZDr9YoCc54BVqhf"
+            image: '/images/contests/2013/0nRCFMZDr9YoCc54BVqhf.webp',
+            imageR2Id: 'uw-2013/trabocchi-coast/0nRCFMZDr9YoCc54BVqhf',
           },
           {
-            "id": "sOl2OB-c8a7PnVtKZ4qXp",
-            "title": "Tramonto",
-            "description": "",
-            "placement": "runner-up",
-            "photographer": {
-              "firstName": "Marco",
-              "lastName": "Caraceni"
+            id: 'sOl2OB-c8a7PnVtKZ4qXp',
+            title: 'Tramonto',
+            description: '',
+            placement: 'runner-up',
+            photographer: {
+              firstName: 'Marco',
+              lastName: 'Caraceni',
             },
-            "image": "/images/contests/2013/sOl2OB-c8a7PnVtKZ4qXp.webp",
-            "imageR2Id": "uw-2013/trabocchi-coast/sOl2OB-c8a7PnVtKZ4qXp"
+            image: '/images/contests/2013/sOl2OB-c8a7PnVtKZ4qXp.webp',
+            imageR2Id: 'uw-2013/trabocchi-coast/sOl2OB-c8a7PnVtKZ4qXp',
           },
           {
-            "id": "WLdgkk4qxJGbY5-9Ie9zG",
-            "title": "Vallevò",
-            "description": "",
-            "placement": "runner-up",
-            "photographer": {
-              "firstName": "Mario",
-              "lastName": "Rapini"
+            id: 'WLdgkk4qxJGbY5-9Ie9zG',
+            title: 'Vallevò',
+            description: '',
+            placement: 'runner-up',
+            photographer: {
+              firstName: 'Mario',
+              lastName: 'Rapini',
             },
-            "image": "/images/contests/2013/WLdgkk4qxJGbY5-9Ie9zG.webp",
-            "imageR2Id": "uw-2013/trabocchi-coast/WLdgkk4qxJGbY5-9Ie9zG"
+            image: '/images/contests/2013/WLdgkk4qxJGbY5-9Ie9zG.webp',
+            imageR2Id: 'uw-2013/trabocchi-coast/WLdgkk4qxJGbY5-9Ie9zG',
           },
           {
-            "id": "kK5PN4I7R3iUb0r13_IDp",
-            "title": "Traboccalba",
-            "description": "",
-            "placement": "runner-up",
-            "photographer": {
-              "firstName": "Fabrizio",
-              "lastName": "Pompilio"
+            id: 'kK5PN4I7R3iUb0r13_IDp',
+            title: 'Traboccalba',
+            description: '',
+            placement: 'runner-up',
+            photographer: {
+              firstName: 'Fabrizio',
+              lastName: 'Pompilio',
             },
-            "image": "/images/contests/2013/kK5PN4I7R3iUb0r13_IDp.webp",
-            "imageR2Id": "uw-2013/trabocchi-coast/kK5PN4I7R3iUb0r13_IDp"
+            image: '/images/contests/2013/kK5PN4I7R3iUb0r13_IDp.webp',
+            imageR2Id: 'uw-2013/trabocchi-coast/kK5PN4I7R3iUb0r13_IDp',
           },
           {
-            "id": "w0wHWqC-_3hRNW4ovVygT",
-            "title": "Alba",
-            "description": "",
-            "placement": "runner-up",
-            "photographer": {
-              "firstName": "Marco",
-              "lastName": "Caraceni"
+            id: 'w0wHWqC-_3hRNW4ovVygT',
+            title: 'Alba',
+            description: '',
+            placement: 'runner-up',
+            photographer: {
+              firstName: 'Marco',
+              lastName: 'Caraceni',
             },
-            "image": "/images/contests/2013/w0wHWqC-_3hRNW4ovVygT.webp",
-            "imageR2Id": "uw-2013/trabocchi-coast/w0wHWqC-_3hRNW4ovVygT"
-          }
-        ]
+            image: '/images/contests/2013/w0wHWqC-_3hRNW4ovVygT.webp',
+            imageR2Id: 'uw-2013/trabocchi-coast/w0wHWqC-_3hRNW4ovVygT',
+          },
+        ],
       },
       {
-        "id": "wide-angle",
-        "name": "Wide Angle",
-        "winnerImage": "/images/contests/2013/7g8Q-fz55QeZkaKkMmd9Q.webp",
-        "winnerImageR2Id": "uw-2013/wide-angle/7g8Q-fz55QeZkaKkMmd9Q",
-        "entries": [
+        id: 'wide-angle',
+        name: 'Wide Angle',
+        winnerImage: '/images/contests/2013/7g8Q-fz55QeZkaKkMmd9Q.webp',
+        winnerImageR2Id: 'uw-2013/wide-angle/7g8Q-fz55QeZkaKkMmd9Q',
+        entries: [
           {
-            "id": "7g8Q-fz55QeZkaKkMmd9Q",
-            "title": "Blue Shark",
-            "description": "",
-            "placement": "first",
-            "photographer": {
-              "firstName": "Filippo",
-              "lastName": "Borghi"
+            id: '7g8Q-fz55QeZkaKkMmd9Q',
+            title: 'Blue Shark',
+            description: '',
+            placement: 'first',
+            photographer: {
+              firstName: 'Filippo',
+              lastName: 'Borghi',
             },
-            "image": "/images/contests/2013/7g8Q-fz55QeZkaKkMmd9Q.webp",
-            "imageR2Id": "uw-2013/wide-angle/7g8Q-fz55QeZkaKkMmd9Q"
+            image: '/images/contests/2013/7g8Q-fz55QeZkaKkMmd9Q.webp',
+            imageR2Id: 'uw-2013/wide-angle/7g8Q-fz55QeZkaKkMmd9Q',
           },
           {
-            "id": "sf-Oikzh6TpaedWl0SWfF",
-            "title": "Incontri Ravvicinati",
-            "description": "",
-            "placement": "second",
-            "photographer": {
-              "firstName": "Domenico",
-              "lastName": "Roscigno"
+            id: 'sf-Oikzh6TpaedWl0SWfF',
+            title: 'Incontri Ravvicinati',
+            description: '',
+            placement: 'second',
+            photographer: {
+              firstName: 'Domenico',
+              lastName: 'Roscigno',
             },
-            "image": "/images/contests/2013/sf-Oikzh6TpaedWl0SWfF.webp",
-            "imageR2Id": "uw-2013/wide-angle/sf-Oikzh6TpaedWl0SWfF"
+            image: '/images/contests/2013/sf-Oikzh6TpaedWl0SWfF.webp',
+            imageR2Id: 'uw-2013/wide-angle/sf-Oikzh6TpaedWl0SWfF',
           },
           {
-            "id": "utz8HapC54XFnmhJ3CyhY",
-            "title": "Afternoon",
-            "description": "",
-            "placement": "third",
-            "photographer": {
-              "firstName": "Fernandez",
-              "lastName": "Sergi Garcia"
+            id: 'utz8HapC54XFnmhJ3CyhY',
+            title: 'Afternoon',
+            description: '',
+            placement: 'third',
+            photographer: {
+              firstName: 'Fernandez',
+              lastName: 'Sergi Garcia',
             },
-            "image": "/images/contests/2013/utz8HapC54XFnmhJ3CyhY.webp",
-            "imageR2Id": "uw-2013/wide-angle/utz8HapC54XFnmhJ3CyhY"
+            image: '/images/contests/2013/utz8HapC54XFnmhJ3CyhY.webp',
+            imageR2Id: 'uw-2013/wide-angle/utz8HapC54XFnmhJ3CyhY',
           },
           {
-            "id": "5Nh9nXLzsSi-WcZs7_UPf",
-            "title": "Cerchio Della Vita",
-            "description": "",
-            "placement": "runner-up",
-            "photographer": {
-              "firstName": "Isabella",
-              "lastName": "Maffei"
+            id: '5Nh9nXLzsSi-WcZs7_UPf',
+            title: 'Cerchio Della Vita',
+            description: '',
+            placement: 'runner-up',
+            photographer: {
+              firstName: 'Isabella',
+              lastName: 'Maffei',
             },
-            "image": "/images/contests/2013/5Nh9nXLzsSi-WcZs7_UPf.webp",
-            "imageR2Id": "uw-2013/wide-angle/5Nh9nXLzsSi-WcZs7_UPf"
+            image: '/images/contests/2013/5Nh9nXLzsSi-WcZs7_UPf.webp',
+            imageR2Id: 'uw-2013/wide-angle/5Nh9nXLzsSi-WcZs7_UPf',
           },
           {
-            "id": "U-Q1U0IbDebHGXuO1sM8Y",
-            "title": "Iguana",
-            "description": "",
-            "placement": "runner-up",
-            "photographer": {
-              "firstName": "Filippo",
-              "lastName": "Borghi"
+            id: 'U-Q1U0IbDebHGXuO1sM8Y',
+            title: 'Iguana',
+            description: '',
+            placement: 'runner-up',
+            photographer: {
+              firstName: 'Filippo',
+              lastName: 'Borghi',
             },
-            "image": "/images/contests/2013/U-Q1U0IbDebHGXuO1sM8Y.webp",
-            "imageR2Id": "uw-2013/wide-angle/U-Q1U0IbDebHGXuO1sM8Y"
+            image: '/images/contests/2013/U-Q1U0IbDebHGXuO1sM8Y.webp',
+            imageR2Id: 'uw-2013/wide-angle/U-Q1U0IbDebHGXuO1sM8Y',
           },
           {
-            "id": "n8ndKjCAzrzc7kUQemYEq",
-            "title": "Fallen in the Sky",
-            "description": "",
-            "placement": "runner-up",
-            "photographer": {
-              "firstName": "Montse",
-              "lastName": "Grillo"
+            id: 'n8ndKjCAzrzc7kUQemYEq',
+            title: 'Fallen in the Sky',
+            description: '',
+            placement: 'runner-up',
+            photographer: {
+              firstName: 'Montse',
+              lastName: 'Grillo',
             },
-            "image": "/images/contests/2013/n8ndKjCAzrzc7kUQemYEq.webp",
-            "imageR2Id": "uw-2013/wide-angle/n8ndKjCAzrzc7kUQemYEq"
+            image: '/images/contests/2013/n8ndKjCAzrzc7kUQemYEq.webp',
+            imageR2Id: 'uw-2013/wide-angle/n8ndKjCAzrzc7kUQemYEq',
           },
           {
-            "id": "Zusmh1YtYmVNb5FcLRxom",
-            "title": "Predator",
-            "description": "",
-            "placement": "runner-up",
-            "photographer": {
-              "firstName": "Marcello",
-              "lastName": "Di Francesco"
+            id: 'Zusmh1YtYmVNb5FcLRxom',
+            title: 'Predator',
+            description: '',
+            placement: 'runner-up',
+            photographer: {
+              firstName: 'Marcello',
+              lastName: 'Di Francesco',
             },
-            "image": "/images/contests/2013/Zusmh1YtYmVNb5FcLRxom.webp",
-            "imageR2Id": "uw-2013/wide-angle/Zusmh1YtYmVNb5FcLRxom"
+            image: '/images/contests/2013/Zusmh1YtYmVNb5FcLRxom.webp',
+            imageR2Id: 'uw-2013/wide-angle/Zusmh1YtYmVNb5FcLRxom',
           },
           {
-            "id": "dPCci8pKpHidOJMwQepJb",
-            "title": "Connessione",
-            "description": "",
-            "placement": "runner-up",
-            "photographer": {
-              "firstName": "Isabella",
-              "lastName": "Maffei"
+            id: 'dPCci8pKpHidOJMwQepJb',
+            title: 'Connessione',
+            description: '',
+            placement: 'runner-up',
+            photographer: {
+              firstName: 'Isabella',
+              lastName: 'Maffei',
             },
-            "image": "/images/contests/2013/dPCci8pKpHidOJMwQepJb.webp",
-            "imageR2Id": "uw-2013/wide-angle/dPCci8pKpHidOJMwQepJb"
+            image: '/images/contests/2013/dPCci8pKpHidOJMwQepJb.webp',
+            imageR2Id: 'uw-2013/wide-angle/dPCci8pKpHidOJMwQepJb',
           },
           {
-            "id": "-dd887Vw1Hw8QGX538mzB",
-            "title": "La Medusa E Le Sue Ancelle",
-            "description": "",
-            "placement": "runner-up",
-            "photographer": {
-              "firstName": "Alberto",
-              "lastName": "Gallucci"
+            id: '-dd887Vw1Hw8QGX538mzB',
+            title: 'La Medusa E Le Sue Ancelle',
+            description: '',
+            placement: 'runner-up',
+            photographer: {
+              firstName: 'Alberto',
+              lastName: 'Gallucci',
             },
-            "image": "/images/contests/2013/-dd887Vw1Hw8QGX538mzB.webp",
-            "imageR2Id": "uw-2013/wide-angle/-dd887Vw1Hw8QGX538mzB"
-          }
-        ]
-      }
-    ]
+            image: '/images/contests/2013/-dd887Vw1Hw8QGX538mzB.webp',
+            imageR2Id: 'uw-2013/wide-angle/-dd887Vw1Hw8QGX538mzB',
+          },
+        ],
+      },
+    ],
   },
   {
-    "id": "uw-2012",
-    "year": 2012,
-    "name": "UW Contest 2012",
-    "description": "Annual underwater photography competition celebrating the beauty and diversity of marine life",
-    "indexImage": "/images/contests/2012/SdADKLKKzLTJ2OdviuXJl.webp",
-    "indexImageR2Id": "Um2DAHzmt1zTZRNmY9ZIB",
-    "currentContest": false,
-    "judges": [
+    id: 'uw-2012',
+    year: 2012,
+    name: 'UW Contest 2012',
+    description:
+      'Annual underwater photography competition celebrating the beauty and diversity of marine life',
+    indexImage: '/images/contests/2012/SdADKLKKzLTJ2OdviuXJl.webp',
+    indexImageR2Id: 'Um2DAHzmt1zTZRNmY9ZIB',
+    currentContest: false,
+    judges: [
       {
-        "id": "1qGx5oJNxE4VP2bzE4KIz",
-        "fullName": "Giuseppe Pignataro",
-        "r2ImageId": null
+        id: '1qGx5oJNxE4VP2bzE4KIz',
+        fullName: 'Giuseppe Pignataro',
+        r2ImageId: null,
       },
       {
-        "id": "N21TxWEncdH6hOuEQxP1V",
-        "fullName": "Paolo Fossati",
-        "r2ImageId": null
+        id: 'N21TxWEncdH6hOuEQxP1V',
+        fullName: 'Paolo Fossati',
+        r2ImageId: null,
       },
       {
-        "id": "HuJ8GNDchMIWBah37VA0r",
-        "fullName": "Francesco Turano",
-        "r2ImageId": null
-      }
+        id: 'HuJ8GNDchMIWBah37VA0r',
+        fullName: 'Francesco Turano',
+        r2ImageId: null,
+      },
     ],
-    "categories": [
+    categories: [
       {
-        "id": "black-and-white",
-        "name": "Black & White",
-        "winnerImage": "/images/contests/2012/2HYsU5ZZOkWCnBAnzoFup.webp",
-        "winnerImageR2Id": "rT2jAmeG3dOzwgq42z3In",
-        "entries": [
+        id: 'black-and-white',
+        name: 'Black & White',
+        winnerImage: '/images/contests/2012/2HYsU5ZZOkWCnBAnzoFup.webp',
+        winnerImageR2Id: 'rT2jAmeG3dOzwgq42z3In',
+        entries: [
           {
-            "id": "2HYsU5ZZOkWCnBAnzoFup",
-            "title": "SQUALO",
-            "description": null,
-            "placement": "first",
-            "photographer": {
-              "firstName": "MARCO ",
-              "lastName": "GIULIANO"
+            id: '2HYsU5ZZOkWCnBAnzoFup',
+            title: 'SQUALO',
+            description: null,
+            placement: 'first',
+            photographer: {
+              firstName: 'MARCO ',
+              lastName: 'GIULIANO',
             },
-            "image": "/images/contests/2012/2HYsU5ZZOkWCnBAnzoFup.webp",
-            "imageR2Id": "rT2jAmeG3dOzwgq42z3In"
+            image: '/images/contests/2012/2HYsU5ZZOkWCnBAnzoFup.webp',
+            imageR2Id: 'rT2jAmeG3dOzwgq42z3In',
           },
           {
-            "id": "3A7cGDRhIf0pSSw-4TX5O",
-            "title": "IL MURO",
-            "description": null,
-            "placement": "second",
-            "photographer": {
-              "firstName": "MARCO ",
-              "lastName": "CARACENI "
+            id: '3A7cGDRhIf0pSSw-4TX5O',
+            title: 'IL MURO',
+            description: null,
+            placement: 'second',
+            photographer: {
+              firstName: 'MARCO ',
+              lastName: 'CARACENI ',
             },
-            "image": "/images/contests/2012/3A7cGDRhIf0pSSw-4TX5O.webp",
-            "imageR2Id": "7K3hzHDd4GFYrs4luDbrU"
+            image: '/images/contests/2012/3A7cGDRhIf0pSSw-4TX5O.webp',
+            imageR2Id: '7K3hzHDd4GFYrs4luDbrU',
           },
           {
-            "id": "f9VIjhGoz4enamR9oZWm7",
-            "title": "HIPPOCAMPO",
-            "description": null,
-            "placement": "third",
-            "photographer": {
-              "firstName": "FILIPPO",
-              "lastName": "BORGHI"
+            id: 'f9VIjhGoz4enamR9oZWm7',
+            title: 'HIPPOCAMPO',
+            description: null,
+            placement: 'third',
+            photographer: {
+              firstName: 'FILIPPO',
+              lastName: 'BORGHI',
             },
-            "image": "/images/contests/2012/f9VIjhGoz4enamR9oZWm7.webp",
-            "imageR2Id": "C6YlznJZ-BUz82x18xRrE"
+            image: '/images/contests/2012/f9VIjhGoz4enamR9oZWm7.webp',
+            imageR2Id: 'C6YlznJZ-BUz82x18xRrE',
           },
           {
-            "id": "24mg-gE5GXfJRay6Bsua2",
-            "title": "IL DOTTO E LE ANFORE",
-            "description": null,
-            "placement": "runner-up",
-            "photographer": {
-              "firstName": "FRANCESCO ",
-              "lastName": "VISINTIN"
+            id: '24mg-gE5GXfJRay6Bsua2',
+            title: 'IL DOTTO E LE ANFORE',
+            description: null,
+            placement: 'runner-up',
+            photographer: {
+              firstName: 'FRANCESCO ',
+              lastName: 'VISINTIN',
             },
-            "image": "/images/contests/2012/24mg-gE5GXfJRay6Bsua2.webp",
-            "imageR2Id": "GoJ63TMSqmDsL3HTlToWR"
+            image: '/images/contests/2012/24mg-gE5GXfJRay6Bsua2.webp',
+            imageR2Id: 'GoJ63TMSqmDsL3HTlToWR',
           },
           {
-            "id": "GgAWKYm9oHJgriQM4pTeG",
-            "title": "WASHING MACHINE",
-            "description": null,
-            "placement": "runner-up",
-            "photographer": {
-              "firstName": "ADRIANO ",
-              "lastName": "MORETTIN"
+            id: 'GgAWKYm9oHJgriQM4pTeG',
+            title: 'WASHING MACHINE',
+            description: null,
+            placement: 'runner-up',
+            photographer: {
+              firstName: 'ADRIANO ',
+              lastName: 'MORETTIN',
             },
-            "image": "/images/contests/2012/GgAWKYm9oHJgriQM4pTeG.webp",
-            "imageR2Id": "oPxiH9DoCcSh1Nc4-Ost9"
+            image: '/images/contests/2012/GgAWKYm9oHJgriQM4pTeG.webp',
+            imageR2Id: 'oPxiH9DoCcSh1Nc4-Ost9',
           },
           {
-            "id": "UtCaNgSTesvZzo9A7QL8R",
-            "title": "OCTOPUS",
-            "description": null,
-            "placement": "runner-up",
-            "photographer": {
-              "firstName": "OLIVIERO",
-              "lastName": "PULIDO"
+            id: 'UtCaNgSTesvZzo9A7QL8R',
+            title: 'OCTOPUS',
+            description: null,
+            placement: 'runner-up',
+            photographer: {
+              firstName: 'OLIVIERO',
+              lastName: 'PULIDO',
             },
-            "image": "/images/contests/2012/UtCaNgSTesvZzo9A7QL8R.webp",
-            "imageR2Id": "5TWri7LmRs2iE9Z7TNFKQ"
-          }
-        ]
+            image: '/images/contests/2012/UtCaNgSTesvZzo9A7QL8R.webp',
+            imageR2Id: '5TWri7LmRs2iE9Z7TNFKQ',
+          },
+        ],
       },
       {
-        "id": "macro",
-        "name": "Macro",
-        "winnerImage": "/images/contests/2012/JArCf3wsVtCka3i8vqicU.webp",
-        "winnerImageR2Id": "8Nj97dOfx12UopDzrIibW",
-        "entries": [
+        id: 'macro',
+        name: 'Macro',
+        winnerImage: '/images/contests/2012/JArCf3wsVtCka3i8vqicU.webp',
+        winnerImageR2Id: '8Nj97dOfx12UopDzrIibW',
+        entries: [
           {
-            "id": "JArCf3wsVtCka3i8vqicU",
-            "title": "MADAME DE POMPADOUR",
-            "description": null,
-            "placement": "first",
-            "photographer": {
-              "firstName": "ADRIANO",
-              "lastName": "MORETTIN"
+            id: 'JArCf3wsVtCka3i8vqicU',
+            title: 'MADAME DE POMPADOUR',
+            description: null,
+            placement: 'first',
+            photographer: {
+              firstName: 'ADRIANO',
+              lastName: 'MORETTIN',
             },
-            "image": "/images/contests/2012/JArCf3wsVtCka3i8vqicU.webp",
-            "imageR2Id": "8Nj97dOfx12UopDzrIibW"
+            image: '/images/contests/2012/JArCf3wsVtCka3i8vqicU.webp',
+            imageR2Id: '8Nj97dOfx12UopDzrIibW',
           },
           {
-            "id": "Q3j86rZVGDylQ-Hu5xhdh",
-            "title": "2 CENTIMETRI",
-            "description": null,
-            "placement": "second",
-            "photographer": {
-              "firstName": "GIORDANO",
-              "lastName": "CIPRIANI"
+            id: 'Q3j86rZVGDylQ-Hu5xhdh',
+            title: '2 CENTIMETRI',
+            description: null,
+            placement: 'second',
+            photographer: {
+              firstName: 'GIORDANO',
+              lastName: 'CIPRIANI',
             },
-            "image": "/images/contests/2012/Q3j86rZVGDylQ-Hu5xhdh.webp",
-            "imageR2Id": "43CW4xRnXHrpH5Bvq5yWO"
+            image: '/images/contests/2012/Q3j86rZVGDylQ-Hu5xhdh.webp',
+            imageR2Id: '43CW4xRnXHrpH5Bvq5yWO',
           },
           {
-            "id": "QUnYzVn2RNcceBz8qERdz",
-            "title": "SMOKING JOE",
-            "description": null,
-            "placement": "third",
-            "photographer": {
-              "firstName": "DOMENICO",
-              "lastName": "ROSCIGNO"
+            id: 'QUnYzVn2RNcceBz8qERdz',
+            title: 'SMOKING JOE',
+            description: null,
+            placement: 'third',
+            photographer: {
+              firstName: 'DOMENICO',
+              lastName: 'ROSCIGNO',
             },
-            "image": "/images/contests/2012/QUnYzVn2RNcceBz8qERdz.webp",
-            "imageR2Id": "OBLphNnuvwxvSW8YgDc61"
+            image: '/images/contests/2012/QUnYzVn2RNcceBz8qERdz.webp',
+            imageR2Id: 'OBLphNnuvwxvSW8YgDc61',
           },
           {
-            "id": "6F6nBvNQJS_nP5yEJKlED",
-            "title": "CHE FAMIGLIA NUMEROSA",
-            "description": null,
-            "placement": "runner-up",
-            "photographer": {
-              "firstName": "DAVID",
-              "lastName": "SALVATORI"
+            id: '6F6nBvNQJS_nP5yEJKlED',
+            title: 'CHE FAMIGLIA NUMEROSA',
+            description: null,
+            placement: 'runner-up',
+            photographer: {
+              firstName: 'DAVID',
+              lastName: 'SALVATORI',
             },
-            "image": "/images/contests/2012/6F6nBvNQJS_nP5yEJKlED.webp",
-            "imageR2Id": "rsivmROjyGsSsNu346GVq"
+            image: '/images/contests/2012/6F6nBvNQJS_nP5yEJKlED.webp',
+            imageR2Id: 'rsivmROjyGsSsNu346GVq',
           },
           {
-            "id": "2KRsUvLCInRFh8FO0Lcc8",
-            "title": "GAMBERI",
-            "description": null,
-            "placement": "runner-up",
-            "photographer": {
-              "firstName": "ADRIANO ",
-              "lastName": "OCCHI"
+            id: '2KRsUvLCInRFh8FO0Lcc8',
+            title: 'GAMBERI',
+            description: null,
+            placement: 'runner-up',
+            photographer: {
+              firstName: 'ADRIANO ',
+              lastName: 'OCCHI',
             },
-            "image": "/images/contests/2012/2KRsUvLCInRFh8FO0Lcc8.webp",
-            "imageR2Id": "J8zA9B0dWdM4Qw9U7-MnJ"
+            image: '/images/contests/2012/2KRsUvLCInRFh8FO0Lcc8.webp',
+            imageR2Id: 'J8zA9B0dWdM4Qw9U7-MnJ',
           },
           {
-            "id": "q_EJYzd1R_YoA1mqj79Ag",
-            "title": "POSEIDONIA",
-            "description": null,
-            "placement": "runner-up",
-            "photographer": {
-              "firstName": "FRANCESCO ",
-              "lastName": "VISINTIN"
+            id: 'q_EJYzd1R_YoA1mqj79Ag',
+            title: 'POSEIDONIA',
+            description: null,
+            placement: 'runner-up',
+            photographer: {
+              firstName: 'FRANCESCO ',
+              lastName: 'VISINTIN',
             },
-            "image": "/images/contests/2012/q_EJYzd1R_YoA1mqj79Ag.webp",
-            "imageR2Id": "I_tG2oSKSOXoeAOkz6gLN"
+            image: '/images/contests/2012/q_EJYzd1R_YoA1mqj79Ag.webp',
+            imageR2Id: 'I_tG2oSKSOXoeAOkz6gLN',
           },
           {
-            "id": "WhYPwdvUrLLldjh2z_hX6",
-            "title": "RAINBOW",
-            "description": null,
-            "placement": "runner-up",
-            "photographer": {
-              "firstName": "STEFANO",
-              "lastName": "PROAKIS"
+            id: 'WhYPwdvUrLLldjh2z_hX6',
+            title: 'RAINBOW',
+            description: null,
+            placement: 'runner-up',
+            photographer: {
+              firstName: 'STEFANO',
+              lastName: 'PROAKIS',
             },
-            "image": "/images/contests/2012/WhYPwdvUrLLldjh2z_hX6.webp",
-            "imageR2Id": "I_Df91_lYjanztKx0THMv"
+            image: '/images/contests/2012/WhYPwdvUrLLldjh2z_hX6.webp',
+            imageR2Id: 'I_Df91_lYjanztKx0THMv',
           },
           {
-            "id": "SdADKLKKzLTJ2OdviuXJl",
-            "title": "SNOOT'S LOVERS",
-            "description": null,
-            "placement": "runner-up",
-            "photographer": {
-              "firstName": "ADRIANO",
-              "lastName": "MORETTIN"
+            id: 'SdADKLKKzLTJ2OdviuXJl',
+            title: "SNOOT'S LOVERS",
+            description: null,
+            placement: 'runner-up',
+            photographer: {
+              firstName: 'ADRIANO',
+              lastName: 'MORETTIN',
             },
-            "image": "/images/contests/2012/SdADKLKKzLTJ2OdviuXJl.webp",
-            "imageR2Id": "Um2DAHzmt1zTZRNmY9ZIB"
-          }
-        ]
+            image: '/images/contests/2012/SdADKLKKzLTJ2OdviuXJl.webp',
+            imageR2Id: 'Um2DAHzmt1zTZRNmY9ZIB',
+          },
+        ],
       },
       {
-        "id": "newcomers",
-        "name": "Newcomers",
-        "winnerImage": "/images/contests/2012/niZKu7CZzefiJcUn8MzqP.webp",
-        "winnerImageR2Id": "qcOvw1zLNxNkRLBA5EcGo",
-        "entries": [
+        id: 'newcomers',
+        name: 'Newcomers',
+        winnerImage: '/images/contests/2012/niZKu7CZzefiJcUn8MzqP.webp',
+        winnerImageR2Id: 'qcOvw1zLNxNkRLBA5EcGo',
+        entries: [
           {
-            "id": "niZKu7CZzefiJcUn8MzqP",
-            "title": "ALIEN NIGHT",
-            "description": null,
-            "placement": "first",
-            "photographer": {
-              "firstName": "FABIO ",
-              "lastName": "STRAZZI"
+            id: 'niZKu7CZzefiJcUn8MzqP',
+            title: 'ALIEN NIGHT',
+            description: null,
+            placement: 'first',
+            photographer: {
+              firstName: 'FABIO ',
+              lastName: 'STRAZZI',
             },
-            "image": "/images/contests/2012/niZKu7CZzefiJcUn8MzqP.webp",
-            "imageR2Id": "qcOvw1zLNxNkRLBA5EcGo"
+            image: '/images/contests/2012/niZKu7CZzefiJcUn8MzqP.webp',
+            imageR2Id: 'qcOvw1zLNxNkRLBA5EcGo',
           },
           {
-            "id": "3zOMQeXzMfjheAglpqQLT",
-            "title": "IPNOSI",
-            "description": null,
-            "placement": "second",
-            "photographer": {
-              "firstName": "MAURO ",
-              "lastName": "MAINARDI"
+            id: '3zOMQeXzMfjheAglpqQLT',
+            title: 'IPNOSI',
+            description: null,
+            placement: 'second',
+            photographer: {
+              firstName: 'MAURO ',
+              lastName: 'MAINARDI',
             },
-            "image": "/images/contests/2012/3zOMQeXzMfjheAglpqQLT.webp",
-            "imageR2Id": "ZgbfnIle08PrqGxBPFdey"
+            image: '/images/contests/2012/3zOMQeXzMfjheAglpqQLT.webp',
+            imageR2Id: 'ZgbfnIle08PrqGxBPFdey',
           },
           {
-            "id": "ad1vqGi2JCZTTgL8x6F00",
-            "title": "SEPIA",
-            "description": null,
-            "placement": "third",
-            "photographer": {
-              "firstName": "RAFFAELE ",
-              "lastName": "BASTI"
+            id: 'ad1vqGi2JCZTTgL8x6F00',
+            title: 'SEPIA',
+            description: null,
+            placement: 'third',
+            photographer: {
+              firstName: 'RAFFAELE ',
+              lastName: 'BASTI',
             },
-            "image": "/images/contests/2012/ad1vqGi2JCZTTgL8x6F00.webp",
-            "imageR2Id": "JG6m5hNShm30Oh6Z37OjN"
+            image: '/images/contests/2012/ad1vqGi2JCZTTgL8x6F00.webp',
+            imageR2Id: 'JG6m5hNShm30Oh6Z37OjN',
           },
           {
-            "id": "eI_mDwPDLf823fWuk9tn4",
-            "title": "CAVALLUCCIO BROWN",
-            "description": null,
-            "placement": "runner-up",
-            "photographer": {
-              "firstName": "NICOLA ",
-              "lastName": "FURIO"
+            id: 'eI_mDwPDLf823fWuk9tn4',
+            title: 'CAVALLUCCIO BROWN',
+            description: null,
+            placement: 'runner-up',
+            photographer: {
+              firstName: 'NICOLA ',
+              lastName: 'FURIO',
             },
-            "image": "/images/contests/2012/eI_mDwPDLf823fWuk9tn4.webp",
-            "imageR2Id": "7oolf6uqz4A2R9RMBIxR7"
+            image: '/images/contests/2012/eI_mDwPDLf823fWuk9tn4.webp',
+            imageR2Id: '7oolf6uqz4A2R9RMBIxR7',
           },
           {
-            "id": "ocQmiHf7Hg1SlNObNtgOU",
-            "title": "FLABELLINA",
-            "description": null,
-            "placement": "runner-up",
-            "photographer": {
-              "firstName": "PASQUALE",
-              "lastName": "CARVELLI"
+            id: 'ocQmiHf7Hg1SlNObNtgOU',
+            title: 'FLABELLINA',
+            description: null,
+            placement: 'runner-up',
+            photographer: {
+              firstName: 'PASQUALE',
+              lastName: 'CARVELLI',
             },
-            "image": "/images/contests/2012/ocQmiHf7Hg1SlNObNtgOU.webp",
-            "imageR2Id": "J85j6nZSu6-puQRL_klJ-"
+            image: '/images/contests/2012/ocQmiHf7Hg1SlNObNtgOU.webp',
+            imageR2Id: 'J85j6nZSu6-puQRL_klJ-',
           },
           {
-            "id": "G85cY-x_rgmhI9oGzWqcr",
-            "title": "TARTARUGA",
-            "description": null,
-            "placement": "runner-up",
-            "photographer": {
-              "firstName": "STEFANO ",
-              "lastName": "COCCI ARMILLEI"
+            id: 'G85cY-x_rgmhI9oGzWqcr',
+            title: 'TARTARUGA',
+            description: null,
+            placement: 'runner-up',
+            photographer: {
+              firstName: 'STEFANO ',
+              lastName: 'COCCI ARMILLEI',
             },
-            "image": "/images/contests/2012/G85cY-x_rgmhI9oGzWqcr.webp",
-            "imageR2Id": "K844JiuFd0UsDUADA5PQO"
-          }
-        ]
+            image: '/images/contests/2012/G85cY-x_rgmhI9oGzWqcr.webp',
+            imageR2Id: 'K844JiuFd0UsDUADA5PQO',
+          },
+        ],
       },
       {
-        "id": "wide-angle",
-        "name": "Wide Angle",
-        "winnerImage": "/images/contests/2012/wLj2Yvx38tGUsKg6jSavr.webp",
-        "winnerImageR2Id": "CAWuzds5MT5gHceSh0u19",
-        "entries": [
+        id: 'wide-angle',
+        name: 'Wide Angle',
+        winnerImage: '/images/contests/2012/wLj2Yvx38tGUsKg6jSavr.webp',
+        winnerImageR2Id: 'CAWuzds5MT5gHceSh0u19',
+        entries: [
           {
-            "id": "wLj2Yvx38tGUsKg6jSavr",
-            "title": "TORTUGA",
-            "description": null,
-            "placement": "first",
-            "photographer": {
-              "firstName": "JOAQUIN ",
-              "lastName": "FERNANDEZ GUTIERREZ"
+            id: 'wLj2Yvx38tGUsKg6jSavr',
+            title: 'TORTUGA',
+            description: null,
+            placement: 'first',
+            photographer: {
+              firstName: 'JOAQUIN ',
+              lastName: 'FERNANDEZ GUTIERREZ',
             },
-            "image": "/images/contests/2012/wLj2Yvx38tGUsKg6jSavr.webp",
-            "imageR2Id": "CAWuzds5MT5gHceSh0u19"
+            image: '/images/contests/2012/wLj2Yvx38tGUsKg6jSavr.webp',
+            imageR2Id: 'CAWuzds5MT5gHceSh0u19',
           },
           {
-            "id": "S03zUbpROWZMEzlpex1Ra",
-            "title": "CIRCLE",
-            "description": null,
-            "placement": "second",
-            "photographer": {
-              "firstName": "STEFANO ",
-              "lastName": "PROAKIS"
+            id: 'S03zUbpROWZMEzlpex1Ra',
+            title: 'CIRCLE',
+            description: null,
+            placement: 'second',
+            photographer: {
+              firstName: 'STEFANO ',
+              lastName: 'PROAKIS',
             },
-            "image": "/images/contests/2012/S03zUbpROWZMEzlpex1Ra.webp",
-            "imageR2Id": "c3Hql54K5ggp44YAHN_qX"
+            image: '/images/contests/2012/S03zUbpROWZMEzlpex1Ra.webp',
+            imageR2Id: 'c3Hql54K5ggp44YAHN_qX',
           },
           {
-            "id": "U-JnQyT5x2DbtyfeuWED7",
-            "title": "TORTUGA 3",
-            "description": null,
-            "placement": "third",
-            "photographer": {
-              "firstName": "JOAQUIN ",
-              "lastName": "FERNANDEZ GUTIERREZ"
+            id: 'U-JnQyT5x2DbtyfeuWED7',
+            title: 'TORTUGA 3',
+            description: null,
+            placement: 'third',
+            photographer: {
+              firstName: 'JOAQUIN ',
+              lastName: 'FERNANDEZ GUTIERREZ',
             },
-            "image": "/images/contests/2012/U-JnQyT5x2DbtyfeuWED7.webp",
-            "imageR2Id": "7JUwhNZjpgpXruM1vo9st"
+            image: '/images/contests/2012/U-JnQyT5x2DbtyfeuWED7.webp',
+            imageR2Id: '7JUwhNZjpgpXruM1vo9st',
           },
           {
-            "id": "bvLl8m0wpwSF9tEdY3oYi",
-            "title": "CAPO D'ACQUA TREE",
-            "description": null,
-            "placement": "runner-up",
-            "photographer": {
-              "firstName": "STEFANO ",
-              "lastName": "PROAKIS"
+            id: 'bvLl8m0wpwSF9tEdY3oYi',
+            title: "CAPO D'ACQUA TREE",
+            description: null,
+            placement: 'runner-up',
+            photographer: {
+              firstName: 'STEFANO ',
+              lastName: 'PROAKIS',
             },
-            "image": "/images/contests/2012/bvLl8m0wpwSF9tEdY3oYi.webp",
-            "imageR2Id": "Y7gGj4Rvn9LCihRa0prvP"
+            image: '/images/contests/2012/bvLl8m0wpwSF9tEdY3oYi.webp',
+            imageR2Id: 'Y7gGj4Rvn9LCihRa0prvP',
           },
           {
-            "id": "fK-Wcb-poVczlthosK0MU",
-            "title": "GEMMA",
-            "description": null,
-            "placement": "runner-up",
-            "photographer": {
-              "firstName": "MARC FELIX",
-              "lastName": "CASANOVAS "
+            id: 'fK-Wcb-poVczlthosK0MU',
+            title: 'GEMMA',
+            description: null,
+            placement: 'runner-up',
+            photographer: {
+              firstName: 'MARC FELIX',
+              lastName: 'CASANOVAS ',
             },
-            "image": "/images/contests/2012/fK-Wcb-poVczlthosK0MU.webp",
-            "imageR2Id": "KlFtd-6fEf_Cai3yJNLS0"
+            image: '/images/contests/2012/fK-Wcb-poVczlthosK0MU.webp',
+            imageR2Id: 'KlFtd-6fEf_Cai3yJNLS0',
           },
           {
-            "id": "aR6ANtpp8_LfbV_NjwXnN",
-            "title": "LUMPSUCKER WITH EGGS",
-            "description": null,
-            "placement": "runner-up",
-            "photographer": {
-              "firstName": "LUC",
-              "lastName": "ROOMAN"
+            id: 'aR6ANtpp8_LfbV_NjwXnN',
+            title: 'LUMPSUCKER WITH EGGS',
+            description: null,
+            placement: 'runner-up',
+            photographer: {
+              firstName: 'LUC',
+              lastName: 'ROOMAN',
             },
-            "image": "/images/contests/2012/aR6ANtpp8_LfbV_NjwXnN.webp",
-            "imageR2Id": "xD-TtDNb1LpiPhEVxUrkG"
+            image: '/images/contests/2012/aR6ANtpp8_LfbV_NjwXnN.webp',
+            imageR2Id: 'xD-TtDNb1LpiPhEVxUrkG',
           },
           {
-            "id": "lGcJjlswiggYVaQ6xQ1JK",
-            "title": "RAP",
-            "description": null,
-            "placement": "runner-up",
-            "photographer": {
-              "firstName": "DAVID ",
-              "lastName": "MAS ANTOJA"
+            id: 'lGcJjlswiggYVaQ6xQ1JK',
+            title: 'RAP',
+            description: null,
+            placement: 'runner-up',
+            photographer: {
+              firstName: 'DAVID ',
+              lastName: 'MAS ANTOJA',
             },
-            "image": "/images/contests/2012/lGcJjlswiggYVaQ6xQ1JK.webp",
-            "imageR2Id": "5ugAjdYYpNf7bySco4x0J"
+            image: '/images/contests/2012/lGcJjlswiggYVaQ6xQ1JK.webp',
+            imageR2Id: '5ugAjdYYpNf7bySco4x0J',
           },
           {
-            "id": "wzpVWQ2J6n_ukZcGInwEa",
-            "title": "INSIEME",
-            "description": null,
-            "placement": "runner-up",
-            "photographer": {
-              "firstName": "GIORDANO",
-              "lastName": "CIPRIANI"
+            id: 'wzpVWQ2J6n_ukZcGInwEa',
+            title: 'INSIEME',
+            description: null,
+            placement: 'runner-up',
+            photographer: {
+              firstName: 'GIORDANO',
+              lastName: 'CIPRIANI',
             },
-            "image": "/images/contests/2012/wzpVWQ2J6n_ukZcGInwEa.webp",
-            "imageR2Id": "Bmnmcf0rCeVD3wW772Rgv"
+            image: '/images/contests/2012/wzpVWQ2J6n_ukZcGInwEa.webp',
+            imageR2Id: 'Bmnmcf0rCeVD3wW772Rgv',
           },
           {
-            "id": "fSJCBzR3_5G40YdTln2vD",
-            "title": "SERPENTE",
-            "description": null,
-            "placement": "runner-up",
-            "photographer": {
-              "firstName": "MARCO ",
-              "lastName": "GIULIANO"
+            id: 'fSJCBzR3_5G40YdTln2vD',
+            title: 'SERPENTE',
+            description: null,
+            placement: 'runner-up',
+            photographer: {
+              firstName: 'MARCO ',
+              lastName: 'GIULIANO',
             },
-            "image": "/images/contests/2012/fSJCBzR3_5G40YdTln2vD.webp",
-            "imageR2Id": "8upNjg_JbEPNiqwW8HgIw"
+            image: '/images/contests/2012/fSJCBzR3_5G40YdTln2vD.webp',
+            imageR2Id: '8upNjg_JbEPNiqwW8HgIw',
           },
           {
-            "id": "hOQ1h7ncLpv9-dIYcBQl6",
-            "title": "GNAM",
-            "description": null,
-            "placement": "runner-up",
-            "photographer": {
-              "firstName": "ANDREA ",
-              "lastName": "IZZOTTI"
+            id: 'hOQ1h7ncLpv9-dIYcBQl6',
+            title: 'GNAM',
+            description: null,
+            placement: 'runner-up',
+            photographer: {
+              firstName: 'ANDREA ',
+              lastName: 'IZZOTTI',
             },
-            "image": "/images/contests/2012/hOQ1h7ncLpv9-dIYcBQl6.webp",
-            "imageR2Id": "VAFUUIDnIeMpfzVf66jof"
-          }
-        ]
-      }
-    ]
+            image: '/images/contests/2012/hOQ1h7ncLpv9-dIYcBQl6.webp',
+            imageR2Id: 'VAFUUIDnIeMpfzVf66jof',
+          },
+        ],
+      },
+    ],
   },
   {
-    "id": "uw-2011",
-    "year": 2011,
-    "name": "UW Contest 2011",
-    "description": "Annual underwater photography competition celebrating the beauty and diversity of marine life",
-    "indexImage": "/images/contests/2011/7XX7uG7DNQYsGU3_LvZCH.webp",
-    "indexImageR2Id": "1Dp4NqOeQnTaJQGRgz6XR",
-    "currentContest": false,
-    "judges": [
+    id: 'uw-2011',
+    year: 2011,
+    name: 'UW Contest 2011',
+    description:
+      'Annual underwater photography competition celebrating the beauty and diversity of marine life',
+    indexImage: '/images/contests/2011/7XX7uG7DNQYsGU3_LvZCH.webp',
+    indexImageR2Id: '1Dp4NqOeQnTaJQGRgz6XR',
+    currentContest: false,
+    judges: [
       {
-        "id": "PZ76ylJsrmpqjouozzenP",
-        "fullName": "Gennaro Ciavarella",
-        "r2ImageId": null
+        id: 'PZ76ylJsrmpqjouozzenP',
+        fullName: 'Gennaro Ciavarella',
+        r2ImageId: null,
       },
       {
-        "id": "RL8q0m3_JbLSuPbFkDuix",
-        "fullName": "Andrea Giulianini",
-        "r2ImageId": null
+        id: 'RL8q0m3_JbLSuPbFkDuix',
+        fullName: 'Andrea Giulianini',
+        r2ImageId: null,
       },
       {
-        "id": "VkkH5m4Rn4QhOXjI1tTAq",
-        "fullName": "Denis Palbiani",
-        "r2ImageId": null
+        id: 'VkkH5m4Rn4QhOXjI1tTAq',
+        fullName: 'Denis Palbiani',
+        r2ImageId: null,
       },
       {
-        "id": "W3recresh--R6ydWLBSqj",
-        "fullName": "Giuseppe Pignataro",
-        "r2ImageId": null
-      }
+        id: 'W3recresh--R6ydWLBSqj',
+        fullName: 'Giuseppe Pignataro',
+        r2ImageId: null,
+      },
     ],
-    "categories": [
+    categories: [
       {
-        "id": "black-and-white",
-        "name": "Black & White",
-        "winnerImage": "/images/contests/2011/7XX7uG7DNQYsGU3_LvZCH.webp",
-        "winnerImageR2Id": "1Dp4NqOeQnTaJQGRgz6XR",
-        "entries": [
+        id: 'black-and-white',
+        name: 'Black & White',
+        winnerImage: '/images/contests/2011/7XX7uG7DNQYsGU3_LvZCH.webp',
+        winnerImageR2Id: '1Dp4NqOeQnTaJQGRgz6XR',
+        entries: [
           {
-            "id": "7XX7uG7DNQYsGU3_LvZCH",
-            "title": "SHARKS",
-            "description": null,
-            "placement": "first",
-            "photographer": {
-              "firstName": "GABRIELE ",
-              "lastName": "DONATI"
+            id: '7XX7uG7DNQYsGU3_LvZCH',
+            title: 'SHARKS',
+            description: null,
+            placement: 'first',
+            photographer: {
+              firstName: 'GABRIELE ',
+              lastName: 'DONATI',
             },
-            "image": "/images/contests/2011/7XX7uG7DNQYsGU3_LvZCH.webp",
-            "imageR2Id": "1Dp4NqOeQnTaJQGRgz6XR"
+            image: '/images/contests/2011/7XX7uG7DNQYsGU3_LvZCH.webp',
+            imageR2Id: '1Dp4NqOeQnTaJQGRgz6XR',
           },
           {
-            "id": "5z624dUruXBUeachljlUr",
-            "title": "IL LATO OSCURO DELLA RETE",
-            "description": null,
-            "placement": "second",
-            "photographer": {
-              "firstName": "MARCO ",
-              "lastName": "CARACENI"
+            id: '5z624dUruXBUeachljlUr',
+            title: 'IL LATO OSCURO DELLA RETE',
+            description: null,
+            placement: 'second',
+            photographer: {
+              firstName: 'MARCO ',
+              lastName: 'CARACENI',
             },
-            "image": "/images/contests/2011/5z624dUruXBUeachljlUr.webp",
-            "imageR2Id": "e3-hq7KYRkbx-tMEuKwNd"
+            image: '/images/contests/2011/5z624dUruXBUeachljlUr.webp',
+            imageR2Id: 'e3-hq7KYRkbx-tMEuKwNd',
           },
           {
-            "id": "ycDlPUPts8qxPElG3z8A-",
-            "title": "THE CAVE",
-            "description": null,
-            "placement": "third",
-            "photographer": {
-              "firstName": "MARCELLO ",
-              "lastName": "DI FRANCESCO"
+            id: 'ycDlPUPts8qxPElG3z8A-',
+            title: 'THE CAVE',
+            description: null,
+            placement: 'third',
+            photographer: {
+              firstName: 'MARCELLO ',
+              lastName: 'DI FRANCESCO',
             },
-            "image": "/images/contests/2011/ycDlPUPts8qxPElG3z8A-.webp",
-            "imageR2Id": "nay_yOsIDPnB7C4YmqYpi"
+            image: '/images/contests/2011/ycDlPUPts8qxPElG3z8A-.webp',
+            imageR2Id: 'nay_yOsIDPnB7C4YmqYpi',
           },
           {
-            "id": "wCQq55_1vFkFyKzi9A5A4",
-            "title": "SAN PIETRO",
-            "description": null,
-            "placement": "runner-up",
-            "photographer": {
-              "firstName": "ADRIANO",
-              "lastName": "MORETTIN"
+            id: 'wCQq55_1vFkFyKzi9A5A4',
+            title: 'SAN PIETRO',
+            description: null,
+            placement: 'runner-up',
+            photographer: {
+              firstName: 'ADRIANO',
+              lastName: 'MORETTIN',
             },
-            "image": "/images/contests/2011/wCQq55_1vFkFyKzi9A5A4.webp",
-            "imageR2Id": "06pQlahc49l_p9xY4AKgQ"
+            image: '/images/contests/2011/wCQq55_1vFkFyKzi9A5A4.webp',
+            imageR2Id: '06pQlahc49l_p9xY4AKgQ',
           },
           {
-            "id": "lkGjJWNYANkLpl55EF9DJ",
-            "title": "FLY",
-            "description": null,
-            "placement": "runner-up",
-            "photographer": {
-              "firstName": "GIACOMO ",
-              "lastName": "MARCHIONE"
+            id: 'lkGjJWNYANkLpl55EF9DJ',
+            title: 'FLY',
+            description: null,
+            placement: 'runner-up',
+            photographer: {
+              firstName: 'GIACOMO ',
+              lastName: 'MARCHIONE',
             },
-            "image": "/images/contests/2011/lkGjJWNYANkLpl55EF9DJ.webp",
-            "imageR2Id": "zKxejXhD-TDFdXBbgm6Ru"
+            image: '/images/contests/2011/lkGjJWNYANkLpl55EF9DJ.webp',
+            imageR2Id: 'zKxejXhD-TDFdXBbgm6Ru',
           },
           {
-            "id": "CPDiUsLAYIQjLDti19keL",
-            "title": "GIOVANOTTO",
-            "description": null,
-            "placement": "runner-up",
-            "photographer": {
-              "firstName": "CLAUDIO ",
-              "lastName": "ZORI"
+            id: 'CPDiUsLAYIQjLDti19keL',
+            title: 'GIOVANOTTO',
+            description: null,
+            placement: 'runner-up',
+            photographer: {
+              firstName: 'CLAUDIO ',
+              lastName: 'ZORI',
             },
-            "image": "/images/contests/2011/CPDiUsLAYIQjLDti19keL.webp",
-            "imageR2Id": "lGWeZsocPaDT1sUZwSrbR"
+            image: '/images/contests/2011/CPDiUsLAYIQjLDti19keL.webp',
+            imageR2Id: 'lGWeZsocPaDT1sUZwSrbR',
           },
           {
-            "id": "vJyjESo95WGl70IseXO59",
-            "title": "INCONTRI VIRTUALI",
-            "description": null,
-            "placement": "runner-up",
-            "photographer": {
-              "firstName": "GUIDO",
-              "lastName": "VILLANI"
+            id: 'vJyjESo95WGl70IseXO59',
+            title: 'INCONTRI VIRTUALI',
+            description: null,
+            placement: 'runner-up',
+            photographer: {
+              firstName: 'GUIDO',
+              lastName: 'VILLANI',
             },
-            "image": "/images/contests/2011/vJyjESo95WGl70IseXO59.webp",
-            "imageR2Id": "LWpxXEe7ROyn1ukN-1mjd"
+            image: '/images/contests/2011/vJyjESo95WGl70IseXO59.webp',
+            imageR2Id: 'LWpxXEe7ROyn1ukN-1mjd',
           },
           {
-            "id": "7R_2MJNF69J3DJKtjAL5j",
-            "title": "OH MIO DIO ... UN FOTOGRAFO",
-            "description": null,
-            "placement": "runner-up",
-            "photographer": {
-              "firstName": "DAVID ",
-              "lastName": "SALVATORI"
+            id: '7R_2MJNF69J3DJKtjAL5j',
+            title: 'OH MIO DIO ... UN FOTOGRAFO',
+            description: null,
+            placement: 'runner-up',
+            photographer: {
+              firstName: 'DAVID ',
+              lastName: 'SALVATORI',
             },
-            "image": "/images/contests/2011/7R_2MJNF69J3DJKtjAL5j.webp",
-            "imageR2Id": "31xO39Fixnzp5b7nfcu6F"
+            image: '/images/contests/2011/7R_2MJNF69J3DJKtjAL5j.webp',
+            imageR2Id: '31xO39Fixnzp5b7nfcu6F',
           },
           {
-            "id": "u0fQHm1GTVnQHTtGBg4b-",
-            "title": "VOLO NOTTURNO",
-            "description": null,
-            "placement": "runner-up",
-            "photographer": {
-              "firstName": "FILIPPO ",
-              "lastName": "BORGHI"
+            id: 'u0fQHm1GTVnQHTtGBg4b-',
+            title: 'VOLO NOTTURNO',
+            description: null,
+            placement: 'runner-up',
+            photographer: {
+              firstName: 'FILIPPO ',
+              lastName: 'BORGHI',
             },
-            "image": "/images/contests/2011/u0fQHm1GTVnQHTtGBg4b-.webp",
-            "imageR2Id": "ZJKvsY9E8uB29Vrbx6VSO"
+            image: '/images/contests/2011/u0fQHm1GTVnQHTtGBg4b-.webp',
+            imageR2Id: 'ZJKvsY9E8uB29Vrbx6VSO',
           },
           {
-            "id": "wOcEb-fBFbXsQIlcdHXwg",
-            "title": "VORTEX",
-            "description": null,
-            "placement": "runner-up",
-            "photographer": {
-              "firstName": "ADRIANO",
-              "lastName": "MORETTIN"
+            id: 'wOcEb-fBFbXsQIlcdHXwg',
+            title: 'VORTEX',
+            description: null,
+            placement: 'runner-up',
+            photographer: {
+              firstName: 'ADRIANO',
+              lastName: 'MORETTIN',
             },
-            "image": "/images/contests/2011/wOcEb-fBFbXsQIlcdHXwg.webp",
-            "imageR2Id": "J29ll9VylPxs6a18RnGo9"
-          }
-        ]
+            image: '/images/contests/2011/wOcEb-fBFbXsQIlcdHXwg.webp',
+            imageR2Id: 'J29ll9VylPxs6a18RnGo9',
+          },
+        ],
       },
       {
-        "id": "macro",
-        "name": "Macro",
-        "winnerImage": "/images/contests/2011/8c3U2ZpGKbXl-xiSUfsvY.webp",
-        "winnerImageR2Id": "WOUhzFC9ns69eg7xsgbOK",
-        "entries": [
+        id: 'macro',
+        name: 'Macro',
+        winnerImage: '/images/contests/2011/8c3U2ZpGKbXl-xiSUfsvY.webp',
+        winnerImageR2Id: 'WOUhzFC9ns69eg7xsgbOK',
+        entries: [
           {
-            "id": "8c3U2ZpGKbXl-xiSUfsvY",
-            "title": "PROSSIME GENERAZIONI",
-            "description": null,
-            "placement": "first",
-            "photographer": {
-              "firstName": "PASQUALE",
-              "lastName": "VASSALLO"
+            id: '8c3U2ZpGKbXl-xiSUfsvY',
+            title: 'PROSSIME GENERAZIONI',
+            description: null,
+            placement: 'first',
+            photographer: {
+              firstName: 'PASQUALE',
+              lastName: 'VASSALLO',
             },
-            "image": "/images/contests/2011/8c3U2ZpGKbXl-xiSUfsvY.webp",
-            "imageR2Id": "WOUhzFC9ns69eg7xsgbOK"
+            image: '/images/contests/2011/8c3U2ZpGKbXl-xiSUfsvY.webp',
+            imageR2Id: 'WOUhzFC9ns69eg7xsgbOK',
           },
           {
-            "id": "Qp2E2vk-S5kTem4AprMA8",
-            "title": "CHE BEL RIPARO",
-            "description": null,
-            "placement": "second",
-            "photographer": {
-              "firstName": "SALVATORE ",
-              "lastName": "IANNIELLO"
+            id: 'Qp2E2vk-S5kTem4AprMA8',
+            title: 'CHE BEL RIPARO',
+            description: null,
+            placement: 'second',
+            photographer: {
+              firstName: 'SALVATORE ',
+              lastName: 'IANNIELLO',
             },
-            "image": "/images/contests/2011/Qp2E2vk-S5kTem4AprMA8.webp",
-            "imageR2Id": "N8aGbrL4R_jz9EGr0MX5d"
+            image: '/images/contests/2011/Qp2E2vk-S5kTem4AprMA8.webp',
+            imageR2Id: 'N8aGbrL4R_jz9EGr0MX5d',
           },
           {
-            "id": "AY_q8GKMfTiJAMtKjkdlz",
-            "title": "FROG",
-            "description": null,
-            "placement": "third",
-            "photographer": {
-              "firstName": "MICHELE ",
-              "lastName": "DAVINO"
+            id: 'AY_q8GKMfTiJAMtKjkdlz',
+            title: 'FROG',
+            description: null,
+            placement: 'third',
+            photographer: {
+              firstName: 'MICHELE ',
+              lastName: 'DAVINO',
             },
-            "image": "/images/contests/2011/AY_q8GKMfTiJAMtKjkdlz.webp",
-            "imageR2Id": "GMZxEjwjXbIYaClcpXG9n"
+            image: '/images/contests/2011/AY_q8GKMfTiJAMtKjkdlz.webp',
+            imageR2Id: 'GMZxEjwjXbIYaClcpXG9n',
           },
           {
-            "id": "xtOjagcgbJqMoYWr1WLPI",
-            "title": "ARLECCHINO",
-            "description": null,
-            "placement": "runner-up",
-            "photographer": {
-              "firstName": "FILIPPO ",
-              "lastName": "BORGHI"
+            id: 'xtOjagcgbJqMoYWr1WLPI',
+            title: 'ARLECCHINO',
+            description: null,
+            placement: 'runner-up',
+            photographer: {
+              firstName: 'FILIPPO ',
+              lastName: 'BORGHI',
             },
-            "image": "/images/contests/2011/xtOjagcgbJqMoYWr1WLPI.webp",
-            "imageR2Id": "re_QkTc8wvFPZf5wKjwS8"
+            image: '/images/contests/2011/xtOjagcgbJqMoYWr1WLPI.webp',
+            imageR2Id: 're_QkTc8wvFPZf5wKjwS8',
           },
           {
-            "id": "B2_0YN_jmNxzQTCKKo5Al",
-            "title": "PIGMY DENISE",
-            "description": null,
-            "placement": "runner-up",
-            "photographer": {
-              "firstName": "ROBERTO ",
-              "lastName": "SPINSANTI"
+            id: 'B2_0YN_jmNxzQTCKKo5Al',
+            title: 'PIGMY DENISE',
+            description: null,
+            placement: 'runner-up',
+            photographer: {
+              firstName: 'ROBERTO ',
+              lastName: 'SPINSANTI',
             },
-            "image": "/images/contests/2011/B2_0YN_jmNxzQTCKKo5Al.webp",
-            "imageR2Id": "PolkoF_WM4eTDEjdAltId"
+            image: '/images/contests/2011/B2_0YN_jmNxzQTCKKo5Al.webp',
+            imageR2Id: 'PolkoF_WM4eTDEjdAltId',
           },
           {
-            "id": "7eTHQkItnHcqDp5RgN1mM",
-            "title": "SCARSA IGIENE ORALE ",
-            "description": null,
-            "placement": "runner-up",
-            "photographer": {
-              "firstName": "DAVIDE ",
-              "lastName": "LOPRESTI"
+            id: '7eTHQkItnHcqDp5RgN1mM',
+            title: 'SCARSA IGIENE ORALE ',
+            description: null,
+            placement: 'runner-up',
+            photographer: {
+              firstName: 'DAVIDE ',
+              lastName: 'LOPRESTI',
             },
-            "image": "/images/contests/2011/7eTHQkItnHcqDp5RgN1mM.webp",
-            "imageR2Id": "iBYKszmk9KGDNspq0xjo8"
+            image: '/images/contests/2011/7eTHQkItnHcqDp5RgN1mM.webp',
+            imageR2Id: 'iBYKszmk9KGDNspq0xjo8',
           },
           {
-            "id": "DCI3RkCkWND1gxK4rkKHC",
-            "title": "CRISTALLI DI MURANO",
-            "description": null,
-            "placement": "runner-up",
-            "photographer": {
-              "firstName": "STEFANO ",
-              "lastName": "GRADI"
+            id: 'DCI3RkCkWND1gxK4rkKHC',
+            title: 'CRISTALLI DI MURANO',
+            description: null,
+            placement: 'runner-up',
+            photographer: {
+              firstName: 'STEFANO ',
+              lastName: 'GRADI',
             },
-            "image": "/images/contests/2011/DCI3RkCkWND1gxK4rkKHC.webp",
-            "imageR2Id": "wcN8QqqJ5QmIbEPVXJQaK"
+            image: '/images/contests/2011/DCI3RkCkWND1gxK4rkKHC.webp',
+            imageR2Id: 'wcN8QqqJ5QmIbEPVXJQaK',
           },
           {
-            "id": "JykFMQ9boogPrWpLM9xEf",
-            "title": "BACIAMI ANCORA",
-            "description": null,
-            "placement": "runner-up",
-            "photographer": {
-              "firstName": "MARCELLO ",
-              "lastName": "DI FRANCESCO"
+            id: 'JykFMQ9boogPrWpLM9xEf',
+            title: 'BACIAMI ANCORA',
+            description: null,
+            placement: 'runner-up',
+            photographer: {
+              firstName: 'MARCELLO ',
+              lastName: 'DI FRANCESCO',
             },
-            "image": "/images/contests/2011/JykFMQ9boogPrWpLM9xEf.webp",
-            "imageR2Id": "mXZKYxVMjvwJIGY4EUmY0"
+            image: '/images/contests/2011/JykFMQ9boogPrWpLM9xEf.webp',
+            imageR2Id: 'mXZKYxVMjvwJIGY4EUmY0',
           },
           {
-            "id": "fXMxnf6KMv_FqBMJPE0wY",
-            "title": "DENTAL HYGIENIST",
-            "description": null,
-            "placement": "runner-up",
-            "photographer": {
-              "firstName": "ADRIANO",
-              "lastName": "MORETTIN"
+            id: 'fXMxnf6KMv_FqBMJPE0wY',
+            title: 'DENTAL HYGIENIST',
+            description: null,
+            placement: 'runner-up',
+            photographer: {
+              firstName: 'ADRIANO',
+              lastName: 'MORETTIN',
             },
-            "image": "/images/contests/2011/fXMxnf6KMv_FqBMJPE0wY.webp",
-            "imageR2Id": "eRn52_BK3NX4ytKKaSmd-"
+            image: '/images/contests/2011/fXMxnf6KMv_FqBMJPE0wY.webp',
+            imageR2Id: 'eRn52_BK3NX4ytKKaSmd-',
           },
           {
-            "id": "AbWb9xJgNvk6VfPDP_8oz",
-            "title": "IN POSA",
-            "description": null,
-            "placement": "runner-up",
-            "photographer": {
-              "firstName": "ADRIANO",
-              "lastName": "OCCHI"
+            id: 'AbWb9xJgNvk6VfPDP_8oz',
+            title: 'IN POSA',
+            description: null,
+            placement: 'runner-up',
+            photographer: {
+              firstName: 'ADRIANO',
+              lastName: 'OCCHI',
             },
-            "image": "/images/contests/2011/AbWb9xJgNvk6VfPDP_8oz.webp",
-            "imageR2Id": "uq0ITQ_jpV0AWP19zp0qW"
-          }
-        ]
+            image: '/images/contests/2011/AbWb9xJgNvk6VfPDP_8oz.webp',
+            imageR2Id: 'uq0ITQ_jpV0AWP19zp0qW',
+          },
+        ],
       },
       {
-        "id": "mediterranean",
-        "name": "Mediterranean Portfolio",
-        "winnerImage": "/images/contests/2011/PU8mE3VB_qEsyFXN8wFSY.webp",
-        "winnerImageR2Id": "ofM68TmV7QI5MAHPQuIWD",
-        "entries": [
+        id: 'mediterranean',
+        name: 'Mediterranean Portfolio',
+        winnerImage: '/images/contests/2011/PU8mE3VB_qEsyFXN8wFSY.webp',
+        winnerImageR2Id: 'ofM68TmV7QI5MAHPQuIWD',
+        entries: [
           {
-            "id": "PU8mE3VB_qEsyFXN8wFSY",
-            "title": "MORENA",
-            "description": null,
-            "placement": "first",
-            "photographer": {
-              "firstName": "RAIMUNDO FERNANDEZ",
-              "lastName": "DIAZ"
+            id: 'PU8mE3VB_qEsyFXN8wFSY',
+            title: 'MORENA',
+            description: null,
+            placement: 'first',
+            photographer: {
+              firstName: 'RAIMUNDO FERNANDEZ',
+              lastName: 'DIAZ',
             },
-            "image": "/images/contests/2011/PU8mE3VB_qEsyFXN8wFSY.webp",
-            "imageR2Id": "ofM68TmV7QI5MAHPQuIWD"
+            image: '/images/contests/2011/PU8mE3VB_qEsyFXN8wFSY.webp',
+            imageR2Id: 'ofM68TmV7QI5MAHPQuIWD',
           },
           {
-            "id": "XJh836vr7e3mas4g5DNFU",
-            "title": "A BOCCA APERTA",
-            "description": null,
-            "placement": "second",
-            "photographer": {
-              "firstName": "ADRIANO ",
-              "lastName": "OCCHI"
+            id: 'XJh836vr7e3mas4g5DNFU',
+            title: 'A BOCCA APERTA',
+            description: null,
+            placement: 'second',
+            photographer: {
+              firstName: 'ADRIANO ',
+              lastName: 'OCCHI',
             },
-            "image": "/images/contests/2011/XJh836vr7e3mas4g5DNFU.webp",
-            "imageR2Id": "eBHEqeuEb_MPDUhvEQdzU"
+            image: '/images/contests/2011/XJh836vr7e3mas4g5DNFU.webp',
+            imageR2Id: 'eBHEqeuEb_MPDUhvEQdzU',
           },
           {
-            "id": "wzq0-swwmRw1V-fPxxqeh",
-            "title": "JANOLUS",
-            "description": null,
-            "placement": "third",
-            "photographer": {
-              "firstName": "FILIPPO",
-              "lastName": "BORGHI"
+            id: 'wzq0-swwmRw1V-fPxxqeh',
+            title: 'JANOLUS',
+            description: null,
+            placement: 'third',
+            photographer: {
+              firstName: 'FILIPPO',
+              lastName: 'BORGHI',
             },
-            "image": "/images/contests/2011/wzq0-swwmRw1V-fPxxqeh.webp",
-            "imageR2Id": "fNm-cfzrLtt9DljqPDaMs"
+            image: '/images/contests/2011/wzq0-swwmRw1V-fPxxqeh.webp',
+            imageR2Id: 'fNm-cfzrLtt9DljqPDaMs',
           },
           {
-            "id": "JGJQdAs0hSDJkv2D9uLw9",
-            "title": "LIPOPHRYRYS PAVO",
-            "description": null,
-            "placement": "runner-up",
-            "photographer": {
-              "firstName": "GUIDO",
-              "lastName": "VILLANI"
+            id: 'JGJQdAs0hSDJkv2D9uLw9',
+            title: 'LIPOPHRYRYS PAVO',
+            description: null,
+            placement: 'runner-up',
+            photographer: {
+              firstName: 'GUIDO',
+              lastName: 'VILLANI',
             },
-            "image": "/images/contests/2011/JGJQdAs0hSDJkv2D9uLw9.webp",
-            "imageR2Id": "yIMRKZAIAVQS9N-LeBahU"
+            image: '/images/contests/2011/JGJQdAs0hSDJkv2D9uLw9.webp',
+            imageR2Id: 'yIMRKZAIAVQS9N-LeBahU',
           },
           {
-            "id": "dQq_ZN2xO1mSTwiyRoVFF",
-            "title": "SPIRO",
-            "description": null,
-            "placement": "runner-up",
-            "photographer": {
-              "firstName": "STEFANO",
-              "lastName": "GRADI"
+            id: 'dQq_ZN2xO1mSTwiyRoVFF',
+            title: 'SPIRO',
+            description: null,
+            placement: 'runner-up',
+            photographer: {
+              firstName: 'STEFANO',
+              lastName: 'GRADI',
             },
-            "image": "/images/contests/2011/dQq_ZN2xO1mSTwiyRoVFF.webp",
-            "imageR2Id": "96W2OZvyk2d5s1RHWIfp1"
+            image: '/images/contests/2011/dQq_ZN2xO1mSTwiyRoVFF.webp',
+            imageR2Id: '96W2OZvyk2d5s1RHWIfp1',
           },
           {
-            "id": "cLWkP76vHdmFqX5qvrZhE",
-            "title": "ATTENZIONE",
-            "description": null,
-            "placement": "runner-up",
-            "photographer": {
-              "firstName": "ADRIANO",
-              "lastName": "OCCHI"
+            id: 'cLWkP76vHdmFqX5qvrZhE',
+            title: 'ATTENZIONE',
+            description: null,
+            placement: 'runner-up',
+            photographer: {
+              firstName: 'ADRIANO',
+              lastName: 'OCCHI',
             },
-            "image": "/images/contests/2011/cLWkP76vHdmFqX5qvrZhE.webp",
-            "imageR2Id": "8V-rMIFWUfPSI0UNsiO7G"
+            image: '/images/contests/2011/cLWkP76vHdmFqX5qvrZhE.webp',
+            imageR2Id: '8V-rMIFWUfPSI0UNsiO7G',
           },
           {
-            "id": "etVAxuwfCw5Ga0YXaT4T1",
-            "title": "PIUME",
-            "description": null,
-            "placement": "runner-up",
-            "photographer": {
-              "firstName": "FILIPPO ",
-              "lastName": "BORGHI"
+            id: 'etVAxuwfCw5Ga0YXaT4T1',
+            title: 'PIUME',
+            description: null,
+            placement: 'runner-up',
+            photographer: {
+              firstName: 'FILIPPO ',
+              lastName: 'BORGHI',
             },
-            "image": "/images/contests/2011/etVAxuwfCw5Ga0YXaT4T1.webp",
-            "imageR2Id": "ostnJKXP83N4MZns77zOo"
+            image: '/images/contests/2011/etVAxuwfCw5Ga0YXaT4T1.webp',
+            imageR2Id: 'ostnJKXP83N4MZns77zOo',
           },
           {
-            "id": "ulTF31WUzX-vULCirGeGm",
-            "title": "RAGGI",
-            "description": null,
-            "placement": "runner-up",
-            "photographer": {
-              "firstName": "MAURO ",
-              "lastName": "APULEO"
+            id: 'ulTF31WUzX-vULCirGeGm',
+            title: 'RAGGI',
+            description: null,
+            placement: 'runner-up',
+            photographer: {
+              firstName: 'MAURO ',
+              lastName: 'APULEO',
             },
-            "image": "/images/contests/2011/ulTF31WUzX-vULCirGeGm.webp",
-            "imageR2Id": "bZFa-S5--AQ9OrMkPGAH6"
-          }
-        ]
+            image: '/images/contests/2011/ulTF31WUzX-vULCirGeGm.webp',
+            imageR2Id: 'bZFa-S5--AQ9OrMkPGAH6',
+          },
+        ],
       },
       {
-        "id": "newcomers",
-        "name": "Newcomers",
-        "winnerImage": "/images/contests/2011/KSxzxyWuwBIHtVAGZF5dR.webp",
-        "winnerImageR2Id": "UxOaS_MLuAXVX2Xu33fD-",
-        "entries": [
+        id: 'newcomers',
+        name: 'Newcomers',
+        winnerImage: '/images/contests/2011/KSxzxyWuwBIHtVAGZF5dR.webp',
+        winnerImageR2Id: 'UxOaS_MLuAXVX2Xu33fD-',
+        entries: [
           {
-            "id": "KSxzxyWuwBIHtVAGZF5dR",
-            "title": "PRINCESS ZEINAB",
-            "description": null,
-            "placement": "first",
-            "photographer": {
-              "firstName": "RICCARDO ",
-              "lastName": "GIANNINI"
+            id: 'KSxzxyWuwBIHtVAGZF5dR',
+            title: 'PRINCESS ZEINAB',
+            description: null,
+            placement: 'first',
+            photographer: {
+              firstName: 'RICCARDO ',
+              lastName: 'GIANNINI',
             },
-            "image": "/images/contests/2011/KSxzxyWuwBIHtVAGZF5dR.webp",
-            "imageR2Id": "UxOaS_MLuAXVX2Xu33fD-"
+            image: '/images/contests/2011/KSxzxyWuwBIHtVAGZF5dR.webp',
+            imageR2Id: 'UxOaS_MLuAXVX2Xu33fD-',
           },
           {
-            "id": "ninFcKZr28jNsu09eVt6i",
-            "title": "SCORFANO BARBUTO",
-            "description": null,
-            "placement": "second",
-            "photographer": {
-              "firstName": "FABRIZIO ",
-              "lastName": "POMPILIO"
+            id: 'ninFcKZr28jNsu09eVt6i',
+            title: 'SCORFANO BARBUTO',
+            description: null,
+            placement: 'second',
+            photographer: {
+              firstName: 'FABRIZIO ',
+              lastName: 'POMPILIO',
             },
-            "image": "/images/contests/2011/ninFcKZr28jNsu09eVt6i.webp",
-            "imageR2Id": "HQi5OzAROH9LhSWnbkT-H"
+            image: '/images/contests/2011/ninFcKZr28jNsu09eVt6i.webp',
+            imageR2Id: 'HQi5OzAROH9LhSWnbkT-H',
           },
           {
-            "id": "cjtcVw9C5WdUNav_w54pw",
-            "title": "NEMOWHITE",
-            "description": null,
-            "placement": "third",
-            "photographer": {
-              "firstName": "GIULIA ",
-              "lastName": "GHIRARDELLO"
+            id: 'cjtcVw9C5WdUNav_w54pw',
+            title: 'NEMOWHITE',
+            description: null,
+            placement: 'third',
+            photographer: {
+              firstName: 'GIULIA ',
+              lastName: 'GHIRARDELLO',
             },
-            "image": "/images/contests/2011/cjtcVw9C5WdUNav_w54pw.webp",
-            "imageR2Id": "lNure4_e2ofeGNQK9GeXX"
+            image: '/images/contests/2011/cjtcVw9C5WdUNav_w54pw.webp',
+            imageR2Id: 'lNure4_e2ofeGNQK9GeXX',
           },
           {
-            "id": "7HKPrPdaEcyFOuoSs6RtX",
-            "title": "RABBIT",
-            "description": null,
-            "placement": "runner-up",
-            "photographer": {
-              "firstName": "FRANCESCA ",
-              "lastName": "ZULLI"
+            id: '7HKPrPdaEcyFOuoSs6RtX',
+            title: 'RABBIT',
+            description: null,
+            placement: 'runner-up',
+            photographer: {
+              firstName: 'FRANCESCA ',
+              lastName: 'ZULLI',
             },
-            "image": "/images/contests/2011/7HKPrPdaEcyFOuoSs6RtX.webp",
-            "imageR2Id": "0ffvUSyJSR3y-HM1lHTmO"
+            image: '/images/contests/2011/7HKPrPdaEcyFOuoSs6RtX.webp',
+            imageR2Id: '0ffvUSyJSR3y-HM1lHTmO',
           },
           {
-            "id": "-KtDx21Cc8HzWM2K0fMci",
-            "title": "GOBIDI MULTICOLOR",
-            "description": null,
-            "placement": "runner-up",
-            "photographer": {
-              "firstName": "FABRIZIO",
-              "lastName": "POMPILIO"
+            id: '-KtDx21Cc8HzWM2K0fMci',
+            title: 'GOBIDI MULTICOLOR',
+            description: null,
+            placement: 'runner-up',
+            photographer: {
+              firstName: 'FABRIZIO',
+              lastName: 'POMPILIO',
             },
-            "image": "/images/contests/2011/-KtDx21Cc8HzWM2K0fMci.webp",
-            "imageR2Id": "3ShxIMtJipTEZ6HuGtbo5"
+            image: '/images/contests/2011/-KtDx21Cc8HzWM2K0fMci.webp',
+            imageR2Id: '3ShxIMtJipTEZ6HuGtbo5',
           },
           {
-            "id": "m4yw7KyNhwbyPs9Kzj7d0",
-            "title": "ORA DI CENA",
-            "description": null,
-            "placement": "runner-up",
-            "photographer": {
-              "firstName": "RICCARDO ",
-              "lastName": "GIANNINI"
+            id: 'm4yw7KyNhwbyPs9Kzj7d0',
+            title: 'ORA DI CENA',
+            description: null,
+            placement: 'runner-up',
+            photographer: {
+              firstName: 'RICCARDO ',
+              lastName: 'GIANNINI',
             },
-            "image": "/images/contests/2011/m4yw7KyNhwbyPs9Kzj7d0.webp",
-            "imageR2Id": "RcjCICDMUudIqS4wb65wL"
+            image: '/images/contests/2011/m4yw7KyNhwbyPs9Kzj7d0.webp',
+            imageR2Id: 'RcjCICDMUudIqS4wb65wL',
           },
           {
-            "id": "u6sGU1HBjzfIi9nAIWvFK",
-            "title": "PIGMY DENISE",
-            "description": null,
-            "placement": "runner-up",
-            "photographer": {
-              "firstName": "PAOLO",
-              "lastName": "ISGRO'"
+            id: 'u6sGU1HBjzfIi9nAIWvFK',
+            title: 'PIGMY DENISE',
+            description: null,
+            placement: 'runner-up',
+            photographer: {
+              firstName: 'PAOLO',
+              lastName: "ISGRO'",
             },
-            "image": "/images/contests/2011/u6sGU1HBjzfIi9nAIWvFK.webp",
-            "imageR2Id": "vhHF83SEM62cXTcZZ7chO"
+            image: '/images/contests/2011/u6sGU1HBjzfIi9nAIWvFK.webp',
+            imageR2Id: 'vhHF83SEM62cXTcZZ7chO',
           },
           {
-            "id": "LZD5rrlh8cSW50NsU61u8",
-            "title": "ZEBRA CRAB ON SEA URCHIN",
-            "description": null,
-            "placement": "runner-up",
-            "photographer": {
-              "firstName": "PAOLO ",
-              "lastName": "ISGRO'"
+            id: 'LZD5rrlh8cSW50NsU61u8',
+            title: 'ZEBRA CRAB ON SEA URCHIN',
+            description: null,
+            placement: 'runner-up',
+            photographer: {
+              firstName: 'PAOLO ',
+              lastName: "ISGRO'",
             },
-            "image": "/images/contests/2011/LZD5rrlh8cSW50NsU61u8.webp",
-            "imageR2Id": "dAMdUUVAbRrAnz8p1mYwt"
+            image: '/images/contests/2011/LZD5rrlh8cSW50NsU61u8.webp',
+            imageR2Id: 'dAMdUUVAbRrAnz8p1mYwt',
           },
           {
-            "id": "rp2TAKXBwxdcJwm-rUHm4",
-            "title": "QUADRIGLIA",
-            "description": null,
-            "placement": "runner-up",
-            "photographer": {
-              "firstName": "AMEDEO ",
-              "lastName": "ALTOMARE"
+            id: 'rp2TAKXBwxdcJwm-rUHm4',
+            title: 'QUADRIGLIA',
+            description: null,
+            placement: 'runner-up',
+            photographer: {
+              firstName: 'AMEDEO ',
+              lastName: 'ALTOMARE',
             },
-            "image": "/images/contests/2011/rp2TAKXBwxdcJwm-rUHm4.webp",
-            "imageR2Id": "_1nY80x9m8FWtNj-rrUu2"
+            image: '/images/contests/2011/rp2TAKXBwxdcJwm-rUHm4.webp',
+            imageR2Id: '_1nY80x9m8FWtNj-rrUu2',
           },
           {
-            "id": "RArmqh8077YMTLlNx573r",
-            "title": "ARLECCHINO",
-            "description": null,
-            "placement": "runner-up",
-            "photographer": {
-              "firstName": "GIORGIA ",
-              "lastName": "LOMBARDINI"
+            id: 'RArmqh8077YMTLlNx573r',
+            title: 'ARLECCHINO',
+            description: null,
+            placement: 'runner-up',
+            photographer: {
+              firstName: 'GIORGIA ',
+              lastName: 'LOMBARDINI',
             },
-            "image": "/images/contests/2011/RArmqh8077YMTLlNx573r.webp",
-            "imageR2Id": "589Yn1AJ5bpsn1WpSZfiW"
-          }
-        ]
+            image: '/images/contests/2011/RArmqh8077YMTLlNx573r.webp',
+            imageR2Id: '589Yn1AJ5bpsn1WpSZfiW',
+          },
+        ],
       },
       {
-        "id": "open",
-        "name": "Open",
-        "winnerImage": "/images/contests/2011/DPU4jXdY5I4Yu8Aw8_NAd.webp",
-        "winnerImageR2Id": "NBWR6f7jQMYkGVzlxMjde",
-        "entries": [
+        id: 'open',
+        name: 'Open',
+        winnerImage: '/images/contests/2011/DPU4jXdY5I4Yu8Aw8_NAd.webp',
+        winnerImageR2Id: 'NBWR6f7jQMYkGVzlxMjde',
+        entries: [
           {
-            "id": "DPU4jXdY5I4Yu8Aw8_NAd",
-            "title": "SULLA CRESTA",
-            "description": null,
-            "placement": "first",
-            "photographer": {
-              "firstName": "MARCELLO ",
-              "lastName": "DI FRANCESCO"
+            id: 'DPU4jXdY5I4Yu8Aw8_NAd',
+            title: 'SULLA CRESTA',
+            description: null,
+            placement: 'first',
+            photographer: {
+              firstName: 'MARCELLO ',
+              lastName: 'DI FRANCESCO',
             },
-            "image": "/images/contests/2011/DPU4jXdY5I4Yu8Aw8_NAd.webp",
-            "imageR2Id": "NBWR6f7jQMYkGVzlxMjde"
+            image: '/images/contests/2011/DPU4jXdY5I4Yu8Aw8_NAd.webp',
+            imageR2Id: 'NBWR6f7jQMYkGVzlxMjde',
           },
           {
-            "id": "yjFgcGZBxYMdLneO8ue2E",
-            "title": "I PESCATORI",
-            "description": null,
-            "placement": "second",
-            "photographer": {
-              "firstName": "SALVATORE ",
-              "lastName": "FRANCO"
+            id: 'yjFgcGZBxYMdLneO8ue2E',
+            title: 'I PESCATORI',
+            description: null,
+            placement: 'second',
+            photographer: {
+              firstName: 'SALVATORE ',
+              lastName: 'FRANCO',
             },
-            "image": "/images/contests/2011/yjFgcGZBxYMdLneO8ue2E.webp",
-            "imageR2Id": "5OSQl4FpDIQIuiNpHnXCV"
+            image: '/images/contests/2011/yjFgcGZBxYMdLneO8ue2E.webp',
+            imageR2Id: '5OSQl4FpDIQIuiNpHnXCV',
           },
           {
-            "id": "fOguOGt4vvjwIHLFBgVgH",
-            "title": "PORTOVENERE",
-            "description": null,
-            "placement": "third",
-            "photographer": {
-              "firstName": "DAVIDE ",
-              "lastName": "LOPRESTI"
+            id: 'fOguOGt4vvjwIHLFBgVgH',
+            title: 'PORTOVENERE',
+            description: null,
+            placement: 'third',
+            photographer: {
+              firstName: 'DAVIDE ',
+              lastName: 'LOPRESTI',
             },
-            "image": "/images/contests/2011/fOguOGt4vvjwIHLFBgVgH.webp",
-            "imageR2Id": "Edkf3BElOkLMG2wUm507y"
+            image: '/images/contests/2011/fOguOGt4vvjwIHLFBgVgH.webp',
+            imageR2Id: 'Edkf3BElOkLMG2wUm507y',
           },
           {
-            "id": "IFD7huiwXuurj75nEAeKI",
-            "title": "IL FASCINO DELL'AURORA",
-            "description": null,
-            "placement": "runner-up",
-            "photographer": {
-              "firstName": "FABRIZIO",
-              "lastName": "COSTA"
+            id: 'IFD7huiwXuurj75nEAeKI',
+            title: "IL FASCINO DELL'AURORA",
+            description: null,
+            placement: 'runner-up',
+            photographer: {
+              firstName: 'FABRIZIO',
+              lastName: 'COSTA',
             },
-            "image": "/images/contests/2011/IFD7huiwXuurj75nEAeKI.webp",
-            "imageR2Id": "oD90mq8buemR82Tix2L9f"
+            image: '/images/contests/2011/IFD7huiwXuurj75nEAeKI.webp',
+            imageR2Id: 'oD90mq8buemR82Tix2L9f',
           },
           {
-            "id": "mETgCbJd5_7blxgjTdhYy",
-            "title": "L'ATTESA",
-            "description": null,
-            "placement": "runner-up",
-            "photographer": {
-              "firstName": "SALVATORE ",
-              "lastName": "IANNIELLO"
+            id: 'mETgCbJd5_7blxgjTdhYy',
+            title: "L'ATTESA",
+            description: null,
+            placement: 'runner-up',
+            photographer: {
+              firstName: 'SALVATORE ',
+              lastName: 'IANNIELLO',
             },
-            "image": "/images/contests/2011/mETgCbJd5_7blxgjTdhYy.webp",
-            "imageR2Id": "P4cD-lc8fU5fP86uMcQvD"
-          }
-        ]
+            image: '/images/contests/2011/mETgCbJd5_7blxgjTdhYy.webp',
+            imageR2Id: 'P4cD-lc8fU5fP86uMcQvD',
+          },
+        ],
       },
       {
-        "id": "waves",
-        "name": "Waves",
-        "winnerImage": "/images/contests/2011/dN68rrvgOu6X3-RjipMxv.webp",
-        "winnerImageR2Id": "lX_hTlM6D_GA7zPua9_zR",
-        "entries": [
+        id: 'waves',
+        name: 'Waves',
+        winnerImage: '/images/contests/2011/dN68rrvgOu6X3-RjipMxv.webp',
+        winnerImageR2Id: 'lX_hTlM6D_GA7zPua9_zR',
+        entries: [
           {
-            "id": "dN68rrvgOu6X3-RjipMxv",
-            "title": "OLTRE",
-            "description": null,
-            "placement": "first",
-            "photographer": {
-              "firstName": "FABIO",
-              "lastName": "PERACCHIA"
+            id: 'dN68rrvgOu6X3-RjipMxv',
+            title: 'OLTRE',
+            description: null,
+            placement: 'first',
+            photographer: {
+              firstName: 'FABIO',
+              lastName: 'PERACCHIA',
             },
-            "image": "/images/contests/2011/dN68rrvgOu6X3-RjipMxv.webp",
-            "imageR2Id": "lX_hTlM6D_GA7zPua9_zR"
-          }
-        ]
+            image: '/images/contests/2011/dN68rrvgOu6X3-RjipMxv.webp',
+            imageR2Id: 'lX_hTlM6D_GA7zPua9_zR',
+          },
+        ],
       },
       {
-        "id": "wide-angle",
-        "name": "Wide Angle",
-        "winnerImage": "/images/contests/2011/qhoHgm0o0Slp5t8JcKS8M.webp",
-        "winnerImageR2Id": "BeGqo9X-eWpKUtIO4FB_F",
-        "entries": [
+        id: 'wide-angle',
+        name: 'Wide Angle',
+        winnerImage: '/images/contests/2011/qhoHgm0o0Slp5t8JcKS8M.webp',
+        winnerImageR2Id: 'BeGqo9X-eWpKUtIO4FB_F',
+        entries: [
           {
-            "id": "qhoHgm0o0Slp5t8JcKS8M",
-            "title": "FISHEYE INTO EYEFISH",
-            "description": null,
-            "placement": "first",
-            "photographer": {
-              "firstName": "MIMMO",
-              "lastName": "ROSCIGNO"
+            id: 'qhoHgm0o0Slp5t8JcKS8M',
+            title: 'FISHEYE INTO EYEFISH',
+            description: null,
+            placement: 'first',
+            photographer: {
+              firstName: 'MIMMO',
+              lastName: 'ROSCIGNO',
             },
-            "image": "/images/contests/2011/qhoHgm0o0Slp5t8JcKS8M.webp",
-            "imageR2Id": "BeGqo9X-eWpKUtIO4FB_F"
+            image: '/images/contests/2011/qhoHgm0o0Slp5t8JcKS8M.webp',
+            imageR2Id: 'BeGqo9X-eWpKUtIO4FB_F',
           },
           {
-            "id": "DEmhhA97F6WJf4gG-pYQm",
-            "title": "TROMPETA",
-            "description": null,
-            "placement": "second",
-            "photographer": {
-              "firstName": "JORDI BENITEZ",
-              "lastName": "CASTELLAS"
+            id: 'DEmhhA97F6WJf4gG-pYQm',
+            title: 'TROMPETA',
+            description: null,
+            placement: 'second',
+            photographer: {
+              firstName: 'JORDI BENITEZ',
+              lastName: 'CASTELLAS',
             },
-            "image": "/images/contests/2011/DEmhhA97F6WJf4gG-pYQm.webp",
-            "imageR2Id": "YT7AoJBraLr1Ofvr6GAYi"
+            image: '/images/contests/2011/DEmhhA97F6WJf4gG-pYQm.webp',
+            imageR2Id: 'YT7AoJBraLr1Ofvr6GAYi',
           },
           {
-            "id": "4BjzbjiwqC0RcMoHmWzIa",
-            "title": "SQUADRIGLIA ",
-            "description": null,
-            "placement": "third",
-            "photographer": {
-              "firstName": "ALBERTO",
-              "lastName": "ALTOMARE "
+            id: '4BjzbjiwqC0RcMoHmWzIa',
+            title: 'SQUADRIGLIA ',
+            description: null,
+            placement: 'third',
+            photographer: {
+              firstName: 'ALBERTO',
+              lastName: 'ALTOMARE ',
             },
-            "image": "/images/contests/2011/4BjzbjiwqC0RcMoHmWzIa.webp",
-            "imageR2Id": "If5-xx_TLMFn-aVITbRJv"
+            image: '/images/contests/2011/4BjzbjiwqC0RcMoHmWzIa.webp',
+            imageR2Id: 'If5-xx_TLMFn-aVITbRJv',
           },
           {
-            "id": "qk7yc6Iq-IKX8FTwvpl_E",
-            "title": "SARDINE",
-            "description": null,
-            "placement": "runner-up",
-            "photographer": {
-              "firstName": "DAVIDE ",
-              "lastName": "LOPRESTI"
+            id: 'qk7yc6Iq-IKX8FTwvpl_E',
+            title: 'SARDINE',
+            description: null,
+            placement: 'runner-up',
+            photographer: {
+              firstName: 'DAVIDE ',
+              lastName: 'LOPRESTI',
             },
-            "image": "/images/contests/2011/qk7yc6Iq-IKX8FTwvpl_E.webp",
-            "imageR2Id": "DW03oplydRHjmqMPvMgQz"
+            image: '/images/contests/2011/qk7yc6Iq-IKX8FTwvpl_E.webp',
+            imageR2Id: 'DW03oplydRHjmqMPvMgQz',
           },
           {
-            "id": "VZQDK6OMEHqhDRom3BDzq",
-            "title": "ELEGANCE",
-            "description": null,
-            "placement": "runner-up",
-            "photographer": {
-              "firstName": "PAOLO",
-              "lastName": "ZULLI"
+            id: 'VZQDK6OMEHqhDRom3BDzq',
+            title: 'ELEGANCE',
+            description: null,
+            placement: 'runner-up',
+            photographer: {
+              firstName: 'PAOLO',
+              lastName: 'ZULLI',
             },
-            "image": "/images/contests/2011/VZQDK6OMEHqhDRom3BDzq.webp",
-            "imageR2Id": "6ZZhsV7C1XphXrdQRMcv-"
+            image: '/images/contests/2011/VZQDK6OMEHqhDRom3BDzq.webp',
+            imageR2Id: '6ZZhsV7C1XphXrdQRMcv-',
           },
           {
-            "id": "DDUaYxFhKRvMoBoFKw44u",
-            "title": "QUESTO PICCOLO GRANDE AMORE",
-            "description": null,
-            "placement": "runner-up",
-            "photographer": {
-              "firstName": "DAVID ",
-              "lastName": "SALVATORI"
+            id: 'DDUaYxFhKRvMoBoFKw44u',
+            title: 'QUESTO PICCOLO GRANDE AMORE',
+            description: null,
+            placement: 'runner-up',
+            photographer: {
+              firstName: 'DAVID ',
+              lastName: 'SALVATORI',
             },
-            "image": "/images/contests/2011/DDUaYxFhKRvMoBoFKw44u.webp",
-            "imageR2Id": "kCB75tMDoAGibZnoyMcFo"
+            image: '/images/contests/2011/DDUaYxFhKRvMoBoFKw44u.webp',
+            imageR2Id: 'kCB75tMDoAGibZnoyMcFo',
           },
           {
-            "id": "Q_yBIJUUyOT81LZ9a2CEo",
-            "title": "SEPIA'S",
-            "description": null,
-            "placement": "runner-up",
-            "photographer": {
-              "firstName": "LUC ",
-              "lastName": "ROOMAN"
+            id: 'Q_yBIJUUyOT81LZ9a2CEo',
+            title: "SEPIA'S",
+            description: null,
+            placement: 'runner-up',
+            photographer: {
+              firstName: 'LUC ',
+              lastName: 'ROOMAN',
             },
-            "image": "/images/contests/2011/Q_yBIJUUyOT81LZ9a2CEo.webp",
-            "imageR2Id": "RZDqa5AcGKIqRqFs2a9PQ"
+            image: '/images/contests/2011/Q_yBIJUUyOT81LZ9a2CEo.webp',
+            imageR2Id: 'RZDqa5AcGKIqRqFs2a9PQ',
           },
           {
-            "id": "lCllSBP7XMDpxO5jZDxxD",
-            "title": "GORGONIA",
-            "description": null,
-            "placement": "runner-up",
-            "photographer": {
-              "firstName": "ROBERTO",
-              "lastName": "SPINSANTI"
+            id: 'lCllSBP7XMDpxO5jZDxxD',
+            title: 'GORGONIA',
+            description: null,
+            placement: 'runner-up',
+            photographer: {
+              firstName: 'ROBERTO',
+              lastName: 'SPINSANTI',
             },
-            "image": "/images/contests/2011/lCllSBP7XMDpxO5jZDxxD.webp",
-            "imageR2Id": "Doq2ZhgX7mcDC__mCOy15"
+            image: '/images/contests/2011/lCllSBP7XMDpxO5jZDxxD.webp',
+            imageR2Id: 'Doq2ZhgX7mcDC__mCOy15',
           },
           {
-            "id": "YQlIoGu-cmb-LsS8i3jUV",
-            "title": "GROTTINA",
-            "description": null,
-            "placement": "runner-up",
-            "photographer": {
-              "firstName": "MICHELE ",
-              "lastName": "DAVINO"
+            id: 'YQlIoGu-cmb-LsS8i3jUV',
+            title: 'GROTTINA',
+            description: null,
+            placement: 'runner-up',
+            photographer: {
+              firstName: 'MICHELE ',
+              lastName: 'DAVINO',
             },
-            "image": "/images/contests/2011/YQlIoGu-cmb-LsS8i3jUV.webp",
-            "imageR2Id": "jihRT4pkmhS_J3b0wpJJ8"
+            image: '/images/contests/2011/YQlIoGu-cmb-LsS8i3jUV.webp',
+            imageR2Id: 'jihRT4pkmhS_J3b0wpJJ8',
           },
           {
-            "id": "4J8cr_0yWbSfKHJauQ6fs",
-            "title": "TRASPARENZE",
-            "description": null,
-            "placement": "runner-up",
-            "photographer": {
-              "firstName": "TANCREDI",
-              "lastName": "GUERRERIO"
+            id: '4J8cr_0yWbSfKHJauQ6fs',
+            title: 'TRASPARENZE',
+            description: null,
+            placement: 'runner-up',
+            photographer: {
+              firstName: 'TANCREDI',
+              lastName: 'GUERRERIO',
             },
-            "image": "/images/contests/2011/4J8cr_0yWbSfKHJauQ6fs.webp",
-            "imageR2Id": "SHKKosOpU7z5sxEcyqSW5"
-          }
-        ]
-      }
-    ]
+            image: '/images/contests/2011/4J8cr_0yWbSfKHJauQ6fs.webp',
+            imageR2Id: 'SHKKosOpU7z5sxEcyqSW5',
+          },
+        ],
+      },
+    ],
   },
   {
-    "id": "uw-2010",
-    "year": 2010,
-    "name": "UW Contest 2010",
-    "description": "Annual underwater photography competition celebrating the beauty and diversity of marine life",
-    "indexImage": "/images/contests/2010/F43ydyZdzfNFujjrwk9J2.webp",
-    "indexImageR2Id": "BhVweMYT5pMaRjhnjNjaq",
-    "currentContest": false,
-    "judges": [
+    id: 'uw-2010',
+    year: 2010,
+    name: 'UW Contest 2010',
+    description:
+      'Annual underwater photography competition celebrating the beauty and diversity of marine life',
+    indexImage: '/images/contests/2010/F43ydyZdzfNFujjrwk9J2.webp',
+    indexImageR2Id: 'BhVweMYT5pMaRjhnjNjaq',
+    currentContest: false,
+    judges: [
       {
-        "id": "q4GTFTwRQqsef73q9Hwod",
-        "fullName": "Andrea Giulianini",
-        "r2ImageId": null
+        id: 'q4GTFTwRQqsef73q9Hwod',
+        fullName: 'Andrea Giulianini',
+        r2ImageId: null,
       },
       {
-        "id": "q06TptQMvbld6RIPaUYMu",
-        "fullName": "Denis Palviani",
-        "r2ImageId": null
+        id: 'q06TptQMvbld6RIPaUYMu',
+        fullName: 'Denis Palviani',
+        r2ImageId: null,
       },
       {
-        "id": "1kF373JS3NA6vgysyyu0h",
-        "fullName": "Claudio Bertasini",
-        "r2ImageId": null
-      }
+        id: '1kF373JS3NA6vgysyyu0h',
+        fullName: 'Claudio Bertasini',
+        r2ImageId: null,
+      },
     ],
-    "categories": [
+    categories: [
       {
-        "id": "black-and-white",
-        "name": "Black & White",
-        "winnerImage": "/images/contests/2010/F43ydyZdzfNFujjrwk9J2.webp",
-        "winnerImageR2Id": "BhVweMYT5pMaRjhnjNjaq",
-        "entries": [
+        id: 'black-and-white',
+        name: 'Black & White',
+        winnerImage: '/images/contests/2010/F43ydyZdzfNFujjrwk9J2.webp',
+        winnerImageR2Id: 'BhVweMYT5pMaRjhnjNjaq',
+        entries: [
           {
-            "id": "F43ydyZdzfNFujjrwk9J2",
-            "title": "SEPIA'S",
-            "description": null,
-            "placement": "first",
-            "photographer": {
-              "firstName": "LUC ",
-              "lastName": "ROOMAN"
+            id: 'F43ydyZdzfNFujjrwk9J2',
+            title: "SEPIA'S",
+            description: null,
+            placement: 'first',
+            photographer: {
+              firstName: 'LUC ',
+              lastName: 'ROOMAN',
             },
-            "image": "/images/contests/2010/F43ydyZdzfNFujjrwk9J2.webp",
-            "imageR2Id": "BhVweMYT5pMaRjhnjNjaq"
+            image: '/images/contests/2010/F43ydyZdzfNFujjrwk9J2.webp',
+            imageR2Id: 'BhVweMYT5pMaRjhnjNjaq',
           },
           {
-            "id": "cUTyB9NlswTvJq771mRxS",
-            "title": "WREK",
-            "description": null,
-            "placement": "second",
-            "photographer": {
-              "firstName": "MARCO",
-              "lastName": "CARACENI"
+            id: 'cUTyB9NlswTvJq771mRxS',
+            title: 'WREK',
+            description: null,
+            placement: 'second',
+            photographer: {
+              firstName: 'MARCO',
+              lastName: 'CARACENI',
             },
-            "image": "/images/contests/2010/cUTyB9NlswTvJq771mRxS.webp",
-            "imageR2Id": "ZDgmwlR-skQNHWCOlfiZ7"
+            image: '/images/contests/2010/cUTyB9NlswTvJq771mRxS.webp',
+            imageR2Id: 'ZDgmwlR-skQNHWCOlfiZ7',
           },
           {
-            "id": "fH_BA3IqWYggRLJ4q481o",
-            "title": "LA GROTTA DELLO SBRUFFO",
-            "description": null,
-            "placement": "third",
-            "photographer": {
-              "firstName": "ANNIBALE ",
-              "lastName": "SIMI"
+            id: 'fH_BA3IqWYggRLJ4q481o',
+            title: 'LA GROTTA DELLO SBRUFFO',
+            description: null,
+            placement: 'third',
+            photographer: {
+              firstName: 'ANNIBALE ',
+              lastName: 'SIMI',
             },
-            "image": "/images/contests/2010/fH_BA3IqWYggRLJ4q481o.webp",
-            "imageR2Id": "f3favkaf3eQiPMQCCqr_K"
-          }
-        ]
+            image: '/images/contests/2010/fH_BA3IqWYggRLJ4q481o.webp',
+            imageR2Id: 'f3favkaf3eQiPMQCCqr_K',
+          },
+        ],
       },
       {
-        "id": "macro",
-        "name": "Macro",
-        "winnerImage": "/images/contests/2010/wOkTVgRDjMCjjXoZkC-Zv.webp",
-        "winnerImageR2Id": "LI4ouTpTOMXXKHUpjUDJN",
-        "entries": [
+        id: 'macro',
+        name: 'Macro',
+        winnerImage: '/images/contests/2010/wOkTVgRDjMCjjXoZkC-Zv.webp',
+        winnerImageR2Id: 'LI4ouTpTOMXXKHUpjUDJN',
+        entries: [
           {
-            "id": "wOkTVgRDjMCjjXoZkC-Zv",
-            "title": "PESCE VOLANTE ",
-            "description": null,
-            "placement": "first",
-            "photographer": {
-              "firstName": "MICHELE",
-              "lastName": "DAVINO"
+            id: 'wOkTVgRDjMCjjXoZkC-Zv',
+            title: 'PESCE VOLANTE ',
+            description: null,
+            placement: 'first',
+            photographer: {
+              firstName: 'MICHELE',
+              lastName: 'DAVINO',
             },
-            "image": "/images/contests/2010/wOkTVgRDjMCjjXoZkC-Zv.webp",
-            "imageR2Id": "LI4ouTpTOMXXKHUpjUDJN"
+            image: '/images/contests/2010/wOkTVgRDjMCjjXoZkC-Zv.webp',
+            imageR2Id: 'LI4ouTpTOMXXKHUpjUDJN',
           },
           {
-            "id": "J_AuyuMMnuYddO0AKSc9k",
-            "title": "SEPIA'S",
-            "description": null,
-            "placement": "first",
-            "photographer": {
-              "firstName": "LUC ",
-              "lastName": "ROOMAN"
+            id: 'J_AuyuMMnuYddO0AKSc9k',
+            title: "SEPIA'S",
+            description: null,
+            placement: 'first',
+            photographer: {
+              firstName: 'LUC ',
+              lastName: 'ROOMAN',
             },
-            "image": "/images/contests/2010/J_AuyuMMnuYddO0AKSc9k.webp",
-            "imageR2Id": "j8wEMq1t7fA7TgPGunjlw"
+            image: '/images/contests/2010/J_AuyuMMnuYddO0AKSc9k.webp',
+            imageR2Id: 'j8wEMq1t7fA7TgPGunjlw',
           },
           {
-            "id": "x-8ZOaNIzX7-Uv12LUcf0",
-            "title": "A BOCCA APERTA",
-            "description": null,
-            "placement": "second",
-            "photographer": {
-              "firstName": "STEFANO",
-              "lastName": "GRADI"
+            id: 'x-8ZOaNIzX7-Uv12LUcf0',
+            title: 'A BOCCA APERTA',
+            description: null,
+            placement: 'second',
+            photographer: {
+              firstName: 'STEFANO',
+              lastName: 'GRADI',
             },
-            "image": "/images/contests/2010/x-8ZOaNIzX7-Uv12LUcf0.webp",
-            "imageR2Id": "68J82TL9uas4pGPn49X9d"
+            image: '/images/contests/2010/x-8ZOaNIzX7-Uv12LUcf0.webp',
+            imageR2Id: '68J82TL9uas4pGPn49X9d',
           },
           {
-            "id": "lAxyPHSOLPt-BPfmeNFGu",
-            "title": "DOLCI LABBRA",
-            "description": null,
-            "placement": "third",
-            "photographer": {
-              "firstName": "CLAUDIO",
-              "lastName": "ZORI"
+            id: 'lAxyPHSOLPt-BPfmeNFGu',
+            title: 'DOLCI LABBRA',
+            description: null,
+            placement: 'third',
+            photographer: {
+              firstName: 'CLAUDIO',
+              lastName: 'ZORI',
             },
-            "image": "/images/contests/2010/lAxyPHSOLPt-BPfmeNFGu.webp",
-            "imageR2Id": "ZYTw5hJ_bXmrmn4QuhfwH"
-          }
-        ]
+            image: '/images/contests/2010/lAxyPHSOLPt-BPfmeNFGu.webp',
+            imageR2Id: 'ZYTw5hJ_bXmrmn4QuhfwH',
+          },
+        ],
       },
       {
-        "id": "newcomers",
-        "name": "Newcomers",
-        "winnerImage": "/images/contests/2010/zL1HgppCFK_79FJq5EChH.webp",
-        "winnerImageR2Id": "zV1fStR-zneQ37wjfMwKk",
-        "entries": [
+        id: 'newcomers',
+        name: 'Newcomers',
+        winnerImage: '/images/contests/2010/zL1HgppCFK_79FJq5EChH.webp',
+        winnerImageR2Id: 'zV1fStR-zneQ37wjfMwKk',
+        entries: [
           {
-            "id": "zL1HgppCFK_79FJq5EChH",
-            "title": "UPENEUS TRAGULA",
-            "description": null,
-            "placement": "first",
-            "photographer": {
-              "firstName": "MASSIMO",
-              "lastName": "MAZZITELLI"
+            id: 'zL1HgppCFK_79FJq5EChH',
+            title: 'UPENEUS TRAGULA',
+            description: null,
+            placement: 'first',
+            photographer: {
+              firstName: 'MASSIMO',
+              lastName: 'MAZZITELLI',
             },
-            "image": "/images/contests/2010/zL1HgppCFK_79FJq5EChH.webp",
-            "imageR2Id": "zV1fStR-zneQ37wjfMwKk"
+            image: '/images/contests/2010/zL1HgppCFK_79FJq5EChH.webp',
+            imageR2Id: 'zV1fStR-zneQ37wjfMwKk',
           },
           {
-            "id": "l5VWumTrT2Wq3N5tUAA0h",
-            "title": "TESTA CODA",
-            "description": null,
-            "placement": "second",
-            "photographer": {
-              "firstName": "ANDREA ",
-              "lastName": "MONACO"
+            id: 'l5VWumTrT2Wq3N5tUAA0h',
+            title: 'TESTA CODA',
+            description: null,
+            placement: 'second',
+            photographer: {
+              firstName: 'ANDREA ',
+              lastName: 'MONACO',
             },
-            "image": "/images/contests/2010/l5VWumTrT2Wq3N5tUAA0h.webp",
-            "imageR2Id": "OQq524vO43Z-G9Rz7VqLJ"
-          }
-        ]
+            image: '/images/contests/2010/l5VWumTrT2Wq3N5tUAA0h.webp',
+            imageR2Id: 'OQq524vO43Z-G9Rz7VqLJ',
+          },
+        ],
       },
       {
-        "id": "open",
-        "name": "Open",
-        "winnerImage": "/images/contests/2010/ZTrOodB0RPfMiwcEnGD2r.webp",
-        "winnerImageR2Id": "7C6B95APSt6xkkf0ihnna",
-        "entries": [
+        id: 'open',
+        name: 'Open',
+        winnerImage: '/images/contests/2010/ZTrOodB0RPfMiwcEnGD2r.webp',
+        winnerImageR2Id: '7C6B95APSt6xkkf0ihnna',
+        entries: [
           {
-            "id": "ZTrOodB0RPfMiwcEnGD2r",
-            "title": "GIGLIO",
-            "description": null,
-            "placement": "first",
-            "photographer": {
-              "firstName": "GABRIELE ",
-              "lastName": "DONATI"
+            id: 'ZTrOodB0RPfMiwcEnGD2r',
+            title: 'GIGLIO',
+            description: null,
+            placement: 'first',
+            photographer: {
+              firstName: 'GABRIELE ',
+              lastName: 'DONATI',
             },
-            "image": "/images/contests/2010/ZTrOodB0RPfMiwcEnGD2r.webp",
-            "imageR2Id": "7C6B95APSt6xkkf0ihnna"
+            image: '/images/contests/2010/ZTrOodB0RPfMiwcEnGD2r.webp',
+            imageR2Id: '7C6B95APSt6xkkf0ihnna',
           },
           {
-            "id": "y3FhEqnPLapLMWV51TgaQ",
-            "title": "SPIAGGIA",
-            "description": null,
-            "placement": "second",
-            "photographer": {
-              "firstName": "LUCIANO",
-              "lastName": "AGOSTINELLI"
+            id: 'y3FhEqnPLapLMWV51TgaQ',
+            title: 'SPIAGGIA',
+            description: null,
+            placement: 'second',
+            photographer: {
+              firstName: 'LUCIANO',
+              lastName: 'AGOSTINELLI',
             },
-            "image": "/images/contests/2010/y3FhEqnPLapLMWV51TgaQ.webp",
-            "imageR2Id": "JpkXYtv6yxOnaMiz4jOds"
+            image: '/images/contests/2010/y3FhEqnPLapLMWV51TgaQ.webp',
+            imageR2Id: 'JpkXYtv6yxOnaMiz4jOds',
           },
           {
-            "id": "LtV1hVChqekhv3bsjYJVt",
-            "title": "ANTARTICA",
-            "description": null,
-            "placement": "third",
-            "photographer": {
-              "firstName": "PABLO ",
-              "lastName": "CACERES"
+            id: 'LtV1hVChqekhv3bsjYJVt',
+            title: 'ANTARTICA',
+            description: null,
+            placement: 'third',
+            photographer: {
+              firstName: 'PABLO ',
+              lastName: 'CACERES',
             },
-            "image": "/images/contests/2010/LtV1hVChqekhv3bsjYJVt.webp",
-            "imageR2Id": "PY6VvNFa9q22wBvwCh3Kl"
-          }
-        ]
+            image: '/images/contests/2010/LtV1hVChqekhv3bsjYJVt.webp',
+            imageR2Id: 'PY6VvNFa9q22wBvwCh3Kl',
+          },
+        ],
       },
       {
-        "id": "special-mention",
-        "name": "Special Mention",
-        "winnerImage": "/images/contests/2010/6dTW_a-TrcAqdPFo7OedY.webp",
-        "winnerImageR2Id": "y1vwzYmPqX-8xMtBFHApY",
-        "entries": [
+        id: 'special-mention',
+        name: 'Special Mention',
+        winnerImage: '/images/contests/2010/6dTW_a-TrcAqdPFo7OedY.webp',
+        winnerImageR2Id: 'y1vwzYmPqX-8xMtBFHApY',
+        entries: [
           {
-            "id": "6dTW_a-TrcAqdPFo7OedY",
-            "title": "PINNA NERA",
-            "description": null,
-            "placement": "first",
-            "photographer": {
-              "firstName": "CLAUDIO",
-              "lastName": "GAZZAROLI"
+            id: '6dTW_a-TrcAqdPFo7OedY',
+            title: 'PINNA NERA',
+            description: null,
+            placement: 'first',
+            photographer: {
+              firstName: 'CLAUDIO',
+              lastName: 'GAZZAROLI',
             },
-            "image": "/images/contests/2010/6dTW_a-TrcAqdPFo7OedY.webp",
-            "imageR2Id": "y1vwzYmPqX-8xMtBFHApY"
-          }
-        ]
+            image: '/images/contests/2010/6dTW_a-TrcAqdPFo7OedY.webp',
+            imageR2Id: 'y1vwzYmPqX-8xMtBFHApY',
+          },
+        ],
       },
       {
-        "id": "super-macro",
-        "name": "Super Macro",
-        "winnerImage": "/images/contests/2010/WrE3Nfdwt7zunMeGqbovi.webp",
-        "winnerImageR2Id": "lzd_101WnUASMUjMsXZlL",
-        "entries": [
+        id: 'super-macro',
+        name: 'Super Macro',
+        winnerImage: '/images/contests/2010/WrE3Nfdwt7zunMeGqbovi.webp',
+        winnerImageR2Id: 'lzd_101WnUASMUjMsXZlL',
+        entries: [
           {
-            "id": "WrE3Nfdwt7zunMeGqbovi",
-            "title": "PIGMY",
-            "description": null,
-            "placement": "second",
-            "photographer": {
-              "firstName": "MICHELE ",
-              "lastName": "DAVINO"
+            id: 'WrE3Nfdwt7zunMeGqbovi',
+            title: 'PIGMY',
+            description: null,
+            placement: 'second',
+            photographer: {
+              firstName: 'MICHELE ',
+              lastName: 'DAVINO',
             },
-            "image": "/images/contests/2010/WrE3Nfdwt7zunMeGqbovi.webp",
-            "imageR2Id": "lzd_101WnUASMUjMsXZlL"
+            image: '/images/contests/2010/WrE3Nfdwt7zunMeGqbovi.webp',
+            imageR2Id: 'lzd_101WnUASMUjMsXZlL',
           },
           {
-            "id": "OcyOhQ8G93YZDFZIQJiz9",
-            "title": "MICROCLEANER",
-            "description": null,
-            "placement": "third",
-            "photographer": {
-              "firstName": "GIUSEPPE ",
-              "lastName": "PICCIOLI"
+            id: 'OcyOhQ8G93YZDFZIQJiz9',
+            title: 'MICROCLEANER',
+            description: null,
+            placement: 'third',
+            photographer: {
+              firstName: 'GIUSEPPE ',
+              lastName: 'PICCIOLI',
             },
-            "image": "/images/contests/2010/OcyOhQ8G93YZDFZIQJiz9.webp",
-            "imageR2Id": "KhWFTcGJCnruQHWnU1D9J"
-          }
-        ]
+            image: '/images/contests/2010/OcyOhQ8G93YZDFZIQJiz9.webp',
+            imageR2Id: 'KhWFTcGJCnruQHWnU1D9J',
+          },
+        ],
       },
       {
-        "id": "wide-angle",
-        "name": "Wide Angle",
-        "winnerImage": "/images/contests/2010/qOCAf1PhxFrPhcL-7t0wY.webp",
-        "winnerImageR2Id": "1tpSjXHUGACvRfXOnyAJl",
-        "entries": [
+        id: 'wide-angle',
+        name: 'Wide Angle',
+        winnerImage: '/images/contests/2010/qOCAf1PhxFrPhcL-7t0wY.webp',
+        winnerImageR2Id: '1tpSjXHUGACvRfXOnyAJl',
+        entries: [
           {
-            "id": "qOCAf1PhxFrPhcL-7t0wY",
-            "title": "FACE TO FACE",
-            "description": null,
-            "placement": "first",
-            "photographer": {
-              "firstName": "PAOLO",
-              "lastName": "BAUSANI"
+            id: 'qOCAf1PhxFrPhcL-7t0wY',
+            title: 'FACE TO FACE',
+            description: null,
+            placement: 'first',
+            photographer: {
+              firstName: 'PAOLO',
+              lastName: 'BAUSANI',
             },
-            "image": "/images/contests/2010/qOCAf1PhxFrPhcL-7t0wY.webp",
-            "imageR2Id": "1tpSjXHUGACvRfXOnyAJl"
+            image: '/images/contests/2010/qOCAf1PhxFrPhcL-7t0wY.webp',
+            imageR2Id: '1tpSjXHUGACvRfXOnyAJl',
           },
           {
-            "id": "QL-jNfCH-k6yeSicnWcmg",
-            "title": "ENCHANTED LAKE",
-            "description": null,
-            "placement": "second",
-            "photographer": {
-              "firstName": "GIORDANO",
-              "lastName": "CIPRIANI"
+            id: 'QL-jNfCH-k6yeSicnWcmg',
+            title: 'ENCHANTED LAKE',
+            description: null,
+            placement: 'second',
+            photographer: {
+              firstName: 'GIORDANO',
+              lastName: 'CIPRIANI',
             },
-            "image": "/images/contests/2010/QL-jNfCH-k6yeSicnWcmg.webp",
-            "imageR2Id": "ErzLQnzyKG_6LK1rSY0kx"
+            image: '/images/contests/2010/QL-jNfCH-k6yeSicnWcmg.webp',
+            imageR2Id: 'ErzLQnzyKG_6LK1rSY0kx',
           },
           {
-            "id": "RFmoDTRS5Lduo6Pzr7-_A",
-            "title": "SQUALO TIGRE BAHAMAS",
-            "description": null,
-            "placement": "third",
-            "photographer": {
-              "firstName": "GIANLUCA ",
-              "lastName": "GUELFI"
+            id: 'RFmoDTRS5Lduo6Pzr7-_A',
+            title: 'SQUALO TIGRE BAHAMAS',
+            description: null,
+            placement: 'third',
+            photographer: {
+              firstName: 'GIANLUCA ',
+              lastName: 'GUELFI',
             },
-            "image": "/images/contests/2010/RFmoDTRS5Lduo6Pzr7-_A.webp",
-            "imageR2Id": "_kf4XaeVlzCv7GZ7hN_pf"
+            image: '/images/contests/2010/RFmoDTRS5Lduo6Pzr7-_A.webp',
+            imageR2Id: '_kf4XaeVlzCv7GZ7hN_pf',
           },
           {
-            "id": "2B28u2XuHvdAcPXk7Na5I",
-            "title": "GHIACCIO",
-            "description": null,
-            "placement": "third",
-            "photographer": {
-              "firstName": "CLAUDIO ",
-              "lastName": "GAZZAROLI"
+            id: '2B28u2XuHvdAcPXk7Na5I',
+            title: 'GHIACCIO',
+            description: null,
+            placement: 'third',
+            photographer: {
+              firstName: 'CLAUDIO ',
+              lastName: 'GAZZAROLI',
             },
-            "image": "/images/contests/2010/2B28u2XuHvdAcPXk7Na5I.webp",
-            "imageR2Id": "JPtlEEkDQ_TXH93YHdO3O"
+            image: '/images/contests/2010/2B28u2XuHvdAcPXk7Na5I.webp',
+            imageR2Id: 'JPtlEEkDQ_TXH93YHdO3O',
           },
           {
-            "id": "xtZkIb1BLcvQ9mlfQ8eUA",
-            "title": "CERNIA RIPRESA",
-            "description": null,
-            "placement": "runner-up",
-            "photographer": {
-              "firstName": "FILIPPO",
-              "lastName": "IONI"
+            id: 'xtZkIb1BLcvQ9mlfQ8eUA',
+            title: 'CERNIA RIPRESA',
+            description: null,
+            placement: 'runner-up',
+            photographer: {
+              firstName: 'FILIPPO',
+              lastName: 'IONI',
             },
-            "image": "/images/contests/2010/xtZkIb1BLcvQ9mlfQ8eUA.webp",
-            "imageR2Id": "Mnypg4fl2KJDojgitUcuN"
+            image: '/images/contests/2010/xtZkIb1BLcvQ9mlfQ8eUA.webp',
+            imageR2Id: 'Mnypg4fl2KJDojgitUcuN',
           },
           {
-            "id": "nD-rJ4Evj7DkZGnD9K2XF",
-            "title": "FOCA ALLO SPECCHIO",
-            "description": null,
-            "placement": "runner-up",
-            "photographer": {
-              "firstName": "ALDO",
-              "lastName": "COSTA"
+            id: 'nD-rJ4Evj7DkZGnD9K2XF',
+            title: 'FOCA ALLO SPECCHIO',
+            description: null,
+            placement: 'runner-up',
+            photographer: {
+              firstName: 'ALDO',
+              lastName: 'COSTA',
             },
-            "image": "/images/contests/2010/nD-rJ4Evj7DkZGnD9K2XF.webp",
-            "imageR2Id": "TrsQHJCltqR6X6IT0f-Ra"
-          }
-        ]
-      }
-    ]
+            image: '/images/contests/2010/nD-rJ4Evj7DkZGnD9K2XF.webp',
+            imageR2Id: 'TrsQHJCltqR6X6IT0f-Ra',
+          },
+        ],
+      },
+    ],
   },
   {
-    "id": "uw-2009",
-    "year": 2009,
-    "name": "UW Contest 2009",
-    "description": "Annual underwater photography competition celebrating the beauty and diversity of marine life",
-    "indexImage": "/images/contests/2009/V2mcO9xEXrptVXg9wgGxJ.webp",
-    "indexImageR2Id": "uw-2009/environment/V2mcO9xEXrptVXg9wgGxJ",
-    "currentContest": false,
-    "judges": [
+    id: 'uw-2009',
+    year: 2009,
+    name: 'UW Contest 2009',
+    description:
+      'Annual underwater photography competition celebrating the beauty and diversity of marine life',
+    indexImage: '/images/contests/2009/V2mcO9xEXrptVXg9wgGxJ.webp',
+    indexImageR2Id: 'uw-2009/environment/V2mcO9xEXrptVXg9wgGxJ',
+    currentContest: false,
+    judges: [
       {
-        "id": "iJjOA7N-FnkP6p2NaKYOX",
-        "fullName": "Andrea Giulianini",
-        "r2ImageId": null
+        id: 'iJjOA7N-FnkP6p2NaKYOX',
+        fullName: 'Andrea Giulianini',
+        r2ImageId: null,
       },
       {
-        "id": "FbtI6tCC-PGIy0i9Nyewf",
-        "fullName": "Denis Palviani",
-        "r2ImageId": null
+        id: 'FbtI6tCC-PGIy0i9Nyewf',
+        fullName: 'Denis Palviani',
+        r2ImageId: null,
       },
       {
-        "id": "Dlwko22-RBAUZvehWyoby",
-        "fullName": "Claudio Bertasini",
-        "r2ImageId": null
-      }
+        id: 'Dlwko22-RBAUZvehWyoby',
+        fullName: 'Claudio Bertasini',
+        r2ImageId: null,
+      },
     ],
-    "categories": [
+    categories: [
       {
-        "id": "environment",
-        "name": "Environment",
-        "winnerImage": "/images/contests/2009/V2mcO9xEXrptVXg9wgGxJ.webp",
-        "winnerImageR2Id": "uw-2009/environment/V2mcO9xEXrptVXg9wgGxJ",
-        "entries": [
+        id: 'environment',
+        name: 'Environment',
+        winnerImage: '/images/contests/2009/V2mcO9xEXrptVXg9wgGxJ.webp',
+        winnerImageR2Id: 'uw-2009/environment/V2mcO9xEXrptVXg9wgGxJ',
+        entries: [
           {
-            "id": "V2mcO9xEXrptVXg9wgGxJ",
-            "title": "",
-            "description": "",
-            "placement": "first",
-            "photographer": {
-              "firstName": "Giovanni",
-              "lastName": "Smorti"
+            id: 'V2mcO9xEXrptVXg9wgGxJ',
+            title: '',
+            description: '',
+            placement: 'first',
+            photographer: {
+              firstName: 'Giovanni',
+              lastName: 'Smorti',
             },
-            "image": "/images/contests/2009/V2mcO9xEXrptVXg9wgGxJ.webp",
-            "imageR2Id": "uw-2009/environment/V2mcO9xEXrptVXg9wgGxJ"
+            image: '/images/contests/2009/V2mcO9xEXrptVXg9wgGxJ.webp',
+            imageR2Id: 'uw-2009/environment/V2mcO9xEXrptVXg9wgGxJ',
           },
           {
-            "id": "Md2IMv_Ju2AHtojwNhPCm",
-            "title": "Pettinino",
-            "description": "",
-            "placement": "first",
-            "photographer": {
-              "firstName": "Giuseppe",
-              "lastName": "Piccioli Resta"
+            id: 'Md2IMv_Ju2AHtojwNhPCm',
+            title: 'Pettinino',
+            description: '',
+            placement: 'first',
+            photographer: {
+              firstName: 'Giuseppe',
+              lastName: 'Piccioli Resta',
             },
-            "image": "/images/contests/2009/Md2IMv_Ju2AHtojwNhPCm.webp",
-            "imageR2Id": "uw-2009/environment/Md2IMv_Ju2AHtojwNhPCm"
+            image: '/images/contests/2009/Md2IMv_Ju2AHtojwNhPCm.webp',
+            imageR2Id: 'uw-2009/environment/Md2IMv_Ju2AHtojwNhPCm',
           },
           {
-            "id": "OVbGju9JQBaE8FXjweBlH",
-            "title": "Ginnie",
-            "description": "",
-            "placement": "second",
-            "photographer": {
-              "firstName": "Alessio",
-              "lastName": "Viora"
+            id: 'OVbGju9JQBaE8FXjweBlH',
+            title: 'Ginnie',
+            description: '',
+            placement: 'second',
+            photographer: {
+              firstName: 'Alessio',
+              lastName: 'Viora',
             },
-            "image": "/images/contests/2009/OVbGju9JQBaE8FXjweBlH.webp",
-            "imageR2Id": "uw-2009/environment/OVbGju9JQBaE8FXjweBlH"
+            image: '/images/contests/2009/OVbGju9JQBaE8FXjweBlH.webp',
+            imageR2Id: 'uw-2009/environment/OVbGju9JQBaE8FXjweBlH',
           },
           {
-            "id": "VzIQJKr2R7pkPHMCGRr7p",
-            "title": "Più Sù",
-            "description": "",
-            "placement": "second",
-            "photographer": {
-              "firstName": "Stefano",
-              "lastName": "Gradi"
+            id: 'VzIQJKr2R7pkPHMCGRr7p',
+            title: 'Più Sù',
+            description: '',
+            placement: 'second',
+            photographer: {
+              firstName: 'Stefano',
+              lastName: 'Gradi',
             },
-            "image": "/images/contests/2009/VzIQJKr2R7pkPHMCGRr7p.webp",
-            "imageR2Id": "uw-2009/environment/VzIQJKr2R7pkPHMCGRr7p"
+            image: '/images/contests/2009/VzIQJKr2R7pkPHMCGRr7p.webp',
+            imageR2Id: 'uw-2009/environment/VzIQJKr2R7pkPHMCGRr7p',
           },
           {
-            "id": "G9eFq4LOTb95cyBIfOcN5",
-            "title": "On Tip Toes",
-            "description": "",
-            "placement": "third",
-            "photographer": {
-              "firstName": "Stefano",
-              "lastName": "Gradi"
+            id: 'G9eFq4LOTb95cyBIfOcN5',
+            title: 'On Tip Toes',
+            description: '',
+            placement: 'third',
+            photographer: {
+              firstName: 'Stefano',
+              lastName: 'Gradi',
             },
-            "image": "/images/contests/2009/G9eFq4LOTb95cyBIfOcN5.webp",
-            "imageR2Id": "uw-2009/environment/G9eFq4LOTb95cyBIfOcN5"
+            image: '/images/contests/2009/G9eFq4LOTb95cyBIfOcN5.webp',
+            imageR2Id: 'uw-2009/environment/G9eFq4LOTb95cyBIfOcN5',
           },
           {
-            "id": "oV5oTV9uO3PiBquT2PDG1",
-            "title": "Butterfly",
-            "description": "",
-            "placement": "third",
-            "photographer": {
-              "firstName": "Giovanni",
-              "lastName": "Smorti"
+            id: 'oV5oTV9uO3PiBquT2PDG1',
+            title: 'Butterfly',
+            description: '',
+            placement: 'third',
+            photographer: {
+              firstName: 'Giovanni',
+              lastName: 'Smorti',
             },
-            "image": "/images/contests/2009/oV5oTV9uO3PiBquT2PDG1.webp",
-            "imageR2Id": "uw-2009/environment/oV5oTV9uO3PiBquT2PDG1"
+            image: '/images/contests/2009/oV5oTV9uO3PiBquT2PDG1.webp',
+            imageR2Id: 'uw-2009/environment/oV5oTV9uO3PiBquT2PDG1',
           },
           {
-            "id": "r1fxEebj3VD8af59V6d2u",
-            "title": "",
-            "description": "",
-            "placement": "third",
-            "photographer": {
-              "firstName": "Gabriele",
-              "lastName": "Donati"
+            id: 'r1fxEebj3VD8af59V6d2u',
+            title: '',
+            description: '',
+            placement: 'third',
+            photographer: {
+              firstName: 'Gabriele',
+              lastName: 'Donati',
             },
-            "image": "/images/contests/2009/r1fxEebj3VD8af59V6d2u.webp",
-            "imageR2Id": "uw-2009/environment/r1fxEebj3VD8af59V6d2u"
-          }
-        ]
+            image: '/images/contests/2009/r1fxEebj3VD8af59V6d2u.webp',
+            imageR2Id: 'uw-2009/environment/r1fxEebj3VD8af59V6d2u',
+          },
+        ],
       },
       {
-        "id": "macro",
-        "name": "Macro",
-        "winnerImage": "/images/contests/2009/t81Dsr52tO0TnBbYNgUXQ.webp",
-        "winnerImageR2Id": "EqRS3Ju48jYAwyffwBJ4G",
-        "entries": [
+        id: 'macro',
+        name: 'Macro',
+        winnerImage: '/images/contests/2009/t81Dsr52tO0TnBbYNgUXQ.webp',
+        winnerImageR2Id: 'EqRS3Ju48jYAwyffwBJ4G',
+        entries: [
           {
-            "id": "t81Dsr52tO0TnBbYNgUXQ",
-            "title": "BOX",
-            "description": null,
-            "placement": "first",
-            "photographer": {
-              "firstName": "GIOVANNI",
-              "lastName": "SMORTI"
+            id: 't81Dsr52tO0TnBbYNgUXQ',
+            title: 'BOX',
+            description: null,
+            placement: 'first',
+            photographer: {
+              firstName: 'GIOVANNI',
+              lastName: 'SMORTI',
             },
-            "image": "/images/contests/2009/t81Dsr52tO0TnBbYNgUXQ.webp",
-            "imageR2Id": "EqRS3Ju48jYAwyffwBJ4G"
+            image: '/images/contests/2009/t81Dsr52tO0TnBbYNgUXQ.webp',
+            imageR2Id: 'EqRS3Ju48jYAwyffwBJ4G',
           },
           {
-            "id": "JYQDtlOipdHxzimI9zEg9",
-            "title": "CLOWN",
-            "description": null,
-            "placement": "second",
-            "photographer": {
-              "firstName": "GIOVANNI ",
-              "lastName": "SMORTI"
+            id: 'JYQDtlOipdHxzimI9zEg9',
+            title: 'CLOWN',
+            description: null,
+            placement: 'second',
+            photographer: {
+              firstName: 'GIOVANNI ',
+              lastName: 'SMORTI',
             },
-            "image": "/images/contests/2009/JYQDtlOipdHxzimI9zEg9.webp",
-            "imageR2Id": "dXVzpIQcOgCwGGQcI9W0O"
+            image: '/images/contests/2009/JYQDtlOipdHxzimI9zEg9.webp',
+            imageR2Id: 'dXVzpIQcOgCwGGQcI9W0O',
           },
           {
-            "id": "MDI71EatiTLPFu4BRfzZj",
-            "title": "The challenge",
-            "description": "",
-            "placement": "third",
-            "photographer": {
-              "firstName": "Annibale",
-              "lastName": "Simi"
+            id: 'MDI71EatiTLPFu4BRfzZj',
+            title: 'The challenge',
+            description: '',
+            placement: 'third',
+            photographer: {
+              firstName: 'Annibale',
+              lastName: 'Simi',
             },
-            "image": "/images/contests/2009/MDI71EatiTLPFu4BRfzZj.webp",
-            "imageR2Id": "uw-2009/macro/MDI71EatiTLPFu4BRfzZj"
+            image: '/images/contests/2009/MDI71EatiTLPFu4BRfzZj.webp',
+            imageR2Id: 'uw-2009/macro/MDI71EatiTLPFu4BRfzZj',
           },
           {
-            "id": "PucK8n3S52x5vwuyjeoCY",
-            "title": "PELAGIA",
-            "description": null,
-            "placement": "third",
-            "photographer": {
-              "firstName": "ANTONIO",
-              "lastName": "PALERMO"
+            id: 'PucK8n3S52x5vwuyjeoCY',
+            title: 'PELAGIA',
+            description: null,
+            placement: 'third',
+            photographer: {
+              firstName: 'ANTONIO',
+              lastName: 'PALERMO',
             },
-            "image": "/images/contests/2009/PucK8n3S52x5vwuyjeoCY.webp",
-            "imageR2Id": "itfU-IBlrnweP0hd0bpwm"
-          }
-        ]
+            image: '/images/contests/2009/PucK8n3S52x5vwuyjeoCY.webp',
+            imageR2Id: 'itfU-IBlrnweP0hd0bpwm',
+          },
+        ],
       },
       {
-        "id": "open",
-        "name": "Open",
-        "winnerImage": "/images/contests/2009/p8jXFd9yKwQKN7ZhYSysu.webp",
-        "winnerImageR2Id": "uw-2009/open/p8jXFd9yKwQKN7ZhYSysu",
-        "entries": [
+        id: 'open',
+        name: 'Open',
+        winnerImage: '/images/contests/2009/p8jXFd9yKwQKN7ZhYSysu.webp',
+        winnerImageR2Id: 'uw-2009/open/p8jXFd9yKwQKN7ZhYSysu',
+        entries: [
           {
-            "id": "p8jXFd9yKwQKN7ZhYSysu",
-            "title": "Out of the Tunnel",
-            "description": "",
-            "placement": "first",
-            "photographer": {
-              "firstName": "Stefano",
-              "lastName": "Gradi"
+            id: 'p8jXFd9yKwQKN7ZhYSysu',
+            title: 'Out of the Tunnel',
+            description: '',
+            placement: 'first',
+            photographer: {
+              firstName: 'Stefano',
+              lastName: 'Gradi',
             },
-            "image": "/images/contests/2009/p8jXFd9yKwQKN7ZhYSysu.webp",
-            "imageR2Id": "uw-2009/open/p8jXFd9yKwQKN7ZhYSysu"
+            image: '/images/contests/2009/p8jXFd9yKwQKN7ZhYSysu.webp',
+            imageR2Id: 'uw-2009/open/p8jXFd9yKwQKN7ZhYSysu',
           },
           {
-            "id": "duXmVDutzkYbSDMZKzN_s",
-            "title": "",
-            "description": "",
-            "placement": "second",
-            "photographer": {
-              "firstName": "Salvatore",
-              "lastName": "Franco"
+            id: 'duXmVDutzkYbSDMZKzN_s',
+            title: '',
+            description: '',
+            placement: 'second',
+            photographer: {
+              firstName: 'Salvatore',
+              lastName: 'Franco',
             },
-            "image": "/images/contests/2009/duXmVDutzkYbSDMZKzN_s.webp",
-            "imageR2Id": "uw-2009/open/duXmVDutzkYbSDMZKzN_s"
+            image: '/images/contests/2009/duXmVDutzkYbSDMZKzN_s.webp',
+            imageR2Id: 'uw-2009/open/duXmVDutzkYbSDMZKzN_s',
           },
           {
-            "id": "6ZiNV8czp8i0BYTTq-2Rs",
-            "title": "TRABOCCO ALL'ALBA",
-            "description": null,
-            "placement": "third",
-            "photographer": {
-              "firstName": "VITTORIO",
-              "lastName": "PALMA"
+            id: '6ZiNV8czp8i0BYTTq-2Rs',
+            title: "TRABOCCO ALL'ALBA",
+            description: null,
+            placement: 'third',
+            photographer: {
+              firstName: 'VITTORIO',
+              lastName: 'PALMA',
             },
-            "image": "/images/contests/2009/6ZiNV8czp8i0BYTTq-2Rs.webp",
-            "imageR2Id": "KjY0LCOeQyTuiJ2H6ys2V"
-          }
-        ]
+            image: '/images/contests/2009/6ZiNV8czp8i0BYTTq-2Rs.webp',
+            imageR2Id: 'KjY0LCOeQyTuiJ2H6ys2V',
+          },
+        ],
       },
       {
-        "id": "wide-angle",
-        "name": "Wide Angle",
-        "winnerImage": "/images/contests/2009/CwX87bFqjj9DNvSgy98TR.webp",
-        "winnerImageR2Id": "ReMTOkdTooPJO42SIGRSU",
-        "entries": [
+        id: 'wide-angle',
+        name: 'Wide Angle',
+        winnerImage: '/images/contests/2009/CwX87bFqjj9DNvSgy98TR.webp',
+        winnerImageR2Id: 'ReMTOkdTooPJO42SIGRSU',
+        entries: [
           {
-            "id": "CwX87bFqjj9DNvSgy98TR",
-            "title": "JELLY LAKE",
-            "description": null,
-            "placement": "second",
-            "photographer": {
-              "firstName": "ENRICO",
-              "lastName": "ARRIGONI"
+            id: 'CwX87bFqjj9DNvSgy98TR',
+            title: 'JELLY LAKE',
+            description: null,
+            placement: 'second',
+            photographer: {
+              firstName: 'ENRICO',
+              lastName: 'ARRIGONI',
             },
-            "image": "/images/contests/2009/CwX87bFqjj9DNvSgy98TR.webp",
-            "imageR2Id": "ReMTOkdTooPJO42SIGRSU"
+            image: '/images/contests/2009/CwX87bFqjj9DNvSgy98TR.webp',
+            imageR2Id: 'ReMTOkdTooPJO42SIGRSU',
           },
           {
-            "id": "45h9j6i5NIAp7YQQLrQDQ",
-            "title": "PONTILE",
-            "description": null,
-            "placement": "third",
-            "photographer": {
-              "firstName": "MICHELE ",
-              "lastName": "DAVINO"
+            id: '45h9j6i5NIAp7YQQLrQDQ',
+            title: 'PONTILE',
+            description: null,
+            placement: 'third',
+            photographer: {
+              firstName: 'MICHELE ',
+              lastName: 'DAVINO',
             },
-            "image": "/images/contests/2009/45h9j6i5NIAp7YQQLrQDQ.webp",
-            "imageR2Id": "rp__3QOEBBn0cX7j8AhEB"
-          }
-        ]
-      }
-    ]
+            image: '/images/contests/2009/45h9j6i5NIAp7YQQLrQDQ.webp',
+            imageR2Id: 'rp__3QOEBBn0cX7j8AhEB',
+          },
+        ],
+      },
+    ],
   },
   {
-    "id": "uw-2008",
-    "year": 2008,
-    "name": "UW Contest 2008",
-    "description": "Annual underwater photography competition celebrating the beauty and diversity of marine life",
-    "indexImage": "/images/contests/2008/FeHIs0IplAQpom3rbrN3h.webp",
-    "indexImageR2Id": "PylbGkFc_K9XnRF5sMYWk",
-    "currentContest": false,
-    "judges": [
+    id: 'uw-2008',
+    year: 2008,
+    name: 'UW Contest 2008',
+    description:
+      'Annual underwater photography competition celebrating the beauty and diversity of marine life',
+    indexImage: '/images/contests/2008/FeHIs0IplAQpom3rbrN3h.webp',
+    indexImageR2Id: 'PylbGkFc_K9XnRF5sMYWk',
+    currentContest: false,
+    judges: [
       {
-        "id": "hXAU_vaG8RqvoRi25vHcZ",
-        "fullName": "Andrea Giulianini",
-        "r2ImageId": null
+        id: 'hXAU_vaG8RqvoRi25vHcZ',
+        fullName: 'Andrea Giulianini',
+        r2ImageId: null,
       },
       {
-        "id": "hOFjteklarxzUsZWWF7D6",
-        "fullName": "Gennaro Ciavarella",
-        "r2ImageId": null
+        id: 'hOFjteklarxzUsZWWF7D6',
+        fullName: 'Gennaro Ciavarella',
+        r2ImageId: null,
       },
       {
-        "id": "ikL9LrFSIIch3sxBwSiE4",
-        "fullName": "Franca Cauti",
-        "r2ImageId": null
-      }
+        id: 'ikL9LrFSIIch3sxBwSiE4',
+        fullName: 'Franca Cauti',
+        r2ImageId: null,
+      },
     ],
-    "categories": [
+    categories: [
       {
-        "id": "macro",
-        "name": "Macro",
-        "winnerImage": "/images/contests/2008/FeHIs0IplAQpom3rbrN3h.webp",
-        "winnerImageR2Id": "PylbGkFc_K9XnRF5sMYWk",
-        "entries": [
+        id: 'macro',
+        name: 'Macro',
+        winnerImage: '/images/contests/2008/FeHIs0IplAQpom3rbrN3h.webp',
+        winnerImageR2Id: 'PylbGkFc_K9XnRF5sMYWk',
+        entries: [
           {
-            "id": "FeHIs0IplAQpom3rbrN3h",
-            "title": "GIALLO MEDITERRANEO",
-            "description": null,
-            "placement": "first",
-            "photographer": {
-              "firstName": "ENRICO",
-              "lastName": "PATI"
+            id: 'FeHIs0IplAQpom3rbrN3h',
+            title: 'GIALLO MEDITERRANEO',
+            description: null,
+            placement: 'first',
+            photographer: {
+              firstName: 'ENRICO',
+              lastName: 'PATI',
             },
-            "image": "/images/contests/2008/FeHIs0IplAQpom3rbrN3h.webp",
-            "imageR2Id": "PylbGkFc_K9XnRF5sMYWk"
+            image: '/images/contests/2008/FeHIs0IplAQpom3rbrN3h.webp',
+            imageR2Id: 'PylbGkFc_K9XnRF5sMYWk',
           },
           {
-            "id": "AS_i61_TH78IXdjsTE8lW",
-            "title": "L'AMICO DI SEMPRE",
-            "description": null,
-            "placement": "second",
-            "photographer": {
-              "firstName": "FABRIZIO",
-              "lastName": "POMPILIO"
+            id: 'AS_i61_TH78IXdjsTE8lW',
+            title: "L'AMICO DI SEMPRE",
+            description: null,
+            placement: 'second',
+            photographer: {
+              firstName: 'FABRIZIO',
+              lastName: 'POMPILIO',
             },
-            "image": "/images/contests/2008/AS_i61_TH78IXdjsTE8lW.webp",
-            "imageR2Id": "35IzM_2rSPejBLjEd3bSs"
+            image: '/images/contests/2008/AS_i61_TH78IXdjsTE8lW.webp',
+            imageR2Id: '35IzM_2rSPejBLjEd3bSs',
           },
           {
-            "id": "PYitAj4zVQ3EiqEUa6ngz",
-            "title": "CASA MIA",
-            "description": null,
-            "placement": "third",
-            "photographer": {
-              "firstName": "ADRIANO",
-              "lastName": "OCCHI"
+            id: 'PYitAj4zVQ3EiqEUa6ngz',
+            title: 'CASA MIA',
+            description: null,
+            placement: 'third',
+            photographer: {
+              firstName: 'ADRIANO',
+              lastName: 'OCCHI',
             },
-            "image": "/images/contests/2008/PYitAj4zVQ3EiqEUa6ngz.webp",
-            "imageR2Id": "jhLV4wEgEAU1uKQvn8acn"
+            image: '/images/contests/2008/PYitAj4zVQ3EiqEUa6ngz.webp',
+            imageR2Id: 'jhLV4wEgEAU1uKQvn8acn',
           },
           {
-            "id": "thOzHDOTnv8elHIuv1Rpy",
-            "title": "DAL DENTISTA",
-            "description": null,
-            "placement": "third",
-            "photographer": {
-              "firstName": "FRANCESCA",
-              "lastName": "ZULLI"
+            id: 'thOzHDOTnv8elHIuv1Rpy',
+            title: 'DAL DENTISTA',
+            description: null,
+            placement: 'third',
+            photographer: {
+              firstName: 'FRANCESCA',
+              lastName: 'ZULLI',
             },
-            "image": "/images/contests/2008/thOzHDOTnv8elHIuv1Rpy.webp",
-            "imageR2Id": "l95WWuMWuaGQpPTa_jYCl"
-          }
-        ]
+            image: '/images/contests/2008/thOzHDOTnv8elHIuv1Rpy.webp',
+            imageR2Id: 'l95WWuMWuaGQpPTa_jYCl',
+          },
+        ],
       },
       {
-        "id": "open",
-        "name": "Open",
-        "winnerImage": "/images/contests/2008/dqMMTZC7p7TfUVjFqvyA-.webp",
-        "winnerImageR2Id": "cyP6zjbOK_-MR8ABy1ihp",
-        "entries": [
+        id: 'open',
+        name: 'Open',
+        winnerImage: '/images/contests/2008/dqMMTZC7p7TfUVjFqvyA-.webp',
+        winnerImageR2Id: 'cyP6zjbOK_-MR8ABy1ihp',
+        entries: [
           {
-            "id": "dqMMTZC7p7TfUVjFqvyA-",
-            "title": "PESCATORE IN UN BAGNO DI LUCE ",
-            "description": null,
-            "placement": "first",
-            "photographer": {
-              "firstName": "LUCIANO ",
-              "lastName": "AGOSTINELLI"
+            id: 'dqMMTZC7p7TfUVjFqvyA-',
+            title: 'PESCATORE IN UN BAGNO DI LUCE ',
+            description: null,
+            placement: 'first',
+            photographer: {
+              firstName: 'LUCIANO ',
+              lastName: 'AGOSTINELLI',
             },
-            "image": "/images/contests/2008/dqMMTZC7p7TfUVjFqvyA-.webp",
-            "imageR2Id": "cyP6zjbOK_-MR8ABy1ihp"
+            image: '/images/contests/2008/dqMMTZC7p7TfUVjFqvyA-.webp',
+            imageR2Id: 'cyP6zjbOK_-MR8ABy1ihp',
           },
           {
-            "id": "szGo5s-bnmHVBmF3OvDk0",
-            "title": "PRIMA DELLO TZUNAMI",
-            "description": null,
-            "placement": "second",
-            "photographer": {
-              "firstName": "FELICIANA ",
-              "lastName": "MONTAGNA"
+            id: 'szGo5s-bnmHVBmF3OvDk0',
+            title: 'PRIMA DELLO TZUNAMI',
+            description: null,
+            placement: 'second',
+            photographer: {
+              firstName: 'FELICIANA ',
+              lastName: 'MONTAGNA',
             },
-            "image": "/images/contests/2008/szGo5s-bnmHVBmF3OvDk0.webp",
-            "imageR2Id": "dAl9fbT6ZbdqDu9KEKXEo"
+            image: '/images/contests/2008/szGo5s-bnmHVBmF3OvDk0.webp',
+            imageR2Id: 'dAl9fbT6ZbdqDu9KEKXEo',
           },
           {
-            "id": "cJi8U0v65IWbHqDiVIBqm",
-            "title": "UNO SCATTO A FINE LAVORO",
-            "description": null,
-            "placement": "third",
-            "photographer": {
-              "firstName": "STEFANIA",
-              "lastName": "ANNECCHINI"
+            id: 'cJi8U0v65IWbHqDiVIBqm',
+            title: 'UNO SCATTO A FINE LAVORO',
+            description: null,
+            placement: 'third',
+            photographer: {
+              firstName: 'STEFANIA',
+              lastName: 'ANNECCHINI',
             },
-            "image": "/images/contests/2008/cJi8U0v65IWbHqDiVIBqm.webp",
-            "imageR2Id": "FpZS5h1eCCj-0F1Zdk8yh"
-          }
-        ]
+            image: '/images/contests/2008/cJi8U0v65IWbHqDiVIBqm.webp',
+            imageR2Id: 'FpZS5h1eCCj-0F1Zdk8yh',
+          },
+        ],
       },
       {
-        "id": "storyboard",
-        "name": "Storyboard",
-        "winnerImage": "/images/contests/2008/PDXWOqOXQ7fp9CD__gr2R.webp",
-        "winnerImageR2Id": "SL4qBpmzfvbSHLf4QdGeA",
-        "entries": [
+        id: 'storyboard',
+        name: 'Storyboard',
+        winnerImage: '/images/contests/2008/PDXWOqOXQ7fp9CD__gr2R.webp',
+        winnerImageR2Id: 'SL4qBpmzfvbSHLf4QdGeA',
+        entries: [
           {
-            "id": "PDXWOqOXQ7fp9CD__gr2R",
-            "title": "CASA MIA",
-            "description": null,
-            "placement": "first",
-            "photographer": {
-              "firstName": "ADRIANO ",
-              "lastName": "OCCHI"
+            id: 'PDXWOqOXQ7fp9CD__gr2R',
+            title: 'CASA MIA',
+            description: null,
+            placement: 'first',
+            photographer: {
+              firstName: 'ADRIANO ',
+              lastName: 'OCCHI',
             },
-            "image": "/images/contests/2008/PDXWOqOXQ7fp9CD__gr2R.webp",
-            "imageR2Id": "SL4qBpmzfvbSHLf4QdGeA"
+            image: '/images/contests/2008/PDXWOqOXQ7fp9CD__gr2R.webp',
+            imageR2Id: 'SL4qBpmzfvbSHLf4QdGeA',
           },
           {
-            "id": "tTUbTMoUeQcozSQN9rwqO",
-            "title": "GAMBERO",
-            "description": null,
-            "placement": "first",
-            "photographer": {
-              "firstName": "ADRIANO",
-              "lastName": "OCCHI"
+            id: 'tTUbTMoUeQcozSQN9rwqO',
+            title: 'GAMBERO',
+            description: null,
+            placement: 'first',
+            photographer: {
+              firstName: 'ADRIANO',
+              lastName: 'OCCHI',
             },
-            "image": "/images/contests/2008/tTUbTMoUeQcozSQN9rwqO.webp",
-            "imageR2Id": "DzMYoitw3X_gzTi8GEArN"
+            image: '/images/contests/2008/tTUbTMoUeQcozSQN9rwqO.webp',
+            imageR2Id: 'DzMYoitw3X_gzTi8GEArN',
           },
           {
-            "id": "9BaDuVRGR65H9UHL_EU5E",
-            "title": "IN POSA",
-            "description": null,
-            "placement": "first",
-            "photographer": {
-              "firstName": "ADRIANO",
-              "lastName": "OCCHI"
+            id: '9BaDuVRGR65H9UHL_EU5E',
+            title: 'IN POSA',
+            description: null,
+            placement: 'first',
+            photographer: {
+              firstName: 'ADRIANO',
+              lastName: 'OCCHI',
             },
-            "image": "/images/contests/2008/9BaDuVRGR65H9UHL_EU5E.webp",
-            "imageR2Id": "uoCLzGnVo_Lh75oWMRqZF"
+            image: '/images/contests/2008/9BaDuVRGR65H9UHL_EU5E.webp',
+            imageR2Id: 'uoCLzGnVo_Lh75oWMRqZF',
           },
           {
-            "id": "RVMrtjcqW8ffINjEnw80q",
-            "title": "ATTENTO AI RIFLESSI",
-            "description": null,
-            "placement": "second",
-            "photographer": {
-              "firstName": "GABRIELE",
-              "lastName": "DONATI"
+            id: 'RVMrtjcqW8ffINjEnw80q',
+            title: 'ATTENTO AI RIFLESSI',
+            description: null,
+            placement: 'second',
+            photographer: {
+              firstName: 'GABRIELE',
+              lastName: 'DONATI',
             },
-            "image": "/images/contests/2008/RVMrtjcqW8ffINjEnw80q.webp",
-            "imageR2Id": "PJJaGTRbO5kNuB4vCDL81"
+            image: '/images/contests/2008/RVMrtjcqW8ffINjEnw80q.webp',
+            imageR2Id: 'PJJaGTRbO5kNuB4vCDL81',
           },
           {
-            "id": "dY9ALEfNOg1Y26V0_Nnii",
-            "title": "CATTURA",
-            "description": null,
-            "placement": "second",
-            "photographer": {
-              "firstName": "GABRIELE",
-              "lastName": "DONATI"
+            id: 'dY9ALEfNOg1Y26V0_Nnii',
+            title: 'CATTURA',
+            description: null,
+            placement: 'second',
+            photographer: {
+              firstName: 'GABRIELE',
+              lastName: 'DONATI',
             },
-            "image": "/images/contests/2008/dY9ALEfNOg1Y26V0_Nnii.webp",
-            "imageR2Id": "EFjzGGaKsnnlfcSV-3W6A"
+            image: '/images/contests/2008/dY9ALEfNOg1Y26V0_Nnii.webp',
+            imageR2Id: 'EFjzGGaKsnnlfcSV-3W6A',
           },
           {
-            "id": "7oKeugNNb3ZqqXmobpRzi",
-            "title": "SPLENDORE",
-            "description": null,
-            "placement": "second",
-            "photographer": {
-              "firstName": "GABRIELE ",
-              "lastName": "DONATI"
+            id: '7oKeugNNb3ZqqXmobpRzi',
+            title: 'SPLENDORE',
+            description: null,
+            placement: 'second',
+            photographer: {
+              firstName: 'GABRIELE ',
+              lastName: 'DONATI',
             },
-            "image": "/images/contests/2008/7oKeugNNb3ZqqXmobpRzi.webp",
-            "imageR2Id": "Os-Ow12gHlv03tTd0Ny-U"
+            image: '/images/contests/2008/7oKeugNNb3ZqqXmobpRzi.webp',
+            imageR2Id: 'Os-Ow12gHlv03tTd0Ny-U',
           },
           {
-            "id": "wSUwQ8bj-2gfhVztQXa8s",
-            "title": "BAVOSA PAVONE",
-            "description": null,
-            "placement": "third",
-            "photographer": {
-              "firstName": "CLAUDIO ",
-              "lastName": "ZORI"
+            id: 'wSUwQ8bj-2gfhVztQXa8s',
+            title: 'BAVOSA PAVONE',
+            description: null,
+            placement: 'third',
+            photographer: {
+              firstName: 'CLAUDIO ',
+              lastName: 'ZORI',
             },
-            "image": "/images/contests/2008/wSUwQ8bj-2gfhVztQXa8s.webp",
-            "imageR2Id": "EaTQ-Kvjh7alJ6F9CYQir"
+            image: '/images/contests/2008/wSUwQ8bj-2gfhVztQXa8s.webp',
+            imageR2Id: 'EaTQ-Kvjh7alJ6F9CYQir',
           },
           {
-            "id": "eMCQUBeIEks8J_koeSgXs",
-            "title": "CANNETO",
-            "description": null,
-            "placement": "third",
-            "photographer": {
-              "firstName": "CLAUDIO ",
-              "lastName": "ZORI"
+            id: 'eMCQUBeIEks8J_koeSgXs',
+            title: 'CANNETO',
+            description: null,
+            placement: 'third',
+            photographer: {
+              firstName: 'CLAUDIO ',
+              lastName: 'ZORI',
             },
-            "image": "/images/contests/2008/eMCQUBeIEks8J_koeSgXs.webp",
-            "imageR2Id": "G5BT8IWpaqe6JUcnb54CD"
-          }
-        ]
+            image: '/images/contests/2008/eMCQUBeIEks8J_koeSgXs.webp',
+            imageR2Id: 'G5BT8IWpaqe6JUcnb54CD',
+          },
+        ],
       },
       {
-        "id": "wide-angle",
-        "name": "Wide Angle",
-        "winnerImage": "/images/contests/2008/BFmVCcRUWNwxp6n8kHdEz.webp",
-        "winnerImageR2Id": "O7J0hq59HPZfvfup9UbXC",
-        "entries": [
+        id: 'wide-angle',
+        name: 'Wide Angle',
+        winnerImage: '/images/contests/2008/BFmVCcRUWNwxp6n8kHdEz.webp',
+        winnerImageR2Id: 'O7J0hq59HPZfvfup9UbXC',
+        entries: [
           {
-            "id": "BFmVCcRUWNwxp6n8kHdEz",
-            "title": "TRA ACQUA E CIELO",
-            "description": null,
-            "placement": "first",
-            "photographer": {
-              "firstName": "ALESSIO",
-              "lastName": "VIORA"
+            id: 'BFmVCcRUWNwxp6n8kHdEz',
+            title: 'TRA ACQUA E CIELO',
+            description: null,
+            placement: 'first',
+            photographer: {
+              firstName: 'ALESSIO',
+              lastName: 'VIORA',
             },
-            "image": "/images/contests/2008/BFmVCcRUWNwxp6n8kHdEz.webp",
-            "imageR2Id": "O7J0hq59HPZfvfup9UbXC"
+            image: '/images/contests/2008/BFmVCcRUWNwxp6n8kHdEz.webp',
+            imageR2Id: 'O7J0hq59HPZfvfup9UbXC',
           },
           {
-            "id": "_uvpDzqJCrzWXPGNo_apq",
-            "title": "PULIZIA",
-            "description": null,
-            "placement": "first",
-            "photographer": {
-              "firstName": "PAOLO",
-              "lastName": "BAUSANI"
+            id: '_uvpDzqJCrzWXPGNo_apq',
+            title: 'PULIZIA',
+            description: null,
+            placement: 'first',
+            photographer: {
+              firstName: 'PAOLO',
+              lastName: 'BAUSANI',
             },
-            "image": "/images/contests/2008/_uvpDzqJCrzWXPGNo_apq.webp",
-            "imageR2Id": "TWkCfHrgvG5nuF9KZAyvY"
+            image: '/images/contests/2008/_uvpDzqJCrzWXPGNo_apq.webp',
+            imageR2Id: 'TWkCfHrgvG5nuF9KZAyvY',
           },
           {
-            "id": "e-TA8nkBNyCI3TpXTgsqG",
-            "title": "CRISTO DEGLI ABISSI",
-            "description": null,
-            "placement": "first",
-            "photographer": {
-              "firstName": "ANDREA",
-              "lastName": "MONACO"
+            id: 'e-TA8nkBNyCI3TpXTgsqG',
+            title: 'CRISTO DEGLI ABISSI',
+            description: null,
+            placement: 'first',
+            photographer: {
+              firstName: 'ANDREA',
+              lastName: 'MONACO',
             },
-            "image": "/images/contests/2008/e-TA8nkBNyCI3TpXTgsqG.webp",
-            "imageR2Id": "1uxCxUc1qu3lsnWvi0NK9"
+            image: '/images/contests/2008/e-TA8nkBNyCI3TpXTgsqG.webp',
+            imageR2Id: '1uxCxUc1qu3lsnWvi0NK9',
           },
           {
-            "id": "1C2VJCWOl9M81dgUs7hIm",
-            "title": "IN POSA",
-            "description": null,
-            "placement": "second",
-            "photographer": {
-              "firstName": "ADRIANO ",
-              "lastName": "OCCHI"
+            id: '1C2VJCWOl9M81dgUs7hIm',
+            title: 'IN POSA',
+            description: null,
+            placement: 'second',
+            photographer: {
+              firstName: 'ADRIANO ',
+              lastName: 'OCCHI',
             },
-            "image": "/images/contests/2008/1C2VJCWOl9M81dgUs7hIm.webp",
-            "imageR2Id": "SIYysY1me-BuWPvucA5If"
+            image: '/images/contests/2008/1C2VJCWOl9M81dgUs7hIm.webp',
+            imageR2Id: 'SIYysY1me-BuWPvucA5If',
           },
           {
-            "id": "oCgSh12paeEmq_ajkY1Sb",
-            "title": "SPLENDORE",
-            "description": null,
-            "placement": "second",
-            "photographer": {
-              "firstName": "GABRIELE ",
-              "lastName": "DONATI"
+            id: 'oCgSh12paeEmq_ajkY1Sb',
+            title: 'SPLENDORE',
+            description: null,
+            placement: 'second',
+            photographer: {
+              firstName: 'GABRIELE ',
+              lastName: 'DONATI',
             },
-            "image": "/images/contests/2008/oCgSh12paeEmq_ajkY1Sb.webp",
-            "imageR2Id": "1978imR0BIAcTKuk88XXU"
+            image: '/images/contests/2008/oCgSh12paeEmq_ajkY1Sb.webp',
+            imageR2Id: '1978imR0BIAcTKuk88XXU',
           },
           {
-            "id": "jTz6nBKIk0kBL6I1vM9po",
-            "title": "UNO SPIROGRAFO E LA GUIDA",
-            "description": null,
-            "placement": "second",
-            "photographer": {
-              "firstName": "CLAUDIO",
-              "lastName": "STOPPATO"
+            id: 'jTz6nBKIk0kBL6I1vM9po',
+            title: 'UNO SPIROGRAFO E LA GUIDA',
+            description: null,
+            placement: 'second',
+            photographer: {
+              firstName: 'CLAUDIO',
+              lastName: 'STOPPATO',
             },
-            "image": "/images/contests/2008/jTz6nBKIk0kBL6I1vM9po.webp",
-            "imageR2Id": "yLu8qa5HCGc4V7u8ZY-DO"
+            image: '/images/contests/2008/jTz6nBKIk0kBL6I1vM9po.webp',
+            imageR2Id: 'yLu8qa5HCGc4V7u8ZY-DO',
           },
           {
-            "id": "Vq1flNpJx1nGlSG_KB7ha",
-            "title": "VOLARE",
-            "description": null,
-            "placement": "third",
-            "photographer": {
-              "firstName": "GIACOMO ",
-              "lastName": "MARCHIONE "
+            id: 'Vq1flNpJx1nGlSG_KB7ha',
+            title: 'VOLARE',
+            description: null,
+            placement: 'third',
+            photographer: {
+              firstName: 'GIACOMO ',
+              lastName: 'MARCHIONE ',
             },
-            "image": "/images/contests/2008/Vq1flNpJx1nGlSG_KB7ha.webp",
-            "imageR2Id": "ywJvMlf_KaICt4waQ1r3r"
+            image: '/images/contests/2008/Vq1flNpJx1nGlSG_KB7ha.webp',
+            imageR2Id: 'ywJvMlf_KaICt4waQ1r3r',
           },
           {
-            "id": "cgLDdu1CsnE3dB2V7_5y_",
-            "title": "VOLARE",
-            "description": null,
-            "placement": "third",
-            "photographer": {
-              "firstName": "FABIO",
-              "lastName": "PERACCHIA"
+            id: 'cgLDdu1CsnE3dB2V7_5y_',
+            title: 'VOLARE',
+            description: null,
+            placement: 'third',
+            photographer: {
+              firstName: 'FABIO',
+              lastName: 'PERACCHIA',
             },
-            "image": "/images/contests/2008/cgLDdu1CsnE3dB2V7_5y_.webp",
-            "imageR2Id": "1gX51RlcZobGeNoOKgiA_"
-          }
-        ]
-      }
-    ]
+            image: '/images/contests/2008/cgLDdu1CsnE3dB2V7_5y_.webp',
+            imageR2Id: '1gX51RlcZobGeNoOKgiA_',
+          },
+        ],
+      },
+    ],
   },
   {
-    "id": "uw-2007",
-    "year": 2007,
-    "name": "UW Contest 2007",
-    "description": "Annual underwater photography competition celebrating the beauty and diversity of marine life",
-    "indexImage": "/images/contests/2007/sY0xuhtxvSSDynq9A1SgW.webp",
-    "indexImageR2Id": "xhrhxucsCf5GAMpnLvU6F",
-    "currentContest": false,
-    "judges": [
+    id: 'uw-2007',
+    year: 2007,
+    name: 'UW Contest 2007',
+    description:
+      'Annual underwater photography competition celebrating the beauty and diversity of marine life',
+    indexImage: '/images/contests/2007/sY0xuhtxvSSDynq9A1SgW.webp',
+    indexImageR2Id: 'xhrhxucsCf5GAMpnLvU6F',
+    currentContest: false,
+    judges: [
       {
-        "id": "deOPh3PieQuISpNiTTBv2",
-        "fullName": "Andrea Giulianini",
-        "r2ImageId": null
+        id: 'deOPh3PieQuISpNiTTBv2',
+        fullName: 'Andrea Giulianini',
+        r2ImageId: null,
       },
       {
-        "id": "ZlYH-A7zhdn76XblGlXAJ",
-        "fullName": "Pippo Cappellano",
-        "r2ImageId": null
+        id: 'ZlYH-A7zhdn76XblGlXAJ',
+        fullName: 'Pippo Cappellano',
+        r2ImageId: null,
       },
       {
-        "id": "Kz9PDh8ZBSc8CFas_CQ-E",
-        "fullName": "Franca Cauti",
-        "r2ImageId": null
-      }
+        id: 'Kz9PDh8ZBSc8CFas_CQ-E',
+        fullName: 'Franca Cauti',
+        r2ImageId: null,
+      },
     ],
-    "categories": [
+    categories: [
       {
-        "id": "macro",
-        "name": "Macro",
-        "winnerImage": "/images/contests/2007/sY0xuhtxvSSDynq9A1SgW.webp",
-        "winnerImageR2Id": "xhrhxucsCf5GAMpnLvU6F",
-        "entries": [
+        id: 'macro',
+        name: 'Macro',
+        winnerImage: '/images/contests/2007/sY0xuhtxvSSDynq9A1SgW.webp',
+        winnerImageR2Id: 'xhrhxucsCf5GAMpnLvU6F',
+        entries: [
           {
-            "id": "sY0xuhtxvSSDynq9A1SgW",
-            "title": "CRATENA",
-            "description": null,
-            "placement": "first",
-            "photographer": {
-              "firstName": "GIANMARIO",
-              "lastName": "PITZIANTI"
+            id: 'sY0xuhtxvSSDynq9A1SgW',
+            title: 'CRATENA',
+            description: null,
+            placement: 'first',
+            photographer: {
+              firstName: 'GIANMARIO',
+              lastName: 'PITZIANTI',
             },
-            "image": "/images/contests/2007/sY0xuhtxvSSDynq9A1SgW.webp",
-            "imageR2Id": "xhrhxucsCf5GAMpnLvU6F"
+            image: '/images/contests/2007/sY0xuhtxvSSDynq9A1SgW.webp',
+            imageR2Id: 'xhrhxucsCf5GAMpnLvU6F',
           },
           {
-            "id": "OHhIOsp58sS35hlVs6EAW",
-            "title": "LA SCALATA",
-            "description": null,
-            "placement": "first",
-            "photographer": {
-              "firstName": "GIACOMO",
-              "lastName": "MARCHIONE"
+            id: 'OHhIOsp58sS35hlVs6EAW',
+            title: 'LA SCALATA',
+            description: null,
+            placement: 'first',
+            photographer: {
+              firstName: 'GIACOMO',
+              lastName: 'MARCHIONE',
             },
-            "image": "/images/contests/2007/OHhIOsp58sS35hlVs6EAW.webp",
-            "imageR2Id": "SwD35pKpcYWj20wrIHYY9"
+            image: '/images/contests/2007/OHhIOsp58sS35hlVs6EAW.webp',
+            imageR2Id: 'SwD35pKpcYWj20wrIHYY9',
           },
           {
-            "id": "Py2F9D9iUqFEUczdbTaIt",
-            "title": "BAVOSA CURIOSA",
-            "description": null,
-            "placement": "second",
-            "photographer": {
-              "firstName": "DAVIDE ",
-              "lastName": "BARZAZZI"
+            id: 'Py2F9D9iUqFEUczdbTaIt',
+            title: 'BAVOSA CURIOSA',
+            description: null,
+            placement: 'second',
+            photographer: {
+              firstName: 'DAVIDE ',
+              lastName: 'BARZAZZI',
             },
-            "image": "/images/contests/2007/Py2F9D9iUqFEUczdbTaIt.webp",
-            "imageR2Id": "5nN4ORsHUGfCFsw0fDqK6"
+            image: '/images/contests/2007/Py2F9D9iUqFEUczdbTaIt.webp',
+            imageR2Id: '5nN4ORsHUGfCFsw0fDqK6',
           },
           {
-            "id": "a_TNUTbg6nik4fjWChoze",
-            "title": "ROSSO MIMETICO",
-            "description": null,
-            "placement": "third",
-            "photographer": {
-              "firstName": "FABRIZIO",
-              "lastName": "POMPILIO"
+            id: 'a_TNUTbg6nik4fjWChoze',
+            title: 'ROSSO MIMETICO',
+            description: null,
+            placement: 'third',
+            photographer: {
+              firstName: 'FABRIZIO',
+              lastName: 'POMPILIO',
             },
-            "image": "/images/contests/2007/a_TNUTbg6nik4fjWChoze.webp",
-            "imageR2Id": "Vn1gRKoOigp71GET7MrOl"
-          }
-        ]
+            image: '/images/contests/2007/a_TNUTbg6nik4fjWChoze.webp',
+            imageR2Id: 'Vn1gRKoOigp71GET7MrOl',
+          },
+        ],
       },
       {
-        "id": "open",
-        "name": "Open",
-        "winnerImage": "/images/contests/2007/a0hUxQIL-_kKtZhj-zEl-.webp",
-        "winnerImageR2Id": "xaplETs6-xgpUcb35FQAi",
-        "entries": [
+        id: 'open',
+        name: 'Open',
+        winnerImage: '/images/contests/2007/a0hUxQIL-_kKtZhj-zEl-.webp',
+        winnerImageR2Id: 'xaplETs6-xgpUcb35FQAi',
+        entries: [
           {
-            "id": "a0hUxQIL-_kKtZhj-zEl-",
-            "title": "PESCHERECCIO",
-            "description": null,
-            "placement": "first",
-            "photographer": {
-              "firstName": "FABRIZIO",
-              "lastName": "COSTA"
+            id: 'a0hUxQIL-_kKtZhj-zEl-',
+            title: 'PESCHERECCIO',
+            description: null,
+            placement: 'first',
+            photographer: {
+              firstName: 'FABRIZIO',
+              lastName: 'COSTA',
             },
-            "image": "/images/contests/2007/a0hUxQIL-_kKtZhj-zEl-.webp",
-            "imageR2Id": "xaplETs6-xgpUcb35FQAi"
+            image: '/images/contests/2007/a0hUxQIL-_kKtZhj-zEl-.webp',
+            imageR2Id: 'xaplETs6-xgpUcb35FQAi',
           },
           {
-            "id": "T4JTsL4KC4hfbCEgmfRpw",
-            "title": "IL MARE E GLI UOMINI DI DOMANI",
-            "description": null,
-            "placement": "second",
-            "photographer": {
-              "firstName": "PAOLO",
-              "lastName": "SACCO "
+            id: 'T4JTsL4KC4hfbCEgmfRpw',
+            title: 'IL MARE E GLI UOMINI DI DOMANI',
+            description: null,
+            placement: 'second',
+            photographer: {
+              firstName: 'PAOLO',
+              lastName: 'SACCO ',
             },
-            "image": "/images/contests/2007/T4JTsL4KC4hfbCEgmfRpw.webp",
-            "imageR2Id": "9jX0wyHqajxIds7XmSBbT"
+            image: '/images/contests/2007/T4JTsL4KC4hfbCEgmfRpw.webp',
+            imageR2Id: '9jX0wyHqajxIds7XmSBbT',
           },
           {
-            "id": "pE1u38mbCrwUuofbbqTze",
-            "title": "LO SGUARDO",
-            "description": null,
-            "placement": "third",
-            "photographer": {
-              "firstName": "ANGELO ",
-              "lastName": "ALLEGRETTI"
+            id: 'pE1u38mbCrwUuofbbqTze',
+            title: 'LO SGUARDO',
+            description: null,
+            placement: 'third',
+            photographer: {
+              firstName: 'ANGELO ',
+              lastName: 'ALLEGRETTI',
             },
-            "image": "/images/contests/2007/pE1u38mbCrwUuofbbqTze.webp",
-            "imageR2Id": "F4_szWHg5Y7FOAlcBHLLO"
-          }
-        ]
+            image: '/images/contests/2007/pE1u38mbCrwUuofbbqTze.webp',
+            imageR2Id: 'F4_szWHg5Y7FOAlcBHLLO',
+          },
+        ],
       },
       {
-        "id": "storyboard",
-        "name": "Storyboard",
-        "winnerImage": "/images/contests/2007/lQpOiVuRv6IkE-Q1yXJ68.webp",
-        "winnerImageR2Id": "x_8RloUd3APhUDkT_TYnl",
-        "entries": [
+        id: 'storyboard',
+        name: 'Storyboard',
+        winnerImage: '/images/contests/2007/lQpOiVuRv6IkE-Q1yXJ68.webp',
+        winnerImageR2Id: 'x_8RloUd3APhUDkT_TYnl',
+        entries: [
           {
-            "id": "lQpOiVuRv6IkE-Q1yXJ68",
-            "title": "ESPLOSIONE PIROTECNICA",
-            "description": null,
-            "placement": "first",
-            "photographer": {
-              "firstName": "ADRIANO",
-              "lastName": "MORETTIN"
+            id: 'lQpOiVuRv6IkE-Q1yXJ68',
+            title: 'ESPLOSIONE PIROTECNICA',
+            description: null,
+            placement: 'first',
+            photographer: {
+              firstName: 'ADRIANO',
+              lastName: 'MORETTIN',
             },
-            "image": "/images/contests/2007/lQpOiVuRv6IkE-Q1yXJ68.webp",
-            "imageR2Id": "x_8RloUd3APhUDkT_TYnl"
+            image: '/images/contests/2007/lQpOiVuRv6IkE-Q1yXJ68.webp',
+            imageR2Id: 'x_8RloUd3APhUDkT_TYnl',
           },
           {
-            "id": "5bHwlX_6oFl5LXFWNe3Uc",
-            "title": "FUNANBOLICA",
-            "description": null,
-            "placement": "first",
-            "photographer": {
-              "firstName": "ADRIANO",
-              "lastName": "MORETTIN"
+            id: '5bHwlX_6oFl5LXFWNe3Uc',
+            title: 'FUNANBOLICA',
+            description: null,
+            placement: 'first',
+            photographer: {
+              firstName: 'ADRIANO',
+              lastName: 'MORETTIN',
             },
-            "image": "/images/contests/2007/5bHwlX_6oFl5LXFWNe3Uc.webp",
-            "imageR2Id": "ZQK9L8GFW3WosPc7KTuAv"
+            image: '/images/contests/2007/5bHwlX_6oFl5LXFWNe3Uc.webp',
+            imageR2Id: 'ZQK9L8GFW3WosPc7KTuAv',
           },
           {
-            "id": "AaAUO-62EazZoCT9ABLhl",
-            "title": "FUOCHI NEL BLU",
-            "description": null,
-            "placement": "first",
-            "photographer": {
-              "firstName": "ADRIANO",
-              "lastName": "MORETTIN"
+            id: 'AaAUO-62EazZoCT9ABLhl',
+            title: 'FUOCHI NEL BLU',
+            description: null,
+            placement: 'first',
+            photographer: {
+              firstName: 'ADRIANO',
+              lastName: 'MORETTIN',
             },
-            "image": "/images/contests/2007/AaAUO-62EazZoCT9ABLhl.webp",
-            "imageR2Id": "anEPn3_zgMRVOKJW8Z6dm"
+            image: '/images/contests/2007/AaAUO-62EazZoCT9ABLhl.webp',
+            imageR2Id: 'anEPn3_zgMRVOKJW8Z6dm',
           },
           {
-            "id": "CWS1cco_Uo3OrPzH6aEAH",
-            "title": "PINA",
-            "description": null,
-            "placement": "second",
-            "photographer": {
-              "firstName": "ANTIDIO",
-              "lastName": "ROSSI"
+            id: 'CWS1cco_Uo3OrPzH6aEAH',
+            title: 'PINA',
+            description: null,
+            placement: 'second',
+            photographer: {
+              firstName: 'ANTIDIO',
+              lastName: 'ROSSI',
             },
-            "image": "/images/contests/2007/CWS1cco_Uo3OrPzH6aEAH.webp",
-            "imageR2Id": "t0Ahb7APBd86bzYg1dBkj"
+            image: '/images/contests/2007/CWS1cco_Uo3OrPzH6aEAH.webp',
+            imageR2Id: 't0Ahb7APBd86bzYg1dBkj',
           },
           {
-            "id": "HhBjWSt5jF9TcLQY35HTC",
-            "title": "RINO A - 40",
-            "description": null,
-            "placement": "second",
-            "photographer": {
-              "firstName": "ANTIDIO ",
-              "lastName": "ROSSI"
+            id: 'HhBjWSt5jF9TcLQY35HTC',
+            title: 'RINO A - 40',
+            description: null,
+            placement: 'second',
+            photographer: {
+              firstName: 'ANTIDIO ',
+              lastName: 'ROSSI',
             },
-            "image": "/images/contests/2007/HhBjWSt5jF9TcLQY35HTC.webp",
-            "imageR2Id": "fto3iTkgaboIoAXMtTgsM"
+            image: '/images/contests/2007/HhBjWSt5jF9TcLQY35HTC.webp',
+            imageR2Id: 'fto3iTkgaboIoAXMtTgsM',
           },
           {
-            "id": "amIQMmavEGb-br9kP9uAA",
-            "title": "ROAR",
-            "description": null,
-            "placement": "second",
-            "photographer": {
-              "firstName": "ANTIDIO",
-              "lastName": "ROSSI"
+            id: 'amIQMmavEGb-br9kP9uAA',
+            title: 'ROAR',
+            description: null,
+            placement: 'second',
+            photographer: {
+              firstName: 'ANTIDIO',
+              lastName: 'ROSSI',
             },
-            "image": "/images/contests/2007/amIQMmavEGb-br9kP9uAA.webp",
-            "imageR2Id": "oSBcJavKMrkK3K8fRx9Cx"
+            image: '/images/contests/2007/amIQMmavEGb-br9kP9uAA.webp',
+            imageR2Id: 'oSBcJavKMrkK3K8fRx9Cx',
           },
           {
-            "id": "nBQ12-IoV192g8t9_Xvor",
-            "title": "LA STRANA COPPIA",
-            "description": null,
-            "placement": "third",
-            "photographer": {
-              "firstName": "MARCO",
-              "lastName": "CARACENI"
+            id: 'nBQ12-IoV192g8t9_Xvor',
+            title: 'LA STRANA COPPIA',
+            description: null,
+            placement: 'third',
+            photographer: {
+              firstName: 'MARCO',
+              lastName: 'CARACENI',
             },
-            "image": "/images/contests/2007/nBQ12-IoV192g8t9_Xvor.webp",
-            "imageR2Id": "eAbyMzqAMPtcyiWjsJY6z"
+            image: '/images/contests/2007/nBQ12-IoV192g8t9_Xvor.webp',
+            imageR2Id: 'eAbyMzqAMPtcyiWjsJY6z',
           },
           {
-            "id": "6pTXZFkmysVvmhNz6WFex",
-            "title": "VELOCIRAPTOR",
-            "description": null,
-            "placement": "third",
-            "photographer": {
-              "firstName": "MARCO",
-              "lastName": "CARACENI"
+            id: '6pTXZFkmysVvmhNz6WFex',
+            title: 'VELOCIRAPTOR',
+            description: null,
+            placement: 'third',
+            photographer: {
+              firstName: 'MARCO',
+              lastName: 'CARACENI',
             },
-            "image": "/images/contests/2007/6pTXZFkmysVvmhNz6WFex.webp",
-            "imageR2Id": "HZvduE_dLGxjmUHNRGCnA"
-          }
-        ]
+            image: '/images/contests/2007/6pTXZFkmysVvmhNz6WFex.webp',
+            imageR2Id: 'HZvduE_dLGxjmUHNRGCnA',
+          },
+        ],
       },
       {
-        "id": "wide-angle",
-        "name": "Wide Angle",
-        "winnerImage": "/images/contests/2007/fBAMDgvBCGacYz2WiPd0o.webp",
-        "winnerImageR2Id": "e1XDJITh888h7xiLncCZi",
-        "entries": [
+        id: 'wide-angle',
+        name: 'Wide Angle',
+        winnerImage: '/images/contests/2007/fBAMDgvBCGacYz2WiPd0o.webp',
+        winnerImageR2Id: 'e1XDJITh888h7xiLncCZi',
+        entries: [
           {
-            "id": "fBAMDgvBCGacYz2WiPd0o",
-            "title": "GEORGE",
-            "description": null,
-            "placement": "first",
-            "photographer": {
-              "firstName": "MAURIZIO ",
-              "lastName": "BENEDETTINI"
+            id: 'fBAMDgvBCGacYz2WiPd0o',
+            title: 'GEORGE',
+            description: null,
+            placement: 'first',
+            photographer: {
+              firstName: 'MAURIZIO ',
+              lastName: 'BENEDETTINI',
             },
-            "image": "/images/contests/2007/fBAMDgvBCGacYz2WiPd0o.webp",
-            "imageR2Id": "e1XDJITh888h7xiLncCZi"
+            image: '/images/contests/2007/fBAMDgvBCGacYz2WiPd0o.webp',
+            imageR2Id: 'e1XDJITh888h7xiLncCZi',
           },
           {
-            "id": "XE8V9Tuvtp4QrkwpA6Y-B",
-            "title": "PLATAX",
-            "description": null,
-            "placement": "first",
-            "photographer": {
-              "firstName": "DAVIDE ",
-              "lastName": "BARZAZZI"
+            id: 'XE8V9Tuvtp4QrkwpA6Y-B',
+            title: 'PLATAX',
+            description: null,
+            placement: 'first',
+            photographer: {
+              firstName: 'DAVIDE ',
+              lastName: 'BARZAZZI',
             },
-            "image": "/images/contests/2007/XE8V9Tuvtp4QrkwpA6Y-B.webp",
-            "imageR2Id": "wJmo6hMX-M0LL_XBzsyR6"
+            image: '/images/contests/2007/XE8V9Tuvtp4QrkwpA6Y-B.webp',
+            imageR2Id: 'wJmo6hMX-M0LL_XBzsyR6',
           },
           {
-            "id": "GAe3ibxbX_NvgAOIKuCwx",
-            "title": "CAROSELLO NEL BLU",
-            "description": null,
-            "placement": "second",
-            "photographer": {
-              "firstName": "CLEMENTE",
-              "lastName": "ACQUADRO"
+            id: 'GAe3ibxbX_NvgAOIKuCwx',
+            title: 'CAROSELLO NEL BLU',
+            description: null,
+            placement: 'second',
+            photographer: {
+              firstName: 'CLEMENTE',
+              lastName: 'ACQUADRO',
             },
-            "image": "/images/contests/2007/GAe3ibxbX_NvgAOIKuCwx.webp",
-            "imageR2Id": "Ldspk62WhsRK5UbFxQAiz"
+            image: '/images/contests/2007/GAe3ibxbX_NvgAOIKuCwx.webp',
+            imageR2Id: 'Ldspk62WhsRK5UbFxQAiz',
           },
           {
-            "id": "SorLBwCMJKO3CVlQZUsAa",
-            "title": "PINA",
-            "description": null,
-            "placement": "second",
-            "photographer": {
-              "firstName": "ANTIDIO",
-              "lastName": "ROSSI"
+            id: 'SorLBwCMJKO3CVlQZUsAa',
+            title: 'PINA',
+            description: null,
+            placement: 'second',
+            photographer: {
+              firstName: 'ANTIDIO',
+              lastName: 'ROSSI',
             },
-            "image": "/images/contests/2007/SorLBwCMJKO3CVlQZUsAa.webp",
-            "imageR2Id": "8NBhOm1_RpBWPLj65cQDr"
+            image: '/images/contests/2007/SorLBwCMJKO3CVlQZUsAa.webp',
+            imageR2Id: '8NBhOm1_RpBWPLj65cQDr',
           },
           {
-            "id": "VGyT_mNhUcT0poNOXzKdr",
-            "title": "AMBIENTE 2",
-            "description": null,
-            "placement": "second",
-            "photographer": {
-              "firstName": "GIOVANNI",
-              "lastName": "SMORTI"
+            id: 'VGyT_mNhUcT0poNOXzKdr',
+            title: 'AMBIENTE 2',
+            description: null,
+            placement: 'second',
+            photographer: {
+              firstName: 'GIOVANNI',
+              lastName: 'SMORTI',
             },
-            "image": "/images/contests/2007/VGyT_mNhUcT0poNOXzKdr.webp",
-            "imageR2Id": "INqf8m0b7J38Yqqt8R46D"
+            image: '/images/contests/2007/VGyT_mNhUcT0poNOXzKdr.webp',
+            imageR2Id: 'INqf8m0b7J38Yqqt8R46D',
           },
           {
-            "id": "y9b9FCXVRkiwrjsowrTvb",
-            "title": "CANNETO",
-            "description": null,
-            "placement": "third",
-            "photographer": {
-              "firstName": "CLAUDIO",
-              "lastName": "ZORI"
+            id: 'y9b9FCXVRkiwrjsowrTvb',
+            title: 'CANNETO',
+            description: null,
+            placement: 'third',
+            photographer: {
+              firstName: 'CLAUDIO',
+              lastName: 'ZORI',
             },
-            "image": "/images/contests/2007/y9b9FCXVRkiwrjsowrTvb.webp",
-            "imageR2Id": "dJNSVXE0jb2ansG8WqI4D"
+            image: '/images/contests/2007/y9b9FCXVRkiwrjsowrTvb.webp',
+            imageR2Id: 'dJNSVXE0jb2ansG8WqI4D',
           },
           {
-            "id": "cv3KZK-1exeZioDtwo-G0",
-            "title": "BEL FACCIONE ",
-            "description": null,
-            "placement": "third",
-            "photographer": {
-              "firstName": "MONICA ",
-              "lastName": "FASCIOLO"
+            id: 'cv3KZK-1exeZioDtwo-G0',
+            title: 'BEL FACCIONE ',
+            description: null,
+            placement: 'third',
+            photographer: {
+              firstName: 'MONICA ',
+              lastName: 'FASCIOLO',
             },
-            "image": "/images/contests/2007/cv3KZK-1exeZioDtwo-G0.webp",
-            "imageR2Id": "oQ-JTMkUXeHB7fxtKPYCN"
+            image: '/images/contests/2007/cv3KZK-1exeZioDtwo-G0.webp',
+            imageR2Id: 'oQ-JTMkUXeHB7fxtKPYCN',
           },
           {
-            "id": "iDSMfHnI8uhwp6VJel5iz",
-            "title": "GUARDARE E NON TOCCARE",
-            "description": null,
-            "placement": "third",
-            "photographer": {
-              "firstName": "PATRICK ",
-              "lastName": "TORRESAN"
+            id: 'iDSMfHnI8uhwp6VJel5iz',
+            title: 'GUARDARE E NON TOCCARE',
+            description: null,
+            placement: 'third',
+            photographer: {
+              firstName: 'PATRICK ',
+              lastName: 'TORRESAN',
             },
-            "image": "/images/contests/2007/iDSMfHnI8uhwp6VJel5iz.webp",
-            "imageR2Id": "XSWygaVpAN3xz3jsy16Cz"
-          }
-        ]
-      }
-    ]
+            image: '/images/contests/2007/iDSMfHnI8uhwp6VJel5iz.webp',
+            imageR2Id: 'XSWygaVpAN3xz3jsy16Cz',
+          },
+        ],
+      },
+    ],
   },
   {
-    "id": "uw-2006",
-    "year": 2006,
-    "name": "UW Contest 2006",
-    "description": "Annual underwater photography competition celebrating the beauty and diversity of marine life",
-    "indexImage": "/images/contests/2006/tVPb06BguUyyAVsrgQD8D.webp",
-    "indexImageR2Id": "JXClaDp314Y88NEkn8Sh6",
-    "currentContest": false,
-    "judges": [
+    id: 'uw-2006',
+    year: 2006,
+    name: 'UW Contest 2006',
+    description:
+      'Annual underwater photography competition celebrating the beauty and diversity of marine life',
+    indexImage: '/images/contests/2006/tVPb06BguUyyAVsrgQD8D.webp',
+    indexImageR2Id: 'JXClaDp314Y88NEkn8Sh6',
+    currentContest: false,
+    judges: [
       {
-        "id": "mm6krHfBjfuC0l6bzU95n",
-        "fullName": "Alberto Muro Pelliconi",
-        "r2ImageId": null
+        id: 'mm6krHfBjfuC0l6bzU95n',
+        fullName: 'Alberto Muro Pelliconi',
+        r2ImageId: null,
       },
       {
-        "id": "VNb5wYRJwlJADF2DfR1SC",
-        "fullName": "Gennaro Ciavarella",
-        "r2ImageId": null
+        id: 'VNb5wYRJwlJADF2DfR1SC',
+        fullName: 'Gennaro Ciavarella',
+        r2ImageId: null,
       },
       {
-        "id": "z57nhtw8v01HCCrdxAzcf",
-        "fullName": "Franca Cauti",
-        "r2ImageId": null
+        id: 'z57nhtw8v01HCCrdxAzcf',
+        fullName: 'Franca Cauti',
+        r2ImageId: null,
       },
       {
-        "id": "PsfjEzUNu_auxk_ll3OW4",
-        "fullName": "Gaetano Basti",
-        "r2ImageId": null
-      }
+        id: 'PsfjEzUNu_auxk_ll3OW4',
+        fullName: 'Gaetano Basti',
+        r2ImageId: null,
+      },
     ],
-    "categories": [
+    categories: [
       {
-        "id": "macro",
-        "name": "Macro",
-        "winnerImage": "/images/contests/2006/tVPb06BguUyyAVsrgQD8D.webp",
-        "winnerImageR2Id": "JXClaDp314Y88NEkn8Sh6",
-        "entries": [
+        id: 'macro',
+        name: 'Macro',
+        winnerImage: '/images/contests/2006/tVPb06BguUyyAVsrgQD8D.webp',
+        winnerImageR2Id: 'JXClaDp314Y88NEkn8Sh6',
+        entries: [
           {
-            "id": "tVPb06BguUyyAVsrgQD8D",
-            "title": "ARGONAUTA",
-            "description": null,
-            "placement": "first",
-            "photographer": {
-              "firstName": "MARCO ",
-              "lastName": "GARGIULO"
+            id: 'tVPb06BguUyyAVsrgQD8D',
+            title: 'ARGONAUTA',
+            description: null,
+            placement: 'first',
+            photographer: {
+              firstName: 'MARCO ',
+              lastName: 'GARGIULO',
             },
-            "image": "/images/contests/2006/tVPb06BguUyyAVsrgQD8D.webp",
-            "imageR2Id": "JXClaDp314Y88NEkn8Sh6"
+            image: '/images/contests/2006/tVPb06BguUyyAVsrgQD8D.webp',
+            imageR2Id: 'JXClaDp314Y88NEkn8Sh6',
           },
           {
-            "id": "yByTRRY1S6wreTn85bGYZ",
-            "title": "PICCOLO GRANDE AMORE",
-            "description": null,
-            "placement": "second",
-            "photographer": {
-              "firstName": "ALESSANDRO ",
-              "lastName": "FORNASIERI"
+            id: 'yByTRRY1S6wreTn85bGYZ',
+            title: 'PICCOLO GRANDE AMORE',
+            description: null,
+            placement: 'second',
+            photographer: {
+              firstName: 'ALESSANDRO ',
+              lastName: 'FORNASIERI',
             },
-            "image": "/images/contests/2006/yByTRRY1S6wreTn85bGYZ.webp",
-            "imageR2Id": "o4cZZqaE9QjPl7uioobZQ"
+            image: '/images/contests/2006/yByTRRY1S6wreTn85bGYZ.webp',
+            imageR2Id: 'o4cZZqaE9QjPl7uioobZQ',
           },
           {
-            "id": "pyv_uZ5q29Za2KkoZTVm_",
-            "title": "CAVALLUCCIO PIGMEO",
-            "description": null,
-            "placement": "third",
-            "photographer": {
-              "firstName": "CLAUDIO",
-              "lastName": "ZORI "
+            id: 'pyv_uZ5q29Za2KkoZTVm_',
+            title: 'CAVALLUCCIO PIGMEO',
+            description: null,
+            placement: 'third',
+            photographer: {
+              firstName: 'CLAUDIO',
+              lastName: 'ZORI ',
             },
-            "image": "/images/contests/2006/pyv_uZ5q29Za2KkoZTVm_.webp",
-            "imageR2Id": "XPhLLZX7QDD3dBGXZsI2g"
+            image: '/images/contests/2006/pyv_uZ5q29Za2KkoZTVm_.webp',
+            imageR2Id: 'XPhLLZX7QDD3dBGXZsI2g',
           },
           {
-            "id": "Pt5U-O3v-H_mqjcJL-iZM",
-            "title": "MOSAICO",
-            "description": null,
-            "placement": "runner-up",
-            "photographer": {
-              "firstName": "CLEMENTE",
-              "lastName": "ACQUADRO"
+            id: 'Pt5U-O3v-H_mqjcJL-iZM',
+            title: 'MOSAICO',
+            description: null,
+            placement: 'runner-up',
+            photographer: {
+              firstName: 'CLEMENTE',
+              lastName: 'ACQUADRO',
             },
-            "image": "/images/contests/2006/Pt5U-O3v-H_mqjcJL-iZM.webp",
-            "imageR2Id": "HvvVNfjFdIqVAiuGNiPSX"
+            image: '/images/contests/2006/Pt5U-O3v-H_mqjcJL-iZM.webp',
+            imageR2Id: 'HvvVNfjFdIqVAiuGNiPSX',
           },
           {
-            "id": "3QdQ78kP3C5dwwxhatRbu",
-            "title": "NEW LIFE",
-            "description": null,
-            "placement": "runner-up",
-            "photographer": {
-              "firstName": "GABRIELE ",
-              "lastName": "DONATI"
+            id: '3QdQ78kP3C5dwwxhatRbu',
+            title: 'NEW LIFE',
+            description: null,
+            placement: 'runner-up',
+            photographer: {
+              firstName: 'GABRIELE ',
+              lastName: 'DONATI',
             },
-            "image": "/images/contests/2006/3QdQ78kP3C5dwwxhatRbu.webp",
-            "imageR2Id": "yuK13_oZI_BmbbE7bVyRm"
+            image: '/images/contests/2006/3QdQ78kP3C5dwwxhatRbu.webp',
+            imageR2Id: 'yuK13_oZI_BmbbE7bVyRm',
           },
           {
-            "id": "MwEdYtDFU2yCvuwcKVAxj",
-            "title": "VOLTO SANTO",
-            "description": null,
-            "placement": "runner-up",
-            "photographer": {
-              "firstName": "MARCO",
-              "lastName": "GARGIULO"
+            id: 'MwEdYtDFU2yCvuwcKVAxj',
+            title: 'VOLTO SANTO',
+            description: null,
+            placement: 'runner-up',
+            photographer: {
+              firstName: 'MARCO',
+              lastName: 'GARGIULO',
             },
-            "image": "/images/contests/2006/MwEdYtDFU2yCvuwcKVAxj.webp",
-            "imageR2Id": "_ImC_3tj1F3uEAXc8Nudo"
+            image: '/images/contests/2006/MwEdYtDFU2yCvuwcKVAxj.webp',
+            imageR2Id: '_ImC_3tj1F3uEAXc8Nudo',
           },
           {
-            "id": "NXZwfXSJAG5AsnoYV83Gw",
-            "title": "VIAGGIO NELL'IDROSFERA",
-            "description": null,
-            "placement": "runner-up",
-            "photographer": {
-              "firstName": "STEFANO",
-              "lastName": "GUERRIERI"
+            id: 'NXZwfXSJAG5AsnoYV83Gw',
+            title: "VIAGGIO NELL'IDROSFERA",
+            description: null,
+            placement: 'runner-up',
+            photographer: {
+              firstName: 'STEFANO',
+              lastName: 'GUERRIERI',
             },
-            "image": "/images/contests/2006/NXZwfXSJAG5AsnoYV83Gw.webp",
-            "imageR2Id": "EB6r14gdHkIjz3UwJVCM2"
+            image: '/images/contests/2006/NXZwfXSJAG5AsnoYV83Gw.webp',
+            imageR2Id: 'EB6r14gdHkIjz3UwJVCM2',
           },
           {
-            "id": "niYKOXXyi1L69B0xTDr50",
-            "title": "GIALLO 1",
-            "description": null,
-            "placement": "runner-up",
-            "photographer": {
-              "firstName": "YURI",
-              "lastName": "LIGUORI"
+            id: 'niYKOXXyi1L69B0xTDr50',
+            title: 'GIALLO 1',
+            description: null,
+            placement: 'runner-up',
+            photographer: {
+              firstName: 'YURI',
+              lastName: 'LIGUORI',
             },
-            "image": "/images/contests/2006/niYKOXXyi1L69B0xTDr50.webp",
-            "imageR2Id": "KA5EFtRrRrFM9VN7mX4C7"
+            image: '/images/contests/2006/niYKOXXyi1L69B0xTDr50.webp',
+            imageR2Id: 'KA5EFtRrRrFM9VN7mX4C7',
           },
           {
-            "id": "uBUNosht6ASvj3RlAQ2f8",
-            "title": "SGUARDI",
-            "description": null,
-            "placement": "runner-up",
-            "photographer": {
-              "firstName": "GIACOMO ",
-              "lastName": "MARCHIONE"
+            id: 'uBUNosht6ASvj3RlAQ2f8',
+            title: 'SGUARDI',
+            description: null,
+            placement: 'runner-up',
+            photographer: {
+              firstName: 'GIACOMO ',
+              lastName: 'MARCHIONE',
             },
-            "image": "/images/contests/2006/uBUNosht6ASvj3RlAQ2f8.webp",
-            "imageR2Id": "1druGZvXAxyiYi84c43h5"
+            image: '/images/contests/2006/uBUNosht6ASvj3RlAQ2f8.webp',
+            imageR2Id: '1druGZvXAxyiYi84c43h5',
           },
           {
-            "id": "_4KQAkVihOXqr9tT8TYw2",
-            "title": "MICROCOSMO IN BIANCO E NERO",
-            "description": null,
-            "placement": "runner-up",
-            "photographer": {
-              "firstName": "LEDA",
-              "lastName": "MASI"
+            id: '_4KQAkVihOXqr9tT8TYw2',
+            title: 'MICROCOSMO IN BIANCO E NERO',
+            description: null,
+            placement: 'runner-up',
+            photographer: {
+              firstName: 'LEDA',
+              lastName: 'MASI',
             },
-            "image": "/images/contests/2006/_4KQAkVihOXqr9tT8TYw2.webp",
-            "imageR2Id": "nR4ri6B0p8OB2KPNbWdCg"
+            image: '/images/contests/2006/_4KQAkVihOXqr9tT8TYw2.webp',
+            imageR2Id: 'nR4ri6B0p8OB2KPNbWdCg',
           },
           {
-            "id": "f_2hLGiNgES1LU60deUxQ",
-            "title": "INSIEME",
-            "description": null,
-            "placement": "runner-up",
-            "photographer": {
-              "firstName": "ADRIANO ",
-              "lastName": "MORETTIN"
+            id: 'f_2hLGiNgES1LU60deUxQ',
+            title: 'INSIEME',
+            description: null,
+            placement: 'runner-up',
+            photographer: {
+              firstName: 'ADRIANO ',
+              lastName: 'MORETTIN',
             },
-            "image": "/images/contests/2006/f_2hLGiNgES1LU60deUxQ.webp",
-            "imageR2Id": "Fg2EoK8JKtIaKwL6DKLTo"
+            image: '/images/contests/2006/f_2hLGiNgES1LU60deUxQ.webp',
+            imageR2Id: 'Fg2EoK8JKtIaKwL6DKLTo',
           },
           {
-            "id": "MNE37oXf-Fu2UfGerbcI6",
-            "title": "TRASPARENZE",
-            "description": null,
-            "placement": "runner-up",
-            "photographer": {
-              "firstName": "ANTONIO",
-              "lastName": "VANNI"
+            id: 'MNE37oXf-Fu2UfGerbcI6',
+            title: 'TRASPARENZE',
+            description: null,
+            placement: 'runner-up',
+            photographer: {
+              firstName: 'ANTONIO',
+              lastName: 'VANNI',
             },
-            "image": "/images/contests/2006/MNE37oXf-Fu2UfGerbcI6.webp",
-            "imageR2Id": "w8kMAd9CuSP1-KlfMNxpo"
-          }
-        ]
+            image: '/images/contests/2006/MNE37oXf-Fu2UfGerbcI6.webp',
+            imageR2Id: 'w8kMAd9CuSP1-KlfMNxpo',
+          },
+        ],
       },
       {
-        "id": "newcomers",
-        "name": "Newcomers",
-        "winnerImage": "/images/contests/2006/uLM8_goKSIbTs-9AUonYX.webp",
-        "winnerImageR2Id": "2OjjwOMhFmAn-d6I5Xwc-",
-        "entries": [
+        id: 'newcomers',
+        name: 'Newcomers',
+        winnerImage: '/images/contests/2006/uLM8_goKSIbTs-9AUonYX.webp',
+        winnerImageR2Id: '2OjjwOMhFmAn-d6I5Xwc-',
+        entries: [
           {
-            "id": "uLM8_goKSIbTs-9AUonYX",
-            "title": "WEDDING CLOTH",
-            "description": null,
-            "placement": "first",
-            "photographer": {
-              "firstName": "GABRIELE ",
-              "lastName": "DONATI"
+            id: 'uLM8_goKSIbTs-9AUonYX',
+            title: 'WEDDING CLOTH',
+            description: null,
+            placement: 'first',
+            photographer: {
+              firstName: 'GABRIELE ',
+              lastName: 'DONATI',
             },
-            "image": "/images/contests/2006/uLM8_goKSIbTs-9AUonYX.webp",
-            "imageR2Id": "2OjjwOMhFmAn-d6I5Xwc-"
+            image: '/images/contests/2006/uLM8_goKSIbTs-9AUonYX.webp',
+            imageR2Id: '2OjjwOMhFmAn-d6I5Xwc-',
           },
           {
-            "id": "A82fChztjVVs0Z5smK7gM",
-            "title": "ABBRACCIO",
-            "description": null,
-            "placement": "second",
-            "photographer": {
-              "firstName": "KATIA ",
-              "lastName": "BIAGINI"
+            id: 'A82fChztjVVs0Z5smK7gM',
+            title: 'ABBRACCIO',
+            description: null,
+            placement: 'second',
+            photographer: {
+              firstName: 'KATIA ',
+              lastName: 'BIAGINI',
             },
-            "image": "/images/contests/2006/A82fChztjVVs0Z5smK7gM.webp",
-            "imageR2Id": "T7Dgp6SGC_QIga9Ze55Ed"
+            image: '/images/contests/2006/A82fChztjVVs0Z5smK7gM.webp',
+            imageR2Id: 'T7Dgp6SGC_QIga9Ze55Ed',
           },
           {
-            "id": "rWApQKXrCXWlvyJErDCEu",
-            "title": "SARAGO SOLITARIO",
-            "description": null,
-            "placement": "third",
-            "photographer": {
-              "firstName": "ANDREA",
-              "lastName": "ANGRILLI"
+            id: 'rWApQKXrCXWlvyJErDCEu',
+            title: 'SARAGO SOLITARIO',
+            description: null,
+            placement: 'third',
+            photographer: {
+              firstName: 'ANDREA',
+              lastName: 'ANGRILLI',
             },
-            "image": "/images/contests/2006/rWApQKXrCXWlvyJErDCEu.webp",
-            "imageR2Id": "Arb_--086J1tD09YF0MVu"
-          }
-        ]
+            image: '/images/contests/2006/rWApQKXrCXWlvyJErDCEu.webp',
+            imageR2Id: 'Arb_--086J1tD09YF0MVu',
+          },
+        ],
       },
       {
-        "id": "open",
-        "name": "Open",
-        "winnerImage": "/images/contests/2006/bJL_lrnDBKboxc0szGbJJ.webp",
-        "winnerImageR2Id": "VaWBdiEuUC7JeqQOE937p",
-        "entries": [
+        id: 'open',
+        name: 'Open',
+        winnerImage: '/images/contests/2006/bJL_lrnDBKboxc0szGbJJ.webp',
+        winnerImageR2Id: 'VaWBdiEuUC7JeqQOE937p',
+        entries: [
           {
-            "id": "bJL_lrnDBKboxc0szGbJJ",
-            "title": "L'UOMO E IL MARE",
-            "description": null,
-            "placement": "first",
-            "photographer": {
-              "firstName": "FELICIANA ",
-              "lastName": "MONTAGNA "
+            id: 'bJL_lrnDBKboxc0szGbJJ',
+            title: "L'UOMO E IL MARE",
+            description: null,
+            placement: 'first',
+            photographer: {
+              firstName: 'FELICIANA ',
+              lastName: 'MONTAGNA ',
             },
-            "image": "/images/contests/2006/bJL_lrnDBKboxc0szGbJJ.webp",
-            "imageR2Id": "VaWBdiEuUC7JeqQOE937p"
+            image: '/images/contests/2006/bJL_lrnDBKboxc0szGbJJ.webp',
+            imageR2Id: 'VaWBdiEuUC7JeqQOE937p',
           },
           {
-            "id": "q20k-zRvHL1OxXZxoNc3I",
-            "title": "IMPOTENZA",
-            "description": null,
-            "placement": "second",
-            "photographer": {
-              "firstName": "GIAMPIERO",
-              "lastName": "LIGUORI"
+            id: 'q20k-zRvHL1OxXZxoNc3I',
+            title: 'IMPOTENZA',
+            description: null,
+            placement: 'second',
+            photographer: {
+              firstName: 'GIAMPIERO',
+              lastName: 'LIGUORI',
             },
-            "image": "/images/contests/2006/q20k-zRvHL1OxXZxoNc3I.webp",
-            "imageR2Id": "OLnwuSarasyy4uSMaqY7h"
+            image: '/images/contests/2006/q20k-zRvHL1OxXZxoNc3I.webp',
+            imageR2Id: 'OLnwuSarasyy4uSMaqY7h',
           },
           {
-            "id": "pd5ZpYB521cPZHRSkThnZ",
-            "title": "FILIPPINE ",
-            "description": null,
-            "placement": "third",
-            "photographer": {
-              "firstName": "RICCARDO ",
-              "lastName": "BREDA"
+            id: 'pd5ZpYB521cPZHRSkThnZ',
+            title: 'FILIPPINE ',
+            description: null,
+            placement: 'third',
+            photographer: {
+              firstName: 'RICCARDO ',
+              lastName: 'BREDA',
             },
-            "image": "/images/contests/2006/pd5ZpYB521cPZHRSkThnZ.webp",
-            "imageR2Id": "sUtdD-89e7iMZ37Dj-2ie"
+            image: '/images/contests/2006/pd5ZpYB521cPZHRSkThnZ.webp',
+            imageR2Id: 'sUtdD-89e7iMZ37Dj-2ie',
           },
           {
-            "id": "cIX97j1LMR87cUGCN06iM",
-            "title": "GABBIANI",
-            "description": null,
-            "placement": "runner-up",
-            "photographer": {
-              "firstName": "MARCO",
-              "lastName": "GARGIULO"
+            id: 'cIX97j1LMR87cUGCN06iM',
+            title: 'GABBIANI',
+            description: null,
+            placement: 'runner-up',
+            photographer: {
+              firstName: 'MARCO',
+              lastName: 'GARGIULO',
             },
-            "image": "/images/contests/2006/cIX97j1LMR87cUGCN06iM.webp",
-            "imageR2Id": "1XUI6ZvPhj96HDII8Wnyd"
-          }
-        ]
+            image: '/images/contests/2006/cIX97j1LMR87cUGCN06iM.webp',
+            imageR2Id: '1XUI6ZvPhj96HDII8Wnyd',
+          },
+        ],
       },
       {
-        "id": "special-mention",
-        "name": "Special Mention",
-        "winnerImage": "/images/contests/2006/3-ENXOvi31QU-kBwqH6cP.webp",
-        "winnerImageR2Id": "N5zZvxaD-jPduZt2oUA-H",
-        "entries": [
+        id: 'special-mention',
+        name: 'Special Mention',
+        winnerImage: '/images/contests/2006/3-ENXOvi31QU-kBwqH6cP.webp',
+        winnerImageR2Id: 'N5zZvxaD-jPduZt2oUA-H',
+        entries: [
           {
-            "id": "3-ENXOvi31QU-kBwqH6cP",
-            "title": "EGG HOLDER",
-            "description": null,
-            "placement": "first",
-            "photographer": {
-              "firstName": "ALESSIO",
-              "lastName": "VIORA"
+            id: '3-ENXOvi31QU-kBwqH6cP',
+            title: 'EGG HOLDER',
+            description: null,
+            placement: 'first',
+            photographer: {
+              firstName: 'ALESSIO',
+              lastName: 'VIORA',
             },
-            "image": "/images/contests/2006/3-ENXOvi31QU-kBwqH6cP.webp",
-            "imageR2Id": "N5zZvxaD-jPduZt2oUA-H"
-          }
-        ]
+            image: '/images/contests/2006/3-ENXOvi31QU-kBwqH6cP.webp',
+            imageR2Id: 'N5zZvxaD-jPduZt2oUA-H',
+          },
+        ],
       },
       {
-        "id": "wide-angle",
-        "name": "Wide Angle",
-        "winnerImage": "/images/contests/2006/0ZTJSpqbkk5cCgJhhn6Qc.webp",
-        "winnerImageR2Id": "0Dgj052-EWA6sQe7z1PTv",
-        "entries": [
+        id: 'wide-angle',
+        name: 'Wide Angle',
+        winnerImage: '/images/contests/2006/0ZTJSpqbkk5cCgJhhn6Qc.webp',
+        winnerImageR2Id: '0Dgj052-EWA6sQe7z1PTv',
+        entries: [
           {
-            "id": "0ZTJSpqbkk5cCgJhhn6Qc",
-            "title": "IL RIPOSO DEI TRE MOSCHETTIERI",
-            "description": null,
-            "placement": "first",
-            "photographer": {
-              "firstName": "MARCO ",
-              "lastName": "CARACENI "
+            id: '0ZTJSpqbkk5cCgJhhn6Qc',
+            title: 'IL RIPOSO DEI TRE MOSCHETTIERI',
+            description: null,
+            placement: 'first',
+            photographer: {
+              firstName: 'MARCO ',
+              lastName: 'CARACENI ',
             },
-            "image": "/images/contests/2006/0ZTJSpqbkk5cCgJhhn6Qc.webp",
-            "imageR2Id": "0Dgj052-EWA6sQe7z1PTv"
+            image: '/images/contests/2006/0ZTJSpqbkk5cCgJhhn6Qc.webp',
+            imageR2Id: '0Dgj052-EWA6sQe7z1PTv',
           },
           {
-            "id": "KZYW-8ffmajRtySkDfQWE",
-            "title": "SUDAN",
-            "description": null,
-            "placement": "second",
-            "photographer": {
-              "firstName": "CLEMENTE ",
-              "lastName": "ACQUADRO"
+            id: 'KZYW-8ffmajRtySkDfQWE',
+            title: 'SUDAN',
+            description: null,
+            placement: 'second',
+            photographer: {
+              firstName: 'CLEMENTE ',
+              lastName: 'ACQUADRO',
             },
-            "image": "/images/contests/2006/KZYW-8ffmajRtySkDfQWE.webp",
-            "imageR2Id": "oJRvxF08akKEcrdJJr9fW"
+            image: '/images/contests/2006/KZYW-8ffmajRtySkDfQWE.webp',
+            imageR2Id: 'oJRvxF08akKEcrdJJr9fW',
           },
           {
-            "id": "OD3j_kRIdtW2dSb9Fr2Oy",
-            "title": "IL GUARDIANO",
-            "description": null,
-            "placement": "third",
-            "photographer": {
-              "firstName": "GIACOMO",
-              "lastName": "MARCHIONE"
+            id: 'OD3j_kRIdtW2dSb9Fr2Oy',
+            title: 'IL GUARDIANO',
+            description: null,
+            placement: 'third',
+            photographer: {
+              firstName: 'GIACOMO',
+              lastName: 'MARCHIONE',
             },
-            "image": "/images/contests/2006/OD3j_kRIdtW2dSb9Fr2Oy.webp",
-            "imageR2Id": "wiHSlEuOXIIVbNpknCKS3"
+            image: '/images/contests/2006/OD3j_kRIdtW2dSb9Fr2Oy.webp',
+            imageR2Id: 'wiHSlEuOXIIVbNpknCKS3',
           },
           {
-            "id": "B--HjYKoanc5RE1pu8bM7",
-            "title": "TUTTI INSIEME ",
-            "description": null,
-            "placement": "runner-up",
-            "photographer": {
-              "firstName": "MAURIZIO ",
-              "lastName": "BENEDETTINI"
+            id: 'B--HjYKoanc5RE1pu8bM7',
+            title: 'TUTTI INSIEME ',
+            description: null,
+            placement: 'runner-up',
+            photographer: {
+              firstName: 'MAURIZIO ',
+              lastName: 'BENEDETTINI',
             },
-            "image": "/images/contests/2006/B--HjYKoanc5RE1pu8bM7.webp",
-            "imageR2Id": "2Ezl_44IbiSptiUp0oKbz"
+            image: '/images/contests/2006/B--HjYKoanc5RE1pu8bM7.webp',
+            imageR2Id: '2Ezl_44IbiSptiUp0oKbz',
           },
           {
-            "id": "WY1ty-m5BHp1SYONIVYLl",
-            "title": "LE SORGENTI DEL PESCARA",
-            "description": null,
-            "placement": "runner-up",
-            "photographer": {
-              "firstName": "RICCARDO",
-              "lastName": "BREDA"
+            id: 'WY1ty-m5BHp1SYONIVYLl',
+            title: 'LE SORGENTI DEL PESCARA',
+            description: null,
+            placement: 'runner-up',
+            photographer: {
+              firstName: 'RICCARDO',
+              lastName: 'BREDA',
             },
-            "image": "/images/contests/2006/WY1ty-m5BHp1SYONIVYLl.webp",
-            "imageR2Id": "q1CjYjwGTiz6s__rl18KA"
+            image: '/images/contests/2006/WY1ty-m5BHp1SYONIVYLl.webp',
+            imageR2Id: 'q1CjYjwGTiz6s__rl18KA',
           },
           {
-            "id": "l37KTglmR4UZ1EAftPXS6",
-            "title": "LA SFIDA DEL PELOSO",
-            "description": null,
-            "placement": "runner-up",
-            "photographer": {
-              "firstName": "MARCO",
-              "lastName": "CARACENI"
+            id: 'l37KTglmR4UZ1EAftPXS6',
+            title: 'LA SFIDA DEL PELOSO',
+            description: null,
+            placement: 'runner-up',
+            photographer: {
+              firstName: 'MARCO',
+              lastName: 'CARACENI',
             },
-            "image": "/images/contests/2006/l37KTglmR4UZ1EAftPXS6.webp",
-            "imageR2Id": "QuSfT3-cyCpR4U8Sr8mNc"
+            image: '/images/contests/2006/l37KTglmR4UZ1EAftPXS6.webp',
+            imageR2Id: 'QuSfT3-cyCpR4U8Sr8mNc',
           },
           {
-            "id": "7tmVU45wxLdLPabEZ8s78",
-            "title": "HIPPOCAMPUS RAMOLOSUS",
-            "description": null,
-            "placement": "runner-up",
-            "photographer": {
-              "firstName": "STEFANO",
-              "lastName": "GUERRIERI"
+            id: '7tmVU45wxLdLPabEZ8s78',
+            title: 'HIPPOCAMPUS RAMOLOSUS',
+            description: null,
+            placement: 'runner-up',
+            photographer: {
+              firstName: 'STEFANO',
+              lastName: 'GUERRIERI',
             },
-            "image": "/images/contests/2006/7tmVU45wxLdLPabEZ8s78.webp",
-            "imageR2Id": "1YIbbCN0x6KcvMdLGjkUz"
+            image: '/images/contests/2006/7tmVU45wxLdLPabEZ8s78.webp',
+            imageR2Id: '1YIbbCN0x6KcvMdLGjkUz',
           },
           {
-            "id": "ZOAEofgsY46MfU1RYnWio",
-            "title": "EMOZIONI IN MAR ROSSO",
-            "description": null,
-            "placement": "runner-up",
-            "photographer": {
-              "firstName": "ADRIANO",
-              "lastName": "MORETTIN"
+            id: 'ZOAEofgsY46MfU1RYnWio',
+            title: 'EMOZIONI IN MAR ROSSO',
+            description: null,
+            placement: 'runner-up',
+            photographer: {
+              firstName: 'ADRIANO',
+              lastName: 'MORETTIN',
             },
-            "image": "/images/contests/2006/ZOAEofgsY46MfU1RYnWio.webp",
-            "imageR2Id": "EI_AX5Dg4oqOaMW1TBrbM"
+            image: '/images/contests/2006/ZOAEofgsY46MfU1RYnWio.webp',
+            imageR2Id: 'EI_AX5Dg4oqOaMW1TBrbM',
           },
           {
-            "id": "PHJ1RbMSpukvAcb89X4FU",
-            "title": "CIELO SQUALO MARE",
-            "description": null,
-            "placement": "runner-up",
-            "photographer": {
-              "firstName": "FRANCO",
-              "lastName": "POZZI"
+            id: 'PHJ1RbMSpukvAcb89X4FU',
+            title: 'CIELO SQUALO MARE',
+            description: null,
+            placement: 'runner-up',
+            photographer: {
+              firstName: 'FRANCO',
+              lastName: 'POZZI',
             },
-            "image": "/images/contests/2006/PHJ1RbMSpukvAcb89X4FU.webp",
-            "imageR2Id": "2svPAu1PQ97sVJbWlPCKn"
+            image: '/images/contests/2006/PHJ1RbMSpukvAcb89X4FU.webp',
+            imageR2Id: '2svPAu1PQ97sVJbWlPCKn',
           },
           {
-            "id": "sJ45dn8SVc0rBg9AM5C5K",
-            "title": "LA GROTTA MAGICA",
-            "description": null,
-            "placement": "runner-up",
-            "photographer": {
-              "firstName": "MARIO",
-              "lastName": "RAPINI"
+            id: 'sJ45dn8SVc0rBg9AM5C5K',
+            title: 'LA GROTTA MAGICA',
+            description: null,
+            placement: 'runner-up',
+            photographer: {
+              firstName: 'MARIO',
+              lastName: 'RAPINI',
             },
-            "image": "/images/contests/2006/sJ45dn8SVc0rBg9AM5C5K.webp",
-            "imageR2Id": "f3L-8-A2DTV4e70veUinN"
+            image: '/images/contests/2006/sJ45dn8SVc0rBg9AM5C5K.webp',
+            imageR2Id: 'f3L-8-A2DTV4e70veUinN',
           },
           {
-            "id": "Vm1ORQgjHoA26mVyPzxIz",
-            "title": "SULLA PARETE DI MALEPASSO",
-            "description": null,
-            "placement": "runner-up",
-            "photographer": {
-              "firstName": "CLAUDIO",
-              "lastName": "STOPPATO"
+            id: 'Vm1ORQgjHoA26mVyPzxIz',
+            title: 'SULLA PARETE DI MALEPASSO',
+            description: null,
+            placement: 'runner-up',
+            photographer: {
+              firstName: 'CLAUDIO',
+              lastName: 'STOPPATO',
             },
-            "image": "/images/contests/2006/Vm1ORQgjHoA26mVyPzxIz.webp",
-            "imageR2Id": "m4J_bNCR-k0Tnattl-RrF"
-          }
-        ]
-      }
-    ]
-  }
+            image: '/images/contests/2006/Vm1ORQgjHoA26mVyPzxIz.webp',
+            imageR2Id: 'm4J_bNCR-k0Tnattl-RrF',
+          },
+        ],
+      },
+    ],
+  },
 ];
