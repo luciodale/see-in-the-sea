@@ -67,34 +67,19 @@ function AdminCreateOldContest() {
                       Concorsi Esistenti:
                     </h3>
                     <div className="flex flex-wrap gap-2">
-                      {existingYears.map(existingYear => {
-                        const currentYear = new Date().getFullYear();
-                        const isFutureOrCurrent = existingYear >= currentYear;
-
-                        return (
-                          <button
-                            key={existingYear}
-                            type="button"
-                            onClick={() =>
-                              !isFutureOrCurrent &&
-                              navigate({ to: `/admin/contest/${existingYear}` })
-                            }
-                            disabled={isFutureOrCurrent}
-                            className={`inline-flex items-center px-3 py-1 rounded-full text-sm transition-colors ${
-                              isFutureOrCurrent
-                                ? 'bg-slate-600 text-slate-500 cursor-not-allowed'
-                                : 'bg-slate-700 text-slate-300 hover:bg-emerald-600 hover:text-white cursor-pointer'
-                            }`}
-                            title={
-                              isFutureOrCurrent
-                                ? 'Non puoi modificare concorsi attuali o futuri'
-                                : `Gestisci concorso ${existingYear}`
-                            }
-                          >
-                            {existingYear}
-                          </button>
-                        );
-                      })}
+                      {existingYears.map(existingYear => (
+                        <button
+                          key={existingYear}
+                          type="button"
+                          onClick={() =>
+                            navigate({ to: `/admin/contest/${existingYear}` })
+                          }
+                          className="inline-flex items-center px-3 py-1 rounded-full text-sm transition-colors bg-slate-700 text-slate-300 hover:bg-emerald-600 hover:text-white cursor-pointer"
+                          title={`Gestisci concorso ${existingYear}`}
+                        >
+                          {existingYear}
+                        </button>
+                      ))}
                     </div>
                   </div>
                 ) : null}
