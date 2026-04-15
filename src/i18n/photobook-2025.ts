@@ -80,17 +80,16 @@ export const photobook2025Shared = {
   ],
   judges: [
     {
-      name: 'Pietro Formis',
-      image: 'https://placehold.co/600x750/1a1a1a/f4f2ee?text=Pietro+Formis',
+      name: 'Pasquale Vassallo',
+      image: `${base}/judges/pasquale-vassallo.webp`,
     },
     {
-      name: 'Pasquale Vassallo',
-      image:
-        'https://placehold.co/600x750/1a1a1a/f4f2ee?text=Pasquale+Vassallo',
+      name: 'Pietro Formis',
+      image: `${base}/judges/pietro-formis.webp`,
     },
     {
       name: 'Domy Tripodi',
-      image: 'https://placehold.co/600x750/1a1a1a/f4f2ee?text=Domy+Tripodi',
+      image: `${base}/judges/domenico-tripodi.webp`,
     },
   ],
   photographerIndex: [
@@ -627,6 +626,7 @@ export function getPhotobook2025(lang: PhotobookLang) {
     }
   >;
 
+  c.leadership;
   return {
     lang,
     meta: c.meta,
@@ -636,14 +636,14 @@ export function getPhotobook2025(lang: PhotobookLang) {
     macro: mergeTriple(s.macro, c.macro),
     wide: mergeTriple(s.wide, c.wide),
     portfolio,
-    leadership: s.leadership.map((person, i) => ({
-      ...person,
-      ...c.leadership[i],
-    })) as Array<{ name: string; role: string; body: string }>,
-    judges: s.judges.map(judge => ({ ...judge })) as Array<{
-      name: string;
-      image: string;
-    }>,
+    leadershipNames: s.leadership,
+    leadership: s.leadership
+      .map((entry, i) => ({
+        ...entry,
+        ...c.leadership[i],
+      }))
+      .filter(entry => entry.body),
+    judges: s.judges.map(judge => ({ ...judge })),
     photographerIndex: s.photographerIndex,
   };
 }

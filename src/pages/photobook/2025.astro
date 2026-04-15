@@ -1,10 +1,10 @@
 ---
 export const prerender = true;
 
-import '@/styles/global.css';
-import { getPhotobook2025, type PhotobookLang } from '@/i18n/photobook-2025';
+import "@/styles/global.css";
+import { getPhotobook2025, type PhotobookLang } from "@/i18n/photobook-2025";
 
-const lang: PhotobookLang = Astro.currentLocale === 'it' ? 'it' : 'en';
+const lang: PhotobookLang = Astro.currentLocale === "it" ? "it" : "en";
 const content = getPhotobook2025(lang);
 const {
   ui,
@@ -15,6 +15,7 @@ const {
   wide,
   portfolio,
   leadership,
+  leadershipNames,
   judges,
   photographerIndex,
 } = content;
@@ -22,9 +23,9 @@ const {
 const canonicalUrl = Astro.url.href;
 
 const pathname = Astro.url.pathname;
-const stripped = pathname.replace(/^\/it(?=\/|$)/, '') || '/';
+const stripped = pathname.replace(/^\/it(?=\/|$)/, "") || "/";
 const enUrl = stripped;
-const itUrl = stripped === '/' ? '/it' : `/it${stripped}`;
+const itUrl = stripped === "/" ? "/it" : `/it${stripped}`;
 ---
 
 <!doctype html>
@@ -41,7 +42,10 @@ const itUrl = stripped === '/' ? '/it' : `/it${stripped}`;
     <meta property="og:description" content={meta.description} />
     <meta property="og:type" content="article" />
     <meta property="og:url" content={canonicalUrl} />
-    <meta property="og:image" content={new URL(cover.image, canonicalUrl).toString()} />
+    <meta
+      property="og:image"
+      content={new URL(cover.image, canonicalUrl).toString()}
+    />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -61,17 +65,23 @@ const itUrl = stripped === '/' ? '/it' : `/it${stripped}`;
         <nav class="pb-lang" aria-label="Language">
           <a
             href={enUrl}
-            class:list={['pb-lang__link', { 'pb-lang__link--active': lang === 'en' }]}
-            aria-current={lang === 'en' ? 'true' : undefined}
-            hreflang="en"
-          >EN</a>
+            class:list={[
+              "pb-lang__link",
+              { "pb-lang__link--active": lang === "en" },
+            ]}
+            aria-current={lang === "en" ? "true" : undefined}
+            hreflang="en">EN</a
+          >
           <span class="pb-lang__sep" aria-hidden="true">/</span>
           <a
             href={itUrl}
-            class:list={['pb-lang__link', { 'pb-lang__link--active': lang === 'it' }]}
-            aria-current={lang === 'it' ? 'true' : undefined}
-            hreflang="it"
-          >IT</a>
+            class:list={[
+              "pb-lang__link",
+              { "pb-lang__link--active": lang === "it" },
+            ]}
+            aria-current={lang === "it" ? "true" : undefined}
+            hreflang="it">IT</a
+          >
         </nav>
         <button
           type="button"
@@ -119,7 +129,6 @@ const itUrl = stripped === '/' ? '/it' : `/it${stripped}`;
             <span>{ui.categories.portfolio}</span>
           </div>
         </div>
-
       </section>
 
       <!-- 1b. LEADERSHIP -->
@@ -129,13 +138,17 @@ const itUrl = stripped === '/' ? '/it' : `/it${stripped}`;
             {ui.leadershipTitlePrefix}<em>{ui.leadershipTitleEm}</em>
           </h2>
           <div class="pb-people__grid">
-            {leadership.map(person => (
-              <article class="pb-person pb-reveal">
-                <p class="pb-person__role">{person.role}</p>
-                <h3 class="pb-person__name"><em>{person.name}</em></h3>
-                <p class="pb-person__body">{person.body}</p>
-              </article>
-            ))}
+            {
+              leadership.map((person) => (
+                <article class="pb-person pb-reveal">
+                  <p class="pb-person__role">{person.role}</p>
+                  <h3 class="pb-person__name">
+                    <em>{person.name}</em>
+                  </h3>
+                  <p class="pb-person__body">{person.body}</p>
+                </article>
+              ))
+            }
           </div>
         </div>
       </section>
@@ -147,20 +160,26 @@ const itUrl = stripped === '/' ? '/it' : `/it${stripped}`;
           <h2 class="pb-people__title pb-reveal">
             {ui.judgesTitlePrefix}<em>{ui.judgesTitleEm}</em>
           </h2>
-          <div class="pb-people__grid pb-people__grid--three pb-people__grid--portraits">
-            {judges.map(judge => (
-              <article class="pb-person pb-person--portrait pb-reveal">
-                <figure class="pb-person__portrait">
-                  <img
-                    src={judge.image}
-                    alt={judge.name}
-                    loading="lazy"
-                    decoding="async"
-                  />
-                </figure>
-                <h3 class="pb-person__name"><em>{judge.name}</em></h3>
-              </article>
-            ))}
+          <div
+            class="pb-people__grid pb-people__grid--three pb-people__grid--portraits"
+          >
+            {
+              judges.map((judge) => (
+                <article class="pb-person pb-person--portrait pb-reveal">
+                  <figure class="pb-person__portrait">
+                    <img
+                      src={judge.image}
+                      alt={judge.name}
+                      loading="lazy"
+                      decoding="async"
+                    />
+                  </figure>
+                  <h3 class="pb-person__name">
+                    <em>{judge.name}</em>
+                  </h3>
+                </article>
+              ))
+            }
           </div>
         </div>
       </section>
@@ -192,7 +211,10 @@ const itUrl = stripped === '/' ? '/it' : `/it${stripped}`;
         <div class="pb-divider__index">01</div>
         <div class="pb-divider__label">
           <span class="pb-eyebrow">{ui.categoryEyebrow}</span>
-          <h2>{ui.dividers.bw.titleLine1}<br /><em>{ui.dividers.bw.titleLine2Em}</em></h2>
+          <h2>
+            {ui.dividers.bw.titleLine1}<br /><em
+              >{ui.dividers.bw.titleLine2Em}</em>
+          </h2>
           <p>{ui.dividers.bw.sub}</p>
         </div>
       </section>
@@ -208,7 +230,10 @@ const itUrl = stripped === '/' ? '/it' : `/it${stripped}`;
           />
         </figure>
         <div class="pb-editorial pb-editorial--floated">
-          <p class="pb-eyebrow pb-reveal">{ui.ordinals[0]} {ui.placeSuffix} — {ui.categories.bw}</p>
+          <p class="pb-eyebrow pb-reveal">
+            {ui.ordinals[0]}
+            {ui.placeSuffix} — {ui.categories.bw}
+          </p>
           <h3 class="pb-reveal">
             <em>{bw.first.title}</em>
           </h3>
@@ -222,7 +247,10 @@ const itUrl = stripped === '/' ? '/it' : `/it${stripped}`;
       <!-- 5. B&W 2nd — CENTERED PLATE -->
       <section class="pb-feature pb-feature--plate pb-page">
         <div class="pb-plate">
-          <p class="pb-eyebrow pb-reveal">{ui.ordinals[1]} {ui.placeSuffix} — {ui.categories.bw}</p>
+          <p class="pb-eyebrow pb-reveal">
+            {ui.ordinals[1]}
+            {ui.placeSuffix} — {ui.categories.bw}
+          </p>
           <figure class="pb-plate__figure pb-reveal">
             <img
               src={bw.second.image}
@@ -244,7 +272,10 @@ const itUrl = stripped === '/' ? '/it' : `/it${stripped}`;
       <!-- 6. B&W 3rd — SPLIT / IMAGE RIGHT -->
       <section class="pb-feature pb-feature--split pb-split--right pb-page">
         <div class="pb-split__text">
-          <p class="pb-eyebrow pb-reveal">{ui.ordinals[2]} {ui.placeSuffix} — {ui.categories.bw}</p>
+          <p class="pb-eyebrow pb-reveal">
+            {ui.ordinals[2]}
+            {ui.placeSuffix} — {ui.categories.bw}
+          </p>
           <h3 class="pb-reveal">
             <em>{bw.third.title}</em>
           </h3>
@@ -276,7 +307,10 @@ const itUrl = stripped === '/' ? '/it' : `/it${stripped}`;
       <!-- 8. MACRO 1st — TITLE ABOVE + WIDE IMAGE -->
       <section class="pb-feature pb-feature--stacked pb-page">
         <header class="pb-stacked__head">
-          <p class="pb-eyebrow pb-reveal">{ui.ordinals[0]} {ui.placeSuffix} — {ui.categories.macro}</p>
+          <p class="pb-eyebrow pb-reveal">
+            {ui.ordinals[0]}
+            {ui.placeSuffix} — {ui.categories.macro}
+          </p>
           <h3 class="pb-stacked__title pb-reveal">
             <em>{macro.first.title}</em>
           </h3>
@@ -292,7 +326,9 @@ const itUrl = stripped === '/' ? '/it' : `/it${stripped}`;
             decoding="async"
           />
         </figure>
-        <p class="pb-stacked__body pb-body-text pb-reveal">{macro.first.body}</p>
+        <p class="pb-stacked__body pb-body-text pb-reveal">
+          {macro.first.body}
+        </p>
       </section>
 
       <!-- 9. MACRO 2nd — TECHNICAL / IMAGE LEFT BLEED + COLUMN RIGHT -->
@@ -306,7 +342,10 @@ const itUrl = stripped === '/' ? '/it' : `/it${stripped}`;
           />
         </figure>
         <div class="pb-split__text pb-split__text--narrow">
-          <p class="pb-eyebrow pb-reveal">{ui.ordinals[1]} {ui.placeSuffix} — {ui.categories.macro}</p>
+          <p class="pb-eyebrow pb-reveal">
+            {ui.ordinals[1]}
+            {ui.placeSuffix} — {ui.categories.macro}
+          </p>
           <h3 class="pb-reveal"><em>{macro.second.title}</em></h3>
           <p class="pb-author pb-reveal">
             <span>{macro.second.photographer}</span>
@@ -344,7 +383,10 @@ const itUrl = stripped === '/' ? '/it' : `/it${stripped}`;
         <div class="pb-divider__index">03</div>
         <div class="pb-divider__label">
           <span class="pb-eyebrow">{ui.categoryEyebrow}</span>
-          <h2>{ui.dividers.wide.titleLine1}<br /><em>{ui.dividers.wide.titleLine2Em}</em></h2>
+          <h2>
+            {ui.dividers.wide.titleLine1}<br /><em
+              >{ui.dividers.wide.titleLine2Em}</em>
+          </h2>
           <p>{ui.dividers.wide.sub}</p>
         </div>
       </section>
@@ -360,7 +402,10 @@ const itUrl = stripped === '/' ? '/it' : `/it${stripped}`;
           />
         </figure>
         <div class="pb-editorial pb-editorial--centered">
-          <p class="pb-eyebrow pb-reveal">{ui.ordinals[0]} {ui.placeSuffix} — {ui.categories.wide}</p>
+          <p class="pb-eyebrow pb-reveal">
+            {ui.ordinals[0]}
+            {ui.placeSuffix} — {ui.categories.wide}
+          </p>
           <h3 class="pb-reveal"><em>{wide.first.title}</em></h3>
           <p class="pb-author pb-reveal">
             {wide.first.photographer}, {wide.first.place}
@@ -380,7 +425,10 @@ const itUrl = stripped === '/' ? '/it' : `/it${stripped}`;
           />
         </figure>
         <div class="pb-offset__text pb-reveal">
-          <p class="pb-eyebrow">{ui.ordinals[1]} {ui.placeSuffix} — {ui.categories.wide}</p>
+          <p class="pb-eyebrow">
+            {ui.ordinals[1]}
+            {ui.placeSuffix} — {ui.categories.wide}
+          </p>
           <h3><em>{wide.second.title}</em></h3>
           <p class="pb-author">
             {wide.second.photographer}, {wide.second.place}
@@ -392,7 +440,10 @@ const itUrl = stripped === '/' ? '/it' : `/it${stripped}`;
       <!-- 14. WIDE 3rd — SMALL IMAGE + PULL QUOTE -->
       <section class="pb-feature pb-feature--aside pb-page">
         <div class="pb-aside__text">
-          <p class="pb-eyebrow pb-reveal">{ui.ordinals[2]} {ui.placeSuffix} — {ui.categories.wide}</p>
+          <p class="pb-eyebrow pb-reveal">
+            {ui.ordinals[2]}
+            {ui.placeSuffix} — {ui.categories.wide}
+          </p>
           <h3 class="pb-aside__title pb-reveal">
             <em>{wide.third.title}</em>
           </h3>
@@ -416,7 +467,10 @@ const itUrl = stripped === '/' ? '/it' : `/it${stripped}`;
         <div class="pb-divider__index">04</div>
         <div class="pb-divider__label">
           <span class="pb-eyebrow">{ui.categoryEyebrow}</span>
-          <h2>{ui.dividers.portfolio.titleLine1}<br /><em>{ui.dividers.portfolio.titleLine2Em}</em></h2>
+          <h2>
+            {ui.dividers.portfolio.titleLine1}<br /><em
+              >{ui.dividers.portfolio.titleLine2Em}</em>
+          </h2>
           <p>{ui.dividers.portfolio.sub}</p>
         </div>
       </section>
@@ -424,84 +478,115 @@ const itUrl = stripped === '/' ? '/it' : `/it${stripped}`;
       <!-- 16. PORTFOLIO 1st (Roscigno) — ALTERNATING BLEED -->
       <section class="pb-portfolio pb-page">
         <header class="pb-portfolio__head">
-          <p class="pb-eyebrow pb-reveal">{ui.ordinals[0]} {ui.placeSuffix} — {ui.categories.portfolio}</p>
+          <p class="pb-eyebrow pb-reveal">
+            {ui.ordinals[0]}
+            {ui.placeSuffix} — {ui.categories.portfolio}
+          </p>
           <h3 class="pb-portfolio__name pb-reveal">
             <em>{portfolio.first.photographer}</em>
           </h3>
         </header>
-        {portfolio.first.pieces.map((piece, idx) => (
-          <article class={`pb-triptych pb-triptych--${idx % 2 === 0 ? 'left' : 'right'}`}>
-            <figure class="pb-triptych__figure">
-              <img
-                src={piece.image}
-                alt={`${piece.title} — ${portfolio.first.photographer}`}
-                loading="lazy"
-                decoding="async"
-              />
-            </figure>
-            <div class="pb-triptych__text pb-reveal">
-              <span class="pb-triptych__num">{String(idx + 1).padStart(2, '0')}</span>
-              <h4><em>{piece.title}</em></h4>
-              <p class="pb-place">{piece.place}</p>
-              <p class="pb-body-text">{piece.body}</p>
-            </div>
-          </article>
-        ))}
+        {
+          portfolio.first.pieces.map((piece, idx) => (
+            <article
+              class={`pb-triptych pb-triptych--${idx % 2 === 0 ? "left" : "right"}`}
+            >
+              <figure class="pb-triptych__figure">
+                <img
+                  src={piece.image}
+                  alt={`${piece.title} — ${portfolio.first.photographer}`}
+                  loading="lazy"
+                  decoding="async"
+                />
+              </figure>
+              <div class="pb-triptych__text pb-reveal">
+                <span class="pb-triptych__num">
+                  {String(idx + 1).padStart(2, "0")}
+                </span>
+                <h4>
+                  <em>{piece.title}</em>
+                </h4>
+                <p class="pb-place">{piece.place}</p>
+                <p class="pb-body-text">{piece.body}</p>
+              </div>
+            </article>
+          ))
+        }
       </section>
 
       <!-- 17. PORTFOLIO 2nd (Visintin) — ZIG-ZAG ALTERNATING -->
       <section class="pb-portfolio pb-portfolio--zigzag pb-page">
         <header class="pb-portfolio__head">
-          <p class="pb-eyebrow pb-reveal">{ui.ordinals[1]} {ui.placeSuffix} — {ui.categories.portfolio}</p>
+          <p class="pb-eyebrow pb-reveal">
+            {ui.ordinals[1]}
+            {ui.placeSuffix} — {ui.categories.portfolio}
+          </p>
           <h3 class="pb-portfolio__name pb-reveal">
             <em>{portfolio.second.photographer}</em>
           </h3>
         </header>
-        {portfolio.second.pieces.map((piece, idx) => (
-          <article class={`pb-zigzag pb-zigzag--${idx % 2 === 0 ? 'a' : 'b'}`}>
-            <figure class="pb-zigzag__figure">
-              <img
-                src={piece.image}
-                alt={`${piece.title} — ${portfolio.second.photographer}`}
-                loading="lazy"
-                decoding="async"
-              />
-            </figure>
-            <div class="pb-zigzag__text pb-reveal">
-              <h4><em>{piece.title}</em></h4>
-              <p class="pb-place">{piece.place}</p>
-              <p class="pb-body-text">{piece.body}</p>
-            </div>
-          </article>
-        ))}
+        {
+          portfolio.second.pieces.map((piece, idx) => (
+            <article
+              class={`pb-zigzag pb-zigzag--${idx % 2 === 0 ? "a" : "b"}`}
+            >
+              <figure class="pb-zigzag__figure">
+                <img
+                  src={piece.image}
+                  alt={`${piece.title} — ${portfolio.second.photographer}`}
+                  loading="lazy"
+                  decoding="async"
+                />
+              </figure>
+              <div class="pb-zigzag__text pb-reveal">
+                <h4>
+                  <em>{piece.title}</em>
+                </h4>
+                <p class="pb-place">{piece.place}</p>
+                <p class="pb-body-text">{piece.body}</p>
+              </div>
+            </article>
+          ))
+        }
       </section>
 
       <!-- 18. PORTFOLIO 3rd (Casanovas) — ALTERNATING BLEED (triptych) -->
       <section class="pb-portfolio pb-page">
         <header class="pb-portfolio__head">
-          <p class="pb-eyebrow pb-reveal">{ui.ordinals[2]} {ui.placeSuffix} — {ui.categories.portfolio}</p>
+          <p class="pb-eyebrow pb-reveal">
+            {ui.ordinals[2]}
+            {ui.placeSuffix} — {ui.categories.portfolio}
+          </p>
           <h3 class="pb-portfolio__name pb-reveal">
             <em>{portfolio.third.photographer}</em>
           </h3>
         </header>
-        {portfolio.third.pieces.map((piece, idx) => (
-          <article class={`pb-triptych pb-triptych--${idx % 2 === 0 ? 'left' : 'right'}`}>
-            <figure class="pb-triptych__figure">
-              <img
-                src={piece.image}
-                alt={`${piece.title} — ${portfolio.third.photographer}`}
-                loading="lazy"
-                decoding="async"
-              />
-            </figure>
-            <div class="pb-triptych__text pb-reveal">
-              <span class="pb-triptych__num">{String(idx + 1).padStart(2, '0')}</span>
-              <h4><em>{piece.title}</em></h4>
-              <p class="pb-place">{piece.place}</p>
-              <p class="pb-body-text">{piece.body}</p>
-            </div>
-          </article>
-        ))}
+        {
+          portfolio.third.pieces.map((piece, idx) => (
+            <article
+              class={`pb-triptych pb-triptych--${idx % 2 === 0 ? "left" : "right"}`}
+            >
+              <figure class="pb-triptych__figure">
+                <img
+                  src={piece.image}
+                  alt={`${piece.title} — ${portfolio.third.photographer}`}
+                  loading="lazy"
+                  decoding="async"
+                />
+              </figure>
+              <div class="pb-triptych__text pb-reveal">
+                <span class="pb-triptych__num">
+                  {String(idx + 1).padStart(2, "0")}
+                </span>
+                <h4>
+                  <em>{piece.title}</em>
+                </h4>
+                <p class="pb-place">{piece.place}</p>
+                <p class="pb-body-text">{piece.body}</p>
+              </div>
+            </article>
+          ))
+        }
       </section>
 
       <!-- 19. CREDITS -->
@@ -512,21 +597,21 @@ const itUrl = stripped === '/' ? '/it' : `/it${stripped}`;
           <div class="pb-credits__group pb-reveal">
             <h4>{ui.credits.direzione}</h4>
             <ul>
-              {leadership.map(person => <li>{person.name}</li>)}
+              {leadershipNames.map((person) => <li>{person.name}</li>)}
             </ul>
           </div>
 
           <div class="pb-credits__group pb-reveal">
             <h4>{ui.credits.giuria}</h4>
             <ul>
-              {judges.map(judge => <li>{judge.name}</li>)}
+              {judges.map((judge) => <li>{judge.name}</li>)}
             </ul>
           </div>
 
           <div class="pb-credits__group pb-reveal">
             <h4>{ui.credits.autori}</h4>
             <ul class="pb-credits__index">
-              {photographerIndex.map(name => <li>{name}</li>)}
+              {photographerIndex.map((name) => <li>{name}</li>)}
             </ul>
           </div>
 
@@ -547,62 +632,60 @@ const itUrl = stripped === '/' ? '/it' : `/it${stripped}`;
           <span class="pb-end__year">MMXXV</span>
           <span class="pb-end__line"></span>
         </div>
-        <h2 class="pb-end__title">
-          See in the Sea
-        </h2>
+        <h2 class="pb-end__title">See in the Sea</h2>
         <p class="pb-end__tagline"><em>{ui.endFine}</em></p>
       </section>
     </main>
 
     <script>
       // Reveal on scroll
-      const els = document.querySelectorAll('.pb-reveal');
-      if ('IntersectionObserver' in window && els.length) {
+      const els = document.querySelectorAll(".pb-reveal");
+      if ("IntersectionObserver" in window && els.length) {
         const io = new IntersectionObserver(
-          entries => {
+          (entries) => {
             for (const entry of entries) {
               if (entry.isIntersecting) {
-                entry.target.classList.add('pb-in');
+                entry.target.classList.add("pb-in");
                 io.unobserve(entry.target);
               }
             }
           },
-          { threshold: 0.12, rootMargin: '0px 0px -8% 0px' }
+          { threshold: 0.12, rootMargin: "0px 0px -8% 0px" },
         );
         for (const el of els) io.observe(el);
       } else {
-        for (const el of els) el.classList.add('pb-in');
+        for (const el of els) el.classList.add("pb-in");
       }
 
       // Download → continuous single-page PDF (no pagination)
-      const printBtn = document.getElementById('pb-print');
+      const printBtn = document.getElementById("pb-print");
       if (printBtn) {
-        printBtn.addEventListener('click', async () => {
+        printBtn.addEventListener("click", async () => {
           const btn = printBtn as HTMLButtonElement;
           const originalText = btn.textContent;
-          const preparingLabel = btn.dataset.labelPreparing ?? 'Preparing…';
+          const preparingLabel = btn.dataset.labelPreparing ?? "Preparing…";
           btn.disabled = true;
-          const btnLabel = btn.querySelector('span');
+          const btnLabel = btn.querySelector("span");
           if (btnLabel) btnLabel.textContent = preparingLabel;
 
           // Force all images to load (lazy ones far down haven't loaded yet,
           // so their heights measure as 0 and images render blank in print)
-          const imgs = Array.from(document.querySelectorAll('img'));
+          const imgs = Array.from(document.querySelectorAll("img"));
           for (const img of imgs) {
-            img.loading = 'eager';
+            img.loading = "eager";
           }
           await Promise.all(
-            imgs.map(img => {
+            imgs.map((img) => {
               if (img.complete && img.naturalHeight !== 0) return null;
-              return new Promise(resolve => {
-                img.addEventListener('load', resolve, { once: true });
-                img.addEventListener('error', resolve, { once: true });
+              return new Promise((resolve) => {
+                img.addEventListener("load", resolve, { once: true });
+                img.addEventListener("error", resolve, { once: true });
               });
-            })
+            }),
           );
           // Extra frame for layout to settle after images paint
-          await new Promise(r => requestAnimationFrame(r));
-          await new Promise(r => requestAnimationFrame(r));
+          await new Promise((r) => requestAnimationFrame(r));
+          await new Promise((r) => requestAnimationFrame(r));
 
           const width = window.innerWidth;
           const viewportHeight = window.innerHeight;
@@ -610,7 +693,7 @@ const itUrl = stripped === '/' ? '/it' : `/it${stripped}`;
           // Use bottom of the last rendered section rather than scrollHeight
           // (scrollHeight can include trailing html/body padding that prints
           // as empty black space at the end of the PDF)
-          const pages = document.querySelectorAll('.pb-page');
+          const pages = document.querySelectorAll(".pb-page");
           const last = pages[pages.length - 1];
           const lastBottom = last
             ? last.getBoundingClientRect().bottom + window.scrollY
@@ -629,8 +712,8 @@ const itUrl = stripped === '/' ? '/it' : `/it${stripped}`;
           const totalHeight = Math.ceil(rawHeight * zoom) + PAGE_BUFFER_PX;
           const pageWidth = Math.ceil(width * zoom);
 
-          const style = document.createElement('style');
-          style.id = 'pb-print-continuous';
+          const style = document.createElement("style");
+          style.id = "pb-print-continuous";
           style.textContent = `
             @page {
               size: ${pageWidth}px ${totalHeight}px !important;
@@ -714,9 +797,9 @@ const itUrl = stripped === '/' ? '/it' : `/it${stripped}`;
             if (style.parentNode) style.remove();
             btn.disabled = false;
             if (btnLabel && originalText) btnLabel.textContent = originalText;
-            window.removeEventListener('afterprint', cleanup);
+            window.removeEventListener("afterprint", cleanup);
           }
-          window.addEventListener('afterprint', cleanup);
+          window.addEventListener("afterprint", cleanup);
 
           // Let layout settle before triggering print
           requestAnimationFrame(() => {
@@ -736,8 +819,8 @@ const itUrl = stripped === '/' ? '/it' : `/it${stripped}`;
         --pb-fg: #f4f2ee;
         --pb-muted: #8e8a82;
         --pb-line: rgba(244, 242, 238, 0.14);
-        --pb-serif: 'Instrument Serif', 'Times New Roman', serif;
-        --pb-sans: 'Inter', system-ui, -apple-system, sans-serif;
+        --pb-serif: "Instrument Serif", "Times New Roman", serif;
+        --pb-sans: "Inter", system-ui, -apple-system, sans-serif;
       }
 
       html,
@@ -1849,7 +1932,6 @@ const itUrl = stripped === '/' ? '/it' : `/it${stripped}`;
           columns: 1;
         }
       }
-
     </style>
   </body>
 </html>
