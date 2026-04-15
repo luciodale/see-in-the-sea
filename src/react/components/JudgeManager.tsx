@@ -7,9 +7,9 @@ import type {
   DeleteJudgeResponse,
   Judge,
   JudgeLibraryItem,
-  JudgesLibraryResponse,
   UpdateJudgeResponse,
 } from '../../types/api';
+import { JudgeLibraryPicker } from './JudgeLibraryPicker';
 
 interface JudgeManagerProps {
   contestId: string;
@@ -31,11 +31,14 @@ export function JudgeManager({
   const [uploadingJudgeId, setUploadingJudgeId] = useState<string | null>(null);
   const [error, setError] = useState<string | null>(null);
   const [showLibrary, setShowLibrary] = useState(false);
-  const [library, setLibrary] = useState<JudgeLibraryItem[]>([]);
-  const [loadingLibrary, setLoadingLibrary] = useState(false);
   const [addingFromLibrary, setAddingFromLibrary] = useState<string | null>(
     null
   );
+  // Per-row library picker: which judge is picking a library photo
+  const [pickerForJudgeId, setPickerForJudgeId] = useState<string | null>(null);
+  const [reassigningR2ImageId, setReassigningR2ImageId] = useState<
+    string | null
+  >(null);
   const fileInputRef = useRef<HTMLInputElement>(null);
   const pendingJudgeIdRef = useRef<string | null>(null);
 
@@ -76,7 +79,7 @@ export function JudgeManager({
 
   function handleToggleLibrary() {
     // Opening the library closes the new-judge form and vice versa so only
-    // one add-affordance is visible at a time.
+    // one add-affordance is visible at a time. Picker fetches its own data.
     if (showLibrary) {
       setShowLibrary(false);
       return;
@@ -84,26 +87,6 @@ export function JudgeManager({
     setShowAddForm(false);
     setShowLibrary(true);
     setError(null);
-    setLoadingLibrary(true);
-
-    getToken()
-      .then(token =>
-        fetch('/api/admin/judges-library', {
-          headers: { Authorization: `Bearer ${token}` },
-        })
-      )
-      .then(async response => {
-        const result: JudgesLibraryResponse = await response.json();
-        if (!response.ok || !result.success) {
-          throw new Error(result.message || 'Errore caricamento libreria');
-        }
-        setLibrary(result.data ?? []);
-      })
-      .catch(err => {
-        console.error('Error loading judges library:', err);
-        setError(err instanceof Error ? err.message : 'Errore imprevisto');
-      })
-      .finally(() => setLoadingLibrary(false));
   }
 
   function handleAddFromLibrary(item: JudgeLibraryItem) {
@@ -137,6 +120,42 @@ export function JudgeManager({
         setError(err instanceof Error ? err.message : 'Errore imprevisto');
       })
       .finally(() => setAddingFromLibrary(null));
+  }
+
+  function handleReassignFromLibrary(
+    judge: Judge,
+    item: JudgeLibraryItem
+  ) {
+    setReassigningR2ImageId(item.r2ImageId);
+    setError(null);
+
+    getToken()
+      .then(token =>
+        fetch('/api/admin/contest-judges', {
+          method: 'PUT',
+          headers: {
+            'Content-Type': 'application/json',
+            Authorization: `Bearer ${token}`,
+          },
+          body: JSON.stringify({
+            judgeId: judge.id,
+            fullName: judge.fullName,
+            r2ImageId: item.r2ImageId,
+          }),
+        })
+      )
+      .then(async response => {
+        const result: UpdateJudgeResponse = await response.json();
+        if (!response.ok)
+          throw new Error(result.message || "Errore durante l'aggiornamento");
+        setPickerForJudgeId(null);
+        onUpdate();
+      })
+      .catch(err => {
+        console.error('Error reassigning judge photo:', err);
+        setError(err instanceof Error ? err.message : 'Errore imprevisto');
+      })
+      .finally(() => setReassigningR2ImageId(null));
   }
 
   function handleUpdateJudge(judgeId: string) {
@@ -339,52 +358,14 @@ export function JudgeManager({
         </div>
       )}
 
-      {/* Library Picker */}
+      {/* Library Picker (for adding a new judge) */}
       {showLibrary && (
-        <div className="p-4 bg-slate-700/50 rounded-md space-y-3">
-          <p className="text-sm text-slate-300">
-            Seleziona un giudice esistente per riutilizzarne la foto.
-          </p>
-          {loadingLibrary ? (
-            <p className="text-sm text-slate-400 text-center py-4">
-              Caricamento...
-            </p>
-          ) : library.length === 0 ? (
-            <p className="text-sm text-slate-400 text-center py-4">
-              Nessuna foto giudice in libreria
-            </p>
-          ) : (
-            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-3">
-              {library.map(item => {
-                const busy = addingFromLibrary === item.r2ImageId;
-                return (
-                  <button
-                    key={item.r2ImageId}
-                    type="button"
-                    onClick={() => handleAddFromLibrary(item)}
-                    disabled={addingFromLibrary !== null}
-                    className="group flex flex-col items-center gap-2 p-3 bg-slate-700 rounded-md hover:bg-slate-600 border border-slate-600 hover:border-emerald-500 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
-                  >
-                    <div className="relative">
-                      <img
-                        src={`${IMAGES_BASE_URL}/${item.r2ImageId}`}
-                        alt={item.fullName}
-                        className="w-16 h-16 rounded-full object-cover border border-slate-500"
-                      />
-                      {busy && (
-                        <div className="absolute inset-0 flex items-center justify-center bg-black/50 rounded-full">
-                          <div className="w-5 h-5 border-2 border-white/30 border-t-white rounded-full animate-spin" />
-                        </div>
-                      )}
-                    </div>
-                    <span className="text-xs text-slate-200 text-center leading-tight">
-                      {item.fullName}
-                    </span>
-                  </button>
-                );
-              })}
-            </div>
-          )}
+        <div className="p-4 bg-slate-700/50 rounded-md">
+          <JudgeLibraryPicker
+            onSelect={handleAddFromLibrary}
+            busyR2ImageId={addingFromLibrary}
+            helperText="Seleziona un giudice esistente per riutilizzarne la foto."
+          />
         </div>
       )}
 
@@ -399,10 +380,8 @@ export function JudgeManager({
       {judges.length > 0 ? (
         <div className="space-y-2">
           {judges.map(judge => (
-            <div
-              key={judge.id}
-              className="flex items-center gap-3 p-3 bg-slate-700 rounded-md"
-            >
+            <div key={judge.id} className="space-y-2">
+              <div className="flex items-center gap-3 p-3 bg-slate-700 rounded-md flex-wrap">
               {/* Judge Image */}
               <div className="relative shrink-0">
                 {judge.r2ImageId ? (
@@ -475,6 +454,20 @@ export function JudgeManager({
                   >
                     {judge.r2ImageId ? 'Cambia foto' : 'Aggiungi foto'}
                   </button>
+                  <button
+                    type="button"
+                    onClick={() =>
+                      setPickerForJudgeId(
+                        pickerForJudgeId === judge.id ? null : judge.id
+                      )
+                    }
+                    disabled={isSubmitting || uploadingJudgeId === judge.id}
+                    className="text-accent-hover hover:underline text-sm disabled:opacity-50"
+                  >
+                    {pickerForJudgeId === judge.id
+                      ? 'Chiudi libreria'
+                      : 'Da libreria'}
+                  </button>
                   {judge.r2ImageId && (
                     <button
                       type="button"
@@ -502,6 +495,17 @@ export function JudgeManager({
                     Elimina
                   </button>
                 </>
+              )}
+              </div>
+              {pickerForJudgeId === judge.id && (
+                <div className="p-4 bg-slate-700/50 rounded-md">
+                  <JudgeLibraryPicker
+                    onSelect={item => handleReassignFromLibrary(judge, item)}
+                    busyR2ImageId={reassigningR2ImageId}
+                    excludeR2ImageId={judge.r2ImageId ?? undefined}
+                    helperText={`Scegli una foto per ${judge.fullName}`}
+                  />
+                </div>
               )}
             </div>
           ))}

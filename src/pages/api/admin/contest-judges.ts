@@ -165,12 +165,19 @@ export const PUT: APIRoute = async ({ request, locals }) => {
       return unauthenticatedResponse();
     }
 
-    // Parse request body with type annotation
+    // Parse request body. `r2ImageId` is optional and used by the admin
+    // library picker to reassign this judge's photo to an existing library
+    // item. Reassignment is single-row (does NOT cascade) because we are
+    // re-pointing one judge to a different existing image, not replacing the
+    // image content itself.
     const body: {
       judgeId: string;
       fullName: string;
+      r2ImageId?: string | null;
     } = await request.json();
     const { judgeId, fullName } = body;
+    const reassignR2ImageId =
+      typeof body.r2ImageId === 'string' ? body.r2ImageId.trim() || null : null;
 
     // Validation
     if (!judgeId || !fullName || fullName.trim().length === 0) {
@@ -200,11 +207,30 @@ export const PUT: APIRoute = async ({ request, locals }) => {
       );
     }
 
-    // Update judge
-    await db
-      .update(judges)
-      .set({ fullName: fullName.trim() })
-      .where(eq(judges.id, judgeId));
+    // If reassigning a photo, validate the library item exists.
+    if (reassignR2ImageId) {
+      const libraryHit = await db
+        .select({ id: judges.id })
+        .from(judges)
+        .where(eq(judges.r2ImageId, reassignR2ImageId))
+        .limit(1);
+      if (libraryHit.length === 0) {
+        return new Response(
+          JSON.stringify({
+            success: false,
+            message: 'Immagine giudice non trovata nella libreria',
+          }),
+          { status: 400 }
+        );
+      }
+    }
+
+    // Update judge (name, and optionally photo reassignment)
+    const updates: { fullName: string; r2ImageId?: string } = {
+      fullName: fullName.trim(),
+    };
+    if (reassignR2ImageId) updates.r2ImageId = reassignR2ImageId;
+    await db.update(judges).set(updates).where(eq(judges.id, judgeId));
 
     console.log(`[admin-contest-judges] Updated judge: ${judgeId}`);
 
