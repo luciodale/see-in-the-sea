@@ -3,6 +3,7 @@ import { IMAGES_BASE_URL } from "@/constants";
 import { type Contest, pastContestsData } from "@/data/past-contests";
 import type { Language } from "@/i18n/translations";
 import { getLocalizedPath, useTranslations } from "@/i18n/utils";
+import YearsTimeline from "./YearsTimeline.astro";
 
 type Props = {
   contestId: string;
@@ -28,37 +29,12 @@ const nextContest = currentIndex > 0 ? sortedContests[currentIndex - 1] : null;
 ---
 
 <header class="space-y-12 sm:space-y-14 pb-12">
-  <!-- Years timeline - minimal editorial (desktop only) -->
-  <div
-    class="hidden sm:flex flex-wrap justify-center items-center gap-x-3 gap-y-3 text-editorial uppercase tracking-editorial-wider"
-  >
-    {
-      sortedContests.map((contest, idx) => {
-        const isActive = contest.id === contestId;
-        return (
-          <>
-            {idx > 0 && (
-              <span
-                class="inline-block w-1 h-1 rounded-full bg-muted-foreground/60"
-                aria-hidden="true"
-              />
-            )}
-            <a
-              href={getLocalizedPath(`judges/${contest.id}`, currentLang)}
-              class:list={[
-                "transition-colors duration-300",
-                isActive
-                  ? "text-foreground"
-                  : "text-muted-foreground hover:text-foreground",
-              ]}
-            >
-              {contest.year}
-            </a>
-          </>
-        );
-      })
-    }
-  </div>
+  <YearsTimeline
+    contests={sortedContests}
+    activeContestId={contestId}
+    linkPrefix="judges"
+    lang={currentLang}
+  />
 
   <!-- Title with inline prev/next navigation -->
   <div class="flex items-center justify-center gap-4 sm:gap-8">

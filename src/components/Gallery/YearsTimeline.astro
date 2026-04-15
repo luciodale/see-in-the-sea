@@ -1,0 +1,57 @@
+---
+import type { Language } from '@/i18n/translations';
+import { getLocalizedPath } from '@/i18n/utils';
+
+type TimelineContest = {
+  id: string;
+  year: number;
+};
+
+type Props = {
+  contests: TimelineContest[];
+  activeContestId: string;
+  linkPrefix: 'contest' | 'judges';
+  lang: Language;
+};
+
+const { contests, activeContestId, linkPrefix, lang } = Astro.props;
+
+const firstRowSize = Math.ceil(contests.length / 2);
+const rows = [
+  contests.slice(0, firstRowSize),
+  contests.slice(firstRowSize),
+].filter(row => row.length > 0);
+---
+
+<div class="hidden sm:flex flex-col items-center gap-y-3">
+  {
+    rows.map((row) => (
+      <div class="flex flex-wrap justify-center items-center gap-x-3 gap-y-3 text-editorial uppercase tracking-editorial-wider">
+        {row.map((contest, idx) => {
+          const isActive = contest.id === activeContestId;
+          return (
+            <>
+              {idx > 0 && (
+                <span
+                  class="inline-block w-1 h-1 rounded-full bg-muted-foreground/60"
+                  aria-hidden="true"
+                />
+              )}
+              <a
+                href={getLocalizedPath(`${linkPrefix}/${contest.id}`, lang)}
+                class:list={[
+                  "transition-colors duration-300",
+                  isActive
+                    ? "text-foreground"
+                    : "text-muted-foreground hover:text-foreground",
+                ]}
+              >
+                {contest.year}
+              </a>
+            </>
+          );
+        })}
+      </div>
+    ))
+  }
+</div>
