@@ -1,3 +1,5 @@
+import { IMAGES_BASE_URL } from '@/constants';
+
 export type PhotobookLang = 'en' | 'it';
 
 const base = '/images/contests/2025';
@@ -81,15 +83,15 @@ export const photobook2025Shared = {
   judges: [
     {
       name: 'Pasquale Vassallo',
-      image: `${base}/judges/pasquale-vassallo.webp`,
+      image: `${IMAGES_BASE_URL}/judges/BA4YMn4PQGEhT11vs5Ztg/oi-7LVzH3QDt68p-Kqt6W`,
     },
     {
       name: 'Pietro Formis',
-      image: `${base}/judges/pietro-formis.webp`,
+      image: `${IMAGES_BASE_URL}/judges/TA4YMn4PQGEhT11vs5Ztg/y7HwiJ3smydmCE7U-h-Yk`,
     },
     {
       name: 'Domy Tripodi',
-      image: `${base}/judges/domenico-tripodi.webp`,
+      image: `${IMAGES_BASE_URL}/judges/CA4YMn4PQGEhT11vs5Ztg/PlGzGi8UUS1mqM-MJKjpP`,
     },
   ],
   photographerIndex: [
