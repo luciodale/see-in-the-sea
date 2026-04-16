@@ -1,0 +1,17 @@
+{
+  "name": "See in the Sea",
+  "short_name": "SeeInTheSea",
+  "description": "International underwater photography contest celebrating the beauty of marine life.",
+  "icons": [
+    {
+      "src": "/images/logo.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    }
+  ],
+  "theme_color": "#000000",
+  "background_color": "#000000",
+  "display": "standalone",
+  "start_url": "/"
+}

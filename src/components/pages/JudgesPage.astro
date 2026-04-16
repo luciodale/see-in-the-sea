@@ -3,6 +3,7 @@ import AppWrapper from '@/components/AppWrapper.astro';
 import JudgesGrid from '@/components/Gallery/JudgesGrid.astro';
 import Layout from '@/components/Gallery/Layout.astro';
 import NavbarHeaderStandalone from '@/components/Navbar/NavbarHeaderStandalone.astro';
+import { IMAGES_BASE_URL } from '@/constants';
 import type { Contest } from '@/data/past-contests';
 import type { Language } from '@/i18n/translations';
 import { getLocalizedPath, useTranslations } from '@/i18n/utils';
@@ -19,12 +20,72 @@ const t = useTranslations(lang);
 if (!contestId) {
   return Astro.redirect(getLocalizedPath('404', lang));
 }
+
+const seoTitle = t('seo.judges.contest.title').replace(
+  '{contest}',
+  contestData.name
+);
+const seoDescription = t('seo.judges.contest.description').replace(
+  '{contest}',
+  contestData.name
+);
+
+const origin = new URL('/', Astro.url).toString();
+const judgesUrl = new URL(
+  getLocalizedPath(`/judges/${contestData.id}`, lang),
+  origin
+).toString();
+const judgesIndexUrl = new URL(
+  getLocalizedPath('/judges', lang),
+  origin
+).toString();
+
+const breadcrumbLd = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    { '@type': 'ListItem', position: 1, name: 'Home', item: origin },
+    {
+      '@type': 'ListItem',
+      position: 2,
+      name: t('judges.title'),
+      item: judgesIndexUrl,
+    },
+    {
+      '@type': 'ListItem',
+      position: 3,
+      name: `${t('judges.title')} ${contestData.name}`,
+      item: judgesUrl,
+    },
+  ],
+};
+
+const judgesItemListLd = {
+  '@context': 'https://schema.org',
+  '@type': 'ItemList',
+  name: `${t('judges.title')} - ${contestData.name}`,
+  url: judgesUrl,
+  itemListElement: contestData.judges.map((judge, index) => ({
+    '@type': 'ListItem',
+    position: index + 1,
+    item: {
+      '@type': 'Person',
+      name: judge.fullName,
+      jobTitle: 'Underwater Photography Judge',
+      image: judge.r2ImageId
+        ? `${IMAGES_BASE_URL}/${judge.r2ImageId}`
+        : undefined,
+    },
+  })),
+};
 ---
 
 <AppWrapper
-  title={`${t('judges.title')} - ${contestData.name}`}
-  description={t('site.description')}
+  title={seoTitle}
+  description={seoDescription}
+  ogType="article"
   lang={lang}
+  additionalJsonLd={[breadcrumbLd, judgesItemListLd]}
 >
   <NavbarHeaderStandalone lang={lang} />
 

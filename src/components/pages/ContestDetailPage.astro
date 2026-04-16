@@ -19,12 +19,88 @@ const t = useTranslations(lang);
 if (!contestId) {
   return Astro.redirect(getLocalizedPath('404', lang));
 }
+
+const seoTitle = t('seo.contest.detail.title').replace(
+  '{contest}',
+  contestData.name
+);
+const seoDescription = t('seo.contest.detail.description').replace(
+  '{contest}',
+  contestData.name
+);
+
+const origin = new URL('/', Astro.url).toString();
+const contestPath = getLocalizedPath(`/contest/${contestData.id}`, lang);
+const contestUrl = new URL(contestPath, origin).toString();
+const contestsListUrl = new URL(
+  getLocalizedPath('/contest', lang),
+  origin
+).toString();
+const ogImage = contestData.indexImage ?? undefined;
+
+const eventLd = {
+  '@context': 'https://schema.org',
+  '@type': 'Event',
+  name: `${contestData.name} - See in the Sea`,
+  description: contestData.description ?? seoDescription,
+  startDate: `${contestData.year}-01-01`,
+  endDate: `${contestData.year}-12-31`,
+  eventStatus: contestData.currentContest
+    ? 'https://schema.org/EventScheduled'
+    : 'https://schema.org/EventMovedOnline',
+  eventAttendanceMode: 'https://schema.org/MixedEventAttendanceMode',
+  url: contestUrl,
+  image: contestData.indexImage
+    ? new URL(contestData.indexImage, origin).toString()
+    : undefined,
+  organizer: {
+    '@type': 'Organization',
+    name: 'ASD Ortona Sub APS',
+    url: origin,
+  },
+  location: {
+    '@type': 'Place',
+    name: 'Ortona, Italy',
+    address: {
+      '@type': 'PostalAddress',
+      streetAddress: 'Via Giovanni XXIII, Palazzetto dello sport',
+      postalCode: '66026',
+      addressLocality: 'Ortona',
+      addressRegion: 'CH',
+      addressCountry: 'IT',
+    },
+  },
+};
+
+const breadcrumbLd = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    { '@type': 'ListItem', position: 1, name: 'Home', item: origin },
+    {
+      '@type': 'ListItem',
+      position: 2,
+      name: t('contests.title'),
+      item: contestsListUrl,
+    },
+    {
+      '@type': 'ListItem',
+      position: 3,
+      name: contestData.name,
+      item: contestUrl,
+    },
+  ],
+};
 ---
 
 <AppWrapper
-  title={t('site.title')}
-  description={t('site.description')}
+  title={seoTitle}
+  description={seoDescription}
+  ogImage={ogImage}
+  ogImageAlt={`${contestData.name} See in the Sea winning underwater photograph`}
+  ogType="article"
   lang={lang}
+  additionalJsonLd={[eventLd, breadcrumbLd]}
 >
   <NavbarHeaderStandalone lang={lang} />
 

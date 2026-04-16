@@ -51,6 +51,48 @@ export const translations = {
     'site.description':
       'Discover the beauty of underwater photography through our international contest showcasing the best marine life images.',
 
+    // SEO meta (per page)
+    'seo.home.title':
+      'See in the Sea | International Underwater Photography Contest',
+    'seo.home.description':
+      'See in the Sea is an international underwater photography contest celebrating marine life. Browse winning photographs, meet the judges, and join the next edition.',
+    'seo.home.keywords':
+      'underwater photography, underwater photo contest, marine photography, scuba diving photography, See in the Sea, Ortona Sub, Mediterranean photography',
+    'seo.about.title': 'About See in the Sea | Underwater Photography Contest',
+    'seo.about.description':
+      'Discover the story behind See in the Sea: an international underwater photography contest organised by ASD Ortona Sub APS, celebrating the artistry of marine photographers.',
+    'seo.contact.title': 'Contact | See in the Sea',
+    'seo.contact.description':
+      'Get in touch with the See in the Sea organising team at ASD Ortona Sub APS. Find contacts for the president, technical director and secretariat.',
+    'seo.sponsors.title': 'Sponsors | See in the Sea',
+    'seo.sponsors.description':
+      'Meet the sponsors who make the See in the Sea International Underwater Photography Contest possible, and learn how to support the next edition.',
+    'seo.trophy.title': 'The Click Fish Trophy | See in the Sea',
+    'seo.trophy.description':
+      'Discover the Click Fish, the bespoke sculpture awarded to the winners of the See in the Sea International Underwater Photography Contest.',
+    'seo.judges.title': 'Judges | See in the Sea',
+    'seo.judges.description':
+      'Meet the international jury of underwater photographers who judge the See in the Sea International Underwater Photography Contest.',
+    'seo.judges.contest.title':
+      'Judges of {contest} | See in the Sea Underwater Photography Contest',
+    'seo.judges.contest.description':
+      'Meet the jury of the {contest} edition of the See in the Sea International Underwater Photography Contest.',
+    'seo.contests.title':
+      'Past Contests | See in the Sea Underwater Photography',
+    'seo.contests.description':
+      'Browse winners from past editions of the See in the Sea International Underwater Photography Contest, year by year.',
+    'seo.contest.detail.title':
+      '{contest} Winners | See in the Sea Underwater Photography Contest',
+    'seo.contest.detail.description':
+      'Explore the winning underwater photographs from the {contest} edition of the See in the Sea International Underwater Photography Contest.',
+    'seo.contest.category.title':
+      '{category} | {contest} See in the Sea Underwater Photography Contest',
+    'seo.contest.category.description':
+      'Winning {category} photographs from the {contest} edition of the See in the Sea International Underwater Photography Contest.',
+    'seo.rules.title': 'Contest Rules | See in the Sea',
+    'seo.rules.description':
+      'Read the official rules of the See in the Sea International Underwater Photography Contest: categories, eligibility, deadlines and submission process.',
+
     // Actions
     'action.learn-more': 'Learn More →',
     'action.upload': 'Upload Photo',
@@ -424,6 +466,49 @@ export const translations = {
     'site.title': 'See in the Sea',
     'site.description':
       'Scopri la bellezza della fotografia subacquea attraverso il nostro concorso internazionale che presenta le migliori immagini della vita marina.',
+
+    // SEO meta (per page)
+    'seo.home.title':
+      'See in the Sea | Concorso Internazionale di Fotografia Subacquea',
+    'seo.home.description':
+      'See in the Sea è un concorso internazionale di fotografia subacquea che celebra la vita marina. Scopri le foto vincitrici, conosci la giuria e partecipa alla prossima edizione.',
+    'seo.home.keywords':
+      'fotografia subacquea, concorso fotografia subacquea, fotografia marina, foto subacquee, See in the Sea, Ortona Sub, fotografia mediterraneo',
+    'seo.about.title':
+      'Chi Siamo | See in the Sea Concorso di Fotografia Subacquea',
+    'seo.about.description':
+      'Scopri la storia di See in the Sea: il concorso internazionale di fotografia subacquea organizzato da ASD Ortona Sub APS, che celebra l’arte dei fotografi subacquei.',
+    'seo.contact.title': 'Contatti | See in the Sea',
+    'seo.contact.description':
+      'Contatta lo staff organizzativo di See in the Sea presso ASD Ortona Sub APS. Trova i recapiti del presidente, del direttore tecnico e della segreteria.',
+    'seo.sponsors.title': 'Sponsor | See in the Sea',
+    'seo.sponsors.description':
+      'Conosci gli sponsor che rendono possibile il concorso internazionale di fotografia subacquea See in the Sea e scopri come sostenere la prossima edizione.',
+    'seo.trophy.title': 'Il Trofeo Click Fish | See in the Sea',
+    'seo.trophy.description':
+      'Scopri il Click Fish, la scultura realizzata su misura assegnata ai vincitori del concorso internazionale di fotografia subacquea See in the Sea.',
+    'seo.judges.title': 'Giuria | See in the Sea',
+    'seo.judges.description':
+      'Conosci la giuria internazionale di fotografi subacquei del concorso See in the Sea International Underwater Photography Contest.',
+    'seo.judges.contest.title':
+      'Giuria di {contest} | Concorso di Fotografia Subacquea See in the Sea',
+    'seo.judges.contest.description':
+      'Conosci la giuria dell’edizione {contest} del concorso internazionale di fotografia subacquea See in the Sea.',
+    'seo.contests.title':
+      'Edizioni Precedenti | See in the Sea Fotografia Subacquea',
+    'seo.contests.description':
+      'Esplora le edizioni passate del concorso internazionale di fotografia subacquea See in the Sea, anno per anno.',
+    'seo.contest.detail.title':
+      'Vincitori {contest} | Concorso di Fotografia Subacquea See in the Sea',
+    'seo.contest.detail.description':
+      'Scopri le fotografie subacquee vincitrici dell’edizione {contest} del concorso internazionale See in the Sea.',
+    'seo.contest.category.title':
+      '{category} | {contest} See in the Sea Concorso di Fotografia Subacquea',
+    'seo.contest.category.description':
+      'Fotografie vincitrici della categoria {category} dell’edizione {contest} del concorso internazionale di fotografia subacquea See in the Sea.',
+    'seo.rules.title': 'Regolamento | See in the Sea',
+    'seo.rules.description':
+      'Leggi il regolamento ufficiale del concorso internazionale di fotografia subacquea See in the Sea: categorie, requisiti, scadenze e modalità di partecipazione.',
 
     // Actions
     'action.learn-more': 'Scopri di Più →',

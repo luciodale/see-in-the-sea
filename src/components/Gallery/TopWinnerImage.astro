@@ -118,7 +118,7 @@ const styles = getRankStyles(rawResult);
     <img
       class="winner-image absolute inset-0 w-full h-full object-cover opacity-0 transition-opacity duration-700"
       data-src={imageUrl}
-      alt={title || categoryName}
+      alt={`${title || categoryName} - ${categoryName} ${rank.toLowerCase()} by ${author}, See in the Sea underwater photography contest`}
       loading="lazy"
     />
 

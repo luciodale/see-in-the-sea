@@ -7,7 +7,11 @@ export function NavbarContent() {
     <div className="flex flex-1 flex-col items-center justify-center">
       <div className="text-center">
         <div className="flex sm:flex-row flex-col items-center justify-center gap-6">
-          <img src="/images/logo.svg" alt="Logo" className="h-40 sm:h-64" />
+          <img
+            src="/images/logo.svg"
+            alt="See in the Sea logo"
+            className="h-40 sm:h-64"
+          />
           <div className="sm:text-left flex flex-col gap-5">
             <h1 className="flex flex-col gap-2 text-balance text-foreground">
               <span className="font-serif sm:text-7xl text-5xl leading-display-tight tracking-display drop-shadow-sharp">

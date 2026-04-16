@@ -1,10 +1,10 @@
 ---
 export const prerender = true;
 
-import "@/styles/global.css";
-import { getPhotobook2025, type PhotobookLang } from "@/i18n/photobook-2025";
+import '@/styles/global.css';
+import { getPhotobook2025, type PhotobookLang } from '@/i18n/photobook-2025';
 
-const lang: PhotobookLang = Astro.currentLocale === "it" ? "it" : "en";
+const lang: PhotobookLang = Astro.currentLocale === 'it' ? 'it' : 'en';
 const content = getPhotobook2025(lang);
 const {
   ui,
@@ -21,11 +21,333 @@ const {
 } = content;
 
 const canonicalUrl = Astro.url.href;
+const origin = new URL('/', canonicalUrl).toString();
 
 const pathname = Astro.url.pathname;
-const stripped = pathname.replace(/^\/it(?=\/|$)/, "") || "/";
+const stripped = pathname.replace(/^\/it(?=\/|$)/, '') || '/';
 const enUrl = stripped;
-const itUrl = stripped === "/" ? "/it" : `/it${stripped}`;
+const itUrl = stripped === '/' ? '/it' : `/it${stripped}`;
+const enFullUrl = new URL(enUrl, origin).toString();
+const itFullUrl = new URL(itUrl, origin).toString();
+
+const SITE_NAME = 'See in the Sea';
+const YEAR = '2025';
+
+const altSuffix =
+  lang === 'it'
+    ? `See in the Sea ${YEAR} concorso internazionale di fotografia subacquea`
+    : `See in the Sea ${YEAR} international underwater photography contest`;
+
+const placeLabel = (place: string) => (place && place !== '—' ? place : '');
+
+const buildPhotoAlt = (
+  title: string,
+  photographer: string,
+  place: string,
+  categoryName: string,
+  ordinal: string
+) => {
+  const parts = [
+    `${title} by ${photographer}`,
+    `${categoryName} ${ordinal} ${ui.placeSuffix}`,
+    placeLabel(place),
+    altSuffix,
+  ].filter(Boolean);
+  return parts.join(' — ');
+};
+
+const buildPortfolioAlt = (
+  pieceTitle: string,
+  pieceNumber: number,
+  totalPieces: number,
+  photographer: string,
+  place: string,
+  ordinal: string
+) => {
+  const triptychLabel =
+    lang === 'it'
+      ? `foto ${pieceNumber} di ${totalPieces}`
+      : `photograph ${pieceNumber} of ${totalPieces}`;
+  const parts = [
+    `${pieceTitle} by ${photographer}`,
+    `${ui.categories.portfolio} ${ordinal} ${ui.placeSuffix}`,
+    triptychLabel,
+    placeLabel(place),
+    altSuffix,
+  ].filter(Boolean);
+  return parts.join(' — ');
+};
+
+const buildJudgeAlt = (name: string) =>
+  lang === 'it'
+    ? `${name}, giudice di See in the Sea ${YEAR}`
+    : `${name}, See in the Sea ${YEAR} jury member - underwater photographer`;
+
+const macroFirstAlt = buildPhotoAlt(
+  macro.first.title,
+  macro.first.photographer,
+  macro.first.place,
+  ui.categories.macro,
+  ui.ordinals[0]
+);
+
+const bwAlts = [
+  buildPhotoAlt(
+    bw.first.title,
+    bw.first.photographer,
+    bw.first.place,
+    ui.categories.bw,
+    ui.ordinals[0]
+  ),
+  buildPhotoAlt(
+    bw.second.title,
+    bw.second.photographer,
+    bw.second.place,
+    ui.categories.bw,
+    ui.ordinals[1]
+  ),
+  buildPhotoAlt(
+    bw.third.title,
+    bw.third.photographer,
+    bw.third.place,
+    ui.categories.bw,
+    ui.ordinals[2]
+  ),
+];
+
+const macroAlts = [
+  macroFirstAlt,
+  buildPhotoAlt(
+    macro.second.title,
+    macro.second.photographer,
+    macro.second.place,
+    ui.categories.macro,
+    ui.ordinals[1]
+  ),
+  buildPhotoAlt(
+    macro.third.title,
+    macro.third.photographer,
+    macro.third.place,
+    ui.categories.macro,
+    ui.ordinals[2]
+  ),
+];
+
+const wideAlts = [
+  buildPhotoAlt(
+    wide.first.title,
+    wide.first.photographer,
+    wide.first.place,
+    ui.categories.wide,
+    ui.ordinals[0]
+  ),
+  buildPhotoAlt(
+    wide.second.title,
+    wide.second.photographer,
+    wide.second.place,
+    ui.categories.wide,
+    ui.ordinals[1]
+  ),
+  buildPhotoAlt(
+    wide.third.title,
+    wide.third.photographer,
+    wide.third.place,
+    ui.categories.wide,
+    ui.ordinals[2]
+  ),
+];
+
+const ogImage = new URL(cover.image, canonicalUrl).toString();
+const ogImageAlt = macroFirstAlt;
+
+const seoKeywords = (
+  lang === 'it'
+    ? [
+        'fotografia subacquea',
+        'photobook subacqueo',
+        'concorso fotografia subacquea',
+        'fotografia marina',
+        'See in the Sea 2025',
+        'Ortona Sub',
+        'fotografia mediterraneo',
+      ]
+    : [
+        'underwater photography',
+        'underwater photobook',
+        'underwater photography contest',
+        'marine photography',
+        'See in the Sea 2025',
+        'Ortona Sub',
+        'Mediterranean underwater photography',
+      ]
+).join(', ');
+
+type ImageObjectLd = {
+  '@type': 'ImageObject';
+  name: string;
+  caption?: string;
+  contentUrl: string;
+  description?: string;
+  creator: { '@type': 'Person'; name: string };
+  copyrightHolder: { '@type': 'Person'; name: string };
+  contentLocation?: { '@type': 'Place'; name: string };
+};
+
+const buildImageObject = (
+  title: string,
+  photographer: string,
+  place: string,
+  body: string,
+  src: string
+): ImageObjectLd => ({
+  '@type': 'ImageObject',
+  name: title,
+  caption: body,
+  description: body,
+  contentUrl: new URL(src, origin).toString(),
+  creator: { '@type': 'Person', name: photographer },
+  copyrightHolder: { '@type': 'Person', name: photographer },
+  ...(placeLabel(place)
+    ? { contentLocation: { '@type': 'Place', name: place } }
+    : {}),
+});
+
+const galleryImages: ImageObjectLd[] = [
+  buildImageObject(
+    bw.first.title,
+    bw.first.photographer,
+    bw.first.place,
+    bw.first.body,
+    bw.first.image
+  ),
+  buildImageObject(
+    bw.second.title,
+    bw.second.photographer,
+    bw.second.place,
+    bw.second.body,
+    bw.second.image
+  ),
+  buildImageObject(
+    bw.third.title,
+    bw.third.photographer,
+    bw.third.place,
+    bw.third.body,
+    bw.third.image
+  ),
+  buildImageObject(
+    macro.first.title,
+    macro.first.photographer,
+    macro.first.place,
+    macro.first.body,
+    macro.first.image
+  ),
+  buildImageObject(
+    macro.second.title,
+    macro.second.photographer,
+    macro.second.place,
+    macro.second.body,
+    macro.second.image
+  ),
+  buildImageObject(
+    macro.third.title,
+    macro.third.photographer,
+    macro.third.place,
+    macro.third.body,
+    macro.third.image
+  ),
+  buildImageObject(
+    wide.first.title,
+    wide.first.photographer,
+    wide.first.place,
+    wide.first.body,
+    wide.first.image
+  ),
+  buildImageObject(
+    wide.second.title,
+    wide.second.photographer,
+    wide.second.place,
+    wide.second.body,
+    wide.second.image
+  ),
+  buildImageObject(
+    wide.third.title,
+    wide.third.photographer,
+    wide.third.place,
+    wide.third.body,
+    wide.third.image
+  ),
+  ...(['first', 'second', 'third'] as const).flatMap(slot =>
+    portfolio[slot].pieces.map(piece =>
+      buildImageObject(
+        piece.title,
+        portfolio[slot].photographer,
+        piece.place,
+        piece.body,
+        piece.image
+      )
+    )
+  ),
+];
+
+const breadcrumbLd = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    { '@type': 'ListItem', position: 1, name: SITE_NAME, item: origin },
+    {
+      '@type': 'ListItem',
+      position: 2,
+      name: meta.title,
+      item: canonicalUrl,
+    },
+  ],
+};
+
+const imageGalleryLd = {
+  '@context': 'https://schema.org',
+  '@type': 'ImageGallery',
+  name: meta.title,
+  description: meta.description,
+  url: canonicalUrl,
+  inLanguage: lang === 'it' ? 'it-IT' : 'en-GB',
+  isPartOf: {
+    '@type': 'CreativeWork',
+    name: `${SITE_NAME} ${YEAR}`,
+    url: new URL(`/contest/uw-${YEAR}`, origin).toString(),
+  },
+  publisher: {
+    '@type': 'Organization',
+    name: 'ASD Ortona Sub APS',
+    url: origin,
+  },
+  image: galleryImages,
+};
+
+const articleLd = {
+  '@context': 'https://schema.org',
+  '@type': 'Article',
+  headline: meta.title,
+  description: meta.description,
+  url: canonicalUrl,
+  inLanguage: lang === 'it' ? 'it-IT' : 'en-GB',
+  image: ogImage,
+  datePublished: `${YEAR}-12-31`,
+  publisher: {
+    '@type': 'Organization',
+    name: SITE_NAME,
+    url: origin,
+    logo: {
+      '@type': 'ImageObject',
+      url: new URL('/images/logo.svg', origin).toString(),
+    },
+  },
+  about: photographerIndex.map(name => ({
+    '@type': 'Person',
+    name,
+  })),
+};
+
+const jsonLdScripts = [breadcrumbLd, imageGalleryLd, articleLd];
 ---
 
 <!doctype html>
@@ -35,23 +357,44 @@ const itUrl = stripped === "/" ? "/it" : `/it${stripped}`;
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="theme-color" content="#000000" />
     <link rel="icon" type="image/svg+xml" href="/images/logo.svg" />
+    <link rel="manifest" href="/site.webmanifest" />
     <link rel="canonical" href={canonicalUrl} />
+    <meta name="robots" content="index, follow, max-image-preview:large" />
+
     <title>{meta.title}</title>
     <meta name="description" content={meta.description} />
+    <meta name="keywords" content={seoKeywords} />
+
+    <link rel="alternate" hreflang="en" href={enFullUrl} />
+    <link rel="alternate" hreflang="it" href={itFullUrl} />
+    <link rel="alternate" hreflang="x-default" href={enFullUrl} />
+
     <meta property="og:title" content={meta.title} />
     <meta property="og:description" content={meta.description} />
     <meta property="og:type" content="article" />
     <meta property="og:url" content={canonicalUrl} />
-    <meta
-      property="og:image"
-      content={new URL(cover.image, canonicalUrl).toString()}
-    />
+    <meta property="og:site_name" content={SITE_NAME} />
+    <meta property="og:locale" content={lang === 'it' ? 'it_IT' : 'en_GB'} />
+    <meta property="og:image" content={ogImage} />
+    <meta property="og:image:alt" content={ogImageAlt} />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={meta.title} />
+    <meta name="twitter:description" content={meta.description} />
+    <meta name="twitter:image" content={ogImage} />
+    <meta name="twitter:image:alt" content={ogImageAlt} />
+
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
       href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@300;400;500;600&display=swap"
       rel="stylesheet"
     />
+
+    {
+      jsonLdScripts.map(ld => (
+        <script type="application/ld+json" set:html={JSON.stringify(ld)} />
+      ))
+    }
   </head>
   <body class="pb-body">
     <!-- Top bar -->
@@ -66,20 +409,20 @@ const itUrl = stripped === "/" ? "/it" : `/it${stripped}`;
           <a
             href={enUrl}
             class:list={[
-              "pb-lang__link",
-              { "pb-lang__link--active": lang === "en" },
+              'pb-lang__link',
+              { 'pb-lang__link--active': lang === 'en' },
             ]}
-            aria-current={lang === "en" ? "true" : undefined}
+            aria-current={lang === 'en' ? 'true' : undefined}
             hreflang="en">EN</a
           >
           <span class="pb-lang__sep" aria-hidden="true">/</span>
           <a
             href={itUrl}
             class:list={[
-              "pb-lang__link",
-              { "pb-lang__link--active": lang === "it" },
+              'pb-lang__link',
+              { 'pb-lang__link--active': lang === 'it' },
             ]}
-            aria-current={lang === "it" ? "true" : undefined}
+            aria-current={lang === 'it' ? 'true' : undefined}
             hreflang="it">IT</a
           >
         </nav>
@@ -100,7 +443,7 @@ const itUrl = stripped === "/" ? "/it" : `/it${stripped}`;
         <div class="pb-cover__image-wrap">
           <img
             src={cover.image}
-            alt={cover.alt}
+            alt={macroFirstAlt}
             class="pb-cover__image"
             fetchpriority="high"
             loading="eager"
@@ -169,7 +512,7 @@ const itUrl = stripped === "/" ? "/it" : `/it${stripped}`;
                   <figure class="pb-person__portrait">
                     <img
                       src={judge.image}
-                      alt={judge.name}
+                      alt={buildJudgeAlt(judge.name)}
                       loading="lazy"
                       decoding="async"
                     />
@@ -224,7 +567,7 @@ const itUrl = stripped === "/" ? "/it" : `/it${stripped}`;
         <figure class="pb-bleed__figure pb-bleed__figure--natural">
           <img
             src={bw.first.image}
-            alt={`${bw.first.title} — ${bw.first.photographer}`}
+            alt={bwAlts[0]}
             loading="lazy"
             decoding="async"
           />
@@ -254,7 +597,7 @@ const itUrl = stripped === "/" ? "/it" : `/it${stripped}`;
           <figure class="pb-plate__figure pb-reveal">
             <img
               src={bw.second.image}
-              alt={`${bw.second.title} — ${bw.second.photographer}`}
+              alt={bwAlts[1]}
               loading="lazy"
               decoding="async"
             />
@@ -287,7 +630,7 @@ const itUrl = stripped === "/" ? "/it" : `/it${stripped}`;
         <figure class="pb-split__figure">
           <img
             src={bw.third.image}
-            alt={`${bw.third.title} — ${bw.third.photographer}`}
+            alt={bwAlts[2]}
             loading="lazy"
             decoding="async"
           />
@@ -321,7 +664,7 @@ const itUrl = stripped === "/" ? "/it" : `/it${stripped}`;
         <figure class="pb-stacked__figure">
           <img
             src={macro.first.image}
-            alt={`${macro.first.title} — ${macro.first.photographer}`}
+            alt={macroAlts[0]}
             loading="lazy"
             decoding="async"
           />
@@ -336,7 +679,7 @@ const itUrl = stripped === "/" ? "/it" : `/it${stripped}`;
         <figure class="pb-split__figure pb-split__figure--bleed">
           <img
             src={macro.second.image}
-            alt={`${macro.second.title} — ${macro.second.photographer}`}
+            alt={macroAlts[1]}
             loading="lazy"
             decoding="async"
           />
@@ -370,7 +713,7 @@ const itUrl = stripped === "/" ? "/it" : `/it${stripped}`;
         <figure class="pb-quote__figure pb-reveal">
           <img
             src={macro.third.image}
-            alt={`${macro.third.title} — ${macro.third.photographer}`}
+            alt={macroAlts[2]}
             loading="lazy"
             decoding="async"
           />
@@ -396,7 +739,7 @@ const itUrl = stripped === "/" ? "/it" : `/it${stripped}`;
         <figure class="pb-bleed__figure">
           <img
             src={wide.first.image}
-            alt={`${wide.first.title} — ${wide.first.photographer}`}
+            alt={wideAlts[0]}
             loading="lazy"
             decoding="async"
           />
@@ -419,7 +762,7 @@ const itUrl = stripped === "/" ? "/it" : `/it${stripped}`;
         <figure class="pb-offset__figure pb-reveal">
           <img
             src={wide.second.image}
-            alt={`${wide.second.title} — ${wide.second.photographer}`}
+            alt={wideAlts[1]}
             loading="lazy"
             decoding="async"
           />
@@ -455,7 +798,7 @@ const itUrl = stripped === "/" ? "/it" : `/it${stripped}`;
         <figure class="pb-aside__figure pb-reveal">
           <img
             src={wide.third.image}
-            alt={`${wide.third.title} — ${wide.third.photographer}`}
+            alt={wideAlts[2]}
             loading="lazy"
             decoding="async"
           />
@@ -489,19 +832,26 @@ const itUrl = stripped === "/" ? "/it" : `/it${stripped}`;
         {
           portfolio.first.pieces.map((piece, idx) => (
             <article
-              class={`pb-triptych pb-triptych--${idx % 2 === 0 ? "left" : "right"}`}
+              class={`pb-triptych pb-triptych--${idx % 2 === 0 ? 'left' : 'right'}`}
             >
               <figure class="pb-triptych__figure">
                 <img
                   src={piece.image}
-                  alt={`${piece.title} — ${portfolio.first.photographer}`}
+                  alt={buildPortfolioAlt(
+                    piece.title,
+                    idx + 1,
+                    portfolio.first.pieces.length,
+                    portfolio.first.photographer,
+                    piece.place,
+                    ui.ordinals[0]
+                  )}
                   loading="lazy"
                   decoding="async"
                 />
               </figure>
               <div class="pb-triptych__text pb-reveal">
                 <span class="pb-triptych__num">
-                  {String(idx + 1).padStart(2, "0")}
+                  {String(idx + 1).padStart(2, '0')}
                 </span>
                 <h4>
                   <em>{piece.title}</em>
@@ -528,12 +878,19 @@ const itUrl = stripped === "/" ? "/it" : `/it${stripped}`;
         {
           portfolio.second.pieces.map((piece, idx) => (
             <article
-              class={`pb-zigzag pb-zigzag--${idx % 2 === 0 ? "a" : "b"}`}
+              class={`pb-zigzag pb-zigzag--${idx % 2 === 0 ? 'a' : 'b'}`}
             >
               <figure class="pb-zigzag__figure">
                 <img
                   src={piece.image}
-                  alt={`${piece.title} — ${portfolio.second.photographer}`}
+                  alt={buildPortfolioAlt(
+                    piece.title,
+                    idx + 1,
+                    portfolio.second.pieces.length,
+                    portfolio.second.photographer,
+                    piece.place,
+                    ui.ordinals[1]
+                  )}
                   loading="lazy"
                   decoding="async"
                 />
@@ -564,19 +921,26 @@ const itUrl = stripped === "/" ? "/it" : `/it${stripped}`;
         {
           portfolio.third.pieces.map((piece, idx) => (
             <article
-              class={`pb-triptych pb-triptych--${idx % 2 === 0 ? "left" : "right"}`}
+              class={`pb-triptych pb-triptych--${idx % 2 === 0 ? 'left' : 'right'}`}
             >
               <figure class="pb-triptych__figure">
                 <img
                   src={piece.image}
-                  alt={`${piece.title} — ${portfolio.third.photographer}`}
+                  alt={buildPortfolioAlt(
+                    piece.title,
+                    idx + 1,
+                    portfolio.third.pieces.length,
+                    portfolio.third.photographer,
+                    piece.place,
+                    ui.ordinals[2]
+                  )}
                   loading="lazy"
                   decoding="async"
                 />
               </figure>
               <div class="pb-triptych__text pb-reveal">
                 <span class="pb-triptych__num">
-                  {String(idx + 1).padStart(2, "0")}
+                  {String(idx + 1).padStart(2, '0')}
                 </span>
                 <h4>
                   <em>{piece.title}</em>

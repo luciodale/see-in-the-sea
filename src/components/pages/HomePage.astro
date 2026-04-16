@@ -20,8 +20,9 @@ const PUBLIC_CLERK_PUBLISHABLE_KEY = import.meta.env
 ---
 
 <AppWrapper
-  title={t('site.title')}
-  description={t('site.description')}
+  title={t('seo.home.title')}
+  description={t('seo.home.description')}
+  keywords={t('seo.home.keywords').split(',').map(k => k.trim())}
   lang={lang}
   alternates={alternates}
 >

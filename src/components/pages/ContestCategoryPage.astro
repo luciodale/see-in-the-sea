@@ -4,7 +4,11 @@ import ResultsPerCategory from '@/components/Gallery/ResultsPerCategory.astro';
 import NavbarHeaderStandalone from '@/components/Navbar/NavbarHeaderStandalone.astro';
 import type { Contest } from '@/data/past-contests';
 import type { Language } from '@/i18n/translations';
-import { getLocalizedPath, useTranslations } from '@/i18n/utils';
+import {
+  getCategoryName,
+  getLocalizedPath,
+  useTranslations,
+} from '@/i18n/utils';
 
 interface Props {
   lang: Language;
@@ -19,12 +23,98 @@ const t = useTranslations(lang);
 if (!contestId || !categoryId) {
   return Astro.redirect(getLocalizedPath('404', lang));
 }
+
+const category = contestData.categories.find(c => c.id === categoryId);
+const translatedCategoryName = category
+  ? getCategoryName(category.id, category.name, lang)
+  : categoryId;
+
+const seoTitle = t('seo.contest.category.title')
+  .replace('{category}', translatedCategoryName)
+  .replace('{contest}', contestData.name);
+const seoDescription = t('seo.contest.category.description')
+  .replace('{category}', translatedCategoryName)
+  .replace('{contest}', contestData.name);
+
+const origin = new URL('/', Astro.url).toString();
+const contestPath = getLocalizedPath(`/contest/${contestData.id}`, lang);
+const categoryPath = getLocalizedPath(
+  `/contest/${contestData.id}/${categoryId}`,
+  lang
+);
+const contestsListUrl = new URL(
+  getLocalizedPath('/contest', lang),
+  origin
+).toString();
+const contestUrl = new URL(contestPath, origin).toString();
+const categoryUrl = new URL(categoryPath, origin).toString();
+
+const ogImage = category?.winnerImage ?? contestData.indexImage ?? undefined;
+
+const breadcrumbLd = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    { '@type': 'ListItem', position: 1, name: 'Home', item: origin },
+    {
+      '@type': 'ListItem',
+      position: 2,
+      name: t('contests.title'),
+      item: contestsListUrl,
+    },
+    {
+      '@type': 'ListItem',
+      position: 3,
+      name: contestData.name,
+      item: contestUrl,
+    },
+    {
+      '@type': 'ListItem',
+      position: 4,
+      name: translatedCategoryName,
+      item: categoryUrl,
+    },
+  ],
+};
+
+const galleryLd = category && {
+  '@context': 'https://schema.org',
+  '@type': 'ImageGallery',
+  name: `${translatedCategoryName} - ${contestData.name}`,
+  description: seoDescription,
+  url: categoryUrl,
+  isPartOf: {
+    '@type': 'Event',
+    name: `${contestData.name} - See in the Sea`,
+    url: contestUrl,
+  },
+  image: category.entries.map(entry => {
+    const photographerName =
+      entry.photographer.firstName && entry.photographer.lastName
+        ? `${entry.photographer.firstName} ${entry.photographer.lastName}`
+        : t('author.anonymous');
+    return {
+      '@type': 'ImageObject',
+      name: entry.title,
+      caption: entry.description ?? undefined,
+      contentUrl: new URL(entry.image, origin).toString(),
+      creator: { '@type': 'Person', name: photographerName },
+      copyrightHolder: { '@type': 'Person', name: photographerName },
+    };
+  }),
+};
+
+const additional = galleryLd ? [breadcrumbLd, galleryLd] : [breadcrumbLd];
 ---
 
 <AppWrapper
-  title={t('site.title')}
-  description={t('site.description')}
+  title={seoTitle}
+  description={seoDescription}
+  ogImage={ogImage}
+  ogImageAlt={`${translatedCategoryName} winners ${contestData.name} See in the Sea`}
+  ogType="article"
   lang={lang}
+  additionalJsonLd={additional}
 >
   <NavbarHeaderStandalone lang={lang} />
   <ResultsPerCategory

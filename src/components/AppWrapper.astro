@@ -1,32 +1,41 @@
 ---
-// src/layouts/AppWrapper.astro
 import AppHead from '../components/AppHead.astro';
 import Footer from '../components/Footer.astro';
 
+type Alternate = { hrefLang: string; href: string };
+
 interface Props {
-  // SEO Props
-  title: string; // Specific page title, defaults to SITE_TITLE
-  description: string; // Specific page description, defaults to SITE_DESCRIPTION
-  ogImage?: string; // Full URL for Open Graph image for the page
-  ogType?: string; // e.g., 'website', 'article'
-  twitterCard?: 'summary' | 'summary_large_image' | 'app' | 'player'; // Twitter card type
+  title: string;
+  description: string;
+  ogImage?: string;
+  ogImageAlt?: string;
+  ogImageWidth?: number;
+  ogImageHeight?: number;
+  ogType?: string;
+  twitterCard?: 'summary' | 'summary_large_image' | 'app' | 'player';
   bodyClass?: string;
-  lang?: string; // Language code
-  alternates?: Array<{ hrefLang: string; href: string }>; // hreflang alternates
+  lang?: string;
+  alternates?: Alternate[];
+  keywords?: string[];
+  additionalJsonLd?: unknown[];
 }
 
 const {
   title,
   description,
   ogImage,
+  ogImageAlt,
+  ogImageWidth,
+  ogImageHeight,
   ogType = 'website',
   twitterCard = 'summary_large_image',
-  bodyClass = 'min-h-screen bg-background text-foreground flex flex-col', // Default body styling
+  bodyClass = 'min-h-screen bg-background text-foreground flex flex-col',
   lang,
   alternates = [],
+  keywords,
+  additionalJsonLd,
 } = Astro.props;
 
-// For Open Graph URL, use the current page's URL
 const currentUrl = Astro.url.href;
 const currentLang = (lang || Astro.currentLocale || 'en') as 'en' | 'it';
 ---
@@ -38,12 +47,17 @@ const currentLang = (lang || Astro.currentLocale || 'en') as 'en' | 'it';
       title={title}
       description={description}
       ogImage={ogImage}
+      ogImageAlt={ogImageAlt}
+      ogImageWidth={ogImageWidth}
+      ogImageHeight={ogImageHeight}
       ogType={ogType}
       twitterCard={twitterCard}
       canonicalUrl={currentUrl}
       siteName="See in the Sea"
       locale={currentLang === 'it' ? 'it_IT' : 'en_GB'}
       alternates={alternates}
+      keywords={keywords}
+      additionalJsonLd={additionalJsonLd}
     />
   </head>
   <body class={bodyClass}>

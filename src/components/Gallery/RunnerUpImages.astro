@@ -91,7 +91,7 @@ const clickToViewText = t('image.click-to-view');
               <img
                 class="runnerup-image absolute inset-0 w-full h-full object-cover opacity-0 transition-all duration-500 group-hover:scale-105"
                 data-src={runnerUp.imageUrl}
-                alt={runnerUp.title || 'Runner up'}
+                alt={`${runnerUp.title || runnerUp.categoryName} - ${runnerUp.categoryName} runner up by ${runnerUp.author}, See in the Sea underwater photography contest`}
                 loading="lazy"
               />
 
