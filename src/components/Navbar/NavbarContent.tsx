@@ -30,14 +30,6 @@ export function NavbarContent() {
               >
                 {t('navbar.winners')}
               </a>
-              <a
-                href={
-                  lang === 'it' ? '/it/user/submissions' : '/user/submissions'
-                }
-                className="inline-flex items-center justify-center rounded-full border border-border-strong bg-black/40 text-foreground px-6 py-2.5 text-editorial uppercase tracking-editorial drop-shadow-sharp hover:bg-black/60 hover:border-foreground/40 transition-all duration-300"
-              >
-                {t('navbar.discover')}
-              </a>
             </div>
           </div>
         </div>
