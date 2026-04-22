@@ -1088,17 +1088,37 @@ const jsonLdScripts = [breadcrumbLd, imageGalleryLd, articleLd];
           const lastBottom = last
             ? last.getBoundingClientRect().bottom + window.scrollY
             : document.documentElement.scrollHeight;
-          const rawHeight = Math.ceil(lastBottom);
-          // Chrome's PDF engine caps single-page dimensions around
-          // 200 inches ≈ 19,200px at 96 DPI. If content is taller we scale
-          // the whole document down with CSS zoom so it fits on ONE page.
-          const MAX_PAGE_PX = 18000;
+          // Print CSS below forces every .pb-page to min-height: viewportHeight
+          // for aesthetic reasons. Naturally short sections (credits, partners)
+          // grow at print time and push later content past what was measured
+          // pre-print — clipping the End card. Simulate that growth here so
+          // rawHeight matches what Chrome will actually render.
+          let totalPrintHeight = 0;
+          for (const page of pages) {
+            const h = (page as HTMLElement).getBoundingClientRect().height;
+            totalPrintHeight += Math.max(h, viewportHeight);
+          }
+          const rawHeight = Math.ceil(
+            Math.max(
+              totalPrintHeight,
+              lastBottom,
+              document.documentElement.scrollHeight,
+            ),
+          );
+          // Chrome's PDF engine handles very tall @page sizes in modern
+          // versions. Only scale down with CSS zoom if content exceeds this
+          // cap — keep it generous so normal-sized books render as ONE page
+          // without triggering the zoom path (which Chrome print preview
+          // does not always fold into a single page reliably).
+          const MAX_PAGE_PX = 32000;
           // Shrink slightly under the cap so sub-pixel rounding can't push
           // content to a 2nd page.
           const zoom =
             rawHeight > MAX_PAGE_PX ? (MAX_PAGE_PX - 8) / rawHeight : 1;
-          // Buffer a few pixels so the @page box is strictly >= content.
-          const PAGE_BUFFER_PX = 4;
+          // Buffer so the @page box is strictly >= content even under
+          // sub-pixel rounding. Kept generous to guarantee the End card
+          // isn't clipped at the bottom edge.
+          const PAGE_BUFFER_PX = 48;
           const totalHeight = Math.ceil(rawHeight * zoom) + PAGE_BUFFER_PX;
           const pageWidth = Math.ceil(width * zoom);
 
@@ -1164,6 +1184,11 @@ const jsonLdScripts = [breadcrumbLd, imageGalleryLd, articleLd];
               .pb-cover,
               .pb-cover__image-wrap {
                 height: ${viewportHeight}px !important;
+              }
+              /* Pin the end card so its min-height can't drift post-measure */
+              .pb-end {
+                height: ${viewportHeight}px !important;
+                min-height: ${viewportHeight}px !important;
               }
               .pb-bleed__figure {
                 height: ${viewportHeight}px !important;
@@ -2288,21 +2313,49 @@ const jsonLdScripts = [breadcrumbLd, imageGalleryLd, articleLd];
         .pb-cover__content {
           padding: 72px 24px 48px;
         }
+        .pb-cover__meta {
+          flex-direction: column;
+          gap: 6px;
+          text-align: center;
+        }
+        .pb-cover__meta .pb-dot {
+          display: none;
+        }
         .pb-editorial {
           padding: 64px 24px 96px;
         }
         .pb-editorial--floated {
           margin-left: 0;
         }
-        .pb-feature--split,
-        .pb-divider--a,
-        .pb-divider--b,
-        .pb-divider--d {
+        .pb-feature--split {
           grid-template-columns: 1fr !important;
-          padding: 100px 24px;
+        }
+        .pb-divider {
+          grid-template-columns: 1fr !important;
+          padding: 48px 24px;
+          min-height: auto;
+        }
+        .pb-divider--num-left .pb-divider__index,
+        .pb-divider--num-left .pb-divider__label {
+          grid-column: 1;
+          justify-self: center;
+          text-align: center;
+        }
+        .pb-divider__label h2 {
+          font-size: clamp(40px, 10vw, 72px);
+        }
+        .pb-divider__label p {
+          margin: 0 auto;
         }
         .pb-split__figure {
           min-height: 60vh;
+        }
+        .pb-bleed__figure {
+          height: auto;
+          min-height: 0;
+        }
+        .pb-bleed__figure img {
+          height: auto;
         }
         .pb-split__text {
           padding: 48px 24px 96px;
@@ -2371,6 +2424,31 @@ const jsonLdScripts = [breadcrumbLd, imageGalleryLd, articleLd];
         }
         .pb-partners {
           padding: 100px 24px 120px;
+        }
+        .pb-intro {
+          padding: 140px 24px 100px;
+        }
+        .pb-toc {
+          padding: 100px 24px 120px;
+        }
+        .pb-feature--stacked {
+          padding: 120px 24px 120px;
+        }
+        .pb-plate .pb-eyebrow,
+        .pb-plate__figure,
+        .pb-plate__text {
+          padding-left: 24px;
+          padding-right: 24px;
+        }
+        .pb-portfolio {
+          padding-left: 24px;
+          padding-right: 24px;
+        }
+        .pb-credits {
+          padding: 140px 24px 140px;
+        }
+        .pb-end {
+          padding: 80px 24px;
         }
         .pb-partners__grid {
           grid-template-columns: repeat(2, 1fr);
