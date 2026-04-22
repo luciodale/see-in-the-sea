@@ -23,9 +23,7 @@ export function NavbarContent() {
             </h1>
             <div className="flex flex-col sm:flex-row items-center sm:items-start gap-3">
               <a
-                href={
-                  lang === 'it' ? '/it/contest/uw-2025' : '/contest/uw-2025'
-                }
+                href={lang === 'it' ? '/it/photobook/2025' : '/photobook/2025'}
                 className="inline-flex items-center justify-center rounded-full bg-accent border border-accent text-accent-foreground px-6 py-2.5 text-editorial uppercase tracking-editorial drop-shadow-sharp hover:bg-accent-hover hover:border-accent-hover transition-all duration-300"
               >
                 {t('navbar.winners')}
