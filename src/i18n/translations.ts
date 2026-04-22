@@ -42,7 +42,7 @@ export const translations = {
 
     // Navbar
     'navbar.cta': 'Registration Open!',
-    'navbar.winners': 'Photobook 2026 Gazes and Words',
+    'navbar.winners': 'Photobook 2025 Gazes and Words',
     'navbar.patronage': 'With the high patronage of',
 
     // Site branding
@@ -457,7 +457,7 @@ export const translations = {
 
     // Navbar
     'navbar.cta': 'Iscrizioni Aperte!',
-    'navbar.winners': 'Photobook 2026 Sguardi e parole',
+    'navbar.winners': 'Photobook 2025 Sguardi e parole',
     'navbar.patronage': 'Con il patrocinio di',
 
     // Site branding
