@@ -122,10 +122,7 @@ export function JudgeManager({
       .finally(() => setAddingFromLibrary(null));
   }
 
-  function handleReassignFromLibrary(
-    judge: Judge,
-    item: JudgeLibraryItem
-  ) {
+  function handleReassignFromLibrary(judge: Judge, item: JudgeLibraryItem) {
     setReassigningR2ImageId(item.r2ImageId);
     setError(null);
 
@@ -382,120 +379,120 @@ export function JudgeManager({
           {judges.map(judge => (
             <div key={judge.id} className="space-y-2">
               <div className="flex items-center gap-3 p-3 bg-slate-700 rounded-md flex-wrap">
-              {/* Judge Image */}
-              <div className="relative shrink-0">
-                {judge.r2ImageId ? (
-                  <img
-                    src={`${IMAGES_BASE_URL}/${judge.r2ImageId}`}
-                    alt={judge.fullName}
-                    className="w-12 h-12 rounded-full object-cover border border-slate-500"
-                  />
-                ) : (
-                  <div className="w-12 h-12 rounded-full bg-slate-600 flex items-center justify-center border border-slate-500">
-                    <svg
-                      className="w-6 h-6 text-slate-400"
-                      fill="none"
-                      stroke="currentColor"
-                      viewBox="0 0 24 24"
-                    >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth="2"
-                        d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"
-                      />
-                    </svg>
-                  </div>
-                )}
-                {uploadingJudgeId === judge.id && (
-                  <div className="absolute inset-0 flex items-center justify-center bg-black/50 rounded-full">
-                    <div className="w-5 h-5 border-2 border-white/30 border-t-white rounded-full animate-spin" />
-                  </div>
-                )}
-              </div>
+                {/* Judge Image */}
+                <div className="relative shrink-0">
+                  {judge.r2ImageId ? (
+                    <img
+                      src={`${IMAGES_BASE_URL}/${judge.r2ImageId}`}
+                      alt={judge.fullName}
+                      className="w-12 h-12 rounded-full object-cover border border-slate-500"
+                    />
+                  ) : (
+                    <div className="w-12 h-12 rounded-full bg-slate-600 flex items-center justify-center border border-slate-500">
+                      <svg
+                        className="w-6 h-6 text-slate-400"
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                      >
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          strokeWidth="2"
+                          d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"
+                        />
+                      </svg>
+                    </div>
+                  )}
+                  {uploadingJudgeId === judge.id && (
+                    <div className="absolute inset-0 flex items-center justify-center bg-black/50 rounded-full">
+                      <div className="w-5 h-5 border-2 border-white/30 border-t-white rounded-full animate-spin" />
+                    </div>
+                  )}
+                </div>
 
-              {editingJudgeId === judge.id ? (
-                <>
-                  <input
-                    type="text"
-                    value={editJudgeName}
-                    onChange={e => setEditJudgeName(e.target.value)}
-                    disabled={isSubmitting}
-                    className="flex-1 px-3 py-1 bg-slate-600 border border-slate-500 rounded text-white focus:outline-none focus:ring-2 focus:ring-emerald-500 disabled:opacity-50"
-                  />
-                  <button
-                    type="button"
-                    onClick={() => handleUpdateJudge(judge.id)}
-                    disabled={isSubmitting}
-                    className="px-3 py-1 bg-emerald-600 text-white text-sm rounded hover:bg-emerald-700 disabled:opacity-50"
-                  >
-                    Salva
-                  </button>
-                  <button
-                    type="button"
-                    onClick={cancelEditing}
-                    disabled={isSubmitting}
-                    className="px-3 py-1 bg-slate-600 text-white text-sm rounded hover:bg-slate-500 disabled:opacity-50"
-                  >
-                    Annulla
-                  </button>
-                </>
-              ) : (
-                <>
-                  <span className="flex-1 text-slate-200">
-                    {judge.fullName}
-                  </span>
-                  <button
-                    type="button"
-                    onClick={() => triggerImageUpload(judge.id)}
-                    disabled={isSubmitting || uploadingJudgeId === judge.id}
-                    className="text-accent-hover hover:underline text-sm disabled:opacity-50"
-                    title="Carica foto"
-                  >
-                    {judge.r2ImageId ? 'Cambia foto' : 'Aggiungi foto'}
-                  </button>
-                  <button
-                    type="button"
-                    onClick={() =>
-                      setPickerForJudgeId(
-                        pickerForJudgeId === judge.id ? null : judge.id
-                      )
-                    }
-                    disabled={isSubmitting || uploadingJudgeId === judge.id}
-                    className="text-accent-hover hover:underline text-sm disabled:opacity-50"
-                  >
-                    {pickerForJudgeId === judge.id
-                      ? 'Chiudi libreria'
-                      : 'Da libreria'}
-                  </button>
-                  {judge.r2ImageId && (
+                {editingJudgeId === judge.id ? (
+                  <>
+                    <input
+                      type="text"
+                      value={editJudgeName}
+                      onChange={e => setEditJudgeName(e.target.value)}
+                      disabled={isSubmitting}
+                      className="flex-1 px-3 py-1 bg-slate-600 border border-slate-500 rounded text-white focus:outline-none focus:ring-2 focus:ring-emerald-500 disabled:opacity-50"
+                    />
                     <button
                       type="button"
-                      onClick={() => handleDeleteImage(judge.id)}
-                      disabled={isSubmitting || uploadingJudgeId === judge.id}
-                      className="text-orange-400 hover:text-orange-300 text-sm disabled:opacity-50"
+                      onClick={() => handleUpdateJudge(judge.id)}
+                      disabled={isSubmitting}
+                      className="px-3 py-1 bg-emerald-600 text-white text-sm rounded hover:bg-emerald-700 disabled:opacity-50"
                     >
-                      Rimuovi foto
+                      Salva
                     </button>
-                  )}
-                  <button
-                    type="button"
-                    onClick={() => startEditing(judge)}
-                    disabled={isSubmitting}
-                    className="text-accent-hover hover:underline text-sm disabled:opacity-50"
-                  >
-                    Modifica
-                  </button>
-                  <button
-                    type="button"
-                    onClick={() => handleDeleteJudge(judge.id)}
-                    disabled={isSubmitting}
-                    className="text-red-400 hover:text-red-300 text-sm disabled:opacity-50"
-                  >
-                    Elimina
-                  </button>
-                </>
-              )}
+                    <button
+                      type="button"
+                      onClick={cancelEditing}
+                      disabled={isSubmitting}
+                      className="px-3 py-1 bg-slate-600 text-white text-sm rounded hover:bg-slate-500 disabled:opacity-50"
+                    >
+                      Annulla
+                    </button>
+                  </>
+                ) : (
+                  <>
+                    <span className="flex-1 text-slate-200">
+                      {judge.fullName}
+                    </span>
+                    <button
+                      type="button"
+                      onClick={() => triggerImageUpload(judge.id)}
+                      disabled={isSubmitting || uploadingJudgeId === judge.id}
+                      className="text-accent-hover hover:underline text-sm disabled:opacity-50"
+                      title="Carica foto"
+                    >
+                      {judge.r2ImageId ? 'Cambia foto' : 'Aggiungi foto'}
+                    </button>
+                    <button
+                      type="button"
+                      onClick={() =>
+                        setPickerForJudgeId(
+                          pickerForJudgeId === judge.id ? null : judge.id
+                        )
+                      }
+                      disabled={isSubmitting || uploadingJudgeId === judge.id}
+                      className="text-accent-hover hover:underline text-sm disabled:opacity-50"
+                    >
+                      {pickerForJudgeId === judge.id
+                        ? 'Chiudi libreria'
+                        : 'Da libreria'}
+                    </button>
+                    {judge.r2ImageId && (
+                      <button
+                        type="button"
+                        onClick={() => handleDeleteImage(judge.id)}
+                        disabled={isSubmitting || uploadingJudgeId === judge.id}
+                        className="text-orange-400 hover:text-orange-300 text-sm disabled:opacity-50"
+                      >
+                        Rimuovi foto
+                      </button>
+                    )}
+                    <button
+                      type="button"
+                      onClick={() => startEditing(judge)}
+                      disabled={isSubmitting}
+                      className="text-accent-hover hover:underline text-sm disabled:opacity-50"
+                    >
+                      Modifica
+                    </button>
+                    <button
+                      type="button"
+                      onClick={() => handleDeleteJudge(judge.id)}
+                      disabled={isSubmitting}
+                      className="text-red-400 hover:text-red-300 text-sm disabled:opacity-50"
+                    >
+                      Elimina
+                    </button>
+                  </>
+                )}
               </div>
               {pickerForJudgeId === judge.id && (
                 <div className="p-4 bg-slate-700/50 rounded-md">

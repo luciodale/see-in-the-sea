@@ -108,6 +108,31 @@ export const photobook2025Shared = {
     'Mimmo Roscigno',
     'Francesco Visintin',
   ],
+  partners: [
+    {
+      name: 'Albatros Top Boat',
+      logo: '/images/photobook-2025/partners/albatros.png',
+    },
+    {
+      name: 'Aquadiving Tours',
+      logo: '/images/photobook-2025/partners/aquadiving.png',
+    },
+    {
+      name: 'Coral Eye Marine Outpost',
+      logo: '/images/photobook-2025/partners/coral.png',
+    },
+    { name: 'Easydive', logo: '/images/photobook-2025/partners/easydive.png' },
+    { name: 'Isotta', logo: '/images/photobook-2025/partners/isotta.png' },
+    {
+      name: 'Punto Nave',
+      logo: '/images/photobook-2025/partners/puntonave.png',
+    },
+    {
+      name: 'Siladen Resort & Spa',
+      logo: '/images/photobook-2025/partners/siladen.png',
+    },
+    { name: 'SSI', logo: '/images/photobook-2025/partners/ssi.png' },
+  ],
 } as const;
 
 type LocalizedPiece = { title: string; place: string; body: string };
@@ -169,6 +194,9 @@ type PhotobookCopy = {
       aCuraDi: string;
       aCuraDiLine1: string;
       aCuraDiLine2: string;
+    };
+    partners: {
+      eyebrow: string;
     };
     endFine: string;
   };
@@ -259,6 +287,9 @@ const it: PhotobookCopy = {
       aCuraDiLine1: 'See in the Sea — International Underwater Photocontest.',
       aCuraDiLine2: 'Organizzato da Ortona Sub.',
     },
+    partners: {
+      eyebrow: 'Con il sostegno di',
+    },
     endFine: 'Fine.',
   },
   coverAlt: 'A pancia piena — Umberto Raganato',
@@ -292,7 +323,7 @@ const it: PhotobookCopy = {
     },
     third: {
       title: 'Piercing',
-      place: 'Hurgada, Egitto',
+      place: 'Hurghada, Egitto',
       body: "Le cicatrici di acciaio su un Platax teiera: l'impronta dell'uomo in contrasto con il coraggio del mare. La testimonianza di un frammento di vita che porta addosso il peso del nostro passaggio, senza arrendersi.",
     },
   },
@@ -379,7 +410,7 @@ const it: PhotobookCopy = {
     },
     {
       role: 'Direttore Tecnico',
-      body: 'Responsabile della direzione tecnica del concorso, coordina logistica, sicurezza e criteri di valutazione garantendo lo standard qualitativo delle edizioni.',
+      body: 'Sono passati tanti anni da quella prima volta che mi hanno considerato come giurato ad un concorso di fotografia. Sono passati tanti anni, nei quali mi sono posto tante domande e dato delle risposte. La certezza è che la fotografia negli anni cambia, nel modo di inquadrarla, di illuminarla, di rendere visibile ciò che prima era invisibile, attraverso linguaggi comunicativi e storie nascoste. Oggi, nel mio ruolo di direttore tecnico, coordino la logistica, sicurezza e criteri di valutazione garantendo lo standard qualitativo del concorso. Questo è ciò in cui credo, questo è ciò che cerco attraverso la competenza e gli occhi dei giurati.',
     },
   ],
 };
@@ -405,7 +436,7 @@ const en: PhotobookCopy = {
     categoryEyebrow: 'Category',
     ordinals: ['1st', '2nd', '3rd'],
     placeSuffix: 'place',
-    leadershipTitlePrefix: 'Our ',
+    leadershipTitlePrefix: 'The ',
     leadershipTitleEm: 'leadership',
     judgesEyebrow: 'Jury',
     judgesTitlePrefix: 'The ',
@@ -414,11 +445,11 @@ const en: PhotobookCopy = {
       eyebrow: 'Preface',
       titleLine1: 'A year of images',
       titleLine2Em: 'from the silence of the sea',
-      paragraph1:
-        'Twelve authors, four categories, a single language: light. This volume gathers the photographs awarded at the 2025 edition of See in the Sea, the international contest dedicated to underwater photography.',
+      paragraph1: 'Twelve authors, four categories, a single language: light. ',
       paragraph2:
+        'This volume gathers the photographs awarded at the 2025 edition of See in the Sea, the international contest dedicated to underwater photography.',
+      paragraph3:
         'Every shot is an encounter. With a subject, with a lighting condition, with an unrepeatable instant. Turn the pages slowly.',
-      paragraph3: '',
     },
     dividers: {
       bw: {
@@ -454,6 +485,9 @@ const en: PhotobookCopy = {
       aCuraDi: 'Edited by',
       aCuraDiLine1: 'See in the Sea — International Underwater Photocontest.',
       aCuraDiLine2: 'Organised by Ortona Sub.',
+    },
+    partners: {
+      eyebrow: 'With the support of',
     },
     endFine: 'The End.',
   },
@@ -571,11 +605,11 @@ const en: PhotobookCopy = {
   leadership: [
     {
       role: 'President of Ortona Sub',
-      body: 'At the helm of Ortona Sub, he has long championed the culture of the sea and the spread of underwater photography as a tool for knowledge and protection of the marine environment.',
+      body: '"I have asked myself many times, staring in silence at this black screen... Fragments of blue overlap with blurred faces, the hushed echo of light bubbles, distant waves, suspended sensations scented with sun, salt, sea water... shifting colours and forms where nothing is what it seems... In a now distant past I tried to tell the story of our journey, a meeting of gazes, passions fused to create a story, the thrill of an irrational vision, the magic of searching beyond the horizon..."',
     },
     {
       role: 'Technical Director',
-      body: 'Responsible for the technical direction of the contest, he coordinates logistics, safety and judging criteria, ensuring the quality standard of each edition.',
+      body: 'Many years have passed since the first time I was considered as a jury member at a photography contest. Many years, in which I have asked myself many questions and found answers. What is certain is that photography changes over the years, in the way we frame it, light it, and make visible what was once invisible, through communicative languages and hidden stories. Today, in my role as technical director, I coordinate logistics, safety and judging criteria, ensuring the quality standard of the contest. This is what I believe in, this is what I seek through the expertise and the eyes of the jury.',
     },
   ],
 };
@@ -647,5 +681,6 @@ export function getPhotobook2025(lang: PhotobookLang) {
       .filter(entry => entry.body),
     judges: s.judges.map(judge => ({ ...judge })),
     photographerIndex: s.photographerIndex,
+    partners: s.partners,
   };
 }

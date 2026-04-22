@@ -1,7 +1,3 @@
-import { getNavigationItems } from '@/config/navigation';
-import { useI18n } from '@/i18n/react';
-import { getLanguageAwareSignOutUrl, getLocalizedPath } from '@/i18n/utils';
-import { useUserRole } from '@/react/hooks/useUserRole';
 import { SignedIn, SignedOut, useClerk, useUser } from '@clerk/clerk-react';
 import {
   Dialog,
@@ -18,6 +14,10 @@ import {
   XMarkIcon,
 } from '@heroicons/react/24/outline';
 import { useState } from 'react';
+import { getNavigationItems } from '@/config/navigation';
+import { useI18n } from '@/i18n/react';
+import { getLanguageAwareSignOutUrl, getLocalizedPath } from '@/i18n/utils';
+import { useUserRole } from '@/react/hooks/useUserRole';
 import { LanguageSwitcherReact } from '../LanguageSwitcherReact';
 
 const logoPath = '/images/ortona-sub-logo.svg';

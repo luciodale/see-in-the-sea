@@ -1,9 +1,9 @@
 ---
-import { IMAGES_BASE_URL } from "@/constants";
-import { type Contest, pastContestsData } from "@/data/past-contests";
-import type { Language } from "@/i18n/translations";
-import { getLocalizedPath, useTranslations } from "@/i18n/utils";
-import YearsTimeline from "./YearsTimeline.astro";
+import { IMAGES_BASE_URL } from '@/constants';
+import { type Contest, pastContestsData } from '@/data/past-contests';
+import type { Language } from '@/i18n/translations';
+import { getLocalizedPath, useTranslations } from '@/i18n/utils';
+import YearsTimeline from './YearsTimeline.astro';
 
 type Props = {
   contestId: string;
@@ -11,16 +11,16 @@ type Props = {
 };
 
 const { contestId, contestData } = Astro.props;
-const currentLang = (Astro.currentLocale ?? "en") as Language;
+const currentLang = (Astro.currentLocale ?? 'en') as Language;
 const t = useTranslations(currentLang);
 
 const contestJudges = contestData.judges;
 
 // Year navigation (same logic as GalleryInfo)
 const sortedContests = pastContestsData
-  .map((c) => ({ id: c.id, name: c.name, year: c.year }))
+  .map(c => ({ id: c.id, name: c.name, year: c.year }))
   .sort((a, b) => b.year - a.year);
-const currentIndex = sortedContests.findIndex((c) => c.id === contestId);
+const currentIndex = sortedContests.findIndex(c => c.id === contestId);
 const prevContest =
   currentIndex < sortedContests.length - 1
     ? sortedContests[currentIndex + 1]

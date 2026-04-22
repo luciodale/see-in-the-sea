@@ -11,21 +11,21 @@ export function getStaticPaths() {
     .filter(c => !c.currentContest)
     .flatMap(contest =>
       contest.categories.map(category => ({
-      // Both casings needed: Astro uses camelCase for the English route
-      // but lowercases directory params for the Italian fallback route
-      params: {
-        contestId: contest.id,
-        contestid: contest.id,
-        categoryId: category.id,
-        categoryid: category.id,
-      },
-      props: {
-        contestData: contest,
-        contestId: contest.id,
-        categoryId: category.id,
-      },
-    }))
-  );
+        // Both casings needed: Astro uses camelCase for the English route
+        // but lowercases directory params for the Italian fallback route
+        params: {
+          contestId: contest.id,
+          contestid: contest.id,
+          categoryId: category.id,
+          categoryid: category.id,
+        },
+        props: {
+          contestData: contest,
+          contestId: contest.id,
+          categoryId: category.id,
+        },
+      }))
+    );
 }
 
 const { contestData, contestId, categoryId } = Astro.props;

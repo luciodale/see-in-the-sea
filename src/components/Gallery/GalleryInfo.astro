@@ -1,9 +1,9 @@
 ---
-import { type Contest, pastContestsData } from "@/data/past-contests";
-import type { Language } from "@/i18n/translations";
-import { getLocalizedPath, useTranslations } from "@/i18n/utils";
-import CategorySelect from "./CategorySelect.astro";
-import YearsTimeline from "./YearsTimeline.astro";
+import { type Contest, pastContestsData } from '@/data/past-contests';
+import type { Language } from '@/i18n/translations';
+import { getLocalizedPath, useTranslations } from '@/i18n/utils';
+import CategorySelect from './CategorySelect.astro';
+import YearsTimeline from './YearsTimeline.astro';
 
 type Props = {
   contestTitle: string;
@@ -13,16 +13,16 @@ type Props = {
 };
 
 const { contestTitle, contestId, activeCategoryId, contestData } = Astro.props;
-const currentLang = (Astro.currentLocale ?? "en") as Language;
+const currentLang = (Astro.currentLocale ?? 'en') as Language;
 const t = useTranslations(currentLang);
 
 const contestJudges = contestData.judges;
 
 const sortedContests = pastContestsData
-  .filter((c) => !c.currentContest)
-  .map((c) => ({ id: c.id, name: c.name, year: c.year }))
+  .filter(c => !c.currentContest)
+  .map(c => ({ id: c.id, name: c.name, year: c.year }))
   .sort((a, b) => b.year - a.year);
-const currentIndex = sortedContests.findIndex((c) => c.id === contestId);
+const currentIndex = sortedContests.findIndex(c => c.id === contestId);
 const prevContest =
   currentIndex < sortedContests.length - 1
     ? sortedContests[currentIndex + 1]

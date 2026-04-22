@@ -46,7 +46,7 @@ const twMerge = extendTailwindMerge({
       'bg-color': [{ bg: COLOR_TOKENS }],
       'border-color': [{ border: COLOR_TOKENS }],
       'ring-color': [{ ring: COLOR_TOKENS }],
-      'tracking': [
+      tracking: [
         {
           tracking: [
             'editorial',
@@ -57,15 +57,9 @@ const twMerge = extendTailwindMerge({
           ],
         },
       ],
-      'leading': [
+      leading: [
         {
-          leading: [
-            'display',
-            'display-tight',
-            'heading',
-            'paragraph',
-            'body',
-          ],
+          leading: ['display', 'display-tight', 'heading', 'paragraph', 'body'],
         },
       ],
     },

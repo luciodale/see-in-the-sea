@@ -18,6 +18,7 @@ const {
   leadershipNames,
   judges,
   photographerIndex,
+  partners,
 } = content;
 
 const canonicalUrl = Astro.url.href;
@@ -986,6 +987,31 @@ const jsonLdScripts = [breadcrumbLd, imageGalleryLd, articleLd];
               {ui.credits.aCuraDiLine2}
             </p>
           </div>
+        </div>
+      </section>
+
+      <!-- 19b. PARTNERS -->
+      <section class="pb-partners pb-page">
+        <div class="pb-partners__inner">
+          <div class="pb-partners__mark pb-reveal">
+            <span class="pb-partners__line"></span>
+            <p class="pb-eyebrow">{ui.partners.eyebrow}</p>
+            <span class="pb-partners__line"></span>
+          </div>
+          <ul class="pb-partners__grid pb-reveal">
+            {
+              partners.map((partner) => (
+                <li class="pb-partners__cell">
+                  <img
+                    src={partner.logo}
+                    alt={`${partner.name} logo`}
+                    loading="lazy"
+                    decoding="async"
+                  />
+                </li>
+              ))
+            }
+          </ul>
         </div>
       </section>
 
@@ -2142,6 +2168,54 @@ const jsonLdScripts = [breadcrumbLd, imageGalleryLd, articleLd];
         margin: 0;
       }
 
+      /* 19b. Partners */
+      .pb-partners {
+        padding: 140px 40px 160px;
+      }
+      .pb-partners__inner {
+        max-width: 980px;
+        margin: 0 auto;
+        text-align: center;
+      }
+      .pb-partners__mark {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 20px;
+        margin-bottom: 90px;
+      }
+      .pb-partners__line {
+        width: 60px;
+        height: 1px;
+        background: var(--pb-line);
+      }
+      .pb-partners__grid {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        column-gap: 64px;
+        row-gap: 72px;
+        align-items: center;
+        justify-items: center;
+      }
+      .pb-partners__cell {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 100%;
+        height: 56px;
+      }
+      .pb-partners__cell img {
+        max-width: 100%;
+        max-height: 100%;
+        width: auto;
+        object-fit: contain;
+        filter: brightness(0) invert(1);
+        opacity: 0.78;
+      }
+
       /* 20. End */
       .pb-end {
         min-height: 100vh;
@@ -2294,6 +2368,17 @@ const jsonLdScripts = [breadcrumbLd, imageGalleryLd, articleLd];
         }
         .pb-credits__index {
           columns: 1;
+        }
+        .pb-partners {
+          padding: 100px 24px 120px;
+        }
+        .pb-partners__grid {
+          grid-template-columns: repeat(2, 1fr);
+          column-gap: 40px;
+          row-gap: 56px;
+        }
+        .pb-partners__mark {
+          margin-bottom: 64px;
         }
       }
     </style>

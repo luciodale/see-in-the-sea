@@ -1,10 +1,7 @@
 import { useAuth } from '@clerk/clerk-react';
 import { useEffect, useState } from 'react';
 import { IMAGES_BASE_URL } from '../../constants';
-import type {
-  JudgeLibraryItem,
-  JudgesLibraryResponse,
-} from '../../types/api';
+import type { JudgeLibraryItem, JudgesLibraryResponse } from '../../types/api';
 
 interface JudgeLibraryPickerProps {
   onSelect: (item: JudgeLibraryItem) => void;
@@ -71,7 +68,9 @@ export function JudgeLibraryPicker({
         </div>
       )}
       {loading ? (
-        <p className="text-sm text-slate-400 text-center py-4">Caricamento...</p>
+        <p className="text-sm text-slate-400 text-center py-4">
+          Caricamento...
+        </p>
       ) : visible.length === 0 ? (
         <p className="text-sm text-slate-400 text-center py-4">
           {emptyMessage}

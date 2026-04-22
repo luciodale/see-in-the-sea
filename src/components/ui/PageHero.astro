@@ -6,12 +6,7 @@ type Props = {
   class?: string;
 };
 
-const {
-  eyebrow,
-  title,
-  description,
-  class: className = '',
-} = Astro.props;
+const { eyebrow, title, description, class: className = '' } = Astro.props;
 
 const containerClass = `text-center space-y-4 ${className}`.trim();
 ---
