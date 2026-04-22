@@ -122,7 +122,17 @@ export const photobook2025Shared = {
       logo: '/images/photobook-2025/partners/coral.png',
     },
     { name: 'Easydive', logo: '/images/photobook-2025/partners/easydive.png' },
+    {
+      name: 'Esso Goldengas',
+      logo: '/images/photobook-2025/partners/esso-goldengas.png',
+    },
+    {
+      name: 'Foto Diego',
+      logo: '/images/photobook-2025/partners/foto-diego.png',
+    },
+    { name: 'HTC', logo: '/images/photobook-2025/partners/htc.png' },
     { name: 'Isotta', logo: '/images/photobook-2025/partners/isotta.png' },
+    { name: 'PGS', logo: '/images/photobook-2025/partners/pgs.png' },
     {
       name: 'Punto Nave',
       logo: '/images/photobook-2025/partners/puntonave.png',
