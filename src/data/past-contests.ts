@@ -491,7 +491,7 @@ export const pastContestsData: Contest[] = [
       {
         "id": "F9eVSRSXFhxdKZEZeUt1C",
         "fullName": "Domenico Roscigno",
-        "r2ImageId": null
+        "r2ImageId": "judges/F9eVSRSXFhxdKZEZeUt1C/UXh3uYkh963VTqokLwk1e"
       },
       {
         "id": "Ui10CqkpLz0DrWbowHHYb",
@@ -843,12 +843,12 @@ export const pastContestsData: Contest[] = [
       {
         "id": "iNA8Gu9679M025g-k0vUG",
         "fullName": "David Salvatori",
-        "r2ImageId": null
+        "r2ImageId": "judges/iNA8Gu9679M025g-k0vUG/yRlK4nLECrg8Q2M42qOtN"
       },
       {
         "id": "ZJxTXdf09zRmjQDSb451Q",
         "fullName": "Massimo Zannini",
-        "r2ImageId": null
+        "r2ImageId": "judges/ZJxTXdf09zRmjQDSb451Q/IPoK8eUBaKcklb2qi0LCf"
       }
     ],
     "categories": [
@@ -1602,7 +1602,7 @@ export const pastContestsData: Contest[] = [
       {
         "id": "_s9DzpDk9PYG2Ly3rnTNQ",
         "fullName": "Domenico Roscigno",
-        "r2ImageId": null
+        "r2ImageId": "judges/F9eVSRSXFhxdKZEZeUt1C/UXh3uYkh963VTqokLwk1e"
       },
       {
         "id": "BaJz0TKQerI9gcxhzeJLb",
@@ -1612,7 +1612,7 @@ export const pastContestsData: Contest[] = [
       {
         "id": "K8egrXEW1LyuSYsYWga0o",
         "fullName": "Massimo Zannini",
-        "r2ImageId": null
+        "r2ImageId": "judges/ZJxTXdf09zRmjQDSb451Q/IPoK8eUBaKcklb2qi0LCf"
       }
     ],
     "categories": [
@@ -2090,7 +2090,7 @@ export const pastContestsData: Contest[] = [
       {
         "id": "ccGE-aJh_epCipAgKqnFn",
         "fullName": "Marco Colombo",
-        "r2ImageId": null
+        "r2ImageId": "judges/slNRhpI3DaGhZaGNltv9g/7bMDe4TgpYqPNL2tL81MC"
       },
       {
         "id": "hESkp1xwL-CYsqLGK25EI",
@@ -2658,7 +2658,7 @@ export const pastContestsData: Contest[] = [
       {
         "id": "slNRhpI3DaGhZaGNltv9g",
         "fullName": "Marco Colombo",
-        "r2ImageId": null
+        "r2ImageId": "judges/slNRhpI3DaGhZaGNltv9g/7bMDe4TgpYqPNL2tL81MC"
       },
       {
         "id": "1zC7RsAwCHfJR3hEGnFKI",
@@ -3507,7 +3507,7 @@ export const pastContestsData: Contest[] = [
       {
         "id": "mbhBMkOgwsUxSIcLvSMUf",
         "fullName": "Franco Banfi",
-        "r2ImageId": null
+        "r2ImageId": "judges/mbhBMkOgwsUxSIcLvSMUf/ej23bXxfECkg8kx0dXGeM"
       },
       {
         "id": "fiiJijdAxfC6rzlFAHGXo",
@@ -4135,7 +4135,7 @@ export const pastContestsData: Contest[] = [
       {
         "id": "iJSxcCToqD_sJiP_ejKQZ",
         "fullName": "Franco Banfi",
-        "r2ImageId": null
+        "r2ImageId": "judges/mbhBMkOgwsUxSIcLvSMUf/ej23bXxfECkg8kx0dXGeM"
       },
       {
         "id": "J8i9TVGR5En9ZYmqOXAB0",
@@ -5154,7 +5154,7 @@ export const pastContestsData: Contest[] = [
       {
         "id": "jm-ZXGkqViblT6CAsjZui",
         "fullName": "Silvia Boccato",
-        "r2ImageId": null
+        "r2ImageId": "judges/jm-ZXGkqViblT6CAsjZui/yvlb0LqRu5CjGIKrPzw7I"
       },
       {
         "id": "UF50lKQRM3MBBWnqQvuCH",
@@ -5164,7 +5164,7 @@ export const pastContestsData: Contest[] = [
       {
         "id": "UBZNsKjcl1Xh22T4bsrXL",
         "fullName": "Claudio Giulianini",
-        "r2ImageId": null
+        "r2ImageId": "judges/UBZNsKjcl1Xh22T4bsrXL/-2cnWkHqZ8tzF4kCcCeeh"
       },
       {
         "id": "7k5mzmZ81uUdi4zEGjiEr",
@@ -6556,7 +6556,7 @@ export const pastContestsData: Contest[] = [
       {
         "id": "RL8q0m3_JbLSuPbFkDuix",
         "fullName": "Andrea Giulianini",
-        "r2ImageId": null
+        "r2ImageId": "judges/q4GTFTwRQqsef73q9Hwod/6fr7IDklN_Uz4WQEXJ5OB"
       },
       {
         "id": "VkkH5m4Rn4QhOXjI1tTAq",
@@ -7288,7 +7288,7 @@ export const pastContestsData: Contest[] = [
       {
         "id": "q4GTFTwRQqsef73q9Hwod",
         "fullName": "Andrea Giulianini",
-        "r2ImageId": null
+        "r2ImageId": "judges/q4GTFTwRQqsef73q9Hwod/6fr7IDklN_Uz4WQEXJ5OB"
       },
       {
         "id": "q06TptQMvbld6RIPaUYMu",
@@ -7298,7 +7298,7 @@ export const pastContestsData: Contest[] = [
       {
         "id": "1kF373JS3NA6vgysyyu0h",
         "fullName": "Claudio Bertasini",
-        "r2ImageId": null
+        "r2ImageId": "judges/1kF373JS3NA6vgysyyu0h/Md-XDc-W5iK9MNZYblq15"
       }
     ],
     "categories": [
@@ -7624,7 +7624,7 @@ export const pastContestsData: Contest[] = [
       {
         "id": "iJjOA7N-FnkP6p2NaKYOX",
         "fullName": "Andrea Giulianini",
-        "r2ImageId": null
+        "r2ImageId": "judges/q4GTFTwRQqsef73q9Hwod/6fr7IDklN_Uz4WQEXJ5OB"
       },
       {
         "id": "FbtI6tCC-PGIy0i9Nyewf",
@@ -7634,7 +7634,7 @@ export const pastContestsData: Contest[] = [
       {
         "id": "Dlwko22-RBAUZvehWyoby",
         "fullName": "Claudio Bertasini",
-        "r2ImageId": null
+        "r2ImageId": "judges/1kF373JS3NA6vgysyyu0h/Md-XDc-W5iK9MNZYblq15"
       }
     ],
     "categories": [
@@ -7876,7 +7876,7 @@ export const pastContestsData: Contest[] = [
       {
         "id": "hXAU_vaG8RqvoRi25vHcZ",
         "fullName": "Andrea Giulianini",
-        "r2ImageId": null
+        "r2ImageId": "judges/q4GTFTwRQqsef73q9Hwod/6fr7IDklN_Uz4WQEXJ5OB"
       },
       {
         "id": "hOFjteklarxzUsZWWF7D6",
@@ -8212,7 +8212,7 @@ export const pastContestsData: Contest[] = [
       {
         "id": "deOPh3PieQuISpNiTTBv2",
         "fullName": "Andrea Giulianini",
-        "r2ImageId": null
+        "r2ImageId": "judges/q4GTFTwRQqsef73q9Hwod/6fr7IDklN_Uz4WQEXJ5OB"
       },
       {
         "id": "ZlYH-A7zhdn76XblGlXAJ",
