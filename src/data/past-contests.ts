@@ -8210,13 +8210,13 @@ export const pastContestsData: Contest[] = [
         "r2ImageId": "judges/q4GTFTwRQqsef73q9Hwod/6fr7IDklN_Uz4WQEXJ5OB"
       },
       {
-        "id": "ZlYH-A7zhdn76XblGlXAJ",
-        "fullName": "Pippo Cappellano",
+        "id": "Kz9PDh8ZBSc8CFas_CQ-E",
+        "fullName": "Franca Cauti",
         "r2ImageId": null
       },
       {
-        "id": "Kz9PDh8ZBSc8CFas_CQ-E",
-        "fullName": "Franca Cauti",
+        "id": "DSf3yb6ug_vOOIm9-iTmC",
+        "fullName": "Gennaro Ciavarella",
         "r2ImageId": null
       }
     ],
@@ -8543,11 +8543,6 @@ export const pastContestsData: Contest[] = [
       {
         "id": "mm6krHfBjfuC0l6bzU95n",
         "fullName": "Alberto Muro Pelliconi",
-        "r2ImageId": null
-      },
-      {
-        "id": "VNb5wYRJwlJADF2DfR1SC",
-        "fullName": "Gennaro Ciavarella",
         "r2ImageId": null
       },
       {
