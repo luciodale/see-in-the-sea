@@ -2095,7 +2095,7 @@ export const pastContestsData: Contest[] = [
       {
         "id": "hESkp1xwL-CYsqLGK25EI",
         "fullName": "Marcello Di Francesco",
-        "r2ImageId": null
+        "r2ImageId": "judges/hESkp1xwL-CYsqLGK25EI/UdpDa72t1IjdZ7rih9LQw"
       },
       {
         "id": "FMOcHbt-i6hp35Qpdq16R",
@@ -6561,7 +6561,7 @@ export const pastContestsData: Contest[] = [
       {
         "id": "VkkH5m4Rn4QhOXjI1tTAq",
         "fullName": "Denis Palbiani",
-        "r2ImageId": null
+        "r2ImageId": "judges/q06TptQMvbld6RIPaUYMu/eE1y657zKYkTXkdOE_vba"
       },
       {
         "id": "W3recresh--R6ydWLBSqj",
@@ -7292,8 +7292,8 @@ export const pastContestsData: Contest[] = [
       },
       {
         "id": "q06TptQMvbld6RIPaUYMu",
-        "fullName": "Denis Palviani",
-        "r2ImageId": null
+        "fullName": "Denis Palbiani",
+        "r2ImageId": "judges/q06TptQMvbld6RIPaUYMu/eE1y657zKYkTXkdOE_vba"
       },
       {
         "id": "1kF373JS3NA6vgysyyu0h",
@@ -7628,8 +7628,8 @@ export const pastContestsData: Contest[] = [
       },
       {
         "id": "FbtI6tCC-PGIy0i9Nyewf",
-        "fullName": "Denis Palviani",
-        "r2ImageId": null
+        "fullName": "Denis Palbiani",
+        "r2ImageId": "judges/q06TptQMvbld6RIPaUYMu/eE1y657zKYkTXkdOE_vba"
       },
       {
         "id": "Dlwko22-RBAUZvehWyoby",
