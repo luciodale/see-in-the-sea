@@ -1607,7 +1607,7 @@ export const pastContestsData: Contest[] = [
       {
         "id": "BaJz0TKQerI9gcxhzeJLb",
         "fullName": "Davide Vezzaro",
-        "r2ImageId": null
+        "r2ImageId": "judges/MrrWhYP79t1LrinbswhcQ/2T9W_C7p-iolIAd3eFcbb"
       },
       {
         "id": "K8egrXEW1LyuSYsYWga0o",
@@ -2100,7 +2100,7 @@ export const pastContestsData: Contest[] = [
       {
         "id": "FMOcHbt-i6hp35Qpdq16R",
         "fullName": "Davide Vezzaro",
-        "r2ImageId": null
+        "r2ImageId": "judges/MrrWhYP79t1LrinbswhcQ/2T9W_C7p-iolIAd3eFcbb"
       }
     ],
     "categories": [
@@ -2668,7 +2668,7 @@ export const pastContestsData: Contest[] = [
       {
         "id": "MrrWhYP79t1LrinbswhcQ",
         "fullName": "Davide Vezzaro",
-        "r2ImageId": null
+        "r2ImageId": "judges/MrrWhYP79t1LrinbswhcQ/2T9W_C7p-iolIAd3eFcbb"
       }
     ],
     "categories": [
@@ -8543,7 +8543,7 @@ export const pastContestsData: Contest[] = [
       {
         "id": "mm6krHfBjfuC0l6bzU95n",
         "fullName": "Alberto Muro Pelliconi",
-        "r2ImageId": null
+        "r2ImageId": "judges/mm6krHfBjfuC0l6bzU95n/q-bGz5_lsTNmVMLDc28D-"
       },
       {
         "id": "z57nhtw8v01HCCrdxAzcf",
@@ -8553,7 +8553,7 @@ export const pastContestsData: Contest[] = [
       {
         "id": "PsfjEzUNu_auxk_ll3OW4",
         "fullName": "Gaetano Basti",
-        "r2ImageId": null
+        "r2ImageId": "judges/PsfjEzUNu_auxk_ll3OW4/iJDTFWJJadGTNriGMzVjp"
       }
     ],
     "categories": [
