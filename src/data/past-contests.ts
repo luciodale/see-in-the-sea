@@ -838,7 +838,7 @@ export const pastContestsData: Contest[] = [
       {
         "id": "yLp8d-oRxG4vfK_oCnW9N",
         "fullName": "Isabella Maffei",
-        "r2ImageId": null
+        "r2ImageId": "judges/yLp8d-oRxG4vfK_oCnW9N/xpT_zJ2ZQLnRVFgQT31RF"
       },
       {
         "id": "iNA8Gu9679M025g-k0vUG",
@@ -5162,11 +5162,6 @@ export const pastContestsData: Contest[] = [
         "r2ImageId": null
       },
       {
-        "id": "UBZNsKjcl1Xh22T4bsrXL",
-        "fullName": "Claudio Giulianini",
-        "r2ImageId": "judges/UBZNsKjcl1Xh22T4bsrXL/-2cnWkHqZ8tzF4kCcCeeh"
-      },
-      {
         "id": "7k5mzmZ81uUdi4zEGjiEr",
         "fullName": "Giuseppe Pignataro",
         "r2ImageId": "judges/7k5mzmZ81uUdi4zEGjiEr/jq_vS3rAWnluOEAxXHGpP"
@@ -6139,9 +6134,9 @@ export const pastContestsData: Contest[] = [
         "r2ImageId": null
       },
       {
-        "id": "HuJ8GNDchMIWBah37VA0r",
-        "fullName": "Francesco Turano",
-        "r2ImageId": null
+        "id": "SmxA-ePvJ-cLPPafiWXq8",
+        "fullName": "Claudio Giulianini",
+        "r2ImageId": "judges/UBZNsKjcl1Xh22T4bsrXL/-2cnWkHqZ8tzF4kCcCeeh"
       }
     ],
     "categories": [
