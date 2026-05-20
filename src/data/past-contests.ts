@@ -51,7 +51,13 @@ export const pastContestsData: Contest[] = [
     "indexImage": null,
     "indexImageR2Id": null,
     "currentContest": true,
-    "judges": [],
+    "judges": [
+      {
+        "id": "TnBd-6uNeWvjoAsuNNQpG",
+        "fullName": "Domy Tripodi",
+        "r2ImageId": "judges/CA4YMn4PQGEhT11vs5Ztg/PlGzGi8UUS1mqM-MJKjpP"
+      }
+    ],
     "categories": []
   },
   {
