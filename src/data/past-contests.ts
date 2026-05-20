@@ -2663,7 +2663,7 @@ export const pastContestsData: Contest[] = [
       {
         "id": "1zC7RsAwCHfJR3hEGnFKI",
         "fullName": "Paolo Fossati",
-        "r2ImageId": null
+        "r2ImageId": "judges/N21TxWEncdH6hOuEQxP1V/0EWNA6cc-i2_AzLc3Pw9D"
       },
       {
         "id": "MrrWhYP79t1LrinbswhcQ",
@@ -3502,7 +3502,7 @@ export const pastContestsData: Contest[] = [
       {
         "id": "Ev9G4qDYCfHRnWfKo0UK5",
         "fullName": "Alberto Balbi",
-        "r2ImageId": null
+        "r2ImageId": "judges/F13DMnF202qzMRi7D3wbM/7GIPuLa-JvAKJu711UQg0"
       },
       {
         "id": "mbhBMkOgwsUxSIcLvSMUf",
@@ -3512,7 +3512,7 @@ export const pastContestsData: Contest[] = [
       {
         "id": "fiiJijdAxfC6rzlFAHGXo",
         "fullName": "Paolo Fossati",
-        "r2ImageId": null
+        "r2ImageId": "judges/N21TxWEncdH6hOuEQxP1V/0EWNA6cc-i2_AzLc3Pw9D"
       }
     ],
     "categories": [
@@ -4130,7 +4130,7 @@ export const pastContestsData: Contest[] = [
       {
         "id": "F13DMnF202qzMRi7D3wbM",
         "fullName": "Alberto Balbi",
-        "r2ImageId": null
+        "r2ImageId": "judges/F13DMnF202qzMRi7D3wbM/7GIPuLa-JvAKJu711UQg0"
       },
       {
         "id": "iJSxcCToqD_sJiP_ejKQZ",
@@ -4140,7 +4140,7 @@ export const pastContestsData: Contest[] = [
       {
         "id": "J8i9TVGR5En9ZYmqOXAB0",
         "fullName": "Paolo Fossati",
-        "r2ImageId": null
+        "r2ImageId": "judges/N21TxWEncdH6hOuEQxP1V/0EWNA6cc-i2_AzLc3Pw9D"
       }
     ],
     "categories": [
@@ -5159,7 +5159,7 @@ export const pastContestsData: Contest[] = [
       {
         "id": "UF50lKQRM3MBBWnqQvuCH",
         "fullName": "Paolo Fossati",
-        "r2ImageId": null
+        "r2ImageId": "judges/N21TxWEncdH6hOuEQxP1V/0EWNA6cc-i2_AzLc3Pw9D"
       },
       {
         "id": "7k5mzmZ81uUdi4zEGjiEr",
@@ -6131,7 +6131,7 @@ export const pastContestsData: Contest[] = [
       {
         "id": "N21TxWEncdH6hOuEQxP1V",
         "fullName": "Paolo Fossati",
-        "r2ImageId": null
+        "r2ImageId": "judges/N21TxWEncdH6hOuEQxP1V/0EWNA6cc-i2_AzLc3Pw9D"
       },
       {
         "id": "SmxA-ePvJ-cLPPafiWXq8",
