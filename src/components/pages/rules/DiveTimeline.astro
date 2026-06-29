@@ -1,0 +1,84 @@
+---
+import type { RulesContent } from '@/data/rulesContent';
+import type { RulesIconName } from './icons';
+import RulesIcon from './RulesIcon.astro';
+
+type Props = {
+  nodes: RulesContent['timeline']['nodes'];
+};
+
+const { nodes } = Astro.props;
+
+const icons: Record<string, RulesIconName> = {
+  open: 'open',
+  close: 'close',
+  jury: 'jury',
+  ceremony: 'ceremony',
+};
+
+const isGold = (id: string) => id === 'ceremony';
+---
+
+<!-- Desktop: horizontal rail -->
+<ol class="hidden md:grid md:grid-cols-4">
+  {
+    nodes.map((node, i) => (
+      <li class="relative flex flex-col items-center text-center px-3">
+        {i < nodes.length - 1 && (
+          <span
+            class="absolute top-6 left-1/2 w-full h-px bg-border -z-10"
+            aria-hidden="true"
+          />
+        )}
+        <span
+          class={`flex items-center justify-center size-12 rounded-full bg-background border ${
+            isGold(node.id)
+              ? 'border-gold/50 text-gold'
+              : 'border-border text-muted-foreground'
+          }`}
+        >
+          <RulesIcon name={icons[node.id] ?? 'open'} class="w-5 h-5" />
+        </span>
+        <span class="mt-4 font-serif text-lg text-foreground tabular-nums leading-none">
+          {node.date}
+        </span>
+        <span class="mt-2 text-xs font-light text-muted-foreground leading-paragraph max-w-44">
+          {node.label}
+        </span>
+      </li>
+    ))
+  }
+</ol>
+
+<!-- Mobile: vertical rail -->
+<ol class="md:hidden flex flex-col">
+  {
+    nodes.map((node, i) => (
+      <li class="relative flex gap-4 pb-7 last:pb-0">
+        {i < nodes.length - 1 && (
+          <span
+            class="absolute left-6 top-12 bottom-0 w-px bg-border -z-10"
+            aria-hidden="true"
+          />
+        )}
+        <span
+          class={`flex items-center justify-center size-12 rounded-full bg-background border shrink-0 ${
+            isGold(node.id)
+              ? 'border-gold/50 text-gold'
+              : 'border-border text-muted-foreground'
+          }`}
+        >
+          <RulesIcon name={icons[node.id] ?? 'open'} class="w-5 h-5" />
+        </span>
+        <span class="flex flex-col gap-1 pt-1.5">
+          <span class="font-serif text-lg text-foreground tabular-nums leading-none">
+            {node.date}
+          </span>
+          <span class="text-xs font-light text-muted-foreground leading-paragraph">
+            {node.label}
+          </span>
+        </span>
+      </li>
+    ))
+  }
+</ol>

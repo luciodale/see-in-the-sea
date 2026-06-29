@@ -1,0 +1,52 @@
+---
+import type { RulesIconName } from './icons';
+import RulesIcon from './RulesIcon.astro';
+
+type Props = {
+  name: string;
+  code: string;
+  description: string;
+  iconName: RulesIconName;
+  variant?: 'default' | 'raised';
+  class?: string;
+};
+
+const {
+  name,
+  code,
+  description,
+  iconName,
+  variant = 'default',
+  class: className = '',
+} = Astro.props;
+
+const surface =
+  variant === 'raised'
+    ? 'bg-surface-raised/80 border-border-strong'
+    : 'bg-surface/80 border-border';
+---
+
+<div
+  class={`group flex flex-col gap-5 ${surface} border rounded-3xl p-7 transition-all duration-300 hover:bg-surface-hover hover:border-border-strong ${className}`}
+>
+  <div class="flex items-start justify-between gap-4">
+    <RulesIcon
+      name={iconName}
+      class="w-7 h-7 text-muted-foreground transition-colors duration-300 group-hover:text-foreground"
+    />
+    <span
+      class="font-mono text-tiny tracking-editorial uppercase bg-gold/10 text-gold rounded-md px-2 py-1"
+    >
+      {code}
+    </span>
+  </div>
+
+  <div class="flex flex-col gap-3">
+    <h3 class="font-serif text-2xl text-foreground leading-heading">{name}</h3>
+    <p class="font-light text-sm text-muted-foreground leading-paragraph">
+      {description}
+    </p>
+  </div>
+
+  <slot />
+</div>

@@ -1,32 +1,10 @@
 ---
-import AppWrapper from '@/components/AppWrapper.astro';
-import Layout from '@/components/Gallery/Layout.astro';
-import NavbarHeaderStandalone from '@/components/Navbar/NavbarHeaderStandalone.astro';
-import RulesActions from '@/components/RulesActions.astro';
+import RulesPage from '@/components/pages/RulesPage.astro';
 import type { Language } from '@/i18n/translations';
-import { getAlternates, useTranslations } from '@/i18n/utils';
+import { getAlternates } from '@/i18n/utils';
 
 const currentLang = (Astro.currentLocale ?? 'en') as Language;
 const alternates = getAlternates(Astro.url);
-const t = useTranslations(currentLang);
-
-const RulesContent =
-  currentLang === 'it'
-    ? (await import('@/articles/rules.it.md')).default
-    : (await import('@/articles/rules.md')).default;
 ---
 
-<AppWrapper
-  title={t('seo.rules.title')}
-  description={t('seo.rules.description')}
-  lang={currentLang}
-  alternates={alternates}
->
-  <NavbarHeaderStandalone lang={currentLang} />
-  <Layout>
-    <RulesActions lang={currentLang} />
-    <div class="prose prose-invert max-w-none prose-p:text-xl">
-      <RulesContent />
-    </div>
-  </Layout>
-</AppWrapper>
+<RulesPage lang={currentLang} alternates={alternates} />

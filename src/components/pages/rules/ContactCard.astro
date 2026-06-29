@@ -1,0 +1,61 @@
+---
+import type { RulesContact } from '@/data/rulesContent';
+import RulesIcon from './RulesIcon.astro';
+
+type Props = {
+  card: RulesContact;
+};
+
+const { card } = Astro.props;
+---
+
+<div
+  class="bg-surface-raised/80 border border-border-strong rounded-3xl p-8 sm:p-10 flex flex-col gap-8"
+>
+  <div class="flex flex-col gap-3">
+    <p class="font-serif text-2xl text-foreground leading-heading">{card.org}</p>
+    <div class="flex items-start gap-3 text-muted-foreground">
+      <RulesIcon name="address" class="w-5 h-5 shrink-0 mt-0.5" />
+      <div class="flex flex-col">
+        {
+          card.addressLines.map(line => (
+            <span class="font-light text-sm leading-paragraph">{line}</span>
+          ))
+        }
+      </div>
+    </div>
+  </div>
+
+  <div class="flex flex-col border-t border-border">
+    {
+      card.phones.map(phone => (
+        <a
+          href={phone.href}
+          class="group flex items-center gap-3 py-3.5 border-b border-border text-muted-foreground hover:text-foreground transition-colors duration-200"
+        >
+          <RulesIcon name="phone" class="w-5 h-5 shrink-0 text-subtle-foreground group-hover:text-foreground transition-colors duration-200" />
+          <span class="font-light text-sm tabular-nums">{phone.label}</span>
+        </a>
+      ))
+    }
+
+    <a
+      href={card.website.href}
+      target="_blank"
+      rel="noreferrer"
+      class="group flex items-center gap-3 py-3.5 border-b border-border text-muted-foreground hover:text-foreground transition-colors duration-200"
+    >
+      <RulesIcon name="globe" class="w-5 h-5 shrink-0 text-subtle-foreground group-hover:text-foreground transition-colors duration-200" />
+      <span class="font-light text-sm">{card.website.label}</span>
+      <RulesIcon name="external" class="w-3.5 h-3.5 shrink-0 opacity-0 group-hover:opacity-100 transition-opacity duration-200" />
+    </a>
+
+    <a
+      href={`mailto:${card.email}`}
+      class="group flex items-center gap-3 py-3.5 text-muted-foreground hover:text-foreground transition-colors duration-200"
+    >
+      <RulesIcon name="email" class="w-5 h-5 shrink-0 text-subtle-foreground group-hover:text-foreground transition-colors duration-200" />
+      <span class="font-light text-sm">{card.email}</span>
+    </a>
+  </div>
+</div>

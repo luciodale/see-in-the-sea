@@ -1,0 +1,75 @@
+---
+import type { RulesBlock } from '@/data/rulesContent';
+import RulesIcon from './RulesIcon.astro';
+
+type Props = {
+  blocks: RulesBlock[];
+  /** leading utility for paragraphs — body for legal density, paragraph for marketing copy */
+  leading?: 'leading-body' | 'leading-paragraph';
+};
+
+const { blocks, leading = 'leading-paragraph' } = Astro.props;
+---
+
+<div class="flex flex-col gap-6">
+  {
+    blocks.map(block => {
+      if (block.kind === 'paragraph') {
+        return (
+          <p class={`font-light text-muted-foreground ${leading}`}>{block.text}</p>
+        );
+      }
+
+      if (block.kind === 'list' && block.ordered) {
+        return (
+          <ol class="flex flex-col gap-5">
+            {block.items.map((item, i) => (
+              <li class="flex gap-4">
+                <span class="font-serif text-xl text-gold leading-none tabular-nums shrink-0 w-6 text-right">
+                  {i + 1}
+                </span>
+                <span class="font-light text-muted-foreground leading-paragraph">
+                  {item}
+                </span>
+              </li>
+            ))}
+          </ol>
+        );
+      }
+
+      if (block.kind === 'list') {
+        return (
+          <ul class="flex flex-col gap-3.5">
+            {block.items.map(item => (
+              <li class="flex gap-3.5">
+                <span class="mt-2.5 size-1.5 rounded-full bg-gold shrink-0" aria-hidden="true" />
+                <span class="font-light text-muted-foreground leading-paragraph">
+                  {item}
+                </span>
+              </li>
+            ))}
+          </ul>
+        );
+      }
+
+      const warning = block.tone === 'warning';
+      const accent = warning ? 'text-warning' : 'text-gold';
+      const border = warning ? 'border-warning/50' : 'border-gold/50';
+      const wash = warning ? 'bg-warning/5' : 'bg-gold/5';
+
+      return (
+        <aside
+          class={`flex gap-3.5 border-l-2 ${border} ${wash} rounded-r-xl py-4 pl-5 pr-5`}
+        >
+          <RulesIcon name="note" class={`w-5 h-5 shrink-0 mt-0.5 ${accent}`} />
+          <div class="flex flex-col gap-1.5">
+            <p class={`editorial-eyebrow ${accent}`}>{block.label}</p>
+            <p class="font-light text-sm text-muted-foreground leading-paragraph">
+              {block.text}
+            </p>
+          </div>
+        </aside>
+      );
+    })
+  }
+</div>

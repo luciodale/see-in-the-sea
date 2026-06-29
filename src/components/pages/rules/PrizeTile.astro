@@ -1,0 +1,27 @@
+---
+import type { RulesIconName } from './icons';
+import RulesIcon from './RulesIcon.astro';
+
+type Props = {
+  label: string;
+  iconName: RulesIconName;
+  featured?: boolean;
+};
+
+const { label, iconName, featured = false } = Astro.props;
+
+const surface = featured
+  ? 'bg-surface-raised/80 border-gold/30'
+  : 'bg-surface/60 border-border hover:border-border-strong';
+---
+
+<div
+  class={`group flex flex-col items-center text-center gap-4 rounded-2xl border p-6 transition-all duration-300 hover:bg-surface-hover ${surface}`}
+>
+  <span
+    class="flex items-center justify-center size-14 rounded-full border border-gold/30 bg-gold/5 text-gold transition-transform duration-300 group-hover:scale-105"
+  >
+    <RulesIcon name={iconName} class="w-6 h-6" />
+  </span>
+  <span class="font-light text-sm text-foreground leading-paragraph">{label}</span>
+</div>
