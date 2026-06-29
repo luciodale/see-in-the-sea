@@ -75,7 +75,7 @@
   --radius: 0.625rem;
 
   --font-sans-family: "Inter", system-ui, -apple-system, sans-serif;
-  --font-serif-family: "Instrument Serif", "Times New Roman", serif;
+  --font-serif-family: "Nunito", "Inter", system-ui, sans-serif;
 
   --background: #000000;
   --surface: rgba(255, 255, 255, 0.03);
