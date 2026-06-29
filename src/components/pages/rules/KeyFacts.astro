@@ -1,0 +1,44 @@
+---
+import type { RulesContent } from '@/data/rulesContent';
+import type { RulesIconName } from './icons';
+import RulesIcon from './RulesIcon.astro';
+
+type Props = {
+  facts: RulesContent['keyFacts']['facts'];
+};
+
+const { facts } = Astro.props;
+
+const icons: Record<string, RulesIconName> = {
+  window: 'window',
+  fee: 'fee',
+  format: 'format',
+  limits: 'limits',
+  payment: 'payment',
+  jury: 'jury',
+};
+---
+
+<div class="rounded-3xl overflow-hidden border border-border-strong">
+  <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-px bg-border">
+    {
+      facts.map(fact => (
+        <div class="bg-background p-6 flex flex-col gap-4">
+          <div class="flex items-center justify-between gap-3">
+            <p class="editorial-eyebrow">{fact.label}</p>
+            <RulesIcon
+              name={icons[fact.id] ?? 'note'}
+              class="w-5 h-5 text-subtle-foreground shrink-0"
+            />
+          </div>
+          <p class="font-serif text-2xl sm:text-3xl text-foreground leading-none tabular-nums">
+            {fact.value}
+          </p>
+          <p class="font-light text-xs text-muted-foreground leading-paragraph">
+            {fact.detail}
+          </p>
+        </div>
+      ))
+    }
+  </div>
+</div>

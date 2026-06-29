@@ -1,0 +1,411 @@
+---
+import AppWrapper from '@/components/AppWrapper.astro';
+import Layout from '@/components/Gallery/Layout.astro';
+import NavbarHeaderStandalone from '@/components/Navbar/NavbarHeaderStandalone.astro';
+import RulesActions from '@/components/RulesActions.astro';
+import Badge from '@/components/ui/Badge.astro';
+import DisplayTitle from '@/components/ui/DisplayTitle.astro';
+import Eyebrow from '@/components/ui/Eyebrow.astro';
+import { rulesContent } from '@/data/rulesContent';
+import type { Language } from '@/i18n/translations';
+import { useTranslations } from '@/i18n/utils';
+import ArticleBlock from './rules/ArticleBlock.astro';
+import CategoryCard from './rules/CategoryCard.astro';
+import ContactCard from './rules/ContactCard.astro';
+import DiveTimeline from './rules/DiveTimeline.astro';
+import type { RulesIconName } from './rules/icons';
+import KeyFacts from './rules/KeyFacts.astro';
+import LegalAccordion from './rules/LegalAccordion.astro';
+import PrizeTile from './rules/PrizeTile.astro';
+import RuleBlocks from './rules/RuleBlocks.astro';
+import RulesIcon from './rules/RulesIcon.astro';
+import RulesNav from './rules/RulesNav.astro';
+
+interface Props {
+  lang: Language;
+  alternates?: Array<{ hrefLang: string; href: string }>;
+}
+
+const { lang, alternates = [] } = Astro.props as Props;
+const t = useTranslations(lang);
+const c = rulesContent[lang];
+
+const categoryMeta: Record<string, { code: string; icon: RulesIconName }> = {
+  'wide-angle': { code: 'WA', icon: 'wide-angle' },
+  macro: { code: 'MA', icon: 'macro' },
+  'black-and-white': { code: 'BW', icon: 'black-and-white' },
+  'animal-behaviour': { code: 'AB', icon: 'animal-behaviour' },
+  'mediterranean-portfolio': { code: 'MP', icon: 'mediterranean-portfolio' },
+};
+
+const sectionIcons: Record<string, RulesIconName> = {
+  ceremony: 'ceremony',
+  rankings: 'email',
+  copyright: 'check',
+};
+
+const prizeIcons: Record<string, RulesIconName> = {
+  trophy: 'trophy',
+  trips: 'trips',
+  'photo-gear': 'photo-gear',
+  'scuba-gear': 'scuba-gear',
+};
+
+const standardCategories = c.categories.items.filter(
+  item => item.id !== 'mediterranean-portfolio'
+);
+const portfolio = c.categories.items.find(
+  item => item.id === 'mediterranean-portfolio'
+);
+const portfolioSlots =
+  lang === 'it'
+    ? ['Macro', 'Grandangolo', 'Scelta libera']
+    : ['Macro', 'Wide Angle', 'Free choice'];
+
+const sectionById = Object.fromEntries(c.sections.map(s => [s.id, s]));
+const ceremony = sectionById.ceremony;
+const rankings = sectionById.rankings;
+const prizes = sectionById.prizes;
+const copyright = sectionById.copyright;
+
+const prizeIntro = prizes.blocks.filter(b => b.kind === 'paragraph');
+const prizeNotes = prizes.blocks.filter(b => b.kind === 'note');
+---
+
+<AppWrapper
+  title={t('seo.rules.title')}
+  description={t('seo.rules.description')}
+  lang={lang}
+  alternates={alternates}
+>
+  <NavbarHeaderStandalone lang={lang} />
+
+  <Layout>
+    <!-- Hero -->
+    <header class="max-w-3xl">
+      <Eyebrow>{c.hero.eyebrow}</Eyebrow>
+      <DisplayTitle as="h1" size="xl" class="mt-4">{c.hero.title}</DisplayTitle>
+      <p class="mt-4 font-light text-lg text-muted-foreground leading-paragraph">
+        {c.hero.subtitle}
+      </p>
+      <div class="mt-7 flex items-center gap-4">
+        <Badge variant="gold">{c.hero.edition}</Badge>
+        <span class="h-px w-12 sm:w-20 bg-border"></span>
+        <span class="size-1.5 rounded-full bg-gold"></span>
+      </div>
+      <p
+        class="mt-7 max-w-prose-narrow font-light text-base text-muted-foreground leading-paragraph"
+      >
+        {c.hero.intro}
+      </p>
+      <div class="mt-8">
+        <RulesActions lang={lang} />
+      </div>
+    </header>
+
+    <!-- Mobile sticky table of contents -->
+    <details
+      data-rules-toc-mobile
+      class="group lg:hidden sticky top-0 z-30 -mx-4 mt-12 border-y border-border bg-background/90 backdrop-blur-xl sm:-mx-6"
+    >
+      <summary
+        class="flex items-center justify-between gap-3 px-4 py-3.5 cursor-pointer list-none [&::-webkit-details-marker]:hidden sm:px-6"
+      >
+        <span class="editorial-eyebrow">{c.nav.label}</span>
+        <RulesIcon
+          name="chevron"
+          class="w-4 h-4 text-muted-foreground transition-transform duration-300 group-open:rotate-180"
+        />
+      </summary>
+      <div class="flex flex-wrap gap-2 px-4 pb-5 sm:px-6">
+        {
+          c.nav.items.map(item => (
+            <a
+              href={`#${item.id}`}
+              class="category-button category-button--inactive"
+            >
+              {item.label}
+            </a>
+          ))
+        }
+      </div>
+    </details>
+
+    <!-- TOC + content -->
+    <div class="mt-10 lg:mt-16 lg:flex lg:gap-12">
+      <RulesNav nav={c.nav} />
+
+      <div class="lg:flex-1 lg:min-w-0 flex flex-col gap-24 sm:gap-28">
+        <!-- Categories -->
+        <section id="categories" data-rules-section class="scroll-mt-28">
+          <Eyebrow>{c.categories.eyebrow}</Eyebrow>
+          <DisplayTitle as="h2" size="lg" class="mt-3">
+            {c.categories.title}
+          </DisplayTitle>
+          <p
+            class="mt-4 max-w-prose-narrow font-light text-muted-foreground leading-paragraph"
+          >
+            {c.categories.intro}
+          </p>
+
+          <div class="mt-10 grid grid-cols-1 sm:grid-cols-2 gap-5">
+            {
+              standardCategories.map(category => (
+                <CategoryCard
+                  name={category.name}
+                  code={categoryMeta[category.id].code}
+                  iconName={categoryMeta[category.id].icon}
+                  description={category.description}
+                />
+              ))
+            }
+          </div>
+
+          {
+            portfolio && (
+              <div class="mt-5">
+                <CategoryCard
+                  name={portfolio.name}
+                  code={categoryMeta[portfolio.id].code}
+                  iconName={categoryMeta[portfolio.id].icon}
+                  description={portfolio.description}
+                  variant="raised"
+                >
+                  <div class="mt-2 grid grid-cols-3 gap-3">
+                    {portfolioSlots.map(slot => (
+                      <div class="rounded-xl border border-dashed border-border-strong py-4 px-3 text-center">
+                        <span class="block font-mono text-tiny uppercase tracking-editorial text-muted-foreground">
+                          {slot}
+                        </span>
+                      </div>
+                    ))}
+                  </div>
+                </CategoryCard>
+              </div>
+            )
+          }
+
+          <div
+            class="mt-10 flex flex-wrap gap-x-12 gap-y-4 border-t border-border pt-6"
+          >
+            <div class="flex flex-col gap-1">
+              <p class="editorial-eyebrow">{c.categories.director.label}</p>
+              <p class="font-light text-foreground">
+                {c.categories.director.value}
+              </p>
+            </div>
+            <div class="flex flex-col gap-1">
+              <p class="editorial-eyebrow">{c.categories.jury.label}</p>
+              <p class="font-light text-foreground">{c.categories.jury.value}</p>
+            </div>
+          </div>
+        </section>
+
+        <!-- Key facts + timeline -->
+        <section id="key-facts" data-rules-section class="scroll-mt-28">
+          <Eyebrow>{c.keyFacts.eyebrow}</Eyebrow>
+          <DisplayTitle as="h2" size="lg" class="mt-3">
+            {c.keyFacts.title}
+          </DisplayTitle>
+
+          <div class="mt-10">
+            <KeyFacts facts={c.keyFacts.facts} />
+          </div>
+
+          <div class="mt-16">
+            <Eyebrow>{c.timeline.eyebrow}</Eyebrow>
+            <DisplayTitle as="h3" size="sm" class="mt-3 mb-10">
+              {c.timeline.title}
+            </DisplayTitle>
+            <DiveTimeline nodes={c.timeline.nodes} />
+          </div>
+        </section>
+
+        <!-- Articles -->
+        <section id="rules" data-rules-section class="scroll-mt-28">
+          <Eyebrow>{c.rules.eyebrow}</Eyebrow>
+          <DisplayTitle as="h2" size="lg" class="mt-3">
+            {c.rules.title}
+          </DisplayTitle>
+          <p
+            class="mt-4 max-w-prose-narrow font-light text-muted-foreground leading-paragraph"
+          >
+            {c.rules.intro}
+          </p>
+
+          <div class="mt-12 flex flex-col">
+            {
+              c.rules.items.map((article, i) => (
+                <div
+                  class={
+                    i > 0 ? 'border-t border-border pt-14 mt-14' : ''
+                  }
+                >
+                  <ArticleBlock article={article} label={c.ui.articleLabel} />
+                </div>
+              ))
+            }
+          </div>
+        </section>
+
+        <!-- Ceremony -->
+        <section id="ceremony" data-rules-section class="scroll-mt-28">
+          <div class="flex items-center gap-3">
+            <RulesIcon name={sectionIcons.ceremony} class="w-5 h-5 text-gold" />
+            <Eyebrow>{ceremony.eyebrow}</Eyebrow>
+          </div>
+          <DisplayTitle as="h2" size="md" class="mt-3 mb-8">
+            {ceremony.title}
+          </DisplayTitle>
+          <div class="max-w-prose-narrow">
+            <RuleBlocks blocks={ceremony.blocks} leading="leading-body" />
+          </div>
+        </section>
+
+        <!-- Rankings -->
+        <section id="rankings" data-rules-section class="scroll-mt-28">
+          <div class="flex items-center gap-3">
+            <RulesIcon name={sectionIcons.rankings} class="w-5 h-5 text-muted-foreground" />
+            <Eyebrow>{rankings.eyebrow}</Eyebrow>
+          </div>
+          <DisplayTitle as="h2" size="md" class="mt-3 mb-8">
+            {rankings.title}
+          </DisplayTitle>
+          <div class="max-w-prose-narrow">
+            <RuleBlocks blocks={rankings.blocks} leading="leading-body" />
+          </div>
+        </section>
+
+        <!-- Prizes -->
+        <section id="prizes" data-rules-section class="scroll-mt-28">
+          <div class="flex items-center gap-3">
+            <RulesIcon name="trophy" class="w-5 h-5 text-gold" />
+            <Eyebrow>{prizes.eyebrow}</Eyebrow>
+          </div>
+          <DisplayTitle as="h2" size="md" class="mt-3 mb-8">
+            {prizes.title}
+          </DisplayTitle>
+
+          <div class="max-w-prose-narrow">
+            <RuleBlocks blocks={prizeIntro} leading="leading-body" />
+          </div>
+
+          <div class="mt-8 grid grid-cols-2 lg:grid-cols-4 gap-4">
+            {
+              c.prizeHighlights.map(prize => (
+                <PrizeTile
+                  label={prize.label}
+                  iconName={prizeIcons[prize.id] ?? 'trophy'}
+                  featured={prize.id === 'trophy'}
+                />
+              ))
+            }
+          </div>
+
+          <div class="mt-10 max-w-prose-narrow">
+            <RuleBlocks blocks={prizeNotes} leading="leading-body" />
+          </div>
+        </section>
+
+        <!-- Copyright -->
+        <section id="copyright" data-rules-section class="scroll-mt-28">
+          <div class="flex items-center gap-3">
+            <RulesIcon name={sectionIcons.copyright} class="w-5 h-5 text-muted-foreground" />
+            <Eyebrow>{copyright.eyebrow}</Eyebrow>
+          </div>
+          <DisplayTitle as="h2" size="md" class="mt-3 mb-8">
+            {copyright.title}
+          </DisplayTitle>
+          <div class="max-w-prose-narrow">
+            <RuleBlocks blocks={copyright.blocks} leading="leading-body" />
+          </div>
+        </section>
+
+        <!-- Legal (collapsible) -->
+        <section id="legal" data-rules-section class="scroll-mt-28">
+          <Eyebrow>{c.legal.eyebrow}</Eyebrow>
+          <DisplayTitle as="h2" size="md" class="mt-3">
+            {c.legal.title}
+          </DisplayTitle>
+          <p
+            class="mt-4 max-w-prose-narrow font-light text-sm text-muted-foreground leading-paragraph"
+          >
+            {c.legal.summary}
+          </p>
+
+          <div class="mt-8 border-t border-border">
+            {c.legal.items.map(item => <LegalAccordion section={item} />)}
+          </div>
+        </section>
+
+        <!-- Contacts -->
+        <section id="contact" data-rules-section class="scroll-mt-28">
+          <Eyebrow>{c.contact.eyebrow}</Eyebrow>
+          <DisplayTitle as="h2" size="md" class="mt-3 mb-8">
+            {c.contact.title}
+          </DisplayTitle>
+          <div class="max-w-xl">
+            <ContactCard card={c.contact.card} />
+          </div>
+
+          <a
+            href="#categories"
+            class="mt-10 inline-flex items-center gap-2 text-editorial uppercase tracking-editorial text-muted-foreground hover:text-foreground transition-colors duration-200"
+          >
+            <RulesIcon name="chevron" class="w-4 h-4 rotate-180" />
+            {c.ui.backToTop}
+          </a>
+        </section>
+      </div>
+    </div>
+  </Layout>
+</AppWrapper>
+
+<style is:global>
+  @media (prefers-reduced-motion: no-preference) {
+    html {
+      scroll-behavior: smooth;
+    }
+  }
+
+  @media print {
+    [data-rules-nav],
+    [data-rules-toc-mobile] {
+      display: none !important;
+    }
+  }
+</style>
+
+<script>
+  // Open a legal accordion when it is linked to directly.
+  function openLegalFromHash() {
+    const id = location.hash.slice(1);
+    if (!id) return;
+    const el = document.getElementById(id);
+    if (el instanceof HTMLDetailsElement) el.open = true;
+  }
+
+  if (document.readyState !== 'loading') openLegalFromHash();
+  else document.addEventListener('DOMContentLoaded', openLegalFromHash);
+  window.addEventListener('hashchange', openLegalFromHash);
+
+  // Expand every legal accordion for printing, then restore the prior state.
+  let reopened: HTMLDetailsElement[] = [];
+  window.addEventListener('beforeprint', () => {
+    reopened = [];
+    document
+      .querySelectorAll<HTMLDetailsElement>('details[data-legal-accordion]')
+      .forEach(details => {
+        if (!details.open) {
+          details.open = true;
+          reopened.push(details);
+        }
+      });
+  });
+  window.addEventListener('afterprint', () => {
+    reopened.forEach(details => {
+      details.open = false;
+    });
+    reopened = [];
+  });
+</script>

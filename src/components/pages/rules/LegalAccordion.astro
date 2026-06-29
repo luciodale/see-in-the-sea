@@ -1,0 +1,39 @@
+---
+import type { RulesSection } from '@/data/rulesContent';
+import RuleBlocks from './RuleBlocks.astro';
+import RulesIcon from './RulesIcon.astro';
+
+type Props = {
+  section: RulesSection;
+};
+
+const { section } = Astro.props;
+---
+
+<details
+  id={section.id}
+  data-legal-accordion
+  class="group scroll-mt-28 border-b border-border last:border-b-0"
+>
+  <summary
+    class="flex items-center justify-between gap-4 py-6 cursor-pointer list-none [&::-webkit-details-marker]:hidden"
+  >
+    <div class="flex flex-col gap-1.5">
+      <p class="editorial-eyebrow">{section.eyebrow}</p>
+      <h3
+        class="font-serif text-xl sm:text-2xl text-foreground leading-heading"
+      >
+        {section.title}
+      </h3>
+    </div>
+    <span
+      class="flex items-center justify-center size-9 rounded-full border border-border text-muted-foreground shrink-0 transition-all duration-300 group-hover:border-border-strong group-hover:text-foreground group-open:rotate-180"
+    >
+      <RulesIcon name="chevron" class="w-4 h-4" />
+    </span>
+  </summary>
+
+  <div class="pb-9 sm:pl-1 max-w-prose-narrow">
+    <RuleBlocks blocks={section.blocks} leading="leading-body" />
+  </div>
+</details>

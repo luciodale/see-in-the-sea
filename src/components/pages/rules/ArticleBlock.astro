@@ -1,0 +1,39 @@
+---
+import type { RulesArticle } from '@/data/rulesContent';
+import RuleBlocks from './RuleBlocks.astro';
+
+type Props = {
+  article: RulesArticle;
+  label: string;
+};
+
+const { article, label } = Astro.props;
+---
+
+<article id={article.id} class="scroll-mt-28">
+  <div class="flex flex-col gap-7">
+    <div class="flex items-baseline gap-5 sm:gap-7">
+      <span
+        class="font-serif text-5xl sm:text-6xl text-subtle-foreground leading-none tabular-nums shrink-0"
+      >
+        {article.number.padStart(2, '0')}
+      </span>
+      <div class="flex flex-col gap-2">
+        <p class="editorial-eyebrow">{label} {article.number}</p>
+        <h3 class="font-serif text-3xl sm:text-4xl text-foreground leading-heading">
+          {article.title}
+        </h3>
+      </div>
+    </div>
+
+    {
+      article.pullQuote && (
+        <blockquote class="border-l-2 border-gold/50 pl-6 font-serif text-2xl sm:text-3xl text-foreground leading-heading">
+          {article.pullQuote}
+        </blockquote>
+      )
+    }
+
+    <RuleBlocks blocks={article.blocks} leading="leading-body" />
+  </div>
+</article>

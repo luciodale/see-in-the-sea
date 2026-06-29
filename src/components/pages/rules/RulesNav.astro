@@ -1,0 +1,113 @@
+---
+import type { RulesContent } from '@/data/rulesContent';
+
+type Props = {
+  nav: RulesContent['nav'];
+};
+
+const { nav } = Astro.props;
+---
+
+<!--
+  Desktop depth-gauge rail. The <aside> stretches to the full height of the
+  flex row (default align-items: stretch), which gives the sticky <nav> room
+  to travel. The mobile table of contents is a separate sticky bar rendered by
+  RulesPage. The scroll-spy script below drives both.
+-->
+<aside class="hidden lg:block lg:w-56 lg:shrink-0">
+  <nav
+    data-rules-nav
+    aria-label={nav.label}
+    class="sticky top-8"
+  >
+    <p class="editorial-eyebrow mb-5">{nav.label}</p>
+    <div class="relative pl-5">
+      <span
+        class="absolute left-0 top-1 bottom-1 w-px bg-border"
+        aria-hidden="true"></span>
+      <span
+        data-needle
+        class="absolute left-0 size-2 rounded-full bg-gold -translate-x-1/2 -translate-y-1/2 transition-[top] duration-500 ease-out"
+        style="top: var(--needle-y, 0.75rem)"
+        aria-hidden="true"></span>
+      <ul class="flex flex-col gap-3.5">
+        {
+          nav.items.map((item, i) => (
+            <li>
+              <a
+                href={`#${item.id}`}
+                data-toc-link={item.id}
+                class="group flex items-center gap-3 text-muted-foreground hover:text-foreground transition-colors duration-200"
+              >
+                <span class="font-mono text-tiny text-subtle-foreground tabular-nums">
+                  {String(i + 1).padStart(2, '0')}
+                </span>
+                <span class="text-sm font-light">{item.label}</span>
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+  </nav>
+</aside>
+
+<script>
+  function initRulesNav() {
+    const nav = document.querySelector('[data-rules-nav]');
+    const sections = Array.from(
+      document.querySelectorAll<HTMLElement>('[data-rules-section]')
+    );
+
+    if (nav && sections.length) {
+      const needle = nav.querySelector<HTMLElement>('[data-needle]');
+      const links = new Map<string, HTMLElement>();
+      nav.querySelectorAll<HTMLElement>('[data-toc-link]').forEach(link => {
+        const key = link.getAttribute('data-toc-link');
+        if (key) links.set(key, link);
+      });
+
+      function setActive(id: string) {
+        links.forEach((link, key) => {
+          const active = key === id;
+          link.classList.toggle('text-foreground', active);
+          link.classList.toggle('text-muted-foreground', !active);
+          if (active) link.setAttribute('aria-current', 'true');
+          else link.removeAttribute('aria-current');
+        });
+        const el = links.get(id);
+        if (el && needle) {
+          needle.style.setProperty(
+            '--needle-y',
+            `${el.offsetTop + el.offsetHeight / 2}px`
+          );
+        }
+      }
+
+      let activeId = sections[0].id;
+      setActive(activeId);
+
+      const observer = new IntersectionObserver(
+        entries => {
+          for (const entry of entries) {
+            if (entry.isIntersecting) activeId = entry.target.id;
+          }
+          setActive(activeId);
+        },
+        { rootMargin: '-35% 0px -55% 0px', threshold: 0 }
+      );
+      sections.forEach(section => observer.observe(section));
+    }
+
+    // Close the mobile table of contents after a jump.
+    const mobileToc = document.querySelector('[data-rules-toc-mobile]');
+    if (mobileToc) {
+      mobileToc.querySelectorAll('a').forEach(link =>
+        link.addEventListener('click', () => mobileToc.removeAttribute('open'))
+      );
+    }
+  }
+
+  if (document.readyState !== 'loading') initRulesNav();
+  else document.addEventListener('DOMContentLoaded', initRulesNav);
+</script>
