@@ -3,6 +3,7 @@
 INSERT OR IGNORE INTO categories (id, name, description) VALUES ('wide-angle', 'Wide Angle', 'Expansive underwater scenes, coral reefs, and seascapes that showcase the vastness of the underwater world');
 INSERT OR IGNORE INTO categories (id, name, description) VALUES ('macro', 'Macro', 'Close-up photography of small marine life, textures, and intricate underwater details');
 INSERT OR IGNORE INTO categories (id, name, description) VALUES ('black-and-white', 'Black & White', 'Monochrome underwater photography emphasizing contrast, composition, and artistic expression');
+INSERT OR IGNORE INTO categories (id, name, description) VALUES ('animal-behaviour', 'Animal Behaviour', 'Wide-angle, close-focus and macro images capturing a particular situation of underwater life');
 INSERT OR IGNORE INTO categories (id, name, description) VALUES ('black-background', 'Black Background', 'Underwater photography with black backgrounds emphasizing the subject against darkness');
 INSERT OR IGNORE INTO categories (id, name, description) VALUES ('mediterranean', 'Mediterranean Portfolio', 'Portfolio of underwater photography from the Mediterranean Sea');
 INSERT OR IGNORE INTO categories (id, name, description) VALUES ('storyboard', 'Storyboard', 'Storyboard');
