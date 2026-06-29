@@ -113,7 +113,7 @@ export type RulesContent = {
 
 const en: RulesContent = {
   hero: {
-    eyebrow: 'Regulations',
+    eyebrow: 'Rules',
     title: 'See in the Sea',
     subtitle: 'International Underwater Photocontest OrtonaMare 2026',
     edition: '17th Edition · 2026',
@@ -233,7 +233,7 @@ const en: RulesContent = {
     eyebrow: 'The Regulation',
     title: 'Rules & Articles',
     intro:
-      'The full regulation, article by article. Tap any article to expand it.',
+      'The full regulation, article by article.',
     items: [
       {
         id: 'art-1',
@@ -252,7 +252,7 @@ const en: RulesContent = {
           },
           {
             kind: 'paragraph',
-            text: 'To submit your works you must register on the www.seeintheseauw.com portal using the “Enter the contest” button in the navigation bar. By registering on the platform, consent to data processing strictly related to the site’s functionality is considered implicit. Once registration is complete, access is automatic and the user is redirected to the submissions section, where they can upload and manage their contest photos and pay the entry fee.',
+            text: 'To submit your works you must register on the www.seeintheseauw.com portal using the “Enter the contest” button in the navigation bar. By registering on the platform, consent to data processing strictly related to the site’s functionality is considered implicit. Once registration is complete, access is automatic and you are redirected to the submissions section, where you can upload and manage your contest photos and pay the entry fee.',
           },
           {
             kind: 'paragraph',
@@ -269,7 +269,7 @@ const en: RulesContent = {
               'Not exceed 5 MB in size.',
               'Measure 30×40 or 30×45 cm at 200 dpi.',
               'Have a title containing alphanumeric characters only — no apostrophes, commas, brackets, etc. — with no reference to initials or to the author’s name.',
-              'Contain exif data confirming the category entered. Any information that could identify the author must be removed. Exif data will not be visible to the jury during evaluation, but only to the organisation should verification be required.',
+              'Contain EXIF data confirming the category entered. Any information that could identify the author must be removed. EXIF data will not be visible to the jury during evaluation, but only to the Organisation should verification be required.',
             ],
           },
         ],
@@ -298,7 +298,7 @@ const en: RulesContent = {
           },
           {
             kind: 'paragraph',
-            text: 'The organisation, in agreement with the jury, reserves the right to exclude images that, on verification, do not comply with Art. 2. The RAW file will be compulsorily requested for every image selected by the jury. The jury’s decision is final.',
+            text: 'The Organisation, in agreement with the jury, reserves the right to exclude images that, on verification, do not comply with Art. 2. The RAW file will be required for every image selected by the jury. The jury’s decision is final.',
           },
         ],
       },
@@ -340,7 +340,7 @@ const en: RulesContent = {
           {
             kind: 'note',
             label: 'Note',
-            text: 'At the jury’s sole discretion, prizes may be assigned — regardless of category and theme — also to photos that these Regulations classify as “Mentioned”.',
+            text: 'At the jury’s sole discretion, prizes may also be assigned — regardless of category and theme — to photos that these Regulations classify as “Mentioned”.',
           },
         ],
       },
@@ -351,7 +351,7 @@ const en: RulesContent = {
         blocks: [
           {
             kind: 'paragraph',
-            text: 'During the Award Ceremony, the organisation will present all winning photos, the mentioned ones, and any others that, at the jury’s sole discretion, stand out for particular technical and emotional interest.',
+            text: 'During the Award Ceremony, the Organisation will present all winning photos, the mentioned ones, and any others that, at the jury’s sole discretion, stand out for particular technical and emotional interest.',
           },
           {
             kind: 'paragraph',
@@ -380,7 +380,7 @@ const en: RulesContent = {
       blocks: [
         {
           kind: 'paragraph',
-          text: 'The Contest awards will be presented at the EUDI Show in Bologna 2027.',
+          text: 'The Contest awards will be presented at the 2027 EUDI Show in Bologna.',
         },
         {
           kind: 'paragraph',
@@ -388,7 +388,7 @@ const en: RulesContent = {
         },
         {
           kind: 'paragraph',
-          text: 'For competitors unable to attend the Award Ceremony, the Organisation will prepare a format (video clip) that allows the author to be present virtually and to briefly present their awarded image. In compliance with the applicable regulations, the Organisation reserves the right to publish these videos on the Contest’s web and social channels.',
+          text: 'For competitors unable to attend the Award Ceremony, the Organisation will prepare a format (video clip) that allows the author to attend virtually and give a brief presentation of their awarded image. In compliance with the applicable regulations, the Organisation reserves the right to publish these videos on the Contest’s web and social channels.',
         },
         {
           kind: 'note',
@@ -425,7 +425,7 @@ const en: RulesContent = {
         {
           kind: 'note',
           label: 'Note 2',
-          text: 'Prizes are not cumulative. Prizes left uncollected with the Organisation and unclaimed for one month after the award ceremony date will automatically be added to the prize pool of the following year’s contest.',
+          text: 'Prizes are not cumulative. Prizes left uncollected with the Organisation and unclaimed for one month after the Award Ceremony date will automatically be added to the prize pool of the following year’s contest.',
         },
       ],
     },
@@ -436,7 +436,7 @@ const en: RulesContent = {
       blocks: [
         {
           kind: 'paragraph',
-          text: 'In compliance with applicable copyright law, the organisation considers the works submitted to the Contest free from any artistic property right or rights belonging to third parties. Competitors authorise the Organisation to use their works to promote the Contest itself, including through posters, brochures, non-profit calendars and web publications.',
+          text: 'In compliance with applicable copyright law, the Organisation considers the works submitted to the Contest free from any artistic property rights or any rights belonging to third parties. Competitors authorise the Organisation to use their works to promote the Contest itself, including through posters, brochures, non-profit calendars and web publications.',
         },
         {
           kind: 'paragraph',
@@ -444,7 +444,7 @@ const en: RulesContent = {
         },
         {
           kind: 'paragraph',
-          text: 'By taking part in the Contest, competitors authorise the organisation to process their data in order to receive updates on developments of this initiative, on the understanding that such data will in no case be passed to third parties, in compliance with Law 196/2003 on the protection of personal data.',
+          text: 'By taking part in the Contest, competitors authorise the Organisation to process their data so that they can receive updates on the progress of this initiative, on the understanding that such data will in no case be passed to third parties, in compliance with Law 196/2003 on the protection of personal data.',
         },
         {
           kind: 'note',
@@ -474,7 +474,7 @@ const en: RulesContent = {
         blocks: [
           {
             kind: 'paragraph',
-            text: 'Pursuant to Article 13 of the above decree, we INFORM you that ORTONA SUB processes the personal data of supporters, collaborators, suppliers and individuals who have voluntarily provided (in person, by telephone, fax, e-mail, or by registering on the website www.ortonamare.org) their personal details to our representatives, in order to receive information about our services and/or initiatives.',
+            text: 'Pursuant to Article 13 of the above decree, we INFORM you that ORTONA SUB processes the personal data of supporters, collaborators, suppliers and individuals who have voluntarily provided (in person, by telephone, fax, email, or by registering on the website www.ortonamare.org) their personal details to our representatives, in order to receive information about our services and/or initiatives.',
           },
           {
             kind: 'paragraph',
@@ -486,7 +486,7 @@ const en: RulesContent = {
           },
           {
             kind: 'paragraph',
-            text: 'Data collected by our representatives in relation to initiatives and anything else connected with ORTONA SUB’s activities will be retained for the purpose of sending information and promotional material about ORTONA SUB’s own activities (by post, fax, SMS and e-mail). Data are processed using paper and/or electronic media, by telematic means, including automated tools designed to store, manage and transmit the data, observing every precautionary measure that ensures their security and confidentiality.',
+            text: 'Data collected by our representatives in relation to initiatives and anything else connected with ORTONA SUB’s activities will be retained for the purpose of sending information and promotional material about ORTONA SUB’s own activities (by post, fax, SMS and email). Data are processed using paper and/or electronic media, by telematic means, including automated tools designed to store, manage and transmit the data, observing every precautionary measure that ensures their security and confidentiality.',
           },
           {
             kind: 'paragraph',
@@ -498,7 +498,7 @@ const en: RulesContent = {
           },
           {
             kind: 'paragraph',
-            text: 'The data controller is: ORTONA SUB – Ortona (CH). Providing one’s personal data — by those who intend to establish a relationship with our association, even if purely informative about our activities/services — is to be considered optional; however, failure to provide the data may prevent the continuation of the relationship, its proper conduct and any legal obligations, including tax ones. We further inform you that, in relation to the aforementioned processing, the data subjects may at any time exercise the rights referred to in Art. 7 and Art. 8, in the manner set out in Art. 9 of the same Legislative Decree no. 196 of 30 June 2003, by contacting the data processor directly by post, fax or e-mail.',
+            text: 'The data controller is: ORTONA SUB – Ortona (CH). Providing one’s personal data — by those who intend to establish a relationship with our association, even if purely informative about our activities/services — is to be considered optional; however, failure to provide the data may prevent the continuation of the relationship, its proper conduct and any legal obligations, including tax ones. We further inform you that, in relation to the aforementioned processing, the data subjects may at any time exercise the rights referred to in Art. 7 and Art. 8, in the manner set out in Art. 9 of the same Legislative Decree no. 196 of 30 June 2003, by contacting the data processor directly by post, fax or email.',
           },
         ],
       },
@@ -683,7 +683,7 @@ const it: RulesContent = {
     eyebrow: 'Il Regolamento',
     title: 'Regolamento e Articoli',
     intro:
-      'Il regolamento completo, articolo per articolo. Tocca un articolo per espanderlo.',
+      'Il regolamento completo, articolo per articolo.',
     items: [
       {
         id: 'art-1',
