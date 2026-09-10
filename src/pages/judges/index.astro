@@ -1,18 +1,16 @@
 ---
-export const prerender = true;
+// Server-rendered so this is a real 301 rather than a prerendered meta-refresh
+// stub, which rendered as a blank page for ~2s before bouncing.
+export const prerender = false;
 
-import { pastContestsData } from '@/data/past-contests';
+import { latestJudgesContestId } from '@/data/latest-judges-contest';
 import type { Language } from '@/i18n/translations';
 import { getLocalizedPath } from '@/i18n/utils';
 
 const currentLang = (Astro.currentLocale ?? 'en') as Language;
 
-// Redirect to the latest contest's judges page
-const latestContest = pastContestsData
-  .slice()
-  .sort((a, b) => b.year - a.year)[0];
-
 return Astro.redirect(
-  getLocalizedPath(`judges/${latestContest.id}`, currentLang)
+  getLocalizedPath(`judges/${latestJudgesContestId}`, currentLang),
+  301
 );
 ---

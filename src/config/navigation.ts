@@ -1,3 +1,4 @@
+import { latestJudgesContestId } from '@/data/latest-judges-contest';
 import type { Language, TranslationKey } from '@/i18n/translations';
 import { getLocalizedPath } from '@/i18n/utils';
 
@@ -19,7 +20,8 @@ export function getNavigationItems(
     },
     {
       name: t('nav.judges'),
-      href: getLocalizedPath('judges', lang),
+      // Link straight at the newest edition — /judges is only a redirect stub.
+      href: getLocalizedPath(`judges/${latestJudgesContestId}`, lang),
       key: 'judges',
     },
     {

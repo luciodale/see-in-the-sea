@@ -14,7 +14,12 @@ const __dirname = path.dirname(fileURLToPath(import.meta.url));
 export default defineConfig({
   site: 'https://www.seeintheseauw.com',
   output: 'static',
-  integrations: [mdx(), sitemap(), react()],
+  integrations: [
+    mdx(),
+    // /judges only 301s to the newest edition — keep crawlers off the redirect.
+    sitemap({ filter: page => !/\/judges\/?$/.test(new URL(page).pathname) }),
+    react(),
+  ],
   i18n: {
     defaultLocale: 'en',
     locales: ['en', 'it'],

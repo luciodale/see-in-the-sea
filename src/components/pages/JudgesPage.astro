@@ -35,11 +35,8 @@ const judgesUrl = new URL(
   getLocalizedPath(`/judges/${contestData.id}`, lang),
   origin
 ).toString();
-const judgesIndexUrl = new URL(
-  getLocalizedPath('/judges', lang),
-  origin
-).toString();
-
+// No intermediate /judges crumb: that route is only a redirect, so pointing a
+// breadcrumb node at it would send crawlers through a 301.
 const breadcrumbLd = {
   '@context': 'https://schema.org',
   '@type': 'BreadcrumbList',
@@ -48,12 +45,6 @@ const breadcrumbLd = {
     {
       '@type': 'ListItem',
       position: 2,
-      name: t('judges.title'),
-      item: judgesIndexUrl,
-    },
-    {
-      '@type': 'ListItem',
-      position: 3,
       name: `${t('judges.title')} ${contestData.name}`,
       item: judgesUrl,
     },
