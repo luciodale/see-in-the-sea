@@ -18,6 +18,11 @@ export function getNavigationItems(
       key: 'contest',
     },
     {
+      name: t('nav.judges'),
+      href: getLocalizedPath('judges', lang),
+      key: 'judges',
+    },
+    {
       name: t('nav.trophy'),
       href: getLocalizedPath('trophy', lang),
       key: 'trophy',
