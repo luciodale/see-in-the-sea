@@ -1,4 +1,5 @@
 import { useI18n } from '@/i18n/react';
+import { getLocalizedPath } from '@/i18n/utils';
 
 export function NavbarContent() {
   const { t, lang } = useI18n();
@@ -23,10 +24,20 @@ export function NavbarContent() {
             </h1>
             <div className="flex flex-col sm:flex-row items-center sm:items-start gap-3">
               <a
-                href={lang === 'it' ? '/it/photobook/2025' : '/photobook/2025'}
-                className="inline-flex items-center justify-center rounded-full bg-accent border border-accent text-accent-foreground px-6 py-4 text-editorial uppercase tracking-editorial drop-shadow-sharp hover:bg-accent-hover hover:border-accent-hover transition-all duration-300"
+                href={getLocalizedPath('user/submissions', lang)}
+                className="group inline-flex items-center gap-3 rounded-full bg-accent border border-accent text-accent-foreground px-5 py-3 text-editorial uppercase tracking-editorial drop-shadow-sharp hover:bg-accent-hover hover:border-accent-hover transition-all duration-300"
               >
-                {t('navbar.winners')}
+                <span className="flex items-center gap-2 font-medium">
+                  <span className="size-1.5 rounded-full bg-gold" />
+                  {t('navbar.join.edition')}
+                </span>
+                <span className="h-3 border-l border-accent-foreground/20" />
+                <span className="flex items-center gap-1.5">
+                  {t('navbar.join.cta')}
+                  <span className="transition-transform duration-300 group-hover:translate-x-0.5">
+                    →
+                  </span>
+                </span>
               </a>
             </div>
           </div>

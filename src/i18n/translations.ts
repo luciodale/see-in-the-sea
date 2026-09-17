@@ -42,7 +42,8 @@ export const translations = {
 
     // Navbar
     'navbar.cta': 'Registration Open!',
-    'navbar.winners': 'Photobook 2025 Gazes and Words',
+    'navbar.join.edition': 'Edition 2026',
+    'navbar.join.cta': 'Submit your shots',
     'navbar.patronage': 'With the high patronage of',
 
     // Site branding
@@ -458,7 +459,8 @@ export const translations = {
 
     // Navbar
     'navbar.cta': 'Iscrizioni Aperte!',
-    'navbar.winners': 'Photobook 2025 Sguardi e parole',
+    'navbar.join.edition': 'Edizione 2026',
+    'navbar.join.cta': 'Partecipa ora',
     'navbar.patronage': 'Con il patrocinio di',
 
     // Site branding
