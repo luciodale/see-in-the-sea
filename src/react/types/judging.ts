@@ -33,15 +33,23 @@ export const PLACEMENTS: PlacementInfo[] = [
   {
     value: 'second',
     label: '2\u00B0',
-    color: 'bg-surface-raised text-foreground',
+    color: 'bg-muted-foreground text-background',
   },
   {
     value: 'third',
     label: '3\u00B0',
     color: 'bg-warning/80 text-warning-foreground',
   },
-  { value: 'runner-up', label: 'M', color: 'bg-accent text-accent-foreground' },
+  {
+    value: 'runner-up',
+    label: 'M',
+    color: 'bg-popover text-foreground ring-1 ring-border-strong',
+  },
 ];
+
+export function getPlacementInfo(placement: Placement) {
+  return PLACEMENTS.find(p => p.value === placement);
+}
 
 export type PortfolioGroup = {
   portfolioId: string;

@@ -1,6 +1,8 @@
+import { Check, X } from 'lucide-react';
 import { memo } from 'react';
 import type { FlagStatus, Placement } from '../../types/judging';
-import { PLACEMENTS } from '../../types/judging';
+import { getPlacementInfo } from '../../types/judging';
+import { cn } from '../ui/cn';
 
 type StatusBadgesProps = {
   placement: Placement;
@@ -8,34 +10,43 @@ type StatusBadgesProps = {
   size?: 'small' | 'normal';
 };
 
+const BADGE =
+  'flex items-center justify-center rounded-full text-tiny font-semibold shadow-md';
+
 export const StatusBadges = memo(function StatusBadges({
   placement,
   flagStatus,
   size = 'normal',
 }: StatusBadgesProps) {
-  const badgeSize = size === 'small' ? 'w-6 h-6' : 'w-7 h-7';
+  const badgeSize = size === 'small' ? 'size-5' : 'size-6';
+  const iconSize = size === 'small' ? 'size-3' : 'size-3.5';
+  const placementInfo = getPlacementInfo(placement);
 
   return (
-    <div className="absolute top-2 left-2 flex gap-1.5">
-      {placement && (
-        <span
-          className={`${PLACEMENTS.find(p => p.value === placement)?.color} ${badgeSize} rounded-full flex items-center justify-center text-xs font-bold shadow-lg`}
-        >
-          {PLACEMENTS.find(p => p.value === placement)?.label}
+    <div className="pointer-events-none absolute top-2 left-2 flex gap-1">
+      {placement && placementInfo && (
+        <span className={cn(BADGE, badgeSize, placementInfo.color)}>
+          {placementInfo.label}
         </span>
       )}
       {flagStatus === 'shortlisted' && (
         <span
-          className={`bg-emerald-500 ${badgeSize} rounded-full flex items-center justify-center text-xs shadow-lg`}
+          className={cn(BADGE, badgeSize, 'bg-success text-success-foreground')}
         >
-          &#10003;
+          <Check className={iconSize} />
+          <span className="sr-only">Selezionato</span>
         </span>
       )}
       {flagStatus === 'rejected' && (
         <span
-          className={`bg-red-500 ${badgeSize} rounded-full flex items-center justify-center text-xs shadow-lg`}
+          className={cn(
+            BADGE,
+            badgeSize,
+            'bg-destructive text-destructive-foreground'
+          )}
         >
-          &#10007;
+          <X className={iconSize} />
+          <span className="sr-only">Scartato</span>
         </span>
       )}
     </div>

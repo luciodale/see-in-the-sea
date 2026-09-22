@@ -12,7 +12,7 @@ import {
   SortableContext,
   verticalListSortingStrategy,
 } from '@dnd-kit/sortable';
-import { Trophy } from 'lucide-react';
+import { ImageOff, Trophy } from 'lucide-react';
 import { useCallback, useMemo, useState } from 'react';
 import type {
   FilterStatus,
@@ -21,7 +21,8 @@ import type {
   Placement,
   PortfolioGroup,
 } from '../../types/judging';
-import { PLACEMENTS } from '../../types/judging';
+import { getPlacementInfo } from '../../types/judging';
+import { cn } from '../ui/cn';
 import { PortfolioCard } from './PortfolioCard';
 import { SortableItem } from './SortableItem';
 import { SubmissionCard } from './SubmissionCard';
@@ -47,6 +48,7 @@ type JudgingContentGridProps = {
   // Callbacks
   onInspectSubmission: (id: string) => void;
   onInspectPortfolio: (id: string) => void;
+  onOpenPortfolioPhoto: (portfolioId: string, photoId: string) => void;
   onFlag: (submissionId: string, status: FlagStatus) => void;
   onPlace: (submissionId: string, placement: Placement) => void;
   onPortfolioFlag: (submissionIds: string[], status: FlagStatus) => void;
@@ -56,6 +58,8 @@ type JudgingContentGridProps = {
     categoryId: string
   ) => void;
 };
+
+const WINNER_PLACEMENTS = ['first', 'second', 'third'] as const;
 
 const gridStyle = (cols: number) => ({
   gridTemplateColumns: `repeat(${cols}, minmax(0, 1fr))`,
@@ -78,6 +82,7 @@ export function JudgingContentGrid({
   resetPortfolioOrder,
   onInspectSubmission,
   onInspectPortfolio,
+  onOpenPortfolioPhoto,
   onFlag,
   onPlace,
   onPortfolioFlag,
@@ -135,33 +140,34 @@ export function JudgingContentGrid({
   if (loading) {
     return (
       <div className="flex items-center justify-center py-20">
-        <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-emerald-500" />
+        <div className="size-8 animate-spin rounded-full border-b-2 border-foreground/70" />
       </div>
     );
   }
 
   if (error) {
     return (
-      <div className="bg-red-900/40 border border-red-700 rounded-lg p-4 text-center">
+      <div className="rounded-lg border border-destructive/30 bg-destructive/10 p-4 text-center text-sm text-destructive">
         {error}
       </div>
     );
   }
 
   if (sortedSubmissions.length === 0) {
-    return (
-      <div className="text-center py-20 text-slate-400">
-        {filterStatus === 'winners' ? (
-          <div>
-            <Trophy className="w-12 h-12 mx-auto mb-4 opacity-50" />
-            <p>Nessun vincitore selezionato</p>
-            <p className="text-sm mt-2">
-              Assegna 1&deg;, 2&deg;, 3&deg; o M per vedere i vincitori qui
-            </p>
-          </div>
-        ) : (
-          'Nessuna foto corrisponde a questo filtro'
-        )}
+    return filterStatus === 'winners' ? (
+      <div className="flex flex-col items-center gap-2 py-20 text-center">
+        <Trophy className="size-10 text-subtle-foreground" />
+        <p className="text-foreground">Nessun vincitore selezionato</p>
+        <p className="text-sm text-muted-foreground">
+          Assegna 1&deg;, 2&deg;, 3&deg; o M per vedere i vincitori qui
+        </p>
+      </div>
+    ) : (
+      <div className="flex flex-col items-center gap-2 py-20 text-center">
+        <ImageOff className="size-10 text-subtle-foreground" />
+        <p className="text-sm text-muted-foreground">
+          Nessuna foto corrisponde a questo filtro
+        </p>
       </div>
     );
   }
@@ -169,135 +175,116 @@ export function JudgingContentGrid({
   // Winners view
   if (filterStatus === 'winners') {
     if (isMediterranean) {
+      const placedPortfolios = WINNER_PLACEMENTS.flatMap(placement =>
+        portfoliosList.filter(p =>
+          p.submissions.some(s => s.placement === placement)
+        )
+      );
+      const runnerUpPortfolios = portfoliosList.filter(p =>
+        p.submissions.some(s => s.placement === 'runner-up')
+      );
+
       return (
-        <div className="grid grid-cols-1 gap-6">
-          {(['first', 'second', 'third', 'runner-up'] as const).map(
-            placement => {
-              const placementInfo = PLACEMENTS.find(p => p.value === placement);
-              const placementPortfolios = portfoliosList.filter(p =>
-                p.submissions.some(s => s.placement === placement)
-              );
+        <div className="flex flex-col gap-8">
+          {placedPortfolios.length > 0 && (
+            <div className="flex flex-col gap-4">
+              {placedPortfolios.map(portfolio => (
+                <PortfolioCard
+                  key={portfolio.portfolioId}
+                  portfolioId={portfolio.portfolioId}
+                  submissions={portfolio.submissions}
+                  showImages
+                  onOpenPhoto={onOpenPortfolioPhoto}
+                  onInspect={onInspectPortfolio}
+                  onFlag={onPortfolioFlag}
+                  onPlace={onPortfolioPlace}
+                />
+              ))}
+            </div>
+          )}
 
-              if (placementPortfolios.length === 0) return null;
-
-              return (
-                <div key={placement} className="space-y-6">
-                  <h3 className="text-lg font-medium flex items-center gap-2">
-                    <span
-                      className={`${placementInfo?.color} w-8 h-8 rounded-full flex items-center justify-center text-sm font-bold`}
-                    >
-                      {placementInfo?.label}
-                    </span>
-                    <span className="text-slate-300">
-                      {placement === 'first' && '\uD83E\uDD47 1\u00B0 Posto'}
-                      {placement === 'second' && '\uD83E\uDD48 2\u00B0 Posto'}
-                      {placement === 'third' && '\uD83E\uDD49 3\u00B0 Posto'}
-                      {placement === 'runner-up' &&
-                        `Menzioni (${placementPortfolios.length})`}
-                    </span>
-                  </h3>
-                  <div className="grid gap-6" style={gridStyle(columns)}>
-                    {placementPortfolios.map(portfolio => (
-                      <PortfolioCard
-                        key={portfolio.portfolioId}
-                        portfolioId={portfolio.portfolioId}
-                        submissions={portfolio.submissions}
-                        showImages
-                        onInspect={onInspectPortfolio}
-                        onFlag={onPortfolioFlag}
-                        onPlace={onPortfolioPlace}
-                      />
-                    ))}
-                  </div>
-                </div>
-              );
-            }
+          {runnerUpPortfolios.length > 0 && (
+            <div className="flex flex-col gap-4 border-t border-border pt-8">
+              <PlacementHeading
+                placement="runner-up"
+                title={`Menzioni (${runnerUpPortfolios.length})`}
+              />
+              {runnerUpPortfolios.map(portfolio => (
+                <PortfolioCard
+                  key={portfolio.portfolioId}
+                  portfolioId={portfolio.portfolioId}
+                  submissions={portfolio.submissions}
+                  showImages
+                  onOpenPhoto={onOpenPortfolioPhoto}
+                  onInspect={onInspectPortfolio}
+                  onFlag={onPortfolioFlag}
+                  onPlace={onPortfolioPlace}
+                />
+              ))}
+            </div>
           )}
         </div>
       );
     }
 
     // Non-Mediterranean Winners
+    const runnerUps = sortedSubmissions.filter(
+      s => s.placement === 'runner-up'
+    );
+
     return (
-      <div className="space-y-8">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-          {(['second', 'first', 'third'] as const).map(placement => {
+      <div className="flex flex-col gap-8">
+        <div className="grid grid-cols-1 gap-4 md:grid-cols-3">
+          {WINNER_PLACEMENTS.map(placement => {
             const winner = sortedSubmissions.find(
               s => s.placement === placement
             );
-            const placementInfo = PLACEMENTS.find(p => p.value === placement);
-            const isFirst = placement === 'first';
+            const placementInfo = getPlacementInfo(placement);
 
-            return (
+            return winner ? (
+              <SubmissionCard
+                key={placement}
+                submission={winner}
+                size="large"
+                onInspect={onInspectSubmission}
+                onFlag={onFlag}
+                onPlace={onPlace}
+              />
+            ) : (
               <div
                 key={placement}
-                className={`${isFirst ? 'md:-mt-4 md:order-2' : placement === 'second' ? 'md:order-1' : 'md:order-3'}`}
+                className="flex aspect-4/3 flex-col items-center justify-center gap-2 rounded-lg border border-dashed border-border bg-surface text-subtle-foreground"
               >
-                <div
-                  className={`text-center mb-3 ${isFirst ? 'text-2xl' : 'text-lg'}`}
+                <span
+                  className={cn(
+                    'flex size-7 items-center justify-center rounded-full text-xs font-semibold',
+                    placementInfo?.color
+                  )}
                 >
-                  <span
-                    className={`${placementInfo?.color} inline-flex items-center justify-center ${isFirst ? 'w-14 h-14 text-xl' : 'w-10 h-10 text-sm'} rounded-full font-bold shadow-lg`}
-                  >
-                    {placementInfo?.label}
-                  </span>
-                  <p className="text-slate-300 mt-2 font-medium">
-                    {placement === 'first' && '\uD83E\uDD47 1\u00B0 Posto'}
-                    {placement === 'second' && '\uD83E\uDD48 2\u00B0 Posto'}
-                    {placement === 'third' && '\uD83E\uDD49 3\u00B0 Posto'}
-                  </p>
-                </div>
-                {winner ? (
-                  <div
-                    className={`${isFirst ? 'ring-2 ring-yellow-500/50' : ''} rounded-lg overflow-hidden`}
-                  >
-                    <SubmissionCard
-                      submission={winner}
-                      size="large"
-                      onInspect={onInspectSubmission}
-                      onFlag={onFlag}
-                      onPlace={onPlace}
-                    />
-                  </div>
-                ) : (
-                  <div className="aspect-[4/3] bg-slate-800/50 rounded-lg flex flex-col items-center justify-center text-slate-600 border-2 border-dashed border-slate-700 gap-2">
-                    <span className="text-4xl">&#127942;</span>
-                    <span className="text-sm">Non assegnato</span>
-                  </div>
-                )}
+                  {placementInfo?.label}
+                </span>
+                <span className="text-sm">Non assegnato</span>
               </div>
             );
           })}
         </div>
 
-        {sortedSubmissions.filter(s => s.placement === 'runner-up').length >
-          0 && (
-          <div className="mt-8 pt-8 border-t border-slate-800">
-            <h3 className="text-lg font-medium mb-4 flex items-center gap-2">
-              <span className="bg-accent text-accent-foreground w-8 h-8 rounded-full flex items-center justify-center text-sm font-bold">
-                M
-              </span>
-              <span className="text-slate-300">
-                Menzioni (
-                {
-                  sortedSubmissions.filter(s => s.placement === 'runner-up')
-                    .length
-                }
-                )
-              </span>
-            </h3>
+        {runnerUps.length > 0 && (
+          <div className="flex flex-col gap-4 border-t border-border pt-8">
+            <PlacementHeading
+              placement="runner-up"
+              title={`Menzioni (${runnerUps.length})`}
+            />
             <div className="grid gap-4" style={gridStyle(columns)}>
-              {sortedSubmissions
-                .filter(s => s.placement === 'runner-up')
-                .map(submission => (
-                  <SubmissionCard
-                    key={submission.id}
-                    submission={submission}
-                    onInspect={onInspectSubmission}
-                    onFlag={onFlag}
-                    onPlace={onPlace}
-                  />
-                ))}
+              {runnerUps.map(submission => (
+                <SubmissionCard
+                  key={submission.id}
+                  submission={submission}
+                  onInspect={onInspectSubmission}
+                  onFlag={onFlag}
+                  onPlace={onPlace}
+                />
+              ))}
             </div>
           </div>
         )}
@@ -309,13 +296,15 @@ export function JudgingContentGrid({
   if (isMediterranean && groupedByUser) {
     if (filterStatus === 'shortlisted') {
       return (
-        <div className="space-y-2">
-          <div className="flex items-center justify-between mb-4">
-            <p className="text-xs text-slate-500">Trascina per riordinare</p>
+        <div className="flex flex-col gap-4">
+          <div className="flex items-center justify-between">
+            <p className="text-xs text-subtle-foreground">
+              Trascina per riordinare
+            </p>
             <button
               type="button"
               onClick={resetPortfolioOrder}
-              className="text-xs text-slate-400 hover:text-white transition-colors"
+              className="cursor-pointer text-xs text-muted-foreground transition-colors hover:text-foreground"
             >
               Ripristina ordine
             </button>
@@ -355,7 +344,7 @@ export function JudgingContentGrid({
             </SortableContext>
             <DragOverlay dropAnimation={null}>
               {activePortfolio && (
-                <div className="opacity-80 rotate-1 shadow-2xl shadow-black/50 ring-2 ring-emerald-500 rounded-xl">
+                <div className="rotate-1 rounded-lg opacity-90 shadow-2xl ring-1 ring-border-strong">
                   <PortfolioCard
                     portfolioId={activePortfolio.portfolioId}
                     submissions={activePortfolio.submissions}
@@ -387,13 +376,15 @@ export function JudgingContentGrid({
   // Non-Mediterranean shortlisted - draggable
   if (filterStatus === 'shortlisted') {
     return (
-      <div className="space-y-2">
-        <div className="flex items-center justify-between mb-4">
-          <p className="text-xs text-slate-500">Trascina per riordinare</p>
+      <div className="flex flex-col gap-4">
+        <div className="flex items-center justify-between">
+          <p className="text-xs text-subtle-foreground">
+            Trascina per riordinare
+          </p>
           <button
             type="button"
             onClick={resetSubmissionOrder}
-            className="text-xs text-slate-400 hover:text-white transition-colors"
+            className="cursor-pointer text-xs text-muted-foreground transition-colors hover:text-foreground"
           >
             Ripristina ordine
           </button>
@@ -424,7 +415,7 @@ export function JudgingContentGrid({
           </SortableContext>
           <DragOverlay dropAnimation={null}>
             {activeSubmission && (
-              <div className="opacity-80 rotate-1 shadow-2xl shadow-black/50 ring-2 ring-emerald-500 rounded-lg w-64">
+              <div className="w-64 rotate-1 rounded-lg opacity-90 shadow-2xl ring-1 ring-border-strong">
                 <SubmissionCard
                   submission={activeSubmission}
                   size="large"
@@ -459,6 +450,30 @@ export function JudgingContentGrid({
         />
       )}
     />
+  );
+}
+
+function PlacementHeading({
+  placement,
+  title,
+}: {
+  placement: Placement;
+  title: string;
+}) {
+  const placementInfo = getPlacementInfo(placement);
+
+  return (
+    <h3 className="flex items-center gap-2 text-sm font-medium text-muted-foreground">
+      <span
+        className={cn(
+          'flex size-7 items-center justify-center rounded-full text-xs font-semibold',
+          placementInfo?.color
+        )}
+      >
+        {placementInfo?.label}
+      </span>
+      {title}
+    </h3>
   );
 }
 

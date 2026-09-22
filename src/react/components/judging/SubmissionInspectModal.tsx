@@ -1,12 +1,20 @@
-import { X, ZoomOut } from 'lucide-react';
-import { useState } from 'react';
+import { X } from 'lucide-react';
+import { useInspectChrome } from '../../hooks/useInspectChrome';
 import type {
   FlagStatus,
   JudgingSubmission,
   Placement,
 } from '../../types/judging';
-import { PLACEMENTS } from '../../types/judging';
 import { getImageUrl } from '../../utils/imageUtils';
+import { cn } from '../ui/cn';
+import {
+  HoverRevealBar,
+  InspectBar,
+  InspectIconButton,
+  InspectNavigation,
+  ZoomIndicator,
+} from './InspectControls';
+import { VotingToolbar } from './VotingToolbar';
 
 type SubmissionInspectModalProps = {
   submission: JudgingSubmission;
@@ -45,21 +53,23 @@ export function SubmissionInspectModal({
   onFlag,
   onPlace,
 }: SubmissionInspectModalProps) {
-  const [chromeVisible, setChromeVisible] = useState(false);
+  const { isChromeVisible, surfaceHandlers, topBarProps, bottomBarProps } =
+    useInspectChrome();
 
   return (
     <div
       role="dialog"
       aria-modal="true"
       aria-label={submission.title}
-      className="fixed inset-0 bg-neutral-700 z-50"
+      className="fixed inset-0 z-50 bg-popover"
+      {...surfaceHandlers}
     >
       {/* Full-screen image */}
       {/* biome-ignore lint/a11y/useSemanticElements: interactive zoom overlay with complex content */}
       <div
         role="button"
         tabIndex={0}
-        className="absolute inset-0 overflow-auto flex items-center justify-center cursor-zoom-in"
+        className="absolute inset-0 flex items-center justify-center overflow-auto p-2 cursor-zoom-in"
         onClick={onZoomClick}
         onKeyDown={e => {
           if (e.key === 'Enter' || e.key === ' ') {
@@ -76,203 +86,74 @@ export function SubmissionInspectModal({
             transformOrigin: `${zoomOrigin.x}% ${zoomOrigin.y}%`,
             transition: 'transform 0.2s ease-out',
           }}
-          className="max-w-full max-h-full object-contain"
+          className="max-h-full max-w-full border border-border-strong object-contain"
           draggable={false}
         />
       </div>
 
-      {/* Nav buttons — always visible */}
-      <button
-        type="button"
-        onClick={onPrev}
-        disabled={!canGoPrev}
-        className={`absolute left-2 top-1/2 -translate-y-1/2 z-20 w-12 h-12 rounded-full flex items-center justify-center text-2xl transition-all ${
-          canGoPrev
-            ? 'bg-black/60 hover:bg-black/80 text-white'
-            : 'bg-black/20 text-slate-600 cursor-not-allowed'
-        }`}
-        aria-label="Foto precedente"
+      <HoverRevealBar
+        position="top"
+        isVisible={isChromeVisible}
+        barProps={topBarProps}
       >
-        &larr;
-      </button>
-      <button
-        type="button"
-        onClick={onNext}
-        disabled={!canGoNext}
-        className={`absolute right-2 top-1/2 -translate-y-1/2 z-20 w-12 h-12 rounded-full flex items-center justify-center text-2xl transition-all ${
-          canGoNext
-            ? 'bg-black/60 hover:bg-black/80 text-white'
-            : 'bg-black/20 text-slate-600 cursor-not-allowed'
-        }`}
-        aria-label="Foto successiva"
-      >
-        &rarr;
-      </button>
-
-      {/* Header — absolute, show on hover */}
-      {/* biome-ignore lint/a11y/noStaticElementInteractions: hover zone for showing/hiding chrome UI */}
-      <div
-        className="absolute top-0 inset-x-0 z-30"
-        onMouseEnter={() => setChromeVisible(true)}
-        onMouseLeave={() => setChromeVisible(false)}
-      >
-        {/* Hover target zone */}
-        <div className="h-10" />
-        <div
-          className={`absolute top-0 inset-x-0 transition-all duration-200 ${
-            chromeVisible
-              ? 'opacity-100 translate-y-0'
-              : 'opacity-0 -translate-y-full pointer-events-none'
-          }`}
-        >
-          <div className="flex items-center justify-between px-3 py-1.5 bg-slate-900/95 backdrop-blur-sm border-b border-slate-800">
-            <div className="flex items-center gap-3 min-w-0">
-              <div className="min-w-0">
-                <div className="text-white text-sm font-medium truncate">
-                  {submission.title}
-                  <span className="text-slate-500 text-xs ml-2">
-                    {index + 1}/{total}
-                  </span>
-                </div>
-                {submission.description?.trim() && (
-                  <button
-                    type="button"
-                    onClick={onToggleDescription}
-                    className={`text-slate-400 text-xs text-left hover:text-slate-300 transition-colors ${descriptionExpanded ? '' : 'line-clamp-1'}`}
-                  >
-                    {submission.description}
-                  </button>
-                )}
-              </div>
-            </div>
-            <div className="flex items-center gap-1.5 shrink-0">
-              <span className="text-slate-400 text-xs px-1.5 py-0.5 bg-slate-800 rounded">
-                {Math.round(zoomLevel * 100)}%
+        <InspectBar position="top" className="justify-between">
+          <div className="flex min-w-0 flex-col">
+            <div className="flex min-w-0 items-baseline gap-2">
+              <span className="truncate text-sm font-medium">
+                {submission.title}
               </span>
-              {zoomLevel > 1 && (
-                <button
-                  type="button"
-                  className="w-7 h-7 bg-slate-700 hover:bg-slate-600 rounded flex items-center justify-center"
-                  onClick={onResetZoom}
-                  aria-label="Reimposta zoom"
-                >
-                  <ZoomOut className="w-3.5 h-3.5 text-white" />
-                </button>
-              )}
+              <span className="shrink-0 text-xs tabular-nums text-subtle-foreground">
+                {index + 1}/{total}
+              </span>
+            </div>
+            {submission.description?.trim() && (
               <button
                 type="button"
-                className="w-8 h-8 bg-red-600 hover:bg-red-500 rounded-lg flex items-center justify-center"
-                onClick={onClose}
-                aria-label="Chiudi"
+                onClick={onToggleDescription}
+                className={cn(
+                  'text-left text-xs text-muted-foreground transition-colors cursor-pointer hover:text-foreground',
+                  !descriptionExpanded && 'line-clamp-1'
+                )}
               >
-                <X className="w-4 h-4 text-white" />
+                {submission.description}
               </button>
-            </div>
+            )}
           </div>
-        </div>
-      </div>
+          <InspectIconButton onClick={onClose} aria-label="Chiudi">
+            <X className="size-4" />
+          </InspectIconButton>
+        </InspectBar>
+      </HoverRevealBar>
 
-      {/* Bottom voting toolbar — absolute, show on hover */}
-      {/* biome-ignore lint/a11y/noStaticElementInteractions: hover zone for showing/hiding chrome UI */}
-      <div
-        className="absolute bottom-0 inset-x-0 z-30"
-        onMouseEnter={() => setChromeVisible(true)}
-        onMouseLeave={() => setChromeVisible(false)}
+      <HoverRevealBar
+        position="bottom"
+        isVisible={isChromeVisible}
+        barProps={bottomBarProps}
+        accessory={
+          zoomLevel > 1 ? (
+            <ZoomIndicator zoomLevel={zoomLevel} onReset={onResetZoom} />
+          ) : undefined
+        }
       >
-        {/* Hover target zone */}
-        <div className="h-10" />
-        <div
-          className={`absolute bottom-0 inset-x-0 transition-all duration-200 ${
-            chromeVisible
-              ? 'opacity-100 translate-y-0'
-              : 'opacity-0 translate-y-full pointer-events-none'
-          }`}
-        >
-          <div className="px-3 py-1.5 bg-slate-900/95 backdrop-blur-sm border-t border-slate-800">
-            <div className="flex items-center justify-center gap-1.5 flex-wrap">
-              {/* Current status */}
-              <div className="flex items-center gap-2 mr-4">
-                {submission.placement && (
-                  <span
-                    className={`${PLACEMENTS.find(p => p.value === submission.placement)?.color} px-2 py-1 rounded text-xs font-bold`}
-                  >
-                    {
-                      PLACEMENTS.find(p => p.value === submission.placement)
-                        ?.label
-                    }
-                  </span>
-                )}
-                {submission.flagStatus !== 'pending' && (
-                  <span
-                    className={`px-2 py-1 rounded text-xs ${
-                      submission.flagStatus === 'shortlisted'
-                        ? 'bg-emerald-500/20 text-emerald-400'
-                        : 'bg-red-500/20 text-red-400'
-                    }`}
-                  >
-                    {submission.flagStatus === 'shortlisted'
-                      ? 'Selezionato'
-                      : 'Scartato'}
-                  </span>
-                )}
-              </div>
-
-              <div className="w-px h-6 bg-slate-700" />
-
-              {/* Flags */}
-              <button
-                type="button"
-                onClick={() => onFlag(submission.id, 'shortlisted')}
-                className={`px-3 py-1.5 rounded text-sm font-medium transition-all ${
-                  submission.flagStatus === 'shortlisted'
-                    ? 'bg-emerald-500 text-white'
-                    : 'bg-slate-700 text-emerald-400 hover:bg-emerald-600 hover:text-white'
-                }`}
-              >
-                &#10003; Seleziona
-              </button>
-              <button
-                type="button"
-                onClick={() => onFlag(submission.id, 'rejected')}
-                className={`px-3 py-1.5 rounded text-sm font-medium transition-all ${
-                  submission.flagStatus === 'rejected'
-                    ? 'bg-red-500 text-white'
-                    : 'bg-slate-700 text-red-400 hover:bg-red-600 hover:text-white'
-                }`}
-              >
-                &#10007; Scarta
-              </button>
-
-              <div className="w-px h-6 bg-slate-700" />
-
-              {/* Placements */}
-              {PLACEMENTS.map(p => (
-                <button
-                  key={p.value}
-                  type="button"
-                  onClick={() => onPlace(submission.id, p.value)}
-                  className={`w-8 h-8 rounded text-sm font-bold transition-all ${
-                    submission.placement === p.value
-                      ? `${p.color} text-white scale-110`
-                      : 'bg-slate-700 text-slate-300 hover:bg-slate-600'
-                  }`}
-                >
-                  {p.label}
-                </button>
-              ))}
-              {submission.placement && (
-                <button
-                  type="button"
-                  onClick={() => onPlace(submission.id, null)}
-                  className="w-8 h-8 rounded text-sm bg-slate-700 text-slate-400 hover:bg-slate-600 hover:text-white"
-                >
-                  &#10005;
-                </button>
-              )}
-            </div>
-          </div>
-        </div>
-      </div>
+        <InspectBar position="bottom" className="flex-wrap">
+          <div className="hidden flex-1 md:block" />
+          <VotingToolbar
+            size="large"
+            flagStatus={submission.flagStatus}
+            placement={submission.placement}
+            onFlag={status => onFlag(submission.id, status)}
+            onPlace={placement => onPlace(submission.id, placement)}
+          />
+          <InspectNavigation
+            canGoPrev={canGoPrev}
+            canGoNext={canGoNext}
+            onPrev={onPrev}
+            onNext={onNext}
+            prevLabel="Foto precedente"
+            nextLabel="Foto successiva"
+          />
+        </InspectBar>
+      </HoverRevealBar>
     </div>
   );
 }

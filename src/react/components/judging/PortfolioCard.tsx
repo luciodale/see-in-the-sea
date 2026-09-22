@@ -1,3 +1,4 @@
+import { Images } from 'lucide-react';
 import { memo, useCallback, useState } from 'react';
 import { PHOTO_TYPES } from '../../../constants';
 import type {
@@ -6,6 +7,8 @@ import type {
   Placement,
 } from '../../types/judging';
 import { getImageUrl } from '../../utils/imageUtils';
+import { cn } from '../ui/cn';
+import { ImageFallback } from './ImageFallback';
 import { StatusBadges } from './StatusBadges';
 import { VotingToolbar } from './VotingToolbar';
 
@@ -13,6 +16,8 @@ type PortfolioCardProps = {
   portfolioId: string;
   submissions: JudgingSubmission[];
   showImages?: boolean;
+  // When set, each photo opens zoomed and the card itself is not clickable
+  onOpenPhoto?: (portfolioId: string, photoId: string) => void;
   onInspect: (id: string) => void;
   onFlag: (submissionIds: string[], status: FlagStatus) => void;
   onPlace: (
@@ -26,6 +31,7 @@ export const PortfolioCard = memo(function PortfolioCard({
   portfolioId,
   submissions: portfolioSubmissions,
   showImages = false,
+  onOpenPhoto,
   onInspect,
   onFlag,
   onPlace,
@@ -49,6 +55,7 @@ export const PortfolioCard = memo(function PortfolioCard({
   if (!firstPhoto) return null;
 
   const isRejected = firstPhoto.flagStatus === 'rejected';
+  const isShortlisted = firstPhoto.flagStatus === 'shortlisted';
   const isIncomplete = portfolioSubmissions.length < PHOTO_TYPES.length;
   const photoCount = portfolioSubmissions.length;
   const photoByType = new Map(
@@ -57,33 +64,31 @@ export const PortfolioCard = memo(function PortfolioCard({
 
   const handleClick = () => onInspect(portfolioId);
   const handleKeyDown = (e: React.KeyboardEvent) => {
+    // Ignore keys bubbling up from the voting toolbar buttons
+    if (e.target !== e.currentTarget) return;
     if (e.key === 'Enter' || e.key === ' ') {
       e.preventDefault();
       onInspect(portfolioId);
     }
   };
 
-  return (
-    // biome-ignore lint/a11y/useSemanticElements: card acts as button with complex inner content
-    <div
-      role="button"
-      tabIndex={0}
-      onClick={handleClick}
-      onKeyDown={handleKeyDown}
-      className={`relative rounded-xl overflow-hidden bg-slate-900 border-2 transition-all cursor-pointer group ${
-        isRejected
-          ? 'border-red-500/50 opacity-50'
-          : isIncomplete
-            ? 'border-orange-500/50'
-            : firstPhoto.flagStatus === 'shortlisted'
-              ? 'border-emerald-500/50'
-              : firstPhoto.placement
-                ? 'border-yellow-500/50'
-                : 'border-slate-800 hover:border-slate-600'
-      }`}
-    >
+  const cardClassName = cn(
+    'group relative overflow-hidden rounded-lg border bg-surface outline-none transition focus-visible:ring-2 focus-visible:ring-ring',
+    isRejected
+      ? 'border-destructive/40 opacity-40'
+      : isIncomplete
+        ? 'border-warning/50'
+        : isShortlisted
+          ? 'border-success/50'
+          : firstPhoto.placement
+            ? 'border-gold/50'
+            : 'border-border hover:border-border-strong'
+  );
+
+  const content = (
+    <>
       {showImages ? (
-        <div className="grid grid-cols-3 gap-1 p-1">
+        <div className="grid grid-cols-3 gap-0.5 p-0.5">
           {PHOTO_TYPES.map(photoType => {
             const sub = photoByType.get(photoType);
             const imageUrl = sub?.r2ImageId ? getImageUrl(sub.r2ImageId) : null;
@@ -92,13 +97,34 @@ export const PortfolioCard = memo(function PortfolioCard({
             return (
               <div
                 key={photoType}
-                className={`aspect-[4/3] relative ${sub ? 'bg-neutral-600' : 'bg-neutral-600/50'}`}
+                className={cn(
+                  'relative aspect-4/3',
+                  sub ? 'bg-surface-raised' : 'bg-surface'
+                )}
               >
-                {sub && imageUrl && !hasFailed ? (
+                {sub && imageUrl && !hasFailed && onOpenPhoto ? (
+                  <button
+                    type="button"
+                    onClick={() => onOpenPhoto(portfolioId, sub.id)}
+                    aria-label={`Ingrandisci ${photoType}`}
+                    className="absolute inset-0 cursor-zoom-in focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-inset"
+                  >
+                    <img
+                      src={imageUrl}
+                      alt={sub.title}
+                      className="size-full object-cover"
+                      loading="lazy"
+                      decoding="async"
+                      onError={() =>
+                        setFailedIds(prev => new Set(prev).add(sub.id))
+                      }
+                    />
+                  </button>
+                ) : sub && imageUrl && !hasFailed ? (
                   <img
                     src={imageUrl}
                     alt={sub.title}
-                    className="w-full h-full object-cover"
+                    className="size-full object-cover"
                     loading="lazy"
                     decoding="async"
                     onError={() =>
@@ -106,45 +132,46 @@ export const PortfolioCard = memo(function PortfolioCard({
                     }
                   />
                 ) : hasFailed ? (
-                  <div className="w-full h-full flex items-center justify-center bg-red-950/50">
-                    <span className="text-xl">&#9888;&#65039;</span>
-                  </div>
+                  <ImageFallback variant="failed" compact />
                 ) : (
-                  <div className="w-full h-full flex items-center justify-center text-slate-600">
-                    <span className="text-xl">&#128444;&#65039;</span>
-                  </div>
+                  <ImageFallback
+                    variant="missing"
+                    compact
+                    className="bg-surface"
+                  />
                 )}
-                <div className="absolute bottom-0.5 left-0.5 text-tiny bg-black/70 text-slate-300 px-1 py-0.5 rounded capitalize">
+                <span className="pointer-events-none absolute bottom-1 left-1 rounded bg-background/70 px-1 py-0.5 text-tiny uppercase text-muted-foreground backdrop-blur-sm">
                   {photoType.charAt(0)}
-                </div>
+                </span>
               </div>
             );
           })}
         </div>
       ) : (
-        <div className="aspect-[4/3] flex flex-col items-center justify-center gap-2 p-4">
-          <div className="text-4xl">&#128444;&#65039;</div>
-          <div className="flex items-center gap-1.5 text-sm">
-            <span
-              className={`font-medium ${isIncomplete ? 'text-orange-400' : 'text-slate-300'}`}
-            >
-              {photoCount}/{PHOTO_TYPES.length} foto
-            </span>
-          </div>
-          <div className="flex gap-1 text-xs text-slate-500">
-            {PHOTO_TYPES.map(type => {
-              const hasType = portfolioSubmissions.some(
-                s => s.portfolioPhotoType === type
-              );
-              return (
-                <span
-                  key={type}
-                  className={`px-1.5 py-0.5 rounded ${hasType ? 'bg-slate-700 text-slate-300' : 'bg-slate-800 text-slate-600'}`}
-                >
-                  {type.charAt(0).toUpperCase()}
-                </span>
-              );
-            })}
+        <div className="flex aspect-4/3 flex-col items-center justify-center gap-2 p-4">
+          <Images className="size-8 text-subtle-foreground" />
+          <span
+            className={cn(
+              'text-sm font-medium',
+              isIncomplete ? 'text-warning' : 'text-foreground'
+            )}
+          >
+            {photoCount}/{PHOTO_TYPES.length} foto
+          </span>
+          <div className="flex gap-1">
+            {PHOTO_TYPES.map(type => (
+              <span
+                key={type}
+                className={cn(
+                  'rounded px-1.5 py-0.5 text-tiny uppercase',
+                  photoByType.has(type)
+                    ? 'bg-surface-raised text-foreground'
+                    : 'bg-surface text-subtle-foreground'
+                )}
+              >
+                {type.charAt(0)}
+              </span>
+            ))}
           </div>
         </div>
       )}
@@ -155,19 +182,40 @@ export const PortfolioCard = memo(function PortfolioCard({
         size="small"
       />
 
-      {/* Hover toolbar */}
-      <div className="absolute inset-x-0 bottom-0 p-3 bg-gradient-to-t from-black via-black/90 to-transparent opacity-0 group-hover:opacity-100 transition-opacity">
-        <VotingToolbar
-          flagStatus={firstPhoto.flagStatus}
-          placement={firstPhoto.placement}
-          onFlag={handleFlag}
-          onPlace={handlePlace}
-        />
+      {/* Only the toolbar catches the pointer, so the photos under the
+          gradient stay clickable */}
+      <div className="pointer-events-none absolute inset-x-0 bottom-0 bg-linear-to-t from-background/90 via-background/60 to-transparent p-2 opacity-0 transition-opacity group-focus-visible:opacity-100 group-has-focus-visible:opacity-100 group-hover:opacity-100">
+        <div className="pointer-events-auto mx-auto w-fit">
+          <VotingToolbar
+            flagStatus={firstPhoto.flagStatus}
+            placement={firstPhoto.placement}
+            onFlag={handleFlag}
+            onPlace={handlePlace}
+          />
+        </div>
       </div>
 
-      <div className="px-3 py-2 bg-slate-900 text-center">
-        <p className="text-xs text-slate-400">Portfolio</p>
-      </div>
+      <p className="px-2 py-1.5 text-center text-xs text-muted-foreground">
+        Portfolio
+      </p>
+    </>
+  );
+
+  // Winners grid: each photo opens zoomed, so the card itself is not a button
+  if (onOpenPhoto) {
+    return <div className={cardClassName}>{content}</div>;
+  }
+
+  return (
+    // biome-ignore lint/a11y/useSemanticElements: card acts as button with complex inner content
+    <div
+      role="button"
+      tabIndex={0}
+      onClick={handleClick}
+      onKeyDown={handleKeyDown}
+      className={cn(cardClassName, 'cursor-pointer')}
+    >
+      {content}
     </div>
   );
 });

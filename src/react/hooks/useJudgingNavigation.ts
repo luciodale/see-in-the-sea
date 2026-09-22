@@ -2,6 +2,14 @@ import { useCallback, useEffect, useState } from 'react';
 import type { JudgingSubmission, PortfolioGroup } from '../types/judging';
 import { getImageUrl } from '../utils/imageUtils';
 
+// The inspect views cover the page, so the tile that opened one must not
+// keep focus underneath: it would show a focus ring once the view closes.
+function releaseTriggerFocus() {
+  if (document.activeElement instanceof HTMLElement) {
+    document.activeElement.blur();
+  }
+}
+
 type UseJudgingNavigationParams = {
   sortedSubmissions: JudgingSubmission[];
   portfoliosList: PortfolioGroup[];
@@ -39,6 +47,7 @@ type UseJudgingNavigationResult = {
   canGoPrevPhoto: boolean;
   canGoNextPhoto: boolean;
   openZoomedPhoto: (id: string) => void;
+  openPortfolioPhoto: (portfolioId: string, photoId: string) => void;
   closeZoomedPhoto: () => void;
   goToPrevPhoto: () => void;
   goToNextPhoto: () => void;
@@ -105,6 +114,7 @@ export function useJudgingNavigation({
   }, [inspectedIndex, sortedSubmissions, resetZoom]);
 
   const openSubmission = useCallback((id: string) => {
+    releaseTriggerFocus();
     setInspectedSubmissionId(id);
   }, []);
 
@@ -148,12 +158,15 @@ export function useJudgingNavigation({
   }, [inspectedPortfolioIndex, portfoliosList, resetZoom]);
 
   const openPortfolio = useCallback((id: string) => {
+    releaseTriggerFocus();
     setInspectedPortfolioId(id);
   }, []);
 
   const closePortfolio = useCallback(() => {
     setInspectedPortfolioId(null);
-  }, []);
+    setZoomedPortfolioPhotoId(null);
+    resetZoom();
+  }, [resetZoom]);
 
   // Zoomed photo within portfolio
   const zoomedPhoto =
@@ -178,8 +191,20 @@ export function useJudgingNavigation({
       : false;
 
   const openZoomedPhoto = useCallback((id: string) => {
+    releaseTriggerFocus();
     setZoomedPortfolioPhotoId(id);
   }, []);
+
+  // Winners grid: open a portfolio directly on one of its photos, zoomed.
+  // Closing the zoom lands on that portfolio's overview.
+  const openPortfolioPhoto = useCallback(
+    (portfolioId: string, photoId: string) => {
+      releaseTriggerFocus();
+      setInspectedPortfolioId(portfolioId);
+      setZoomedPortfolioPhotoId(photoId);
+    },
+    []
+  );
 
   const closeZoomedPhoto = useCallback(() => {
     setZoomedPortfolioPhotoId(null);
@@ -240,6 +265,7 @@ export function useJudgingNavigation({
     canGoPrevPhoto,
     canGoNextPhoto,
     openZoomedPhoto,
+    openPortfolioPhoto,
     closeZoomedPhoto,
     goToPrevPhoto,
     goToNextPhoto,

@@ -1,15 +1,15 @@
+import { Ban } from 'lucide-react';
+
 type AdminAccessDeniedProps = {
   role?: string | null;
 };
 
 export function AdminAccessDenied({ role }: AdminAccessDeniedProps) {
   return (
-    <div className="flex items-center justify-center min-h-[60vh]">
-      <div className="text-center">
-        <div className="text-5xl mb-3">&#128683;</div>
-        <h2 className="text-lg font-semibold text-foreground mb-1">
-          Accesso Negato
-        </h2>
+    <div className="flex min-h-[60vh] items-center justify-center">
+      <div className="flex flex-col items-center gap-2 text-center">
+        <Ban className="size-10 text-subtle-foreground" />
+        <h2 className="text-lg font-medium text-foreground">Accesso Negato</h2>
         {role && (
           <p className="text-sm text-muted-foreground">
             Ruolo attuale:{' '}

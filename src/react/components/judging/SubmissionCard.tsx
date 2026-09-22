@@ -5,6 +5,8 @@ import type {
   Placement,
 } from '../../types/judging';
 import { getImageUrl } from '../../utils/imageUtils';
+import { cn } from '../ui/cn';
+import { ImageFallback } from './ImageFallback';
 import { StatusBadges } from './StatusBadges';
 import { VotingToolbar } from './VotingToolbar';
 
@@ -28,6 +30,7 @@ export const SubmissionCard = memo(function SubmissionCard({
     ? getImageUrl(submission.r2ImageId)
     : null;
   const isRejected = submission.flagStatus === 'rejected';
+  const isShortlisted = submission.flagStatus === 'shortlisted';
 
   const handleClick = useCallback(() => {
     if (imageUrl) onInspect(submission.id);
@@ -35,6 +38,8 @@ export const SubmissionCard = memo(function SubmissionCard({
 
   const handleKeyDown = useCallback(
     (e: React.KeyboardEvent) => {
+      // Ignore keys bubbling up from the voting toolbar buttons
+      if (e.target !== e.currentTarget) return;
       if (e.key === 'Enter' || e.key === ' ') {
         e.preventDefault();
         if (imageUrl) onInspect(submission.id);
@@ -55,21 +60,26 @@ export const SubmissionCard = memo(function SubmissionCard({
 
   return (
     <div
-      className={`relative rounded-lg overflow-hidden bg-slate-900 border-2 transition-all group ${
+      className={cn(
+        'group relative overflow-hidden rounded-lg border bg-surface transition',
         isRejected
-          ? 'border-red-500/50 opacity-50'
-          : submission.flagStatus === 'shortlisted'
-            ? 'border-emerald-500/50'
+          ? 'border-destructive/40 opacity-40'
+          : isShortlisted
+            ? 'border-success/50'
             : submission.placement
-              ? 'border-yellow-500/50'
-              : 'border-slate-800 hover:border-slate-600'
-      }`}
+              ? 'border-gold/50'
+              : 'border-border hover:border-border-strong'
+      )}
     >
       {/* biome-ignore lint/a11y/useSemanticElements: card acts as button with complex inner content */}
       <div
         role="button"
         tabIndex={0}
-        className={`${size === 'large' ? 'aspect-[4/3]' : 'aspect-square'} bg-neutral-600 relative cursor-pointer`}
+        className={cn(
+          'relative bg-surface-raised outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-inset',
+          size === 'large' ? 'aspect-4/3' : 'aspect-square',
+          imageUrl ? 'cursor-zoom-in' : 'cursor-default'
+        )}
         onClick={handleClick}
         onKeyDown={handleKeyDown}
       >
@@ -77,26 +87,18 @@ export const SubmissionCard = memo(function SubmissionCard({
           <img
             src={imageUrl}
             alt={submission.title}
-            className="w-full h-full object-cover"
+            className="size-full object-cover"
             loading="lazy"
             decoding="async"
             onError={() => setImgFailed(true)}
           />
         ) : imgFailed ? (
-          <div className="w-full h-full flex flex-col items-center justify-center bg-red-950/50 gap-2">
-            <span className="text-3xl">&#9888;&#65039;</span>
-            <span className="text-xs text-red-400 font-medium">
-              Errore caricamento
-            </span>
-            <span className="text-tiny text-red-500/70">
-              #{submission.id.slice(0, 6)}
-            </span>
-          </div>
+          <ImageFallback
+            variant="failed"
+            detail={`#${submission.id.slice(0, 6)}`}
+          />
         ) : (
-          <div className="w-full h-full flex flex-col items-center justify-center text-slate-500 gap-2">
-            <span className="text-3xl">&#128444;&#65039;</span>
-            <span className="text-xs">Nessuna immagine</span>
-          </div>
+          <ImageFallback variant="missing" />
         )}
 
         <StatusBadges
@@ -104,8 +106,7 @@ export const SubmissionCard = memo(function SubmissionCard({
           flagStatus={submission.flagStatus}
         />
 
-        {/* Hover toolbar */}
-        <div className="absolute inset-x-0 bottom-0 p-2 bg-gradient-to-t from-black/90 to-transparent opacity-0 group-hover:opacity-100 transition-opacity">
+        <div className="absolute inset-x-0 bottom-0 bg-linear-to-t from-background/90 via-background/60 to-transparent p-2 opacity-0 transition-opacity group-has-focus-visible:opacity-100 group-hover:opacity-100">
           <VotingToolbar
             flagStatus={submission.flagStatus}
             placement={submission.placement}
@@ -116,9 +117,12 @@ export const SubmissionCard = memo(function SubmissionCard({
         </div>
       </div>
 
-      <div className="px-2 py-1.5 bg-slate-900">
-        <p className="text-xs text-slate-300 truncate">{submission.title}</p>
-      </div>
+      <p
+        className="truncate px-2 py-1.5 text-xs text-muted-foreground"
+        title={submission.title}
+      >
+        {submission.title}
+      </p>
     </div>
   );
 });

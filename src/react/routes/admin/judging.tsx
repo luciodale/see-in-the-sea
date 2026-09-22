@@ -12,8 +12,8 @@ import { PortfolioInspectModal } from '../../components/judging/PortfolioInspect
 import { SubmissionInspectModal } from '../../components/judging/SubmissionInspectModal';
 import { RedirectToSignIn } from '../../components/RedirectToSignIn';
 import { useAdminContestId } from '../../hooks/useAdminContestId';
-import { useImageResize } from '../../hooks/useImageResize';
 import { useImageZoom } from '../../hooks/useImageZoom';
+import { useJudgingColumns } from '../../hooks/useJudgingColumns';
 import { useJudgingFilters } from '../../hooks/useJudgingFilters';
 import { useJudgingKeyboard } from '../../hooks/useJudgingKeyboard';
 import { useJudgingNavigation } from '../../hooks/useJudgingNavigation';
@@ -53,15 +53,9 @@ function JudgingPage() {
   const [filterStatus, setFilterStatus] = useState<FilterStatus>('all');
   const isMediterranean = activeCategory === 'mediterranean';
 
-  const defaultColumns = isMediterranean
-    ? filterStatus === 'shortlisted'
-      ? 1
-      : 3
-    : 4;
-  const { columns, setColumns } = useImageResize(
+  const { columns, setColumns, isResizable } = useJudgingColumns(
     activeCategory,
-    filterStatus,
-    defaultColumns
+    filterStatus
   );
 
   // Data
@@ -152,7 +146,7 @@ function JudgingPage() {
     <>
       <SignedIn>
         {isAdmin ? (
-          <div className="text-white">
+          <div className="text-foreground">
             <AdminTabs
               contests={contests}
               selectedContestId={contestId}
@@ -167,6 +161,7 @@ function JudgingPage() {
               placementCounts={placementCounts}
               sortedCount={sortedSubmissions.length}
               columns={columns}
+              isResizable={isResizable}
               syncStatus={syncStatus}
               onColumnsChange={setColumns}
               onCategoryChange={handleCategoryChange}
@@ -194,6 +189,7 @@ function JudgingPage() {
                   resetPortfolioOrder={resetPortfolioOrder}
                   onInspectSubmission={nav.openSubmission}
                   onInspectPortfolio={nav.openPortfolio}
+                  onOpenPortfolioPhoto={nav.openPortfolioPhoto}
                   onFlag={setFlagStatus}
                   onPlace={setPlacement}
                   onPortfolioFlag={setPortfolioFlag}

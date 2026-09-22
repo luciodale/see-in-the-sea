@@ -1,6 +1,7 @@
 import { useSortable } from '@dnd-kit/sortable';
 import { CSS } from '@dnd-kit/utilities';
 import { GripVertical } from 'lucide-react';
+import { cn } from '../ui/cn';
 
 type SortableItemProps = {
   id: string;
@@ -33,17 +34,18 @@ export function SortableItem({
 
   return (
     <div ref={setNodeRef} style={style}>
-      <div
+      <button
+        type="button"
         {...attributes}
         {...listeners}
-        className={`absolute z-10 cursor-grab active:cursor-grabbing ${
-          layout === 'vertical' ? 'right-2 top-2' : 'right-1.5 top-1.5'
-        }`}
+        aria-label="Trascina per riordinare"
+        className={cn(
+          'absolute z-10 cursor-grab rounded-md bg-background/70 p-1 text-muted-foreground backdrop-blur-sm transition-colors hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring active:cursor-grabbing',
+          layout === 'vertical' ? 'top-2 right-2' : 'top-1.5 right-1.5'
+        )}
       >
-        <div className="bg-slate-800/80 backdrop-blur-sm rounded p-1 hover:bg-slate-700 transition-colors">
-          <GripVertical className="w-4 h-4 text-slate-400 hover:text-white transition-colors" />
-        </div>
-      </div>
+        <GripVertical className="size-4" />
+      </button>
       {children}
     </div>
   );
