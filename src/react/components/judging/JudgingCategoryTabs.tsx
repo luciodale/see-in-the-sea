@@ -1,4 +1,4 @@
-import { Check, Minus, Plus, RotateCcw, Send } from 'lucide-react';
+import { Check, Eye, EyeOff, Minus, Plus, RotateCcw, Send } from 'lucide-react';
 import { CURRENT_CONTEST_CATEGORIES } from '../../../constants/categories';
 import type {
   FilterStatus,
@@ -25,8 +25,8 @@ type FilterOption = {
 const FILTER_OPTIONS: readonly FilterOption[] = [
   { value: 'all', label: 'Tutti', countKey: 'total' },
   { value: 'pending', label: 'In attesa', countKey: 'pending' },
-  { value: 'shortlisted', label: 'Selezionati', countKey: 'shortlisted' },
   { value: 'rejected', label: 'Scartati', countKey: 'rejected' },
+  { value: 'shortlisted', label: 'Selezionati', countKey: 'shortlisted' },
   { value: 'winners', label: 'Vincitori', countKey: 'winners' },
 ];
 
@@ -43,8 +43,10 @@ type JudgingCategoryTabsProps = {
   counts: JudgingCounts;
   columns: number;
   isResizable: boolean;
+  areNamesRevealed: boolean;
   syncStatus: SyncStatus;
   onColumnsChange: (columns: number) => void;
+  onToggleNames: () => void;
   onCategoryChange: (categoryId: string) => void;
   onFilterChange: (status: FilterStatus) => void;
   onResetJudging: () => void;
@@ -58,8 +60,10 @@ export function JudgingCategoryTabs({
   counts,
   columns,
   isResizable,
+  areNamesRevealed,
   syncStatus,
   onColumnsChange,
+  onToggleNames,
   onCategoryChange,
   onFilterChange,
   onResetJudging,
@@ -151,39 +155,61 @@ export function JudgingCategoryTabs({
             ))}
           </div>
 
-          {isResizable && (
-            <div className="ml-auto flex shrink-0 items-center gap-1.5">
-              <button
-                type="button"
-                aria-label="Anteprime più piccole"
-                onClick={() => onColumnsChange(columns + 1)}
-                disabled={columns >= MAX_COLUMNS}
-                className={resizerButtonClass}
-              >
-                <Minus className="size-3" />
-              </button>
-              <input
-                type="range"
-                aria-label="Dimensione anteprime"
-                min={MIN_COLUMNS}
-                max={MAX_COLUMNS}
-                value={MAX_COLUMNS + 1 - columns}
-                onChange={e =>
-                  onColumnsChange(MAX_COLUMNS + 1 - Number(e.target.value))
-                }
-                className="w-16 accent-foreground"
-              />
-              <button
-                type="button"
-                aria-label="Anteprime più grandi"
-                onClick={() => onColumnsChange(columns - 1)}
-                disabled={columns <= MIN_COLUMNS}
-                className={resizerButtonClass}
-              >
-                <Plus className="size-3" />
-              </button>
-            </div>
-          )}
+          <div className="ml-auto flex shrink-0 items-center gap-3">
+            {/* Judging is anonymous; names are fetched only on request */}
+            <button
+              type="button"
+              onClick={onToggleNames}
+              aria-pressed={areNamesRevealed}
+              className={cn(
+                'flex items-center gap-1.5 px-2.5 py-1 text-xs rounded-md transition-colors cursor-pointer',
+                areNamesRevealed
+                  ? 'bg-foreground/15 font-medium text-foreground'
+                  : 'text-muted-foreground hover:text-foreground'
+              )}
+            >
+              {areNamesRevealed ? (
+                <EyeOff className="size-3.5" />
+              ) : (
+                <Eye className="size-3.5" />
+              )}
+              {areNamesRevealed ? 'Nascondi nomi' : 'Rivela nomi'}
+            </button>
+
+            {isResizable && (
+              <div className="flex items-center gap-1.5">
+                <button
+                  type="button"
+                  aria-label="Anteprime più piccole"
+                  onClick={() => onColumnsChange(columns + 1)}
+                  disabled={columns >= MAX_COLUMNS}
+                  className={resizerButtonClass}
+                >
+                  <Minus className="size-3" />
+                </button>
+                <input
+                  type="range"
+                  aria-label="Dimensione anteprime"
+                  min={MIN_COLUMNS}
+                  max={MAX_COLUMNS}
+                  value={MAX_COLUMNS + 1 - columns}
+                  onChange={e =>
+                    onColumnsChange(MAX_COLUMNS + 1 - Number(e.target.value))
+                  }
+                  className="w-16 accent-foreground"
+                />
+                <button
+                  type="button"
+                  aria-label="Anteprime più grandi"
+                  onClick={() => onColumnsChange(columns - 1)}
+                  disabled={columns <= MIN_COLUMNS}
+                  className={resizerButtonClass}
+                >
+                  <Plus className="size-3" />
+                </button>
+              </div>
+            )}
+          </div>
         </div>
       </div>
     </>

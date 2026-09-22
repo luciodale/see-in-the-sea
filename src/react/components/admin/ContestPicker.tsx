@@ -56,10 +56,7 @@ export function ContestPicker({
           {selected ? (
             <>
               <StatusDot status={selected.status} />
-              <span className="truncate">
-                {selected.name}{' '}
-                <span className="text-muted-foreground">{selected.year}</span>
-              </span>
+              <span className="truncate">{selected.name}</span>
             </>
           ) : (
             <span className="text-muted-foreground">Seleziona concorso</span>
@@ -78,10 +75,7 @@ export function ContestPicker({
               className="group flex items-center gap-3 rounded-md px-3 py-2 text-sm text-foreground/85 transition-colors cursor-pointer data-focus:bg-surface-hover data-focus:text-foreground data-selected:text-foreground"
             >
               <StatusDot status={contest.status} />
-              <span className="flex-1 whitespace-nowrap">
-                {contest.name}{' '}
-                <span className="text-muted-foreground">{contest.year}</span>
-              </span>
+              <span className="flex-1 whitespace-nowrap">{contest.name}</span>
               {STATUS_LABEL[contest.status] && (
                 <span className="text-editorial uppercase tracking-editorial text-subtle-foreground">
                   {STATUS_LABEL[contest.status]}

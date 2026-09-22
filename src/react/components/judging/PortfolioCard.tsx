@@ -1,6 +1,7 @@
 import { Images } from 'lucide-react';
 import { memo, useCallback, useState } from 'react';
 import { PHOTO_TYPES } from '../../../constants';
+import type { JudgingIdentity } from '../../hooks/useJudgingIdentities';
 import type {
   FlagStatus,
   JudgingSubmission,
@@ -14,6 +15,7 @@ import { VotingToolbar } from './VotingToolbar';
 
 type PortfolioCardProps = {
   portfolioId: string;
+  identity?: JudgingIdentity | null;
   submissions: JudgingSubmission[];
   showImages?: boolean;
   // When set, each photo opens zoomed and the card itself is not clickable
@@ -29,6 +31,7 @@ type PortfolioCardProps = {
 
 export const PortfolioCard = memo(function PortfolioCard({
   portfolioId,
+  identity,
   submissions: portfolioSubmissions,
   showImages = false,
   onOpenPhoto,
@@ -195,8 +198,11 @@ export const PortfolioCard = memo(function PortfolioCard({
         </div>
       </div>
 
-      <p className="px-2 py-1.5 text-center text-xs text-muted-foreground">
-        Portfolio
+      <p
+        className="truncate px-2 py-1.5 text-center text-xs text-muted-foreground"
+        title={identity?.email}
+      >
+        {identity ? identity.name || identity.email : 'Portfolio'}
       </p>
     </>
   );

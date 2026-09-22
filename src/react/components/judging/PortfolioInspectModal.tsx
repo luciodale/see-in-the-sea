@@ -1,5 +1,6 @@
 import { X } from 'lucide-react';
 import { useInspectChrome } from '../../hooks/useInspectChrome';
+import type { JudgingIdentity } from '../../hooks/useJudgingIdentities';
 import { usePortfolioLayout } from '../../hooks/usePortfolioLayout';
 import type {
   FlagStatus,
@@ -20,6 +21,7 @@ import { VotingToolbar } from './VotingToolbar';
 
 type PortfolioInspectModalProps = {
   portfolio: PortfolioGroup;
+  identity: JudgingIdentity | null;
   portfolioIndex: number;
   portfoliosTotal: number;
   canGoPrev: boolean;
@@ -56,6 +58,7 @@ type PortfolioInspectModalProps = {
 
 export function PortfolioInspectModal({
   portfolio,
+  identity,
   portfolioIndex,
   portfoliosTotal,
   canGoPrev,
@@ -146,6 +149,14 @@ export function PortfolioInspectModal({
                 <span className="text-xs tabular-nums text-subtle-foreground">
                   {portfolioIndex + 1}/{portfoliosTotal}
                 </span>
+                {identity && (
+                  <span
+                    className="truncate text-xs text-muted-foreground"
+                    title={identity.email}
+                  >
+                    {identity.name || identity.email}
+                  </span>
+                )}
               </div>
               <span className="text-xs text-subtle-foreground">
                 Usa le frecce per navigare · Clicca una foto per ingrandire

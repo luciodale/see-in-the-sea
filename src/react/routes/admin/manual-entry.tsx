@@ -18,17 +18,17 @@ function AdminManualEntry() {
   const [userEmail, setUserEmail] = useState<string | null>(null);
   const [isLoading, setIsLoading] = useState(false);
 
-  const handleEmailSubmit = (email: string) => {
+  function handleEmailSubmit(email: string) {
     setIsLoading(true);
     setTimeout(() => {
       setUserEmail(email);
       setIsLoading(false);
     }, 500);
-  };
+  }
 
-  const handleEmailChange = () => {
+  function handleEmailChange() {
     setUserEmail(null);
-  };
+  }
 
   if (!isLoaded) {
     return <AdminPageLoader />;
@@ -38,16 +38,16 @@ function AdminManualEntry() {
     <>
       <SignedIn>
         {isAdmin ? (
-          <div className="text-slate-100">
+          <div className="text-foreground">
             <AdminTabs />
 
             <main className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
-              <div className="space-y-6">
-                <div>
-                  <h2 className="text-lg font-semibold text-white">
+              <div className="flex flex-col gap-4">
+                <div className="flex flex-col gap-0.5">
+                  <h2 className="text-base font-medium text-foreground">
                     Inserimento Manuale
                   </h2>
-                  <p className="mt-0.5 text-sm text-slate-400">
+                  <p className="text-xs text-subtle-foreground">
                     Carica foto per conto degli utenti per il concorso 2025.
                   </p>
                 </div>

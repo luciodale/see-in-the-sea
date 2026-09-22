@@ -11,6 +11,8 @@ import { MediterraneanPortfolioManager } from './MediterraneanPortfolioManager';
 import { SubmissionManageModal } from './SubmissionManageModal';
 import { SuccessModal } from './SuccessModal';
 import { UploadModal } from './UploadModal';
+import { Button } from './ui/Button';
+import { cn } from './ui/cn';
 
 type CategoryState = UICategory;
 
@@ -186,10 +188,10 @@ export function AdminImpersonationInterface({
     // Error is now handled in the UploadModal component
   }
 
-  const handleManageSubmission = (submission: UISubmission) => {
+  function handleManageSubmission(submission: UISubmission) {
     setSelectedSubmission(submission);
     setIsManageModalOpen(true);
-  };
+  }
 
   async function handleDeleteSubmission(submissionId: string) {
     try {
@@ -222,49 +224,64 @@ export function AdminImpersonationInterface({
 
   if (loading) {
     return (
-      <div className="flex items-center justify-center p-12">
-        <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-accent"></div>
-        <span className="ml-3 text-slate-300">Caricamento...</span>
+      <div className="flex flex-col items-center gap-3 px-4 py-12 text-sm text-muted-foreground">
+        <div className="size-8 animate-spin rounded-full border-b-2 border-foreground/70" />
+        Caricamento...
       </div>
     );
   }
 
   const activeCategory = categories.find(cat => cat.id === activeCategoryId);
+  const showJudges = !noActiveContest && judges.length > 0;
 
   return (
-    <div className="space-y-6">
+    <div className="flex flex-col gap-4">
       {/* Header with user email and change button */}
-      <div className="text-center">
-        <h1 className="text-3xl font-bold text-white">
-          Concorso UW 2025: Caricamento Amministratore
-        </h1>
-        <div className="mt-2 flex items-center justify-center gap-4">
-          <p className="text-slate-300">
-            Caricamento per conto di:{' '}
-            <span className="font-semibold text-white">{userEmail}</span>
-          </p>
-          <button
-            type="button"
+      <section className="flex flex-col rounded-xl border border-border bg-background">
+        <header
+          className={cn(
+            'flex flex-col gap-3 px-4 py-3 sm:flex-row sm:items-center sm:justify-between',
+            showJudges && 'border-b border-border'
+          )}
+        >
+          <div className="flex min-w-0 flex-col gap-0.5">
+            <p className="text-xs text-subtle-foreground">
+              Caricamento per conto di{' '}
+              <span className="text-foreground" title={userEmail}>
+                {userEmail}
+              </span>
+            </p>
+          </div>
+          <Button
+            variant="secondary"
+            size="sm"
             onClick={onEmailChange}
-            className="px-3 py-1 bg-slate-700 hover:bg-slate-600 text-slate-300 rounded-lg text-sm transition-colors cursor-pointer"
+            className="shrink-0 self-start sm:self-auto"
           >
             Cambia Email
-          </button>
-        </div>
-        {!noActiveContest && (
-          <JudgesBar judges={judges} label={t('submissions.jury')} />
+          </Button>
+        </header>
+
+        {showJudges && (
+          <div className="px-4 pb-3">
+            <JudgesBar
+              judges={judges}
+              label={t('submissions.jury')}
+              className="justify-start mt-0"
+            />
+          </div>
         )}
-      </div>
+      </section>
 
       {error && (
-        <div className="bg-red-900/40 border border-red-800 text-red-200 rounded-lg p-4">
+        <div className="rounded-lg border border-destructive/30 bg-destructive/10 p-4 text-sm text-destructive">
           {error}
         </div>
       )}
 
       {/* No active contest message */}
       {noActiveContest && (
-        <div className="bg-slate-900 border border-slate-700 text-slate-200 rounded-lg p-6 text-center">
+        <div className="rounded-xl border border-border bg-surface p-6 text-center text-sm text-muted-foreground">
           {t('submissions.closed')}
         </div>
       )}

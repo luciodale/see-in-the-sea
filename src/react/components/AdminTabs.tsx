@@ -41,14 +41,6 @@ export function AdminTabs({
             Valutazione
           </Link>
           <Link
-            to="/admin/winners"
-            search={search}
-            className={linkClass}
-            activeProps={{ className: activeLinkClass }}
-          >
-            Vincitori
-          </Link>
-          <Link
             to="/admin/manual-entry"
             className={linkClass}
             activeProps={{ className: activeLinkClass }}

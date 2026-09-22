@@ -1,5 +1,6 @@
 import { X } from 'lucide-react';
 import { useInspectChrome } from '../../hooks/useInspectChrome';
+import type { JudgingIdentity } from '../../hooks/useJudgingIdentities';
 import type {
   FlagStatus,
   JudgingSubmission,
@@ -18,6 +19,7 @@ import { VotingToolbar } from './VotingToolbar';
 
 type SubmissionInspectModalProps = {
   submission: JudgingSubmission;
+  identity: JudgingIdentity | null;
   index: number;
   total: number;
   canGoPrev: boolean;
@@ -37,6 +39,7 @@ type SubmissionInspectModalProps = {
 
 export function SubmissionInspectModal({
   submission,
+  identity,
   index,
   total,
   canGoPrev,
@@ -105,6 +108,14 @@ export function SubmissionInspectModal({
               <span className="shrink-0 text-xs tabular-nums text-subtle-foreground">
                 {index + 1}/{total}
               </span>
+              {identity && (
+                <span
+                  className="truncate text-xs text-muted-foreground"
+                  title={identity.email}
+                >
+                  {identity.name || identity.email}
+                </span>
+              )}
             </div>
             {submission.description?.trim() && (
               <button

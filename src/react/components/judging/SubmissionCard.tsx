@@ -1,4 +1,5 @@
 import { memo, useCallback, useState } from 'react';
+import type { JudgingIdentity } from '../../hooks/useJudgingIdentities';
 import type {
   FlagStatus,
   JudgingSubmission,
@@ -12,6 +13,7 @@ import { VotingToolbar } from './VotingToolbar';
 
 type SubmissionCardProps = {
   submission: JudgingSubmission;
+  identity?: JudgingIdentity | null;
   size?: 'normal' | 'large';
   onInspect: (id: string) => void;
   onFlag: (submissionId: string, status: FlagStatus) => void;
@@ -20,6 +22,7 @@ type SubmissionCardProps = {
 
 export const SubmissionCard = memo(function SubmissionCard({
   submission,
+  identity,
   size = 'normal',
   onInspect,
   onFlag,
@@ -117,12 +120,22 @@ export const SubmissionCard = memo(function SubmissionCard({
         </div>
       </div>
 
-      <p
-        className="truncate px-2 py-1.5 text-xs text-muted-foreground"
-        title={submission.title}
-      >
-        {submission.title}
-      </p>
+      <div className="flex flex-col gap-0.5 px-2 py-1.5">
+        <p
+          className="truncate text-xs text-muted-foreground"
+          title={submission.title}
+        >
+          {submission.title}
+        </p>
+        {identity && (
+          <p
+            className="truncate text-tiny text-subtle-foreground"
+            title={identity.email}
+          >
+            {identity.name || identity.email}
+          </p>
+        )}
+      </div>
     </div>
   );
 });

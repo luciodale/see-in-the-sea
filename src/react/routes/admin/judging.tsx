@@ -15,6 +15,7 @@ import { useAdminContestId } from '../../hooks/useAdminContestId';
 import { useImageZoom } from '../../hooks/useImageZoom';
 import { useJudgingColumns } from '../../hooks/useJudgingColumns';
 import { useJudgingFilters } from '../../hooks/useJudgingFilters';
+import { useJudgingIdentities } from '../../hooks/useJudgingIdentities';
 import { useJudgingKeyboard } from '../../hooks/useJudgingKeyboard';
 import { useJudgingNavigation } from '../../hooks/useJudgingNavigation';
 import { useJudgingSubmissions } from '../../hooks/useJudgingSubmissions';
@@ -51,12 +52,15 @@ function JudgingPage() {
     CURRENT_CONTEST_CATEGORIES[0].id
   );
   const [filterStatus, setFilterStatus] = useState<FilterStatus>('all');
+  const [areNamesRevealed, setAreNamesRevealed] = useState(false);
   const isMediterranean = activeCategory === 'mediterranean';
 
   const { columns, setColumns, isResizable } = useJudgingColumns(
     activeCategory,
     filterStatus
   );
+
+  const { identities } = useJudgingIdentities(contestId, areNamesRevealed);
 
   // Data
   const {
@@ -159,8 +163,10 @@ function JudgingPage() {
               counts={counts}
               columns={columns}
               isResizable={isResizable}
+              areNamesRevealed={areNamesRevealed}
               syncStatus={syncStatus}
               onColumnsChange={setColumns}
+              onToggleNames={() => setAreNamesRevealed(revealed => !revealed)}
               onCategoryChange={handleCategoryChange}
               onFilterChange={setFilterStatus}
               onResetJudging={resetJudging}
@@ -171,6 +177,7 @@ function JudgingPage() {
               <div className="max-w-7xl mx-auto">
                 <JudgingContentGrid
                   columns={columns}
+                  identities={identities}
                   loading={loading}
                   error={error}
                   filterStatus={filterStatus}
@@ -198,6 +205,7 @@ function JudgingPage() {
             {nav.inspectedSubmission && (
               <SubmissionInspectModal
                 submission={nav.inspectedSubmission}
+                identity={identities?.get(nav.inspectedSubmission.id) ?? null}
                 index={nav.inspectedIndex}
                 total={sortedSubmissions.length}
                 canGoPrev={nav.canGoPrev}
@@ -219,6 +227,10 @@ function JudgingPage() {
             {nav.inspectedPortfolio && (
               <PortfolioInspectModal
                 portfolio={nav.inspectedPortfolio}
+                identity={
+                  identities?.get(nav.inspectedPortfolio.submissions[0].id) ??
+                  null
+                }
                 portfolioIndex={nav.inspectedPortfolioIndex}
                 portfoliosTotal={portfoliosList.length}
                 canGoPrev={nav.canGoToPrevPortfolio}

@@ -14,6 +14,7 @@ import {
 } from '@dnd-kit/sortable';
 import { ImageOff, Trophy } from 'lucide-react';
 import { useCallback, useMemo, useState } from 'react';
+import type { JudgingIdentities } from '../../hooks/useJudgingIdentities';
 import type {
   FilterStatus,
   FlagStatus,
@@ -30,6 +31,7 @@ import { VirtualizedGrid } from './VirtualizedGrid';
 
 type JudgingContentGridProps = {
   columns: number;
+  identities: JudgingIdentities | null;
   loading: boolean;
   error: string | null;
   filterStatus: FilterStatus;
@@ -67,6 +69,7 @@ const gridStyle = (cols: number) => ({
 
 export function JudgingContentGrid({
   columns,
+  identities,
   loading,
   error,
   filterStatus,
@@ -193,6 +196,9 @@ export function JudgingContentGrid({
                   key={portfolio.portfolioId}
                   portfolioId={portfolio.portfolioId}
                   submissions={portfolio.submissions}
+                  identity={
+                    identities?.get(portfolio.submissions[0].id) ?? null
+                  }
                   showImages
                   onOpenPhoto={onOpenPortfolioPhoto}
                   onInspect={onInspectPortfolio}
@@ -214,6 +220,9 @@ export function JudgingContentGrid({
                   key={portfolio.portfolioId}
                   portfolioId={portfolio.portfolioId}
                   submissions={portfolio.submissions}
+                  identity={
+                    identities?.get(portfolio.submissions[0].id) ?? null
+                  }
                   showImages
                   onOpenPhoto={onOpenPortfolioPhoto}
                   onInspect={onInspectPortfolio}
@@ -245,6 +254,7 @@ export function JudgingContentGrid({
               <SubmissionCard
                 key={placement}
                 submission={winner}
+                identity={identities?.get(winner.id) ?? null}
                 size="large"
                 onInspect={onInspectSubmission}
                 onFlag={onFlag}
@@ -280,6 +290,7 @@ export function JudgingContentGrid({
                 <SubmissionCard
                   key={submission.id}
                   submission={submission}
+                  identity={identities?.get(submission.id) ?? null}
                   onInspect={onInspectSubmission}
                   onFlag={onFlag}
                   onPlace={onPlace}
@@ -333,6 +344,9 @@ export function JudgingContentGrid({
                     <PortfolioCard
                       portfolioId={portfolio.portfolioId}
                       submissions={portfolio.submissions}
+                      identity={
+                        identities?.get(portfolio.submissions[0].id) ?? null
+                      }
                       showImages
                       onInspect={onInspectPortfolio}
                       onFlag={onPortfolioFlag}
@@ -404,6 +418,7 @@ export function JudgingContentGrid({
                 <SortableItem key={submission.id} id={submission.id}>
                   <SubmissionCard
                     submission={submission}
+                    identity={identities?.get(submission.id) ?? null}
                     size="large"
                     onInspect={onInspectSubmission}
                     onFlag={onFlag}
@@ -443,6 +458,7 @@ export function JudgingContentGrid({
       renderItem={submission => (
         <SubmissionCard
           submission={submission}
+          identity={identities?.get(submission.id) ?? null}
           size="large"
           onInspect={onInspectSubmission}
           onFlag={onFlag}
