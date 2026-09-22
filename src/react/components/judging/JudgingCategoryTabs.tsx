@@ -5,7 +5,6 @@ import type {
   JudgingSubmission,
   SyncStatus,
 } from '../../types/judging';
-import { PLACEMENTS } from '../../types/judging';
 import { Button } from '../ui/Button';
 import { cn } from '../ui/cn';
 
@@ -42,8 +41,6 @@ type JudgingCategoryTabsProps = {
   filterStatus: FilterStatus;
   submissions: JudgingSubmission[];
   counts: JudgingCounts;
-  placementCounts: Record<string, number>;
-  sortedCount: number;
   columns: number;
   isResizable: boolean;
   syncStatus: SyncStatus;
@@ -59,8 +56,6 @@ export function JudgingCategoryTabs({
   filterStatus,
   submissions,
   counts,
-  placementCounts,
-  sortedCount,
   columns,
   isResizable,
   syncStatus,
@@ -132,7 +127,7 @@ export function JudgingCategoryTabs({
         </div>
       </div>
 
-      {/* Row 2: Filters + Stats + Resizer */}
+      {/* Row 2: Filters + Resizer */}
       <div className="border-b border-border px-4 py-2">
         <div className="mx-auto flex max-w-7xl flex-wrap items-center gap-x-4 gap-y-2">
           <div className="flex flex-wrap items-center gap-1">
@@ -156,66 +151,39 @@ export function JudgingCategoryTabs({
             ))}
           </div>
 
-          <div className="ml-auto flex shrink-0 items-center gap-3 text-xs">
-            <span className="text-subtle-foreground">
-              <span className="tabular-nums text-foreground">
-                {sortedCount}
-              </span>{' '}
-              foto
-            </span>
-
-            <div className="flex items-center gap-2 border-l border-border pl-3">
-              {PLACEMENTS.map(p => (
-                <span key={p.value} className="flex items-center gap-1">
-                  <span
-                    className={cn(
-                      'flex size-4 items-center justify-center text-tiny font-semibold rounded',
-                      p.color
-                    )}
-                  >
-                    {p.label}
-                  </span>
-                  <span className="tabular-nums text-muted-foreground">
-                    {(p.value ? placementCounts[p.value] : 0) || 0}
-                  </span>
-                </span>
-              ))}
+          {isResizable && (
+            <div className="ml-auto flex shrink-0 items-center gap-1.5">
+              <button
+                type="button"
+                aria-label="Anteprime più piccole"
+                onClick={() => onColumnsChange(columns + 1)}
+                disabled={columns >= MAX_COLUMNS}
+                className={resizerButtonClass}
+              >
+                <Minus className="size-3" />
+              </button>
+              <input
+                type="range"
+                aria-label="Dimensione anteprime"
+                min={MIN_COLUMNS}
+                max={MAX_COLUMNS}
+                value={MAX_COLUMNS + 1 - columns}
+                onChange={e =>
+                  onColumnsChange(MAX_COLUMNS + 1 - Number(e.target.value))
+                }
+                className="w-16 accent-foreground"
+              />
+              <button
+                type="button"
+                aria-label="Anteprime più grandi"
+                onClick={() => onColumnsChange(columns - 1)}
+                disabled={columns <= MIN_COLUMNS}
+                className={resizerButtonClass}
+              >
+                <Plus className="size-3" />
+              </button>
             </div>
-
-            {isResizable && (
-              <div className="flex items-center gap-1.5 border-l border-border pl-3">
-                <button
-                  type="button"
-                  aria-label="Anteprime più piccole"
-                  onClick={() => onColumnsChange(columns + 1)}
-                  disabled={columns >= MAX_COLUMNS}
-                  className={resizerButtonClass}
-                >
-                  <Minus className="size-3" />
-                </button>
-                <input
-                  type="range"
-                  aria-label="Dimensione anteprime"
-                  min={MIN_COLUMNS}
-                  max={MAX_COLUMNS}
-                  value={MAX_COLUMNS + 1 - columns}
-                  onChange={e =>
-                    onColumnsChange(MAX_COLUMNS + 1 - Number(e.target.value))
-                  }
-                  className="w-16 accent-foreground"
-                />
-                <button
-                  type="button"
-                  aria-label="Anteprime più grandi"
-                  onClick={() => onColumnsChange(columns - 1)}
-                  disabled={columns <= MIN_COLUMNS}
-                  className={resizerButtonClass}
-                >
-                  <Plus className="size-3" />
-                </button>
-              </div>
-            )}
-          </div>
+          )}
         </div>
       </div>
     </>

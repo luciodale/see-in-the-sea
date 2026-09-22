@@ -24,7 +24,6 @@ type UseJudgingFiltersResult = {
     pending: number;
     winners: number;
   };
-  placementCounts: Record<string, number>;
   shortlistedSubmissions: JudgingSubmission[];
   shortlistedPortfolios: (PortfolioGroup & { id: string })[];
 };
@@ -160,28 +159,6 @@ export function useJudgingFilters({
     };
   }, [isMediterranean, categorySubmissions, getUniquePortfolioKeys]);
 
-  const placementCounts = useMemo(() => {
-    if (isMediterranean) {
-      return (['first', 'second', 'third', 'runner-up'] as const).reduce(
-        (acc, placement) => {
-          const uniquePortfolioKeys = getUniquePortfolioKeys(
-            categorySubmissions.filter(s => s.placement === placement)
-          );
-          acc[placement] = uniquePortfolioKeys.length;
-          return acc;
-        },
-        {} as Record<string, number>
-      );
-    }
-    return categorySubmissions.reduce(
-      (acc, s) => {
-        if (s.placement) acc[s.placement] = (acc[s.placement] || 0) + 1;
-        return acc;
-      },
-      {} as Record<string, number>
-    );
-  }, [isMediterranean, categorySubmissions, getUniquePortfolioKeys]);
-
   const shortlistedSubmissions = useMemo(
     () => categorySubmissions.filter(s => s.flagStatus === 'shortlisted'),
     [categorySubmissions]
@@ -201,7 +178,6 @@ export function useJudgingFilters({
     portfoliosList,
     groupedByUser,
     counts,
-    placementCounts,
     shortlistedSubmissions,
     shortlistedPortfolios,
   };

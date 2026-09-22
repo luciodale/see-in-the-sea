@@ -77,7 +77,6 @@ function JudgingPage() {
     portfoliosList,
     groupedByUser,
     counts,
-    placementCounts,
     shortlistedSubmissions,
     shortlistedPortfolios,
   } = useJudgingFilters({
@@ -158,8 +157,6 @@ function JudgingPage() {
               filterStatus={filterStatus}
               submissions={submissions}
               counts={counts}
-              placementCounts={placementCounts}
-              sortedCount={sortedSubmissions.length}
               columns={columns}
               isResizable={isResizable}
               syncStatus={syncStatus}
