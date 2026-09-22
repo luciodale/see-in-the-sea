@@ -40,7 +40,7 @@ function AdminCurrentContest() {
     <>
       <SignedIn>
         {isAdmin ? (
-          <div className="text-slate-100">
+          <div className="text-foreground">
             <AdminTabs
               contests={contests}
               selectedContestId={contestId}
@@ -52,11 +52,11 @@ function AdminCurrentContest() {
                   <AdminSubmissionsViewer contestId={contestId} />
                 </div>
               ) : (
-                <div className="bg-slate-800 border border-slate-700 text-slate-200 rounded-lg p-6 text-center">
-                  <h2 className="text-lg font-semibold mb-1">
+                <div className="flex flex-col gap-1 rounded-xl border border-border bg-surface p-6 text-center">
+                  <h2 className="text-lg font-medium text-foreground">
                     Nessun Concorso Trovato
                   </h2>
-                  <p className="text-sm text-slate-400">
+                  <p className="text-sm text-muted-foreground">
                     Non ci sono concorsi disponibili.
                   </p>
                 </div>

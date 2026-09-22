@@ -1,5 +1,6 @@
 import { Link } from '@tanstack/react-router';
 import type { ContestSummary } from '../../types/api';
+import { ContestPicker } from './admin/ContestPicker';
 
 type AdminTabsProps = {
   contests?: ContestSummary[];
@@ -8,8 +9,8 @@ type AdminTabsProps = {
 };
 
 const linkClass =
-  'px-3 py-1.5 rounded text-sm text-slate-400 hover:text-white transition-colors';
-const activeLinkClass = 'bg-slate-800 text-white font-medium';
+  'rounded-md px-3 py-1.5 text-sm text-muted-foreground transition-colors hover:text-foreground';
+const activeLinkClass = 'bg-surface-raised font-medium text-foreground';
 
 export function AdminTabs({
   contests,
@@ -20,7 +21,7 @@ export function AdminTabs({
   const search = selectedContestId ? { contestId: selectedContestId } : {};
 
   return (
-    <div className="px-4 py-2 border-b border-slate-800">
+    <div className="border-b border-border px-4 py-2">
       <div className="max-w-7xl mx-auto flex items-center justify-between gap-4">
         <nav className="flex items-center gap-1 flex-wrap">
           <Link
@@ -64,22 +65,11 @@ export function AdminTabs({
         </nav>
 
         {showSelector && (
-          <select
-            value={selectedContestId ?? ''}
-            onChange={e => onContestChange(e.target.value)}
-            className="bg-slate-800 border border-slate-700 text-slate-200 rounded px-2.5 py-1 text-sm focus:outline-none focus:ring-1 focus:ring-emerald-500 shrink-0"
-          >
-            {contests.map(c => (
-              <option key={c.id} value={c.id}>
-                {c.name} ({c.year})
-                {c.status === 'active'
-                  ? ' - Attivo'
-                  : c.status === 'assessment'
-                    ? ' - Valutazione'
-                    : ''}
-              </option>
-            ))}
-          </select>
+          <ContestPicker
+            contests={contests}
+            selectedContestId={selectedContestId}
+            onChange={onContestChange}
+          />
         )}
       </div>
     </div>
