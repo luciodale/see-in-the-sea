@@ -139,7 +139,7 @@ export function JudgingCategoryTabs({
                 className={cn(
                   'flex items-center gap-1.5 px-2.5 py-1 text-xs rounded-md transition-colors cursor-pointer',
                   filterStatus === filter.value
-                    ? 'bg-surface-raised text-foreground'
+                    ? 'bg-foreground/15 font-medium text-foreground'
                     : 'text-muted-foreground hover:text-foreground'
                 )}
               >

@@ -10,7 +10,7 @@ type AdminTabsProps = {
 
 const linkClass =
   'rounded-md px-3 py-1.5 text-sm text-muted-foreground transition-colors hover:text-foreground';
-const activeLinkClass = 'bg-surface-raised font-medium text-foreground';
+const activeLinkClass = 'bg-foreground/15 font-medium text-foreground';
 
 export function AdminTabs({
   contests,

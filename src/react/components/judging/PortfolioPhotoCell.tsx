@@ -20,7 +20,8 @@ type PortfolioPhotoCellProps = {
 // One photo of the portfolio overview: the image is sized by its own aspect
 // ratio inside the cell, so the border hugs the photo and no space is lost
 // to a card frame. Its height comes from flex shrinking rather than
-// max-h-full, which WebKit fails to update when the cell grows.
+// max-h-full, which WebKit fails to update when the cell grows. The button can
+// be wider than a height limited photo, so only the photo takes the pointer.
 export function PortfolioPhotoCell({
   photo,
   hasFailed,
@@ -47,8 +48,10 @@ export function PortfolioPhotoCell({
         onClick={() => onOpen(photo.id)}
         aria-label={`Ingrandisci ${label || photo.title}`}
         className={cn(
-          'group flex min-h-0 max-w-full flex-col items-center justify-center cursor-zoom-in focus-visible:outline-none',
-          !hasImage && 'flex-1 self-stretch'
+          'group flex min-h-0 max-w-full flex-col items-center justify-center focus-visible:outline-none',
+          hasImage
+            ? 'pointer-events-none'
+            : 'flex-1 self-stretch cursor-zoom-in'
         )}
       >
         {hasImage ? (
@@ -57,12 +60,12 @@ export function PortfolioPhotoCell({
             alt={photo.title}
             onLoad={event => onImageLoad(photo.id, event)}
             onError={() => onImageError(photo.id)}
-            className="min-h-0 max-w-full border border-border-strong object-contain group-focus-visible:ring-2 group-focus-visible:ring-ring"
+            className="pointer-events-auto min-h-0 max-w-full border border-border-strong object-contain cursor-zoom-in group-focus-visible:ring-2 group-focus-visible:ring-ring"
           />
         ) : (
           <ImageFallback
             variant={hasFailed ? 'failed' : 'missing'}
-            className="border border-border"
+            className="border border-border group-focus-visible:ring-2 group-focus-visible:ring-ring"
           />
         )}
       </button>

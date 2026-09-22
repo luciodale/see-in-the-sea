@@ -152,7 +152,7 @@ export function HoverRevealBar({
           {...{ [CHROME_IGNORE_ATTRIBUTE]: '' }}
           className={cn(
             'pointer-events-auto absolute left-3 transition-all duration-200',
-            isVisible ? 'bottom-full mb-2' : 'bottom-12'
+            isVisible ? 'bottom-full pb-2' : 'bottom-12'
           )}
         >
           {accessory}

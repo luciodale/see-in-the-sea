@@ -19,6 +19,24 @@ function containsPoint(element: HTMLElement | null, x: number, y: number) {
   return x >= rect.left && x <= rect.right && y >= rect.top && y <= rect.bottom;
 }
 
+function isInside(node: EventTarget | null, elements: (HTMLElement | null)[]) {
+  return (
+    node instanceof Node && elements.some(element => element?.contains(node))
+  );
+}
+
+// Read live rather than tracked through focus events: WebKit fires no blur
+// when a focused control unmounts, and a control focused by a click must not
+// pin the bars
+function hasKeyboardFocusIn(elements: (HTMLElement | null)[]) {
+  const active = document.activeElement;
+  return (
+    active instanceof HTMLElement &&
+    active.matches(':focus-visible') &&
+    isInside(active, elements)
+  );
+}
+
 // Visibility of an inspect view's top and bottom bars. They appear while the
 // pointer is near either edge, stay while it is over a bar (hit tested on the
 // bar's final position, so moving into a bar mid slide keeps it), and stay
@@ -27,7 +45,6 @@ export function useInspectChrome() {
   const [isChromeVisible, setIsChromeVisible] = useState(false);
   const topBarRef = useRef<HTMLDivElement>(null);
   const bottomBarRef = useRef<HTMLDivElement>(null);
-  const hasBarFocusRef = useRef(false);
 
   const handleMouseMove = useCallback((event: MouseEvent<HTMLElement>) => {
     if (
@@ -37,38 +54,37 @@ export function useInspectChrome() {
       return;
     }
 
+    const bars = [topBarRef.current, bottomBarRef.current];
     const { clientX, clientY } = event;
     const { top, bottom } = event.currentTarget.getBoundingClientRect();
     const isNearEdge =
       clientY - top <= EDGE_REVEAL_PX || bottom - clientY <= EDGE_REVEAL_PX;
-    const isOverBar =
-      containsPoint(topBarRef.current, clientX, clientY) ||
-      containsPoint(bottomBarRef.current, clientX, clientY);
+    const isOverBar = bars.some(bar => containsPoint(bar, clientX, clientY));
+    const hasBarFocus = hasKeyboardFocusIn(bars);
 
     setIsChromeVisible(
-      wasVisible =>
-        isNearEdge || hasBarFocusRef.current || (wasVisible && isOverBar)
+      wasVisible => isNearEdge || hasBarFocus || (wasVisible && isOverBar)
     );
   }, []);
 
   const handleMouseLeave = useCallback(() => {
-    if (!hasBarFocusRef.current) setIsChromeVisible(false);
+    if (!hasKeyboardFocusIn([topBarRef.current, bottomBarRef.current])) {
+      setIsChromeVisible(false);
+    }
   }, []);
 
   const handleBarFocus = useCallback((event: FocusEvent<HTMLElement>) => {
-    if (!event.target.matches(':focus-visible')) return;
-    hasBarFocusRef.current = true;
-    setIsChromeVisible(true);
+    if (event.target.matches(':focus-visible')) setIsChromeVisible(true);
   }, []);
 
   const handleBarBlur = useCallback((event: FocusEvent<HTMLElement>) => {
-    const next = event.relatedTarget;
-    if (next instanceof Node && event.currentTarget.contains(next)) return;
-    const wasKeyboardFocus = hasBarFocusRef.current;
-    hasBarFocusRef.current = false;
-    if (wasKeyboardFocus && !event.currentTarget.matches(':hover')) {
-      setIsChromeVisible(false);
-    }
+    const bars = [topBarRef.current, bottomBarRef.current];
+    // Focus moving within or between the bars, or onto the zoom chip
+    if (isInside(event.relatedTarget, bars)) return;
+    // Pointer on a bar: this blur is the mousedown of a click there, which
+    // hiding now would swallow
+    if (bars.some(bar => bar?.matches(':hover'))) return;
+    setIsChromeVisible(false);
   }, []);
 
   const surfaceHandlers = useMemo(

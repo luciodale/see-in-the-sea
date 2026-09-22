@@ -111,11 +111,17 @@ export function SubmissionInspectModal({
                 type="button"
                 onClick={onToggleDescription}
                 className={cn(
-                  'text-left text-xs text-muted-foreground transition-colors cursor-pointer hover:text-foreground',
-                  !descriptionExpanded && 'line-clamp-1'
+                  'text-left text-xs text-muted-foreground transition-colors cursor-pointer hover:text-foreground'
                 )}
               >
-                {submission.description}
+                <span
+                  className={cn(
+                    'block',
+                    !descriptionExpanded && 'line-clamp-1'
+                  )}
+                >
+                  {submission.description}
+                </span>
               </button>
             )}
           </div>

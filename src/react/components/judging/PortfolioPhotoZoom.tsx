@@ -145,11 +145,17 @@ export function PortfolioPhotoZoom({
                 type="button"
                 onClick={onToggleDescription}
                 className={cn(
-                  'max-w-md text-xs text-muted-foreground transition-colors cursor-pointer hover:text-foreground',
-                  !descriptionExpanded && 'line-clamp-2'
+                  'max-w-md text-xs text-muted-foreground transition-colors cursor-pointer hover:text-foreground'
                 )}
               >
-                {photo.description}
+                <span
+                  className={cn(
+                    'block',
+                    !descriptionExpanded && 'line-clamp-2'
+                  )}
+                >
+                  {photo.description}
+                </span>
               </button>
             )}
           </div>
