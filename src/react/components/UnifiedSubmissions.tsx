@@ -1,14 +1,20 @@
 import { useCallback, useEffect, useState } from 'react';
-import { DEFAULT_MAX_SUBMISSIONS_PER_CATEGORY } from '../../constants';
+import {
+  DEFAULT_MAX_SUBMISSIONS_PER_CATEGORY,
+  MEDITERRANEAN_CATEGORY_ID,
+} from '../../constants';
 import { CURRENT_CONTEST_CATEGORIES } from '../../constants/categories';
 import { useI18n } from '../../i18n/react';
 import type { SubmissionsResponse, UploadResponse } from '../../types/api';
 import type { UICategory, UISubmission } from '../../types/ui';
+import { useEntryStatus } from '../hooks/useEntryStatus';
+import { useJustUploaded } from '../hooks/useJustUploaded';
 import { usePaymentStatus } from '../hooks/usePaymentStatus';
 import { CategoryNavigation } from './CategoryNavigation';
 import { CategorySummary } from './CategorySummary';
 import { ContestCountdown } from './ContestCountdown';
-import { FlexibilityInfoPanel } from './FlexibilityInfoPanel';
+import { ContestStatusBanner } from './ContestStatusBanner';
+import { EntryStatus } from './EntryStatus';
 import { JudgesBar } from './JudgesBar';
 import { MediterraneanPortfolioManager } from './MediterraneanPortfolioManager';
 import { PaymentBanner } from './PaymentBanner';
@@ -16,6 +22,7 @@ import { PaymentSuccessBanner } from './PaymentSuccessBanner';
 import { SubmissionManageModal } from './SubmissionManageModal';
 import { SuccessModal } from './SuccessModal';
 import { UploadModal } from './UploadModal';
+import { Eyebrow } from './ui/Eyebrow';
 
 type CategoryState = UICategory;
 
@@ -44,7 +51,6 @@ export function UnifiedSubmissions() {
   const [activeCategoryId, setActiveCategoryId] = useState<string | null>(null);
   const [uploadModalOpen, setUploadModalOpen] = useState(false);
   const [dialogOpen, setDialogOpen] = useState(false);
-  const [dialogKind, setDialogKind] = useState<'upload' | 'delete'>('upload');
   const [uploadPortfolio, setUploadPortfolio] = useState<string | undefined>(
     undefined
   );
@@ -58,7 +64,17 @@ export function UnifiedSubmissions() {
   const [isManageModalOpen, setIsManageModalOpen] = useState(false);
 
   // Payment status
-  const { hasPaid } = usePaymentStatus(contestId);
+  const { hasPaid, loading: paymentLoading } = usePaymentStatus(contestId);
+  const { justUploadedId, markUploaded, clearHighlight } = useJustUploaded();
+  const {
+    uploaded,
+    categoriesEntered,
+    hasSubmissions,
+    firstIncompleteId,
+    canUpload,
+    isLocked,
+    nextAction,
+  } = useEntryStatus({ categories, contestStatus, hasPaid });
 
   const initialize = useCallback(async () => {
     try {
@@ -146,16 +162,24 @@ export function UnifiedSubmissions() {
   }, [categories, activeCategoryId]);
 
   function handleCategorySelect(categoryId: string) {
+    clearHighlight();
     setActiveCategoryId(categoryId);
   }
 
   function handleUploadClick(portfolio?: string, portfolioPhotoType?: string) {
-    if (hasPaid) {
-      return; // Button should be disabled, but this is a safety check
+    if (!canUpload) {
+      return; // Uploads are closed or the entry is already paid for
     }
     setUploadPortfolio(portfolio);
     setUploadPortfolioPhotoType(portfolioPhotoType);
     setUploadModalOpen(true);
+  }
+
+  // The single next action on the status line: jump to the first category
+  // with a free slot and open the upload modal there
+  function handleEntryUploadClick() {
+    if (firstIncompleteId) setActiveCategoryId(firstIncompleteId);
+    handleUploadClick();
   }
 
   function handleUploadSuccess(data: UploadResponse['data']) {
@@ -180,22 +204,30 @@ export function UnifiedSubmissions() {
       })
     );
 
-    // Show success dialog
-    setDialogKind('upload');
-    setDialogOpen(true);
+    // Confirmed in place: the photo appears in its slot, briefly highlighted
+    markUploaded(data.submissionId);
   }
 
   function handleUploadError(_error: string) {
     // Error is now handled in the UploadModal component
   }
 
-  const handleManageSubmission = (submission: UISubmission) => {
-    if (hasPaid) {
-      return; // Button should be disabled, but this is a safety check
-    }
+  function handleManageSubmission(submission: UISubmission) {
     setSelectedSubmission(submission);
     setIsManageModalOpen(true);
-  };
+  }
+
+  function handleSubmissionUpdated(updated: UISubmission) {
+    setCategories(prev =>
+      prev.map(cat => ({
+        ...cat,
+        submissions: cat.submissions.map(submission =>
+          submission.id === updated.id ? updated : submission
+        ),
+      }))
+    );
+    setSelectedSubmission(updated);
+  }
 
   async function handleDeleteSubmission(submissionId: string) {
     if (hasPaid) {
@@ -221,15 +253,14 @@ export function UnifiedSubmissions() {
         }))
       );
 
-      // Show deletion success dialog
-      setDialogKind('delete');
+      // Deleting is irreversible, so it keeps its confirmation dialog
       setDialogOpen(true);
     } catch (e) {
       setError(e instanceof Error ? e.message : 'Failed to delete');
     }
   }
 
-  if (loading) {
+  if (loading || paymentLoading) {
     return (
       <div className="flex items-center justify-center gap-3 p-16">
         <div className="animate-spin rounded-full h-5 w-5 border-b-2 border-foreground/70" />
@@ -242,50 +273,51 @@ export function UnifiedSubmissions() {
 
   const activeCategory = categories.find(cat => cat.id === activeCategoryId);
 
-  // Calculate payment info
-  const categoriesWithSubmissions = categories.filter(
-    cat => cat.submissions.length > 0
-  );
-  const hasSubmissions = categoriesWithSubmissions.length > 0;
+  const activePhotoCount = activeCategory?.submissions.length ?? 0;
 
   return (
-    <div className="max-w-5xl mx-auto space-y-10 py-8">
-      {/* Header with judges + countdown */}
-      <div className="text-center space-y-4">
-        <p className="text-editorial uppercase tracking-editorial-wider text-muted-foreground">
-          UW 2026 Contest
-        </p>
-        <h1 className="font-serif text-4xl sm:text-5xl text-foreground leading-display tracking-display">
+    <div className="mx-auto flex max-w-5xl flex-col gap-8 py-6 sm:gap-10 sm:py-8">
+      {/* Hero */}
+      <div className="flex flex-col items-center gap-3 text-center">
+        <Eyebrow>
+          {contestYear} {t('submissions.contest-suffix')}
+        </Eyebrow>
+        <h1 className="font-serif text-3xl text-foreground leading-display tracking-display sm:text-5xl">
           {t('nav.submissions')}
         </h1>
-        {!noActiveContest && (
-          <JudgesBar judges={judges} label={t('submissions.jury')} />
-        )}
-        {!noActiveContest && (
-          <div className="mt-2">
-            <ContestCountdown year={contestYear} />
-          </div>
-        )}
+        <p className="mx-auto max-w-prose-narrow font-light text-sm text-muted-foreground leading-paragraph">
+          {t('submissions.hero.subtitle')}
+        </p>
+        {!noActiveContest && <ContestCountdown year={contestYear} />}
       </div>
 
       {error && (
-        <div className="bg-destructive/10 border border-destructive/40 text-destructive rounded-xl p-4 font-light text-sm leading-paragraph">
+        <div className="rounded-xl border border-destructive/40 bg-destructive/10 p-4 font-light text-sm text-destructive leading-paragraph">
           {error}
         </div>
       )}
 
       {/* No active contest message */}
       {noActiveContest && (
-        <div className="bg-surface border border-border text-muted-foreground rounded-2xl p-10 text-center">
+        <div className="rounded-2xl border border-border bg-surface p-10 text-center text-muted-foreground">
           <p className="font-light text-base leading-paragraph">
             {t('submissions.closed')}
           </p>
         </div>
       )}
 
-      {/* Flexibility Info Panel - only before payment */}
-      {!noActiveContest && !hasPaid && contestId && (
-        <FlexibilityInfoPanel contestId={contestId} />
+      {!noActiveContest && (
+        <EntryStatus
+          uploaded={uploaded}
+          hasFreeSlot={firstIncompleteId !== null}
+          categoriesEntered={categoriesEntered}
+          nextAction={nextAction}
+          onUploadClick={handleEntryUploadClick}
+        />
+      )}
+
+      {!noActiveContest && (
+        <ContestStatusBanner contestStatus={contestStatus} hasPaid={hasPaid} />
       )}
 
       {/* Category Navigation */}
@@ -297,19 +329,15 @@ export function UnifiedSubmissions() {
         />
       )}
 
-      {/* Payment Banner - show if user has submissions and hasn't paid */}
-      {!noActiveContest && hasSubmissions && !hasPaid && <PaymentBanner />}
-
-      {/* Payment Success Banner - show if user has paid */}
-      {hasPaid && <PaymentSuccessBanner />}
-
-      {/* Active Category Summary */}
+      {/* Active category */}
       {!noActiveContest &&
         activeCategory &&
-        (activeCategory.id === 'mediterranean' ? (
+        (activeCategory.id === MEDITERRANEAN_CATEGORY_ID ? (
           <MediterraneanPortfolioManager
             submissions={activeCategory.submissions}
-            hasPaid={hasPaid}
+            canUpload={canUpload}
+            isLocked={isLocked}
+            justUploadedId={justUploadedId}
             onUploadClick={handleUploadClick}
             onManageSubmission={handleManageSubmission}
           />
@@ -318,12 +346,27 @@ export function UnifiedSubmissions() {
             categoryId={activeCategory.id}
             submissions={activeCategory.submissions}
             maxSubmissionsPerCategory={activeCategory.maxSubmissions}
-            contestStatus={contestStatus}
-            hasPaid={hasPaid}
+            canUpload={canUpload}
+            isLocked={isLocked}
+            justUploadedId={justUploadedId}
             onUploadClick={() => handleUploadClick()}
             onManageSubmission={handleManageSubmission}
           />
         ))}
+
+      {/* Payment comes after the work, never between the tabs and the grid */}
+      {!noActiveContest &&
+        contestStatus === 'active' &&
+        hasSubmissions &&
+        !hasPaid && <PaymentBanner categories={categories} />}
+
+      {hasPaid && <PaymentSuccessBanner />}
+
+      {!noActiveContest && judges.length > 0 && (
+        <div className="border-t border-border pt-8">
+          <JudgesBar judges={judges} label={t('submissions.jury')} />
+        </div>
+      )}
 
       {/* Upload Modal */}
       {activeCategory && contestId && (
@@ -338,6 +381,8 @@ export function UnifiedSubmissions() {
           contestId={contestId}
           portfolio={uploadPortfolio}
           portfolioPhotoType={uploadPortfolioPhotoType}
+          photoNumber={activePhotoCount + 1}
+          maxPhotos={activeCategory.maxSubmissions}
           onUploadSuccess={handleUploadSuccess}
           onUploadError={handleUploadError}
         />
@@ -353,22 +398,15 @@ export function UnifiedSubmissions() {
           setSelectedSubmission(null);
         }}
         onDelete={handleDeleteSubmission}
+        onUpdated={handleSubmissionUpdated}
       />
 
       {/* Upload/Delete Success Dialog */}
       <SuccessModal
         isOpen={dialogOpen}
         onClose={() => setDialogOpen(false)}
-        title={
-          dialogKind === 'upload'
-            ? t('dialog.upload.title')
-            : t('dialog.delete.title')
-        }
-        message={
-          dialogKind === 'upload'
-            ? t('toast.upload-success')
-            : t('toast.delete-success')
-        }
+        title={t('dialog.delete.title')}
+        message={t('toast.delete-success')}
         variant="success"
       />
     </div>

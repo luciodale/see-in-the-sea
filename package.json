@@ -66,6 +66,7 @@
     "check": "astro build && tsc && wrangler deploy --dry-run",
     "deploy": "wrangler deploy",
     "dev": "astro dev",
+    "stripe:listen": "stripe listen --forward-to http://localhost:4321/api/webhooks/stripe",
     "preview": "astro build && wrangler dev",
     "db:generate": "drizzle-kit generate --name",
     "db:studio": "drizzle-kit studio",

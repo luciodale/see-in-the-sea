@@ -1,10 +1,12 @@
 import {
-  PHOTOS_PER_PORTFOLIO,
+  MEDITERRANEAN_CATEGORY_ID,
   PORTFOLIOS_PER_MEDITERRANEAN,
 } from '../../constants';
 import { useI18n } from '../../i18n/react';
 import type { TranslationKey } from '../../i18n/translations';
 import type { UICategory } from '../../types/ui';
+import { useScrollActiveTabIntoView } from '../hooks/useScrollActiveTabIntoView';
+import { countCompletePortfolios } from '../utils/portfolio';
 import { cn } from './ui/cn';
 
 type CategoryNavigationProps = {
@@ -13,76 +15,71 @@ type CategoryNavigationProps = {
   onCategorySelect: (categoryId: string) => void;
 };
 
+// Mediterranean counts complete portfolios, every other category counts photos
+function getCategoryProgress(category: UICategory) {
+  if (category.id === MEDITERRANEAN_CATEGORY_ID) {
+    const completePortfolios = countCompletePortfolios(category.submissions);
+    return {
+      label: `${completePortfolios}/${PORTFOLIOS_PER_MEDITERRANEAN}`,
+      isComplete: completePortfolios >= PORTFOLIOS_PER_MEDITERRANEAN,
+    };
+  }
+
+  const photoCount = category.submissions.length;
+  return {
+    label: `${photoCount}/${category.maxSubmissions}`,
+    isComplete: photoCount >= category.maxSubmissions,
+  };
+}
+
 export function CategoryNavigation({
   categories,
   activeCategoryId,
   onCategorySelect,
 }: CategoryNavigationProps) {
   const { t } = useI18n();
+  const activeTabRef = useScrollActiveTabIntoView(activeCategoryId);
 
   return (
-    <nav className="flex items-center justify-start sm:justify-center gap-6 overflow-x-auto -mx-4 px-4 py-1">
-      {categories.map(category => {
-        const submissionCount = category.submissions.length;
-        const isActive = activeCategoryId === category.id;
+    <nav
+      aria-label={t('submissions.tabs.label')}
+      className="-mx-4 overflow-x-auto sm:-mx-6"
+    >
+      {/* w-max keeps the next tab peeking past the edge as the scroll hint */}
+      <div className="flex w-max items-center gap-2 px-4 pb-1 sm:px-6 lg:w-full lg:flex-wrap lg:justify-center">
+        {categories.map(category => {
+          const isActive = activeCategoryId === category.id;
+          const { label, isComplete } = getCategoryProgress(category);
 
-        let isComplete = false;
-        let displayCount = `${submissionCount}/${category.maxSubmissions}`;
-
-        if (category.id === 'mediterranean') {
-          const portfolio1 = category.submissions.filter(
-            s => s.portfolio === '1'
-          );
-          const portfolio2 = category.submissions.filter(
-            s => s.portfolio === '2'
-          );
-
-          const portfolio1Complete =
-            portfolio1.length === PHOTOS_PER_PORTFOLIO &&
-            portfolio1.some(s => s.portfolioPhotoType === 'macro') &&
-            portfolio1.some(s => s.portfolioPhotoType === 'wide-angle') &&
-            portfolio1.some(s => s.portfolioPhotoType === 'free');
-
-          const portfolio2Complete =
-            portfolio2.length === PHOTOS_PER_PORTFOLIO &&
-            portfolio2.some(s => s.portfolioPhotoType === 'macro') &&
-            portfolio2.some(s => s.portfolioPhotoType === 'wide-angle') &&
-            portfolio2.some(s => s.portfolioPhotoType === 'free');
-
-          const completePortfolios =
-            (portfolio1Complete ? 1 : 0) + (portfolio2Complete ? 1 : 0);
-          displayCount = `${completePortfolios}/${PORTFOLIOS_PER_MEDITERRANEAN}`;
-          isComplete = completePortfolios >= PORTFOLIOS_PER_MEDITERRANEAN;
-        } else {
-          isComplete = submissionCount >= category.maxSubmissions;
-        }
-
-        return (
-          <button
-            type="button"
-            key={category.id}
-            onClick={() => onCategorySelect(category.id)}
-            className={cn(
-              'text-editorial uppercase tracking-editorial transition-colors duration-200 cursor-pointer flex-shrink-0 flex items-center gap-2',
-              isActive
-                ? 'text-foreground'
-                : 'text-muted-foreground hover:text-foreground'
-            )}
-          >
-            <span>
-              {t(`category.${category.id}` as unknown as TranslationKey)}
-            </span>
-            <span
+          return (
+            <button
+              type="button"
+              ref={isActive ? activeTabRef : undefined}
+              aria-current={isActive ? 'true' : undefined}
+              key={category.id}
+              onClick={() => onCategorySelect(category.id)}
               className={cn(
-                'tabular-nums tracking-normal text-tiny',
-                isComplete ? 'text-success' : 'text-subtle-foreground'
+                'flex shrink-0 items-center gap-2 min-h-11 px-4 text-editorial uppercase tracking-editorial rounded-full transition-colors duration-200 cursor-pointer',
+                isActive
+                  ? 'bg-foreground/15 font-medium text-foreground'
+                  : 'text-muted-foreground hover:bg-surface-hover hover:text-foreground'
               )}
             >
-              {displayCount}
-            </span>
-          </button>
-        );
-      })}
+              <span>
+                {t(`category.${category.id}` as unknown as TranslationKey)}
+              </span>
+              <span
+                className={cn(
+                  'tabular-nums tracking-normal text-tiny',
+                  isComplete ? 'text-success' : 'text-subtle-foreground'
+                )}
+              >
+                {label}
+              </span>
+            </button>
+          );
+        })}
+      </div>
     </nav>
   );
 }

@@ -1,16 +1,18 @@
 import { useI18n } from '../../i18n/react';
+import { cn } from './ui/cn';
 
-interface BaseModalProps {
+type BaseModalProps = {
   isOpen: boolean;
   onClose: () => void;
   title: string;
+  subtitle?: string;
   children: React.ReactNode;
   isLoading?: boolean;
   loadingMessage?: string;
   loadingSubMessage?: string;
   maxWidth?: 'sm' | 'md' | 'lg' | 'xl' | '2xl' | '4xl';
   error?: boolean;
-}
+};
 
 const maxWidthClasses = {
   sm: 'max-w-sm',
@@ -25,6 +27,7 @@ export function BaseModal({
   isOpen,
   onClose,
   title,
+  subtitle,
   children,
   isLoading = false,
   loadingMessage,
@@ -42,13 +45,13 @@ export function BaseModal({
   const borderClass = error ? 'border-destructive/60' : 'border-border-strong';
 
   return (
-    <div className="fixed inset-0 z-50 bg-black/70 backdrop-blur-sm flex items-center justify-center p-4">
+    <div className="fixed inset-0 z-50 bg-background/80 backdrop-blur-sm flex items-center justify-center p-4">
       <div
         className={`bg-popover ${borderClass} border rounded-2xl w-full ${maxWidthClasses[maxWidth]} max-h-[90vh] overflow-y-auto relative shadow-2xl`}
       >
         {isLoading && (
           <div className="absolute inset-0 bg-popover/95 backdrop-blur-sm flex items-center justify-center z-10 rounded-2xl">
-            <div className="text-center space-y-4">
+            <div className="text-center flex flex-col gap-4">
               <div className="animate-spin rounded-full h-10 w-10 border-b-2 border-foreground/70 mx-auto" />
               <p className="font-serif text-xl text-foreground leading-heading">
                 {defaultLoadingMessage}
@@ -62,11 +65,23 @@ export function BaseModal({
           </div>
         )}
 
-        <div className="p-8">
-          <div className="flex items-center justify-between mb-6">
-            <h2 className="font-serif text-2xl text-foreground leading-heading">
-              {title}
-            </h2>
+        <div className="p-6 sm:p-8">
+          <div
+            className={cn(
+              'flex justify-between gap-4 mb-6',
+              subtitle ? 'items-start' : 'items-center'
+            )}
+          >
+            <div className="flex flex-col gap-1">
+              <h2 className="font-serif text-2xl text-foreground leading-heading">
+                {title}
+              </h2>
+              {subtitle && (
+                <p className="text-editorial uppercase tracking-editorial text-muted-foreground">
+                  {subtitle}
+                </p>
+              )}
+            </div>
             <button
               type="button"
               onClick={onClose}

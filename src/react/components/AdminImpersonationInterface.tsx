@@ -4,6 +4,7 @@ import { CURRENT_CONTEST_CATEGORIES } from '../../constants/categories';
 import { useI18n } from '../../i18n/react';
 import type { SubmissionsResponse, UploadResponse } from '../../types/api';
 import type { UICategory, UISubmission } from '../../types/ui';
+import { useJustUploaded } from '../hooks/useJustUploaded';
 import { CategoryNavigation } from './CategoryNavigation';
 import { CategorySummary } from './CategorySummary';
 import { JudgesBar } from './JudgesBar';
@@ -47,6 +48,7 @@ export function AdminImpersonationInterface({
   // UI state
   const [activeCategoryId, setActiveCategoryId] = useState<string | null>(null);
   const [uploadModalOpen, setUploadModalOpen] = useState(false);
+  const { justUploadedId, markUploaded, clearHighlight } = useJustUploaded();
   const [dialogOpen, setDialogOpen] = useState(false);
   const [dialogKind, setDialogKind] = useState<'upload' | 'delete'>('upload');
   const [uploadPortfolio, setUploadPortfolio] = useState<string | undefined>(
@@ -144,6 +146,7 @@ export function AdminImpersonationInterface({
   }, [categories, activeCategoryId]);
 
   function handleCategorySelect(categoryId: string) {
+    clearHighlight();
     setActiveCategoryId(categoryId);
   }
 
@@ -180,8 +183,7 @@ export function AdminImpersonationInterface({
     );
 
     // Show success dialog
-    setDialogKind('upload');
-    setDialogOpen(true);
+    markUploaded(data.submissionId);
   }
 
   function handleUploadError(_error: string) {
@@ -191,6 +193,18 @@ export function AdminImpersonationInterface({
   function handleManageSubmission(submission: UISubmission) {
     setSelectedSubmission(submission);
     setIsManageModalOpen(true);
+  }
+
+  function handleSubmissionUpdated(updated: UISubmission) {
+    setCategories(prev =>
+      prev.map(cat => ({
+        ...cat,
+        submissions: cat.submissions.map(submission =>
+          submission.id === updated.id ? updated : submission
+        ),
+      }))
+    );
+    setSelectedSubmission(updated);
   }
 
   async function handleDeleteSubmission(submissionId: string) {
@@ -232,6 +246,8 @@ export function AdminImpersonationInterface({
   }
 
   const activeCategory = categories.find(cat => cat.id === activeCategoryId);
+  // Admins upload on behalf of an entrant, so payment never locks them out
+  const canUpload = contestStatus === 'active';
   const showJudges = !noActiveContest && judges.length > 0;
 
   return (
@@ -301,6 +317,9 @@ export function AdminImpersonationInterface({
         (activeCategory.id === 'mediterranean' ? (
           <MediterraneanPortfolioManager
             submissions={activeCategory.submissions}
+            canUpload={canUpload}
+            isLocked={false}
+            justUploadedId={justUploadedId}
             onUploadClick={handleUploadClick}
             onManageSubmission={handleManageSubmission}
           />
@@ -309,7 +328,9 @@ export function AdminImpersonationInterface({
             categoryId={activeCategory.id}
             submissions={activeCategory.submissions}
             maxSubmissionsPerCategory={activeCategory.maxSubmissions}
-            contestStatus={contestStatus}
+            canUpload={canUpload}
+            isLocked={false}
+            justUploadedId={justUploadedId}
             onUploadClick={() => handleUploadClick()}
             onManageSubmission={handleManageSubmission}
           />
@@ -328,6 +349,8 @@ export function AdminImpersonationInterface({
           contestId={contestId}
           portfolio={uploadPortfolio}
           portfolioPhotoType={uploadPortfolioPhotoType}
+          photoNumber={activeCategory.submissions.length + 1}
+          maxPhotos={activeCategory.maxSubmissions}
           onUploadSuccess={handleUploadSuccess}
           onUploadError={handleUploadError}
           isAdminUpload={true}
@@ -344,6 +367,7 @@ export function AdminImpersonationInterface({
           setSelectedSubmission(null);
         }}
         onDelete={handleDeleteSubmission}
+        onUpdated={handleSubmissionUpdated}
       />
 
       {/* Upload/Delete Success Dialog */}

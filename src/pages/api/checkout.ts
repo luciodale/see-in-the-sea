@@ -14,14 +14,18 @@ import type { CheckoutResponse } from '../../types/api';
 
 export const prerender = false;
 
+// Live prices. Set STRIPE_PRICE_ID_20 / STRIPE_PRICE_ID_30 in .dev.vars to
+// point local runs at Stripe test-mode prices instead.
 const PRICE_ID_PROD_20 = 'price_1SA7Q80GkfoIDCTPaiqKExvB';
 const PRICE_ID_PROD_30 = 'price_1SA7QP0GkfoIDCTPQgyBnXsS';
 
 export const POST: APIRoute = async ({ request, locals }) => {
   const D1Database = locals.runtime.env.DB;
   const STRIPE_SECRET_KEY = locals.runtime.env.STRIPE_SECRET_KEY;
-  const STRIPE_PRICE_ID_20 = PRICE_ID_PROD_20;
-  const STRIPE_PRICE_ID_30 = PRICE_ID_PROD_30;
+  const STRIPE_PRICE_ID_20 =
+    locals.runtime.env.STRIPE_PRICE_ID_20 || PRICE_ID_PROD_20;
+  const STRIPE_PRICE_ID_30 =
+    locals.runtime.env.STRIPE_PRICE_ID_30 || PRICE_ID_PROD_30;
 
   const url = new URL(request.url);
   const DOMAIN = url.origin;

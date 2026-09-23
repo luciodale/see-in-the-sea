@@ -1,4 +1,5 @@
 import {
+  ArrowLeftIcon,
   CreditCardIcon,
   ExclamationTriangleIcon,
 } from '@heroicons/react/24/outline';
@@ -45,9 +46,10 @@ export function PayNowView() {
       <div className="text-center space-y-4">
         <Link
           to="/user/submissions"
-          className="text-editorial uppercase tracking-editorial text-muted-foreground hover:text-foreground transition-colors inline-block cursor-pointer"
+          className="inline-flex items-center gap-2 text-editorial uppercase tracking-editorial text-muted-foreground transition-colors cursor-pointer hover:text-foreground"
         >
-          ← {t('payment.back-to-submissions')}
+          <ArrowLeftIcon className="size-3.5" />
+          {t('payment.back-to-submissions')}
         </Link>
         <h1 className="font-serif text-4xl sm:text-5xl text-foreground leading-display tracking-display">
           {t('payment.title')}

@@ -55,6 +55,8 @@ export const backendTranslations = {
     // Submission errors
     'error.submission-not-found': 'Submission not found',
     'error.submission-not-owned': 'Submission not found or not owned by user',
+    'error.title-required': 'A title is required.',
+    'error.field-too-long': 'Title or description is too long.',
     'error.creating-submissions-without-images':
       'Creating new submissions without images is not supported. Use the upload-image endpoint instead.',
 
@@ -128,6 +130,8 @@ export const backendTranslations = {
     'error.submission-not-found': 'Candidatura non trovata',
     'error.submission-not-owned':
       "Candidatura non trovata o non di proprietà dell'utente",
+    'error.title-required': 'Il titolo è obbligatorio.',
+    'error.field-too-long': 'Titolo o descrizione troppo lunghi.',
     'error.creating-submissions-without-images':
       "La creazione di candidature senza immagini non è supportata. Usa l'endpoint upload-image invece.",
 

@@ -137,12 +137,13 @@ export const translations = {
     'submissions.count-label': 'submissions',
     'submissions.no-pictures-uploaded': 'No pictures uploaded yet',
     'submissions.pictures-uploaded': 'picture(s) uploaded',
+    'submissions.max-per-category': 'max',
     'submissions.category-complete':
       'Category complete - maximum submissions reached',
     'submissions.category-complete-description':
       'Maximum submissions reached for this category',
     'submissions.your-pictures': 'Your pictures',
-    'submissions.success-received': '✓ Picture Successfully Received!',
+    'submissions.success-received': 'Photo received',
     'submissions.success-description':
       'Your photo has been uploaded and is ready for the contest',
 
@@ -164,6 +165,11 @@ export const translations = {
     'mediterranean.instructions.portfolios': 'complete portfolios',
     'mediterranean.instructions.photos-total': 'photos total',
 
+    'action.save': 'Save changes',
+    'state.saving': 'Saving...',
+    'modal.submission.edit-hint':
+      'The jury sees the title and description next to your photo.',
+    'form.description': 'Description',
     'form.title': 'Title',
     'form.title-placeholder': 'Enter a title for your photo',
     'form.description-optional': 'Description (optional)',
@@ -394,7 +400,7 @@ export const translations = {
     'payment.warning.title': 'Final Step: Payment',
     'payment.warning.message':
       'Once you complete payment, you will not be able to make any more edits to your submissions.',
-    'payment.back-to-submissions': '← Back to submissions',
+    'payment.back-to-submissions': 'Back to submissions',
 
     // Patrocini
     'patrocini.title': 'With the high patronage of:',
@@ -403,7 +409,7 @@ export const translations = {
     'collaborations.title': 'Collaborations:',
 
     // Countdown
-    'countdown.closing-in': 'Contest closes in',
+    'countdown.closing-in': 'Closes in',
     'countdown.days': 'Days',
     'countdown.hours': 'Hours',
     'countdown.minutes': 'Minutes',
@@ -411,14 +417,81 @@ export const translations = {
     'countdown.closed': 'Submissions are closed',
 
     // Flexibility info panel
-    'info.flexibility.title': 'Good to know',
-    'info.flexibility.message':
-      "You're free to add and remove images until you complete your payment. After payment, your submissions are locked in.",
-    'info.flexibility.dismiss': 'Got it',
 
     // Payment banner
     'payment.banner.message':
       'Your photos are ready! Complete your entry by making payment.',
+
+    // Entry status (upload page)
+    'entry.title': 'Your entry',
+    'entry.summary.photo': 'photo',
+    'entry.summary.photos': 'photos',
+    'entry.summary.category': 'category',
+    'entry.summary.categories': 'categories',
+    'entry.summary.in': 'in',
+    'entry.next.empty':
+      'One photo in one category is a complete entry. Add as many as you like, up to the limit per category.',
+    'entry.next.drafting':
+      'Add more photos or another category whenever you like. When you are happy with your selection, complete your entry.',
+    'entry.next.pay':
+      'Almost there. Take one last look, then complete your entry.',
+    'entry.next.locked': 'Entry confirmed. Your photos are in the contest.',
+    'entry.action.upload': 'Upload a photo',
+    'entry.action.pay': 'Complete my entry',
+    'entry.action.locked': 'Entry confirmed',
+
+    // Contest status
+    'status.assessment.title': 'Contest in assessment',
+    'status.assessment.message':
+      'Uploads are closed \u2014 the jury is reviewing the entries.',
+    'status.locked.title': 'Entry confirmed',
+    'status.locked.message':
+      'We have received your payment. Your photos are locked and can no longer be changed.',
+    'status.closed.title': 'Submissions closed',
+
+    // Photo slots
+    'slot.add-photo': 'Add photo',
+    'slot.locked': 'Locked',
+    'slot.empty': 'Empty',
+    'action.view-photo': 'View photo',
+    'category.empty.title': 'Start with your first photo',
+    'category.empty.body':
+      'Tap a free slot to upload. You can change your mind right up to payment.',
+    'image.missing': 'No image',
+    'image.failed': 'Could not load image',
+    'error.auth-required': 'Please sign in again and retry.',
+    'error.upload-failed': 'The upload did not go through. Please try again.',
+    'error.checkout-failed': 'Could not open the payment page. Please retry.',
+    'form.file-type-invalid': 'That file type is not supported.',
+
+    // Mediterranean portfolio help
+    'mediterranean.how.title': 'How the portfolio works',
+    'mediterranean.how.step-1':
+      'Two portfolios, three photos each: one Macro, one Wide Angle, one Free Choice.',
+    'mediterranean.how.step-2': 'Tap an empty slot to upload into it.',
+    'mediterranean.how.step-3':
+      'To replace a photo, open it and delete it first.',
+
+    // Upload modal
+    'modal.upload.destination': 'Uploading to',
+    'modal.upload.dropzone': 'Drag your photo here',
+    'modal.upload.dropzone-action': 'or choose a file',
+    'modal.upload.change-file': 'Change file',
+    'form.title-required': 'Give your photo a title to continue',
+    'upload.title-hint': 'The jury will see this title next to your photo.',
+    'submissions.photo': 'Photo',
+    'common.of': 'of',
+
+    // Payment recap
+    'payment.recap.title': 'Your entry so far',
+    'payment.recap.body':
+      'These are the photos you are about to submit. Take your time \u2014 after payment they can no longer be changed.',
+
+    // Hero
+    'submissions.contest-suffix': 'Contest',
+    'submissions.hero.subtitle':
+      'This is your space. Upload at your own pace, change your mind as often as you like, and confirm only when you are happy.',
+    'submissions.tabs.label': 'Contest categories',
 
     // Image states
     'image.click-to-view': 'Click to view',
@@ -557,12 +630,13 @@ export const translations = {
     'submissions.count-label': 'candidature',
     'submissions.no-pictures-uploaded': 'Nessuna foto caricata ancora',
     'submissions.pictures-uploaded': 'foto caricate',
+    'submissions.max-per-category': 'max',
     'submissions.category-complete':
       'Categoria completa - massimo numero di candidature raggiunto',
     'submissions.category-complete-description':
       'Massimo numero di candidature raggiunto per questa categoria',
     'submissions.your-pictures': 'Le tue foto',
-    'submissions.success-received': '✓ Foto Ricevuta con Successo!',
+    'submissions.success-received': 'Foto ricevuta',
     'submissions.success-description':
       'La tua foto è stata caricata ed è pronta per il concorso',
 
@@ -584,6 +658,11 @@ export const translations = {
     'mediterranean.instructions.portfolios': 'portfolio completi',
     'mediterranean.instructions.photos-total': 'foto totali',
 
+    'action.save': 'Salva modifiche',
+    'state.saving': 'Salvataggio...',
+    'modal.submission.edit-hint':
+      'La giuria vede titolo e descrizione accanto alla tua foto.',
+    'form.description': 'Descrizione',
     'form.title': 'Titolo',
     'form.title-placeholder': 'Inserisci un titolo per la tua foto',
     'form.description-optional': 'Descrizione (opzionale)',
@@ -819,7 +898,7 @@ export const translations = {
     'payment.warning.title': 'Passo Finale: Pagamento',
     'payment.warning.message':
       'Una volta completato il pagamento, non potrai più modificare le tue candidature.',
-    'payment.back-to-submissions': '← Torna alle candidature',
+    'payment.back-to-submissions': 'Torna alle candidature',
 
     // Patrocini
     'patrocini.title': "Con l'alto patrocinio di:",
@@ -828,7 +907,7 @@ export const translations = {
     'collaborations.title': 'Collaborazioni:',
 
     // Countdown
-    'countdown.closing-in': 'Il concorso chiude tra',
+    'countdown.closing-in': 'Chiude tra',
     'countdown.days': 'Giorni',
     'countdown.hours': 'Ore',
     'countdown.minutes': 'Minuti',
@@ -836,14 +915,85 @@ export const translations = {
     'countdown.closed': 'Le candidature sono chiuse',
 
     // Flexibility info panel
-    'info.flexibility.title': 'Buono a sapersi',
-    'info.flexibility.message':
-      'Sei libero di aggiungere e rimuovere immagini fino al completamento del pagamento. Dopo il pagamento, le candidature saranno bloccate.',
-    'info.flexibility.dismiss': 'Capito',
 
     // Payment banner
     'payment.banner.message':
       'Le tue foto sono pronte! Completa la tua iscrizione effettuando il pagamento.',
+
+    // Entry status (upload page)
+    'entry.title': 'La tua iscrizione',
+    'entry.summary.photo': 'foto',
+    'entry.summary.photos': 'foto',
+    'entry.summary.category': 'categoria',
+    'entry.summary.categories': 'categorie',
+    'entry.summary.in': 'in',
+    'entry.next.empty':
+      'Basta una foto in una sola categoria per partecipare. Puoi aggiungerne altre quante vuoi, fino al limite di ogni categoria.',
+    'entry.next.drafting':
+      'Aggiungi altre foto o un\u2019altra categoria quando vuoi. Quando sei soddisfatto della tua selezione, completa l\u2019iscrizione.',
+    'entry.next.pay':
+      'Ci siamo quasi. Dai un ultimo sguardo, poi completa l\u2019iscrizione.',
+    'entry.next.locked': 'Iscrizione confermata. Le tue foto sono in gara.',
+    'entry.action.upload': 'Carica una foto',
+    'entry.action.pay': 'Completa l\u2019iscrizione',
+    'entry.action.locked': 'Iscrizione confermata',
+
+    // Contest status
+    'status.assessment.title': 'Concorso in valutazione',
+    'status.assessment.message':
+      'I caricamenti sono chiusi: la giuria sta valutando le foto.',
+    'status.locked.title': 'Iscrizione confermata',
+    'status.locked.message':
+      'Abbiamo ricevuto il pagamento. Le tue foto sono bloccate e non possono pi\u00f9 essere modificate.',
+    'status.closed.title': 'Candidature chiuse',
+
+    // Photo slots
+    'slot.add-photo': 'Aggiungi foto',
+    'slot.locked': 'Bloccato',
+    'slot.empty': 'Vuoto',
+    'action.view-photo': 'Vedi foto',
+    'category.empty.title': 'Inizia dalla tua prima foto',
+    'category.empty.body':
+      'Tocca uno spazio libero per caricare. Puoi cambiare idea fino al pagamento.',
+    'image.missing': 'Nessuna immagine',
+    'image.failed': 'Impossibile caricare l\u2019immagine',
+    'error.auth-required': 'Accedi di nuovo e riprova.',
+    'error.upload-failed':
+      'Il caricamento non \u00e8 andato a buon fine. Riprova.',
+    'error.checkout-failed':
+      'Non siamo riusciti ad aprire la pagina di pagamento. Riprova.',
+    'form.file-type-invalid': 'Questo tipo di file non \u00e8 supportato.',
+
+    // Mediterranean portfolio help
+    'mediterranean.how.title': 'Come funziona il portfolio',
+    'mediterranean.how.step-1':
+      'Due portfolio, tre foto ciascuno: una Macro, una Grandangolo, una Libera Scelta.',
+    'mediterranean.how.step-2':
+      'Tocca uno spazio vuoto per caricarci una foto.',
+    'mediterranean.how.step-3':
+      'Per sostituire una foto, aprila ed eliminala prima.',
+
+    // Upload modal
+    'modal.upload.destination': 'Stai caricando in',
+    'modal.upload.dropzone': 'Trascina qui la tua foto',
+    'modal.upload.dropzone-action': 'oppure scegli un file',
+    'modal.upload.change-file': 'Cambia file',
+    'form.title-required': 'Dai un titolo alla tua foto per continuare',
+    'upload.title-hint':
+      'La giuria vedr\u00e0 questo titolo accanto alla tua foto.',
+    'submissions.photo': 'Foto',
+    'common.of': 'di',
+
+    // Payment recap
+    'payment.recap.title': 'La tua iscrizione finora',
+    'payment.recap.body':
+      'Queste sono le foto che stai per presentare. Guardale con calma: dopo il pagamento non potrai pi\u00f9 modificarle.',
+
+    // Hero
+    'submissions.contest-suffix': 'Concorso',
+    'submissions.hero.subtitle':
+      'Questo \u00e8 il tuo spazio. Carica con calma, cambia idea quante volte vuoi, e conferma solo quando sei davvero soddisfatto.',
+    'submissions.tabs.label': 'Categorie del concorso',
 
     // Image states
     'image.click-to-view': 'Clicca per vedere',

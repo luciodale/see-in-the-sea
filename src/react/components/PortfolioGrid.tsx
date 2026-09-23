@@ -1,13 +1,21 @@
+import { CheckCircleIcon } from '@heroicons/react/24/outline';
 import { useMemo } from 'react';
 import { PHOTOS_PER_PORTFOLIO } from '../../constants';
 import { useI18n } from '../../i18n/react';
 import type { UISubmission } from '../../types/ui';
+import {
+  getPortfolioSubmissions,
+  isPortfolioComplete,
+} from '../utils/portfolio';
 import { PhotoSlot } from './PhotoSlot';
+import { cn } from './ui/cn';
 
 type PortfolioGridProps = {
-  portfolioNumber: 1 | 2;
+  portfolioNumber: number;
   submissions: UISubmission[];
-  hasPaid?: boolean;
+  canUpload: boolean;
+  isLocked: boolean;
+  justUploadedId: string | null;
   onUploadClick: (portfolio: string, portfolioPhotoType: string) => void;
   onManageSubmission: (submission: UISubmission) => void;
 };
@@ -15,49 +23,55 @@ type PortfolioGridProps = {
 export function PortfolioGrid({
   portfolioNumber,
   submissions,
-  hasPaid = false,
+  canUpload,
+  isLocked,
+  justUploadedId,
   onUploadClick,
   onManageSubmission,
 }: PortfolioGridProps) {
   const { t } = useI18n();
-  const portfolioSubmissions = useMemo(() => {
-    return submissions.filter(s => s.portfolio === portfolioNumber.toString());
-  }, [submissions, portfolioNumber]);
 
-  const status = useMemo(() => {
-    const hasMacro = portfolioSubmissions.some(
-      s => s.portfolioPhotoType === 'macro'
-    );
-    const hasWideAngle = portfolioSubmissions.some(
-      s => s.portfolioPhotoType === 'wide-angle'
-    );
-    const hasFree = portfolioSubmissions.some(
-      s => s.portfolioPhotoType === 'free'
-    );
+  const portfolioSubmissions = useMemo(
+    () => getPortfolioSubmissions(submissions, portfolioNumber),
+    [submissions, portfolioNumber]
+  );
 
-    return {
-      hasMacro,
-      hasWideAngle,
-      hasFree,
-      isComplete: hasMacro && hasWideAngle && hasFree,
-      count: portfolioSubmissions.length,
-    };
-  }, [portfolioSubmissions]);
+  const isComplete = useMemo(
+    () => isPortfolioComplete(submissions, portfolioNumber),
+    [submissions, portfolioNumber]
+  );
 
-  const photoSlots = useMemo(() => {
-    return [
+  const photoSlots = useMemo(
+    () => [
       { photoType: 'macro' as const, label: t('photo-type.macro') },
       { photoType: 'wide-angle' as const, label: t('photo-type.wide-angle') },
       { photoType: 'free' as const, label: t('photo-type.free') },
-    ];
-  }, [t]);
+    ],
+    [t]
+  );
 
   return (
-    <div className="bg-surface border border-border rounded-2xl p-6">
-      <h3 className="font-serif text-xl text-foreground mb-5 leading-heading">
-        {t('portfolio.title')} {portfolioNumber}
-      </h3>
-      <div className="grid grid-cols-3 gap-3 mb-5">
+    <div className="flex flex-col gap-5 rounded-2xl border border-border bg-surface p-4 sm:p-6">
+      <div className="flex items-baseline justify-between gap-3">
+        <h3 className="font-serif text-xl text-foreground leading-heading">
+          {t('portfolio.title')} {portfolioNumber}
+        </h3>
+        <span
+          className={cn(
+            'inline-flex items-center gap-1.5 text-editorial uppercase tracking-editorial',
+            isComplete ? 'text-success' : 'text-muted-foreground'
+          )}
+        >
+          {isComplete && (
+            <CheckCircleIcon aria-hidden="true" className="size-4 shrink-0" />
+          )}
+          {isComplete
+            ? t('portfolio.complete')
+            : `${portfolioSubmissions.length}/${PHOTOS_PER_PORTFOLIO} ${t('portfolio.photos-count')}`}
+        </span>
+      </div>
+
+      <div className="grid grid-cols-3 gap-2 sm:gap-3">
         {photoSlots.map(({ photoType, label }) => {
           const submission = portfolioSubmissions.find(
             s => s.portfolioPhotoType === photoType
@@ -70,37 +84,16 @@ export function PortfolioGrid({
               label={label}
               submission={submission}
               portfolioNumber={portfolioNumber}
-              hasPaid={hasPaid}
+              canUpload={canUpload}
+              isLocked={isLocked}
+              isJustUploaded={
+                submission ? submission.id === justUploadedId : false
+              }
               onUploadClick={onUploadClick}
               onManageSubmission={onManageSubmission}
             />
           );
         })}
-      </div>
-      <div className="pt-4 border-t border-border">
-        <div className="flex items-center justify-center gap-2">
-          {status.isComplete && (
-            <svg
-              aria-hidden="true"
-              className="w-4 h-4 text-success"
-              fill="currentColor"
-              viewBox="0 0 20 20"
-            >
-              <path
-                fillRule="evenodd"
-                d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
-                clipRule="evenodd"
-              />
-            </svg>
-          )}
-          <span
-            className={`text-editorial uppercase tracking-editorial ${status.isComplete ? 'text-success' : 'text-muted-foreground'}`}
-          >
-            {status.isComplete
-              ? t('portfolio.complete')
-              : `${status.count}/${PHOTOS_PER_PORTFOLIO} ${t('portfolio.photos-count')}`}
-          </span>
-        </div>
       </div>
     </div>
   );

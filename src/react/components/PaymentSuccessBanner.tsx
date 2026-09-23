@@ -6,26 +6,16 @@ export function PaymentSuccessBanner() {
   const { t } = useI18n();
 
   return (
-    <div className="max-w-2xl mx-auto mb-6">
-      <Card variant="success" className="p-10 text-center">
-        <div className="flex items-center justify-center mb-6">
-          <div className="w-16 h-16 rounded-full bg-success/10 border border-success/40 flex items-center justify-center">
-            <CheckCircleIcon className="h-8 w-8 text-success" />
-          </div>
-        </div>
-
-        <h2 className="font-serif text-3xl text-foreground mb-4 leading-display tracking-display">
+    <Card variant="success" className="flex items-start gap-3 p-5">
+      <CheckCircleIcon className="size-5 shrink-0 text-success" />
+      <div className="flex flex-col gap-1 min-w-0">
+        <h2 className="text-editorial uppercase tracking-editorial text-foreground">
           {t('payment.success.title')}
         </h2>
-
-        <p className="font-light text-sm sm:text-base text-foreground/80 leading-paragraph mb-3">
+        <p className="font-light text-sm text-muted-foreground leading-paragraph">
           {t('payment.success.message')}
         </p>
-
-        <p className="text-editorial uppercase tracking-editorial text-muted-foreground">
-          {t('payment.success.next-steps')}
-        </p>
-      </Card>
-    </div>
+      </div>
+    </Card>
   );
 }

@@ -1,17 +1,20 @@
+import { CheckCircleIcon } from '@heroicons/react/24/outline';
+import { useMemo } from 'react';
 import { useI18n } from '../../i18n/react';
 import type { TranslationKey } from '../../i18n/translations';
 import type { UISubmission } from '../../types/ui';
-import { ImageIcon } from './ImageIcon';
-import { ManageButton } from './ManageButton';
+import { SubmissionSlot } from './SubmissionSlot';
 import { Button } from './ui/Button';
 import { Card } from './ui/Card';
+import { cn } from './ui/cn';
 
 type CategorySummaryProps = {
   categoryId: string;
   submissions: UISubmission[];
   maxSubmissionsPerCategory: number;
-  contestStatus: 'active' | 'inactive' | 'assessment';
-  hasPaid?: boolean;
+  canUpload: boolean;
+  isLocked: boolean;
+  justUploadedId: string | null;
   onUploadClick: () => void;
   onManageSubmission: (submission: UISubmission) => void;
 };
@@ -20,110 +23,94 @@ export function CategorySummary({
   categoryId,
   submissions,
   maxSubmissionsPerCategory,
-  contestStatus,
-  hasPaid = false,
+  canUpload,
+  isLocked,
+  justUploadedId,
   onUploadClick,
   onManageSubmission,
 }: CategorySummaryProps) {
   const { t } = useI18n();
 
-  const canAddMore = submissions.length < maxSubmissionsPerCategory;
-  const isContestActive = contestStatus === 'active';
-  const canUpload = canAddMore && isContestActive && !hasPaid;
+  const hasFreeSlot = submissions.length < maxSubmissionsPerCategory;
+  const isCategoryComplete = !hasFreeSlot;
+  const isEmpty = submissions.length === 0;
+
+  // Filled slots first, in submission order, then the remaining free slots
+  const slots = useMemo(() => {
+    return Array.from(
+      { length: maxSubmissionsPerCategory },
+      (_, index): { key: string; submission?: UISubmission } => {
+        const submission = submissions[index];
+        return {
+          key: submission ? submission.id : `free-slot-${index}`,
+          submission,
+        };
+      }
+    );
+  }, [submissions, maxSubmissionsPerCategory]);
 
   return (
-    <div className="space-y-6">
-      <div className="flex flex-wrap items-baseline justify-between gap-4">
-        <div className="space-y-1">
+    <div className="flex flex-col gap-6">
+      <div className="flex flex-wrap items-baseline justify-between gap-x-4 gap-y-2">
+        <div className="flex min-w-0 flex-col gap-1.5">
           <h2 className="font-serif text-xl text-foreground leading-heading">
             {t(`category.${categoryId}` as unknown as TranslationKey)}
           </h2>
-          <p className="text-editorial uppercase tracking-editorial text-muted-foreground">
-            {submissions.length === 0
-              ? t('submissions.no-pictures-uploaded')
-              : `${submissions.length} ${t('submissions.pictures-uploaded')}`}
-          </p>
+          {!isEmpty && (
+            <p className="text-editorial uppercase tracking-editorial text-muted-foreground">
+              {`${submissions.length} ${t('submissions.pictures-uploaded')} · ${t('submissions.max-per-category')} ${maxSubmissionsPerCategory}`}
+            </p>
+          )}
         </div>
 
-        {canUpload && (
+        {canUpload && !isEmpty && hasFreeSlot && (
           <Button variant="primary" size="sm" onClick={onUploadClick}>
             {t('action.upload-picture')}
           </Button>
         )}
       </div>
 
-      {hasPaid && canAddMore && isContestActive && (
-        <p className="text-editorial uppercase tracking-editorial text-muted-foreground text-center">
-          {t('payment.submissions-locked')}
+      {isEmpty && canUpload && (
+        <p className="max-w-prose-narrow font-light text-sm text-muted-foreground leading-paragraph">
+          {t('category.empty.body')}
         </p>
       )}
 
-      {canAddMore && !isContestActive && (
-        <Card variant="warning" className="p-4 text-center">
-          {t('submissions.closed')}
-        </Card>
-      )}
+      <div
+        className={cn(
+          'grid grid-cols-2 gap-3 sm:gap-4',
+          maxSubmissionsPerCategory >= 3 && 'sm:grid-cols-3'
+        )}
+      >
+        {slots.map(({ key, submission }) => (
+          <SubmissionSlot
+            key={key}
+            submission={submission}
+            aspect="aspect-4/3"
+            canUpload={canUpload}
+            isLocked={isLocked}
+            isJustUploaded={
+              submission ? submission.id === justUploadedId : false
+            }
+            onUpload={onUploadClick}
+            onManage={onManageSubmission}
+          />
+        ))}
+      </div>
 
-      {!canAddMore && (
-        <Card variant="success" className="p-5 text-center space-y-2">
-          <div className="flex items-center justify-center gap-2">
-            <svg
-              aria-hidden="true"
-              className="w-4 h-4 text-success"
-              fill="currentColor"
-              viewBox="0 0 20 20"
-            >
-              <path
-                fillRule="evenodd"
-                d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
-                clipRule="evenodd"
-              />
-            </svg>
-            <span className="text-editorial uppercase tracking-editorial text-foreground">
-              {t('submissions.category-complete')}
-            </span>
-          </div>
-          <p className="font-light text-sm text-muted-foreground leading-paragraph">
-            {t('submissions.category-complete-description')}
-          </p>
+      {isCategoryComplete && (
+        <Card
+          variant="success"
+          className="flex items-center gap-2 rounded-xl p-3"
+        >
+          <CheckCircleIcon
+            aria-hidden="true"
+            className="size-4 shrink-0 text-success"
+          />
+          <span className="text-editorial uppercase tracking-editorial text-foreground">
+            {t('submissions.category-complete')}
+          </span>
         </Card>
-      )}
-
-      {submissions.length > 0 && (
-        <div className="space-y-3">
-          <p className="text-editorial uppercase tracking-editorial-wider text-muted-foreground">
-            {t('submissions.your-pictures')}
-          </p>
-          {submissions.map(submission => (
-            <div
-              key={submission.id}
-              className="bg-surface border border-border rounded-xl p-4"
-            >
-              <div className="flex items-center gap-4">
-                <div className="w-24 h-18 rounded overflow-hidden flex-shrink-0">
-                  <ImageIcon
-                    variant="uploaded"
-                    className="w-full h-full rounded"
-                  />
-                </div>
-                <div className="flex-1 min-w-0">
-                  <h4 className="font-serif text-base text-foreground leading-heading truncate">
-                    {submission.title}
-                  </h4>
-                  {submission.description && (
-                    <p className="font-light text-sm text-muted-foreground line-clamp-1 leading-paragraph mt-1">
-                      {submission.description}
-                    </p>
-                  )}
-                </div>
-                <ManageButton
-                  onClick={() => onManageSubmission(submission)}
-                  disabled={hasPaid}
-                />
-              </div>
-            </div>
-          ))}
-        </div>
       )}
     </div>
   );
