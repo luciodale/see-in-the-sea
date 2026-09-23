@@ -116,39 +116,6 @@ export type AdminSubmissionsResponse = {
   totalCount: number;
 };
 
-// Admin Results Types
-export type AdminResultRow = {
-  resultId: string;
-  categoryId: string;
-  categoryName: string | null;
-  result: 'first' | 'second' | 'third' | 'runner-up';
-  submissionId: string;
-  title: string;
-  userEmail: string;
-  r2ImageId: string | null;
-  contestId: string;
-  uploadedAt: string;
-  firstName: string | null;
-  lastName: string | null;
-};
-
-export type AdminResultsResponse = {
-  success: boolean;
-  data: AdminResultRow[];
-  totalCount: number;
-  message?: string;
-};
-
-// Manage Results (admin) - request/response types
-export type UpdateResultRequest = {
-  resultId: string;
-  result: 'first' | 'second' | 'third' | 'runner-up';
-  firstName: string | null;
-  lastName: string | null;
-};
-
-export type UpdateResultResponse = ApiResponse<object>;
-
 // Judges API Types
 export type JudgeRow = { fullName: string };
 export type JudgesResponse = ApiResponse<JudgeRow[]>;
@@ -167,24 +134,9 @@ export type Judge = {
   createdAt?: string | null;
 };
 
-export type ResultData = {
-  id: string;
-  submissionId: string;
-  result: string;
-  firstName: string | null;
-  lastName: string | null;
-  createdAt?: string | null;
-};
-
-export type SubmissionWithResult = Submission & {
-  result: ResultData | null;
-  category: Category | null;
-};
-
 export type ContestDetailsData = {
   contest: Contest;
   judges: Judge[];
-  submissions: SubmissionWithResult[];
 };
 
 export type ContestDetailsResponse = ApiResponse<ContestDetailsData>;
@@ -207,16 +159,6 @@ export type CreateOldContestData = {
 
 export type CreateOldContestResponse = ApiResponse<CreateOldContestData>;
 
-export type CreateOldContestSubmissionData = {
-  submissionId: string;
-  resultId: string;
-};
-
-export type CreateOldContestSubmissionResponse =
-  ApiResponse<CreateOldContestSubmissionData>;
-
-export type DeleteSubmissionResponse = ApiResponse<object>;
-
 export type CreateJudgeData = {
   id: string;
   contestId: string;
@@ -232,21 +174,6 @@ export type JudgeLibraryItem = {
   r2ImageId: string;
 };
 export type JudgesLibraryResponse = ApiResponse<JudgeLibraryItem[]>;
-
-// Admin Winners Preview (from judging_flags, not results)
-export type WinnersPreviewRow = {
-  categoryId: string;
-  categoryName: string;
-  placement: 'first' | 'second' | 'third' | 'runner-up';
-  userEmail: string;
-  firstName: string | undefined;
-  lastName: string | undefined;
-  submissionId: string;
-  title: string;
-  r2ImageId: string | null;
-};
-
-export type WinnersPreviewResponse = ApiResponse<WinnersPreviewRow[]>;
 
 // Admin All Contests (for contest selector dropdown)
 export type ContestSummary = {

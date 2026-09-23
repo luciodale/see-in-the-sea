@@ -100,7 +100,6 @@ export const translations = {
     'action.upload-picture': 'Upload Picture',
     'action.replace': 'Replace',
     'action.delete': 'Delete',
-    'action.manage': 'Manage',
     'action.cancel': 'Cancel',
     'action.close': 'Close',
     'action.click-to-manage': 'Click to manage',
@@ -133,16 +132,12 @@ export const translations = {
     'submissions.technical-director': 'Technical Director',
     'submissions.loading': 'Loading your submissions...',
     'submissions.closed': 'Submissions are closed for the current contest.',
-    'submissions.max-size': 'Max size',
     'submissions.count-label': 'submissions',
     'submissions.no-pictures-uploaded': 'No pictures uploaded yet',
     'submissions.pictures-uploaded': 'picture(s) uploaded',
     'submissions.max-per-category': 'max',
     'submissions.category-complete':
       'Category complete - maximum submissions reached',
-    'submissions.category-complete-description':
-      'Maximum submissions reached for this category',
-    'submissions.your-pictures': 'Your pictures',
     'submissions.success-received': 'Photo received',
     'submissions.success-description':
       'Your photo has been uploaded and is ready for the contest',
@@ -155,15 +150,8 @@ export const translations = {
     'photo-type.wide-angle': 'Wide Angle',
     'photo-type.super-macro': 'Super Macro',
     'photo-type.free': 'Free Choice',
-    'image-status.empty': 'Empty',
-    'image-status.uploaded': 'Uploaded',
 
     // Mediterranean instructions
-    'mediterranean.instructions.title': 'Instructions:',
-    'mediterranean.instructions.content':
-      'Click on any empty photo slot to upload. To replace a photo, first delete it using the manage button, then upload a new one. Each portfolio must include exactly one Macro, one Wide Angle, and one Free Choice photo. You can upload up to',
-    'mediterranean.instructions.portfolios': 'complete portfolios',
-    'mediterranean.instructions.photos-total': 'photos total',
 
     'action.save': 'Save changes',
     'state.saving': 'Saving...',
@@ -174,8 +162,6 @@ export const translations = {
     'form.title-placeholder': 'Enter a title for your photo',
     'form.description-optional': 'Description (optional)',
     'form.description-placeholder': 'Describe your photo (optional)',
-    'form.choose-file': 'Choose file',
-    'form.no-file-chosen': 'No file chosen',
     'form.file-too-large': 'File size exceeds the maximum allowed size',
 
     // Categories
@@ -371,14 +357,11 @@ export const translations = {
       'Verification failed. Please check your code and try again.',
 
     // Payment
-    'payment.title': 'Complete Your Entry',
     'payment.single-category': 'Single Category Entry',
     'payment.multiple-categories': 'Multiple Categories Entry',
     'payment.categories-submitted':
       '{count} {count, plural, one {category} other {categories}} submitted',
     'payment.pay-now': 'Pay Now',
-    'payment.processing': 'Processing...',
-    'payment.secure-payment': 'Secure payment powered by Stripe',
     'payment.ready-to-pay':
       'Your photos are ready! Complete your submission by making payment.',
     'payment.no-submissions-title': 'No Submissions Yet',
@@ -396,11 +379,8 @@ export const translations = {
     'payment.cancelled.try-again':
       'You can try again anytime from your submissions page.',
     'payment.cancelled.back-to-submissions': 'Back to My Submissions',
-    'payment.submissions-locked': 'Submissions locked after payment',
-    'payment.warning.title': 'Final Step: Payment',
     'payment.warning.message':
       'Once you complete payment, you will not be able to make any more edits to your submissions.',
-    'payment.back-to-submissions': 'Back to submissions',
 
     // Patrocini
     'patrocini.title': 'With the high patronage of:',
@@ -419,8 +399,6 @@ export const translations = {
     // Flexibility info panel
 
     // Payment banner
-    'payment.banner.message':
-      'Your photos are ready! Complete your entry by making payment.',
 
     // Entry status (upload page)
     'entry.title': 'Your entry',
@@ -444,9 +422,6 @@ export const translations = {
     'status.assessment.title': 'Contest in assessment',
     'status.assessment.message':
       'Uploads are closed \u2014 the jury is reviewing the entries.',
-    'status.locked.title': 'Entry confirmed',
-    'status.locked.message':
-      'We have received your payment. Your photos are locked and can no longer be changed.',
     'status.closed.title': 'Submissions closed',
 
     // Photo slots
@@ -454,7 +429,6 @@ export const translations = {
     'slot.locked': 'Locked',
     'slot.empty': 'Empty',
     'action.view-photo': 'View photo',
-    'category.empty.title': 'Start with your first photo',
     'category.empty.body':
       'Tap a free slot to upload. You can change your mind right up to payment.',
     'image.missing': 'No image',
@@ -591,7 +565,6 @@ export const translations = {
     'action.upload-picture': 'Carica Foto',
     'action.replace': 'Sostituisci',
     'action.delete': 'Elimina',
-    'action.manage': 'Gestisci',
     'action.cancel': 'Annulla',
     'action.close': 'Chiudi',
     'action.click-to-manage': 'Clicca per gestire',
@@ -626,16 +599,12 @@ export const translations = {
     'submissions.loading': 'Caricamento delle tue candidature...',
     'submissions.closed':
       'Le candidature sono chiuse per il concorso corrente.',
-    'submissions.max-size': 'Dimensione massima',
     'submissions.count-label': 'candidature',
     'submissions.no-pictures-uploaded': 'Nessuna foto caricata ancora',
     'submissions.pictures-uploaded': 'foto caricate',
     'submissions.max-per-category': 'max',
     'submissions.category-complete':
       'Categoria completa - massimo numero di candidature raggiunto',
-    'submissions.category-complete-description':
-      'Massimo numero di candidature raggiunto per questa categoria',
-    'submissions.your-pictures': 'Le tue foto',
     'submissions.success-received': 'Foto ricevuta',
     'submissions.success-description':
       'La tua foto è stata caricata ed è pronta per il concorso',
@@ -648,15 +617,8 @@ export const translations = {
     'photo-type.wide-angle': 'Grandangolo',
     'photo-type.super-macro': 'Super Macro',
     'photo-type.free': 'Libera Scelta',
-    'image-status.empty': 'Vuoto',
-    'image-status.uploaded': 'Caricato',
 
     // Mediterranean instructions
-    'mediterranean.instructions.title': 'Istruzioni:',
-    'mediterranean.instructions.content':
-      'Clicca su qualsiasi slot foto vuoto per caricare. Per sostituire una foto, prima eliminarla usando il pulsante gestisci, poi caricarne una nuova. Ogni portfolio deve includere esattamente una Macro, una Grandangolo e una Libera Scelta. Puoi caricare fino a',
-    'mediterranean.instructions.portfolios': 'portfolio completi',
-    'mediterranean.instructions.photos-total': 'foto totali',
 
     'action.save': 'Salva modifiche',
     'state.saving': 'Salvataggio...',
@@ -667,8 +629,6 @@ export const translations = {
     'form.title-placeholder': 'Inserisci un titolo per la tua foto',
     'form.description-optional': 'Descrizione (opzionale)',
     'form.description-placeholder': 'Descrivi la tua foto (opzionale)',
-    'form.choose-file': 'Scegli file',
-    'form.no-file-chosen': 'Nessun file selezionato',
     'form.file-too-large': 'La dimensione del file supera il limite consentito',
 
     // Categories
@@ -869,14 +829,11 @@ export const translations = {
     'auth.verify.failed': 'Verifica fallita. Controlla il codice e riprova.',
 
     // Payment
-    'payment.title': 'Completa la tua Iscrizione',
     'payment.single-category': 'Iscrizione Singola Categoria',
     'payment.multiple-categories': 'Iscrizione Categorie Multiple',
     'payment.categories-submitted':
       '{count} {count, plural, one {categoria} other {categorie}} inviate',
     'payment.pay-now': 'Paga Ora',
-    'payment.processing': 'Elaborazione...',
-    'payment.secure-payment': 'Pagamento sicuro tramite Stripe',
     'payment.ready-to-pay':
       'Le tue foto sono pronte! Completa la tua iscrizione effettuando il pagamento.',
     'payment.no-submissions-title': 'Nessuna Candidatura Ancora',
@@ -894,11 +851,8 @@ export const translations = {
     'payment.cancelled.try-again':
       'Puoi riprovare in qualsiasi momento dalla pagina delle tue candidature.',
     'payment.cancelled.back-to-submissions': 'Torna alle Mie Candidature',
-    'payment.submissions-locked': 'Candidature bloccate dopo il pagamento',
-    'payment.warning.title': 'Passo Finale: Pagamento',
     'payment.warning.message':
       'Una volta completato il pagamento, non potrai più modificare le tue candidature.',
-    'payment.back-to-submissions': 'Torna alle candidature',
 
     // Patrocini
     'patrocini.title': "Con l'alto patrocinio di:",
@@ -917,8 +871,6 @@ export const translations = {
     // Flexibility info panel
 
     // Payment banner
-    'payment.banner.message':
-      'Le tue foto sono pronte! Completa la tua iscrizione effettuando il pagamento.',
 
     // Entry status (upload page)
     'entry.title': 'La tua iscrizione',
@@ -942,9 +894,6 @@ export const translations = {
     'status.assessment.title': 'Concorso in valutazione',
     'status.assessment.message':
       'I caricamenti sono chiusi: la giuria sta valutando le foto.',
-    'status.locked.title': 'Iscrizione confermata',
-    'status.locked.message':
-      'Abbiamo ricevuto il pagamento. Le tue foto sono bloccate e non possono pi\u00f9 essere modificate.',
     'status.closed.title': 'Candidature chiuse',
 
     // Photo slots
@@ -952,7 +901,6 @@ export const translations = {
     'slot.locked': 'Bloccato',
     'slot.empty': 'Vuoto',
     'action.view-photo': 'Vedi foto',
-    'category.empty.title': 'Inizia dalla tua prima foto',
     'category.empty.body':
       'Tocca uno spazio libero per caricare. Puoi cambiare idea fino al pagamento.',
     'image.missing': 'Nessuna immagine',

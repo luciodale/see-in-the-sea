@@ -1,19 +1,13 @@
 import type { APIRoute } from 'astro';
 import { eq } from 'drizzle-orm';
 import { getDb } from '../../../db';
-import {
-  categories,
-  contests,
-  judges,
-  results,
-  submissions,
-} from '../../../db/schema';
+import { contests, judges } from '../../../db/schema';
 import { authenticateAdmin } from '../../../server/authenticateRequest';
 import type { ContestDetailsResponse } from '../../../types/api';
 
 export const prerender = false;
 
-// GET: Fetch contest with submissions, results, and judges (admin only)
+// GET: Fetch a contest and its judges (admin only)
 export const GET: APIRoute = async ({ request, locals }) => {
   console.log('[admin-contest-details] Processing contest details request');
 
@@ -79,28 +73,11 @@ export const GET: APIRoute = async ({ request, locals }) => {
       .from(judges)
       .where(eq(judges.contestId, contestId));
 
-    // Fetch submissions with results and categories
-    const submissionsWithResults = await db
-      .select({
-        submission: submissions,
-        result: results,
-        category: categories,
-      })
-      .from(submissions)
-      .leftJoin(results, eq(results.submissionId, submissions.id))
-      .leftJoin(categories, eq(categories.id, submissions.categoryId))
-      .where(eq(submissions.contestId, contestId));
-
     const response = {
       success: true,
       data: {
         contest,
         judges: judgesResult,
-        submissions: submissionsWithResults.map(row => ({
-          ...row.submission,
-          result: row.result,
-          category: row.category,
-        })),
       },
     } satisfies ContestDetailsResponse;
 

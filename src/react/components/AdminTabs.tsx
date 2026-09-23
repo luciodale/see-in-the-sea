@@ -52,7 +52,7 @@ export function AdminTabs({
             className={linkClass}
             activeProps={{ className: activeLinkClass }}
           >
-            Concorsi Passati
+            Gestisci Giudici
           </Link>
         </nav>
 

@@ -13,12 +13,10 @@ import { Route as UserIndexRouteImport } from './routes/user/index'
 import { Route as AdminIndexRouteImport } from './routes/admin/index'
 import { Route as UserSubmissionsRouteImport } from './routes/user/submissions'
 import { Route as UserLoginRouteImport } from './routes/user/login'
-import { Route as AdminWinnersRouteImport } from './routes/admin/winners'
 import { Route as AdminManualEntryRouteImport } from './routes/admin/manual-entry'
 import { Route as AdminJudgingRouteImport } from './routes/admin/judging'
 import { Route as AdminCurrentContestRouteImport } from './routes/admin/current-contest'
 import { Route as AdminCreateOldContestRouteImport } from './routes/admin/create-old-contest'
-import { Route as UserPaymentIndexRouteImport } from './routes/user/payment/index'
 import { Route as UserPaymentSuccessRouteImport } from './routes/user/payment/success'
 import { Route as UserPaymentCancelRouteImport } from './routes/user/payment/cancel'
 import { Route as AdminContestYearRouteImport } from './routes/admin/contest/$year'
@@ -43,11 +41,6 @@ const UserLoginRoute = UserLoginRouteImport.update({
   path: '/user/login',
   getParentRoute: () => rootRouteImport,
 } as any)
-const AdminWinnersRoute = AdminWinnersRouteImport.update({
-  id: '/admin/winners',
-  path: '/admin/winners',
-  getParentRoute: () => rootRouteImport,
-} as any)
 const AdminManualEntryRoute = AdminManualEntryRouteImport.update({
   id: '/admin/manual-entry',
   path: '/admin/manual-entry',
@@ -66,11 +59,6 @@ const AdminCurrentContestRoute = AdminCurrentContestRouteImport.update({
 const AdminCreateOldContestRoute = AdminCreateOldContestRouteImport.update({
   id: '/admin/create-old-contest',
   path: '/admin/create-old-contest',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const UserPaymentIndexRoute = UserPaymentIndexRouteImport.update({
-  id: '/user/payment/',
-  path: '/user/payment/',
   getParentRoute: () => rootRouteImport,
 } as any)
 const UserPaymentSuccessRoute = UserPaymentSuccessRouteImport.update({
@@ -94,7 +82,6 @@ export interface FileRoutesByFullPath {
   '/admin/current-contest': typeof AdminCurrentContestRoute
   '/admin/judging': typeof AdminJudgingRoute
   '/admin/manual-entry': typeof AdminManualEntryRoute
-  '/admin/winners': typeof AdminWinnersRoute
   '/user/login': typeof UserLoginRoute
   '/user/submissions': typeof UserSubmissionsRoute
   '/admin': typeof AdminIndexRoute
@@ -102,14 +89,12 @@ export interface FileRoutesByFullPath {
   '/admin/contest/$year': typeof AdminContestYearRoute
   '/user/payment/cancel': typeof UserPaymentCancelRoute
   '/user/payment/success': typeof UserPaymentSuccessRoute
-  '/user/payment': typeof UserPaymentIndexRoute
 }
 export interface FileRoutesByTo {
   '/admin/create-old-contest': typeof AdminCreateOldContestRoute
   '/admin/current-contest': typeof AdminCurrentContestRoute
   '/admin/judging': typeof AdminJudgingRoute
   '/admin/manual-entry': typeof AdminManualEntryRoute
-  '/admin/winners': typeof AdminWinnersRoute
   '/user/login': typeof UserLoginRoute
   '/user/submissions': typeof UserSubmissionsRoute
   '/admin': typeof AdminIndexRoute
@@ -117,7 +102,6 @@ export interface FileRoutesByTo {
   '/admin/contest/$year': typeof AdminContestYearRoute
   '/user/payment/cancel': typeof UserPaymentCancelRoute
   '/user/payment/success': typeof UserPaymentSuccessRoute
-  '/user/payment': typeof UserPaymentIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -125,7 +109,6 @@ export interface FileRoutesById {
   '/admin/current-contest': typeof AdminCurrentContestRoute
   '/admin/judging': typeof AdminJudgingRoute
   '/admin/manual-entry': typeof AdminManualEntryRoute
-  '/admin/winners': typeof AdminWinnersRoute
   '/user/login': typeof UserLoginRoute
   '/user/submissions': typeof UserSubmissionsRoute
   '/admin/': typeof AdminIndexRoute
@@ -133,7 +116,6 @@ export interface FileRoutesById {
   '/admin/contest/$year': typeof AdminContestYearRoute
   '/user/payment/cancel': typeof UserPaymentCancelRoute
   '/user/payment/success': typeof UserPaymentSuccessRoute
-  '/user/payment/': typeof UserPaymentIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -142,7 +124,6 @@ export interface FileRouteTypes {
     | '/admin/current-contest'
     | '/admin/judging'
     | '/admin/manual-entry'
-    | '/admin/winners'
     | '/user/login'
     | '/user/submissions'
     | '/admin'
@@ -150,14 +131,12 @@ export interface FileRouteTypes {
     | '/admin/contest/$year'
     | '/user/payment/cancel'
     | '/user/payment/success'
-    | '/user/payment'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/admin/create-old-contest'
     | '/admin/current-contest'
     | '/admin/judging'
     | '/admin/manual-entry'
-    | '/admin/winners'
     | '/user/login'
     | '/user/submissions'
     | '/admin'
@@ -165,14 +144,12 @@ export interface FileRouteTypes {
     | '/admin/contest/$year'
     | '/user/payment/cancel'
     | '/user/payment/success'
-    | '/user/payment'
   id:
     | '__root__'
     | '/admin/create-old-contest'
     | '/admin/current-contest'
     | '/admin/judging'
     | '/admin/manual-entry'
-    | '/admin/winners'
     | '/user/login'
     | '/user/submissions'
     | '/admin/'
@@ -180,7 +157,6 @@ export interface FileRouteTypes {
     | '/admin/contest/$year'
     | '/user/payment/cancel'
     | '/user/payment/success'
-    | '/user/payment/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -188,7 +164,6 @@ export interface RootRouteChildren {
   AdminCurrentContestRoute: typeof AdminCurrentContestRoute
   AdminJudgingRoute: typeof AdminJudgingRoute
   AdminManualEntryRoute: typeof AdminManualEntryRoute
-  AdminWinnersRoute: typeof AdminWinnersRoute
   UserLoginRoute: typeof UserLoginRoute
   UserSubmissionsRoute: typeof UserSubmissionsRoute
   AdminIndexRoute: typeof AdminIndexRoute
@@ -196,7 +171,6 @@ export interface RootRouteChildren {
   AdminContestYearRoute: typeof AdminContestYearRoute
   UserPaymentCancelRoute: typeof UserPaymentCancelRoute
   UserPaymentSuccessRoute: typeof UserPaymentSuccessRoute
-  UserPaymentIndexRoute: typeof UserPaymentIndexRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -229,13 +203,6 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof UserLoginRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/admin/winners': {
-      id: '/admin/winners'
-      path: '/admin/winners'
-      fullPath: '/admin/winners'
-      preLoaderRoute: typeof AdminWinnersRouteImport
-      parentRoute: typeof rootRouteImport
-    }
     '/admin/manual-entry': {
       id: '/admin/manual-entry'
       path: '/admin/manual-entry'
@@ -262,13 +229,6 @@ declare module '@tanstack/react-router' {
       path: '/admin/create-old-contest'
       fullPath: '/admin/create-old-contest'
       preLoaderRoute: typeof AdminCreateOldContestRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/user/payment/': {
-      id: '/user/payment/'
-      path: '/user/payment'
-      fullPath: '/user/payment'
-      preLoaderRoute: typeof UserPaymentIndexRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/user/payment/success': {
@@ -300,7 +260,6 @@ const rootRouteChildren: RootRouteChildren = {
   AdminCurrentContestRoute: AdminCurrentContestRoute,
   AdminJudgingRoute: AdminJudgingRoute,
   AdminManualEntryRoute: AdminManualEntryRoute,
-  AdminWinnersRoute: AdminWinnersRoute,
   UserLoginRoute: UserLoginRoute,
   UserSubmissionsRoute: UserSubmissionsRoute,
   AdminIndexRoute: AdminIndexRoute,
@@ -308,7 +267,6 @@ const rootRouteChildren: RootRouteChildren = {
   AdminContestYearRoute: AdminContestYearRoute,
   UserPaymentCancelRoute: UserPaymentCancelRoute,
   UserPaymentSuccessRoute: UserPaymentSuccessRoute,
-  UserPaymentIndexRoute: UserPaymentIndexRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

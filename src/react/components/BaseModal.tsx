@@ -47,7 +47,7 @@ export function BaseModal({
   return (
     <div className="fixed inset-0 z-50 bg-background/80 backdrop-blur-sm flex items-center justify-center p-4">
       <div
-        className={`bg-popover ${borderClass} border rounded-2xl w-full ${maxWidthClasses[maxWidth]} max-h-[90vh] overflow-y-auto relative shadow-2xl`}
+        className={`bg-popover ${borderClass} border rounded-2xl w-full ${maxWidthClasses[maxWidth]} max-h-full overflow-y-auto relative shadow-2xl`}
       >
         {isLoading && (
           <div className="absolute inset-0 bg-popover/95 backdrop-blur-sm flex items-center justify-center z-10 rounded-2xl">

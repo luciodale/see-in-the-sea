@@ -232,8 +232,7 @@ const en: RulesContent = {
     id: 'rules',
     eyebrow: 'The Regulation',
     title: 'Rules & Articles',
-    intro:
-      'The full regulation, article by article.',
+    intro: 'The full regulation, article by article.',
     items: [
       {
         id: 'art-1',
@@ -682,8 +681,7 @@ const it: RulesContent = {
     id: 'rules',
     eyebrow: 'Il Regolamento',
     title: 'Regolamento e Articoli',
-    intro:
-      'Il regolamento completo, articolo per articolo.',
+    intro: 'Il regolamento completo, articolo per articolo.',
     items: [
       {
         id: 'art-1',
