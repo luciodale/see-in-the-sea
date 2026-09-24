@@ -33,3 +33,7 @@ pnpm-debug.log*
 
 # Localflare generated files
 .localflare/
+
+# offline judging session: mirrored photos (hundreds of MB) and generated SQL
+public/judging/
+.judging-push/

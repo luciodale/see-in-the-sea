@@ -182,7 +182,7 @@ export function useJudgingNavigation({
         )
       : -1;
   const zoomedImageUrl = zoomedPhoto?.r2ImageId
-    ? getImageUrl(zoomedPhoto.r2ImageId)
+    ? getImageUrl(zoomedPhoto.r2ImageId, 'full')
     : null;
   const canGoPrevPhoto = zoomedPhotoIndex > 0;
   const canGoNextPhoto =

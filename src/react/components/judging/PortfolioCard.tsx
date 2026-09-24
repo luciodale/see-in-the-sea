@@ -94,7 +94,9 @@ export const PortfolioCard = memo(function PortfolioCard({
         <div className="grid grid-cols-3 gap-0.5 p-0.5">
           {PHOTO_TYPES.map(photoType => {
             const sub = photoByType.get(photoType);
-            const imageUrl = sub?.r2ImageId ? getImageUrl(sub.r2ImageId) : null;
+            const imageUrl = sub?.r2ImageId
+              ? getImageUrl(sub.r2ImageId, 'thumb')
+              : null;
             const hasFailed = sub ? failedIds.has(sub.id) : false;
 
             return (

@@ -82,7 +82,11 @@ export function SubmissionInspectModal({
         }}
       >
         <img
-          src={submission.r2ImageId ? getImageUrl(submission.r2ImageId) : ''}
+          src={
+            submission.r2ImageId
+              ? getImageUrl(submission.r2ImageId, 'full')
+              : ''
+          }
           alt={submission.title}
           style={{
             transform: `scale(${zoomLevel})`,

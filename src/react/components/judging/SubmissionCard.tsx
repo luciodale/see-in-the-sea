@@ -30,7 +30,7 @@ export const SubmissionCard = memo(function SubmissionCard({
 }: SubmissionCardProps) {
   const [imgFailed, setImgFailed] = useState(false);
   const imageUrl = submission.r2ImageId
-    ? getImageUrl(submission.r2ImageId)
+    ? getImageUrl(submission.r2ImageId, 'thumb')
     : null;
   const isRejected = submission.flagStatus === 'rejected';
   const isShortlisted = submission.flagStatus === 'shortlisted';

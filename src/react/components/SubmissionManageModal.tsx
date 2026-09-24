@@ -60,7 +60,9 @@ export function SubmissionManageModal({
           <div className="aspect-4/3 w-24 shrink-0 overflow-hidden rounded-lg border border-border bg-surface-raised">
             <img
               src={
-                submission.r2ImageId ? getImageUrl(submission.r2ImageId) : ''
+                submission.r2ImageId
+                  ? getImageUrl(submission.r2ImageId, 'full')
+                  : ''
               }
               alt={submission.title}
               className="size-full object-cover"

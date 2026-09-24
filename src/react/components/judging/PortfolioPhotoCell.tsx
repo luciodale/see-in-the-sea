@@ -30,7 +30,9 @@ export function PortfolioPhotoCell({
   onImageLoad,
   onImageError,
 }: PortfolioPhotoCellProps) {
-  const imageUrl = photo.r2ImageId ? getImageUrl(photo.r2ImageId) : null;
+  const imageUrl = photo.r2ImageId
+    ? getImageUrl(photo.r2ImageId, 'thumb')
+    : null;
   const hasImage = !!imageUrl && !hasFailed;
   const label = photo.portfolioPhotoType
     ? formatPortfolioPhotoType(photo.portfolioPhotoType)

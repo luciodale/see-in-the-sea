@@ -54,7 +54,7 @@ export function SubmissionThumb({
 
   return (
     <img
-      src={getImageUrl(r2ImageId)}
+      src={getImageUrl(r2ImageId, 'thumb')}
       alt={alt}
       loading="lazy"
       decoding="async"

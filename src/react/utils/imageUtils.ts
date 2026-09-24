@@ -1,6 +1,19 @@
 import { getFullQualityImageUrl } from '../../server/imageService';
 
-// Local dev: static images from public/ since R2 doesn't serve locally
+export type ImageVariant = 'thumb' | 'full';
+
+// Offline judging: scripts/judging-pull.ts mirrors the production photos into
+// public/judging/<variant>/. Opt in with PUBLIC_JUDGING_MIRROR=true once the
+// pull has run; without it local dev keeps using the stand-in photos below,
+// because the mirror is hundreds of MB and is not checked in.
+const LOCAL_JUDGING_ROOT = '/judging';
+
+// Both variants are written as webp so the file name is derivable from the
+// r2ImageId alone (no lookup, no probing). Keep in sync with the pull script.
+const LOCAL_JUDGING_EXTENSION = 'webp';
+
+const LOCAL_HOSTNAMES = new Set(['localhost', '127.0.0.1']);
+
 const LOCAL_DEV_IMAGES = [
   '/images/contests/2025/-3BcSVDpZO2WN2tYVDxXU.webp',
   '/images/contests/2025/1_ejaLRybeNB2D3zCBcQz.webp',
@@ -43,16 +56,49 @@ function simpleHash(str: string): number {
   return Math.abs(hash);
 }
 
+function isLocalHost() {
+  return (
+    typeof window !== 'undefined' &&
+    LOCAL_HOSTNAMES.has(window.location.hostname)
+  );
+}
+
+function usesJudgingMirror() {
+  return import.meta.env.PUBLIC_JUDGING_MIRROR === 'true';
+}
+
 /**
- * Constructs the full image URL for display
- * @param r2ImageId - The r2ImageId from the database
- * @returns The full API path for the image
+ * Flattens an r2ImageId (contest/category/id) into a single file name, since
+ * the mirror keeps every photo in one directory per variant.
+ * Pure function - string transformation.
  */
-export function getImageUrl(r2ImageId: string) {
-  // TODO: remove local dev fallback when R2 serves locally
-  if (window.location.hostname === 'localhost') {
+export function toLocalJudgingKey(r2ImageId: string) {
+  return r2ImageId.replaceAll('/', '_');
+}
+
+/**
+ * Path of a mirrored photo under public/. Shared with the pull script so the
+ * naming has a single source of truth.
+ */
+export function getLocalJudgingPath(r2ImageId: string, variant: ImageVariant) {
+  return `${LOCAL_JUDGING_ROOT}/${variant}/${toLocalJudgingKey(r2ImageId)}.${LOCAL_JUDGING_EXTENSION}`;
+}
+
+/**
+ * Constructs the image URL for display.
+ * @param r2ImageId - The r2ImageId from the database
+ * @param variant - 'thumb' for grids and cards, 'full' for inspect and zoom
+ * @returns The mirrored file or a stand-in locally, the CDN URL otherwise
+ */
+export function getImageUrl(r2ImageId: string, variant: ImageVariant = 'full') {
+  if (isLocalHost()) {
+    if (usesJudgingMirror()) {
+      return getLocalJudgingPath(r2ImageId, variant);
+    }
+    // R2 does not serve locally: stand-ins keep the UI usable during dev.
     return LOCAL_DEV_IMAGES[simpleHash(r2ImageId) % LOCAL_DEV_IMAGES.length];
   }
-  // return getFullQualityImageUrl(r2ImageId);
+  // No remote thumbnail service: production serves the original for both
+  // variants.
   return getFullQualityImageUrl(r2ImageId);
 }
