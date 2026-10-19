@@ -368,6 +368,7 @@ export function AdminImpersonationInterface({
         }}
         onDelete={handleDeleteSubmission}
         onUpdated={handleSubmissionUpdated}
+        adminUserEmail={userEmail}
       />
 
       {/* Upload/Delete Success Dialog */}

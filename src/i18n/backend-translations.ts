@@ -57,6 +57,9 @@ export const backendTranslations = {
     'error.submission-not-owned': 'Submission not found or not owned by user',
     'error.title-required': 'A title is required.',
     'error.field-too-long': 'Title or description is too long.',
+    'error.metadata-only': 'Only the title and description can be edited.',
+    'error.access-denied-admin-edit':
+      'Access denied. Admin role required to edit on behalf of a user.',
     'error.creating-submissions-without-images':
       'Creating new submissions without images is not supported. Use the upload-image endpoint instead.',
 
@@ -132,6 +135,9 @@ export const backendTranslations = {
       "Candidatura non trovata o non di proprietà dell'utente",
     'error.title-required': 'Il titolo è obbligatorio.',
     'error.field-too-long': 'Titolo o descrizione troppo lunghi.',
+    'error.metadata-only': 'Si possono modificare solo titolo e descrizione.',
+    'error.access-denied-admin-edit':
+      'Accesso negato. Ruolo admin richiesto per modificare per conto di un utente.',
     'error.creating-submissions-without-images':
       "La creazione di candidature senza immagini non è supportata. Usa l'endpoint upload-image invece.",
 

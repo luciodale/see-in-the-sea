@@ -15,6 +15,7 @@ type SubmissionManageModalProps = {
   onClose: () => void;
   onDelete: (submissionId: string) => void;
   onUpdated: (submission: UISubmission) => void;
+  adminUserEmail?: string;
 };
 
 export function SubmissionManageModal({
@@ -24,6 +25,7 @@ export function SubmissionManageModal({
   onClose,
   onDelete,
   onUpdated,
+  adminUserEmail,
 }: SubmissionManageModalProps) {
   const { t } = useI18n();
   const {
@@ -37,7 +39,14 @@ export function SubmissionManageModal({
     canSave,
     save,
     remove,
-  } = useEditSubmission({ submission, isOpen, onUpdated, onDelete, onClose });
+  } = useEditSubmission({
+    submission,
+    isOpen,
+    onUpdated,
+    onDelete,
+    onClose,
+    adminUserEmail,
+  });
 
   if (!isOpen || !submission) {
     return null;
@@ -80,7 +89,7 @@ export function SubmissionManageModal({
             value={title}
             onChange={event => setTitle(event.target.value)}
             placeholder={t('form.title-placeholder')}
-            disabled={isBusy || hasPaid}
+            disabled={isBusy}
             maxLength={100}
           />
           <Textarea
@@ -89,7 +98,7 @@ export function SubmissionManageModal({
             value={description}
             onChange={event => setDescription(event.target.value)}
             placeholder={t('form.description-placeholder')}
-            disabled={isBusy || hasPaid}
+            disabled={isBusy}
             maxLength={500}
           />
         </div>
@@ -122,17 +131,15 @@ export function SubmissionManageModal({
             >
               {t('action.close')}
             </Button>
-            {!hasPaid && (
-              <Button
-                variant="primary"
-                onClick={save}
-                loading={isSaving}
-                disabled={!canSave || isBusy}
-                className="min-h-11 w-full justify-center sm:w-auto"
-              >
-                {isSaving ? t('state.saving') : t('action.save')}
-              </Button>
-            )}
+            <Button
+              variant="primary"
+              onClick={save}
+              loading={isSaving}
+              disabled={!canSave || isBusy}
+              className="min-h-11 w-full justify-center sm:w-auto"
+            >
+              {isSaving ? t('state.saving') : t('action.save')}
+            </Button>
           </div>
         </div>
       </div>

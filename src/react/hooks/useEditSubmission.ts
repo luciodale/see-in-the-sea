@@ -8,6 +8,7 @@ type UseEditSubmissionParams = {
   onUpdated: (submission: UISubmission) => void;
   onDelete: (submissionId: string) => void;
   onClose: () => void;
+  adminUserEmail?: string;
 };
 
 type UpdateResponse = {
@@ -16,13 +17,15 @@ type UpdateResponse = {
 };
 
 // Title and description of an existing submission. A title is always
-// required, and the server refuses edits once the entry has been paid for.
+// required. Edits stay open after payment: the photo itself never changes.
+// adminUserEmail is set when an admin edits on behalf of a user.
 export function useEditSubmission({
   submission,
   isOpen,
   onUpdated,
   onDelete,
   onClose,
+  adminUserEmail,
 }: UseEditSubmissionParams) {
   const { t } = useI18n();
   const [title, setTitle] = useState('');
@@ -60,6 +63,7 @@ export function useEditSubmission({
           submissionId: submission.id,
           title: trimmedTitle,
           description: trimmedDescription,
+          adminUserEmail,
         }),
       });
       const result = (await response.json()) as UpdateResponse;

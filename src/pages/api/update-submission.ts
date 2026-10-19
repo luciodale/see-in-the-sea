@@ -1,7 +1,7 @@
 import type { APIRoute } from 'astro';
 import { and, eq } from 'drizzle-orm';
 import { getDb } from '../../db/index';
-import { payments, submissions } from '../../db/schema';
+import { submissions } from '../../db/schema';
 import { getBackendTranslation } from '../../i18n/utils';
 import { authenticateRequest } from '../../server/authenticateRequest';
 
@@ -10,10 +10,20 @@ export const prerender = false;
 const TITLE_MAX_LENGTH = 100;
 const DESCRIPTION_MAX_LENGTH = 500;
 
+// The only keys this endpoint accepts. Anything else (image, category,
+// contest, portfolio...) is refused so the photo itself can never change here.
+const ALLOWED_KEYS = new Set([
+  'submissionId',
+  'title',
+  'description',
+  'adminUserEmail',
+]);
+
 type UpdateSubmissionBody = {
-  submissionId?: string;
-  title?: string;
-  description?: string;
+  submissionId: string;
+  title: string;
+  description: string;
+  adminUserEmail?: string;
 };
 
 function errorResponse(message: string, status: number) {
@@ -23,11 +33,40 @@ function errorResponse(message: string, status: number) {
   });
 }
 
+function parseBody(raw: unknown): UpdateSubmissionBody | null {
+  if (typeof raw !== 'object' || raw === null || Array.isArray(raw)) {
+    return null;
+  }
+  const entries = Object.entries(raw);
+  if (entries.some(([key]) => !ALLOWED_KEYS.has(key))) return null;
+
+  const body = Object.fromEntries(entries);
+  const { submissionId, title, description, adminUserEmail } = body;
+  if (typeof submissionId !== 'string' || submissionId.length === 0) {
+    return null;
+  }
+  if (typeof title !== 'string') return null;
+  if (description !== undefined && typeof description !== 'string') {
+    return null;
+  }
+  if (adminUserEmail !== undefined && typeof adminUserEmail !== 'string') {
+    return null;
+  }
+
+  return {
+    submissionId,
+    title: title.trim(),
+    description: (description ?? '').trim(),
+    adminUserEmail: adminUserEmail?.trim() || undefined,
+  };
+}
+
 /**
  * PATCH /api/update-submission
- * Body: { submissionId: string, title: string, description?: string }
- * Edits the title and description of a submission owned by the authenticated
- * user. Locked once the user has paid for that contest, exactly like delete.
+ * Body: { submissionId, title, description?, adminUserEmail? }
+ * Edits only the title and description of a submission. The image and every
+ * other field stay untouched. Allowed after payment, since the photo is fixed.
+ * With adminUserEmail, an admin edits on behalf of that user (impersonation).
  */
 export const PATCH: APIRoute = async ({ request, locals }) => {
   const D1Database = locals.runtime.env.DB;
@@ -40,7 +79,7 @@ export const PATCH: APIRoute = async ({ request, locals }) => {
   }
 
   try {
-    const { isAuthenticated, user, unauthenticatedResponse } =
+    const { isAuthenticated, user, isAdminRole, unauthenticatedResponse } =
       await authenticateRequest(request, locals);
 
     if (!isAuthenticated) {
@@ -48,17 +87,16 @@ export const PATCH: APIRoute = async ({ request, locals }) => {
     }
 
     const db = getDb(D1Database);
-    const body = (await request.json()) as UpdateSubmissionBody;
-    const submissionId = body.submissionId;
-    const title = body.title?.trim() ?? '';
-    const description = body.description?.trim() ?? '';
+    const body = parseBody(await request.json());
 
-    if (!submissionId) {
+    if (!body) {
       return errorResponse(
-        getBackendTranslation('error.submission-id-required', request),
+        getBackendTranslation('error.metadata-only', request),
         400
       );
     }
+
+    const { submissionId, title, description, adminUserEmail } = body;
 
     // A submission always needs a title: the jury sees it next to the photo
     if (!title) {
@@ -78,43 +116,36 @@ export const PATCH: APIRoute = async ({ request, locals }) => {
       );
     }
 
+    if (adminUserEmail && !isAdminRole()) {
+      return errorResponse(
+        getBackendTranslation('error.access-denied-admin-edit', request),
+        403
+      );
+    }
+
+    // Owner is the impersonated user for admins, otherwise the caller
+    const ownerEmail = adminUserEmail ?? user.emailAddress ?? '';
+    if (adminUserEmail) {
+      console.log(
+        `[update-submission] Admin ${user.id} editing ${submissionId} on behalf of ${ownerEmail}`
+      );
+    }
+
     const rows = await db
-      .select({
-        id: submissions.id,
-        contestId: submissions.contestId,
-      })
+      .select({ id: submissions.id })
       .from(submissions)
       .where(
         and(
           eq(submissions.id, submissionId),
-          eq(submissions.userEmail, user.emailAddress || '')
+          eq(submissions.userEmail, ownerEmail)
         )
       )
       .limit(1);
 
-    const submission = rows[0];
-    if (!submission) {
+    if (!rows[0]) {
       return errorResponse(
         getBackendTranslation('error.submission-not-owned', request),
         404
-      );
-    }
-
-    const payment = await db
-      .select()
-      .from(payments)
-      .where(
-        and(
-          eq(payments.contestId, submission.contestId),
-          eq(payments.userEmail, user.emailAddress || '')
-        )
-      )
-      .limit(1);
-
-    if (payment.length > 0) {
-      return errorResponse(
-        getBackendTranslation('error.submissions-locked', request),
-        403
       );
     }
 

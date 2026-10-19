@@ -1,0 +1,80 @@
+-- allium: 1
+-- Editing a submission's title and description.
+-- The photo is immutable through this path; only metadata changes.
+
+external entity User {
+    email: String
+    is_admin: Boolean
+}
+
+external entity Contest {
+    id: String
+}
+
+external entity Payment {
+    contest: Contest
+    user_email: String
+}
+
+entity Submission {
+    contest: Contest
+    owner_email: String
+    image: String
+    category: String
+    title: String
+    description: String?
+}
+
+config {
+    title_max_length: Integer = 100
+    description_max_length: Integer = 500
+}
+
+rule OwnerEditsSubmissionMetadata {
+    when: EditSubmissionMetadata(actor, submission, title, description, on_behalf_of)
+    requires: on_behalf_of = null
+    requires: submission.owner_email = actor.email
+    requires: title.trimmed.length > 0
+    requires: title.trimmed.length <= config.title_max_length
+    requires: description.trimmed.length <= config.description_max_length
+    ensures: submission.title = title.trimmed
+    ensures: submission.description = description.trimmed
+    @guidance
+        -- Allowed whether or not the owner has paid for the contest.
+        -- Payment locks upload and delete, never metadata.
+}
+
+rule AdminEditsSubmissionMetadataOnBehalf {
+    when: EditSubmissionMetadata(actor, submission, title, description, on_behalf_of)
+    requires: on_behalf_of != null
+    requires: actor.is_admin
+    requires: submission.owner_email = on_behalf_of
+    requires: title.trimmed.length > 0
+    requires: title.trimmed.length <= config.title_max_length
+    requires: description.trimmed.length <= config.description_max_length
+    ensures: submission.title = title.trimmed
+    ensures: submission.description = description.trimmed
+    @guidance
+        -- Used by the admin impersonation view (Inserimento Manuale).
+}
+
+surface SubmissionMetadataEditor {
+    facing actor: User
+
+    context submission: Submission
+
+    exposes:
+        submission.image
+        submission.title
+        submission.description
+
+    provides:
+        EditSubmissionMetadata(actor, submission, title, description, on_behalf_of)
+
+    @guarantee PhotoIsImmutable
+        -- Only title and description change. Image, category, contest
+        -- and owner_email never change. Requests carrying any field beyond
+        -- submission id, title, description and on_behalf_of are refused.
+}
+
+open question "Should metadata edits be blocked once judging starts?"
