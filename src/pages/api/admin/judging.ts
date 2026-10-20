@@ -159,16 +159,22 @@ export const GET: APIRoute = async ({ request, locals, url }) => {
         resultId: results.id,
       })
       .from(submissions)
-      .innerJoin(
-        payments,
-        and(
-          eq(submissions.userEmail, payments.userEmail),
-          eq(submissions.contestId, payments.contestId)
-        )
-      )
       .leftJoin(judgingFlags, eq(submissions.id, judgingFlags.submissionId))
       .leftJoin(results, eq(submissions.id, results.submissionId))
-      .where(eq(submissions.contestId, contestId))
+      .where(
+        and(
+          eq(submissions.contestId, contestId),
+          // A subquery rather than a join: entrants who topped up have
+          // several payment rows and a join would list their photos twice
+          inArray(
+            submissions.userEmail,
+            db
+              .select({ userEmail: payments.userEmail })
+              .from(payments)
+              .where(eq(payments.contestId, contestId))
+          )
+        )
+      )
       .orderBy(submissions.categoryId, submissions.uploadedAt);
 
     // Map to response format with anonymized user IDs

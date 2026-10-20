@@ -318,7 +318,6 @@ export function AdminImpersonationInterface({
           <MediterraneanPortfolioManager
             submissions={activeCategory.submissions}
             canUpload={canUpload}
-            isLocked={false}
             justUploadedId={justUploadedId}
             onUploadClick={handleUploadClick}
             onManageSubmission={handleManageSubmission}
@@ -329,7 +328,6 @@ export function AdminImpersonationInterface({
             submissions={activeCategory.submissions}
             maxSubmissionsPerCategory={activeCategory.maxSubmissions}
             canUpload={canUpload}
-            isLocked={false}
             justUploadedId={justUploadedId}
             onUploadClick={() => handleUploadClick()}
             onManageSubmission={handleManageSubmission}

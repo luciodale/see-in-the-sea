@@ -29,6 +29,7 @@ type SubmissionsStatsProps = {
   usersWithoutUploadsCount: number;
   usersWhoSubmitted: number;
   usersWhoPaid: number;
+  usersWithBalanceDue: number;
   totalPhotoCount: number;
   onShowUsersWithoutUploads: () => void;
 };
@@ -39,6 +40,7 @@ export function SubmissionsStats({
   usersWithoutUploadsCount,
   usersWhoSubmitted,
   usersWhoPaid,
+  usersWithBalanceDue,
   totalPhotoCount,
   onShowUsersWithoutUploads,
 }: SubmissionsStatsProps) {
@@ -69,6 +71,7 @@ export function SubmissionsStats({
       <StatCard label="Utenti Paganti" value={usersWhoPaid}>
         <span className="truncate text-xs text-subtle-foreground">
           {formatPercent(usersWhoPaid, usersWhoSubmitted)} con foto
+          {usersWithBalanceDue > 0 && ` · ${usersWithBalanceDue} da saldare`}
         </span>
       </StatCard>
     </div>

@@ -1,8 +1,4 @@
-import {
-  CheckIcon,
-  LockClosedIcon,
-  PlusIcon,
-} from '@heroicons/react/24/outline';
+import { CheckIcon, PlusIcon } from '@heroicons/react/24/outline';
 import { useI18n } from '../../i18n/react';
 import type { UISubmission } from '../../types/ui';
 import { SubmissionThumb } from './SubmissionThumb';
@@ -14,7 +10,6 @@ type SubmissionSlotProps = {
   label?: string;
   aspect: 'aspect-4/3' | 'aspect-square';
   canUpload: boolean;
-  isLocked: boolean;
   isJustUploaded?: boolean;
   className?: string;
   onUpload: () => void;
@@ -26,7 +21,6 @@ export function SubmissionSlot({
   label,
   aspect,
   canUpload,
-  isLocked,
   isJustUploaded = false,
   className,
   onUpload,
@@ -119,14 +113,8 @@ export function SubmissionSlot({
         className
       )}
     >
-      {isLocked && (
-        <LockClosedIcon
-          aria-hidden="true"
-          className="size-5 text-subtle-foreground"
-        />
-      )}
       <span className="text-editorial uppercase tracking-editorial text-subtle-foreground">
-        {isLocked ? t('slot.locked') : t('slot.empty')}
+        {t('slot.empty')}
       </span>
     </div>
   );

@@ -64,17 +64,17 @@ export function UnifiedSubmissions() {
   const [isManageModalOpen, setIsManageModalOpen] = useState(false);
 
   // Payment status
-  const { hasPaid, loading: paymentLoading } = usePaymentStatus(contestId);
+  const { paidCents, loading: paymentLoading } = usePaymentStatus(contestId);
   const { justUploadedId, markUploaded, clearHighlight } = useJustUploaded();
   const {
     uploaded,
     categoriesEntered,
-    hasSubmissions,
     firstIncompleteId,
     canUpload,
-    isLocked,
+    balanceCents,
+    isSettled,
     nextAction,
-  } = useEntryStatus({ categories, contestStatus, hasPaid });
+  } = useEntryStatus({ categories, contestStatus, paidCents });
 
   const initialize = useCallback(async () => {
     try {
@@ -168,7 +168,7 @@ export function UnifiedSubmissions() {
 
   function handleUploadClick(portfolio?: string, portfolioPhotoType?: string) {
     if (!canUpload) {
-      return; // Uploads are closed or the entry is already paid for
+      return; // Uploads are closed
     }
     setUploadPortfolio(portfolio);
     setUploadPortfolioPhotoType(portfolioPhotoType);
@@ -230,8 +230,8 @@ export function UnifiedSubmissions() {
   }
 
   async function handleDeleteSubmission(submissionId: string) {
-    if (hasPaid) {
-      return; // Should not be called when paid, but safety check
+    if (!canUpload) {
+      return; // Photos stay put once the contest closes
     }
     try {
       const response = await fetch('/api/delete-image', {
@@ -317,7 +317,10 @@ export function UnifiedSubmissions() {
       )}
 
       {!noActiveContest && (
-        <ContestStatusBanner contestStatus={contestStatus} hasPaid={hasPaid} />
+        <ContestStatusBanner
+          contestStatus={contestStatus}
+          isSettled={isSettled}
+        />
       )}
 
       {/* Category Navigation */}
@@ -336,7 +339,6 @@ export function UnifiedSubmissions() {
           <MediterraneanPortfolioManager
             submissions={activeCategory.submissions}
             canUpload={canUpload}
-            isLocked={isLocked}
             justUploadedId={justUploadedId}
             onUploadClick={handleUploadClick}
             onManageSubmission={handleManageSubmission}
@@ -347,7 +349,6 @@ export function UnifiedSubmissions() {
             submissions={activeCategory.submissions}
             maxSubmissionsPerCategory={activeCategory.maxSubmissions}
             canUpload={canUpload}
-            isLocked={isLocked}
             justUploadedId={justUploadedId}
             onUploadClick={() => handleUploadClick()}
             onManageSubmission={handleManageSubmission}
@@ -355,12 +356,11 @@ export function UnifiedSubmissions() {
         ))}
 
       {/* Payment comes after the work, never between the tabs and the grid */}
-      {!noActiveContest &&
-        contestStatus === 'active' &&
-        hasSubmissions &&
-        !hasPaid && <PaymentBanner categories={categories} />}
+      {!noActiveContest && contestStatus === 'active' && balanceCents > 0 && (
+        <PaymentBanner categories={categories} isTopUp={paidCents > 0} />
+      )}
 
-      {hasPaid && <PaymentSuccessBanner />}
+      {isSettled && <PaymentSuccessBanner />}
 
       {!noActiveContest && judges.length > 0 && (
         <div className="border-t border-border pt-8">
@@ -392,7 +392,7 @@ export function UnifiedSubmissions() {
       <SubmissionManageModal
         submission={selectedSubmission}
         isOpen={isManageModalOpen}
-        hasPaid={hasPaid}
+        canDelete={canUpload}
         onClose={() => {
           setIsManageModalOpen(false);
           setSelectedSubmission(null);

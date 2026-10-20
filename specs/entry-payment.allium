@@ -1,0 +1,130 @@
+-- allium: 1
+-- Entry fee, incremental payments and the outstanding balance.
+-- The fee depends only on how many categories hold at least one photo.
+-- Payments accumulate and are never refunded. Paying never locks an
+-- entry: uploads and deletes stay open until the contest closes.
+
+external entity User {
+    email: String
+    is_admin: Boolean
+}
+
+external entity Contest {
+    id: String
+    status: active | inactive | assessment
+}
+
+external entity Submission {
+    contest: Contest
+    owner_email: String
+    category: String
+}
+
+entity Payment {
+    contest: Contest
+    user_email: String
+    amount_cents: Integer
+    stripe_session_id: String
+    paid_at: Timestamp
+}
+
+value Entry {
+    contest: Contest
+    user_email: String
+    categories_entered: Integer
+    paid_cents: Integer
+}
+
+config {
+    single_category_fee_cents: Integer = 2000
+    multi_category_fee_cents: Integer = 3000
+    top_up_cents: Integer = 1000
+}
+
+derive fee_cents(entry: Entry): Integer =
+    if entry.categories_entered = 0 then 0
+    else if entry.categories_entered = 1 then config.single_category_fee_cents
+    else config.multi_category_fee_cents
+
+derive balance_cents(entry: Entry): Integer =
+    fee_cents(entry) - entry.paid_cents
+    @guidance
+        -- paid_cents is the sum of every Payment row for the entrant and
+        -- contest. Positive means money is owed; zero or negative means the
+        -- entry is covered. A negative balance is never refunded.
+
+rule EntrantStartsCheckout {
+    when: StartCheckout(actor, contest)
+    requires: contest.status = active
+    requires: entry.categories_entered > 0
+    requires: balance_cents(entry) in {
+        config.single_category_fee_cents,
+        config.multi_category_fee_cents,
+        config.top_up_cents
+    }
+    ensures: CheckoutSession.created(
+        price: balance_cents(entry),
+        metadata: { contestId: contest.id, userEmail: actor.email }
+    )
+    @guidance
+        -- With no discounts the only reachable positive balances are 20,
+        -- 30 (first payment) and 10 (a 20 entrant added a category).
+        -- A balance of zero or less is refused as nothing to pay.
+}
+
+rule StripeConfirmsPayment {
+    when: CheckoutCompleted(session)
+    requires: session.payment_status = paid
+    requires: session.metadata.contestId != null
+    requires: not exists Payment where stripe_session_id = session.id
+    ensures: Payment.created(
+        contest: session.metadata.contestId,
+        user_email: session.metadata.userEmail,
+        amount_cents: session.amount_total,
+        stripe_session_id: session.id
+    )
+    @guidance
+        -- Idempotent on stripe_session_id. An entrant may hold several
+        -- Payment rows per contest; consumers sum them and never join on
+        -- them row by row.
+}
+
+rule EntrantUploadsOrDeletes {
+    when: ChangeSubmission(actor, contest)
+    requires: contest.status = active
+    @guidance
+        -- No payment condition. Closing the contest is the only lock.
+        -- Admins acting on behalf of an entrant are not bound by this.
+}
+
+surface EntrantPaymentStatus {
+    facing actor: User
+
+    context entry: Entry
+
+    exposes:
+        entry.paid_cents
+        balance_cents(entry)
+
+    @guarantee BalanceFollowsEdits
+        -- The client derives the balance from paid_cents and the categories
+        -- currently entered, so it updates as photos are added or removed.
+        -- balance > 0 and paid = 0: first payment banner.
+        -- balance > 0 and paid > 0: top up banner (pay the 10 difference).
+        -- balance <= 0 and paid > 0: entry confirmed.
+}
+
+surface AdminPaymentOverview {
+    facing actor: User
+
+    exposes:
+        Entry.paid_cents
+        balance_cents(Entry)
+
+    @guarantee UnpaidBalanceIsFlagged
+        -- Entrants with paid > 0 and balance > 0 show as "Da saldare".
+        -- Nothing is excluded automatically at the deadline; the owner
+        -- decides whether to chase them or drop the extra category.
+}
+
+open question "Should judging exclude the extra category of an entrant with a balance still due?"

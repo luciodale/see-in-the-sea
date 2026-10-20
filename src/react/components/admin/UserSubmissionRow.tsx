@@ -5,12 +5,26 @@ import {
   formatAmount,
   formatFullName,
 } from '../../utils/adminFormat';
+import {
+  type AdminPaymentStatus,
+  adminPaymentLabel,
+  adminPaymentStatus,
+} from '../../utils/adminPaymentStatus';
 import { ChevronRightIcon } from '../AdminIcons';
 import { Badge } from '../ui/Badge';
 import { cn } from '../ui/cn';
 import { AdminTd } from './AdminTableCells';
 import { SubmissionDetailRow } from './SubmissionDetailRow';
 import { SUBMISSIONS_TABLE_COLUMN_COUNT } from './submissionsTableColumns';
+
+const PAYMENT_BADGE_VARIANT: Record<
+  AdminPaymentStatus,
+  'success' | 'warning' | 'danger'
+> = {
+  paid: 'success',
+  due: 'warning',
+  unpaid: 'danger',
+};
 
 type UserSubmissionRowProps = {
   row: AdminUserRow;
@@ -57,11 +71,9 @@ export function UserSubmissionRow({
           {row.userEmail}
         </AdminTd>
         <AdminTd>
-          {row.hasPaid ? (
-            <Badge variant="success">Pagato</Badge>
-          ) : (
-            <Badge variant="danger">Non pagato</Badge>
-          )}
+          <Badge variant={PAYMENT_BADGE_VARIANT[adminPaymentStatus(row)]}>
+            {adminPaymentLabel(row)}
+          </Badge>
         </AdminTd>
         <AdminTd className="text-xs tabular-nums text-muted-foreground">
           {formatAdminDate(row.userCreatedAt)}

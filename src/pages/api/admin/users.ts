@@ -159,10 +159,11 @@ export const GET: APIRoute = async ({ request, locals }) => {
       .from(payments)
       .where(eq(payments.contestId, contestId));
 
-    // Build payment amounts map
+    // Build payment totals map: entrants who topped up have several rows
     const userPayments: Record<string, number> = {};
     for (const payment of paymentRecords) {
-      userPayments[payment.userEmail] = payment.amount;
+      userPayments[payment.userEmail] =
+        (userPayments[payment.userEmail] ?? 0) + payment.amount;
     }
 
     // Step 6: Build list of users without uploads

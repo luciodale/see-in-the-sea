@@ -1,9 +1,10 @@
 import type { APIRoute } from 'astro';
 import { and, eq } from 'drizzle-orm';
 import { getDb } from '../../db/index';
-import { payments, submissions } from '../../db/schema';
+import { submissions } from '../../db/schema';
 import { getBackendTranslation } from '../../i18n/utils';
 import { authenticateRequest } from '../../server/authenticateRequest';
+import { canUploadToContest } from '../../server/contestService';
 import { deleteImageFromR2, deleteSubmission } from '../../server/imageService';
 
 export const prerender = false;
@@ -133,25 +134,19 @@ export const DELETE: APIRoute = async ({ request, locals }) => {
         );
       }
 
-      // Check if user has paid for this contest
+      // Paying never locks an entry, but closing the contest does: once
+      // judging starts the photos must stay put
       // contestId is always present in this branch (regular user query includes it)
-      const contestIdValue = submission.contestId ?? '';
-      const payment = await db
-        .select()
-        .from(payments)
-        .where(
-          and(
-            eq(payments.contestId, contestIdValue),
-            eq(payments.userEmail, user.emailAddress || '')
-          )
-        )
-        .limit(1);
+      const deleteAllowed = await canUploadToContest(
+        db,
+        submission.contestId ?? ''
+      );
 
-      if (payment.length > 0) {
+      if (!deleteAllowed) {
         return new Response(
           JSON.stringify({
             success: false,
-            message: getBackendTranslation('error.submissions-locked', request),
+            message: getBackendTranslation('error.submissions-closed', request),
           }),
           { status: 403 }
         );

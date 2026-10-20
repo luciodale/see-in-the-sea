@@ -9,7 +9,8 @@ export type AdminUserRow = Pick<
   | 'lastName'
   | 'userCreatedAt'
   | 'userLastActiveAt'
-  | 'hasPaid'
+  | 'paidCents'
+  | 'balanceCents'
 > & {
   submissions: AdminSubmission[];
 };
@@ -35,7 +36,8 @@ function toUserRow(userEmail: string, submissions: AdminSubmission[]) {
     lastName: first.lastName,
     userCreatedAt: first.userCreatedAt,
     userLastActiveAt: first.userLastActiveAt,
-    hasPaid: first.hasPaid,
+    paidCents: first.paidCents,
+    balanceCents: first.balanceCents,
     submissions,
   } satisfies AdminUserRow;
 }
@@ -73,7 +75,10 @@ export function useAdminUserRows(
 
   // Aggregate stats ignore the search filter
   const usersWhoSubmitted = allRows.length;
-  const usersWhoPaid = allRows.filter(row => row.hasPaid).length;
+  const usersWhoPaid = allRows.filter(row => row.paidCents > 0).length;
+  const usersWithBalanceDue = allRows.filter(
+    row => row.paidCents > 0 && row.balanceCents > 0
+  ).length;
 
   return {
     userRows,
@@ -81,5 +86,6 @@ export function useAdminUserRows(
     totalPhotoCount: submissions.length,
     usersWhoSubmitted,
     usersWhoPaid,
+    usersWithBalanceDue,
   };
 }

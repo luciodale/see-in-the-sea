@@ -40,8 +40,7 @@ export const backendTranslations = {
     'error.contest-not-found': 'Contest not found or inactive.',
     'error.category-invalid': 'Invalid or inactive category.',
     'error.submissions-closed': 'Submissions are closed for this contest.',
-    'error.submissions-locked':
-      'You cannot modify your submissions after payment has been completed.',
+    'error.nothing-to-pay': 'Your entry is already fully paid.',
     'error.need-submission-to-pay':
       'You need to submit to at least one category to be able to pay.',
 
@@ -117,8 +116,7 @@ export const backendTranslations = {
     'error.category-invalid': 'Categoria non valida o inattiva.',
     'error.submissions-closed':
       'Le candidature sono chiuse per questo contest.',
-    'error.submissions-locked':
-      'Non puoi modificare le tue candidature dopo aver completato il pagamento.',
+    'error.nothing-to-pay': 'La tua iscrizione è già interamente pagata.',
     'error.need-submission-to-pay':
       'Devi candidarti ad almeno una categoria per poter pagare.',
 

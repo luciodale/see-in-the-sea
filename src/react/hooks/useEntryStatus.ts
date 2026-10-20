@@ -1,32 +1,36 @@
 import { useMemo } from 'react';
+import { entryBalanceCents } from '../../constants/entryFee';
 import type { UICategory } from '../../types/ui';
 
-export type EntryNextAction = 'upload' | 'pay' | 'locked' | 'closed';
+// pay: first payment. topup: paid, then added a category, so 10€ is owed.
+// settled: everything entered is paid for, and photos stay editable.
+export type EntryNextAction = 'upload' | 'pay' | 'topup' | 'settled' | 'closed';
 
 type UseEntryStatusParams = {
   categories: UICategory[];
   contestStatus: 'active' | 'inactive' | 'assessment';
-  hasPaid: boolean;
+  paidCents: number;
 };
 
-function nextActionFor(
-  canUpload: boolean,
-  hasPaid: boolean,
+export function nextActionFor(
+  contestStatus: UseEntryStatusParams['contestStatus'],
   uploaded: number,
-  contestStatus: UseEntryStatusParams['contestStatus']
+  paidCents: number,
+  balanceCents: number
 ): EntryNextAction {
-  if (hasPaid) return 'locked';
+  if (uploaded > 0 && paidCents > 0 && balanceCents <= 0) return 'settled';
   if (contestStatus !== 'active') return 'closed';
-  if (!canUpload || uploaded === 0) return 'upload';
-  return 'pay';
+  if (uploaded === 0) return 'upload';
+  return paidCents > 0 ? 'topup' : 'pay';
 }
 
 // One source of truth for "where am I" on the upload page: how many photos
-// are in, where the next free slot is, and whether uploading is still open.
+// are in, where the next free slot is, whether uploading is still open, and
+// what is still owed. Paying never locks the entry; closing the contest does.
 export function useEntryStatus({
   categories,
   contestStatus,
-  hasPaid,
+  paidCents,
 }: UseEntryStatusParams) {
   return useMemo(() => {
     const uploaded = categories.reduce(
@@ -39,16 +43,23 @@ export function useEntryStatus({
     const firstIncomplete = categories.find(
       category => category.submissions.length < category.maxSubmissions
     );
-    const canUpload = contestStatus === 'active' && !hasPaid;
+    const canUpload = contestStatus === 'active';
+    const balanceCents = entryBalanceCents(categoriesEntered, paidCents);
+    const nextAction = nextActionFor(
+      contestStatus,
+      uploaded,
+      paidCents,
+      balanceCents
+    );
 
     return {
       uploaded,
       categoriesEntered,
-      hasSubmissions: uploaded > 0,
       firstIncompleteId: firstIncomplete?.id ?? null,
       canUpload,
-      isLocked: hasPaid,
-      nextAction: nextActionFor(canUpload, hasPaid, uploaded, contestStatus),
+      balanceCents,
+      isSettled: nextAction === 'settled',
+      nextAction,
     };
-  }, [categories, contestStatus, hasPaid]);
+  }, [categories, contestStatus, paidCents]);
 }

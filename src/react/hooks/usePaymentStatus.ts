@@ -4,7 +4,7 @@ import type { PaymentStatusResponse } from '../../types/api';
 
 export function usePaymentStatus(contestId: string | null) {
   const { getToken } = useAuth();
-  const [hasPaid, setHasPaid] = useState(false);
+  const [paidCents, setPaidCents] = useState(0);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
@@ -40,14 +40,14 @@ export function usePaymentStatus(contestId: string | null) {
         const result: PaymentStatusResponse = await response.json();
 
         if (result.success && result.data) {
-          setHasPaid(result.data.hasPaid);
+          setPaidCents(result.data.paidCents);
         } else {
           throw new Error(result.message || 'Failed to check payment status');
         }
       } catch (err) {
         console.error('Error checking payment status:', err);
         setError(err instanceof Error ? err.message : 'Unknown error');
-        setHasPaid(false);
+        setPaidCents(0);
       } finally {
         setLoading(false);
       }
@@ -56,5 +56,5 @@ export function usePaymentStatus(contestId: string | null) {
     checkPaymentStatus();
   }, [contestId, getToken]);
 
-  return { hasPaid, loading, error };
+  return { paidCents, loading, error };
 }

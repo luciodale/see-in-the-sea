@@ -34,7 +34,7 @@ export type SubmissionsResponse = ApiResponse<UserContestData>;
 
 // Payment API Types
 export type PaymentStatusData = {
-  hasPaid: boolean;
+  paidCents: number;
 };
 
 export type PaymentStatusResponse = ApiResponse<PaymentStatusData>;
@@ -106,8 +106,10 @@ export type AdminSubmission = {
   lastName?: string;
   userCreatedAt?: string;
   userLastActiveAt?: string;
-  // Payment status
-  hasPaid: boolean;
+  // Payment status: total paid and what is still owed (positive) for the
+  // categories this entrant has entered across the whole contest
+  paidCents: number;
+  balanceCents: number;
 };
 
 export type AdminSubmissionsResponse = {

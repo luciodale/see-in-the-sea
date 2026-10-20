@@ -1,13 +1,13 @@
 import type { APIRoute } from 'astro';
 import { and, desc, eq, like } from 'drizzle-orm';
+import { entryBalanceCents } from '../../../constants/entryFee';
 import { getDb } from '../../../db/index';
-import {
-  categories,
-  contests,
-  payments,
-  submissions,
-} from '../../../db/schema';
+import { categories, contests, submissions } from '../../../db/schema';
 import { authenticateAdmin } from '../../../server/authenticateRequest';
+import {
+  getCategoryCountByUser,
+  getPaidCentsByUser,
+} from '../../../server/paymentService';
 import type {
   AdminSubmission,
   SubmissionListResponse,
@@ -171,17 +171,12 @@ export const GET: APIRoute = async ({ request, locals }) => {
       `[manage-submissions] Found ${allSubmissions.length} submissions (${totalCount} total)`
     );
 
-    // Step 6: Fetch payment status for all users in this contest
-    const paymentRecords = await db
-      .select({
-        userEmail: payments.userEmail,
-      })
-      .from(payments)
-      .where(eq(payments.contestId, contestId));
-
-    const paidUsersSet = new Set(
-      paymentRecords.map(record => record.userEmail)
-    );
+    // Step 6: Fetch payment totals and categories entered for all users in
+    // this contest. Both span the whole contest, not just this page of results
+    const [paidCentsByUser, categoryCountByUser] = await Promise.all([
+      getPaidCentsByUser(db, contestId),
+      getCategoryCountByUser(db, contestId),
+    ]);
 
     // Step 7: Fetch user data from Clerk
     let clerkUsersMap = new Map<string, ClerkUser>();
@@ -195,7 +190,11 @@ export const GET: APIRoute = async ({ request, locals }) => {
     const enrichedSubmissions: AdminSubmission[] = allSubmissions.map(
       submission => {
         const clerkUser = clerkUsersMap.get(submission.userEmail);
-        const hasPaid = paidUsersSet.has(submission.userEmail);
+        const paidCents = paidCentsByUser.get(submission.userEmail) ?? 0;
+        const balanceCents = entryBalanceCents(
+          categoryCountByUser.get(submission.userEmail) ?? 0,
+          paidCents
+        );
 
         return {
           ...submission,
@@ -207,7 +206,8 @@ export const GET: APIRoute = async ({ request, locals }) => {
           userLastActiveAt: clerkUser?.last_active_at
             ? new Date(clerkUser.last_active_at).toISOString()
             : undefined,
-          hasPaid,
+          paidCents,
+          balanceCents,
         };
       }
     );

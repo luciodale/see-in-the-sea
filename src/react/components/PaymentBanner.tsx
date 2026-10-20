@@ -10,10 +10,17 @@ import { Eyebrow } from './ui/Eyebrow';
 
 type PaymentBannerProps = {
   categories: UICategory[];
+  isTopUp: boolean;
   className?: string;
 };
 
-export function PaymentBanner({ categories, className }: PaymentBannerProps) {
+// Shown whenever money is owed: the first payment, or the 10€ difference
+// after a 20€ entrant adds a category
+export function PaymentBanner({
+  categories,
+  isTopUp,
+  className,
+}: PaymentBannerProps) {
   const { t } = useI18n();
   const { startCheckout, isRedirecting, error } = useCheckout();
   const filledCategories = categories.filter(
@@ -43,7 +50,7 @@ export function PaymentBanner({ categories, className }: PaymentBannerProps) {
       )}
 
       <p className="max-w-prose-narrow font-light text-sm text-muted-foreground leading-paragraph">
-        {t('payment.recap.body')}
+        {t(isTopUp ? 'payment.topup.body' : 'payment.recap.body')}
       </p>
 
       <div className="flex flex-col gap-4 border-t border-border pt-5 sm:flex-row sm:items-center sm:justify-between">
@@ -60,7 +67,7 @@ export function PaymentBanner({ categories, className }: PaymentBannerProps) {
           loading={isRedirecting}
           className="min-h-11 w-full justify-center sm:w-auto sm:shrink-0"
         >
-          {t('payment.pay-now')}
+          {t(isTopUp ? 'entry.action.topup' : 'payment.pay-now')}
         </Button>
       </div>
 

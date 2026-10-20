@@ -29,18 +29,18 @@ const PRESENTATION: Record<ContestState, StatusPresentation> = {
 
 type ContestStatusBannerProps = {
   contestStatus: 'active' | 'inactive' | 'assessment';
-  hasPaid: boolean;
+  isSettled: boolean;
 };
 
-// At most one banner: why uploading is closed, or that the entry is locked in
+// At most one banner: why uploading is closed, unless the entry is paid in full
 export function ContestStatusBanner({
   contestStatus,
-  hasPaid,
+  isSettled,
 }: ContestStatusBannerProps) {
   const { t } = useI18n();
 
   // Paid entries are announced by the status line and the success banner
-  const state: ContestState | null = hasPaid
+  const state: ContestState | null = isSettled
     ? null
     : contestStatus === 'assessment'
       ? 'assessment'

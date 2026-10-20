@@ -12,6 +12,7 @@ interface Env {
   STRIPE_SECRET_KEY?: string;
   STRIPE_WEBHOOK_SECRET?: string;
   // Optional overrides so local/test mode can use Stripe test prices
+  STRIPE_PRICE_ID_10?: string;
   STRIPE_PRICE_ID_20?: string;
   STRIPE_PRICE_ID_30?: string;
 }

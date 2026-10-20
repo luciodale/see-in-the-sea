@@ -13,7 +13,6 @@ type CategorySummaryProps = {
   submissions: UISubmission[];
   maxSubmissionsPerCategory: number;
   canUpload: boolean;
-  isLocked: boolean;
   justUploadedId: string | null;
   onUploadClick: () => void;
   onManageSubmission: (submission: UISubmission) => void;
@@ -24,7 +23,6 @@ export function CategorySummary({
   submissions,
   maxSubmissionsPerCategory,
   canUpload,
-  isLocked,
   justUploadedId,
   onUploadClick,
   onManageSubmission,
@@ -88,7 +86,6 @@ export function CategorySummary({
             submission={submission}
             aspect="aspect-4/3"
             canUpload={canUpload}
-            isLocked={isLocked}
             isJustUploaded={
               submission ? submission.id === justUploadedId : false
             }

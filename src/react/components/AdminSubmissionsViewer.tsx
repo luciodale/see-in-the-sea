@@ -30,6 +30,7 @@ export function AdminSubmissionsViewer({
     totalPhotoCount,
     usersWhoSubmitted,
     usersWhoPaid,
+    usersWithBalanceDue,
   } = useAdminUserRows(submissions, search);
   const { isExpanded, toggleRow } = useExpandedRows();
   const { activeSubmission, openLightbox, closeLightbox } = useImageLightbox();
@@ -44,6 +45,7 @@ export function AdminSubmissionsViewer({
             usersWithoutUploadsCount={users.usersWithoutUploads.length}
             usersWhoSubmitted={usersWhoSubmitted}
             usersWhoPaid={usersWhoPaid}
+            usersWithBalanceDue={usersWithBalanceDue}
             totalPhotoCount={totalPhotoCount}
             onShowUsersWithoutUploads={() => setIsUsersModalOpen(true)}
           />

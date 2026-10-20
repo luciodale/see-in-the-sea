@@ -10,7 +10,8 @@ import { Eyebrow } from './ui/Eyebrow';
 const GUIDANCE_KEYS: Record<EntryNextAction, TranslationKey> = {
   upload: 'entry.next.empty',
   pay: 'entry.next.pay',
-  locked: 'entry.next.locked',
+  topup: 'entry.next.topup',
+  settled: 'entry.next.settled',
   closed: 'submissions.closed',
 };
 
@@ -89,14 +90,16 @@ export function EntryStatus({
           {t('entry.action.upload')}
         </Button>
       )}
-      {nextAction === 'pay' && (
+      {(nextAction === 'pay' || nextAction === 'topup') && (
         <Button
           variant="primary"
           onClick={startCheckout}
           loading={isRedirecting}
           className="min-h-11 w-full justify-center sm:w-auto sm:whitespace-nowrap"
         >
-          {t('entry.action.pay')}
+          {t(
+            nextAction === 'topup' ? 'entry.action.topup' : 'entry.action.pay'
+          )}
         </Button>
       )}
       {error && (
@@ -105,9 +108,9 @@ export function EntryStatus({
         </Card>
       )}
 
-      {nextAction === 'locked' && (
+      {nextAction === 'settled' && (
         <Badge variant="success" className="self-start px-3 py-1">
-          {t('entry.action.locked')}
+          {t('entry.action.settled')}
         </Badge>
       )}
     </div>

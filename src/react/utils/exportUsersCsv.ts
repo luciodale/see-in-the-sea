@@ -1,4 +1,5 @@
 import type { AdminUserRow } from '../hooks/useAdminUserRows';
+import { adminPaymentLabel } from './adminPaymentStatus';
 
 const CSV_HEADERS = [
   'Nome',
@@ -25,7 +26,7 @@ export function exportUsersCsv(
       row.firstName || '',
       row.lastName || '',
       row.userEmail,
-      row.hasPaid ? 'Pagato' : 'Non Pagato',
+      adminPaymentLabel(row),
       row.userCreatedAt || '',
       row.userLastActiveAt || '',
       row.submissions.length.toString(),

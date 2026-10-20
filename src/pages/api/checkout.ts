@@ -1,6 +1,7 @@
 import type { APIRoute } from 'astro';
 import { and, eq } from 'drizzle-orm';
 import Stripe from 'stripe';
+import { entryBalanceCents } from '../../constants/entryFee';
 import { getDb } from '../../db';
 import { contests, submissions } from '../../db/schema';
 import {
@@ -9,19 +10,23 @@ import {
   getLocalizedPath,
 } from '../../i18n/utils';
 import { authenticateRequest } from '../../server/authenticateRequest';
+import { getPaidCents } from '../../server/paymentService';
 import type { CheckoutResponse } from '../../types/api';
 // Stripe test key should be stored in environment variables
 
 export const prerender = false;
 
-// Live prices. Set STRIPE_PRICE_ID_20 / STRIPE_PRICE_ID_30 in .dev.vars to
-// point local runs at Stripe test-mode prices instead.
+// Live prices. Set STRIPE_PRICE_ID_10 / _20 / _30 in .dev.vars to point
+// local runs at Stripe test-mode prices instead.
+const PRICE_ID_PROD_10 = 'price_1UNZb90GkfoIDCTPIlCCKe7d';
 const PRICE_ID_PROD_20 = 'price_1SA7Q80GkfoIDCTPaiqKExvB';
 const PRICE_ID_PROD_30 = 'price_1SA7QP0GkfoIDCTPQgyBnXsS';
 
 export const POST: APIRoute = async ({ request, locals }) => {
   const D1Database = locals.runtime.env.DB;
   const STRIPE_SECRET_KEY = locals.runtime.env.STRIPE_SECRET_KEY;
+  const STRIPE_PRICE_ID_10 =
+    locals.runtime.env.STRIPE_PRICE_ID_10 || PRICE_ID_PROD_10;
   const STRIPE_PRICE_ID_20 =
     locals.runtime.env.STRIPE_PRICE_ID_20 || PRICE_ID_PROD_20;
   const STRIPE_PRICE_ID_30 =
@@ -37,6 +42,7 @@ export const POST: APIRoute = async ({ request, locals }) => {
   if (
     !D1Database ||
     !STRIPE_SECRET_KEY ||
+    !STRIPE_PRICE_ID_10 ||
     !STRIPE_PRICE_ID_20 ||
     !STRIPE_PRICE_ID_30
   ) {
@@ -131,9 +137,46 @@ export const POST: APIRoute = async ({ request, locals }) => {
     const uniqueCategories = new Set(userSubmissions.map(s => s.categoryId));
     const categoryCount = uniqueCategories.size;
 
-    // Pricing logic: 20€ for 1 category, 30€ for 2+ categories
-    const priceId =
-      categoryCount === 1 ? STRIPE_PRICE_ID_20 : STRIPE_PRICE_ID_30;
+    // Charge what is still owed: 20€ or 30€ for a first payment, 10€ when a
+    // 20€ entrant has since added a category
+    const paidCents = await getPaidCents(db, activeContest[0].id, userEmail);
+    const balanceCents = entryBalanceCents(categoryCount, paidCents);
+
+    if (balanceCents <= 0) {
+      return new Response(
+        JSON.stringify({
+          success: false,
+          message: getBackendTranslation('error.nothing-to-pay', request),
+        } as CheckoutResponse),
+        {
+          status: 400,
+          headers: { 'Content-Type': 'application/json' },
+        }
+      );
+    }
+
+    const priceIdByBalance: Record<number, string> = {
+      1000: STRIPE_PRICE_ID_10,
+      2000: STRIPE_PRICE_ID_20,
+      3000: STRIPE_PRICE_ID_30,
+    };
+    const priceId = priceIdByBalance[balanceCents];
+
+    if (!priceId) {
+      console.error(
+        `[checkout] No price for balance ${balanceCents} (${userEmail}, ${categoryCount} categories, ${paidCents} paid)`
+      );
+      return new Response(
+        JSON.stringify({
+          success: false,
+          message: getBackendTranslation('error.internal-server', request),
+        } as CheckoutResponse),
+        {
+          status: 400,
+          headers: { 'Content-Type': 'application/json' },
+        }
+      );
+    }
 
     const session = await stripe.checkout.sessions.create({
       line_items: [

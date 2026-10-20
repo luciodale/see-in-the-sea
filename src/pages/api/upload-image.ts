@@ -1,7 +1,7 @@
 import type { APIRoute } from 'astro';
 import { and, eq } from 'drizzle-orm';
 import { getDb } from '../../db/index';
-import { payments, submissions } from '../../db/schema';
+import { submissions } from '../../db/schema';
 import { getBackendTranslation } from '../../i18n/utils';
 import { authenticateRequest } from '../../server/authenticateRequest';
 import {
@@ -210,29 +210,8 @@ export const POST: APIRoute = async ({ request, locals }) => {
       );
     }
 
-    // Step 5: Check if user has paid (only for regular users, not admin uploads)
-    if (!isAdminUpload) {
-      const payment = await db
-        .select()
-        .from(payments)
-        .where(
-          and(
-            eq(payments.contestId, contestId),
-            eq(payments.userEmail, userEmail)
-          )
-        )
-        .limit(1);
-
-      if (payment.length > 0) {
-        return new Response(
-          JSON.stringify({
-            success: false,
-            message: getBackendTranslation('error.submissions-locked', request),
-          }),
-          { status: 403 }
-        );
-      }
-    }
+    // Paying never locks an entry: entrants keep editing until the contest
+    // closes and the balance banner asks for any difference owed
 
     // Step 6: Check submission limits
     const submissionLimits = await checkSubmissionLimits(

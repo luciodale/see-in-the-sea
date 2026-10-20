@@ -14,7 +14,6 @@ type PortfolioGridProps = {
   portfolioNumber: number;
   submissions: UISubmission[];
   canUpload: boolean;
-  isLocked: boolean;
   justUploadedId: string | null;
   onUploadClick: (portfolio: string, portfolioPhotoType: string) => void;
   onManageSubmission: (submission: UISubmission) => void;
@@ -24,7 +23,6 @@ export function PortfolioGrid({
   portfolioNumber,
   submissions,
   canUpload,
-  isLocked,
   justUploadedId,
   onUploadClick,
   onManageSubmission,
@@ -85,7 +83,6 @@ export function PortfolioGrid({
               submission={submission}
               portfolioNumber={portfolioNumber}
               canUpload={canUpload}
-              isLocked={isLocked}
               isJustUploaded={
                 submission ? submission.id === justUploadedId : false
               }

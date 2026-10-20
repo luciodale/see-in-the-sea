@@ -380,7 +380,7 @@ export const translations = {
       'You can try again anytime from your submissions page.',
     'payment.cancelled.back-to-submissions': 'Back to My Submissions',
     'payment.warning.message':
-      'Once you complete payment, you will not be able to make any more edits to your submissions.',
+      'Payments are not refunded, even if you later remove photos or categories.',
 
     // Patrocini
     'patrocini.title': 'With the high patronage of:',
@@ -413,10 +413,14 @@ export const translations = {
       'Add more photos or another category whenever you like. When you are happy with your selection, complete your entry.',
     'entry.next.pay':
       'Almost there. Take one last look, then complete your entry.',
-    'entry.next.locked': 'Entry confirmed. Your photos are in the contest.',
+    'entry.next.topup':
+      'You have added a category. Pay the \u20ac10 difference to bring your entry to \u20ac30 and cover every category.',
+    'entry.next.settled':
+      'Entry confirmed. Your photos are in the contest, and you can still change them until submissions close.',
     'entry.action.upload': 'Upload a photo',
     'entry.action.pay': 'Complete my entry',
-    'entry.action.locked': 'Entry confirmed',
+    'entry.action.topup': 'Pay the \u20ac10 difference',
+    'entry.action.settled': 'Entry confirmed',
 
     // Contest status
     'status.assessment.title': 'Contest in assessment',
@@ -426,11 +430,10 @@ export const translations = {
 
     // Photo slots
     'slot.add-photo': 'Add photo',
-    'slot.locked': 'Locked',
     'slot.empty': 'Empty',
     'action.view-photo': 'View photo',
     'category.empty.body':
-      'Tap a free slot to upload. You can change your mind right up to payment.',
+      'Tap a free slot to upload. You can change your mind until submissions close.',
     'image.missing': 'No image',
     'image.failed': 'Could not load image',
     'error.auth-required': 'Please sign in again and retry.',
@@ -459,7 +462,9 @@ export const translations = {
     // Payment recap
     'payment.recap.title': 'Your entry so far',
     'payment.recap.body':
-      'These are the photos you are about to submit. Take your time \u2014 after payment they can no longer be changed.',
+      'These are the photos you are about to submit. One category costs \u20ac20, two or more cost \u20ac30. You can keep changing them until submissions close.',
+    'payment.topup.body':
+      'You paid \u20ac20 for one category. Two or more categories cost \u20ac30 in total, so only the \u20ac10 difference is left to pay.',
 
     // Hero
     'submissions.contest-suffix': 'Contest',
@@ -852,7 +857,7 @@ export const translations = {
       'Puoi riprovare in qualsiasi momento dalla pagina delle tue candidature.',
     'payment.cancelled.back-to-submissions': 'Torna alle Mie Candidature',
     'payment.warning.message':
-      'Una volta completato il pagamento, non potrai più modificare le tue candidature.',
+      'I pagamenti non sono rimborsabili, anche se in seguito rimuovi foto o categorie.',
 
     // Patrocini
     'patrocini.title': "Con l'alto patrocinio di:",
@@ -885,10 +890,14 @@ export const translations = {
       'Aggiungi altre foto o un\u2019altra categoria quando vuoi. Quando sei soddisfatto della tua selezione, completa l\u2019iscrizione.',
     'entry.next.pay':
       'Ci siamo quasi. Dai un ultimo sguardo, poi completa l\u2019iscrizione.',
-    'entry.next.locked': 'Iscrizione confermata. Le tue foto sono in gara.',
+    'entry.next.topup':
+      'Hai aggiunto una categoria. Paga la differenza di \u20ac10 per portare l\u2019iscrizione a \u20ac30 e coprire tutte le categorie.',
+    'entry.next.settled':
+      'Iscrizione confermata. Le tue foto sono in gara e puoi ancora modificarle fino alla chiusura delle candidature.',
     'entry.action.upload': 'Carica una foto',
     'entry.action.pay': 'Completa l\u2019iscrizione',
-    'entry.action.locked': 'Iscrizione confermata',
+    'entry.action.topup': 'Paga la differenza di \u20ac10',
+    'entry.action.settled': 'Iscrizione confermata',
 
     // Contest status
     'status.assessment.title': 'Concorso in valutazione',
@@ -898,11 +907,10 @@ export const translations = {
 
     // Photo slots
     'slot.add-photo': 'Aggiungi foto',
-    'slot.locked': 'Bloccato',
     'slot.empty': 'Vuoto',
     'action.view-photo': 'Vedi foto',
     'category.empty.body':
-      'Tocca uno spazio libero per caricare. Puoi cambiare idea fino al pagamento.',
+      'Tocca uno spazio libero per caricare. Puoi cambiare idea fino alla chiusura delle candidature.',
     'image.missing': 'Nessuna immagine',
     'image.failed': 'Impossibile caricare l\u2019immagine',
     'error.auth-required': 'Accedi di nuovo e riprova.',
@@ -935,7 +943,9 @@ export const translations = {
     // Payment recap
     'payment.recap.title': 'La tua iscrizione finora',
     'payment.recap.body':
-      'Queste sono le foto che stai per presentare. Guardale con calma: dopo il pagamento non potrai pi\u00f9 modificarle.',
+      'Queste sono le foto che stai per presentare. Una categoria costa \u20ac20, due o pi\u00f9 costano \u20ac30. Puoi continuare a modificarle fino alla chiusura delle candidature.',
+    'payment.topup.body':
+      'Hai pagato \u20ac20 per una categoria. Due o pi\u00f9 categorie costano \u20ac30 in totale, quindi resta da pagare solo la differenza di \u20ac10.',
 
     // Hero
     'submissions.contest-suffix': 'Concorso',

@@ -11,7 +11,7 @@ import { Input, Textarea } from './ui/Input';
 type SubmissionManageModalProps = {
   submission: UISubmission | null;
   isOpen: boolean;
-  hasPaid?: boolean;
+  canDelete?: boolean;
   onClose: () => void;
   onDelete: (submissionId: string) => void;
   onUpdated: (submission: UISubmission) => void;
@@ -21,7 +21,7 @@ type SubmissionManageModalProps = {
 export function SubmissionManageModal({
   submission,
   isOpen,
-  hasPaid = false,
+  canDelete = true,
   onClose,
   onDelete,
   onUpdated,
@@ -110,7 +110,7 @@ export function SubmissionManageModal({
         )}
 
         <div className="flex flex-col gap-3 border-t border-border pt-5 sm:flex-row sm:items-center sm:justify-between">
-          {!hasPaid && (
+          {canDelete && (
             <Button
               variant="outline"
               onClick={remove}

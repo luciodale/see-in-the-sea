@@ -8,7 +8,6 @@ type PhotoSlotProps = {
   submission?: UISubmission;
   portfolioNumber: number;
   canUpload: boolean;
-  isLocked: boolean;
   isJustUploaded: boolean;
   onUploadClick: (portfolio: string, portfolioPhotoType: string) => void;
   onManageSubmission: (submission: UISubmission) => void;
@@ -20,7 +19,6 @@ export function PhotoSlot({
   submission,
   portfolioNumber,
   canUpload,
-  isLocked,
   isJustUploaded,
   onUploadClick,
   onManageSubmission,
@@ -36,7 +34,6 @@ export function PhotoSlot({
         label={label}
         aspect="aspect-square"
         canUpload={canUpload}
-        isLocked={isLocked}
         isJustUploaded={isJustUploaded}
         onUpload={handleUpload}
         onManage={onManageSubmission}

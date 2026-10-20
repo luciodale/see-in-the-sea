@@ -11,7 +11,6 @@ import { cn } from './ui/cn';
 type MediterraneanPortfolioManagerProps = {
   submissions: UISubmission[];
   canUpload: boolean;
-  isLocked: boolean;
   justUploadedId: string | null;
   onUploadClick: (portfolio: string, portfolioPhotoType: string) => void;
   onManageSubmission: (submission: UISubmission) => void;
@@ -21,7 +20,6 @@ export const MediterraneanPortfolioManager = memo(
   function MediterraneanPortfolioManager({
     submissions,
     canUpload,
-    isLocked,
     justUploadedId,
     onUploadClick,
     onManageSubmission,
@@ -98,7 +96,6 @@ export const MediterraneanPortfolioManager = memo(
               portfolioNumber={portfolioNumber}
               submissions={submissions}
               canUpload={canUpload}
-              isLocked={isLocked}
               justUploadedId={justUploadedId}
               onUploadClick={onUploadClick}
               onManageSubmission={onManageSubmission}

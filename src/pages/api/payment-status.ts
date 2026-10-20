@@ -1,9 +1,8 @@
 import type { APIRoute } from 'astro';
-import { and, eq } from 'drizzle-orm';
 import { getDb } from '../../db';
-import { payments } from '../../db/schema';
 import { getBackendTranslation } from '../../i18n/utils';
 import { authenticateRequest } from '../../server/authenticateRequest';
+import { getPaidCents } from '../../server/paymentService';
 import type { PaymentStatusResponse } from '../../types/api';
 
 export const prerender = false;
@@ -41,23 +40,17 @@ export const GET: APIRoute = async ({ request, locals, url }) => {
 
     const db = getDb(D1Database);
 
-    // Check if user has paid for this contest
-    const payment = await db
-      .select()
-      .from(payments)
-      .where(
-        and(
-          eq(payments.contestId, contestId),
-          eq(payments.userEmail, user.emailAddress || '')
-        )
-      )
-      .limit(1);
-
-    const hasPaid = payment.length > 0;
+    // The client compares this with the categories entered to know what is
+    // still owed, so the balance follows uploads and deletes without a refetch
+    const paidCents = await getPaidCents(
+      db,
+      contestId,
+      user.emailAddress || ''
+    );
 
     const response: PaymentStatusResponse = {
       success: true,
-      data: { hasPaid },
+      data: { paidCents },
     };
     return new Response(JSON.stringify(response), {
       status: 200,

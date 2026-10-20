@@ -41,7 +41,7 @@ rule OwnerEditsSubmissionMetadata {
     ensures: submission.description = description.trimmed
     @guidance
         -- Allowed whether or not the owner has paid for the contest.
-        -- Payment locks upload and delete, never metadata.
+        -- Payment never locks an entry; see entry-payment.allium.
 }
 
 rule AdminEditsSubmissionMetadataOnBehalf {
