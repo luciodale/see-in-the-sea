@@ -458,3 +458,30 @@ describe('closed contest', () => {
     await setContestStatus('active');
   });
 });
+
+describe('delete order', () => {
+  test('a failed row delete leaves the photo intact', async () => {
+    const email = 'judged@test.dev';
+    const id = await addSubmission(email, 'macro');
+    await sql(
+      'INSERT INTO judging_flags (id, submission_id) VALUES (?, ?)',
+      `flag-${id}`,
+      id
+    );
+    const response = await deleteAs(email, id);
+    expect(response.status).toBe(500);
+    expect(await R2.get(`r2/${id}`)).not.toBeNull();
+    const row = await DB.prepare('SELECT id FROM submissions WHERE id = ?')
+      .bind(id)
+      .first();
+    expect(row).not.toBeNull();
+  });
+
+  test('a normal delete removes the row and the file', async () => {
+    const email = 'deleter@test.dev';
+    const id = await addSubmission(email, 'macro');
+    const response = await deleteAs(email, id);
+    expect(response.status).toBe(200);
+    expect(await R2.get(`r2/${id}`)).toBeNull();
+  });
+});

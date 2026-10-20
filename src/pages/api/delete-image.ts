@@ -164,8 +164,18 @@ export const DELETE: APIRoute = async ({ request, locals }) => {
       );
     }
 
-    await deleteImageFromR2(R2Bucket, submission.r2ImageId);
+    // Row first: if it fails (judging rows reference it, D1 error) the photo
+    // stays intact. A file left behind by a failed R2 delete only costs storage.
     await deleteSubmission(db, submissionId);
+    try {
+      await deleteImageFromR2(R2Bucket, submission.r2ImageId);
+    } catch (error) {
+      console.error(
+        '[delete-image] Orphaned R2 file',
+        submission.r2ImageId,
+        error
+      );
+    }
 
     return new Response(
       JSON.stringify({
